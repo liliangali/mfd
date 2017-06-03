@@ -334,17 +334,6 @@ class UserController extends BaseController {
         }
         $request->user_id = $user->user_id;
         $cash = Cash::getCash($request);
-echo '<pre>';print_r($cash->toArray());exit;
-
-        if($request->user_name)
-        {
-            $condition[] = ['user_name','like',$request->user_name.'%'];
-        }
-
-        $users = User::where($condition)->orderBy('user_id', 'desc')->paginate($request->page_size);
-
-        return $this->response->paginator($users, new UserTransformer,[],function ($resource, $fractal) {
-            $fractal->setSerializer(new CustomSerializer);
-        });
+        return $this->successResponse($cash);
     }
 }

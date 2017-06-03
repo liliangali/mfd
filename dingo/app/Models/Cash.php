@@ -71,27 +71,34 @@ class Cash extends Model
         if($request->user_name)
         {
             $user_info = User::getByName($request->user_name);
-            if($user_info)
+            if(!$user_info)
             {
-                $condition[] = ['user_id',$request->user_id];
+                return [];
             }
+            $condition[] = ['user_id',$request->user_id];
         }
         if(isset($request->status))
         {
             $condition[] = ['status',$request->status];
         }
+
         $cash_list = Cash::where($condition)->orderBy('id', 'desc')->paginate($request->page_size)->toArray();
-
-        $cash = array_unique(collect($cash_list['data'])->pluck('user_id')->toArray());
-     echo '<pre>';print_r($cash);exit;
-
-
-        if($request->is_admin && $cash_list['data'])
-        {
-
-        }
-        echo '<pre>';print_r($cash_list->belongsToUser());exit;
-        
+        $user_list = collect(User::whereIn('user_id', array_unique(collect($cash_list['data'])->pluck('user_id')->toArray()))->get()->makeHidden(User::hidenList()['default'])->toArray())->keyBy('user_id')->toArray();
+        $cash_list['data'] = collect($cash_list['data'])->map(function ($item) use($user_list){
+           if($user_list[$item['user_id']])
+           {
+               $item['uinfo'] = $user_list[$item['user_id']];
+           }
+           if($item['status'] == 0)
+           {
+               $item['status'] = 1;
+           }
+           else
+           {
+               $item['status'] = 2;
+           }
+           return $item;
+        })->values();
         return $cash_list;
     }
 }

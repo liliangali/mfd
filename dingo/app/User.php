@@ -32,6 +32,16 @@ class User extends Authenticatable
         'password',
     ];
 
+    /**
+     * 部分隐藏字段
+     */
+    public static function hidenList()
+    {
+        return [
+          'default'=>['password','pay_password','real_name','openid','last_ip','channel_pid'],
+        ];
+    }
+
 
 
     //和cf_channel_infos一对一关系
