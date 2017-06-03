@@ -40,6 +40,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\ChannelInfo', 'user_id', 'user_id');
     }
 
+    public function cashs()
+    {
+        return $this->hasMany('App\Models\Cash','user_id','user_id');
+    }
+
     /*
     * 注册函数
     * @pram email
@@ -323,7 +328,16 @@ class User extends Authenticatable
     * create_time 2016-08-08
     */
     public static function getById($id){
-      return User::where('user_id',$id)->first();
+        return User::where('user_id',$id)->first();
+    }
+
+    /*
+     *根据user_name获取用户信息
+     * @author cck
+     * create_time 2016-08-08
+     */
+    public static function getByName($name){
+        return User::where('user_name',$name)->first();
     }
 
     /*

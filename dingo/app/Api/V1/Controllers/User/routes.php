@@ -16,3 +16,4 @@ $api->post('/users/bank', 'User\UserController@saveBank');
 $api->get('/users/bank', 'User\UserController@getBank');
 $api->get('/users/bankl', 'User\UserController@getBankL');
 $api->post('/users/cash', 'User\UserController@saveCash');
+$api->get('/users/cash', 'User\UserController@getCash');

@@ -80,7 +80,6 @@ class UserController extends BaseController {
         return $this->response->paginator($users, new UserTransformer,[],function ($resource, $fractal) {
             $fractal->setSerializer(new CustomSerializer);
         });
-        //return $this->response->collection($users, new UserTransformer);
     }
 
 
@@ -314,11 +313,38 @@ class UserController extends BaseController {
         {
             return $this->errorResponse('您有提现申请尚未处理,请先处理上一条提现申请');
         }
-
-        $res = Cash::saveCash($request,$user);
-
-
+        if(Cash::saveCash($request,$user))
+        {
+            return $this->successResponse();
+        }
+        return $this->errorResponse('申请失败');
 
     }
 
+    public function getCash(Request $request)
+    {
+        $user = JWTAuth::parseToken()->authenticate();
+        $validator = Validator::make($request->all(), [
+            'page'=>"required|integer",
+            'page_size'=>"required|integer",
+        ]);
+        if($validator->fails())
+        {
+            return $this->response->error($validator->errors()->first(), 400);
+        }
+        $request->user_id = $user->user_id;
+        $cash = Cash::getCash($request);
+echo '<pre>';print_r($cash->toArray());exit;
+
+        if($request->user_name)
+        {
+            $condition[] = ['user_name','like',$request->user_name.'%'];
+        }
+
+        $users = User::where($condition)->orderBy('user_id', 'desc')->paginate($request->page_size);
+
+        return $this->response->paginator($users, new UserTransformer,[],function ($resource, $fractal) {
+            $fractal->setSerializer(new CustomSerializer);
+        });
+    }
 }
