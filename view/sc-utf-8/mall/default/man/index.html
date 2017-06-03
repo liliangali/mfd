@@ -1,0 +1,144 @@
+{include file=header-new.html}
+<link href="/public/static/pc/css/ktsp_list.css" type="text/css" rel="stylesheet">
+	<!-- {if count($banner)>0} -->
+	<div id="banner" class="swipe">
+	
+		<div class="swipe-wrap">
+	
+	       <!-- {foreach from=$banner item=pictures} -->
+			<div style="display:block; width:100%; height:400px; background:url({$pictures.source_img}) no-repeat center center;"></div>
+			<!-- {/foreach} -->
+		</div>
+		<!-- {if count($banner)>1} -->
+			<div class="swipe-btn">
+				<!-- {foreach from=$banner item=pictures name=image} -->
+					<span {if $smarty.foreach.image.iteration eq 1}class="cur"{/if}></span> 
+				<!-- {/foreach} -->
+			</div>
+			
+			<span class="swipe-prev"></span> <span class="swipe-next"></span> 
+		<!-- {/if} -->
+	</div>
+	<!-- {/if} -->
+<div class="fllb">
+ <ul class="flbl_ul">
+  <li><a name="anchor"></a>
+   <h6>分类：</h6>
+   <p class="flsx">
+    {foreach from=$categorys item=cat}
+     <a href="{link app=man arg=$t}{$cat.url}#anchor" {if $cat.selected}class="on"{/if}>{$cat.cate_name}</a>
+    {/foreach}
+   </p>
+  </li>
+  
+  {foreach from=$attr_list item=attr}
+  {if $attr.alias neq "产地" && $attr.alias neq "场合" && $attr.alias neq "工艺"} 
+	<li>
+     <h6>{$attr.alias}：</h6>
+     <p class="flsx">
+       {foreach from=$attr.children item=val}
+       <a href="{link app=man arg=$t}{$val.url}#anchor" {if $val.selected}class="on"{/if}>{$val.name}</a>
+       {/foreach}
+     </p>
+    </li>
+   {/if}
+  {/foreach}
+ </ul>
+ 
+ <ul class="szpx">
+  <li {if $order eq 'reorder'}class="on"{/if}><a href="{link app=man arg=$t}{$formatUrl}&order=reorder&sort={if $order eq 'reorder' && $sort eq ASC}DESC{else}DESC{/if}#anchor #xl">综合排序</a></li>
+  <li {if $order eq 'sale_num'}class="on {if $sort eq 'ASC'}li_dj{else}li_2{/if}"{else}class="li_1"{/if}><a href="{link app=man arg=$t}{$formatUrl}&order=sale_num&sort={if $order eq 'sale_num' && $sort eq ASC}DESC{else}ASC{/if}#anchor #xl">销量</a></li>
+  <li {if $order eq 'price'}class="on {if $sort eq 'ASC'}li_dj{else}li_2{/if}"{else}class="li_1"{/if}><a href="{link app=man arg=$t}{$formatUrl}&order=price&sort={if $order eq 'price' && $sort eq ASC}DESC{else}ASC{/if}#anchor #xl">价格</a></li>
+  <li {if $order eq 'add_time'}class="on {if $sort eq 'ASC'}li_sj{else}li_3{/if}"{else}class="li_1"{/if}><a href="{link app=man arg=$t}{$formatUrl}&order=add_time&sort={if $order eq 'add_time' && $sort eq ASC}DESC{else}ASC{/if}#anchor #xl">上架时间</a></li>
+ </ul>
+</div>
+
+<a name="xl" id="xl"></a>
+<div class="fllb">
+ <ul class="ktsp_list" id="brick">
+  
+ </ul>
+</div>
+<div class="jzwb">加载完毕</div>
+
+{include file=navicate.html}
+
+
+{include file=footer-new.html}
+<!--底部/E-->
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/public.js"></script> 
+<script>
+//幻灯
+;(function(){
+	var len=$('#banner img').length,slider = Swipe(document.getElementById('banner'), {
+		auto: 4000,
+		//continuous: false,
+		callback: function(index, element) {
+			if(len==2){
+				switch(index){
+					case 2:
+					index=0;
+					break;
+					case 3:
+					index=1;
+					break; 	
+				}
+			}
+			$('.swipe-btn span').eq(index).addClass('cur').siblings().removeClass();	
+		}
+	});
+	$('.swipe-prev').click(slider.prev);
+	$('.swipe-next').click(slider.next);
+})();
+var $container = $('#brick'),delay=null;
+var man = {
+	url:'{link app=man act=loadData arg0=1 arg1=$t}',
+	param:"{$formatUrl}&order={$order}&sort={$sort}"
+};
+//获取数据
+function getData(){
+	var winh=$(window).height(),
+		bodyh=$container.height();
+	if(($(window).scrollTop()+winh)>=bodyh-350){
+		$(window).off('scroll',getData);
+		if(delay){clearTimeout(delay)}
+		$('.jzwb').text('加载中...').show();
+		delay=setTimeout(function(){
+			if(!man.url){
+				$('.jzwb').text('加载完毕').show();
+		        return false;
+		    }
+		    $.get(man.url+man.param,function(res){
+		        var res = eval("("+res+")");
+		        var $newElems = $(res.retval.content);
+		        man.url = res.retval.link;
+				$container.append(res.retval.content);
+				$('.jzwb').hide();
+		        $(window).on('scroll',getData);
+		    });
+		},500)
+	}
+}
+$(window).on('scroll',getData);
+//初始化
+getData();
+</script>
+
+<script>
+  //意见反馈弹层
+  $('#feedback').click(function(){
+	  $.getScript('/public/global/luck/pc/luck.js',function(){
+		  luck.open({
+			  title:'意见反馈',
+			  width:'660px',
+			  height:'475px',
+			  content:'<iframe width="660" height="475" style="display:block" src="view/sc-utf-8/mall/default/feedback/ajax_feedback.html" frameborder="0"></iframe>',
+			  addclass:'mfd-luck'
+		  });
+	  })
+  });
+</script>
+</body>
+</html>

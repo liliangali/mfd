@@ -1,0 +1,304 @@
+{include file="header.html"}
+
+<script type="text/javascript">
+$(function(){
+
+	$.validator.addMethod("isPhone",function(value,element){
+		var length = value.length;   
+		  var mobile = /^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/;   
+		  var tel = /^\d{3,4}-?\d{7,9}$/;   
+		  //return this.optional(element) || (tel.test(value) || mobile.test(value));   
+		  return mobile.test(value);
+		});
+	
+	$('#serve_form').validate({
+		errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : true,
+    rules : {
+		company_name : {
+            required : true
+            <!--{if $smarty.get.act eq 'add'}-->
+            ,
+            remote   : {
+    	
+                url :'/index.php/serve-check_company.html',
+                type:'get',
+                data:{
+                    user_name : function(){
+                        return $('#company_name').val();
+                    }
+                }
+            }
+            <!--{/if}-->
+        },
+
+        card_number : {
+            required : true,
+            remote   : {
+                url :'index.php?app=serve&act=check_lt_card',
+                type:'get',
+                data:{
+                	card_number : function()
+                	{
+                        return $('#card_number').val();
+                    },
+                    id : '{$liangt.id}'
+                   
+                }
+            }
+        },
+        ltname   : {
+            required : true,
+            remote   : {
+                url :'index.php?app=serve&act=check_lt',
+                type:'get',
+                data:{
+                	ltname : function()
+                	{
+                        return $('#ltname').val();
+                    },
+                   
+                }
+            }
+        },
+        alone   : {
+            required : true,
+        },
+        password1   : {
+           {if $smarty.get.act eq 'addlt'}
+            required : true,
+            {/if}
+            maxlength: 16,
+            minlength: 6
+        },
+        // email   : {
+        //         required : true,
+        //         email : true
+        // },
+        mobile   : {
+            required : true,
+            <!--{if $smarty.get.act eq 'addlt'}-->
+            remote   : {
+                url :'index.php?app=serve&act=check_mob',
+                type:'get',
+                data:{
+                	mobile : function(){
+                        return $('#mobile').val();
+                    },
+                }
+            }
+            //isPhone:true
+            <!--{/if}-->
+        },
+        id_card   : {
+            remote   : {
+                url :'index.php?app=serve&act=check_ident',
+                type:'get',
+                data:{
+                	ident_card : function(){
+                        return $('#id_card').val();
+                    },
+                }
+            }
+            //isPhone:true
+            
+        },
+  
+        rc_code   : {
+            required : true
+            <!--{if $smarty.get.act eq 'addlt'}-->
+            ,
+            remote   : {
+    	
+                url :'/index.php/serve-check_rc_code.html',
+                type:'get',
+                data:{
+                    user_name : function(){
+                        return $('#rc_code').val();
+                    }
+                }
+            }
+            <!--{/if}-->
+        }
+
+        
+    },
+    messages : {
+    	company_name : {
+            required : '{$lang.company_name_not_empty}'
+            	<!--{if $smarty.get.act eq 'addlt'}-->
+                ,
+            remote : '{$lang.company_name_exist}'
+            	 <!--{/if}--> 
+        },
+        ltname  : {
+            required : '姓名不能为空',
+            remote: '用户名的长度应在1-10个中文或英文之间',
+           // maxlength: '密码在6-16位之间',
+           // minlength: '密码在6-16位之间'
+           // remote   : '{$lang.name_exist}' 
+        },
+        alone : {
+            required : '不能为空',
+            
+        },
+        password1  : {
+        	 <!--{if $smarty.get.act eq 'addlt'}-->
+             required : '密码不能为空',
+             <!--{/if}-->
+             maxlength: '密码在6-16位之间',
+             minlength: '密码在6-16位之间'
+        },
+        // email  : {
+        //         required : '电子邮箱不能为空',
+        //         email   : '请您填写有效的电子邮箱'
+        // },
+        mobile  : {
+            required : '{$lang.mobile_not_empty}',
+       
+            remote   : '手机号格式不正确或该手机号已存在'
+            	 
+        },
+        id_card: {
+            remote   : '身份证格式不正确'
+        },
+    	card_number : {
+            required : '必填',
+            remote   : '证件号已存在'
+        },
+       
+        rc_code  : {
+            required : '{$lang.rc_code_not_empty}'
+            	<!--{if $smarty.get.act eq 'addlt'}-->
+                ,
+            remote : '{$lang.rc_code_exist}'
+            	 <!--{/if}--> 
+        }
+                
+    }
+	});
+});
+
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=serve&act=quantity">管理</a></li>
+    <li>
+      <span>添加</span>
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="serve_form" name="serve_form">
+    <table class="infoTable">
+        <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>量体师姓名:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="ltname" type="text" id="ltname" value="{$datalt.real_name|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>量体师证件号:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input class="infoTableInput2" name="card_number" type="text" id="card_number" value="{$liangt.card_number|escape}" />
+        <label class="field_notice">请输入9位数</label>
+      </tr>
+
+      {if $datalt}
+     <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>登录账号:</th>
+        <td class="paddingT15 wordSpacing5"><span>{$datalt.user_name}</span></td>
+      
+      </tr>
+      {else}
+      <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>登录账号:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="mobile" type="text" id="mobile" value="" maxlength='16' placeholder="请输入手机号"/></td>
+      </tr>
+      {/if}
+      <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>登录密码:</th>
+        <td class="paddingT15 wordSpacing5"><input name="password1" type="text" id="password1" value="" maxlength='16' />&nbsp;{if $datalt}留空表示不修改密码{/if}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>单独承接任务:</th>
+        <td class="paddingT15 wordSpacing5"><p>
+            <label>
+            <input type="radio" name="alone" value="1" {if $liangt.alone eq 1}checked="checked"{/if} />
+           是</label>
+          <label>
+            <input type="radio" name="alone" value="2" {if $liangt.alone eq 2}checked="checked"{/if} />
+           否</label>
+          </p></td>
+      </tr>
+    
+       <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>性别:</th>
+        <td class="paddingT15 wordSpacing5"><p>
+            <label>
+            <input type="radio" name="gender" value="1" {if $datalt.gender eq 1}checked="checked"{/if} />
+            男</label>
+            <label>
+            <input type="radio" name="gender" value="2" {if $datalt.gender eq 2  or empty($datalt.gender)}checked="checked"{/if} />
+            女</label>
+          </p></td>
+      </tr>
+      
+            <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>所属门店:</th>
+        <td class="paddingT15 wordSpacing5">
+         <select class="querySelect" name="manager" id="manager">{html_options options=$manager selected=$liangt.manager_id}
+          </select>
+         </td>
+      </tr>
+     <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>{$lang.state}:</th>
+        
+        <td class="paddingT15 wordSpacing5">
+        
+        <select class="querySelect" name="state" id="state">{if $datalt}{html_options options=$state  selected=$datalt.state_info}{else}{html_options options=$state selected=1}{/if}
+          </select>
+        <input id="ostate" name="ostate" type="hidden" value="{$serve.state}" />
+        <input id="ostate" name="userid" type="hidden" value="{$serve.userid}" />
+		</td>
+      </tr>
+        <tr>
+        <th class="paddingT15">绑定手机号:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="phone_mob" type="text" id="phone_mob" value="{$datalt.phone_mob}" maxlength='16' /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> 电子邮箱:</th>
+        <td class="paddingT15 wordSpacing5"><input name="email" type="text" id="email" value="{$datalt.email}" />
+            <label class="field_notice"></label>        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> QQ:</th>
+        <td class="paddingT15 wordSpacing5"><input name="im_qq" type="text" id="im_qq" value="{$datalt.im_qq|escape}" />
+        </td>
+      </tr>
+
+
+     	<tr>
+        <th class="paddingT15"> 身份证号:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="id_card" type="text" id="id_card" value="{$liangt.ident_card}" />        </td>
+      </tr>
+     
+      <tr>
+        <th></th>
+        <td class="ptb20">
+        	<input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+        	<!-- {if $field.field_value}-->
+        	<input type="hidden" name="field_name" value="{$field.field_name}" />
+        	<input type="hidden" name="field_value" value="{$field.field_value|escape}" />
+        	<!-- {/if} -->
+          <input class="congzi" type="reset" name="Reset" value="{$lang.reset}" />
+         </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

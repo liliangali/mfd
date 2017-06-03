@@ -1,0 +1,161 @@
+{include file="header.html"}
+<script type="text/javascript" src="{res file=js/utils.js}" charset="utf-8"></script>
+<div class="form-div">
+  <form  method="GET">
+  请选择一个模板
+  <select name="template_file">
+    {html_options options=$template_files selected=$curr_template_file}
+  </select>
+  <input type="submit" value="确定" class="button" />
+  <input type="hidden" name="act" value="setUp" />
+  <input type="hidden" name="app" value="ads" />
+  </form>
+</div>
+
+<!-- start template options list -->
+<div class="list-div">
+<form name="theForm" method="post">
+  <table width="100%" cellpadding="3" cellspacing="1">
+  <tr>
+  <th></th>
+    <th>项目</th>
+    <th>区域</th>
+	<th>数量</th>
+  </tr>
+  <tr>
+    <td colspan="6" style="background-color: #F4FBFB; font-weight: bold" align="left"><a href="javascript:;" onclick="addAdPosition(this)">[+]</a> 广告位 </td>
+  </tr>
+  {foreach from=$ad_positions item=ad_position key=lib_name}
+  <tr>
+    <td class="first-cell" align="right"><a href="javascript:;" onclick="removeRow(this)">[-]</a></td>
+    <td><select name="regions[ad_position][]"><option value="">请选择</option>{html_options values=$temp_regions output=$temp_regions selected=$ad_position.region}</select></td>
+    <td><select name="ad_position[]"><option value="0">请选择</option>{html_options options=$arr_ad_positions selected=$ad_position.ad_pos}</select></td>
+   <td><input type="text" name="number[ad_position][]" value="{$ad_position.number}" size="4" /></td>
+  </tr>
+  {/foreach}
+
+  </table>
+  <div class="button-div ">
+    <input type="submit" value="提交" class="button" />
+    <input type="reset" value="重置 " class="button" />
+    <input type="hidden" name="act" value="setUp" />
+    <input type="hidden" name="app" value="ads" />
+    <input type="hidden" name="template_file" value="{$curr_template_file}" />
+  </div>
+</form>
+</div>
+
+<!-- end template options list -->
+
+<script language="JavaScript">
+<!--
+var currTemplateFile = '{$curr_template_file}';
+var selAdPositions   = new Array();
+var selRegions       = new Array()
+
+{foreach from=$temp_regions item=region key=id}
+selRegions[{$id}] = '{$region|escape:quotes}';
+{/foreach}
+
+{foreach from=$arr_ad_positions item=ad_position key=id}
+selAdPositions[{$id}] = '{$ad_position|escape}';
+{/foreach}
+ selectPlease = "请选择";
+ removeConfirm = "您确定要删除选定的内容吗？";
+{literal}
+
+/**
+ * 创建区域选择的下拉列表
+ */
+function buildRegionSelect(selName)
+{
+    var sel = '<select name="' + selName + '">';
+
+    sel += '<option value="">' + selectPlease + '</option>';
+
+    for (i=0; i < selRegions.length; i++)
+    {
+        sel += '<option value="' + selRegions[i] + '">' + selRegions[i] + '</option>';
+    }
+
+    sel += '</select>';
+
+    return sel;
+}
+
+
+/**
+ * 创建选择广告位置的列表
+ */
+function buildAdPositionsSelect(selName)
+{
+    var sel = '<select name="' + selName + '">';
+
+    sel += '<option value="">' + selectPlease + '</option>';
+
+    for (ap in selAdPositions)
+    {
+        if (ap != "______array" && ap != "toJSONString")
+        {
+          sel += '<option value="' + ap + '">' + selAdPositions[ap] + '</option>';
+        }
+    }
+
+    sel += '</select>';
+
+    return sel;
+}
+
+
+/**
+ * 增加一个广告位
+ */
+function addAdPosition(obj)
+{
+    var rowId = rowindex(obj.parentNode.parentNode);
+
+    var table = obj.parentNode.parentNode.parentNode.parentNode;
+
+    var row  = table.insertRow(rowId + 1);
+    var cell = row.insertCell(-1);
+    cell.innerHTML = '<a href="javascript:;" onclick="removeRow(this)">[-]</a>';
+    cell.className = 'first-cell';
+    cell.align     = 'right';
+
+    cell           = row.insertCell(-1);
+    cell.innerHTML = buildRegionSelect('regions[ad_position][]');
+
+
+    cell           = row.insertCell(-1);
+    cell.innerHTML = buildAdPositionsSelect('ad_position[]');
+
+    cell           = row.insertCell(-1);
+    cell.innerHTML = '<input type="text" name="number[ad_position][]" value="1" size="4" />';
+
+    cell           = row.insertCell(-1);
+}
+
+/**
+ * 删除一行
+ */
+function removeRow(obj)
+{
+    if (confirm(removeConfirm))
+    {
+        var table = obj.parentNode.parentNode.parentNode;
+        var row   = obj.parentNode.parentNode;
+
+        for (i = 0; i < table.childNodes.length; i++)
+        {
+            if (table.childNodes[i] == row)
+            {
+                table.removeChild(table.childNodes[i]);
+            }
+        }
+    }
+}
+
+{/literal}
+//-->
+</script>
+{include file="footer.html"}

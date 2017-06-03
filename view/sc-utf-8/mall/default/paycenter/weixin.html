@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>微信扫描支付</title>
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/gwc.css" rel="stylesheet">
+</head>
+<body style="background: #f5f5f5;">
+<!--头部/S-->
+<div class="wxzf_hd"><p><a href="#"><img src="/public/static/pc/images/syt.jpg"></a></p></div>
+<!--头部/E-->
+
+<div class="wxzf">
+  <div class="div_1">
+  	 <h1>请您及时付款，以便订单尽快处理！ </h1>
+     <h2>请您在提交订单后<span>24小时</span>内完成支付，否则订单会自动取消。</h2>
+  </div>
+  
+  <div class="div_2">
+  	<p>应付金额<span>{$money}</span>元</p>
+  </div>
+</div>
+
+<div class="wxzf">
+	<div class="payment">
+		<div class="wxqtzf">微信支付<a href="{link app=recharge}">选择其他支付方式 ></a></div>
+		
+		<div class="lbqi">
+		 <div class="yx-box">
+      <div class="yx-box-hd"><img src="http://paysdk.weixin.qq.com/example/qrcode.php?data={$payment_img}" /></div>
+      <div class="yx-box-ft"></div>  
+     </div>
+     <div class="yx-sidebar"></div>
+    </div>
+		
+	</div>
+</div>
+
+<!--底部开始-->
+<p class="yx_bah">@2017 myfoodiepet.com<span>All rights reserved</span><span>备案号：鲁ICP备16029325号-1</span></p>
+<!--底部结束--> 
+</body>
+</html>

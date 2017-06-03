@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>意见反馈</title>
+<link href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link href="http://r.cotte.cn/cotte/wap/css/slx_style.css" rel="stylesheet" />
+</head>
+
+<body style="background:#f6f6f6;">
+<div class="main"> 
+	<!--头部开始-->
+	<div class="topBar" id="topBar">
+		<div class="wrap"> <span class="back" onClick="history.go(-1)"></span>
+			<h1>意见反馈</h1>
+		</div>
+		<div class="sta"></div>
+	</div>
+	<!--头部结束-->	
+	<textarea placeholder="请简要描述你的问题和意见(200字以内)" id="content" class="view"></textarea>
+    <input type="submit" value="提交" class="tijiao" id="submit">  
+    <div class="lxgf">
+        <p class="yjjy">没有解决？转人工客服试试</p>
+        <ul>
+        	<li class="kfdh" style="width:100%"><p class="kfdhua"><a href="tel:4008919867">客服电话</a></p></li>
+<!--             <li><p class="zxkfu"><a><span>在线客服</span></a></p></li> -->
+        </ul>
+    </div>
+</div>
+
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script src="http://r.cotte.cn/global/luck/mobile/luck.js"></script>
+<script src="http://r.cotte.cn/cotte/wap/js/manhuaInputLetter.1.0.js"></script>
+<script>
+function phone(date){
+	var phone="wtai://wp//mc;"+data;
+	 luck.open({
+		  content: date,
+		  btn: [
+		    '取消',
+		    '呼叫'
+		  ],
+		  yes: function () {
+			  luck.close()
+		  },
+		  no: function () {
+			  window.location.href=phone;
+		  }
+		});
+}
+$(function (){
+	$("#content").manhuaInputLetter({					       
+		len : 200,//限制输入的字符个数				       
+		showId : "sid"//显示剩余字符文本标签的ID
+	});
+});
+$('#submit').click(function(){
+	var content='';
+	content=$("#content").val();
+	if(!content){
+		luck.open({
+			content:'内容不能为空',
+			time:1500
+		})
+		return
+	}
+	//不传照片了
+	/*var items = '';
+// 	console.log($('.up p img'));
+
+     $('.up p img').each(function(){
+    	var val=this.src;
+    	val=val.substr(23,(val.length-1));
+        items += val + ',';
+    });
+    items = items.substr(0, (items.length - 1)); */
+	$.post('{link app=feedback act=add}',{content:content},function(res){
+		if(res){
+			luck.open({
+				content:'提交成功',
+				time:1500
+			});
+			//alert('提交成功');
+			setInterval("window.location.href='/member-index.html'",1600);
+		}
+	},"json");
+	
+})
+</script>
+</body>
+</html>

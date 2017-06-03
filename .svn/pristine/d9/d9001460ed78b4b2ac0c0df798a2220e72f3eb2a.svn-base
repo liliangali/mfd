@@ -1,0 +1,9 @@
+    <select name="fab">
+   {foreach from=$list item=val}
+        <option value="{$val.ID}">{$val.CODE}</option>
+   {/foreach}
+       </select>
+       {foreach from=$list item=val}
+        <input type="hidden" name="fabs[]" value="{$val.ID}">
+       {/foreach}
+       

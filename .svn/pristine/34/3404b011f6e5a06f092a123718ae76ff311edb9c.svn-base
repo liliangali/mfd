@@ -1,0 +1,12 @@
+
+   {foreach from=$list item=val key=key}
+
+        <select name="{$type}[{$key}]">
+            {foreach from=$val.children item=chi}
+                <option value="{$chi.id}">{$chi.name}</option>
+            {/foreach}
+        </select>
+        {foreach from=$val.children item=chi}
+           <input type="hidden" name="{$type}_ids[{$key}][]" value="{$chi.id}">
+        {/foreach}
+   {/foreach}

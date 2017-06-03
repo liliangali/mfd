@@ -1,0 +1,75 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=index">{$lang.series_list}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=add_series">{$lang.add_series}</a></li>
+        <li><span>{$lang.shop_list}</span></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=add_good">{$lang.add_shop}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=cover">{$lang.cover}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=add_cover">{$lang.add_cover}</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get" >
+            <div class="left">
+                <input type="hidden" name="app" value="elephotos" />
+                <input type="hidden" name="act" value="good_list" />
+                <select name="con">
+                    <option value="0">请选择系列</option>{html_options options=$series }
+                </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+
+            </div>
+            <!--{if $query.name || $query.to_site}-->
+            <a class="left formbtn1" href="index.php?app=elephotos&act=good_list">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $goods}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left">{$lang.good_name}</td>
+            <td>{$lang.good_price}</td>
+            <td>{$lang.belong_series}</td>
+            <td align="left">{$lang.sort_order}</td>
+            <td>{$lang.add_time}</td>
+            <td>{$lang.is_show}</td>
+            <td>{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$goods item=data}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input type="checkbox" class="checkitem" value="{$data.id}" /></td>
+            <td>{$data.good_name}</td>
+            <td>{$data.good_price}</td>
+            <td>{$series.$data.belong_series}</td>
+            <td>{$data.sort_order}</td>
+            <td>{$data.add_time|date:Y-m-d H:i:s}</td>
+            <td>{if $data.is_show == 0}显示{else}不显示{/if}</td>
+            <td><a href="index.php?app=elephotos&amp;act=edit_good&amp;id={$data.id}">{$lang.edit}</a>
+
+                <a href="index.php?app=elephotos&amp;act=drop_good&amp;id={$data.id}">{$lang.drop}</a>
+        </tr>
+
+        <!--{/foreach}-->
+    </table>
+    <!--{if $series}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=elephotos&act=drop_series" />
+            &nbsp;&nbsp;
+            <!--<input class="formbtn batchButton" type="button" value="lang.update_order" name="id" presubmit="updateOrder(this);" />-->
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

@@ -1,0 +1,385 @@
+{include file=header.html}
+<link href="{res file=css/z_style.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{res file=js/jquery.SuperSlide.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+var REGION_URL="{link app=mlselection act=index arg=region}";
+reginUrl=REAL_SITE_URL+REGION_URL;
+//]]>
+</script>
+{$_head_tags}
+
+<script type="text/javascript">
+$(function(){
+	$.ajaxSetup({async : false});
+	regionInit("region");
+
+	$('#timeserve').datepicker({dateFormat: 'yy-mm-dd',minDate:1});
+	
+	var value="<!--{$value}-->";
+	var r2="<!--{$r2}-->";
+	var r1="<!--{$r1}-->";
+	//alert(value);
+	if (r1.length>0){
+		$("#region select:eq(0)").val(r1).trigger("change");
+	}
+	if (r2.length>0){
+		$("#region select:eq(1)").val(r2).trigger("change");
+	}
+	if (value.length>0){
+		$("#region select:eq(2)").val(value).trigger("change");
+	}
+	/*
+	if (typeof($_GET['r1']) != "undefined"){
+			$("#region select:eq(0)").val($_GET['r1']).trigger("change");
+	}
+	if (typeof($_GET['r2']) != "undefined"){
+		$("#region select:eq(1)").val($_GET['r2']).trigger("change");
+	}
+	if (typeof($_GET['value']) != "undefined"){
+		$("#region select:eq(2)").val($_GET['value']).trigger("change");
+	}
+	*/
+/*
+	$('.page a').click(function(){
+		alert($(this).attr('href').replace('index','ajax_index'));
+		return false;
+	});
+	*/
+});
+
+
+function getsearchurl(index)
+{
+	var url="{link app=service act="+index+" arg1=1}";
+	var urlpr="/index.php/service-"+index+"-1";
+	var urlex=".html";
+
+	var r1=$("#region select:eq(0)").val();
+	
+	//var value=$("#region_id").val();
+	var r2=$("#region select:eq(1)").length>0?$("#region select:eq(1)").val():"";
+	
+	var value=$("#region select:eq(2)").length>0?$("#region select:eq(2)").val():"";
+	
+	
+	
+	//alert(value);
+	
+	if(r1.length==0||r1=="请选择...")r1='0';
+	if(r2.length==0||r2=="请选择...")r2='0';
+	if(value.length==0||value=="请选择...")value='0';
+
+	url=urlpr+"-"+r1+"-"+r2+"-"+value+urlex;
+	return url;
+}
+
+function regionsearch(){
+	url=getsearchurl('index');
+	
+	//alert(url);
+	location.href=url;
+	return true;
+
+	/*
+	if($("#region select:last").find("option:selected").val()=="请选择...")
+	{
+		alert("请选择地区!");
+		return false;
+	}else{
+		var r1=$("#region select:eq(0)").val();
+		var r2=$("#region select:eq(1)").val();
+		var value=$("#region_id").val();
+
+		if(r1.length==0)r1='0';
+		if(r2.length==0)r2='0';
+		if(value.length==0)value='0';
+
+		url=urlpr+"-"+r1+"-"+r2+"-"+value+urlex;
+
+		//alert(url);
+		location.href=url;
+		return true;
+		}
+	*/
+	
+	
+}
+var $_GET = (function(){
+	var url = window.document.location.href.toString();
+	var u = url.split("?");
+	if(typeof(u[1]) == "string"){
+		u = u[1].split("&");
+		var get = {};
+		for(var i in u){
+			var j = u[i].split("=");
+			get[j[0]] = j[1];
+		}
+		return get;
+	} else {
+		return {};
+	}
+})();
+</script>
+
+<script type="text/javascript">
+$(function(){
+
+
+	$("input[name='radioidserve']").click(function(){
+		
+
+		$("#hiddenidserve").val($(this).val());
+		$("#serve_form").attr('action','/index.php/subscribe-index-'+$(this).val()+'.html');
+		});
+	
+	
+	$('#serve_form').validate({
+
+
+		
+		errorPlacement: function(error, element){
+	        $(element).nextAll('.apply_label').removeClass("error_on").addClass("error_off").html(error);
+	    },
+	    success       : function(label){
+	        label.parent().removeClass("error_off").addClass("error_on");
+	    },
+    rules : {
+    	username : {
+            required : true
+        },mobile : {
+            required : true
+        },subscribe_type : {
+            required : true
+        },address : {
+            required : true
+        },figure_mode : {
+            required : true
+        },hiddenidserve : {
+        	required : true
+        },timeserve:{
+        	required : true
+        }
+
+
+        
+    },
+    messages : {
+    	username : {
+            required : '{$lang.username_not_empty}'
+        },mobile : {
+            required : '{$lang.mobile_not_empty}'
+        },subscribe_type : {
+            required : '{$lang.subscribe_type_not_empty}'
+        },address : {
+            required : '{$lang.address_not_empty}'
+        },figure_mode : {
+            required : '{$lang.figure_mode_not_empty}'
+        },hiddenidserve : {
+        	required : '{$lang.radioidserve_not_empty}'
+        },timeserve : {
+        	required : '请选择服务时间 '
+        }
+        
+
+
+        
+    }
+
+
+    
+	});
+});
+
+</script>
+<style>
+#timeopt{
+	padding: 4px 6px;
+	border: #ccc 1px solid;
+	width: 80px;
+	margin-left: 5px;
+	}
+</style>
+<!--头部结束-->
+<!--中间开始-->
+<div class="center_box">
+   <div class="fwhome_right">
+        
+        <!--基本信息 start-->
+         <form method="post" id="serve_form" name="serve_form" >
+             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="serve_table">
+             
+             <tr>
+                <th><div>您的所在地点：</div></th>
+                <td>
+                  <div class="search_adss">
+			      <div id="region">
+					<input type="hidden" name="region_id" id="region_id" value="{$region_id}" class="mls_id" />
+					<input type="hidden" name="region_name" value="{$store.region_name|escape}" class="mls_names" />
+					<!-- {if $region_id} -->		
+					<select>
+					  <option>{$lang.select_pls}</option>
+					  {html_options options=$regions}
+					</select>
+					<!-- {else} -->
+					<select class="select">
+					  <option>{$lang.select_pls}</option>
+					  {html_options options=$regions}
+					</select>
+					<!-- {/if} -->
+					<a href="javascript:;" onclick="regionsearch();">搜 索</a>
+					</div>
+			           
+			        </div>
+                </td>
+              </tr>
+             
+             
+            </table>
+            <p class="blank10"></p>
+  <!--基本信息 end-->
+        
+        
+        <div class="jjfwd_table">
+        
+           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+           
+                  <tr>
+                    <th width="59">选择</th>
+                    <th width="153" style="text-align:left;">名称</th>
+                    <th width="137" style="text-align:left;">联系地址</th>
+                    <th width="102" style="text-align:left;">联系电话</th>
+                    <th width="66">详情</th>
+                  </tr>
+                  <!--{foreach from=$serves item=serve}-->
+                  <tr>
+                    <td><input type="radio" name="radioidserve" value="{$serve.idserve|escape}" ></td>
+                    <td style="text-align:left;"><p style="padding-right:8px;">{$serve.serve_name|escape}</p></td>
+                    <td style="text-align:left;"><p style="padding-right:8px;">{$serve.serve_address|escape}</p></td>
+                    <td style="text-align:left;">{$serve.mobile|escape}</td>
+                    <td><a href="{link app=service act=info arg=$serve.idserve}" target="_blank">查看</a></td>
+                  </tr>
+                  <!--{foreachelse}-->
+                  
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+                  
+                </table>
+        </div>
+          <p class="blank20"></p>
+        <!--{if $serves}-->
+  <!--{if $page_info.page_count gt 1}-->
+    <div class="page_box">{include file=page.bottom1.html}</div>
+    <!--{/if}-->
+  <!--{/if}-->
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="serve_table">
+  <tr>
+                <th><div>预约方式：</div></th>
+                <td>
+                  <div>                  
+                  <input name="subscribe_type" id="subscribe_type_1" type="hidden" value="1" class="f_l" style="margin:5px;">                  
+                  <input name="figure_mode"  style="margin: -4px 5px 0 0;" id="figure_mode_1" type="radio" value="1" class="sm" >                 
+                   上门量体   
+                   <input name="figure_mode" style="margin: -4px 5px 0 0;" id="figure_mode_2" type="radio" checked="checked" value="2" class="jjlt" >
+                   到就近服务点量体 
+                  </div>
+                </td>
+              </tr>
+                <tr>
+                <th><div><b>*</b>我的称呼：</div></th>
+                <td>
+                  <div>
+                   <input type="text" name="username" id="username" class="input_s int_w238 f_l" />
+                   <label class="apply_label"></label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th><div><b>*</b>手机号码：</div></th>
+                <td>
+                  <div>
+                   <input type="text" name="mobile" id="mobile" class="input_s int_w238 f_l" maxlength="11" />
+                   <label class="apply_label"></label>
+                  </div>
+                </td>
+              </tr>
+              
+              <tr>
+                <th><div><b>*</b>量体时间：</div></th>
+                <td>
+                  <div>
+                   <input type="text" name="timeserve" id="timeserve" class="input_s f_l" style="width:150px;"  />
+                   <select id="timeopt" name="timeopt" >
+					<option value="1"> 上午 </option>
+					<option value="2"> 下午 </option>
+				   </select>
+				   <label class="apply_label"></label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th><div><b>*</b>详细地址：</div></th>
+                <td>
+                  <div>
+                   <input type="text" name="address" id="address" class="input_s int_w238 f_l" maxlength="45" />
+                   <label class="apply_label"></label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th valign="top"><div>简单说明：</div></th>
+                <td>
+                  <div>
+                   <textarea name="remarks" id="remarks" rows="6" cols="28" class="serve_texta"></textarea>
+				   <p class="jjfwd"><span id="smsf"></span><span id="radioidserveerror"></span></p>  
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th valign="top">&nbsp;</th>
+                <td>
+				  <div>
+					 <input type="submit" value="" class="serve-tjyy f_l">
+					 <span id="radioidserveerror" colspan='5' style="color:red; float:left; padding-top:-15px;">
+					 {if !$visitor.user_id}<div style="padding-left:15px; padding-top:9px;">请您先登录后再提交预约量体服务！</div>{/if}
+					 <input type="hidden" name="hiddenidserve" id="hiddenidserve" value="" />
+					 <label class="apply_label"></label>
+					 </span>
+				   </div>
+                </td>
+              </tr>
+  </table>
+   </form>   
+        
+   </div>
+   <p class="clear"></p>
+   <p class="h_100"></p>
+</div>
+<!--中间结束-->
+<!--底部开始-->
+<!-- 反回顶部代码开始 -->
+<script type="text/javascript" src="{res file=js/js.js}"></script>
+<div id="piaofu-right" href="javascript:void(0)">
+    <a href="{link app=cart act=index}" target="_blank" class="yichu"></a>
+	<a href="http://onlineservice.rctailor.com/webchat/chat.aspx?siteid=147977" target="_blank" class="kefu"></a>
+</div>
+<div id="gotop1" href="javascript:void(0)" style="display:block;">
+    <a href="javascript:void(0)" class="go_top"></a>
+</div>
+<!-- 反回顶部代码开始 -->
+{include file=footer.html}
+<script>
+$(function(){
+	$('.sm').click(function(){
+		$('#smsf').text('预约上门量体会收取80元服务费');
+	});
+	$('.jjlt').click(function(){
+		$('#smsf').text('');
+	});
+})
+</script>

@@ -1,0 +1,24 @@
+<i class="arrow"></i>
+{if $result.goods_num neq 0}
+<ul>
+{foreach from=$result.object item=goods key=key}
+    <li>
+        <p class="fl pic"><a href="{if $goods.goods.goods_id>0}{link app=goods arg=$goods.goods.goods_id}{else}{$goods.goods.goods_url}{/if}"><img src="{$goods.goods.image}" width="38" height="50"></a></p>
+        <div class="fl lhwwbd">
+         <p class="name">{if $goods.goods.goods_id>0}<a href="{link app=goods arg=$goods.goods.goods_id}">{$goods.goods.name}</a>{else}{$goods.goods.name}{/if}</p>
+         <p class="price"><span>{$goods.goods.basePrice|price}</span> x <span>{$goods.goods.quantity}</span></p>
+        </div>
+        <input class="close" type="button" value="×" data-type="{$goods.type}" data-id="{$key}">
+    </li>
+{/foreach}
+</ul>
+<div class="cartInfo">
+    <div class="fl left">
+        <p class="grey">共计<span id="miniCartNumber">{$result.goods_num|0}</span>件商品</p>
+        <p>合计：<span class="orange" id="miniCartAmount">{$result.goods_amount|price}</span></p>
+    </div>
+    <div class="fr right"> <a href="{link app=cart}" class="gopay">去结算</a> </div>
+</div>
+{else}
+<p class="kgwc">购物车中还没有商品，赶紧选购吧！</p>
+{/if}

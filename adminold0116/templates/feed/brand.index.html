@@ -1,0 +1,107 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><!--{if $wait_verify}--><a class="btn1" href="index.php?app=feed">{$lang.manage}</a><!--{else}--><span>{$lang.manage}</span><!--{/if}--></li>
+        <li><a class="btn1" href="index.php?app=feed&amp;act=add">{$lang.add}</a></li>
+
+    </ul>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="feed" />
+                <input type="hidden" name="act" value="index" />
+                <input type="hidden" name="wait_verify" value="{$wait_verify}">
+                犬类型:
+                <select name="fbtype">
+                    <option value="0">请选择</option>
+                    {html_options options=$type_list selected=$fbtype}
+                </select>
+
+                犬期:
+                <select name="age_id">
+                    <option value="0">请选择</option>
+                    {html_options options=$age_list selected=$age_id}
+                </select>
+
+
+
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+
+           </form>
+    </div>
+
+</div>
+
+
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $brands}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">犬类型</span></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">犬期</span></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">时间</span></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">体况</span></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">运动量</span></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">体重上限</span></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">体重下限</span></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">默认体重</span></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">能量需求参数</span></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">卡里路</span></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">减肥卡里路</span></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">每天饲喂次数</span></td>
+
+
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$brands item=brand}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input value="{$brand.brand_id}" class='checkitem' type="checkbox" /></td>
+            <td align="left"><span class="" >{$brand.fbtype_name|escape}</span></td>
+            <td align="left"><span class="" >{$brand.age_id_name|escape}</span></td>
+            <td align="left"><span class="" >{$brand.time_id_name|escape}</span></td>
+            <td align="left"><span class="" >{$brand.body_condition_name|escape}</span></td>
+            <td align="left"><span class="" >{$brand.run_time_name|escape}</span></td>
+            <td align="left"><span class="" >{$brand.wt_min|escape}</span></td>
+            <td align="left"><span class="" >{$brand.wt_max|escape}</span></td>
+            <td align="left"><span class="" >{$brand.default_weight|escape}</span></td>
+            <td align="left"><span class="" >{$brand.enesum|escape}</span></td>
+            <td align="left"><span class="" >{$brand.kcal|escape}</span></td>
+            <td align="left"><span class="" >{$brand.redenesum|escape}</span></td>
+            <td align="left"><span class="" >{$brand.nums|escape}</span></td>
+            <td class="handler">
+            <a href="index.php?app=feed&amp;act=edit&amp;id={$brand.id}&amp;page={$page_info.curr_page}&amp;fbtype={$fbtype}&amp;age_id={$age_id}">编辑</a>  |
+                <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=feed&amp;act=drop&amp;id={$brand.id}');">删除</a>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $brands}-->
+    <div id="dataFuncs">
+        <div id="batchAction" class="left paddingT15">
+            <!--{if $wait_verify}-->
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.pass}" name="id" uri="index.php?app=brand&act=pass" />
+             &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.refuse}" name="id" uri="index.php?app=brand&act=refuse" />
+            <!--{else}-->
+            &nbsp;&nbsp;
+            <!--{/if}-->
+        </div>
+        <div class="pageLinks">
+            {if $brands}{include file=page.bottom.html}{/if}
+        </div>
+    </div>
+    <!--{/if}-->
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

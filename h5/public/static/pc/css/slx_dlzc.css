@@ -1,0 +1,81 @@
+@charset "utf-8";
+/* CSS Document */
+body {margin: 0; padding: 0; background: #fff; color: #444; font:14px/1.5 arial, "Microsoft Yahei", "Hiragino Sans GB", sans-serif; min-width: 768px; width: 100%; }
+div, form, ul, ol, li, span, p, dl, dt, dd, img { margin: 0; padding: 0; border: 0; }
+h1, h2, h3, h4, h5, h6, input { margin: 0; padding: 0; font-size: 12px; font-weight: normal; }
+input {background: #fff;}
+ul, ol, li { list-style: none }
+em { font-style: normal }
+table, textarea { font-size: 12px }
+body a { outline: none; blr:expression(this.onFocus=this.blur());}
+a { text-decoration: none; color: #333; transition:color ease .3s;-webkit-transition:color ease .3s;}
+a:hover { color: #e66800;}
+.fl { float: left; }
+.fr { float: right; }
+.clearfix:after { content: "."; height: 0px; line-height: 0px; overflow: hidden; clear: both; display: block; visibility: hidden; }
+.clearfix { zoom: 1; }
+.area { overflow: hidden; }
+.clear { clear: both; }
+input{-webkit-border-radius:0; border:none; background:#fff;}
+input[type="text"]:focus,input[type="password"]:focus { border-color: #e66800; outline: 0 none; }
+.error-css{ color:#ff5500 !important; border-color:#ff5500 !important;}
+/*登录*/
+.login {width:350px; margin:100px auto;}
+.login .p1 { font-size:22px; color:#333; line-height:30px; margin-bottom:24px;}
+.login .p2 { position:relative; margin-bottom:20px;}
+.error { position:absolute; left:366px; top:0; width:160px; border:1px solid #d8d8d8; padding:5px 15px; line-height:20px; font-size:14px; color:#4c4c4c;background:#fff;}
+.error img { position:absolute; left:-10px; top:7px;}
+.login .p2 input {width:308px; height:48px; line-height:52px\9; border:1px solid #d8d8d8; padding:0 20px; font-size:16px; transition: all 0.5s ease-in-out 0s;}
+.login .p2 input:focus {border: 1px solid #e66800;}
+.login .p2 .inputBox{ margin-bottom:20px;}
+.login .p3 {font-size:14px; line-height:28px; overflow:hidden;}
+.login .p3 input {margin-right:18px; position:relative; top:2px;}
+.login .p3 a {color:#333;}
+.login .p4 input {width:100%; height:50px; color:#fff; background:#e66800; font-size:18px; margin-top:21px; cursor:pointer;}
+
+.dlnx {margin: 25px 0; overflow: hidden;}
+.dlnx a {display: block; float: left; margin: 0 13px; font-size: 15px; color: #666; height: 24px; line-height: 24px; background: url(/public/static/pc/images/login_icon.png) 0 2px no-repeat; padding-left: 27px;}
+.dlnx .wx {background-position: 0 -22px;}
+.dlnx .zfb {background-position: 0 -45px;}
+
+/*密码设置成功*/
+.mmszcg {width:600px; margin:0 auto; text-align:center; min-height:430px; padding-top:200px;}
+.mmszcg .p1 {font-size:28px; color:#333; line-height:48px;}
+.mmszcg .p2 { color:#a0a0a0; font-size:18px; line-height:48px;}
+.mmszcg .p2 a { color:#3773d3;}
+.mmszcg .p3 { color:#a0a0a0; font-size:18px; line-height:48px;}
+.mmszcg .p3 span { color:#616060; padding-left:10px;}
+.mmszcg .p4 {width:320px; margin:0 auto; padding-top:50px; overflow:hidden; font-size:16px;}
+.mmszcg .a1 {width:150px; height:40px; line-height:40px; background:#e66800; color:#fff; display:block; float:left;}
+.mmszcg .a2 { border:1px solid #bbb; width:148px; height:38px; line-height:40px; display:block; float:right;}
+
+/*手机邮箱找回*/
+.sjyxzh {width:350px; margin:70px auto 80px auto;}
+.sjyxqh {overflow:hidden; margin-bottom:25px;}
+.sjyxqh li {float:left; width:140px; height:24px; line-height:24px; color:#8c8d8f; font-size:22px; cursor:pointer;}
+.sjyxqh li.now_hover {color:#333;}
+
+.wjmm {margin:100px auto;}
+
+.sj .p1 {position:relative; margin-bottom:20px;}
+.sj .p1 input {width:308px; height:48px; border:1px solid #d8d8d8; padding:0 20px; font-size:16px; transition: all 0.5s ease-in-out 0s;}
+.sj .p1 input:focus {border: 1px solid #e66800;}
+.sj .p2 {width:348px; height:48px; border:1px solid #d8d8d8; background:#fff; position:relative;}
+.sj .p2:hover {border: 1px solid #e66800;}
+.sj .p2 input {width:114px; padding:0 20px; height:48px; font-size:16px; float:left;}
+.sj .p2 .getCode {display:block; float:left; height:40px; line-height:40px; color:#333; font-size:14px; margin-top:4px; text-align:center; width:90px; background:#fff; cursor:pointer; padding: 0;}
+.huo {float: left; height: 48px; line-height: 48px; width:14px; text-align: center; color: #999;}
+.sj .p3 input {width:100%; height:50px; color:#fff; background:#e66800; font-size:18px; margin-top:21px; cursor:pointer;}
+
+/*手机邮箱注册*/
+.sj .p4 {font-size:14px; line-height:28px; position:relative;}
+.sj .p4 input {margin-right:18px; position:relative; top:2px;}
+
+.luck-box { height:454px !important;}
+
+/*底部*/
+.dlzc_db { height:160px; background:#fff; border-top:1px solid #f0f0f0;}
+.dlzc_db div { text-align:center; line-height:24px; margin:50px 0 20px 0;}
+.dlzc_db div span {padding:0 15px; color:#e1e1e1;}
+.wdba {text-align:center; color:#888; height:20px; line-height:20px;}
+.wdba span {padding-left:12px;}

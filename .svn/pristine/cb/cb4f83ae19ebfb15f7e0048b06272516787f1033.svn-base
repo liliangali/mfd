@@ -1,0 +1,85 @@
+{include file="header.html"}
+<div id="rightTop">
+  
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=yh_template&amp;act=index">印花管理</a></li>
+	<li><span><a class="btn1" href="index.php?app=yh_template&amp;act=custom">用户上传印花</a></span></li>
+     <li><a class="btn1" href="index.php?app=yh_template&amp;act=add">添加印花模板</a></li>
+     <li><a class="btn1" href="index.php?app=yh_category&amp;act=index">印花分类</a></li>
+     <li><a class="btn1" href="index.php?app=yh_category&amp;act=add">添加印花分类</a></li>
+     <li><span>所有衬衫</span></li>
+    <li><a class="btn1" href="index.php?app=shirt&amp;act=add">添加衬衫</a></li>
+  </ul>
+</div>
+<div class="mrightTop1 info">
+  <div class="fontl">
+    <form method="get" name="selectv" id="selectv">
+      <input type="hidden" name="app" value="shirt" />
+      <input type="hidden" name="act" value="index" />
+      衬衫名:
+      <input class="queryInput" type="text" id="v_name" name="v_name" value="{$smarty.get.v_name|escape}" />
+        颜色:
+          <div id="v_color" style="display:inline;">
+            <select class="querySelect" id="v_color" name="v_color">
+              <option value="">请选择</option>
+              {html_options options=$v_color  selected="$smarty.get.v_color"}
+            </select>
+          </div>
+          材质:
+          <div id="v_figure" style="display:inline;">
+            <select class="querySelect" id="v_figure" name="v_figure">
+              <option value="">请选择</option>
+              {html_options options=$v_figure  selected="$smarty.get.v_figure"}
+            </select>
+          </div>
+      <input type="submit" class="formbtn" value="{$lang.query}" />
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <tr class="tatr1">
+      <td width="5%" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td><span ectype="order_by" fieldname="v_id">ID</span></td>
+      <td width="10%"><span ectype="order_by" fieldname="v_name">名称</span></td>
+      <!--  <td><span ectype="order_by" fieldname="v_store">库存</span></td>-->
+       <td><span ectype="order_by" fieldname="v_sex">分类（男/女/童装）</span></td>
+      <td><span ectype="order_by" fieldname="v_yhname">印花分类</span></td>
+      <!--  <td><span ectype="order_by" fieldname="v_fabric_sn">面料</span></td>-->
+      <td><span ectype="order_by" fieldname="v_cprice">成本价格</span></td>
+      <td><span ectype="order_by" fieldname="v_price">展示价格</span></td>
+      <td><span ectype="order_by" fieldname="v_color">颜色</span></td>
+      <td><span ectype="order_by" fieldname="v_figure">材质</span></td>
+      <td>图片</td>
+      <td>{$lang.handler}</td>
+    </tr>
+    <!--{foreach from=$goods_list item=goods}-->
+    <tr class="tatr2" align="center">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$goods.v_id}"/></td>
+      <td align="center">{$goods.v_id}</td>
+      <td>{$goods.v_name|escape}</td>
+      <!-- <td align="center">{$goods.v_store}</td> -->
+      <td align="center">{$goods.v_sex}</td>
+      <td align="center">{$goods.v_yhname}</td>
+      <!-- <td align="center">{$goods.v_fabric_sn}</td> -->
+      <td align="center">{$goods.v_cprice}</td>
+      <td align="center">{$goods.v_price}</td>
+      <td align="center">{$goods.v_color}</td>
+      <td align="center">{$goods.v_figure}</td>
+      <td align="center"><a href="{$goods.v_dis_image}" target="_blank"><img src="{$goods.v_dis_image}" height="60" /></a></td>
+      <td>
+      <a href="index.php?app=shirt&amp;act=edit&amp;id={$goods.v_id}&amp;ret_page={$page_info.curr_page}">{$lang.edit}</a>
+      <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=shirt&amp;act=drop&amp;id={$goods.v_id}&amp;ret_page={$page_info.curr_page}">{$lang.drop}</a>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15">
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=shirt&act=drop&ret_page={$page_info.curr_page}" presubmit="confirm('{$lang.drop_confirm}')" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+  </div>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}

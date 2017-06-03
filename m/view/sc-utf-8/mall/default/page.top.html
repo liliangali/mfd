@@ -1,0 +1,13 @@
+<!--{if $page_info.page_count gt 1}-->
+    <font>{$page_info.curr_page} / {$page_info.page_count}</font>
+    <!--{if $page_info.prev_link}-->
+    <a href="{$page_info.prev_link}"><</a>
+    <!--{else}-->
+    <span><</span>
+    <!--{/if}-->
+    <!--{if $page_info.next_link}-->
+    <a href="{$page_info.next_link}">></a>
+    <!--{else}-->
+    <span>></span>
+    <!--{/if}-->
+<!--{/if}-->

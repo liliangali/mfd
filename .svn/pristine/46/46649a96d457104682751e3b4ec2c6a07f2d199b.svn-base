@@ -1,0 +1,491 @@
+
+$.fn.extend({
+    cart: function(options) {
+        return this.each(function() {
+            new $.cart(options);
+        });
+    }
+});
+
+$.cart = function(opt){
+	
+	function _fmtPrice(num){
+		//return parseFloat(num).toFixed(0);
+		return '￥'+parseFloat(num).toFixed(2);
+	}
+	var _carts = {'list':{},'amount':opt.amount,'num':opt.number,'all':1};
+	console.log(_carts);;
+	
+	function _loadData(){
+	
+		_carts['num'] = 0;
+		_carts['amount'] = 0;
+		_carts['all'] = 1;
+		var cnum = 0;
+		var __all = 0;
+		$('#JcartList').find('.cartList').each(function(i){
+			var _list =$(this),_this = _list.find('input:checkbox'),_id=_list.data('id'),_price=_list.data('price'),_favorprice=_list.data('favor'),_cate=_list.data('cate'),_num=_list.find('.jajia_box input').data('num');
+			var _chec11 =  _list.find('label');
+		
+			if(_this.attr('type')  == 'checkbox'){
+                // if(_this.is(':checked')){
+					// _carts['num'] += (_num*_cate);
+					// // alert('111')
+					// _carts['amount'] += (_num*_price)
+		    	// }else{
+		    	// 	_carts['all'] = 0;
+		    	// }
+// alert(_num*_cate);
+				
+				if(_chec11.hasClass('checked')){
+					cnum += (_num*_cate);;
+					//_carts['num'] = _carts['num'] + (_num*_cate);
+					if(_favorprice){
+						_carts['amount'] += _favorprice
+					}else{
+						_carts['amount'] += (_num*_price)
+					}
+					
+				}else{
+					_carts['all'] = 0;
+				}
+			}
+			__all +=1;
+			
+			if(_favorprice){
+			_list.find('.jine').text(_fmtPrice(_favorprice));
+			}else{
+			_list.find('.jine').text(_fmtPrice(_price*_num));	
+			}
+			
+		});;
+		//$("#cart_num").text(cnum);
+		//_carts['num'] = cnum;
+		if(__all == 0){
+			location.reload();
+		}
+		// console.log(_carts);
+		if(_carts['all'] == 1){
+
+        	$('#check-all').addClass('checked');
+        	$('#check-all').find('input:checkbox').attr('checked','true');
+        }else{
+        	$('#check-all').removeClass('checked');
+        	$('#check-all').find('input:checkbox').removeAttr('checked');
+    	}
+    	// alert(cnum)
+        // _carts['num'] = cnum;
+
+
+		$("input:button").removeClass('mr');
+		$("input:button").addClass('qjs');
+		//$main.find("input:button.qjs").unbind().bind("click",_submit);
+        // if(_carts['num'] > 0){
+    	// 	$("input:button").removeClass('mr');
+    	// 	$("input:button").addClass('qjs');
+    	// 	$main.find("input:button.qjs").unbind().bind("click",_submit);
+    	// }else{
+    	// 	$("input:button").removeClass('qjs');
+    	// 	$("input:button").addClass('mr');
+    	// }
+
+		$('.dzsp').find('span:eq(0)').html(cnum);;
+  	  	$(".dzsp").find('span:eq(1)').html(_fmtPrice(_carts['amount']));
+	}
+
+	_loadData();
+	
+    $main = $(".cartMain");
+    _action();
+    
+	//checbox美化
+	$("form").checkBo({
+		checkAllButton:"#check-all",
+		checkAllTarget:".checkbox-row",
+		checkAllTextDefault:"Check All",
+		checkAllTextToggle:"Un-check All"
+	});
+
+	//签名信息
+	$('#JcartList .Jqianming').click(function(){
+		var _this = $(this),_id = $(this).parents('.cartList').data('id'),_tp = $(this).parents('.cartList').data('type');
+		$.post(opt.embUrl,{id:_id,tp:_tp},function(res){
+			if(res.done == true){
+				luck.open({
+					title:'设置签名',
+					content:res.retval.content,
+					width:'660px',
+					height:'600px',
+					addclass:'cotte-luck',
+					callback:function(obj){
+						
+						var _tabId = $(obj).find('.xfxk').find('.now_hover').data('id');
+						$(obj).find('.embBox_'+_tabId).show();
+						
+						$(obj).find('.qmwz').checkBo();
+						
+						$(obj).find('.xfxk').children('li').click(function(){
+							$(this).addClass('now_hover').siblings().removeClass('now_hover');
+							$(this).parents('.qianming').children('div').eq($(this).index()).siblings('div').hide().end().show();	
+						});
+						$(obj).find(".productshow").Xslider({
+							unitdisplayed:6,
+							numtoMove:3,
+							unitlen:77,
+						});
+						$(obj).find(".productshow li").click(function(){
+							$(this).addClass('cur').siblings().removeClass();;
+							$(this).parent('ul').find('input').val($(this).data('value'))
+						});;
+						$(obj).find('.qmwz li').click(function(){
+							$(this).addClass('current').siblings().removeClass();;
+							//$(this).find('input').attr('checked','checked').siblings().removeAttr('checked')
+							//$(this).parents('.qmwz').find('input').siblings('input').attr('checked','checked').end().removeAttr('checked')
+							$(this).find('input').parents('.qmwz').find('input').removeAttr('checked');
+
+							$(this).find('input').attr('checked','checked');
+						});;
+						
+						$(obj).find('.baoz').click(function(){
+							
+							/**  
+							* 中英文统计(一个中文算两个字符)  
+							*/  
+							function chEnWordCount(str){  
+								var count = str.replace(/[^\x00-\xff]/g,"**").length;  
+								return count;  
+							} 
+							var _E = 0;
+							$('.qianming').find('.embBox').each(function(){
+								
+								if($(this).find('.colorBox:eq(0)').find('.cur').length<=0){
+									alert('请选择字体');
+									_E = 1;
+									return	false;
+								}
+								if($(this).find('.colorBox:eq(1)').find('.cur').length<=0){
+									alert('请选择颜色');
+									_E = 1;
+									return	 false;
+								}
+								
+								if($(this).find('.cxlr').val()==""){
+									alert('请输入签名信息');
+									_E = 1;
+									return	 false;
+								}
+								
+								if(chEnWordCount($(this).find('.cxlr').val())>14){
+						        	alert('签名信息不能大于14个字符');
+						        	_E = 1;
+						            return   false;
+						        }
+						        
+						        if(!/^([A-Za-z0-9]|[\u4e00-\u9fa5]|\s)*$/.test($(this).find('.cxlr').val())){
+						        	alert('签名信息仅限数字/字母/汉字');
+						        	_E = 1;
+						            return   false;
+						        }
+								if($(this).find('.qmwz .current').length<=0){
+								    alert('请选择签名位置');
+								    _E = 1;
+									return false;
+								}
+								
+							});;
+							if(_E) return false;
+							
+						        
+							$(this).parents('#embsForm').ajaxSubmit({
+					            type:"post",
+					            url : opt.embSaveUrl,
+					            success:function(res){
+					                var res = $.parseJSON(res);
+					                if(res.done == true){
+					                	luck.close();
+					                	if(res.retval.res > 0){
+					                		_this.text('已设置');
+					                		_this.parent('p').attr('class','p3');
+					                	}else{
+					                		
+					                	}
+					                }else{
+					                	alert(res.msg)
+					                }
+					             }
+					        });
+							return false;
+						});
+						return false;
+					}
+				});
+			}
+		},"json");
+		
+		return false
+	});
+    
+    function drop(){
+        _this = $(this);
+        
+        var _id  = _this.parents('.cartList').data("id");
+        var _tp  = _this.parents('.cartList').data('type');
+		luck.confirm('','确定要删除所选么？',function(e){
+			if(e){
+        	$.post(opt.dropUrl,{id:_id,tp:_tp}, function(res){
+                if(res.done == true){
+                    if(!res.retval.goods_num){
+                        location.href=opt.cartUrl;
+                    }else{
+                    	_this.parents(".cartList").fadeTo(300,"0.1",function(){
+                    		
+                			if(_this.parents('li').children('.cartList').length == 1){
+                				_this.parents('li').remove();
+                    		}else{
+                    			_this.parent('.cartList').prev('.xuxian').remove();
+                        		_this.parent('.cartList').next('.xuxian').remove();
+                    			_this.parent('.cartList').remove();
+                    		}
+                			_loadData();
+                    	});
+                    }
+                }
+            },"json")
+			}	
+		})
+    }
+    
+    function clear(){
+    	var _has = false;
+    	$('#JcartList').find('li').each(function(){
+    		// if($(this).find('.cb-checkbox1').find('input:checkbox').is(':checked')){
+    		// 	_has = true;   //预留扩展
+    		// }
+			if(($(this).find('.cb-checkbox').hasClass('checked'))){
+				_has = true;   //预留扩展
+			}
+    	});
+// alert(_has)
+    	if(!_has) return;
+
+		luck.confirm('','确定要删除所选么？',function(e){
+			if(e){
+				 $.get(opt.clearUrl, function(res){
+					 if(res.done == true)
+						 location.reload();
+				 },'Json')
+			}	
+		})
+    }
+function youhui(){
+	 var goodsid=$(this).find('.goodsid').val();
+   //  var num=$(this).find('.goodsid').attr('data-num');
+     var fav_id=$(this).find("option:selected").val();
+     var ident=$(this).find('.goodsid').attr('data-ident');
+	 var _sbl=$(this).siblings('.jine');
+	
+		  $.post(opt.favoreUrl,{ident:ident,fav_id:fav_id,goods_id:goodsid},function(res){
+                  if(res.done == true){
+					  var  favorprice=res.retval.favorprice;
+				  
+					//_sbl.html(_fmtPrice(favorprice))	
+				
+				 
+               	  _loadData();
+					  window.location.reload()
+					  
+                 }else{
+                	  alert(res.msg)               	  
+                  }
+        },"json");
+	
+}
+function zhek(){
+	
+	 var goodsid=$(this).find('.goodsid').val();
+  //  var num=$(this).find('.goodsid').attr('data-num');
+    var zk_id=$(this).find("option:selected").val();
+    var ident=$(this).find('.goodsid').attr('data-ident');
+	 var _sbl=$(this).siblings('.jine');
+	
+		  $.post(opt.zhekUrl,{ident:ident,zk_id:zk_id,goods_id:goodsid},function(res){
+                 if(res.done == true){
+					  var  zhekprice=res.retval.zhekprice;
+
+              	  _loadData();
+					  window.location.reload()
+					  
+                }else{
+               	  alert(res.msg)               	  
+                 }
+       },"json");
+	
+}
+    function change(){
+    	
+    	var _input=$(this).parent().children('input'),num=Number(_input.val());
+    	
+        if(!num || num < 1)num=1;;
+        
+        var val = $(this).hasClass('a_2') ? 1 : -1;
+        
+        var quantity = num + val;
+        
+        if(quantity < 1){
+            _input.val(1);
+            _input.data("num",1);
+            return false;
+        }
+        
+        _input.val(quantity);
+        _input.data("num",quantity);
+        update(quantity, this);
+    }
+
+    function _input(){
+        
+        var current = Number($(this).val());
+
+        $(this).val(current);
+        
+        var _def    = $(this).data("num");
+
+        if(current < 1 || !current){
+            $(this).val(_def);
+            return false;
+        }
+
+        if(current == _def){
+            return false;
+        }
+        
+        update(current, this);
+    }
+    
+    function update(n,o){
+    	
+        var _o    = $(o).parents('.cartList');
+        var _id   = _o.data("id");
+        var _tp   = _o.data("type");
+        
+        $.post(opt.updateUrl,{id:_id,type:_tp,num:n},function(res){
+                  if(res.done == true){
+                	  _loadData();
+					  window.location.reload()
+                  }else{
+                	  alert(res.msg)               	  
+                  }
+        },"json");
+    }
+    
+    //选择购物车项
+    $main.find('#JcartList label.cb-checkbox').on('click',function (){
+// alert($(this).attr('class'));
+    	var _this = $(this),_cb = _this.find('input:checkbox');
+    	var _ck = 'y';
+    	var _id = _this.parents('.cartList').data('id');
+    	var _tp = _this.parents('.cartList').data('type');
+
+        // if(_cb.is(':checked')){
+    		// _ck = 'y';
+		// }
+// alert('11')
+
+		 if($(this).hasClass("ch11") )
+		 {
+			 // alert('aa')
+			$(this).removeClass("ch11");
+			 $(this).removeClass("checked");
+		 	_ck = 'n';
+		 }
+		 else
+		 {
+		 	// alert('bb')
+			$(this).addClass("ch11");;
+			 $(this).addClass("checked")
+		 }
+
+    	$.post(opt.choiceUrl,{id:_id,ck:_ck,tp:_tp},function(res){
+    		_loadData();
+    	},"json");
+    	
+    });
+    
+    //全选
+    $main.find('#check-all').on('click',function(){
+    	
+    	var _this = $(this),_cb = _this.find('input:checkbox');
+    	var _ck = 'n';
+    	
+    	if(_cb.is(':checked'))
+    		_ck = 'y';
+    	
+    	$.post(opt.choiceAllUrl,{ck:_ck},function(res){
+    		if(res.done == true){
+    			_loadData();
+    		}
+    	},"json");
+    });
+    
+    function upAll(num,amount){
+    	if(num > 0){
+    		$("input:button").removeClass('mr');
+    		$("input:button").addClass('qjs');
+    	}else{
+    		$("input:button").removeClass('qjs');
+    		$("input:button").addClass('mr');
+    	}
+
+    	$main.find('.dzsp').find('span').first().text(num);
+		$main.find('.dzsp').find('span').last().text(amount);
+    }
+    
+    function _submit(){
+    	//$(this).unbind();
+
+		$('.cartMain').ajaxSubmit({
+			type:"post",
+			url : opt.checkUrl,
+			success:function(res){
+				var res = $.parseJSON(res);
+				if(res.done == true){
+					location.href=opt.checkoutUrl;
+					$(this).unbind().bind("click",_submit);
+				}else{
+					luck.poptip({
+						con:res.msg
+					});
+					$(this).bind("click",_submit);
+				}
+			}
+		});
+    }
+    
+    function _action(){
+        
+        $main.find(".jajia_box").find('a').unbind().bind("click", change);
+		$main.find(".youhui_box").bind("change", youhui);
+		$main.find(".zhek_box").bind("change", zhek);
+        $main.find(".jajia_box").find('input').unbind().bind("keyup", _input);
+        
+        $main.find('#JcartList .cazua').unbind().bind("click", drop);
+        $main.find('.clearCart').unbind().bind("click", clear);
+// alert('333')
+        $main.find("input:button.qjs").unbind().bind("click",_submit);
+
+        
+        if(document.referrer){
+        	var strs = document.referrer.split("/");
+        	var url = '/'+strs[strs.length-1];
+        	if(url == opt.checkoutUrl){
+
+        	}else{
+        		$('#cartback').attr('href',url);
+        		//$.post(opt.setPreUrl,{url:url},function(res){})
+        		
+        	}
+        }
+    	
+        
+    }
+};;

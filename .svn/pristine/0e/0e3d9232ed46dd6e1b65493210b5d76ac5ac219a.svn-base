@@ -1,0 +1,66 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>会员评论</p>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+  		 <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="comments" />
+          <input type="hidden" name="act" value="index" />
+          状态：
+           <select name="status">
+
+           <option value="all">全部</option>
+               <option value="0">未审核</option>
+               <option value="1">审核通过</option>
+            <option value="2">审核未通过</option>
+          </select>
+          <!--商品名称：<input class="queryInput" type="text" name="goods_name" value="{$goods_name}" />-->
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=comments">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <!--<div class="fontr">{include file=page.top.html}</div>-->
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $list}-->
+    <tr class="tatr1">
+      <td>评论时间</td>
+      <td>评论者</td>
+      <td>内容</td>
+      <td>状态</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    
+    <!--{foreach from=$list item=v key=k}-->
+    <tr class="tatr2">
+      <td>{$v.addtime|date:Y-m-d H:i:s}</td>
+      <td>{$v.nickname}</td>
+      <td>{$v.content}</td>
+      <td>{if $v.status eq '0'}未审核{elseif $v.status eq '1'}审核通过{else}审核未通过{/if}</td>
+      <td class="handler">
+      <a href="index.php?app=comments&amp;act=del&amp;id={$v.id}&model={$model}">删除</a>
+      <a href="index.php?app=comments&amp;act=deny&amp;id={$v.id}&model={$model}">拒绝</a>
+      <a href="index.php?app=comments&amp;act=pass&amp;id={$v.id}&model={$model}">通过</a>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="7">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $list}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

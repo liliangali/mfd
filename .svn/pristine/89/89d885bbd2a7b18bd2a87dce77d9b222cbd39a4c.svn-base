@@ -1,0 +1,34 @@
+{include file="header.html"}
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $message}-->
+        <tr class="tatr1">
+            <td align="left">节点</td>
+            <td>内容</td>
+            <td>时间</td>
+            <td>已读状态</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$message item=msg}-->
+        <tr class="tatr2">
+            <td>{$msg.node|escape}</td>
+            <td>{$msg.content}</td>
+            <td>{$msg.dateline|date:complete}</td>
+            <td>{if $msg.is_read eq 0}否{else}是{/if}</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="4">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $message}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

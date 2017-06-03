@@ -1,0 +1,42 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>活动列表</span></li>
+    {if $has}
+    <li><a class="btn1" href="javascript:void(0)">新增活动</a></li>
+    {else}
+    <li><a class="btn1" href="index.php?app=promotion&amp;act=addOneGift">新增活动</a></li>
+    {/if}
+    
+  </ul>
+</div>
+
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <tr class="tatr1">
+      <td class="firstCell"><input type="checkbox" class="checkall" />全选</td>
+      <td><span ectype="order_by" fieldname="one_id">活动编码</span></td>
+      <td><span ectype="order_by" fieldname="add_time">添加时间</span></td>
+      <td><span ectype="order_by" fieldname="start_time">开始时间</span></td>
+      <td><span ectype="order_by" fieldname="end_time">结束时间</span></td>
+      <td><span ectype="order_by" fieldname="is_active">开启状态</span></td>
+      <td>操作</td>
+    </tr>
+    <!--{foreach from=$list item=data}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$data.one_id}"/></td>
+      <td>{$data.one_id}</td>
+      <td>{$data.add_time|date:Y-m-d}</td>
+      <td>{$data.start_time|date:Y-m-d}</td>
+      <td>{$data.end_time|date:Y-m-d}</td>
+      <td>{$status.$data.is_active}</td>
+      <td>
+          {if $data.is_employee}<a href="index.php?app=promotion&amp;act=importEm&amp;id={$data.one_id}">导入员工</a>|<a href="index.php?app=promotion&amp;act=employee&amp;id={$data.one_id}">员工列表</a>|{/if}
+	      <a href="index.php?app=promotion&amp;act=addOneGift&amp;id={$data.one_id}">编辑</a>
+      </td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}

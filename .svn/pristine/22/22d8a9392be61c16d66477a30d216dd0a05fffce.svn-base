@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{$page_seo}
+<meta name="author" content="alicaifeng.com" />
+<meta name="generator" content="alicaifeng.com V0.5" />
+<meta name="copyright" content="alicaifeng Inc. All Rights Reserved" />
+<link rel="stylesheet" type="text/css" href="static/css/public.css">
+<link rel="stylesheet" type="text/css" href="static/css/index.css">
+<script type="text/javascript" src="static/expand/jquery.js"></script>
+<script  type="text/javascript" src="static/js/public.js"></script>
+<script  type="text/javascript" src="static/js/change.city.js"></script>
+<script  type="text/javascript" src="static/js/jquery.cookie.js"></script>
+{$_head_tags}
+
+</head>
+<body>
+<!--<editmode></editmode>-->
+<div class="topBar">
+  <div class="w">
+    <div class="fl menuList"> 
+        <!--{if !$visitor.user_id}-->
+        <span><a href="{link app=member act=login}">登录</a></span> <em>|</em> 
+        <span><a href="{link app=member act=register}">注册</a></span> <em>|</em> 
+        <!--{else}-->
+        <span class="btn-angle" data-class="usercenter"><a href="/member-index-user_set.html" class="link">{$visitor.nickname|escape}</a><i class="angle"></i></span> <em>|</em> 
+        <!--{/if}-->
+        <span class="btn-angle" data-class="zhanghu"><a href="member.html" class="link">我是消费者</a><i class="angle"></i></span> <em>|</em> 
+        <span class="btn-angle" data-class="caifeng"><a href="{link app=member act=index arg0=user_message arg1=business}" class="link">消息</a><i class="angle"></i></span> <em>|</em> 
+        <span class="btn-angle" data-class="dingzhi"><a href="{link app=member act=tailor}" class="link">我是裁缝</a><i class="angle"></i></span> <em>|</em>
+		<span class="btn-angle" data-class="help"><a href="article-view-32.html" class="link">帮助中心</a><i class="angle"></i></span> <em>|</em> 
+        <span class="btn-angle" data-class="app"><a href="client.html#1" class="link"><i class="icon-phone"></i>手机裁缝</a><i class="angle"></i></span> 
+    </div>
+    <div class="fr">
+      <div class="search">
+    	        <form action="{link app=search}" method="get" onsubmit="if(document.forms['search'].keyword.value.length == 0 || document.forms['search'].keyword.value == '输入 婚礼礼服试试...') return false" name="search">
+          <input type="text" class="txt" name="keyword" data-placeholder="输入 婚礼礼服试试...">
+          <input type="submit" value="" class="btn">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="bd-menu"> <i class="angle"></i>
+    <div class="app">
+      <p>扫码下载客户端</p>
+      <img src="static/img/qrcode.png" width="82" height="82"> <a href="#" class="iphone"></a> <a href="#" class="android"></a> </div>
+    <!--{if $visitor.user_id}-->
+    <div class="usercenter"> 
+        <a href="/member-index-user_set.html">帐号设置</a> 
+        <a href="{link app=member act=logout}">退出登录</a> 
+    </div>
+    <!--{/if}-->
+    <div class="dingzhi"> 
+        <a href="{link app=apply}">我要创业</a> 
+        <a href="{link app=tailor_order act=tailor}">我的订单</a> 
+        <a href="{link app=tailor_customer act=tailor}">我的消费者</a>
+        <a href="{link app=member act=tailor}">管理中心</a>
+    </div>
+    
+    <div class="help"> 
+        <a href="{link app=article act=view arg=45}">联系我们</a>
+        <a href="{link app=article act=view arg=67}">常见问题</a> 
+        <a href="article-view-66.html">品质保障</a> 
+    </div>
+    
+    <div class="caifeng"> 
+    <a href="{link app=member act=index arg0=user_message arg1=business}">交易提醒  {if $msgTypes.sys}+{$msgTypes.sys}{/if}</a> 
+    <a href="{link app=member act=index arg0=user_message arg1=comment}">评论 {if $msgTypes.cmt}+{$msgTypes.cmt}{/if}</a>
+    <a href="{link app=member act=index arg0=user_message arg1=sync}">互动提醒 {if $msgTypes.syc}+{$msgTypes.syc}{/if}</a>
+    </div>
+    
+    <div class="zhanghu"> 
+        <a href="{if $visitor.user_id}demand-sue.html{else}javascript:login('{$site_url}{link app=demand act=sue}');{/if}">快速定制</a> 
+        <a href="{link app=buyer_order}">我的订单</a> 
+        <a href="{link app=member act=index arg=user_favorite}">我的收藏</a> 
+    </div>
+  </div>
+</div>
+<div class="head">
+  <div class="w"> <a href="index.php" title="阿里裁缝-中国裁缝联盟" class="logo fl"></a>
+    <div class="anav fl"> <span class="btn-angle"><a href="javascript:viod(0);" class="link">我在{$current_city}</a><i class="angle"></i></span>
+      <div class="bd-menu" id="topCity"> <i class="angle"></i> 
+      {foreach from=$top_city_list item=city key=key}
+      <a href="javascript:;" data-code="{$key}" data-name="{$city.city_name}">{$city.city_name}</a>
+      {/foreach}
+       </div>
+    </div>
+    <ul class="nav fr">
+      <li><a href="index.php">首页</a></li>
+      <li><a href="{link app=tailor}">找裁缝</a></li>
+      <li><a href="{link app=gallery}">挑款式</a></li>
+      <li><a href="{link app=fabrics}">选面料</a></li>
+      <li><a href="{link app=single}">品晒单</a></li>
+	  <li><a href="demand-lists.html">看需求</a></li>
+    </ul>
+  </div>
+</div>

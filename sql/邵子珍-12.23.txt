@@ -1,0 +1,1 @@
+ALTER TABLE `cf_debit` ADD `is_activat` INT(10) NOT NULL DEFAULT '0' COMMENT '是否被激活0否1是' AFTER `expire_time`; 

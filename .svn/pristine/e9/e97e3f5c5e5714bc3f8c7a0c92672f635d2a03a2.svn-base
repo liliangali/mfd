@@ -1,0 +1,100 @@
+{include file="header.html"}
+<link type="text/css" href="{$img_url}/css/head_footr.css" rel="stylesheet" />
+
+<link type="text/css" rel="stylesheet" href="{$img_url}/css/coolke.css" />
+
+
+
+<link type="text/css" rel="stylesheet" href="{res file=css/new_pubuliu.css}" />
+
+<link type="text/css" href="{$img_url}/css/head_footr.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="{$img_url}/css/coolke.css" />
+<link type="text/css" rel="stylesheet" href="{res file=css/new_pubuliu.css}" />
+<script type="text/javascript" src="{$img_url}/js/coolke.js"></script>
+
+<script type="Text/Javascript" src="{res file=js/plugins/formvalidator.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+
+<script>
+
+function del(id){
+	$.ajax({
+		"url":"/index.php/club-delAlbum.html",
+		"data": "id=" + id  ,
+		"type": "GET",
+		"success": function(data) {
+			location.reload();
+		}
+	});
+}
+
+
+</script>
+
+<div class="m_drkj_box">
+{include file="club/uinfo.html"}
+  
+  <p class="clear"></p>
+</div>
+
+<div class="m_drkj_box">
+{if $self}
+ <a href="/index.php/club-createAlbum.html" class="cjxkb_but">创建新酷吧</a>
+{/if}
+  <ul class="m_kblb_ul">
+  
+  
+  {foreach from=$album key=k item=v }
+  
+  
+   <li class="on" onmouseout="className='on'" onmouseover="className='off'">
+   {if $self}
+   	<a class="J_delitem cool-delete" alt="删除" title="删除" data-ty="2" data-id="78" onclick='del({$v.id});' href="javascript:;">删除</a>
+   	<a class="J_delitem cool-edit" alt="编辑" title="编辑" data-ty="2" data-id="78" href="/index.php/club-albumEdit.html?id={$v.id}">编辑</a>
+   {/if}
+   
+     <h1>{$v.title}</h1>
+     <p class="m_tpsc"><a href="javascript:;" class="pic">{$v.pic_num}</a><a href="javascript:;" class="guanz">{$v.views}</a></p>
+     <p class="m_tu13"><a href="/index.php/club-albuminfo-{$v.id}-{$v.uid}.html"><img src="{$v.img.0.url}" /></a></p>
+     <div class="m_small">
+       <!-- <p><a href="/index.php/club-personaldesign-{$v.img.1.id}.html"><img src="{$v.img.1.url}" width="69" height="69" /></a></p> -->
+       <p><a href="/index.php/club-albuminfo-{$v.id}-{$v.uid}.html"><img src="{$v.img.1.url}" width="69" height="69" /></a></p>
+       <p><a href="/index.php/club-albuminfo-{$v.id}-{$v.uid}.html"><img src="{$v.img.2.url}" width="69" height="69" /></a></p>
+       <p><a href="/index.php/club-albuminfo-{$v.id}-{$v.uid}.html"><img src="{$v.img.3.url}" width="69" height="69" /></a></p>
+     </div>
+   </li>
+   
+    {/foreach}
+    
+  </ul>
+  <p class="clear"></p>
+</div>
+
+<!--翻页开始-->
+
+<div style="margin:0 auto 50px auto; width:1000px;">
+    <div class="faye_box">
+    	<a href="#" class="gdstjl">共{if $total}{$total}{else}0{/if}条记录</a>
+    	<!--<a href="#" class="sanyy"></a>
+    	<a href="#" style="background:#a40000; border:1px solid #a40000; color:#fff;">1</a>
+    	<a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><span>...</span>
+    	<a href="#">8</a><a href="#">9</a><a href="#">10</a><a href="#" class="xiayy"></a> -->
+    	
+    	
+    	{$page_show}
+    	
+    </div>
+    <p class="clear"></p>
+</div>
+  
+<!--翻页结束-->
+<script>
+
+    var PINER = {
+        uid: "<?php echo $_SESSION['user_info']['user_id'] ?>"
+    };
+
+</script>
+
+{include file="footer.html"}

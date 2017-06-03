@@ -1,0 +1,42 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ajax_tree1.js}" charset="utf-8"></script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=goods_type&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+<div class="info2">
+    <table  class="distinction">
+        <!--{if $list}-->
+        <thead>
+        <tr class="tatr1">
+            <td width="50%">类型名称</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        </thead>
+        <!--{/if}-->
+
+        <!--{foreach from=$list item=type}-->
+        <tr class="tatr2">
+            <td width="50%">
+            {$type.name|escape}
+            </td>
+            <td class="handler">
+            <span>
+            <a href="index.php?app=goodsattribute&amp;type_id={$type.type_id}">扩展属性</a>|
+           <!--  <a href="index.php?app=goodsspec&amp;type_id={$type.type_id}">规格</a>| -->
+            <a href="index.php?app=goods_type&amp;act=edit&amp;id={$type.type_id}">{$lang.edit}</a>|
+            <a href="javascript:if(confirm('{$lang.drop_confirm}'))window.location = 'index.php?app=goods_type&amp;act=drop&amp;id={$type.type_id}';">{$lang.drop}</a>
+            </span>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="5">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+</div>
+
+{include file="footer.html"}

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$site_url}/" />
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+{$page_seo}
+<link href="{res file=css/ecmall.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/ydpf_style.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/nav.js}" charset="utf-8"></script>
+{$_head_tags}
+<!--<editmode></editmode>-->
+</head>
+
+<body>
+
+<!--头部开始-->
+
+<!--顶部栏目开始-->
+<div class="head_top_box hd4">
+
+  <div class="head_top_center" style="width:1000px;">
+  
+    <div class="head_top_left">
+            <a href="#"><img src="{res file=images}/sm_logo.png" class="sm_logo" /></a>
+            <font>{$lang.hello}，{$visitor.user_name|escape}</font>
+            <!--{if !$visitor.user_id}-->
+            <a href="{url app=member&act=login&ret_url=$ret_url}">会员登录</a><span>|</span>
+            <a href="{url app=member&act=register&ret_url=$ret_url}">免费注册</a>
+            <!--{else}-->
+            [<a href="{url app=member&act=logout}">{$lang.logout}</a>]
+           <!--{/if}-->
+    </div>
+    
+    <div class="head_top_right">
+    
+     <div class="wdyd_off" onMouseOver="this.className='wdyd_on'" onMouseOut="this.className='wdyd_off'">
+        <p class="wdyd"><a href="index.php?app=member">我的帐户</a></p>
+        <div class="wdydfl">
+           <p><a href="index.php?app=buyer_order">等待卖家发货</a></p>
+           <p><a href="index.php?app=buyer_order">等待我付款</a></p>
+           <p><a href="index.php?app=seller_order&type=accepted">等待我发货</a></p>
+           <p><a href="index.php?app=seller_order&type=pending">等待买家付款</a></p>
+           <p><a href="index.php?app=my_goods">出售中的商品</a></p>
+        </div>
+     </div>
+      <div class="gwc_off" onMouseOver="this.className='gwc_on'" onMouseOut="this.className='gwc_off'">
+       <p class="gwcsl"><a href="index.php?app=cart">购物车<span>{$cart_c}</span></a></p>
+        <div class="gwcsp">
+          <h3>最近加入的宝贝：</h3>
+          <ul>
+		   <!--{foreach from=$cart item=t name=c1}-->   
+			<li id="cart_item_{$t.goods.rec_id}">
+               <p><a href="{url app=search&cate_id=$t.cate_id}"><img src="{$t.goods_image}" /></a></p>
+               <p class="cpjs"><a href="{url app=search&cate_id=$t.cate_id}">{$t.goods_name}<span>￥<b>{$t.price}</b></span></a></p>
+               <p class="ysfl">{$t.specification} <a class="del" href="javascript:;" onclick="drop_cart_item({$t.store_id}, {$t.rec_id});">删除</a></p>
+            </li>								
+			<!-- {/foreach} -->
+          </ul>
+          
+          <p class="gwcldbb">购物车里有{$cart_c}件宝贝</p>
+          <p class="ckgwcwd"><a href="index.php?app=cart">查看我的购物车</a></p>
+          <p class="clear"></p>
+        </div>
+     </div>
+     
+     <div class="scj_off" onMouseOver="this.className='scj_on'" onMouseOut="this.className='scj_off'">
+       <p class="scj">收藏夹</p>
+        <div class="wdsc">
+           <p><a href="index.php?app=my_favorite">收藏的宝贝</a></p>
+           <p><a href="index.php?app=my_favorite&type=store">收藏的店铺</a></p>
+        </div>
+     </div>
+
+     
+     <div class="mjzx_off" onMouseOver="this.className='mjzx_on'" onMouseOut="this.className='mjzx_off'">
+        <p class="mjzx"><a href="index.php?app=my_goods&act=add">卖家中心</a></p>
+        <div class="ymcdbb">
+           <p><a href="index.php?app=seller_order">已卖出的宝贝</a></p>
+           <p><a href="index.php?app=my_goods">出售中的宝贝</a></p>
+           <p><a href="home/forum.php?mod=forumdisplay&fid=2">卖家服务市场</a></p>
+           <p><a href="home/forum.php?mod=forumdisplay&fid=42">卖家培训中心</a></p>
+        </div>
+     </div>
+     
+     <div class="mjzx_off" onMouseOver="this.className='mjzx_on'" onMouseOut="this.className='mjzx_off'">
+        <p class="mjzx">客户服务</p>
+        <div class="ymcdbb">
+           <p><a href="#">帮助中心</a></p>
+           <p><a href="#">售后服务</a></p>
+           <p><a href="#">在线客服</a></p>
+           <p><a href="#">投诉中心</a></p>
+           <p><a href="#">客服邮箱</a></p>
+        </div>
+     </div>            
+     
+     
+     <div class="topct_off" onMouseOver="this.className='topct_on'" onMouseOut="this.className='topct_off'">
+        <p class="tcate">商品导航</p>
+        <div class="tct_box">
+           <!--{foreach from=$cate item=cat}-->
+           <dl>
+             <dt><a href="{url app=channel&cate_id=$cat.cate_id}">{$cat.cate_name}</a></dt>
+			<!--{foreach from=$arr0 item=t0 name=c1}-->  
+				<!--{if $t0.parent_id == $cat.cate_id}-->
+					<dd><a href="{url app=search&cate_id=$t0.cate_id}">{$t0.cate_name}</a></dd>
+				<!--{/if}-->
+			<!--{/foreach}-->                                     
+           </dl>                                                       
+          <!--{/foreach}-->     
+        </div>
+        <p class="clear"></p>
+     </div>
+     
+    </div>
+    <p class="clear"></p>  
+  </div>
+</div>
+<!--顶部栏目结束-->
+
+    
+<!--头部结束-->
+

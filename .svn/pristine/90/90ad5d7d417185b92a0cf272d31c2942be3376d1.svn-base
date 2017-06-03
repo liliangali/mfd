@@ -1,0 +1,69 @@
+@charset "utf-8";
+/* CSS Document */
+body { margin: 0; padding: 0; background:#f6f6f6;; color:#000; font:14px/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif; min-width:768px;}
+div,form,ul,ol,li,span,p,dl,dt,dd,img{margin:0;padding:0;border:0;}
+h1,h2,h3,h4,h5,h6,input{margin:0;padding:0;font-size:12px;font-weight:normal; border:none;}
+ul,ol,li{list-style:none}
+em{font-style:normal}
+table,textarea{font-size:12px}
+body a{outline:none;blr:expression(this.onFocus=this.blur());}
+a,a:visited{ color:#212121; text-decoration:none; transition:color .1s;}
+a:hover{ color:#5fc7ae;}
+.fl{ float:left;}
+.fr{ float:right;}
+.clearfix:after {content:"."; height:0px; line-height:0px; overflow:hidden; clear:both; display:block; visibility:hidden;}
+.clearfix{zoom:1;}
+.area{overflow:hidden;}
+.clear{clear:both;}
+/*头部*/
+.head{height:84px;overflow:hidden;border-bottom:1px solid #e9e9e9; background:#fff;}
+.nav{width:1200px;height:84px;margin:0 auto;}
+.head .logo{ width:193px; height:38px; background:url(../../static/img/tyd_logo.png) no-repeat; margin-top:26px;}
+.head .navBox{ margin-top:27px;}
+.head li{ float:left; padding:0 13px; font-size:20px;}
+.head .car a{ display:block; width:20px; height:18px; background:url(../../static/img/hd_icon01.png) no-repeat; margin:6px 0 0 10px;}
+.head .uCenter a{ display:block; width:20px; height:18px; background:url(../../static/img/hd_icon02.png) no-repeat; margin:6px 0 0 10px;}
+/*内容*/
+.container{max-width:1200px;width:100%; margin:0 auto;}
+.success{max-width:1200px;width:100%;margin:0 auto;padding-top:115px;overflow:hidden;}
+.successs{margin-bottom:338px;}
+.success .gpic{width:60px;height:60px;overflow:hidden;margin-left:199px; display:inline;}
+.success .ddxx{margin-left:31px;}
+.success .ddxx h1{font-size:32px;line-height:60px;}
+.success .ddxx p{padding-top:12px;font-size:16px;color:#333333;}
+.pay{margin-top:36px;border-top:1px solid #dfdfdf;}
+.pay .botxz{height:46px;margin:40px 0 281px 0;overflow:hidden;padding-left:290px;}
+.pay .botxz .wsyh{width:180px;height:46px;line-height:46px;font-size:16px;text-align:center; background:#346fd6; display:block;color:#fff;}
+.pay .botxz .xzqt{ background:none;color:#333333;}
+.choice{height:36px;margin-top:48px;overflow:hidden;}
+.choice .need{font-size:16px;}
+.choice .see{width:135px;height:34px;line-height:36px;border:1px solid #cccccc; text-align:center;color:#323232;}
+.choice .ahead{margin-left:28px; display:inline;}
+/*弹出层*/
+.tishi{padding:38px 0 0 50px;}
+.zfck{height:35px;margin-top:44px;}
+.zfcg{width:270px;}
+.zfcg a{width:600px;height:19px;border:1px solid #cccccc; text-align:center;padding:8px 35px 8px 35px;color:#121212;margin-top:1px;}
+.zfcks{height:50px;}
+.zfcgs{width:150px}
+.zfcgs a{border:1px solid #ff3300;}
+/*底部*/
+.footer{overflow:hidden;padding:65px 0; background:#2f3035;margin-top:50px;color:#cbcbcc; font-size:14px; text-align:center; clear:both;}
+
+
+
+@media (min-width:1px) and (max-width:1024px){
+.container { width: 768px; }
+
+}
+
+@media (min-width: 1024px) and (max-width:1440px) {
+.container { width:1024px; }
+
+}
+
+@media (min-width: 1440px) and (max-width:1540px) {
+.container { width:1440px; }
+} 
+
+

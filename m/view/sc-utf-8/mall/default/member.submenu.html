@@ -1,0 +1,10 @@
+        <ul class="m_tupsc_ul">
+            <!--{foreach from=$_member_submenu item=_s_m name=member_submenu}-->
+            <!--{if $_curmenu eq $_s_m.name}-->
+            <li  class="on">{$_s_m.text}<img src="{res file=images/m_sjjpxb.png}" /></li>
+            <!--{else}-->
+            <li><a href="{$_s_m.url}">{$_s_m.text}</a></li>
+            <!--{/if}-->
+            <!--{/foreach}-->
+        </ul>
+        <p class="clear"></p>

@@ -1,0 +1,124 @@
+{include file="header.html"}
+<script type="text/javascript">
+    $(function(){
+        $('#article_form').validate({
+            errorPlacement: function(error, element){
+                $(element).next('.field_notice').hide();
+                $(element).after(error);
+            },
+            success       : function(label){
+                label.addClass('right').text('OK!');
+            },
+
+        });
+    });
+
+
+</script>
+{$build_editor}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=index">{$lang.series_list}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=add_series">{$lang.add_series}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=good_list">{$lang.shop_list}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=add_good">{$lang.add_shop}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=cover">{$lang.cover}</a></li>
+        <li><span>{$lang.add_cover}</span></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="article_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    封面图片:</th>
+
+                <td class="paddingT15 wordSpacing5">
+                    {if $cover.img_url}<img src="{$cover.img_url}" height="50" width="50" >{/if}
+                    <input  id="img" type="file" name="img"  />
+                    <input id="series_img" type="hidden" value="{$id}" />
+                    <input type="hidden" value="{$cover.img_url}" name="img"/>
+                </td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                    <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+    function selectShop(obj){
+        var city = obj.value;
+        $("#shop_id").empty().append("<option value=0>{$lang.select_pls_shop}</option>");
+        $.each(shops, function(k, v){
+            if(k == city){
+                $.each(v,function(ki,vi){
+                    $("#shop_id").append("<option value='"+ki+"'>"+vi+"</option>");
+                })
+            }
+        });
+    }
+
+    function loadChild(obj)
+    {
+        var value = obj.value;
+        $.get("index.php?app=gcategory",{act:"loadAttr",type:value}, function(res){
+            var res = eval("("+res+")");
+            $(obj).next("select").empty().append('<option value="0">{$lang.select_attr}</option>');
+            for(var i = 0 ; i<res.retval.length;i++){
+                $(obj).next("select").append("<option value='" + res.retval[i].id +"'>" + res.retval[i].name + "</option>");
+            }
+        })
+    }
+
+    function searchGoods(obj)
+    {
+        var catid = $(obj).parents("td").children("select").val();
+        var goods_name = $(obj).parents("td").children("input").val();
+
+        if(!catid && goods_name.length ==0){
+            alert('{$lang.alert_catandgoods}');
+            return false;
+        }
+
+        $.get("index.php?app=gcategory",{act:"loadGoods", catid:catid, name:goods_name}, function(res){
+            var res = eval("("+ res +")");
+            if(res.retval.length > 0){
+                var opt = '';
+                for(var i=0;i<res.retval.length;i++){
+                    opt += "<option value='"+res.retval[i].id+"'>"+res.retval[i].name+"</option>"
+                }
+                $("#goodsid").empty().append(opt);
+            }else{
+                $("#goodsid").empty().append("<option value=0>-={$lang.nogoods}=-</option>")
+            }
+        })
+    }
+
+    function selectGoods()
+    {
+        var ObjGoods = $("#goods_list");
+        var goodsId = $("#goodsid");
+        var msg = '';
+        ObjGoods.find("input").each(function(){
+            if($(this).val() == goodsId.val()){
+                msg = '{$lang.goods_exist}';
+            }
+        })
+
+        if(msg)
+        {
+            alert(msg);
+            return false;
+        }
+        ObjGoods.append("<li><input type='checkbox' checked='true' name='ids[]' value='"+goodsId.val()+"'> "+goodsId.find("option:selected").text()+"</li>");
+    }
+
+</script>
+{include file="footer.html"}

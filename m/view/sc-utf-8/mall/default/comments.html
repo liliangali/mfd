@@ -1,0 +1,30 @@
+<div class="comments">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="comments_table">
+  <tr>
+    <th width="250">会员ID</th>
+    <th width="600">评论内容</th>
+    <th width="160">评论时间</th>
+  </tr>
+  <!-- {foreach from=$goods_comments item=comment} -->
+  <tr>
+    <td valign="top">
+      <div class="avatar_box">
+        <p><img src="{avatar uid=$comment.uid size=48}" width="48" height="48"></p>
+        <span>{uname uid=$comment.uid sub=20}</span>
+      </div>
+      <p class="clear"></p>
+    </td>
+    <td style="text-align:left;">{$comment.content|escape|nl2br}</td>
+    <td><font>({$comment.evaluation_time|date:complete})</font></td>
+  </tr>
+  <!-- {foreachelse} -->
+  <tr>
+    <td colspan="3">{$lang.no_records}</td>
+  </tr>
+  <!-- {/foreach} -->
+</table>
+
+</div>
+
+

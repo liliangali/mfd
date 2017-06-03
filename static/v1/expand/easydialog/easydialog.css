@@ -1,0 +1,21 @@
+button::-moz-focus-inner{ border:0; padding:0; margin:0; }
+
+.easyDialog_wrapper{ width:430px; display:none; height:205px; border:1px solid #666; padding:1px; background:#fff;}
+
+.easyDialog_wrapper .easyDialog_title{ height:28px; line-height:28px; overflow:hidden; color:#666; padding:0 10px; font-size:14px; background:#e6e6e6; position:relative; text-indent:-9999px;}
+
+.easyDialog_wrapper .close_btn{background:url(images/tipbg.png) right bottom no-repeat; width:17px; height:17px; display:block; position:absolute; top:6px; right:10px;}
+
+.easyDialog_wrapper .close_btn:hover{ color:#333; }
+
+.easyDialog_wrapper .easyDialog_text{ padding:20px 25px; line-height:22px;}
+
+.easyDialog_footer{ padding:0 25px; *zoom:1; }
+
+.easyDialog_footer a {color:#3c77d3; margin-right:12px;}
+
+.easyDialog_footer p {height:25px; line-height:25px; overflow:hidden; background:url(images/feedback-icon.gif) left top no-repeat; padding-left:35px; margin-bottom:20px;}
+.easyDialog_footer p b {font-size:14px; font-weight:bold !important; padding-right:10px;}
+
+.easyDialog_footer p.p2 {background-position:0 -25px; padding:0 0 0 35px !important; font-weight:normal !important;}
+.easyDialog_footer p.p2 span {color:#3c77d3; font-weight:normal !important; cursor: pointer;}

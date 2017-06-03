@@ -1,0 +1,165 @@
+<?php
+require 'edblib.php';
+
+class EdbDemo
+{
+		//获取订单
+	public function edbTradeGet($num=0,$sizes=0){
+	
+		if($num==0){
+			 $num=1;
+		}
+	    if($sizes==0){
+			$sizes=20;
+		}
+		
+		  //获取当天的年份
+	    $y = date("Y");
+	    
+	    //获取当天的月份
+	    $m = date("m");
+	    
+	    //获取当天的号数
+	   $d = date("d");
+	    $todayTimes= mktime(0,0,0,$m,$d,$y);
+	    $todayTime=date("Y-m-d H:i:s",$todayTimes);
+	    $toms=date("Y-m-d",strtotime("+1 day"));
+	    $tom=date("Y-m-d H:i:s",strtotime($toms));
+	    $cl=new EdbLib();
+	    $params = $cl->edbGetCommonParams('edbTradeGet');
+	    $params['date_type'] = '发货日期';
+		$params['order_status'] = '已发货';
+	    $params['begin_time'] = $todayTime;
+	  // $params['begin_time'] = '2017-02-08 14:00:00';
+		$params['shopid'] = '27';
+		$params['fields'] = 'out_tid,express_no,express';
+	   $params['end_time'] = $tom;
+	  //$params['end_time'] = '2017-02-08 15:00:00';
+	    $params['page_size'] = $sizes;
+	    $params['page_no'] = $num;
+	    $params['productInfo_type'] = '1';
+		// var_dump($params);exit; 
+	    $res=$cl->edbRequstPost($params);
+	    //订单返回物流
+	    $results=json_decode($res);
+	  	
+	    $result=object_array($results);
+	    $order_info=$result['Success']['items']['item'];
+			
+		$order_count=count($order_info);
+	
+	    //判断有误单号
+	   // 
+		
+	    
+	    $order=m('order');
+	    $shipping=&m('shipping');
+			
+	    if($order_info){	
+	
+	        foreach($order_info as $key=>$val){
+	            $sql_order = "select * from cf_order where order_sn={$val['out_tid']} AND ISNULL(waybillno) ";
+	        		  $orderss = getAlls($sql_order);
+	         if($orderss){	
+			 $orders=$orderss[0];
+		     }  		 
+	        		  if($orders){
+	        		      //判断物流
+	        		     /* $shippings=$shipping->get(array(
+	        		          'conditions'=>"shipping_name='{$val['express']}'",
+	        		      )); */
+						  $shippings_id=$shippings['shipping_id']?$shippings['shipping_id']:0;
+	        		      //写入物流单号
+	        		      $usql = "UPDATE cf_order SET status=30,ship_time=".time().",waybillno=".$val['express_no'].",shipping_id=".$shippings_id." WHERE order_id = ".$orders['order_id'];
+	        		     
+						 $res= mysql_query($usql);
+
+	        		      if(!$res){							 
+	        		          echo '物流更新失败';
+	        		      }
+
+	        		    
+	        		  }else{
+	        		      echo '暂无匹配订单';
+	        		  }
+	        }
+			 if($order_count = $sizes){
+
+			$this->getedb($num+1,$sizes);
+		}
+	    }
+	   
+	}
+
+	public function getedb($num,$sizes){
+
+       $this->edbTradeGet($num,$sizes);
+	}
+	//添加订单
+	public function edbTradeAdd($order,$num=0,$ordergoods='',$region1='',$region2='',$region3=''){
+		$cl=new EdbLib();
+		$params = $cl->edbGetCommonParams('edbTradeAdd');
+		$final_amount=$order['order_amount']-$order['final_amount'];
+		
+        $time=date("Y-m-d H:i:s",$order['add_time']);
+        $xmlValuse='';
+		$xmlValuse ='<order>';
+		$xmlValuse=$xmlValuse.'<orderInfo>';
+		$xmlValuse=$xmlValuse.'<out_tid>'.$order['order_sn'].'</out_tid>';
+		$xmlValuse=$xmlValuse.'<shop_id>27</shop_id>';
+
+		$xmlValuse=$xmlValuse.'<buyer_id>'.$order['user_id'].'</buyer_id>';
+		$xmlValuse=$xmlValuse.'<buyer_msg>'.$order['memo'].'</buyer_msg>';
+		$xmlValuse=$xmlValuse.'<consignee>'.$order['ship_name'].'</consignee>';
+		$xmlValuse=$xmlValuse.'<telephone>'.$order['ship_tel'].'</telephone>';
+		$xmlValuse=$xmlValuse.'<mobilPhone>'.$order['ship_tel'].'</mobilPhone>';
+		$xmlValuse=$xmlValuse.'<privince>'.$region1.'</privince>';
+		$xmlValuse=$xmlValuse.'<city>'.$region2.'</city>';
+		$xmlValuse=$xmlValuse.'<area>'.$region3.'</area>';
+		$xmlValuse=$xmlValuse.'<address>'.$order['ship_area'].$order['ship_addr'].'</address>';
+		$xmlValuse=$xmlValuse.'<order_totalMoney>'.$order['order_amount'].'</order_totalMoney>';
+		$xmlValuse=$xmlValuse.'<favorable_money>'.$final_amount.'</favorable_money>';
+		$xmlValuse=$xmlValuse.'<order_date>'.$time.'</order_date>';
+		$xmlValuse=$xmlValuse.'<express>德邦物流</express>';
+		$xmlValuse=$xmlValuse.'<pay_status>已付款</pay_status>';
+		$xmlValuse=$xmlValuse.'<order_type>已付款</order_type>';
+		$xmlValuse=$xmlValuse.'</orderInfo>';
+		$xmlValuse=$xmlValuse.'<product_info>';
+	
+		if($ordergoods){
+			   foreach($ordergoods as $key=>$val){
+                   if($val['type'] != 'fdiy'){
+					   $xmlValuse=$xmlValuse.'<product_item>';
+                      $xmlValuse=$xmlValuse.'<barCode>'.$val['goodsn'].'</barCode>';
+			          $xmlValuse=$xmlValuse.'<product_title>'.$val['goods_name'].'</product_title>';	
+			          $xmlValuse=$xmlValuse.'<orderGoods_Num>'.$val['quantity'].'</orderGoods_Num>';
+					  $xmlValuse=$xmlValuse.'<cost_Price>'.$val['price'].'</cost_Price>';
+			          $xmlValuse=$xmlValuse.'<out_tid>'.$order['order_sn'].'</out_tid>';
+					  $xmlValuse=$xmlValuse.'</product_item>';
+                   }
+               }
+		}
+
+		
+		$xmlValuse=$xmlValuse.'</product_info>';
+		$xmlValuse=$xmlValuse.'</order>';
+		$params['xmlValues']=$xmlValuse;
+			
+		$res=$cl->edbRequstPost($params);
+	
+		return $res;
+	}
+	//更新物流信息
+	public function edbLogisticsCompaniesUpdate(){
+		$cl=new EdbLib();
+		$params = $cl->edbGetCommonParams('edbLogisticsCompaniesUpdate');
+		$params['tid'] = 'S1512020000001';//E店宝订单号
+		$params['express'] = '圆通';
+		$params['express_deliveryno'] = '809173667727';
+		$params['delivery_time'] = '2016-11-13 18:20:10';
+		$params['weight'] = '0';
+		 
+		$res=$cl->edbRequstPost($params);
+	}
+}
+?>

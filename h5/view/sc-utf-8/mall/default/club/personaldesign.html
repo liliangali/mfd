@@ -1,0 +1,370 @@
+{include file="header.html"}
+
+
+
+<link type="text/css" rel="stylesheet" href="{res file=css/new_pubuliu.css}" />
+
+<link type="text/css" href="{$img_url}/css/head_footr.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="{$img_url}/css/coolke.css" />
+
+<script type="Text/Javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+
+
+<script type="text/javascript">
+var isWidescreen=screen.width>=1280; 
+if(isWidescreen){document.write("<style type='text/css'>.coolke_demo{width:1000px;}</style>");}
+</script>
+
+
+
+
+
+<script>
+
+
+function sub(){
+	if(!$.rc.dialog.islogin())
+		return 0;
+	
+	var content = $("#saytext").val();
+	if(!content || content =='你也可以随便说点什么')
+		return alert('请输入点东西吧');
+	
+	$("#mf").submit();
+}
+
+//artDialog.alert_z('111','2');
+
+
+function member_cancle(to_uid){
+	if(!$.rc.dialog.islogin())
+		return 0;
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_unfollow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			alert('已取消关注');
+			//alert("#fans_"+id);
+			var obj = $("#member_fans_"+to_uid);
+			//alert(obj.html());
+			//obj.html('关注');
+			obj.attr('class','kkzp_jgz');
+			obj.attr('onclick','member_follow('+to_uid+');');
+			
+			
+			
+		}
+	});
+}
+
+function member_follow(to_uid){
+	if(!$.rc.dialog.islogin())
+		return 0;
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_follow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			//alert('已关注');
+			//alert("#fans_"+id);
+			var obj = $("#member_fans_"+to_uid);
+			//alert(obj.html());
+			//obj.html('取消关注');
+			obj.attr('class','kkzp_quxgz');
+			obj.attr('onclick','member_cancle('+to_uid+ ');');
+		}
+	});
+}
+
+
+var setLike = function (uid,like_id,cate){
+	if(!$.rc.dialog.islogin())
+		return 0;
+
+	$.ajax({
+		"url":"/index.php/ajax-setLike.html",
+		"data": "uid=" + uid + "&cate="+cate+"&like_id="+like_id ,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			if(data.err){
+				alert(data.msg);
+			}else{
+				//$("#like_"+like_id).attr('class',"yxih");
+				$("#like_"+like_id).attr('class','sk_ylike_a');
+				$("#like_"+like_id).attr('onclick','');
+				var like_num = parseInt( $("#like_num_"+like_id).html() ) + 1;
+				$("#like_num_"+like_id).html(like_num);
+			}
+		}
+	});
+}
+
+var last_div = {$comment_total};
+function ajaxPage(id,page){
+	$.ajax({
+		"url":"/index.php/club-ajaxComment.html",
+		"data": "cate=sheji_comment&id=" + id + "&page="+page,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			$("#comment_div_"+last_div).after(data.data);
+			if(data.more){
+				$("#comment_more").html(data.more);
+			}else
+				$("#comment_more").html("<a href=''>没有更多了...</a>");
+			
+			
+			last_div = data.last_id - 1;
+		}
+	});
+}
+
+$(document).ready(function(){
+	$("#saytext").keyup(
+		function (){
+			var content = $("#saytext").val();
+			if(content.length > 185){
+				content=substring.substr(0,185);
+				$("#saytext").val(content);
+				
+				return alert('已超过185个字符');
+			}
+			var dis = 185 - content.length;
+			$("#max_length").html(dis);
+		}		
+	);
+});
+
+</script>
+
+<!-- 中间 开始 -->
+<div class="kukezp_box">
+    <!-- 左边 开始 -->
+    <div class="kukezp_l">
+       <!-- 信息 开始 -->
+        <div class="kukezp_info">
+           <h1 style="font-weight:normal;">{$photo.title}</h1>
+            <div class="kk_title">
+             <h1 class="">上传时间：{$album_date}</h1>
+                <div class="kk_sj_left">
+	                <div class="kuke_xihuan">
+	                {if !$photo.like}
+	                   <a class="sk_like_a" href="javascript:void(0);"    id='like_{$photo.id}'  onclick='setLike({$visitor.user_id},{$photo.id},"sheji_like");'  >喜欢 </a>
+	                {else} 
+	                   <a class="sk_ylike_a" href="javascript:void(0);">已喜欢 </a>
+	                {/if} 
+	                  
+	                   <span class="sk_like_sum" id='like_num_{$photo.id}'>{$photo.like_num}</span>
+	                </div>
+	                <div class="sk_m_share bdsharebuttonbox sk_fx_box" data-tag="share_1">
+		                  <span class="fxd">分享到：</span>
+		                  <a class="bds_163" href="javascript:void(0);" data-cmd="t163">网易</a>
+		                  <a class="bds_sina" href="javascript:void(0);"  data-cmd="tsina">新浪</a>
+		                  <a class="bds_ren" href="javascript:void(0);"  data-cmd="renren">人人</a>
+		                  <a class="bds_zone" href="javascript:void(0);"  data-cmd="qzone">qq空间</a>
+		                  <a class="bds_weixin1" href="javascript:void(0);"  data-cmd="weixin">微信</a>
+		                  <a class="bds_tqq1" href="javascript:void(0);"  data-cmd="tqq">腾讯微博</a>
+		            </div>
+			   </div>
+            </div>
+            <div class="kk_shux_box">
+            {$photo.base_info}
+<!--                <dl>
+                  <dt>面料编号：</dt>
+                  <dd>XXW13-061</dd>
+                  <dt>材质：</dt>
+                  <dd>100%羊毛</dd>
+               </dl>
+               <dl>
+                  <dt>花型：</dt>
+                  <dd>条纹</dd>
+                  <dt>产地：</dt>
+                  <dd>意大利</dd>
+               </dl>
+               <dl>
+                  <dt>风格：</dt>
+                  <dd>商务正装</dd>
+                  <dt>款式编号：</dt>
+                  <dd>XXX-XXXXM</dd>
+               </dl>
+               <dl>
+                  <dt>产地：</dt>
+                  <dd>中国</dd>
+                  <dt>洗涤说明：</dt>
+                  <dd>建议干洗</dd>
+               </dl> -->
+            </div>
+            <div class="kk_info_img">
+            	{foreach from=$album_photo key=k item=v }
+                	<a name="{$v.id}"></a><img src="{$v.url}">
+                 {/foreach} 
+            </div>
+            <div class="coolke-copy copy-padding"><i>所有内容均来自互联网或个人上传，版权归原作者所有，如有侵犯您的权益请联系我们尽快删除！</i></div>
+          <!--评论 开始-->
+		    <div class="sk_comments_box kkzp_comments_box">
+			    <div class="sk_com_form">
+			    <form action="/index.php/club-personaldesign-{$id}.html?opt=1" method='post' id='mf'>
+					<textarea class="input_text" id="saytext" name="saytext" maxlength=185>你也可以随便说点什么</textarea>
+					<p>
+					  <span class="emotion">表情</span>
+					  <span class="shuru">还可以输入<font id='max_length'>185</font>个字符</span>
+					  <input type="button" class="sub_btn_comm" onclick='sub();' value="">
+					</p>
+				</form>
+			    </div>
+				<div class="sk_comment_list">
+					{foreach from=$comment key=k item=v }
+				    <dl id='comment_div_{$k}'>
+                          <dt><a href="{if $v.user.uid}/index.php/club-cooler-{$v.user.uid}.html{else}javascript:void(0);{/if}"><img src="{$v.user.avatar}" width="36" height="36" /></a></dt>
+                          <dd>
+                             <p class="p1"><a href="{if $v.user.uid}/index.php/club-cooler-{$v.user.uid}.html{else}javascript:void(0);{/if}">{uname uid=$v.user.uid sub=20}</a></p>
+                             <p class="p2">{$v.content}<font>{$v.time}</font></p>
+                          </dd>
+                      </dl>
+					  {/foreach} 
+				</div>
+			</div>
+          <!--评论 结束--> 
+          {if $comment_more}
+          <div class="kkzp_more" id='comment_more'>
+          	<a href="javascript:void(0);" onclick='ajaxPage({$photo.id},{$next_page});'>查看更多</a>
+          </div>
+           {/if}
+            <p class="clear"></p>
+        </div>  
+       <!-- 信息 结束 -->
+       <!-- TA的其他设计 开始 -->
+       <!-- TA的其他设计 结束 -->
+    </div>
+    <!-- 左边 结束 -->
+    <!-- 右边 开始 -->
+    <div class="kukezp_r">
+       <div class="kkzp_user_info">
+          <p class="kkzp_user_tou"><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$user.uid}"><img src="{$user.avatar}" width="150" height="150"></a></p>
+          <h1>
+			<a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$user.uid}">{uname uid=$user.uid sub=20} </a>
+			<img class="m_daren" src="{$user.level_logo}">
+	     </h1>
+	     <div class="kkzp_jpxhfs">
+	        <a href="{link app=club act=hwaterfall arg0=1 arg1=1 arg2=$user.uid}">设计<br/><font>{$sheji_num}</font></a>
+	        <a href="/index.php/club-like-{$user.uid}.html">喜欢<br/><font>{$user.like_num}</font></a>
+	        <a href="/index.php/club-cooler-{$user.uid}.html" style="border:0;">粉丝<br/><font>{$user.fans}</font></a>
+	     </div>
+	     {if !$photo.self}
+	     	{if !$photo.isFans}
+	     		<a href="javascript:void(0);" class="kkzp_jgz" id='member_fans_{$photo.uid}' onclick='member_follow({$photo.uid});'>加关注</a>
+	     	 {else}
+	     		<a href="javascript:void(0);" class="kkzp_quxgz" id='member_fans_{$photo.uid}' onclick='member_cancle({$photo.uid});'>取消关注</a>
+	     	{/if}
+	     {else}
+	     	<a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$user.uid}"" class="kkzp_gerkj">个人空间</a>
+	     {/if}
+       </div>
+       <div class="TAkb_box">
+          <h3><span>TA的酷吧</span><a href="/index.php/club-album-{$user.uid}.html">查看更多</a></h3>
+          <ul class="m_kblb_ul">
+          
+          
+          {foreach from=$user_album key=k item=v }
+          
+		   <li>
+		     <h1>{$v.title}</h1>
+		     <p class="m_tpsc"><a href="javascript:;" class="pic">{$v.num}</a><a href="javascript:;" class="guanz">{$v.views}</a></p>
+		     <p class="m_tu13"><a href="/index.php/club-albuminfo-{$v.id}-{$v.uid}.html"><img src="{$v.img.0.url}" /></a></p>
+		     <div class="m_small">
+		       <p><a href="{/index.php/club-albuminfo-{$v.id}-{$v.uid}.html"><img src="{$v.img.1.url}" width="69" height="69" /></a></p>
+		       <p><a href="/index.php/club-albuminfo-{$v.id}-{$v.uid}.html"><img src="{$v.img.2.url}" width="69" height="69" /></a></p>
+		       <p><a href="/index.php/club-albuminfo-{$v.id}-{$v.uid}.html"><img src="{$v.img.3.url}" width="69" height="69" /></a></p>
+		     </div>
+		   </li>
+		   
+		   {/foreach}
+		   
+		   </ul>
+       </div>
+    </div>
+    <!-- 右边 结束 -->
+    <p class="clear"></p>  
+</div>
+<!-- 中间 结束 -->
+<script>
+$(function(){
+	 $(".sk_comment_list").find("dl").each(function(){
+		 var O_this = $(this);
+		 var hf     = O_this.find("dd").children(".p2").children(".hf");
+		 var O_TIME = null;
+		 O_this.mousemove(function(){
+		 clearTimeout(O_TIME);
+			  O_this.css("background","#fbfbfb");
+			   O_this.find("dd").children(".p2").children(".hf").show();
+		 });
+		 O_this.mouseout(function(){
+			 O_TIME = setTimeout(function(){
+			   O_this.css("background","#fff");
+			   O_this.find("dd").children(".p2").children(".hf").hide();
+			 },100);
+		 });
+		 hf.mousemove(function(){
+		 clearTimeout(O_TIME);
+			  O_this.css("background","#fbfbfb");
+			   O_this.find("dd").children(".p2").children(".hf").show();
+		 });
+		 
+	 });
+	 
+	 $('.emotion').qqFace({
+			id : 'facebox', 
+			assign:'saytext', 
+			path:'{$img_url}/images/arclist/'	//表情存放的路径
+		});
+})
+</script>
+
+<script type="text/javascript" src="{$img_url}/js/jquery.qqFace.js"></script>
+
+
+
+
+<script>
+var PINER = {
+	    uid: "<?php echo $_SESSION['user_info']['user_id'] ?>",
+	};
+
+
+function replace_em(str){ 
+    str = str.replace(/\</g,'<；'); 
+    str = str.replace(/\>/g,'>；'); 
+    str = str.replace(/\n/g,'<；br/>；'); 
+    str = str.replace(/\[em_([0-9]*)\]/g,'<img src="face/$1.gif" border="0" />'); 
+    return str;  
+    
+} 
+
+</script>
+
+<!--底部开始-->
+{include file="footer.html"}
+</body>
+</html>
+<script>
+	window._bd_share_config = {
+		common : {
+			bdText : '{$photo.title}',	
+			bdDesc : '{$photo.base_info}',	
+			bdUrl : '{$site_url}/index.php/club-personaldesign-{$id}.html', 	
+			bdPic : '{$photo.url}'
+		},
+		share : [{
+			"bdSize" : 24
+		}]
+
+	}
+	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>

@@ -1,0 +1,39 @@
+<div class="m_shxx_bt"><p>量体数据</p>{if !$figuredata.noEdit}<span class="lightTitle"></span>{else}<span style="color:red">该订单将使用您还未处理的预约申请!</span>{/if}</div>
+<p class="clear"></p>
+<p class="mqmyshrxx">{$figuredata.figure_name}：</p>
+	{if $figuredata.figure gt 0}
+      <div class="suoyousj">
+       <ul>
+         <li>领围：{$figuredata.lw}cm</li>
+         <li>胸围：{$figuredata.xw}cm</li>
+         <li>中腰围：{$figuredata.zyw}cm</li>
+         <li>臀围：{$figuredata.tw}cm</li>
+         <li>上臀围：{$figuredata.stw}cm</li>
+         <li>总肩宽：{$figuredata.zjk}cm</li>
+         <li>右袖长：{$figuredata.yxc}cm</li>
+         <li>左袖长：{$figuredata.zxc}cm</li>  
+         <li>前肩宽：{$figuredata.qjk}cm</li>
+         <li>后衣长：{$figuredata.hyc}cm</li>
+         <li>腰围：{$figuredata.yw}cm</li>
+         <li>通裆：{$figuredata.td}cm</li>
+         <li>后腰高：{$figuredata.hyg}cm</li>
+         <li>前腰高：{$figuredata.qyg}cm</li>
+         <li>裤口：{$figuredata.kk}cm</li>
+         <li>后腰节长：{$figuredata.hyjc}cm</li>
+         <li>前腰节：{$figuredata.qyj}cm</li>
+         <li>腿根围：{$figuredata.tgw}cm</li>
+         <li>左裤长：{$figuredata.zkc}cm</li>
+         <li>右裤长：{$figuredata.ykc}cm</li>
+         <li>膝围：{$figuredata.xiw}cm</li>
+       </ul>
+       <p class="clear"></p>
+      </div>
+    {else}
+    	 <p class="mqmyshrxx">
+      		{$figuredata.realname} {$figuredata.mobile} 
+      	 </p>
+      	 
+      	 <p class="mqmyshrxx">
+      		{$figuredata.region_name} {$figuredata.address} 
+      	 </p>
+    {/if}

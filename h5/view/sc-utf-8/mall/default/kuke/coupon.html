@@ -1,0 +1,61 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+<!--sortlist end-->
+
+
+  
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">我的优惠券<a href="{link app=article act=view arg0=58}" class="sygz">使用规则</a></h1>
+     
+    <div class="m_sgbtyzf">
+      <a href="/index.php/kuke-coupon.html?status=0" class="{if $status eq 0}m_wsy{/if}">未使用{if $status eq 0}<img src="{$img_url}//images/wsy.png" />{/if}</a>
+      <a href="/index.php/kuke-coupon.html?status=1" class="{if $status eq 1}m_wsy{/if}">已使用{if $status eq 1}<img src="{$img_url}//images/wsy.png" />{/if}</a>
+      <a href="/index.php/kuke-coupon.html?status=2" class="{if $status eq 2}m_wsy{/if}">已过期{if $status eq 2}<img src="{$img_url}//images/wsy.png" />{/if}</a>
+      <p class="clear"></p>
+    </div>
+    
+    <div class="wdyhj">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      
+              <tr>
+          <th width="162px" style="padding-left:15px;">名称</th>
+          <th width="72">面值</th>
+          <th width="140">编号</th>
+          <th width="250">使用限制</th>
+          <th width="156">有效期</th>
+        </tr>
+        
+
+        
+      {if $coupon}
+      {foreach from=$coupon key=k item=v }
+      <tr>
+          <td style="padding-left:15px;">{$v.cpn_name}</td>
+          <td>{$v.cpn_money}</td>
+          <td>{$v.coupon_sn}</td>
+          <td>订单满足多种优惠条件下只能使用一种</td>
+          <td>{$v.start_time|date:Y/m/d} - {$v.end_time|date:Y/m/d}</td>
+        </tr>
+       {/foreach}
+              		{else}
+              		<tr><td>暂时无数据</td></tr>
+              		{/if} 
+        
+      </table>
+    </div>
+    
+    <div class="lulals_fy">    
+      <p>共{if $total}{$total}{else}0{/if}条记录</p>  
+      <div>
+    	 {$page_show}
+        <p class="clear"></p>
+      </div>
+    </div>
+    
+  </div>
+  <p class="clear"></p>
+</div>
+
+{include file="footer.html"}

@@ -1,0 +1,70 @@
+{include file=../header-new.html}
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="w">
+    <div class="AreaBox clearfix">
+		<!--用户中心左菜单部分 START-->
+		{include file = member.menu.html}
+		<!--用户中心左菜单部分 END-->
+		
+		<form action="{link app=recharge act=goToPay}" method="POST" id="payform"  target="_blank">
+			<div class="cardright fr">
+				<div class="coolcard">
+					<h4>账户充值</h4>
+					<p class="blackcur">当前余额：<span>{$user_info.money|price}</span></p>
+				</div>
+				<div class="recharge">
+					<div class="czje">
+						<h5>充值金额：</h5>
+						<p class="xjsl"><input type="text" name="je" id="money" value="10" />元</p>
+					</div>
+					<div class="czje">
+						<h5>支付平台：</h5>
+						<div class="platform">
+							<!--
+							<div class="platform"><span class="zfptcur">移动支付宝</span><span>移动支付宝</span></div>-->
+							<div class="platform">
+     							{foreach from=$payments item=list name=pay}
+     							{if $smarty.foreach.pay.first}
+     							<input type="hidden" name="cd" checked="checked"   id="no-way" value="{$list.payment_code}" />
+     							{/if}
+								<span  class="{if $smarty.foreach.pay.first}zfptcur{/if}" data-code={$list.payment_code} data-payid={$list.payment_id}>{$list.payment_name}</span>
+								{/foreach}
+								<!--
+								{foreach from=$payments item=pmt name=foo}
+									<span {if $smarty.foreach.foo.first} class="zfptcur" {/if} >{$pmt.payment_name}</span>
+								{/foreach}-->
+							</div>
+						</div>
+					</div>
+					<input type="submit" id="submit"  value="提交" class="ptcz">
+				</div>
+			</div>
+		</form>
+	
+    </div>
+</div>
+
+<script type="text/javascript" >
+$('.platform span').click(function(){
+	$(this).addClass('zfptcur').siblings().removeClass('zfptcur');
+	$('#no-way').val($(this).attr('data-code'))
+});
+
+$(document).ready(function(){
+    $("#submit").click(function(event){
+   	    var reg=/^\d+$/;
+
+   	     if(!reg.test($('#money').val())){
+			alert('必须输入正整数请重新输入!');
+			$('#money').val(10);
+			event.preventDefault();
+   	    } 
+		
+   	    $("#payform").submit();
+    });
+    
+})
+</script>
+
+{include file=footer.html}

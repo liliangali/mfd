@@ -1,0 +1,419 @@
+{include file="header.html"}
+<link href="{res file=css/custom.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{res file=js/Xslider.js}"></script>
+<script type="text/javascript" src="{res file=js/custom.js}"></script>
+<script type="text/javascript" src="{res file=js/customjscroll.js}"></script>
+<script type="text/javascript" src="{res file=js/customjscroll1.js}"></script>
+<script type="text/javascript" src="{lib file=json.js}"></script>
+<script type="text/javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="text/javascript" src="{lib file=rctailor.js}" charset="utf-8"></script>
+<script type="text/javascript">
+var SITE_URL = "{$site_url}";
+$(function(){
+
+	//二、左右切换：最后一个显示在最右侧;
+	$(".productshow:eq(0)").Xslider({
+		unitdisplayed:5,
+		numtoMove:1,
+		autoscroll:3000
+	});
+	
+	$("a").focus(function(){this.blur();});
+})
+</script>
+
+<script type="text/javascript">
+$(function(){
+
+	//二、左右切换：最后一个显示在最右侧;
+	$(".productshow_2:eq(0)").Xslider({
+		unitdisplayed:5,
+		numtoMove:1,
+		autoscroll:3000
+	});
+	
+	$("a").focus(function(){this.blur();});
+})
+</script>
+
+<style type="text/css" media="screen"> 
+	object:focus { outline:none; }
+	#flashContent { display:none; }
+</style>
+
+        <!-- Enable Browser History by replacing useBrowserHistory tokens with two hyphens -->
+        <!-- BEGIN Browser History required section -->
+        <link rel="stylesheet" type="text/css" href="/flashdiy/history/history.css" />
+        <script type="text/javascript" src="/flashdiy/history/history.js"></script>
+        <!-- END Browser History required section -->  
+        
+        <script type="text/javascript" src="/flashdiy/swfobject.js"></script>
+        <script type="text/javascript">
+		    var cst_id = '{$info.cst_id}';
+            // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
+            var swfVersionStr = "11.1.0";
+            // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
+            var xiSwfUrlStr = "playerProductInstall.swf";
+            var flashvars = {
+				'dataUrl':'/index.php/custom-get_basis-{$info.cst_id}.html',
+				'jibenkuanId':{$info.cst_id},
+				'dllConfig':'/flashdiy/dlldxr.amf',
+				'dllDir':'/flashdiy/'
+			};
+            var params = {};
+            params.quality = "high";
+            params.wmode   = "opaque";
+            params.bgcolor = "#ffffff";
+            params.allowscriptaccess = "sameDomain";
+            params.allowfullscreen = "true";
+            var attributes = {};
+            attributes.id = "FuzhuangMain";
+            attributes.name = "FuzhuangMain";
+            attributes.align = "middle";
+            swfobject.embedSWF(
+                "/flashdiy/FuzhuangMain.swf", "flashContent", 
+                "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes);
+            // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
+            swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+        </script>
+        
+<style>
+
+body { background:#fff !important;}
+
+</style>
+
+</head>
+
+<div class="dinzizx_box">
+  <!--<p><a href="{link app=cart act=index}"><img src="{res file=images/dzxxy_zsy.jpg}" /></a></p>-->
+<div class="custom_box" style="height:595px; position: relative; padding:40px 0 35px 0; margin-top:0;">
+        <div id="flashContent">
+            <p>
+                To view this page ensure that Adobe Flash Player version 
+                11.1.0 or greater is installed. 
+            </p>
+            <script type="text/javascript"> 
+                var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
+                document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" 
+                                + pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" ); 
+            </script> 
+        </div>
+        
+        <noscript>
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%" id="FuzhuangMain">
+                <param name="movie" value="/flashdiy/FuzhuangMain.swf" />
+                <param name="quality" value="high" />
+                <param name="wmode" value="opaque" />
+                <param name="bgcolor" value="#ffffff" />
+                <param name="allowScriptAccess" value="sameDomain" />
+                <param name="allowFullScreen" value="true" />
+                <!--[if !IE]>-->
+                <object type="application/x-shockwave-flash" data="/flashdiy/FuzhuangMain.swf" width="100%" height="100%">
+                    <param name="quality" value="high" />
+                    <param name="bgcolor" value="#ffffff" />
+                    <param name="allowScriptAccess" value="sameDomain" />
+                    <param name="allowFullScreen" value="true" />
+                <!--<![endif]-->
+                <!--[if gte IE 6]>-->
+                    <p> 
+                        Either scripts and active content are not permitted to run or Adobe Flash Player version
+                        11.1.0 or greater is not installed.
+                    </p>
+                <!--<![endif]-->
+                    <a href="http://www.adobe.com/go/getflashplayer">
+                        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />
+                    </a>
+                <!--[if !IE]>-->
+                </object>
+                <!--<![endif]-->
+            </object>
+        </noscript>     
+       <div class="cus_fxscbc"><a href="javascript:collect_customs({$id});" class="cus_collect">收藏</a>
+             <div class="m_share bdsharebuttonbox" data-tag="share_1">
+                  <a class="bds_sina" href="javascript:void(0);"  data-cmd="tsina">新浪</a>
+                  <a class="bds_zone" href="javascript:void(0);"  data-cmd="weixin">微信</a>
+                  <a class="bds_weixin" href="javascript:void(0);"  data-cmd="tqq">腾讯微博</a>
+       </div>  
+</div>
+    <div class="c_qrcode">
+			   <!-- 二维码 -->
+			   {qrcode type='customs' id=$info.cst_id size=2}
+			   <p>扫一扫 有惊喜!</p>
+        </div>
+</div>
+<div class="dinzizx_box">
+
+ <h1 class="jbktj">相关联的基本款</h1>
+ <!--相册轮播开始-->
+  <div class="productshow">
+    <div class="scrollcontainer" id="moveid">
+       <ul>       
+        {foreach from=$recommdata item=r}
+          <li class="picimglink">
+            <p><a href="{link app=custom act=info arg0=$r.cst_id}"><img src="{$r.cst_image}" alt="{$r.cst_name}" /></a></p>
+            <div class="pic-txt">
+             <p class="p1"><a href="{link app=custom act=info arg0=$r.cst_id}">[{$r.cst_name}]{$r.cst_description}</a></p>
+             <p class="p2">{$r.cst_price}</p>
+            </div>
+          </li>
+            {foreachelse}
+            数据完善中
+           {/foreach}
+         
+                     
+      </ul>
+      <p class="clear"></p> 
+    </div>
+    <a class="abtn aleft" href="#left">左移</a>
+    <a class="abtn aright" href="#right">右移</a>
+  </div>
+  
+  <script type="text/javascript">
+  $(".picimglink").bind({
+	  mouseenter: function() {
+		  $(this).children("div").animate({
+			  bottom: "0px"
+		  },
+		  300)
+	  },
+	  mouseleave: function() {
+		  $(this).children("div").clearQueue().animate({
+			  bottom: "-60px"
+		  },
+		  500)
+	  }
+  });
+</script>
+ <!--相册轮播结束-->  
+ 
+<div class="dzxxy_qh"> 
+  <UL class="jbkxianqin">
+    <LI id="ti_1" class="now_hover" onClick="ceck_pic(1);" style="border-left:none;"><b>基本款说明</b></LI>
+    <LI id="ti_2" class="old_hover" onClick="ceck_pic(2);"><b>客户评论</b></LI>
+    <LI id="ti_3" class="old_hover" onClick="ceck_pic(3);"><b>定制流程</b></LI>
+    <LI id="ti_4" class="old_hover" onClick="ceck_pic(4);"><b>量体指南</b></LI>
+    <li id="ti_5" class="old_hover" onClick="ceck_pic(5);" style="border-right:none; margin-right:0; width:198px;"><b>支付及物流</b></li>
+  </UL>
+  <p class="clear"></p>
+  <div id="tj_1" class="jibenkuan" style="display:block;">
+  <!--<table width="890" align="center">
+    <tr>
+	  <td>设计理念：</td>
+	  <td colspan="3">{$info.cst_description}</td>
+	  <td>设计来源：</td>
+	  <td>{$info.cst_source}</td>
+	  <td>设计师：</td>
+	  <td><a href="/index.php/club-hwaterfall-1-2-{$info.cst_source_id}.html#club" target="_blank">{$info.cst_source_id}</a></td>
+	</tr>
+
+    <tr>
+	  <td>浏览数：</td>
+	  <td>{$info.cst_views}</td>
+	  <td>喜欢数：</td>
+	  <td>{$info.cst_likes}</td>
+	  <td>限量：</td>
+	  <td>{$info.cst_store}</td>
+	  <td>已售：</td>
+	  <td>{$info.cst_sales}</td>
+	</tr>
+  </table>-->
+  <p style="text-align:center;">{$info.cst_content}</p>
+  </div>  
+
+  <div id="tj_2" class="jibenkuan" style="display:none; text-align:center;">
+{include file=comments.html}
+</div>  
+  <div id="tj_3" class="jibenkuan" style="display:none;"> {$aflow.content} </div>  
+ 
+  <div id="tj_4" class="jibenkuan" style="display:none; text-align:center;"><img src="/upload/images/{$info.cst_cate}_chima.jpg" />{$ameasure.content} </div>  
+  
+  <div id="tj_5" class="jibenkuan" style="display:none; text-align:center;"> {$pricedesc.content} </div> 
+
+</div>
+
+
+<!--西装五大分类开始-->   
+    <div class="xzwdfl_box">
+      <ul>
+        <li>
+          <h1><a href="{link app=custom act=lists arg0=3}">西装定制</a></h1>
+          <p class="p1"><a href="{link app=custom act=lists arg0=3}"><img src="{res file=images/xz.png}" /></a></p>
+        </li>
+        
+        <li>
+          <h1><a href="{link app=custom act=lists arg0=3000}">衬衫定制</a></h1>
+          <p class="p2"><a href="{link app=custom act=lists arg0=3000}"><img src="{res file=images/cs.png}" /></a></p>
+        </li>        
+        
+        <li>
+          <h1><a href="{link app=custom act=lists arg0=4000}">马夹定制</a></h1>
+          <p class="p3"><a href="{link app=custom act=lists arg0=4000}"><img src="{res file=images/mj.png}" /></a></p>
+        </li>        
+        
+        <li>
+          <h1><a href="{link app=custom act=lists arg0=2000}">西裤定制</a></h1>
+          <p class="p4"><a href="{link app=custom act=lists arg0=2000}"><img src="{res file=images/xk.png}" /></a></p>
+        </li>        
+        
+        <li>
+          <h1><a href="{link app=custom act=lists arg0=6000}">大衣定制</a></h1>
+          <p class="p5"><a href="{link app=custom act=lists arg0=6000}"><img src="{res file=images/dy.png}" /></a></p>
+        </li>        
+        
+      </ul>
+      <p class="clear"></p>
+    </div>
+ <!--西装五大分类结束-->  
+  
+</div>
+</div>
+
+<SCRIPT language="javascript" type="text/javascript">
+	function ceck_pic(ix)
+	{
+	  for (i=1;i<6;i++)
+	  {
+		  if (i==ix)
+		  {
+			  document.getElementById('ti_'+i).className = 'now_hover';
+			  document.getElementById('tj_'+i).style.display = 'block';
+		  }
+		  else
+		  {
+			  document.getElementById('ti_'+i).className = 'old_hover'; 
+			  document.getElementById('tj_'+i).style.display = 'none'; 
+		  }
+	  }
+	
+	}
+</SCRIPT>
+<script>
+var rec_id = "{$rec_id|default0}";
+var goods_id = {$id};
+$(function(){
+ $_CNC_PHOTO.init();
+
+ $('.cus_his_list').height(395).jScrollPane({
+	showArrows: true,
+	animateScroll: true
+ });
+ 
+ /*******************************
+ $(".addtocart").click(function(){
+	 var url = "{link app=cart act=add}";
+	 var data = {};
+	 data.goods_id = goods_id;
+	 data.rec_id = rec_id;
+	 data.is_diy = $(".diy-cm input[name=is_diy]:checked").val();
+	 data.height = $(".cus_sg input[name=height]").val();
+	 data.weight = $(".cus_tz input[name=weight]").val();
+	 data.spec   = $("#cm select[name=size]").val();
+	 
+	 $.post(url, data,function(res){
+		 var res = $.evalJSON(res);
+		 if(res.done == false){
+			 $.rc.tip({content:res.msg, icon:"error"});
+			 return false;
+		 }else{
+			 try{
+			 	$("#cartGoodsNum font").html(res.retval.goods_num);
+			 }catch(e){}
+			// $.rc.tip({content:'添加购物车成功'});
+			location.href="{link app=cart}";
+		 }
+		
+	 })
+ })
+ *******************************************************/
+});
+
+
+/**
+ * is_diy      是否需要量体.0 标准码, 1 需要量体
+ * items       用户选择的组件 格式:DIY115-KZ379-XIAKD100041-XKD100017-QMK38-MLDBL652A [面料，..... 刺绣字体，颜色，位置]
+ * height      身高
+ * weight      体重
+ * size        标准尺码
+ * emb_con     刺绣内容
+ * total       总价
+ * imgcode 	         商品图片code
+ * gid         商品id
+ */
+ 
+function addToCart(is_diy, items, height, weight, size, emb_con, total, imgcode, gid){
+	 var url = "{link app=cart act=add}";	 
+	 var data = {};
+	 data.goods_id  = gid;
+	 data.rec_id    = rec_id;
+	 data.is_diy    = is_diy;
+	 data.items     = items;
+	 data.height    = height;
+	 data.weight    = weight;
+	 data.spec      = size;
+	 data.emb_con   = emb_con;
+	 data.total		= total;
+	 data.imgcode   = imgcode;
+	 
+	 $.post(url, data,function(res){
+		 var res = $.evalJSON(res);
+		 if(res.done == false){
+			 $.rc.tip({content:res.msg, icon:"error"});
+			 return false;
+		 }else{
+			 try{
+			 	$("#cartGoodsNum font").html(res.retval.goods_num);
+			 }catch(e){}
+			// $.rc.tip({content:'添加购物车成功'});
+			location.href="{link app=cart}";
+		 }
+	 })
+}
+/**
+ * 查看尺码
+ */
+function openChima(id){
+	console.log(id);
+	window.open('/upload/images/{$info.cst_cate}_chima.jpg','','width=790,height=590');
+/* 	window.opener=null;
+	window.close(); */
+
+/* 	var url = "http://www.baidu.com";
+	window.open(url,"_blank); */
+}
+//var code = '8001:612224|313:31655|371:376|24:100017|24:38|24:100041|417:1500|417:450|417:485,499';
+
+//addToCart('1',code,'175','60','','测试','1302','123456789', '116');
+
+</script>
+<!-- 反回顶部代码开始 -->
+<script type="text/javascript" src="{res file=js/js.js}"></script>
+<div id="piaofu-right" href="javascript:void(0)">
+    <a href="{link app=cart act=index}" target="_blank" class="yichu"></a>
+  <a class="kefu" href="javascript:;" id="BizQQWPA"></a>
+  <script type="text/javascript">
+        BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4008919867, selector: 'BizQQWPA'});
+       </script>
+</div>
+<div id="gotop1" href="javascript:void(0)" style="display:block;">
+    <a href="javascript:void(0)" class="go_top"></a>
+</div>
+<!-- 反回顶部代码开始 -->
+{include file="footer.html"}
+<script>
+	window._bd_share_config = {
+		common : {
+			bdText : '{$info.cst_name}',	
+			bdDesc : '{$info.cst_description}',	
+			bdUrl : '{$site_url}{link app=custom act=info arg=$info.cst_id}', 	
+			bdPic : '{$info.cst_image}'
+		},
+		share : [{
+			"bdSize" : 24
+		}]
+
+	}
+	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>

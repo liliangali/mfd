@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>购买酷卡订单提交成功页</title>
+<link rel="stylesheet" type="text/css" href="static/css/kukaorder.css" media="screen">
+</head>
+	<body>
+		<form action="{link app=bug_kuka act=goToPay}" method="POST" id="payform"  target="_blank"> 
+			<div class="ddsuccess">
+				<p class="cgpic"><img src="static/images/dpic.png"></p>
+				<p class="ddcgword">您的订单已提交成功！</p>
+			</div>
+			<div class="dddetailed">
+				<p>订单编号: {$order.order_sn}</p>
+				<p>支付方式: {$order.payment_name}</p>
+				<p>订单金额: {$order.order_amount|price}</p>
+				{if $cashinfo.order_money}
+				<p>余额支付:{$cashinfo.order_money|price}</p>
+				{/if}
+				<p>还需支付: {$order.final_amount|price} </p>
+			</div>
+			<input type="hidden" name="obj" value="{$obj}" />
+			<input type="hidden" name="os" value="{$order.order_sn}" />
+			<div class="pay" style="background:#111111;color:#fff;"><a id="addCart" href="javascript:void(0)">立即支付</a></div>
+		</form>
+	</body>
+</html>
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script>
+//点击支付时，提示使用支付密码（余额）
+$('#addCart').click(function() {
+	$("#payform").submit();//提交表单
+});
+</script>

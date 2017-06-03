@@ -1,0 +1,44 @@
+<div class="footer">
+  <div class="w">
+    <!--{foreach from=$helps item=f_val name=loop}-->
+    <dl class="first">
+      <dt>{$f_val.cate_name}</dt>
+      <dd>
+        <ul>
+            <!--{foreach from=$f_val.article item=a_val}-->
+              <li><a href="help-{$a_val.article_id}.html">{$a_val.title}</a></li>
+            <!--{/foreach}-->  
+        </ul>
+      </dd>
+    </dl>
+  <!--{/foreach}-->  
+    <dl class="last">
+      <dt>裁缝客户端下载</dt>
+      <dd>
+        <p class="p4">随时随地在线找裁缝！</p>
+        <div class="qrcode">
+          <a href="client.html" class="Iphome"></a>
+          <a href="client.html" class="Android"></a>
+        </div>
+      </dd>
+    </dl>
+    
+    <dl class="last">
+      <dt>客服热线</dt>
+      <dd>
+       <p class="p1">400-8919-867</p>
+       <p class="p2">周一至周日<span>8:00-18:00</span></p>
+       <a href="#" class="p3"></a>
+      </dd>
+    </dl>
+  </div>
+  
+  <div class="bottom">
+    <div class="m_footer">
+      <p class="p1">© alicaifeng.com 版权所有&nbsp;&nbsp;&nbsp;客服中心：service@alicaifeng.com</p>
+      <p class="p2">鲁ICP备10207738&nbsp;&nbsp;&nbsp; 京公网安备110106010015号</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

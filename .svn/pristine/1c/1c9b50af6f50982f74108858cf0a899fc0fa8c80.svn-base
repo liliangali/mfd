@@ -1,0 +1,23 @@
+<!--头部开始 需要返回箭头-->
+<header class="topBar" id="header">
+    <div class="wrap">
+        <span class="back" onClick="history.go(-1)"></span>
+        <h1>{$title}</h1>
+    </div>
+</header>
+
+<script>
+    //检测是否是微信浏览器
+    function is_weixin() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    if (is_weixin()) {
+        document.getElementById("header").style.display = 'none';
+    }
+</script>
+<!--头部结束-->

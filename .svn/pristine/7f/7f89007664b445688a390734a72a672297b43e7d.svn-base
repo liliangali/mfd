@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>订单信息确认</title>
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+<link type="text/css" href="public/static/wap/css/productlist.css" rel="stylesheet" />
+
+    <style>
+        .wdgwc_box {padding-bottom:50px !important;}
+        .jrgwc_box {bottom:0 !important;}
+        .fixd_cart {bottom:85px !important;}
+    </style>
+
+</head>
+
+<body>
+<script>window.onunload=function(){};</script>
+<div class="main">
+    {include file=headerb.html}
+<!--     <header class="hdtop">
+        <div class="edit fl">
+            <p class="p1"><a href="javascript:history.go(-1)"><img src="public/static/wap/images/tw_03.png" /></a></p>
+            <p class="p2">订单确认</p>
+        </div>
+    </header> -->
+<div class="wdgwc_box">
+<form id="OrderForm">
+  
+  <!-- 收货地址 Bgn -->
+
+  {assign var=address value=$order.shipping.$order.shipping.type}
+  <a href="{link app=cart act=address}" style="display:block">
+  <div class="qrddyx">
+   <div class="lhwdz">
+    <p class="p1">收货地址</p>
+    {if !$address.consignee } <p class="p2"><span>亲~您还没有填写收货地址</span></p>    
+    {else}
+    <p class="p2"><span>{$address.consignee}</span>{if $address.phone_mob}{$address.phone_mob}{else}{$address.phone_tel}{/if}</p>
+    <p class="p2"><span>{$address.region_name}</span>{$address.address} </p>
+    {/if}
+   </div>
+  </div>
+  </a>
+ 
+ <p class="gwchst"></p>
+  <!-- 收货地址 End -->
+  
+   <!-- 物流公司 Bgn -->
+ <!--  <a href="{link app=cart act=ships arg0=$address.addr_id}?token={$apptk}" style="display:block">
+  <div class="qrddyx">
+   <div class="lhwdz">
+    <p class="p1">物流公司</p>
+      {if $cart.defship.shipping_name}
+      <p class="p2">已选择：{$cart.defship.shipping_name} 运费：{$cart.defship.post_fee}</p>
+      {else}
+      <p class="p2">请选择物流公司></p>
+      {/if}
+   </div>
+  </div>
+  </a> 
+  <p class="gwchst"></p>-->
+  <!-- 物流公司 End -->
+  
+  
+  <!--商品清单 Bgn-->
+  <div class="qrddyx clearfix" style="padding:0 3.5%; overflow:hidden;">
+	  <h1 class="spqd_bt">商品信息</h1>
+	  <div class="spqdgao">
+	  <ul class="spqd_ul">
+	  {foreach from=$cart.object item=item name=foo}
+	  {if $item.check eq 'yes'}
+	   <li class="jj_box">
+		<p class="p1"><img src="{$item.goods.image}" /></p>
+        <p class="p2 jj_1">
+            {if $item.type eq "fdiy"}
+         {foreach from=$item.goods.dname_arr key=key1 item=item1}
+        <span>{$key1}: {$item1}</span>
+        {/foreach}
+            {else}
+            {foreach from=$item.list key=key1 item=item1}
+            <span>{$item1.params.oProducts.spec_info}</span>
+            {/foreach}
+            {/if}
+        </p>
+	   </li>
+	   {/if}
+	   {/foreach} 
+	  </ul>
+	  </div>
+  </div>
+  <p class="gwchst"></p>
+  <!--商品清单 End-->
+  <!--发票信息 Bgn-->
+
+<!--   <a href="{link app=cart act=invoice}" style="display:block" >
+  <div class="qrddyx">
+    <div class="lhwdz">
+    <p class="p1">发票信息</p>
+    {if $order.invoice}
+    {assign var=intp value=$order.invoice.$order.invoice.type}
+    <p class="p2" style="color:#717171; margin:0;">{$intp.type}</p>
+    {else}
+    <p class="p2" style="color:#717171; margin:0;">默认不需要发票，如有需要请选择。</p>
+    {/if}
+    </div>
+  </div>
+  </a>
+  <p class="gwchst"></p> -->
+  
+  
+   <!--发票信息 End-->
+   <!--  <div class="qrddyx">
+    <p class="p1" id="remark" style="font-size:16px;">订单备注</p>
+    <textarea name="remark" placeholder="如果您有关款式以及其它特殊要求，请告诉我们" style="border:1px solid #dfdfdf; margin-top:10px; outline:none;resize:none; color:#717171; width:100%; height:60px; padding:5px; line-height:20px;"></textarea>
+    </div> 
+  
+    <p class="gwchst"></p> -->
+    
+   <div class="qrddyx" >
+
+    <div class="zfjpsfs">
+     <p class="p1">支付方式</p>
+     <div class="lzzffs">
+      <input type="hidden" name="payment" id="payment" value="" />
+      {foreach from=$payments item=pmt name=lpmt}
+      <p data-id="{$pmt.payment_code}" class="payment_li {if $member.money <= $cart.order_amount} {if $smarty.foreach.lpmt.first} on {/if} {/if}" {if $smarty.foreach.lpmt.last} style="margin-right:0;" {/if}><a href="javascript:void(0)" >{$pmt.payment_name}</a></p>
+      {/foreach}
+     </div>
+    </div>
+  </div>
+  
+<!--   <div class="qrddyx" style="padding-top:2px; padding-bottom:0;">
+   <div class="lhwdz">
+        {if $kuka}
+        <a href="{link app=cart act=kuka}" style="display:block">
+        <p class="p3 dkj">酷卡<span style="color:#717171;">{$kuka}张可用</span><font>{if $cart.kuka_fee}已使用{else}未使用{/if}</font></p>
+        </a>
+        {/if}
+   </div>
+  </div> -->
+  
+
+  <!-- 抵扣券余额开始 -->
+  <div class="qrddyx" style="padding-top:2px; padding-bottom:0;">
+   <div class="lhwdz">
+   {if $debits}
+	    <a class="debitA" href="{link app=cart act=debit}" style="display:block">
+	    <p class="p3 dkj">抵扣券<span style="color:#717171;">{$debits}张可用</span><font>{if $cart.debit_fee}已使用{else}未使用{/if}</font></p>
+	    </a>
+    {/if}
+       <input type="hidden" name="did"  value="{$smarty.get.did}">
+   </div>
+  </div>
+    
+  <div class="coupon">
+      
+    {if $member.coin > 0}
+    <input type="hidden" id="canCoin" value="{if $cart.has_activity != 'yes' || $member.member_lv_id > 1}{if $cart.has_special != 'yes'}yes{/if}{/if}" />
+    {if $cart.has_activity != 'yes' || $member.member_lv_id > 1}
+    {if $cart.has_special != 'yes'}
+    <dl data-type="coin"  data-value="{$member.coin}">
+        <dt><span class="name fl">麦富迪币</span><span class="num fl">{$member.coin}个可用，抵{$member.coin}元</span><span class="switch fr" {if $cart.debit_fee} data-dis="yes" {/if}><i class="point"></i></span></dt>
+        <dd>使用<input type="number" max="20" min="0" value="">麦富迪币，抵<span class="orange">-0.00元</span><font></font></dd>
+    </dl>
+    {/if}
+    {/if}
+    {/if}
+    
+    {if $member.money > 0}
+    <dl data-type="money"  data-value="{$member.money}">
+        <dt><span class="name fl">余额</span><span class="num fl">{$member.money|price}可用</span><span class="switch fr"><i class="point"></i></span></dt>
+        <dd>使用<input type="number" max="20" min="0" value="">余额，<span class="orange">-0.00元</span><font></font></dd>
+    </dl>
+    {/if}
+    
+  </div>
+  
+    <input type="hidden" id="has_one" value="-1" />
+  <!-- 抵扣券余额结束 -->
+ 
+
+  <div class="qrddyx">
+   <div class="lhwdz clearfix">
+    <p class="spje">商品金额</p>
+    <p class="jesl">{$cart.order_amount|price}</p>
+   </div>
+   
+   {if $cart.defship.post_fee}
+   <div class="lhwdz clearfix kuka_fee">
+    <p class="spje">运费</p>
+    <p class="jesl">+{$cart.defship.post_fee|price}</p>
+   </div>
+   {/if}
+   
+   {if $cart.debit_fee}
+   <div class="lhwdz clearfix debit_fee">
+    <p class="spje">抵用券</p>
+    <p class="jesl">-{$cart.debit_fee|price}</p>
+   </div>
+   {/if}
+<!--    <div class="lhwdz clearfix money_fee" data-value="" style="display:none">
+    <p class="spje">余额</p>
+    <p class="jesl">-{$cart.money_amount|price}</p>
+   </div>
+   <div class="lhwdz clearfix coin_fee" data-value="" style="display:none">
+    <p class="spje">麦富迪币</p>
+    <p class="jesl">-{$cart.money_amount|price}</p>
+   </div> -->
+  </div>
+  
+</form>
+</div>
+</div>
+<div class="jrgwc_box">
+<div class="jrgwc main">
+   <h2 class="houji">合计：<span id="final_amount" data-amount="{$cart.final_amount}">{$cart.final_amount|price}</span></h2>
+   <p class="jiesua"><a href="javascript:void(0)">提交订单</a></p>
+</div>
+</div>
+<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+<script type="text/javascript">
+$('#remark').click(function(){
+	var _this = $(this);
+	if(_this.next('div').hasClass('show')){
+		_this.next('div').hide();
+		_this.next('div').removeClass('show')
+	}else{
+		_this.next('div').show();
+		_this.next('div').addClass('show')
+	}
+});
+
+//公用切换
+function _switch(fn){
+	var $this=$(this),flag=false;
+	if($this.hasClass('cur')){
+		$this.removeClass('cur');
+		flag=false;	
+	}else{
+		$this.addClass('cur');
+		flag=true;		
+	}
+	if(typeof fn =='function'){
+		fn(flag)	
+	}
+	return flag	
+}
+//礼品标记
+$('.lipin .switch').click(function(){
+	_switch.call(this,function(obj){
+		if(obj){
+			sessionStorage.setItem('is_gift','yes');
+		}else{
+			sessionStorage.removeItem('is_gift');
+		}
+		//alert(obj)	
+	})
+});
+if(sessionStorage.getItem('is_gift')){
+    $('.lipin .switch').addClass('cur');
+}
+
+function _alert(msg){
+    layer.open({
+        content: '<p style="text-align:center">'+msg+'</p>',
+        shadeClose: false,
+        btn: ['确定'],
+    }); 
+}
+
+function _submitOrder(){
+	var _thisBtn = $(this);
+	_thisBtn.unbind();
+    $('.load_div').show();
+
+
+	var _one = $('#has_one').val();
+    if(_one == '0'){
+        var msga=layer.open({
+            content: '本员工号不能享受本次活动，将以零售价进行结算。',
+            btn: ['确定', '取消'],
+            shadeClose: false,
+            yes: function(){
+                layer.close(msga);
+                $('#OrderForm').ajaxSubmit({
+                    type:"post",
+                    url:"{link app=order act=newCreate}?ajax&mfd_reload_mid={$user_id}time="+ (new Date()).getTime(),
+                    success:function (res,statusText) {
+                        var res = $.parseJSON(res); 
+                        if(res.done == false){
+                               _alert(res.msg);
+                               _thisBtn.unbind().bind('click',_submitOrder)
+                        }else{
+                            location.href="{link app=order act=paycenter}?id="+res.retval.order_sn;
+                        }
+                    }
+                });
+            },
+            no : function(){
+            	$(this).bind('click',_submitOrder());
+
+            }
+        });
+    }else{
+        var _data =  [];
+        var _dt = "";
+        $('.coupon dl').each(function(){
+            var _this = $(this);
+            var _tp = _this.data('type');
+            if(sessionStorage.getItem(_tp) && sessionStorage.getItem(_tp+'val') >0 ){
+                _dt += "" + _tp + ":" + sessionStorage.getItem(_tp+'val') + ","
+            }           
+        });
+        
+        if(sessionStorage.getItem('is_gift') && sessionStorage.getItem('is_gift') == 'yes'){
+            var _gift = 'yes';
+        }
+        
+        $('#OrderForm').ajaxSubmit({
+            type:"post",
+            data:{pmt:_dt,gift:_gift},
+            url:"{link app=order act=newCreate}?ajax&mfd_reload_mid={$user_id}",
+            success:function (res,statusText) {
+                var res = $.parseJSON(res); 
+                if(res.done == false){
+                    $('.load_div').hide();
+                	_alert(res.msg);
+                	_thisBtn.unbind().bind('click',_submitOrder)
+                }else{
+                    sessionStorage.removeItem('is_gift');
+                    sessionStorage.removeItem('money');
+                    sessionStorage.removeItem('moneyval');
+                    sessionStorage.removeItem('coin');
+                    sessionStorage.removeItem('coinval');
+                    sessionStorage.removeItem('also');
+                    location.href="{link app=order act=paycenter}?id="+res.retval.order_sn;
+                }
+            }
+        });
+    }
+}
+$('.jiesua').unbind().bind('click',_submitOrder);
+
+//发票
+$('.tax_list').unbind().bind('click',function(){
+	var _id = $(this).data('id');
+	$('.tax_list').removeClass('now_hover');
+	$(this).addClass('now_hover');
+	$('.invoice_li').hide();
+	$('#tj_'+_id).show();
+	$('#invoice_id').val(_id);
+});
+
+//支付方式
+$('.payment_li').each(function(){
+	if($(this).hasClass('on')){
+		$('#payment').val($(this).data('id'));
+		return false;
+	}
+});
+$('.payment_li').unbind().bind('click',function(){
+	if($('#final_amount').data('amount')<=0) return;
+	$('.payment_li').removeClass('on');
+	$(this).addClass('on');
+	$('#payment').val($(this).data('id'))
+})
+
+
+</script>
+
+
+{if $member.money > 0 || $member.coin > 0}
+<script type="text/javascript">
+//sessionStorage.clear();
+if($('#canCoin').val() != 'yes'){
+	sessionStorage.removeItem('coin');
+	sessionStorage.removeItem('coinval');
+}
+sessionStorage.removeItem('also');
+
+//麦富迪币
+$('.coupon .switch').click(function(){
+	
+    var _self=this;
+    if($(_self).data('dis') == 'yes') return;
+    var _prt  = $(_self).parents('dl');
+    var _type = _prt.data('type');
+    _switch.call(_self,function(obj){
+        if(obj){
+            _prt.find('dd').slideDown('fast');
+            $('.'+_type+'_fee').show();
+            sessionStorage.setItem(_type,'use');
+            
+            if(_type == 'coin'){
+                $('.debitA').attr('href',"javascript:void(0)")
+            }
+            
+        }else{
+            _prt.find('dd').slideUp('fast');
+            $('.'+_type+'_fee').hide();
+            _prt.find('dd').find('input').val('');
+            _change_use(_prt.find('dd').find('input'));
+            sessionStorage.removeItem(_type);
+            sessionStorage.removeItem(_type+'val');
+            
+            if(_type == 'coin'){
+                $('.debitA').attr('href',"{link app=cart act=debit}")
+            }
+            
+        }
+    })
+});
+
+$('.coupon dl').each(function(){
+
+    var _this = $(this);
+    var _tp   = _this.data('type');
+    var _val  = sessionStorage.getItem(_tp);
+    if(_val == 'use'){
+        
+        _this.find('.switch').addClass('cur');
+        $('.'+_tp+'_fee').show();
+        _this.find('dd').show();
+        
+        if(sessionStorage.getItem(_tp+'val')){
+        	_this.find('dd').find('.orange').text(parseFloat(sessionStorage.getItem(_tp+'val')).toFixed(2)+'元');
+        	$('.'+_tp+'_fee').find('.jesl').text('-￥'+parseFloat(sessionStorage.getItem(_tp+'val')).toFixed(2));
+        }
+        
+        if(sessionStorage.getItem(_tp+'val')){
+            _this.find('dd').find('input').val(sessionStorage.getItem(_tp+'val'));
+        }
+        
+        if(_tp == 'coin'){
+            $('.debitA').attr('href',"javascript:void(0)")
+        }
+        
+    }else{
+    	_this.find('.switch').removeClass('cur');
+    	$('.'+_tp+'_fee').hide();
+        _this.find('dd').hide();
+    }
+    
+});
+if(sessionStorage.getItem('also')){
+       $('#final_amount').data('amount',sessionStorage.getItem('also'));
+       $('#final_amount').html('￥'+sessionStorage.getItem('also'));
+}else{
+    var _also = parseFloat($('#final_amount').data('amount')) - (parseFloat(sessionStorage.getItem('coinval') != null ? sessionStorage.getItem('coinval') : 0 )) - parseFloat(sessionStorage.getItem('moneyval') != null ? sessionStorage.getItem('moneyval') : 0 );
+    $('#final_amount').data('amount',_also);
+    $('#final_amount').html('￥'+_also);
+    sessionStorage.setItem('also',_also);
+}
+
+
+$('.coupon dl').find('input').unbind().bind('keyup',function(){
+    _change_use($(this))
+});
+
+
+function _change_use(obj){
+    var _this = obj;
+    var _val = _this.val() ? _this.val()  : 0;
+    
+    var _money = _this.parents('dl').data('value');
+    
+    var _amount =  parseFloat($('#final_amount').data('amount'));
+    
+    var _type = _this.parents('dl').data('type');
+        
+    _this.nextAll('font').text('');
+    _this.nextAll('font').removeAttr("style");
+    
+    var _valed = parseFloat(sessionStorage.getItem(_type+'val') ? sessionStorage.getItem(_type+'val') : 0);
+    
+    if(!/^\d+$/.test(_val) || _val > _money){ //!/^\d+(\.\d+)?$/.test(_val)   !/^[1-9]+(\d+)?$/
+        _this.nextAll('font').text('请输入正确的金额');
+        _this.nextAll('font').css('color','red');
+        return;
+    }
+    
+    if(_val > (_amount + _valed)){
+        var _val = _amount + _valed ;
+        _this.val(_val)
+    }
+    
+    var _alsoInt = (_amount + _valed - _val);
+    
+    var _also = parseFloat(_alsoInt).toFixed(2);
+    
+    sessionStorage.setItem(_type+'val',_val);
+    sessionStorage.setItem('also',_alsoInt);
+
+    $('.'+_type+'_fee').find('.jesl').text('-￥'+parseFloat(_val).toFixed(2));
+    
+    _this.next('.orange').text(parseFloat(_val).toFixed(2)+'元');
+    
+    $('#final_amount').html('￥'+_also);
+    $('#final_amount').data('amount',_alsoInt);
+    
+}
+
+</script>
+{else}
+<script type="text/javascript">
+//sessionStorage.clear();
+sessionStorage.removeItem('money');
+sessionStorage.removeItem('moneyval');
+sessionStorage.removeItem('coin');
+sessionStorage.removeItem('coinval');
+sessionStorage.removeItem('also');
+
+</script>
+{/if}
+{include file=fudong1.html}
+<style>
+    .load_div {width:80px; height:100px; background:rgba(0,0,0,0.8); border-radius:10px; color:#fff; position:absolute; left:50%; top:50%; margin:-50px 0 0 -40px; z-index:999999; text-align:center;}
+    .load_div img {width:32px; height:32px; display:block; margin:20px auto 8px auto;}
+</style>
+<div class="load_div" style="display:none;"><img src="/diy/images/load.gif">加载中...</div>
+</body>
+</html>

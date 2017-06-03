@@ -1,0 +1,54 @@
+
+{include file="header.html"}
+<script type="text/javascript" src="static/js/e-smart-zoom-jquery.min.js"></script>
+
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=dosysmsg&amp;act=index">返回通知列表</a></li>
+    	<li><a class="btn1" href="index.php?app=dosysmsg&act=addSend">发送系统推送</a></li>
+   </ul>
+</div>
+
+<div class="info" id="myPrintArea">
+    <div class="demand">
+    </div>
+    <form action="">
+     <input type="hidden" name="id" id="auth_id" value="{$auth_id}" />
+    <div class="order_form">
+    	
+        <h1>基本信息</h1>
+        <ul>
+        	<li>发送标题：{$info.title}</li>
+            <li>发送人数 ：{$info.send_num}</li>
+            <li>发放时间 ：{$info.send_time|date:Y-m-d H:i:s}</li>
+            <li>发送者：{$info.admin_name}</li>
+          <!--   <li>设备类型 ：{$send_type[$info.send_type]}</li> -->
+            <li>发送会员类型 ：{if $info.send_obj }{$obj_type[$info.send_obj]}{else}指定用户{/if}</li>
+        </ul>
+        <div class="clear"></div>
+	</div> 
+	<div class="order_form">
+        <h1>发送内容:</h1>
+        <ul>
+            <li>{$info.content}</li>
+		</ul>
+  
+        <div class="clear"></div>
+    </div>
+	<!--{if !empty($info['send_member'])}-->
+	<div class="order_form">
+        <h1>指定手机号:</h1>
+        <ul>
+			<!--{foreach from=$info['send_member'] item=ls}-->
+            <li>{$ls}</li>
+			<!--{/foreach}-->
+		</ul>
+        <div class="clear"></div>
+    </div>
+	<!--{/if}-->
+      
+    </form>
+
+</div>
+
+{include file="footer.html"}

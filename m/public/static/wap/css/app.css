@@ -1,0 +1,46 @@
+/*
+ * Name:麦富迪App
+ * Date：2016-1-4
+ * */
+
+/*重置mui*/
+img { max-width: 100%; }
+body, .mui-content { background: #F8F8F8; color: #333; }
+.mui-bar-nav { box-shadow: none }
+.mui-bar-nav:after { position: absolute; right: 0; bottom: 0; left: 0; height: 1px; content: ''; -webkit-transform: scaleY(.5); transform: scaleY(.5); background-color: #c8c7cc; }
+.mui-bar { background: #fff; }
+.mui-action-back { color: #494949; }
+.mui-slider-indicator .mui-indicator { width: 20px; height: 5px; border-radius: 0; box-shadow: none; margin: 1px 2px; background: none; border: solid 1px #fff; }
+.mui-input-row label{color: #999;}
+.mui-table-view .tag { position: absolute; right: 40px; top: 12px; font-size: 14px; color: #999; }
+.mui-btn-block { padding: 8px 0; }
+.mui-black{color: #2b2b2b;}
+/*边距*/
+.mt-15{margin-top: 15px;}
+/*固定底部按钮*/
+.btn-fixed-bottom{height: 50px;}
+.btn-fixed-bottom .mui-btn{position: fixed;bottom: 0;margin: 0;border-radius: 0;border-left: 0;border-right: 0;border-bottom: 0; padding: 10px 0;}
+/*上下分割线条*/
+.lineDown, .lineTop { position: relative; }
+.lineDown:after { position: absolute; right: 0; bottom: 0; left: 0; height: 1px; content: ''; -webkit-transform: scaleY(.5); transform: scaleY(.5); background-color: #c8c7cc; }
+.lineTop:before { position: absolute; right: 0; top: 0; left: 0; height: 1px; content: ''; -webkit-transform: scaleY(.5); transform: scaleY(.5); background-color: #c8c7cc; }
+/*颜色*/
+.orange { color: #ff5403; }
+/*无数据提示*/
+.nullTip{text-align: center;margin-top: 150px !important;height: 70px;line-height: 25px;background: url(../images/info.png) no-repeat center top; background-size: 40px auto;padding-top: 45px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

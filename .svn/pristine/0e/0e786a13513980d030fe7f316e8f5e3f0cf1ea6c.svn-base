@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+.sycf { font-size:24px; height:25px; line-height:25px; margin-top:30px;}
+
+
+
+
+
+.tailors_box {width:1200px; height:48px; background:#f3f3f3; margin:20px 0 24px 0;}
+.Screening { float:left;  padding:16px 0 0 10px;}
+.Screening li {padding:0 20px; border-right:1px solid #ddd; float:left; height:14px; line-height:14px;}
+.Screening .on a { color:#ff4a00;}
+.gzdds { float:right; padding-top:16px; height:14px; line-height:14px;}
+.gzdds p { float:left;}
+.gzdds .p1 b { color:#ff4a00; padding:0 5px; font-size:14px;}
+.gzdds .p2 { padding:0 25px; font-size:14px;}
+.gzdds .p2 b { color:#ff4a00;}
+.gzdds .p2 span { float:left; padding:0 10px;}
+.gzdds .p2 a {width:8px; height:14px; background:url(../img/zcffy.png) left 1px no-repeat; display:block; float:left;}
+.gzdds .p2 .a1 {}
+.gzdds .p2 .a2 { background-position:-15px 1px;}
+
+.picList { width:1220px; padding-bottom:50px;}
+.picList li{ float:left; width:285px; height:388px; margin:0 20px 20px 0;}
+.picList li.item-hover{ position:relative; z-index:2;}
+.picList li.item-hover .btn{ display:block;}
+.picList li.item-hover .item{ border-width:5px; padding:26px 15px 15px 15px;}
+.picList .item{ padding:30px 19px 19px 19px; border:solid 1px #e9e9e9; background:#fff;}
+.picList .pic{ display:block; text-align:center; width:220px; height:220px; overflow:hidden; margin:0 auto;}
+.picList .p1 { font-size:16px; color:#000; line-height:20px; margin-top:12px;}
+.picList .p2 { color:#333; line-height:20px; margin:4px 0 6px 0;}
+.picList .p2 font { color:#ff4a00; font-size:14px; font-family:arial;}
+.picList .p2 span { color:#e5e5e5; padding:0 12px;}
+.picList .p3 { height:40px; line-height:20px; color:#717171; overflow:hidden;}
+.picList .info{ line-height:24px; padding-top:10px;}
+.picList .btn{ border-top:solid 1px #ddd; margin-top:10px; padding-top:15px; overflow:hidden; display:none;}
+.picList .btnFavorite{ float:left; width:115px; height:30px; line-height:30px; text-align:center; background:#777; color:#fff; border-radius:3px; margin-left:15px;}
+.picList .btnFavorite:hover{ background-color:#666;}
+.picList .btnFavorite i{ display:inline-block; width:14px; height:13px; background:url(../img/bg5.png) no-repeat -86px -59px; vertical-align:middle; margin-right:6px;}
+.picList .btnInfo{float:left; width:115px; height:30px; line-height:30px; text-align:center;  background-color:#ff4c03; color:#fff; border-radius:3px;}
+.picList .btnInfo:hover{ background-color:#e94503;}
+.picList .btnInfo i{ display:inline-block; width:13px; height:13px; background:url(../img/bg5.png) no-repeat -63px -58px; vertical-align:middle; margin-right:6px;}

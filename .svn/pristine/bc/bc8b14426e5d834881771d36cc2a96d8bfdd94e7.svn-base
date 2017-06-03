@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* CSS Document */
+body { margin: 0; padding: 0; background:#fff; color:#000; font:14px/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif; min-width:768px;}
+div,form,ul,ol,li,span,p,dl,dt,dd,img{margin:0;padding:0;border:0;}
+h1,h2,h3,h4,h5,h6,input{margin:0;padding:0;font-size:12px;font-weight:normal;}
+ul,ol,li{list-style:none}
+em{font-style:normal}
+table,textarea{font-size:12px}
+body a{outline:none;blr:expression(this.onFocus=this.blur());}
+a,a:visited{ color:#212121; text-decoration:none; transition:color .1s;}
+a:hover{ color:#5fc7ae;}
+.fl{ float:left;}
+.fr{ float:right;}
+.clearfix:after {content:"."; height:0px; line-height:0px; overflow:hidden; clear:both; display:block; visibility:hidden;}
+.clearfix{zoom:1;}
+.area{overflow:hidden;}
+.clear{clear:both;}
+
+/*内容*/
+.container{width:1230px;margin:0 auto;overflow:hidden;}
+.works{margin:0 auto; font-size:30px; line-height:45px; text-align:center;margin-top:85px;}
+.works span {font-size:23px;}
+.pxhx{max_width:1230px;width:100%;height:3px;margin:0 auto;margin-top:7px;}
+.pxhx img{width:100%;height:100%;}
+/* tab */
+.brick{ position:relative;}
+#tab{max-width:1230px;width:100%;position:relative;margin:0 auto;overflow:hidden;margin-top:36px;}
+#tab .tab_menu{width:55.3%;float:left;z-index:1;padding-left:44%;margin-bottom:55px;}
+#tab .tab_menu li{float:left;width:62px;height:62px;line-height:62px;cursor:pointer;text-align:center;color:#b3b3b3;font-size:17px;margin-right:15px;display:inline;}
+#tab .tab_box{max-width:1280px;width:100%;clear:both;overflow:hidden;}
+#tab .tab_menu .selected{background:url(../../static/img/px_qhbj.png) no-repeat;cursor:pointer;color:#000;}
+.hide{display:none;}
+.list{width:348px;border:1px solid #ededed;padding:20px;background:fbfbfb;margin-left:1.35%;display:inline;margin-bottom:1.1%;}
+.zspic{ max-width:348px;width:100%;position:relative;cursor:pointer;}
+.zspic img{width:100%;height:100%;}
+.szypics{width:41px;height:41px;position:absolute; top:15px;right:15px;}
+.txbtcs{width:100%;height:60px;margin-top:6.5%;}
+.txpic{width:16%;}
+.txpic img{width:100%;height:100%;}
+.mzcd{width:75%;margin-left:25px;display:inline;}
+.mzcd h4{border-bottom:1px solid #eeeeee;font-size:15px;padding-bottom:3px;}
+.cydf{padding-top:8px;color:#666666;}
+.cydf .wordcy{padding-left:18px;}
+.cydf span{color:#333333;}
+.wzword{width:100%;color:#888888;line-height:22px;padding-top:12px;}
+/*内容*/
+/*.ranking{padding-top:36px;}
+.ranking h3{color:#404040;font-size:16px;padding-bottom:25px;}*/

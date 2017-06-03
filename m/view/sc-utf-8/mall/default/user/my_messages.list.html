@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>消息列表</title>
+<link rel="stylesheet" type="text/css" href="/static/css/mobile_style.css" media="screen">
+<link type="text/css" href="public/static/wap/css/productlist.css" rel="stylesheet" />
+<link type="text/css" href="public/static/wap/css/cpxq.css" rel="stylesheet" />
+<link href="public/static/wap/css/slx_style.css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="main">
+  <!--头部开始-->
+    <header class="hdtop topBar">
+        <div class="edit fl">
+                <p class="p1"><a href="{link app=member act=index}"><img src="public/static/wap/images/tw_03.png"></a></p>
+                <p class="p2">我的消息</p>
+            </div>
+    </header>
+  <!--头部结束-->
+
+	<div class="wdxxlb">
+		<ul id="listBox">
+		<!-- {foreach from=$user_messages item=message} -->
+			<li id="{$message.id}">
+				<h1><a href="my_messages-info-{$message.id}.html"><!-- {if !$message.is_read} --><b></b><!-- {/if} -->{$message.title}</a>
+					<a href="javascript:void(0)" data-id="{$message.id}" class="xxclose"><img src="http://r.cotte.cn/cotte/wap/images/xxgbpic.png"></a>
+				</h1>
+				<a href="my_messages-info-{$message.id}.html"><p>{$message.add_time|date:Y/m/d}</p></a>
+			</li>
+		<!-- {/foreach} -->
+		</ul>
+		<input type="hidden" id="page" value="1"/>
+	</div>
+	<div class="scfd">
+		<ul>
+			<li class="qbsc"><a href="javascript:void(0)">全部删除</a></li>
+			<li class="scxz"><a href="javascript:void(0)">删除选中</a></li>
+		</ul>
+	</div>
+
+ {include file=../footer_new.html}
+ </div>
+<script src="public/global/jquery-1.8.3.min.js"></script>
+<script src="public/static/wap/js/public.js"></script>
+<script src="public/global/luck/mobile/luck.js"></script>
+<script type="text/javascript">
+
+cottewap.pageMessageList();
+
+//以前是多选删除，暂且屏蔽，怕又使用选择删除
+/* $('#select-btn').click(function(){
+	var _self=$(this),obj=$('.wdxxlb>ul,.scfd');
+	if(_self.hasClass('cur')){
+		obj.removeClass('cur');
+		_self.removeClass('cur').text('选择');
+	}else{
+		obj.addClass('cur');
+		_self.addClass('cur').text('取消');
+	}
+});
+$('.wdxxlb').on('click','li',function(){
+	var _self=$(this);
+	if(_self.hasClass('cur')){
+		_self.removeClass('cur');
+	}else{
+		_self.addClass('cur');
+	}
+});
+$('.scfd').on('click','.scxz',function(){
+	/* 获取选中的项 */
+/*    var items = '';
+	$('#listBox').find(".cur").each(function(){
+		items+=$(this).attr('id')+',';
+		console.log(items);
+        //items += this.value + ',';
+
+    });
+	items = items.substr(0, (items.length - 1));
+	$.post('/my_messages-ajax_drop.html',{ids:items},function(res){
+		if(res.done){
+			//$('#listBox').find(".cur").remove();
+			window.location.reload();
+		}else{
+			alert(res.msg);
+		}
+    },'json');
+})
+$('.scfd').on('click','.qbsc',function(){
+	if(confirm('确定要删除全部消息？')){
+		$.get('/my_messages-ajax_drop_all.html','',function(res){
+			console.log(res);
+			if(res.done){
+					alert(res.msg);
+					$('#listBox').remove();
+			}else{
+				alert(res.msg);
+			}
+		},'json');
+	}
+}) */
+//现在是单点删除
+$(".xxclose").click(function(){
+	var obj=$(this);
+	var id=$(this).attr("data-id");
+// 	$.getScript('public/global/luck/mobile/luck.js',function(){
+		luck.open({
+			content: '是否删除该信息',
+			btn:['是','否'],
+			yes:function(){
+				luck.close()
+				$.post('/my_messages-ajax_drop_message.html',{id:id},function(res){
+					if(res.done){
+						obj.parents('li').slideToggle(500);
+						//$('#listBox').find(".cur").remove();
+// 						$(this).parent().remove('1000');
+					}else{
+						luck.open({
+							content:res.msg,
+							time:1500
+						});
+					}
+			    },'json');
+			},
+			no: function(){
+				luck.close()
+			}
+	
+		});
+// 	});
+})
+</script>
+</body>
+</html>

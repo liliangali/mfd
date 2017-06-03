@@ -1,0 +1,23 @@
+  <!--{if !$widget_data}-->
+  <div style="padding:10px; text-align:center;">请配置</div>
+   <!--{/if}-->
+   <ul class="slide-pic">
+    <!-- {foreach from=$widget_data item=image name=fe_image} -->		
+    <li style="height:500px; background-image:url({$image.ad_image_url})"></li>
+    <!-- {/foreach} -->
+  </ul>
+  <div class="w">
+    <ul class="slide-txt">
+        <!-- {foreach from=$widget_data item=image name=fe_image} -->
+      <li{if $smarty.foreach.fe_image.first} class="show"{/if}>
+        <div class="div1">{$image.text1}</div>
+        <div class="div2">{$image.text2}</div>
+        <a href="{$image.ad_link_url}" target="_blank" class="alink">查看详细 &gt;</a> </li>
+         <!-- {/foreach} -->
+    </ul>
+    <div class="btn"> 
+            <!-- {foreach from=$widget_data item=image name=fe_image} -->
+    <span{if $smarty.foreach.fe_image.first} class="cur"{/if}></span> 
+    <!-- {/foreach} -->
+    </div>
+  </div>

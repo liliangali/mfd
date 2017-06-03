@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*晒单列表开始*/
+.dinzizx_box {width:1200px; margin:0 auto; overflow:hidden; padding-bottom:20px;}
+.tailors_box {padding:30px 0 20px 0; color:#333;}
+.sycf { float:left; font-size:24px; height:25px; line-height:25px;}
+.Screening { float:left; border:1px solid #ddd; height:28px; line-height:28px; border-radius:20px; padding:0 10px; margin-left:20px; display:inline;}
+.Screening li { float:left; padding:0 12px; border-right:1px solid #ddd;}
+.Screening .on a { color:#a40001;}
+
+.demo{width:1200px; margin:0 auto; }
+
+/* item_list */
+.item_list{position:relative;}
+.item{width:279px; overflow:hidden; background:#fff; margin-bottom:28px;}
+.zenzon {text-align:center; max-width:279px;}
+.zenzon img {text-align:center; max-width:279px;}
+
+.renqi { width:100%; height:26px; margin:15px 0 12px 0;}
+.renqi .rq { float:left; width:35px; height:26px; line-height:25px; margin-right:2px; display:inline; background:url(../img/icon_2.png) left top no-repeat; padding-left:30px; color:#fff;}
+.renqi .sl { float:left; height:24px; border:1px solid #a40000; color:#a40001; text-align:center; line-height:24px; padding:0 8px; font-size:14px; font-family:arial; border-radius:5px;}
+.renqi .pl { font-family:arial; font-size:14px; float:right; background:url(../img/icon_1.png) left -112px no-repeat; color:#454545; padding-left:22px; line-height:26px;}
+
+.lbjj { color:#666; line-height:20px; font-size:12px;}
+
+/*晒单列表结束*/

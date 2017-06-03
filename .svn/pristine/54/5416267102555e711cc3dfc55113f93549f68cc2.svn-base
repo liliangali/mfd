@@ -1,0 +1,95 @@
+{include file="header.html"}
+
+<div id="rightTop">
+	<ul class="subnav">
+		<li><span>{$lang.jbk_sub}</span></li>
+	</ul>
+</div>
+<div class="info">
+	<form method="post" enctype="multipart/form-data" id="user_form">
+		<table class="infoTable">
+
+
+			<tr>
+				<th class="paddingT15">分类:</th>
+				<td class="paddingT15 wordSpacing5"><select id="category"
+					name="category">
+					{html_options options=$category selected=$data.cloth}
+						
+				</select></td>
+			</tr>
+
+
+
+
+			<tr>
+				<th class="paddingT15">适用人群:</th>
+				<td class="paddingT15 wordSpacing5"><select id="type"
+					name="type">
+						{html_options options=$type selected=$data.type}
+				</select></td>
+			</tr>
+
+
+            <tr>
+                <th class="paddingT15">开始时间:</th>
+                <td class="paddingT15 wordSpacing5"><input class="infoTableInput2 pick_date" id="start_time" type="text" name="start_time" value="{if $data.start_time}{$data.start_time|date:Y-m-d}{/if}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">结束时间:</th>
+                <td class="paddingT15 wordSpacing5"> <input class="infoTableInput2 pick_date" id="end_time" type="text" name="end_time" value="{if $data.end_time}{$data.end_time|date:Y-m-d}{/if}" /></td>
+            </tr>
+
+			<tr>
+				<th></th>
+				<td class="ptb20">
+				
+				<input class="tijia" type="submit"
+					name="Submit" value="{$lang.submit}" /> <input class="congzi"
+					type="reset" name="Reset" value="{$lang.reset}" /></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script>
+    $('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+
+    function replym()
+{
+	//alert($("#reply").val());
+	
+	var url='/mfd/index.php?app=user&act=upload_comment&id={$data.id}&content='+$("#reply").val();
+	//alert(url);
+	if($("#reply").val().length>0)
+	{
+		$("#replytype").val('2');
+		
+		
+		$('#user_form').submit();
+		/*
+		$.get(url,function(data){
+			alert("回复成功!");
+			location.reload();
+		});
+		*/
+		
+		
+	}else
+	{
+		alert('请输入内容!');	
+	}
+	
+}
+
+$(function(){
+	$("#reply").val('');
+	$("#replytype").val('1');
+	$("#url,#url2,#url3,#url4").val('');
+	//alert($("#replytype").val());
+});
+
+
+</script>
+{include file="footer.html"}

@@ -1,0 +1,286 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+	{include file=member.menu.html}
+    <div class="user_right user_rights fr">
+        <div class="lntegral ddxqbor">
+        	<p class="mlntegral fl">订单编号：{$order.order_sn}</p>
+            <p class="fr xqtada">时间：{$order.add_time|date:complete}&nbsp;&nbsp;&nbsp;&nbsp;支付方式：{$order.payment_name}&nbsp;&nbsp;&nbsp;&nbsp;
+             {if $order.status eq 11}
+				<a href="{link app=order act=paycenter}?id={$order.order_sn}" class=" ddxqytc" data-orderid="{$order.order_id}">去支付</a>
+             {/if}
+            
+              <!-- {if $options.pay eq 1 && $options.change neq 1}
+                  <form action="{link app=order act=goToPay}" method="POST">
+                    <input type="hidden" name="os" value="{$order.order_sn}">
+                    <input type="hidden" name="obj" value="order">
+                    <input type="submit" value="去支付" style="background:none; height:42px; padding-left:20px; font-size:16px; color:#e66800; cursor:pointer;">
+                  </form>
+             {/if} -->
+            </p>
+        </div>
+    <!--     <div class="rate">
+        {if $order.status neq 0}
+            <dl>
+            	<dd class="jdcur">待付款</dd>
+                <dt class="jdcursj {if $progress.pay}jdcursjs{/if}">占位</dt>
+                <dd{if $progress.pay} class="jdcur"{/if}>已付款</dd>
+                <dt{if $progress.pay} class="jdcursj{if $progress.onstream} jdcursjs{/if}"{/if}>占位</dt>
+                <dd{if $progress.onstream} class="jdcur"{/if}>生产中</dd>
+                <dt{if $progress.onstream} class="jdcursj{if $progress.ship} jdcursjs{/if}"{/if}>占位</dt>
+                <dd{if $progress.ship} class="jdcur"{/if}>已发货</dd>
+                <dt{if $progress.ship} class="jdcursj{if $progress.finish} jdcursjs{/if}"{/if}>占位</dt>
+                <dd{if $progress.finish} class="jdcur"{/if}>已完成</dd>
+                <dt{if $progress.finish} class="jdcur xqspecials"{else} class="xqspecial"{/if}>占位</dt>
+            </dl>
+            <ul>
+            {foreach from=$progressTime item=time}
+            	<li>{$time|date:complete}</li>
+            {/foreach}
+            </ul>
+       {else}
+            <dl>
+             <dd class="jdcur">已取消</dd>
+             <dt class="jdcursj xqspecials">占位</dt>
+            </dl>
+            <ul>
+            	<li>{$status.$order.status|date:complete}</li>
+            </ul>
+       {/if}
+        </div> -->
+        
+        <!--<div class="logistics">
+        	<h5>物流信息</h5>
+            <div class="state">
+            	<p class="fl">订单状态：</p>
+                <div class="fl ddcolor">
+                	<p>{$lang.ORDER_STATUS.$order.status}</p>
+                	 {if $order.status neq 0}
+                    <p>{$currentTime|date:complete}</p>
+                    {else}
+                    <p>{$status.$order.status|date:complete}</p>
+                    {/if}
+                    <div class="wlsee">
+                    {if $order.waybillno}
+                    	<a href="#">查看物流</a>
+                        <div class="ckwlxx">
+                        	<h6>顺丰快递：{$order.waybillno}</h6>
+                        	<ul>
+                        	<li><iframe name="kuaidi100" src="{$retUrl}" width="600" height="380" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe></li>
+                        	<li><a href=" http://www.kuaidi100.com">数据由快递100提供</a></li>
+                        	</ul>                                                  
+                        </div>
+                        {/if}
+                   	</div>
+                   
+                </div>
+            </div>
+        </div>-->
+        <div class="logistics" style="margin-top:14px;">
+			<div class="boxs">
+              <div class="wltext" style="display:none;">
+                  <p>物流公司: {$order.delivery.logi_name}&nbsp;&nbsp;&nbsp;&nbsp;运单号: {$order.delivery.logi_no}</p>
+                  <div>
+                   <div class="state">
+                   {foreach from=$order.delivery.wuliu item=item}
+                <p>{$item.ftime}：{$item.context} 
+                </p>
+               {/foreach}
+            </div>
+            
+            
+                  </div>
+              </div>
+              <h1>查看物流详情<i class="iconfont"></i></h1>
+          </div>
+        </div>
+        
+        <div class="logistics">
+        	<h5>收货信息</h5>
+            <div class="state">
+            	<p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：{$order.ship_name}</p>
+                <p>收货地址：{$order.ship_addr}</p>
+                <p>联系电话：{$order.ship_mobile}</p>
+
+                <!-- {if $options.pay eq 1}
+                 <a href="javascript:;" class="changePay ddxqytc" data-orderid="{$order.order_id}">修改支付方式</a>
+                {/if} -->
+                </p>
+            </div>
+        </div>
+        <div class="logistics">
+        	<h5>发票信息</h5>
+        	
+            <div class="state">
+            {if $order.invoice_need eq 1}
+            	    <h3>{$invoice.title}</h3>
+            	{if $order.invoice_com eq 3}
+                	{foreach from=$order.invoice.content key=key item=voice}
+                	<p>{$invoice_lang.$key}：{$voice}</p>
+                	{/foreach}
+            	{else}
+            	   <p>{$invoice.content}</p>
+            	{/if}
+           {else}
+                   <p>不需要开发票</p>
+           {/if}
+            </div>
+        </div>
+        <div class="logistics">
+        	<h5>订单备注</h5>
+            <div class="state">{$order.memo|default:无}</div>
+        </div>
+        <div class="logistics" id="pingjia">
+        	<h5>商品清单</h5>
+            <table width="100%" frame="void" rules="none" cellspacing="0" border="0" class="spqdxx">
+              <tr class="ycpxx">
+                <td>商品信息</td>
+                <td>金额</td>
+                <td></td>
+              </tr>
+              {foreach from=$order.order_goods item=goods}
+              <tr>
+                <td class="cpxxsj">
+                	<p class="fl cppic"><a href="{if $goods.type eq 'custom'}{link app=goods arg=$goods.params.oGoods.goods_id}{else}{link app=fdiy}{/if}" {if $goods.type eq 'custom'}target="_blank"{/if}"><img src="{$goods.goods_image}"></a></p>
+                    <p class="fl cpxxword"><a href="{if $goods.type eq 'custom'}{link app=goods arg=$goods.params.oGoods.goods_id}{else}{link app=fdiy}{/if}" {if $goods.type eq 'custom'}target="_blank"{/if}">
+                        {$goods.goods_name}
+                        </a></p>
+                    <p class="fl cpxxword">
+                        {if $goods.type eq 'fdiy'}
+                       {$goods.spe_name}
+                        {else}
+                        {foreach from=$goods.spe_name item=item key=key}
+                        {$item.p_name}:{$item.s_name}
+                        {/foreach}
+
+                        {/if}
+                    </p>
+                </td>
+                <td>{$goods.price|price}*{$goods.quantity}</td>
+                <td>{if $order.status eq 40}
+                    {if $goods.comment }
+                    {if $goods.type eq 'custom'}
+                    <a href="{link app=my_comment act=index arg0=1 arg1=commented}#{$goods.rec_id}" >查看评论</a>
+                    {else}
+                    {/if}
+                    {else}
+                    <a href="javascript:;"  value="{$goods.rec_id}" data-type="{$goods.type|default:custom}" class="comment ddxqplcolor">评论</a>
+                    {/if}
+                    {/if}</td>
+              </tr>
+              {/foreach}
+            </table>
+            <div class="paymentxx">
+            	<p>订单金额：{$order.order_amount|price}</p>
+            	{if $order.discount > 0}
+                <p>抵用券：- {$order.discount|price}</p>
+                {/if}
+               <!--  {if $order.coin > 0}
+                 <p>麦富迪币：- {$order.coin|price}</p>
+                {/if} -->
+                <!-- {if $order.money_amount > 0}
+                <p>余额：- {$order.money_amount|price}</p>
+                {/if} -->
+                <p>应付总额：<span>{$order.final_amount|price}</span></p>
+                <p>
+             {if $order.status eq 11}
+				<a href="{link app=order act=paycenter}?id={$order.order_sn}" class="pay ddxqytc" data-orderid="{$order.order_id}">去支付>></a>
+             {/if}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="window005" style="display:none;">
+	<div class="tccontent">
+    	<h4>更改支付方式</h4>
+        <p class="ddtcword">由于您的订单来自微信，且使用的是微信支付，因WEB版暂时不支持微信支付，如要在WEB版完成支付，请切换相应的支付方式。</p>
+        <div class="zfway">
+        {foreach from=$payments item=pay name=loop}
+        	<a href="javascript:void(0);" {if $smarty.foreach.loop.first}class="zffscur"{/if} data-payid="{$pay.payment_id}">{$pay.payment_name}</a>
+        {/foreach}
+        </div>
+        <input type="hidden" name="orderid" value="0">
+        <form action="{link app=order act=goToPay}" method="POST">
+        <input type="hidden" name="os" value="">
+        <input type="hidden" name="obj" value="order">
+        </form>
+        <a href="javascript:void(0);" class="confirmzf">确认支付</a>
+    </div>	
+</div>
+
+<div id="window006" style="display:none;">
+	<div class="tccontent">
+    	<h4>更改支付方式</h4>
+        <div class="zfway">
+        {foreach from=$payments item=pay name=loop}
+        	    <a href="javascript:void(0);" {if $smarty.foreach.loop.first}class="zffscur"{/if} data-payid="{$pay.payment_id}">{$pay.payment_name}</a>
+        {/foreach}
+        </div>
+        <input type="hidden" name="orderid" value="0">
+        <a href="javascript:void(0);" class="confirmzf">确认修改支付方式</a>
+    </div>	
+</div>
+
+{include file="footer.html"}
+<script>
+var orderid = '{$order.order_id}';
+</script>
+<div id="window09" style="display:none;">	
+</div>
+
+<div id="window10" style="display:none;">
+
+</div>
+
+<div id="window03" style="display:none;">
+    <div class="branch">
+    	<!--星级评论打分开始-->
+        <div id="star">
+            <span class="btxxh">评分：</span>
+            <ul data-num="0">
+                <li><a href="javascript:;">1</a></li>
+                <li><a href="javascript:;">2</a></li>
+                <li><a href="javascript:;">3</a></li>
+                <li><a href="javascript:;">4</a></li>
+                <li><a href="javascript:;">5</a></li>
+            </ul>
+        </div>
+        <div class="impression">
+            <span class="btxxh">印象：</span>
+            <ul>
+               <!--{foreach from=$impress  name=im key=key item=im}-->
+                <li >{$im.impress_name}</li>
+                <!--{/foreach}-->
+            </ul>
+        </div> 
+        <!--星级评论打分结束-->
+        <p class="xd"><textarea name="content" id="content" cols="" rows="" placeholder="快速写下你的评价，分享给大家吧！"></textarea></p> 
+     
+        <input type="button" value="评论" class="ltbut" />
+    </div>
+</div>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/usercenter.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>
+<script>
+cotteFn.customer9()
+cotteFn.customer10()
+cotteFn.customer11()
+cotteFn.amount10()
+cotteFn.customer005()
+cotteFn.customer006()
+</script>
+<script type="text/javascript">
+	$(function(){
+		$(".boxs h1").click(function(){
+			$(".wltext").toggle(500);
+			if($(".boxs>h1>i").attr("class")=="iconfont"){
+				$(".boxs>h1>i").removeClass().addClass("iconfonts");
+			}else{
+				$(".boxs>h1>i").removeClass().addClass("iconfont");
+			}
+		})
+	})
+</script>

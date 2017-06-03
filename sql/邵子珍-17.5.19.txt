@@ -1,0 +1,1 @@
+ALTER TABLE `cf_cart` ADD `zhek_id` INT(11) NOT NULL DEFAULT '0' COMMENT '�ۿۻid' AFTER `favorable_id`;

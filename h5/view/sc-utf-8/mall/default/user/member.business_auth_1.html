@@ -1,0 +1,529 @@
+{include file=member.header.html}
+<script  type="text/javascript" src="../../static/expand/my97date/wdatepicker.js"></script>
+<div class="w">
+  <div class="AreaBox clearfix">
+  {include file=member.menu.html}
+    
+    <div class="con">
+    	<form id="myform" action="{link app=member act=tailor arg0=auth_business_info}" method="post">
+        <div class="">
+        <h2 class="tit">企业实名认证</h2>
+            <fieldset class="certify_form">
+                <div class="ui-form-item">
+                    <label class="ui-label"><span class="ui-form-required">*</span>企业名称：</label>
+                    <input type="text" validate="required" name="firmName" value="{$auth.firm_name}" class="ui-input" placeholder="您的企业名称"/>
+                    <p class="ui-form-explain-sub">
+                        请填写与营业执照上一致的名称
+                    </p>
+                </div>
+                <div class="ui-form-item">
+                    <label class="ui-label"><span class="ui-form-required">*</span>营业执照注册号：</label>
+                    <input type="text" class="ui-input" value="{$auth.licence_num}" name="licenceNum" validate="required" placeholder="营业执照注册号"/>
+                </div>
+                <div class="ui-form-item">
+                    <label class="ui-label"><span class="ui-form-required">*</span>营业执照所在地：</label>
+                    <div class="address-selector">
+                        <select validate="selecta" name="region_parent_id" id="region_parent_id" onchange="getRegion()">
+                          <option value="">--请选择省份--</option>
+                          {html_options options=$region_parent selected=$auth.region_parent_id}
+                        </select>
+                        <select validate="selecta" name="region_son_id" id="region_son_id">
+                          <option value="">--请选择城市--</option>
+                          {html_options options=$auth.region_son_list selected=$auth.region_son_id}
+                        </select>
+                      </div>
+                </div>
+                <div class="ui-form-item">
+                    <label class="ui-label"><span class="ui-form-required">*</span>常用地址：</label>
+                    <input class="ui-input" value="{$auth.common_address}" type="text" name="commonAddress" placeholder="常用地址" validate="required" />
+                    <p class="ui-form-explain-sub">由2-100个字符组成</p>
+                </div>
+    
+                <div class="ui-form-item">
+                    <label class="ui-label"><span class="ui-form-required">*</span>营业年限：</label>
+                    <input type="text" name="businessLife" onclick="WdatePicker({minDate:'%y-%M-%d'})" value="{if $auth.is_long == 0}{$auth.business_life}{/if}" validate="required" placeholder="营业年限" id="validity" class="ui-input Wdate" {if $auth.is_long == 1}disabled="disabled"{/if}>
+                    <label class="ui-label ui-label-inline ui-label-longtime">
+                        <input type="checkbox" name="is_long" value="1" class="longtime fl" {if $auth.is_long == 1}checked{/if}>长期
+                    </label>
+                    <p class="ui-form-explain-sub">若证件有效期为长期，请勾选长期。</p>
+                </div>
+    
+                <div class="ui-form-item">
+                    <label class="ui-label"><span class="ui-form-required">*</span>经营范围：</label>
+                    <input class="ui-input" type="text" value="{$auth.business_scope}" name="business_scope" placeholder="经营范围" validate="required" />
+    
+                    <div class="ui-form-explain"></div>
+                </div>
+    
+                <div class="ui-form-item">
+                    <label class="ui-label"><span class="ui-form-required">*</span>组织机构代码证号：</label>
+                    <input class="ui-input" type="text" value="{$auth.org_code}" name="org_code" placeholder="组织机构代码证号" validate="required"/>
+                </div>
+                <div class="ui-form-item">
+                    <label class="ui-label"><span class="ui-form-required">*</span>组织机构代码证扫描件：</label>
+                    <div validate="agency" class="upload-id" id="uploadPicIdFront">
+                    
+	                      <div class="upload-pic-btn">
+			              <img src="{if $auth.org_img}{$auth.org_img}{else}../../static/img/other-upload.png{/if}" style="width:100px;height:97px;" alt="" data-img="{if $auth.org_img}{$auth.org_img}{else}../../static/img/other-upload.png{/if}" class="def_org_img">
+			              <!-- 取消上传操作需要修改的val值 -->
+			               <input type="hidden" name="hid_org_cancel" id="hid_org_cancel" value="">;
+			              	<!-- 上传图片完成要展示的 -->
+			                <div class="upload-wrap up_org_hid" {if $auth.org_img}style="display:block"{/if}> <a href="{$auth.org_img}" target="_blank" class="upload-link see_org_img" title="点击查看大图">查看</a> 
+			                <a href="javascript:;" onclick="delfile('org_img',{$auth.id})" class="deletefile delete" action-type="deletefile">×</a> 
+			                </div>
+			                
+			                <input type="file"  {if $auth.org_img}style="display:none"{/if} onchange="selfile('org_img')" name="org_img" id="card_org_img" data-progressid="2842923581773.134" name="file" size="100" class="ui-upload-btn">
+			              </div>
+			              
+			              <!-- 这里隐藏的是图片路径 form提交的时候会用到 -->
+			              <input type="hidden" name="hid_org_img" id="hid_org_img" value="{if $auth.org_img}{$auth.org_img_data}{/if}"> 
+			              <div class="error org_img_error"></div>
+			               <!-- 正在上传中的时候需要调用的 -->
+			              <ul class="uploadfile-indicator clearfix org_img">
+			                  <li data-pid="2842924317781.58" class="clearfix" style="display: block;"><p class="file clearfix"><span class="fl">ico1_1024_1024.png</span></p>
+			                 <div class="adding clearfix"><p class="adifile"><span style="width:0%"></span></p><p class="fl">正在上传中....</p>
+			                 <a action-type="cancel" class="fr" onclick="cancelImg('org_img')" href="javascript:;">取消</a>
+			                 </div>
+			                </li>
+			              </ul>
+                      
+                      
+                    </div>
+                    
+                    <p class="ui-form-explain-sub">
+                        证件要求：<br/>
+                        必须为清晰、完整的彩色原件扫描件或数码照，仅支持.jpg.bmp.png.gif的图片格式，<br/>
+                        <span class="highlight">图片大小不超过2M。</span>,必须在有效期内且年检章齐全（当年成立的公司可无年检章）<br/>
+                        必须为中国大陆工商局颁发
+                    </p>
+                </div>
+    
+                <div class="ui-form-item">
+                    <label class="ui-label"><span class="ui-form-required">*</span>联系方式：</label>
+                    <input class="ui-input" type="text" value="{$auth.link_mob}" name="link_mob" validate="required" placeholder="联系方式" />
+    
+                    <div class="ui-form-explain"></div>
+                </div>
+    
+                <div class="ui-form-item">
+                    <label class="ui-label">税务登记证号：</label>
+                    <input class="ui-input" value="{$auth.tax_code}" name="tax_code" type="text" placeholder="税务登记证号" />
+    
+                    <div class="ui-form-explain"></div>
+                </div>
+    
+    
+                
+                
+                <div class="ui-form-item">
+                    <label class="ui-label"><span class="ui-form-required">*</span>营业执照副本扫描件：</label>
+                    <div validate="license" class="upload-id" id="uploadPicIdFront">
+                    
+                    	<div class="upload-pic-btn">
+			              <img src="{if $auth.business_img}{$auth.business_img}{else}../../static/img/other-upload.png{/if}" style="width:100px;height:97px;" alt="" data-img="{if $auth.business_img}{$auth.business_img}{else}../../static/img/other-upload.png{/if}" class="def_business_img">
+			              <!-- 取消上传操作需要修改的val值 -->
+			               <input type="hidden" name="hid_business_cancel" id="hid_business_cancel" value="">;
+			              	<!-- 上传图片完成要展示的 -->
+			                <div class="upload-wrap up_business_hid" {if $auth.business_img}style="display:block"{/if}> <a href="{$auth.business_img}" target="_blank" class="upload-link see_business_img" title="点击查看大图">查看</a> 
+			                <a href="javascript:;" onclick="delfile('business_img',{$auth.id})" class="deletefile delete" action-type="deletefile">×</a> 
+			                </div>
+			                
+			                <input type="file" {if $auth.business_img}style="display:none"{/if} onchange="selfile('business_img')" name="business_img" id="business_img" data-progressid="2842923581773.134" name="file" size="100" class="ui-upload-btn">
+			              </div>
+			              <!-- 这里隐藏的是图片路径 form提交的时候会用到 -->
+			              <input type="hidden" name="hid_business_img" id="hid_business_img" value="{if $auth.business_img}{$auth.business_img_data}{/if}"> 
+			              <div class="error business_img_error"></div>
+			               <!-- 正在上传中的时候需要调用的 -->
+			              <ul class="uploadfile-indicator clearfix business_img">
+			                  <li data-pid="2842924317781.58" class="clearfix" style="display: block;"><p class="file clearfix"><span class="fl">ico1_1024_1024.png</span></p>
+			                 <div class="adding clearfix"><p class="adifile"><span style="width:0%"></span></p><p class="fl">正在上传中....</p>
+			                 <a action-type="cancel" class="fr" onclick="cancelImg('business_img')" href="javascript:;">取消</a>
+			                 </div>
+			                </li>
+			              </ul>
+			              
+                    </div>
+                    
+                    <p class="ui-form-explain-sub">
+                        证件要求：<br/>
+                        请上传由中国大陆工商局颁发的，在有效期内且年检章齐全（当年成立的公司可无年检章）的证件图片。<br/>
+                        请提供清晰、完整的彩色原件扫描件或数码照，仅支持.jpg.bmp.png.gif的图片格式，<span class="highlight">图片大小不超过2M。</span>
+                    </p>
+                </div>
+                
+                
+                
+                
+                
+                <div class="ui-form-item">
+                    <label class="ui-label">加盖公章的副本扫描件：</label>
+                    <div class="upload-id" id="uploadPicIdFront">
+                    
+                      <div class="upload-pic-btn">
+			              <img src="{if $auth.business_seal_img}{$auth.business_seal_img}{else}../../static/img/other-upload.png{/if}" style="width:100px;height:97px;" alt="" data-img="{if $business_seal_img}{$business_seal_img}{else}../../static/img/other-upload.png{/if}" class="def_business_seal_img">
+			              <!-- 取消上传操作需要修改的val值 -->
+			               <input type="hidden" name="hid_business_seal_cancel" id="hid_business_seal_cancel" value="">;
+			              	<!-- 上传图片完成要展示的 -->
+			                <div class="upload-wrap up_business_seal_hid" {if $auth.business_seal_img}style="display:block"{/if} > <a href="{$auth.business_seal_img}" target="_blank" class="upload-link see_business_seal_img" title="点击查看大图">查看</a> 
+			                <a href="javascript:;" onclick="delfile('business_seal_img',{$auth.id})" class="deletefile delete" action-type="deletefile">×</a> 
+			                </div>
+			                
+			                <input type="file" {if $auth.business_seal_img}style="display:none"{/if} onchange="selfile('business_seal_img')" name="business_seal_img" id="business_seal_img" data-progressid="2842923581773.134" name="file" size="100" class="ui-upload-btn">
+			              </div>
+			              <!-- 这里隐藏的是图片路径 form提交的时候会用到 -->
+			              <input type="hidden" name="hid_business_seal_img" id="hid_business_seal_img" value="{if $auth.business_seal_img}{$auth.business_seal_img_data}{/if}"> 
+			              <div class="error business_seal_img_error"></div>
+			               <!-- 正在上传中的时候需要调用的 -->
+			              <ul class="uploadfile-indicator clearfix business_seal_img" >
+			                  <li data-pid="2842924317781.58" class="clearfix" style="display: block;"><p class="file clearfix"><span class="fl">ico1_1024_1024.png</span></p>
+			                 <div class="adding clearfix"><p class="adifile"><span style="width:0%"></span></p><p class="fl">正在上传中....</p>
+			                 <a action-type="cancel" class="fr" onclick="cancelImg('business_seal_img')" href="javascript:;">取消</a>
+			                 </div>
+			                </li>
+			              </ul>
+			              
+                      
+                    </div>
+                    
+                    <p class="ui-form-explain-sub">
+                        请复制营业执照副本并加盖红色公司公章再上传。<br/>
+                        请提供清晰、完整的彩色原件扫描件或数码照，仅支持.jpg.bmp.png.gif的图片格式<span class="highlight">图片大小不超过2M。</span>
+                    </p>
+                </div>
+                
+                <div class="ui-form-item ui-form-item-submit">
+                    <span class="ui-button-morange ui-button">
+                    <input type="hidden" name="step" value="1" />
+                        <input class="btn-1" value="下一步" type="submit">
+                    </span>
+                </div>
+            </fieldset>
+        </div>
+        </form>
+   <script type="text/javascript" src="/static/expand/jquery.form.js"></script>
+     <script>
+    	/**
+		*上传图片
+		*/
+		function selfile(type)
+		{
+			var r  = 10000*Math.random();
+			if(type == 'org_img')
+			{
+				$(".org_img").css("display",'block')			
+			}
+			else if(type == 'business_img')
+			{
+				$(".business_img").css("display",'block')
+			}
+			else if(type == "business_seal_img")
+			{
+				$(".business_seal_img").css("display",'block')
+			}
+			
+			//fd.append('pic',pic);
+			 $('#myform').ajaxSubmit({
+			        url:'{link app=auth act=upload}?&type='+type+'&r='+r,
+			        type:"post",
+			        success: function(res) {
+			            var res = $.parseJSON(res);
+			            if(res.done==true)
+			            {
+			            	if(res.retval.type == 'org_img')
+			            	{
+			            		//如果$("#hid_face_cancel").val（）值为1 说明 在上传之前执行了 取消操作;
+			            		if($("#hid_org_cancel").val())
+		            			{
+			            			$("#hid_org_cancel").val('');
+		            				return;
+		            			}
+			            		
+			            		$(".org_img").css("display",'none') 
+			            		
+			            		//更换缩罗图的地址
+								$(".def_org_img").attr('src',res.retval.src);
+								$(".def_org_img").attr('data-img',res.retval.src);
+								
+								//input file隐藏
+								$("#card_org_img").css("display",'none')
+								;
+								//input hidden 隐藏域的值
+								$("#hid_org_img").val(res.retval.name)
+								
+								//缩罗图展开 查看按钮
+								$(".up_org_hid").css("display",'block');
+								$(".see_org_img").attr("href",res.retval.src);
+								
+								//错误提示
+								$(".org_img_error").html('');
+								
+			            	}
+			            	else if(res.retval.type == 'business_img')
+			            	{
+			            		//如果$("#hid_face_cancel").val（）值为1 说明 在上传之前执行了 取消操作;
+			            		if($("#hid_business_cancel").val())
+		            			{
+			            			$("#hid_business_cancel").val('');
+		            				return;
+		            			}
+			            		
+			            		
+								$(".business_img").css("display",'none') 
+			            		
+			            		//更换缩罗图的地址
+								$(".def_business_img").attr('src',res.retval.src);
+								$(".def_business_img").attr('data-img',res.retval.src);
+								
+								//input file隐藏
+								$("#business_img").css("display",'none')
+								;
+								//修改隐藏域的值
+								$("#hid_business_img").val(res.retval.name)
+								
+								//缩罗图展开 查看按钮
+								$(".up_business_hid").css("display",'block');
+								$(".see_business_img").attr("href",res.retval.src);
+								
+								//清空错误提示
+								$(".business_img_error").html('');
+			            	}
+			            	else if(type == "business_seal_img")
+				            {
+			            		//如果$("#hid_face_cancel").val（）值为1 说明 在上传之前执行了 取消操作;
+				            		if($("#hid_business_seal_cancel").val())
+			            			{
+				            			$("#hid_business_seal_cancel").val('');
+			            				return;
+			            			}
+				            		
+				            		
+									$(".business_seal_img").css("display",'none') 
+				            		
+				            		//更换缩罗图的地址
+									$(".def_business_seal_img").attr('src',res.retval.src);
+									$(".def_bbusiness_seal_img").attr('data-img',res.retval.src);
+									
+									//input file隐藏
+									$("#business_seal_img").css("display",'none')
+									;
+									//修改隐藏域的值
+									$("#hid_business_seal_img").val(res.retval.name)
+									
+									//缩罗图展开 查看按钮
+									$(".up_business_seal_hid").css("display",'block');
+									$(".see_business_seal_img").attr("href",res.retval.src);
+									
+									//清空错误提示
+									$(".business_seal_img_error").html('');
+				            } 	
+			                return;
+			            }
+			            else
+			            {
+			                alert(res.msg)
+			            }
+			        }
+			    });
+		}
+		
+		/**
+		*点击删除图片事件
+		*1 是删除正面图   2是删除反面图
+		*/
+		function delfile(type,auth_id=0)
+		{
+			if(type == 'org_img')
+			{
+				var org_img = $("#hid_org_img").val();
+				//=====ajax删除session或者auth表中存在的图片=====
+				$.ajax({
+					   type: "POST",
+					   url: "{link app=auth act=del_file}",
+					   data: "type=1&img="+org_img,
+					   success: function(msg){
+						   var res = $.parseJSON(msg);
+				            if(res.done==true)
+			            	{
+			            		//alert('suceess')
+			            	}
+				            else
+			            	{
+			            		return;
+			            	}
+					   }
+					});
+				
+				$(".up_org_hid").css("display",'none'); 
+				$("#org_img").css("display",'block');
+				$(".def_org_img").attr('src',"../../static/img/idfront.png");
+				$(".def_org_img").attr('data-img',"../../static/img/idfront.png");
+				//修改隐藏域的值
+				$("#hid_org_img").val('')
+			}
+			else if(type == "business_img")
+			{
+				var business_img = $("#hid_business_img").val();
+				//=====ajax删除session或者auth表中存在的图片=====
+				$.ajax({
+					   type: "POST",
+					   url: "{link app=auth act=del_file}",
+					   data: "type=2&img="+business_img,
+					   success: function(msg){
+						   var res = $.parseJSON(msg);
+				            if(res.done==true)
+			            	{
+			            		//alert('suceess')
+			            	}
+				            else
+				            {
+				            	return ;	
+				            }
+					   }
+					});
+				
+				$(".up_business_hid").css("display",'none'); 
+				$("#business_img").css("display",'block');
+				$(".def_business_img").attr('src',"../../static/img/idfront.png");
+				$(".def_business_img").attr('data-img',"../../static/img/idfront.png");
+				//修改隐藏域的值
+				$("#hid_back_img").val('')
+			}
+			else if(type == "business_seal_img")
+			{
+				var business_seal_img = $("#hid_business_seal_img").val();
+				//=====ajax删除session或者auth表中存在的图片=====
+				$.ajax({
+					   type: "POST",
+					   url: "{link app=auth act=del_file}",
+					   data: "type=2&img="+business_seal_img,
+					   success: function(msg){
+						   var res = $.parseJSON(msg);
+				            if(res.done==true)
+			            	{
+			            		//alert('suceess')
+			            	}
+				            else
+				            {
+				            	return ;	
+				            }
+					   }
+					});
+				
+				$(".up_business_seal_hid").css("display",'none'); 
+				$("#business_seal_img").css("display",'block');
+				$(".def_business_seal_img").attr('src',"../../static/img/idfront.png");
+				$(".def_business_seal_img").attr('data-img',"../../static/img/idfront.png");
+				//修改隐藏域的值
+				$("#hid_back_img").val('')
+			}
+			
+		}
+		
+		/**
+		*取消上传的操作
+		*这部操作不仅要隐藏html代码 还要去服务器删除对应的图片
+		*/
+		function cancelImg(type)
+		{
+			if(type == 'org_img')
+			{
+				//隐藏
+				$(".org_img").css("display",'none');
+				
+				//给隐藏的input赋
+				$("#hid_org_cancel").val(1);
+				
+			}
+			else if(type == "business_img")
+			{
+				//隐藏
+				$(".business_img").css("display",'none');
+				//给隐藏的input赋
+				$("#hid_business_cancel").val(1);
+				
+			}
+			else if(type == "business_seal_img")
+			{
+				//隐藏
+				$(".business_seal_img").css("display",'none');
+				
+				//给隐藏的input赋
+				$("#hid_business_seal_cancel").val(1);
+				
+			}
+			
+		}
+     
+     
+			     $('#myform').verify({
+				validate:{
+						license:function(e){
+							if(e.find('.upload-wrap').is(':hidden')){
+								e.find('.error').text('请上传您的营业执照副本扫描件').show();
+								return false
+							}
+							return true
+						},
+						agency:function(e){
+							if(e.find('.upload-wrap').is(':hidden')){
+								e.find('.error').text('请上传您的组织机构代码证扫描件').show()
+								return false
+							}
+							return true
+						},
+						selecta:function(e){
+							if(e.val()==''){
+								e.addClass('error-css');
+								return false
+							}
+							return true
+						}
+					},
+				submitBtn:{
+					flag:true,
+					id:$('#submit-btn'),
+					txt:'跳转中...'
+				}
+			});
+			$('.longtime').click(function(){
+				if(this.checked){
+					
+					$('#validity').val('长期').attr('disabled',true).parents('.ui-form-item').find('.error').text('');
+				}else{
+					var business_life = "{$auth.business_life}";
+					
+					$('#validity').val(business_life).attr('disabled',false)	
+				}
+			})
+			
+			/**
+			*三级联动
+			*/
+			function getRegion()
+			{
+				var region_son_id = {$auth.region_son_id};
+				if(!region_son_id)
+				{
+					region_son_id = 0;
+				}
+				var parent_id = $("#region_parent_id").val();
+				$.ajax({
+					   type: "POST",
+					   url: "{link app=auth act=getRegion}",
+					   data: "region_id="+parent_id+"&cur_id="+region_son_id,
+					   success: function(msg){
+						  	$("#region_son_id").html("");
+						  	$("#region_son_id").append('<option value="">--请选择城市--</option>');
+					    	$("#region_son_id").append(msg);
+					   }
+					});
+			}
+			
+			
+				
+      </script>
+    </div>
+  </div>
+</div>
+
+{include file="footer.html"}

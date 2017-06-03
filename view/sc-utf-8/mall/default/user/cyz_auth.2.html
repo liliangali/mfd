@@ -1,0 +1,104 @@
+
+<div class="user_box">
+  {include file=member.menu.html}
+    <div class="user_right user_rights fr" >
+		<h4>实名认证</h4>
+        <div class="verification verificationyx">
+        	<ul>
+            	<li>1.验证身份</li>
+                <li class="current">2.绑定银行卡</li>
+                <li>3.提交完成</li>
+            </ul>
+        </div>  
+        <div class="rzsjtx">
+          <form method="post" action="member-cyz_auth_3.html" id="cyz_auth2">
+                <input type="hidden" value="{$realname}" name="realname" />
+                <input type="hidden" value="{$mobile}" name="mobile" />
+                <input type="hidden" value="{$address}" name="address" />
+                <input type="hidden" value="{$card}" name="card" />
+                <input type="hidden" value="{$card_face_img}" name="card_face_img" />
+                <input type="hidden" value="{$country}" name="country" />
+                <input type="hidden" value="{$province}" name="province" />
+                <input type="hidden" value="{$city}" name="city" />
+        	<div class="card cards">
+            	<p class="smzrxx fl">银行卡类别：</p>
+                <div class="xm-select fl">
+                    <div class="dropdown">
+                        <label for="J_province" class="iconfont"></label>
+                        <select id="J_province" name="bank_id">
+                        {foreach from=$banks key = key item=item}
+                        <option select ="{$auth_info.bank_id}" value="{$item.bank_id}">{$item.bank}</option> 
+                        {/foreach}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        	<div class="card cards">
+            	<p class="smzrxx fl">开卡地区：</p>
+                <input type="text" class="bdinp fl" value="{$auth_info.bankcard_address}" name="bankcard_address">
+                <p class="tssryz fl">请填写银行卡开卡所在地</p>
+            </div>
+            <div class="card cards">
+            	<p class="smzrxx fl">银行卡卡号：</p>
+                <input type="text" class="bdinp fl" value="{$auth_info.bankcard}" name="bankcard" id="bankcard">
+            </div>
+             
+            <div class="memoryBox"><input name="xy" checked type="checkbox" validate="required3">&nbsp;&nbsp;</span>同意<a href="#" target="_blank">《创业者服务协议》</a></div>
+            <div class="card cards">
+            	<p class="smzrxx fl">说明：</p>
+                <p class="sfzmgxx fl">1、银行卡开户人姓名必须与实名认证的姓名一致。<br>2、绑定的银行卡账户，用于现金提现。</p>
+            </div>
+            <input type="submit" value="下一步" class="bdxyb"> 
+            </form>
+        </div>
+    </div>
+    </div>
+    <script>
+    $(function(){
+
+
+
+        $('#cyz_auth2').ajaxForm({
+            beforeSubmit:function(){
+                var b=$('#cyz_auth2').validate({
+                	 validate:{
+                 
+                    required3:function(e){
+                        if(!e[0].checked){
+                          
+                            alert('请勾选同意《创业者服务协议》');
+                            return false
+                        }
+                    }
+                },
+                    submitBtn:{
+                        flag:true,
+                    },
+                    acticle:true,
+                    error:function(obj,error){error(obj,error)}
+                });
+              
+                if(!b){
+                    return false
+                }
+            },
+            success:function(res){
+                var res = eval("("+res+")");
+                if(!res.done){
+                    alert(res.msg)
+                    $('.bdxyb').val('下一步')
+
+                }else{
+                    $('.user_box').replaceWith(res.retval.content);
+                }
+
+            },
+            error:function(){
+                alert('error')
+                $('.bdxyb').val('下一步')
+            }
+        })
+
+
+    });
+</script>

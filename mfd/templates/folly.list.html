@@ -1,0 +1,77 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ajax_tree.js}" charset="utf-8"></script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=folly&amp;act=add">添加广告</a></li>
+		 <li><a class="btn1" href="index.php?app=folly&amp;act=add_tpl">添加页面</a></li>
+		 <li><a class="btn1" href="index.php?app=folly&amp;act=add_location">添加广告位</a></li>
+    </ul>
+</div>
+<!-- <div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="article" />
+                <input type="hidden" name="act" value="index" />
+                {$lang.title}:
+                <input class="queryInput" type="text" name="title" value="{$query.title|escape}" />
+                {$lang.select_acategory}:
+                <select class="querySelect" id="cate_id" name="cate_id">
+                <option value="">{$lang.select_pls}</option>
+                {html_options options=$parents selected=$smarty.get.cate_id}
+                </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            {if $filtered}
+            <a class="left formbtn1" href="index.php?app=article">{$lang.cancel_query}</a>
+            {/if}
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div> -->
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+        <thead>
+        <tr class="tatr1">		
+        	 <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>	
+			<th align="left">序号</th>
+			<th width="110">广告页面</th>
+			<th width="110">广告位置</th>
+			<th width="210">广告标题</th>
+			<th width="260">广告连接</th>
+			<th width="180">图片</th>
+			<th>操作</th>
+        </tr>
+        </thead>
+        <!--{foreach from=$pagearr item=t name='imgs'}-->    
+			<tr class="tatr2">	
+				<td class="firstCell"><input type="checkbox" class="checkitem" value="{$t.id}"/></td>
+				<td>{$t.l_order}</td>
+				<td>{$t.title}</td>
+				<td>{$t.tpl_child_title}</td>
+				<td width="210">{$t.img_title}</td>
+				<td width="260">{$t.link}</td>
+				<td><img src="{$t.uploadfiles}" width="100" height="50" /></td>
+				<td>[<a href="{url app=folly&act=edit&id=$t.id}">{$lang.edit}</a>][<a href="{url app=folly&act=del&id=$t.id}">{$lang.del}</a>]<font color="red"><I>(谨慎操作！)</I></font></td>
+			</tr>
+		<!-- {/foreach} -->
+    </table>
+        <!--{if $pagearr}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+<!--         <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=folly&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="lang.update_order" name="id" presubmit="updateOrder(this);" />
+        </div> -->
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+
+{include file="footer.html"}

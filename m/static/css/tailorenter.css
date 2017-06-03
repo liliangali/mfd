@@ -1,0 +1,112 @@
+@charset "utf-8";
+/*--全局/S--*/
+body { margin: 0; padding: 0; background: #f9f9f9; color: #666; font-size: 12px; line-height: none; font-family: 微软雅黑, 'Arial, Helvetica, sans-serif'; }
+div, form, ul, ol, li, span, p, dl, dt, dd, img, i, em, input, textarea { margin: 0; padding: 0; outline: 0;border:0; }
+ul, ol, li { list-style: none }
+img { border: 0; }
+em, i { font-style: normal; }
+a { color: #535353; text-decoration: none; outline: 0 }
+a:hover { color: #9e0000; text-decoration: none; }
+.fl { float: left; }
+.fr { float: right; }
+/*--全局/E--*/
+
+/*--颜色/S--*/
+.cRed{ color:#9e0000;}
+/*--颜色/E--*/
+
+/*--布局/S--*/
+.w { width: 960px; margin: 0 auto; clear: both; }
+.main { min-height: 600px; }
+/*--布局/E--*/
+
+/*--带尖角号的连接按钮/S--*/
+.btn-angle .link { float: left; }
+.btn-angle .angle { float: left; width: 9px; height: 5px; background: url(../img/bg.png) no-repeat -162px -158px; margin: 5px 0 0 5px; transition: all ease .3s; -moz-transition: all ease .3s; -ms-transition: all ease .3s; -o-transition: all ease .3s; -webkit-transition: all ease .3s; }
+.btn-angle:hover .angle, .btn-angle-hover .angle { transform: rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); -webkit-transform: rotate(180deg); }
+/*--带尖角号的连接按钮/E--*/
+
+/*--模拟select/S--*/
+.s_select{ width:90px; height:36px;float:left;position:relative; z-index:3;}
+.s_select dt{ width:100%;line-height:36px;background:#fff; border:solid 1px #ddd;cursor:pointer; -moz-user-select:none;}
+.s_select dt span{display:block; margin-right:30px;padding-left:10px;white-space:nowrap;overflow:hidden;}
+.s_select dt i{ position:absolute; right:10px; top:16px; width:0; height:0; line-height:0; overflow:hidden; border-style:solid; border-color:#999 #fff #fff; border-width:7px 5px 0;}
+.s_select dd{ width:100%; max-height:240px; overflow-x:hidden; overflow-y:auto;border:solid 1px #ddd;background:#fff;position:absolute;left:0;top:36px;display:none;}
+.s_select dd a{display:block;height:30px;line-height:30px;padding:0 10px;text-decoration:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.s_select dd a:hover{background:#f5f5f5;color:#000;}
+.s_select_cur dt,.s_select_cur dd{ border-color:#000;}
+/*--模拟select/E--*/
+
+/*--二级菜单/S--*/
+.bd-menu { display: none; width: 100px; padding: 0 10px 10px; background: #fff; border: solid 1px #ddd; position: absolute; left: 50%; top: 41px; }
+.bd-menu div { display: none; }
+.bd-menu a { display: block; line-height: 28px; border-bottom: dotted 1px #f5f5f5; text-align: center; }
+.bd-menu a:last-child { border: 0; }
+.bd-menu .angle { position: absolute; left: 50%; top: -5px; margin: 0 0 0 -5px; width: 9px; height: 6px; overflow: hidden; background: url(../img/bg.png) no-repeat -147px -157px; }
+/*--二级菜单/E--*/
+
+
+/*--头部/S--*/
+.head { height: 84px; background: #fff; border-top: solid 5px #ccc; border-bottom: solid 1px #e2e2e2; box-shadow: 0 0 3px #ebebeb; }
+.head .logo { width: 203px; height: 50px; background: url(../img/bg2.png) no-repeat; margin: 20px 25px 0 0; }
+.head .logoTxt { height: 44px; line-height: 44px; font-size: 24px; color: #444; margin-top: 20px; border-left: solid 1px #ddd; padding-left: 15px; }
+.head .btn-angle { margin-top: 50px; height: 20px; line-height: 20px; float: right; font-size: 14px }
+.head .btn-angle .angle { margin-top: 9px; }
+.head .bd-menu{ position:absolute; top:85px; z-index:2;}
+/*--头部/E--*/
+
+/*--当前步骤/S--*/
+.enter-step { width: 900px; height: 47px; background: url(../img/enter.png) no-repeat; margin: 50px auto; }
+.enter-1 { background-position: 0 0; }
+.enter-2 { background-position: 0 -47px; }
+.enter-3 { background-position: 0 -94px; }
+/*--当前步骤/E--*/
+
+/*--基本表单/S--*/
+.myForm { width: 470px; margin: 0 auto; padding-bottom:100px; }
+.myForm .item {width:360px; min-height:38px;padding-left:90px; margin-bottom: 20px; }
+.myForm .txt { width:348px; height:36px; line-height:36px; padding:0 3px;background: #fff; border: solid 1px #ddd;color: #333;}
+.myForm .txt:focus { border-color: #000;}
+.myForm .item .tit { width:90px; margin-left:-90px;line-height:36px; float:left;font-size: 14px;}
+.myForm .item .tit2{line-height:36px; font-size:14px; padding:0 10px 0 33px}
+.myForm .item .tit em{ display:inline-block; width:11px; color:#a40001; font-family:Verdana, Geneva, sans-serif;}
+.myForm .sendValidate {width: 111px; height: 34px; line-height: 32px; text-align: center; z-index: 2; color: #333; border: solid 1px #ddd; border-radius: 2px; cursor: pointer; background-color: #f5f5f5; background-image: linear-gradient(#fff, #ebebeb); background-image: -webkit-gradient(#fff, #ebebeb); background-image: -moz-linear-gradient(#fff, #ebebeb); -moz-user-select: none; user-select: none; }
+.myForm .sendValidate:hover { background-image: linear-gradient(#ebebeb, #fff); background-image: -webkit-gradient(#ebebeb, #fff); background-image: -moz-linear-gradient(#ebebeb, #fff); }
+.myForm .sendValidate.disabled, .myForm .sendValidate.disabled:hover { background: #f8f8f8; cursor: default; }
+.myForm label{ margin:12px 20px 0 0; float:left;}
+.myForm label input{ float:left; margin:1px 4px 0 0;}
+.myForm .depict{ border:solid 1px #ddd; width:348px; height:50px; line-height:24px; font-size:12px; color:#666; padding:0 3px;}
+.myForm .depict.cur{ color:#333}
+.myForm .numLen{ padding-top:5px; text-align:right;}
+.myForm .submit { display:block; width:355px; height: 46px; line-height:46px; text-align:center; margin-left:91px; background: url(../img/btn.jpg) no-repeat; font-size: 14px; color: #fff; cursor: pointer; font-weight: bold; }
+.myForm .submit span{ display:block;background: url(../img/btn.jpg) no-repeat right top; margin-left:3px;}
+.myForm .submit:hover { background-position: 0 -46px; }
+.myForm .submit:hover span { background-position: right -46px; }
+.myForm .submit:active { opacity: 0.8; }
+#s_2,#s_3{ margin-left:12px; float:left; position:relative; z-index:10;}
+#leixing,#server{ overflow:hidden;}
+/*--基本表单/E--*/
+
+/*--提示页面/S--*/
+.prompt { padding-top: 50px; }
+.prompt .txt { padding-left: 240px; font-size: 24px; line-height: 24px; margin-bottom: 20px; color: #000; overflow: hidden; }
+.prompt .txt .ico { width: 28px; height: 28px; vertical-align: middle; background: url(../img/bg2.png) no-repeat -44px -51px; margin-right: 8px; position: relative; }
+.prompt .txt span{ white-space:nowrap;}
+.prompt .txt p { clear: both; padding: 15px 0 0 40px; font-size: 14px; color: #666; }
+.prompt .btn-red { display: block; width: 154px; height: 40px; background: url(../img/btn.jpg) no-repeat 0 -93px; text-align: center; line-height: 40px; color: #fff; padding-left: 3px; margin:80px auto; }
+.prompt .btn-red span { display: block; height: 40px; background: url(../img/btn.jpg) no-repeat right -93px }
+.prompt .btn-red:hover { background-position: 0 -133px; }
+.prompt .btn-red:hover span { background-position: right -133px; }
+.prompt .btn-red:active { opacity: 0.8; }
+/*--提示页面/E--*/
+
+/*--错误信息/S--*/
+#error { height:40px; line-height:23px;color: #a50001; font-size: 14px; padding-left:92px; }
+#error .ico { float: left; width: 24px; height: 24px; background: url(../img/bg2.png) no-repeat -79px -54px; margin:0 5px 0 0; }
+.myForm .error-css, .myForm .error-css:focus { background-color: #f2dede; border-color: #ebccd1; color: #a94442;}
+.myForm .error-css2{background-color: #f2dede; border-color: #ebccd1; color: #a94442;}
+/*--错误信息/E--*/
+
+/*--底部/S--*/
+.footer { border-top: solid 1px #ddd; line-height: 25px; padding: 20px 0; text-align: center; }
+/*--底部/E--*/

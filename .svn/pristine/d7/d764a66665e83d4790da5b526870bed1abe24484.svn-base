@@ -1,0 +1,20 @@
+      <h1 class="search_h1">关键字：<font>{$keyword}</font></h1>
+      <div class="search_qh">
+			<ul class="search_qh_ul">
+		       	<li {if $act == 'street'}class="cur_li"{/if}>
+		       		<a href="/index.php/search-street.html?keyword={$smarty.get.keyword}">街拍({$count.street})</a>
+		       	</li>
+		       	<li {if $act == 'photo'}class="cur_li"{/if}>
+           			<a href="/index.php/search-photo.html?keyword={$smarty.get.keyword}">设计({$count.photo})</a>
+           		</li>
+		        <li {if $act == 'custom'}class="cur_li"{/if}>
+              		<a href="/index.php/search-custom.html?keyword={$smarty.get.keyword}">定制({$count.custom})</a>
+            	</li>
+	            <li {if $act == 'dissertation'}class="cur_li"{/if}>
+	              	<a href="/index.php/search-dissertation.html?keyword={$smarty.get.keyword} ">主题({$count.dissertation})</a>
+	            </li>
+		        <li {if $act == 'member'}class="cur_li"{/if}>
+              		<a href="/index.php/search-member.html?keyword={$smarty.get.keyword} ">酷客({$count.member})</a>
+            	</li>
+			</ul>
+		</div>

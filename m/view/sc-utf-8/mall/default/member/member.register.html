@@ -1,0 +1,264 @@
+{include file="register_header.html"}
+<link href="{res file=css/register.css}" rel="stylesheet" type="text/css">
+
+
+
+<div class="newreg_wrap">
+  <div class="newreg">
+    <div class="newreg_inner">
+        <div class="title">
+            <strong>手机/邮箱注册</strong>
+            <span class="log">
+            已有帐号？
+            <a href="{link app=member act="login"}">立即登录</a>
+            </span>
+       </div>
+       <div class="container">
+           <div class="cssm-state cssm-state2 clearfix">
+                <ul>
+                    <li class="current">
+                        <p>填写帐号信息</p>
+                        <span>1</span>
+                    </li>
+                    <li>
+                        <p>验证手机/邮箱</p>
+                        <span>2</span>
+                    </li>
+                    <li class="last">
+                        <p>注册完成</p>
+                        <span>3</span>
+                    </li>
+                </ul>
+                <div class="r-line"></div>
+            </div>
+            <form id="mf" action="/index.php/member-register.html?opt=2" method="post">
+                <ul class="sy-ul">
+                <li>
+                    <i class="icon"></i>
+                    <input id="uname" name="uname" class="ui-text2 login_text" type="text" maxlength="30" style="color:#c0c0c0;" value="手机/邮箱" onblur="if(value==''){value='手机/邮箱'}" onfocus="if(value=='手机/邮箱'){value=''}" >
+                    <label id="tip_account_register" class="tip"></label>
+                </li>
+                <li>
+                    <i class="icon icon2"></i>
+                    <input id="password" class="ui-text2 login_text reg_pe_password" type="password" maxlength="16" autocomplete="off"  name="ps" id="ps">
+                    <p id="placeholder" style="display:block;">设置登录密码</p>
+                    <!--<a id="eye"></a>-->
+                    <label id="tip_password" class="tip"></label>
+                    <div id="tip_pwd">
+                        <p class="sj"></p>
+                        <dl>
+                            <dt>
+                                密码强度：
+                                <span class="leve"></span>
+                                <span id="leve_txt"></span>
+                                </dt>
+                            <dd>
+                                <span></span>
+                                长度为6-16字符
+                            </dd>
+                            <dd>
+                                <span></span>
+                                必须是数字、字母和符号    的组合密码
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+                <li>
+                    <i class="icon icon2"></i>
+                    <input id="password_confirm" class="ui-text2 login_text reg_pe_password" type="password" maxlength="16" autocomplete="off"  name="password_confirm" id="ps">
+                    <p id="placeholder" class="placeholder1" style="display:block;">确认登录密码</p>
+                    <!--<a id="eye"></a>-->
+                    <label id="tip_password" class="tip"></label>
+                </li>
+                <li id="captcha_register_box">
+                    <i class="icon icon3"></i>
+                    <input id="check_code" style="color:#c0c0c0;" class="ui-text2 login_text" type="text" maxlength="4" name="check_code" onblur="if(value==''){value='验证码'}" onfocus="if(value=='验证码'){value=''}" value="验证码">
+
+                   <p id="change_captcha_register" class="float-ren">
+                       <img id="up_code" width="70" height="30" src="/index.php/ajax-getAuthCode.html">
+                       <a id="rash" onClick="up_code_src();"></a>
+                   </p>
+                    <label id="tip_captcha_register" class="tip"></label>
+               </li>
+               <li class="r_agree s-mar">
+                    <input id="agree" type="checkbox" checked="checked" value="1" name="agree">
+                    <span>
+                    我已阅读 
+                    <a href="javascript:;" onclick="agreement();">《会员注册协议》 </a>
+                    </span>
+                </li>
+                <li class="s-mar">
+                    <input class="l-btn" type="submit" value="下一步去验证">
+                    <input type="hidden" value="404743" name="register_form_id">
+                </li>
+                </ul>
+            </form>
+       </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<textarea id="hidcontent" style="display:none;">{$article.content}</textarea>
+
+<link type="text/css" rel="stylesheet" href="{res file=css/dialog.css}" />
+<script type="Text/Javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+
+<script type="text/javascript">
+
+function agreement(){
+	var content = $('#hidcontent').text();
+	$.dialog({id:'login', title:'用户注册协议', content:content, padding:'', fixed:true, lock:true});
+}
+
+</script>
+
+<!--底部开始-->
+<div class="login_dbbox">
+  <p class="p1"><span>© RCTAILOR版权所有</span><span>服务电话：0532-89068578</span><span>邮箱：rcmtm@rcmtm.com</span>地址：山东省青岛即墨红领大街17号</p> 
+  <p class="p2">鲁ICP备10207738</p>
+</div>
+<!--底部结束-->
+
+
+<script>
+$(function(){
+	$('#password').focus(function(){
+		if($(this).val() == ''){
+		  $('#placeholder').hide();
+		}
+	});
+	$('#password').blur(function(){
+		if($(this).val() == ''){
+		  $('#placeholder').show();
+		}
+	});
+	$('#password_confirm').focus(function(){
+		if($(this).val() == ''){
+			$('.placeholder1').hide();
+		}
+	});
+	$('#password_confirm').blur(function(){
+		if($(this).val() == ''){
+		 $('.placeholder1').show();
+		}
+	});
+	
+})
+    jQuery.validator.addMethod("username", function(value, element) {
+        var mobile = /^1[3,5,8]\d{9}$/;
+        if( this.optional(element) || (mobile.test(value) ) )
+            return true;
+
+        var email = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        if ( this.optional(element) || (email.test(value) ))
+            return true;
+
+        return false;
+    }, "格式错误");
+
+
+    $(document).ready(function(){
+        $('#mf').validate({
+        	
+        	errorPlacement: function(error, element){
+                $(element).nextAll('.tip').addClass('error-on').html(error);
+            },
+            success       : function(label){
+            	label.parent().removeClass('error-on').addClass('ok');
+            },
+            highlight: function(element) {
+              $(element).nextAll('.tip').removeClass('ok').addClass('error-on');
+            },
+
+            submitHandler:function(){
+                var ck = "";
+                $("#agree").each(
+                        function(){
+                            ck = $(this).attr("checked");
+                        }
+                );
+                if(!ck)
+                    return alert('请勾选~我已阅读');
+
+                var f = document.getElementById("mf");
+                f.submit();
+            },
+
+
+            rules : {
+                uname : {
+                    required : true,
+                    rangelength:[10,30],
+                    username:true,
+                    remote:{
+                        url: "/index.php/ajax-unameUniq.html",     //后台处理程序
+                        type: "get",               //数据发送方式
+                        dataType: "json",           //接受数据格式
+                        data: {                     //要传递的数据
+                            uname: function() {
+                                return $("#uname").val();
+                            }
+                        }
+                    }
+
+                }
+                ,
+                ps : {
+                    required : true,
+                    rangelength:[6,30]
+                },
+                password_confirm : {
+                    required : true,
+                    equalTo  : '#password'
+                },
+                check_code:{
+                    required : true,
+                    rangelength:[4,4]
+                }
+            }
+,
+            messages:{
+                uname : {
+                    required : '必填写',
+                    remote:'用户名重复或已绑定安全验证',
+                    username:"格式错误",
+                    rangelength:'10-30个字符'
+                },
+                ps : {
+                    required : '必填写',
+                    rangelength:'6-30个字符'
+                },
+                password_confirm : {
+                    required : '请确认密码',
+                       equalTo  : '两次密码不一致'
+                },
+                check_code : {
+                    required : '必填写',
+                    rangelength:'4-4个字符'
+                }
+            }
+        });
+    });
+
+
+
+    function up_code_src(){
+        var src = "/index.php/ajax-getAuthCode.html?r="+Math.random();
+        $("#up_code").attr('src',src);
+    }
+   
+</script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe3dcd4ebd61e5356326c9772b873f72b' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

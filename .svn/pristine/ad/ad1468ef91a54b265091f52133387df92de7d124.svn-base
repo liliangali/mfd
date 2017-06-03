@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>个性化设计</title>
+<link rel="stylesheet" type="text/css" href="http://r.cotte.cn/cotte/diy/style/style.css?v20151007">
+</head>
+
+<body>
+<div class="main">
+	<div class="topbar">
+		<span class="back-btn fl" onclick="history.go(-1)"></span>
+	</div>
+	<div id="tzBtnBox" class="tzBtnBox"></div>
+	<div class="showArea" id="showArea"></div>
+    <div class="opt">
+        <div class="catBox">
+            <ul id="cat1" class="cat1"></ul>
+            <div id="cat2" class="cat2">
+                <div class="loading">加载中...</div>
+            </div>
+        </div>
+    </div>
+	
+	<!--底部按钮-->
+	<div class="bottomBar">
+		<span class="priceBox orange fl">￥<span id="price">00.00</span></span>
+		<span class="downOrder fr" id="orderDown">确认下单</span>
+		<span class="saveWorks fr" id="saveWorks">存为作品</span>
+	</div>
+	
+	<!--确认下单弹层-->
+	<div class="bottomSize" id="bottomSize">
+		<div class="close"></div>
+		<p class="tit">选择标准尺码或量体定制</p>
+		<span class="button base">标准尺码</span>
+		<span class="button amount">量体定制</span>
+	</div>
+	
+	<!--尺码表-->
+	<div class="rightLayer sizeTable" id="sizeTable">
+		<div class="head">
+			<span class="back"></span>
+			<span class="tit">选择尺码</span>
+			<a href="javascript:void(0)" id="sizeRefer">尺码助手</a>
+		</div>
+		<ul class="tabBar"></ul>
+		<div class="scrollBox">
+			<div class="itemList"><div class="loading">加载中...</div></div>
+		</div>
+		<button class="downBtn sizeOk" id="sizeOk">加入购物车</button>
+	</div>
+	
+	<!--尺码助手-->
+	<div class="rightLayer sizeReferTable" id="sizeReferTable">
+		<div class="head">
+			<span class="back"></span>
+			<span class="tit">尺码助手</span>
+		</div>
+		<div class="scrollBox">
+			<div class="loading">加载中...</div>
+		</div>
+	</div>
+	<!--弹层登录-->
+	<div id="loginPop" class="rightLayer loginPop">
+		<div class="head">
+			<span class="back"></span>
+			<span class="tit">登录</span>
+		</div>
+		<ul>
+			<li><input type="text" id="username" placeholder="用户名"></li>
+			<li><input type="password" id="userpwd" placeholder="密码"></li>
+		</ul>
+		<p>
+			<a class="fl" href="/member-find_password.html">忘记密码？</a>
+			<a class="fr" href="/member-register.html?s_id=aa">立即注册→</a>
+		</p>
+		<button class="downBtn">确认登录</button>
+	</div>
+	<!--遮罩、loading-->
+    <div id="zhezhaoLayer" class="zhezhaoLayer"></div>
+    <div id="loadingTip" class="loadingTip"></div>
+</div>
+<script type="text/javascript" src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script> 
+<script type="text/javascript" src="http://r.cotte.cn/global/luck/mobile/luck.js"></script> 
+
+{if $v == 2}
+<script src="http://r.cotte.cn/cotte/diy/js/diy2.js?v20151007"></script>
+{elseif $v == 3} 
+<script src="http://r.cotte.cn/cotte/diy/js/diy3.js?v20151007"></script>
+{else}
+<script src="http://r.cotte.cn/cotte/diy/js/diy.js?v20151007"></script>
+{/if}
+
+<script>
+$utk="{$tk}";
+$uid = "{$uid}";//用户id
+custom=new Custom({showArea:'showArea'});
+custom.init()
+</script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+{include file="header.html"}
+<div id="rightTop">
+
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=goods">样衣列表</a></li>
+    <li>
+    
+    <span>{if $data.id}样衣编辑{else}样衣添加{/if}</span>
+
+    </li>
+  </ul>
+</div>
+{$build_editor}
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="dis_form">
+        <table class="infoTable">
+            <tr>
+                <th style="padding-right:30px;">
+                   <b>#基本信息#</b></th>
+                <td class="paddingT15 wordSpacing5">
+                  
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    样衣名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" type="text" name="goods_name" value="{$data.goods_name|escape}" />
+                </td>
+            </tr>            
+            
+            <tr>
+                <th class="paddingT15">
+                 简单描述:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea rows="5" cols="40" name="brief">{$data.brief}</textarea>
+                </td>
+            </tr>
+                        <tr>
+                <th class="paddingT15">
+                 上架:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="checkbox" name="is_sale" value="1" {if $data.is_sale}checked{/if}>
+                </td>
+            </tr>
+            
+                        <tr>
+                <th class="paddingT15">
+                推荐:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="checkbox" name="is_recommend" value="1" {if $data.is_recommend}checked{/if}>
+                </td>
+            </tr>
+            
+                             <tr>
+                <th class="paddingT15">
+                初始点击数:</th>
+                <td class="paddingT15 wordSpacing5">
+                     <input class="sort_order type="text" name="click_count" value="{$data.sort_order}" />
+                </td>
+            </tr>       
+            
+            <tr>
+                <th class="paddingT15">
+                    {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="sort_order" type="text" name="sort_order" value="{$data.sort_order}" />
+                </td>
+            </tr>
+            <tr>
+            <th class="paddingT15">封面图片:</th>
+            <td height="100" valign="top">
+            	 {input_img name="small_img" value="$data.small_img" dir="dis"}
+            </td>
+            </tr>
+           <tr>
+                <th style="padding-right:30px;">
+                   <b>#详细描述#</b></th>
+                <td class="paddingT15 wordSpacing5">
+                 
+                </td>
+            </tr>  
+           <tr>
+                <th class="paddingT15">描述
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                  <textarea id="content" name="content" style="width:650px;height:400px;">{$data.content|escape}</textarea>
+                </td>
+            </tr>
+            
+           <tr>
+                <th style="padding-right:30px;">
+                   <b>#选择定制项#</b></th>
+                <td class="paddingT15 wordSpacing5">
+                 
+                </td>
+            </tr> 
+            
+           <tr>
+                <th class="paddingT15">
+                面料:</th>
+                <td class="paddingT15 wordSpacing5" model="fabric">
+                     面料名称或编号:<input type="text" name="keyword"> <select name="select"><option value='0'>-=请选择面料=-</option></select>
+                 <input type="button" value="搜索" onclick="search(this)"> <input type="button" value="添加" onclick="add(this)" ><br>
+                 <div class="list">
+                    {foreach from=$group_list.fabric item=fab}
+                    <input type=checkbox name='fabric[]' checked value='{$fab.item_id}'> {$fab.name}
+                    [默认：<input type=radio name='default_fabric' value="{if !$fab.is_default}0{else}{$fab.item_id}{/if}" {if $fab.is_default}checked{/if}>]<br>
+                    {/foreach}
+                 </div>
+                </td>
+            </tr> 
+            
+        <tr>
+                <th class="paddingT15">
+                里料:</th>
+                <td class="paddingT15 wordSpacing5" model="ifabric">
+                    里料名称或编号:<input type="text" name="keyword"> <select name="select"><option value='0'>-=请选择里料=-</option></select>
+                 <input type="button" value="搜索" onclick="search(this)"> <input type="button" value="添加" onclick="add(this)"><br>
+                 <div class="list">
+                                        {foreach from=$group_list.ifabric item=fab}
+                    <input type=checkbox name='ifabric[]' checked value='{$fab.item_id}'> {$fab.name}
+                    [默认：<input type=radio name='default_ifabric' value="{if !$fab.is_default}0{else}{$fab.item_id}{/if}" {if $fab.is_default}checked{/if}>]<br>
+                    {/foreach}
+                 </div>
+                </td>
+            </tr> 
+            
+      <tr>
+                <th class="paddingT15">
+                纽扣:</th>
+                <td class="paddingT15 wordSpacing5" model="fastener">
+                    纽扣名称或编号:<input type="text" name="keyword"> <select name="select"><option value='0'>-=请选择纽扣=-</option></select>
+                 <input type="button" value="搜索" onclick="search(this)"> <input type="button" value="添加" onclick="add(this)"><br>
+                 <div class="list">
+                                     {foreach from=$group_list.fastener item=fab}
+                    <input type=checkbox name='fastener[]' checked value='{$fab.item_id}'> {$fab.name}
+                    [默认：<input type=radio name='default_fastener' value="{if !$fab.is_default}0{else}{$fab.item_id}{/if}" {if $fab.is_default}checked{/if}>]<br>
+                    {/foreach}
+                 </div>
+                </td>
+            </tr> 
+            
+       <tr>
+                <th class="paddingT15">
+                设计款式:</th>
+                <td class="paddingT15 wordSpacing5" model="style">
+                     款式名称或编号:<input type="text" name="keyword"> <select name="select"><option value='0'>-=请选择款式=-</option></select>
+                 <input type="button" value="搜索" onclick="search(this)"> <input type="button" value="添加" onclick="add(this)"><br>
+                 <div class="list">
+                                     {foreach from=$group_list.style item=fab}
+                    <input type=checkbox name='style[]' checked value='{$fab.item_id}'> {$fab.name}
+                    [默认：<input type=radio name='default_style' value="{if !$fab.is_default}0{else}{$fab.item_id}{/if}" {if $fab.is_default}checked{/if}>]<br>
+                    {/foreach}
+                 </div>
+                </td>
+            </tr> 
+            
+       <tr>
+                <th class="paddingT15">
+               字体:</th>
+                <td class="paddingT15 wordSpacing5" model="font">
+                    字体名称或编号:<input type="text" name="keyword"> <select name="select"><option value='0'>-=请选择字体=-</option></select>
+                 <input type="button" value="搜索" onclick="search(this)"> <input type="button" value="添加" onclick="add(this)"><br>
+                 <div class="list">
+                                     {foreach from=$group_list.font item=fab}
+                    <input type=checkbox name='font[]' checked value='{$fab.item_id}'> {$fab.name}
+                    [默认：<input type=radio name='default_font' value="{if !$fab.is_default}0{else}{$fab.item_id}{/if}" {if $fab.is_default}checked{/if}>]<br>
+                    {/foreach}
+                 </div>
+                </td>
+            </tr> 
+            
+                       <th class="paddingT15">
+               字体颜色:</th>
+                <td class="paddingT15 wordSpacing5" model="color">
+                     颜色名称或编号:<input type="text" name="keyword"> <select name="select"><option value='0'>-=请选择颜色=-</option></select>
+                 <input type="button" value="搜索" onclick="search(this)"> <input type="button" value="添加" onclick="add(this)"><br>
+                 <div class="list">
+                                     {foreach from=$group_list.color item=fab}
+                    <input type=checkbox name='color[]' checked value='{$fab.item_id}'> {$fab.name}
+                    [默认：<input type=radio name='default_color' value="{if !$fab.is_default}0{else}{$fab.item_id}{/if}" {if $fab.is_default}checked{/if}>]<br>
+                    {/foreach}
+                 </div>
+                </td>
+            </tr>      
+                  <th class="paddingT15">
+               刺绣位置:</th>
+                <td class="paddingT15 wordSpacing5" model="pos">
+                     位置名称或编号:<input type="text" name="keyword"> <select name="select"><option value='0'>-=请选择位置=-</option></select>
+                  <input type="button" value="搜索" onclick="search(this)"> <input type="button" value="添加" onclick="add(this)"><br>
+                 <div class="list">
+                                     {foreach from=$group_list.pos item=fab}
+                    <input type=checkbox name='pos[]' checked value='{$fab.item_id}'> {$fab.name}
+                    [默认：<input type=radio name='default_pos' value="{if !$fab.is_default}0{else}{$fab.item_id}{/if}" {if $fab.is_default}checked{/if}>]<br>
+                    {/foreach}
+                 </div>
+                </td>
+            </tr>   
+            
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+                <input type="hidden" name="id" value="{$data.goods_id}">
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+
+<script type="text/javascript">
+function search(obj){
+	var data = {};
+    var pObj = $(obj).parents("td");
+    data.model = pObj.attr("model");
+    data.keyword = pObj.find("input[name=keyword]").val();
+
+   
+    $.get("index.php?app=goods&act=load", data, function(res){
+        var res = eval("("+res+")");
+        if(res.done == false){
+            alert(res.msg);
+            return false;
+        }else{
+        	pObj.find("select").empty();
+            var op = '';
+            for(var i=0;i<res.retval.length;i++){
+//                 var c = i==0 ? 'checked' : '';
+//                 h += "<input type=checkbox name='"+data.model+"[]' checked value='"+res.retval[i].id+"'> "+
+//                 res.retval[i].name+" "+res.retval[i].sn+
+//                 " 设为默认：<input type=radio name='default_"+data.model+"' value='"+res.retval[i].id+"' "+c+"><br>";
+            	op += "<option value='"+res.retval[i].id+"'>"+res.retval[i].name+"</option>"
+            }
+            if(!op){
+                op += "<option value='0'>-=未匹配到结果=-</option>"
+            }
+            pObj.find("select").append(op);
+        }
+    })
+}
+
+function add(obj){
+    var pObj = $(obj).parents("td");
+    var sel  = pObj.find("select option:selected");
+    var name = pObj.attr("model");
+    var v = sel.val();
+    var t = sel.text();
+    var area = pObj.find(".list");
+    var e = true;
+    if(sel.val() == '0'){
+        alert('请选择定制项');
+        return false;
+    }
+    area.find("input[type=checkbox]").each(function(){
+        if($(this).val() == sel.val()){
+            e = false;
+        }
+    })
+    if(!e){
+        alert("该选项已存在");
+        return false;
+    }
+    var c = area.find("input").length==0 ? 'checked' : '';
+    var h = '';
+     h += "<input type=checkbox name='"+name+"[]' checked value='"+v+"'> "+t+
+     " [默认：<input type=radio name='default_"+name+"' value='"+v+"' "+c+">]<br>";
+
+     area.append(h);
+}
+</script>
+{include file="footer.html"}

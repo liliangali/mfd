@@ -1,0 +1,162 @@
+{include file="header.html"}
+
+
+
+
+<script>
+
+
+
+function del(id){
+	$.ajax({
+		"url":"/admin/index.php",
+		"data": "app=user&act=delwork&id=" + id ,
+		"type": "GET",
+		"success": function(data) {
+				alert('删除成功');
+				location.reload();
+		}
+	});
+}
+
+function delBat(){
+    var del_ids = "";
+    $("input[name='ids']:checked").each(function(){
+        if (true == $(this).attr("checked")) {
+            del_ids += $(this).attr('value') + ",";
+        }
+    });
+
+    if(!del_ids)
+        return alert('请至少选择一条数据...');
+
+    $.ajax({
+        "url":"/admin/index.php",
+        "data": "app=user&act=delBatPhoto&ids=" + del_ids ,
+        "type": "GET",
+        "success": function(data) {
+            alert('删除成功');
+            //location.reload();
+        }
+    });
+}
+
+
+function check_pic_work(id,status){
+	$.ajax({
+		"url":"/admin/index.php",
+		"data": "app=user&act=check_pic_work&id=" + id + "&status=" + status ,
+		"type": "GET",
+		"success": function(data) {
+			   if(data){
+				   
+				alert('审批成功');
+				   window.location.reload();
+			   }
+				//location.reload();
+		}
+	});
+}
+
+</script>
+
+
+
+
+
+
+
+
+<div id="rightTop">
+  
+  <ul class="subnav">
+    
+
+
+  	
+    <li><span>我的作品</span></li>
+
+
+ 
+    
+  </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="user" />
+          <input type="hidden" name="act" value="work" />
+          作品名称：
+          <input class="queryInput" type="text" name="work_name" value="{$work_value|escape}" />
+        
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+     
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <tr class="tatr1">
+      <td width="5%" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td width="5%">id</td>
+      <td width="25%">图片</td>
+      <td>作品名称</td>
+
+      <td><span ectype="order_by" fieldname="start_time">开始时间</span></td>
+
+        <td><span ectype="order_by" fieldname="end_time">结束时间</span></td>
+      <td>分类</td>
+      <td>品类</td>
+   
+      
+      <td>审核</td>
+      
+      <td>操作</td>
+    </tr>
+
+    <!--{foreach from=$data item=v key=k}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" name="ids" id="ids" class="checkitem" value="{$v.id}"/></td>
+      <td>{$v.id}</td>
+   
+         
+        <td>
+         <!--{foreach from=$v.imgurl item=im key=k}-->
+
+         <a href="{$im.img_url}" target="_blank"><img src='{$im.img_url}' width=50 height=50 /></a>
+
+          <!--{/foreach}-->
+        </td>
+      <td>{$v.work_name}</td>
+
+      <td>{$v.start_time}</td>
+        <td>{$v.end_time}</td>
+       <td>{$v.category}</td>
+      <td>{if $v.type==1}男装{else}女装{/if}</td>
+ 
+      <td>{if !$v.status}未审核{elseif $v.status == 1}已通过{else}已拒绝{/if}</td>
+      
+      <td>
+     
+      <a href="javascript:void(0);" onclick='check_pic_work({$v.id},1);'>通过</a>
+      <a href="javascript:void(0);" onclick='check_pic_work({$v.id},2);'>拒绝</a>
+      <a href="javascript:void(0);" onclick='del({$v.id});'>删除</a>
+      <a href="index.php?app=user&act=work_edit&id={$v.id}&cate={$smarty.get.cate}" >详细</a>
+      {if $v.cloth==pcs}<a href="index.php?app=user&act=tz_edit&id={$v.id}&cate={$smarty.get.cate}">{else}<a href="index.php?app=user&act=jbk_edit&id={$v.id}&cate={$smarty.get.cate}">{/if}{if $v.is_diy == 0 && $v.is_sub == 1 }修改{/if}</a>
+      {if $v.cloth==pcs}<a href="index.php?app=user&act=tz_sub&id={$v.id}&cate={$smarty.get.cate}">{else}<a href="index.php?app=user&act=jbk_sub&id={$v.id}&cate={$smarty.get.cate}">{/if}{if $v.is_diy == 0 && $v.is_sub==0}补充{/if}</a>
+      </td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15">
+      <a href="#" onclick='delBat();' >批量删除</a>
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+  </div>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}

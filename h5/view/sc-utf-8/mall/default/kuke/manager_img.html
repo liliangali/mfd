@@ -1,0 +1,54 @@
+{include file=member.header.html}
+<style>
+.table .ware_text { width:290px; }
+</style>
+<script type="text/javascript">
+//<!CDATA[
+function add_to_cart(spec_id, quantity)
+{
+    var url = SITE_URL + '/index.php?app=cart&act=add';
+    $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
+        alert(data.msg);
+    });
+}
+</script>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    
+    
+    <div id="right">
+    
+       <ul class="tab">
+          <li class="active">上传管理</li>
+          <li class="normal"><a href="/index.php/kuke-camera.html">图片上传</a></li>
+       </ul>
+       
+       
+       <div class="upload_tab">
+         <ul>
+           <li class="on">个人设计</li>
+           <li>街拍</li>
+         </ul>
+         <p class="clear"></p>
+       </div>
+       
+       
+       <div class="upload_img">
+         <ul>
+         	{foreach from=$list key=k item=v}
+           <li class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">
+             <p><img src="{$v.url}" alt="" width='182' height='244' /></p>
+             <div><a href="/index.php/kuke-cameraedit.html?id={$v.id}" class="edit_img">编辑</a><a href="/index.php/kuke-delcamera.html?id={$v.id}" class="del_img2">删除</a></div>
+           </li>
+           {/foreach}
+         </ul>
+         <p class="clear"></p>
+       </div>
+       
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe id='iframe_post' name="iframe_post" src="about:blank" frameborder="0" width="0" height="0"></iframe>
+{include file=login_footer.html}

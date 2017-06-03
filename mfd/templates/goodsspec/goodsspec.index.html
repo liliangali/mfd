@@ -1,0 +1,53 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ajax_tree1.js}" charset="utf-8"></script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=goodsspec&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+<div class="info2">
+    <table  class="distinction">
+        <!--{if $list}-->
+        <thead>
+        <tr class="tatr1">
+            <td width="25%">规格名称</td>
+           <!--  <td width="20%">规格备注</td> -->
+            <td width="15%">类型</td>
+          <!--   <td width="10%">显示方式</td> -->
+            <td width="30%">{$lang.handler}</td>
+        </tr>
+        </thead>
+        <!--{/if}-->
+
+        <!--{foreach from=$list item=type}-->
+        <tr class="tatr2">
+            <td width="25%">{$type.spec_name|escape}</td>
+            <!-- {if $type.spec_type == 'image'} -->
+            <td width="15%">图片</td>
+            <!-- {else} -->
+             <td width="15%">文字</td>
+            <!-- {/if} -->
+            
+            <!-- {if $type.spec_show_type == 'flat'} -->
+           <!--  <td width="15%">平铺</td> -->
+            <!-- {else} -->
+            <!--  <td width="15%">下拉框</td> -->
+            <!-- {/if} -->
+            <td  width="20%">
+            <span>
+            <!-- <a href="index.php?app=addspec&amp;spec_id={$type.spec_id}&type={$type.spec_type}">规格值管理</a>| -->
+            <a href="index.php?app=goodsspec&amp;act=edit&amp;id={$type.spec_id}">{$lang.edit}</a>|
+            <a href="javascript:if(confirm('{$lang.drop_confirm}'))window.location = 'index.php?app=goodsspec&amp;act=drop&amp;id={$type.spec_id}';">{$lang.drop}</a>
+            </span>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="5">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+</div>
+
+{include file="footer.html"}

@@ -1,0 +1,135 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+{$_head_tags}
+
+<script>
+var getSMSCode = "";
+$(function(){
+	$('#mf').validate({
+		errorClass:"error-on",
+		success : function(label){
+			 label.addClass('error-ok');
+		}, 
+	    rules : {
+	    	ps:{
+				required:true,
+				rangelength:[5,80]
+			},
+
+			ps_sure:{
+				rangelength:[5,80],
+				required:true,
+				equalTo:"#ps"
+			}
+	    },
+	    messages : {
+	    	ps_sure : {
+	            required : '确认密码不能为空',
+	            equalTo:'两次密码不一致',
+	            rangelength:'5-80字符'
+	        },
+	        ps:{
+	        	required:"密码不能为空",
+	        	rangelength:'5-80字符'
+	        }
+	    }
+	    //submitHandler:function(form){
+	    //		alert(2);
+	    //		return false;
+	   // }
+	});  
+	
+	
+	function paw_strength_check(object){
+	    value=object.val();
+	    var regEXP_number=/[0-9]/;
+	    var regEXP_letter=/[a-zA-Z]/;
+	    var regEXP_sign=/[_\-+=*.!@#$%^&()]/;
+	    var regEXP_blank=/\s/g;
+
+	    var new_str1=regEXP_number.test(value);
+	    var new_str2=regEXP_letter.test(value);
+	    var new_str3=regEXP_sign.test(value);
+	    var new_str4=regEXP_blank.test(value);
+
+	    var n=0;
+	    var m=[];
+	    new_str1==true&&(n=1);
+	    new_str2==true&&(n++);
+	    new_str3==true&&(n++);
+	    m.push(n);
+	    if(new_str4==true){
+	        alert("不能输入空格！");
+	        value=value.replace(regEXP_blank,"");
+	        m.push(value);
+	        object.val(m[1]);
+	    }
+	    return m;
+	}
+
+	$("#ps").keyup(function(){
+		var img_url = '{$img_url}';
+	    var m=paw_strength_check($(this));
+	    if(m[0]==0){
+	    	$("#ps_check_word").html('弱');
+	        $("#ps_check").attr('src',img_url+"/images/aqdj_1.gif");
+	    }else if(m[0]==1){
+	    	$("#ps_check_word").html('弱');
+	    	$("#ps_check").attr('src',img_url+"/images/aqdj_1.gif");
+	    }else if(m[0]==2){
+	    	$("#ps_check_word").html('中');
+	    	$("#ps_check").attr('src',img_url+"/images/aqdj_2.gif");
+	    }else if(m[0]==3){
+	    	$("#ps_check_word").html('强');
+	    	$("#ps_check").attr('src',img_url+"/images/aqdj_3.gif");
+	    }
+	});
+	
+});
+</script>
+
+   <form id='mf' action="kuke-setpayps.html?opt=3" method="post">
+   
+   <input type='hidden' name="authcode" value={$authcode} />
+   
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">启用支付密码</h1>
+    <p class="bdsj_tu_1"><img src="{$img_url}/images/qyzfmm_2.gif" /></p>
+  
+  <div class="xgmm_2">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <th>设置支付密码：</th>
+        <td class="xgmm_xmimk"><input type="password" name='ps' id='ps' style="float:left;" /></td>
+      </tr>
+      
+      <tr>
+        <th style="padding-top:0px;"></th>
+        <td class="aqjb_2" style="padding-top:0px;"><img id='ps_check' src="{$img_url}/images/aqdj_1.gif" /><span id='ps_check_word'>弱</span></td>
+      </tr>
+      
+      <tr>
+        <th style="padding-top:10px;">重复支付密码：</th>
+        <td class="xgmm_xmimk" style="padding-top:10px;"><input type="password"  name='ps_sure' style="float:left;"  /></td>
+      </tr>
+      
+      <tr>
+        <th style="padding-top:0px;"></th>
+        <td style="padding-top:0px; color:#888;">6-20位字符，可由大小写英文，数字或符号组成。</td>
+      </tr>
+      
+      <tr>
+        <th></th>
+        <td class="baocu"><input type="submit" value="保 存"/></td>
+      </tr>
+      
+    </table>
+   </div>
+
+  </div>
+  </form>
+  <p class="clear"></p>
+</div>
+{include file="footer.html"}

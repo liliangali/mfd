@@ -1,0 +1,359 @@
+
+
+$.fn.extend({
+    cart: function(options) {
+        return this.each(function() {
+            new $.cart(options);
+        });
+    }
+});
+
+$.cart = function(opt){
+    
+    $main = $(".main");
+    
+    _action();
+    
+    function drop(){
+    	$this = $(this);
+    	var msga=layer.open({
+	        content: '确认清除该商品？',
+	        btn: ['确定', '取消'],
+	        shadeClose: false,
+	        yes: function(){
+	            var id   = $this.data("id");
+	            var _tp = $this.data('tp');
+	            $this.unbind('click');
+	            $.post(opt.dropUrl,{id:id,tp:_tp}, function(res){
+	            	$this.css('background','#ccc');
+	                var res = $.parseJSON(res);
+	                if(res.done == false){
+	                	_alert(res.msg);
+	                    return;
+	                }else{
+	                    if(!res.retval.goods_num){
+	                        location.href=opt.cartUrl;
+	                    }else{
+	                        //$this.parents(".gwclb").fadeTo(1000,"0.1",function(){
+	                        	$this.parents(".gwclb").next('.gwchst').remove();
+	                        	$this.parents(".gwclb").next('.sintaop').remove();
+	                            $this.parents(".gwclb").remove();
+	                            $('.jiesua').find('a').html('结算 ('+res.retval.goods_num+')')
+	                            $('.jiesua').attr('data-jsn',res.retval.goods_num);
+	                      	  	$(".houji").find('span').html(res.retval.order_amount);
+	                      	    $this.bind("click", drop);
+	                      	    layer.close(msga);
+	                        //});
+	                    }
+	                    
+	                }
+	            })
+	        },
+	        no : function(){
+	        	layer.close(msga);
+	        	return;
+	        }
+	    });
+    	
+    }
+    function drops(){
+         $this = $(this);
+         var l       = $this.offset().left;
+         var t       = $this.offset().top;
+         var box     = $(".warning");
+         var id      = $this.data("item");
+         var type    = $this.data("type");
+         box.css({
+             "left":l-80,
+             'top' :t-20
+         });
+         box.find("input").unbind().bind("click", function(){
+             if($(this).attr("name") == "ok"){
+                 $.get(opt.dropUrl,{id:id,type:type}, function(res){
+                      var res = $.evalJSON(res);
+                      if(res.done == false){
+                          _alert(res.msg);
+                          return;
+                      }else{
+                          if(!res.retval.goods_num){
+                              location.href=opt.cartUrl;
+                          }else{
+                              $this.parents("tr").fadeTo(800,"0.1",function(){
+                                  $main.html(res.retval.content);
+                                  //_action();
+                              });
+                              
+                          }
+                      }
+                  })
+             }
+             box.hide();
+         });
+         box.show();
+    }
+    
+    function clear(){
+        artDialog.confirm("确定要清空购物车吗？", function(){
+            this.close();
+            $.get(opt.clearUrl, function(res){
+                location.reload();
+            })
+        })
+    }
+    
+    function change(){
+        var oi = $(this).parents(".jiajian_2").find("input[name=change]");
+        var num = parseInt(oi.val());
+        if(!num)num=1
+        var val = $(this).data("do") == "jia" ? 1 : -1;
+        var quantity = num + val;
+        if(quantity < 1){
+            oi.val(1);
+            oi.data("num",1);
+            return false;
+        }
+        
+        var _o    = $(this).parents(".jiajian_2");
+        var _ft   = _o.data('ft');
+        if(_ft) return false;
+        
+        oi.val(quantity);
+        oi.data("num",quantity);
+        update(quantity, this);
+    }
+
+    $main.find(".change").unbind().bind("keyup", function(){
+        if(!/^\d+$/.test($(this).val())){ //!/^\d+(\.\d+)?$/.test(_val)   !/^[1-9]+(\d+)?$/
+        	$(this).val($(this).data("num"));
+            return false;
+        }
+    });
+    
+    function _input(){
+        
+        var current = parseInt($(this).val());
+        
+        var _def    = $(this).data("num");
+
+        if(!/^\d+$/.test(current)){ //!/^\d+(\.\d+)?$/.test(_val)   !/^[1-9]+(\d+)?$/
+        	$(this).val(_def);
+            return false;
+        }
+        
+        $(this).val(current);
+
+        if(current < 1 || !current){
+            $(this).val(_def);
+            return false;
+        }
+
+        if(current == _def){
+            return false;
+        }
+        
+        update(current, this);
+    }
+    
+    function update(n,o){
+        var _o    = $(o).parents(".jiajian_2");
+        var id    = _o.data("id");
+        var _tp   = _o.data('tp');
+        var _ft   = _o.data('ft');
+        if(_ft) return;
+        $.post(
+                opt.updateUrl, 
+                {id:id,tp:_tp,quantity:n},
+                function(res){
+                  var res = $.parseJSON(res);
+                  if(res.done == false){
+                      //var o = _o.find("input[name=change]");
+                      //if(o.val() != o.data('num')){
+                      //    o.val(o.data('num'));
+                      //}
+                      //错误暂时屏蔽
+                      return;
+                  }else{
+                	  _o.prev('h4').html(res.retval.subtotal);
+                	  $(".jiesua").find('a').find('span').html('( '+res.retval.goods_num+' )');
+                	  $(".houji").find('span').html(res.retval.order_amount);
+                	  $('.jiesua').find('a').html('结算 ('+res.retval.goods_num+')')
+                	  $('.jiesua').attr('data-jsn',res.retval.goods_num);
+                	  //window.location.href="ios:refreshCarNum";
+                	  //app.refreshCarNum()
+                      //_action();
+                  }
+        })
+    }
+    
+    function _one_to_one(){
+    	var _this = $(this);
+    	var _cb = _this.find('span');
+    	 if(_cb.attr('class') == 'on'){
+    		 _cb.attr('class','off')
+    	 }else{
+    		 _cb.attr('class','on')
+    	 }
+    }
+    
+    
+    function _submit(){
+    	var jsn = $('.jiesua').attr('data-jsn');
+    	var cty = $('.jiesua').attr('data-ty');
+    	if(jsn == 0 && cty) return;
+    	
+    	var $this = $(this);
+    	$this.unbind();
+    	var _one = $('.one_to_one').find('span').attr('class');
+    	if(_one == 'on'){
+    		_one = $('.one_to_one').find('span').data('id')
+    	}
+    	
+		$('#CartListForm').ajaxSubmit({
+			type:"post",
+			url : opt.checkUrl,
+			data : {one:_one},
+			success:function(res){
+				var res = $.parseJSON(res);
+				if(res.done == true){
+					location.href=opt.checkoutUrl;
+				}else{
+			    	layer.open({
+				        content: res.msg,
+				        btn: ['确定'],
+				    });
+			    	$this.unbind().bind("click",_submit);
+				}
+			}
+		});
+    }
+
+    function _emb(e){
+        var _this  = $(this);
+        var _id    = _this.data("id");
+        var _ul    = _this.nextAll('ul');
+        var _input = _this.nextAll('input');
+        
+        _ul.show();
+        var foo1 = function(){
+            _ul.hide();
+            $(document).unbind('click',foo1);
+            _this.unbind('click',foo1).bind("click",_emb);
+        }
+        $(document).bind('click', foo1);
+        _this.bind('click', foo1);
+        if(e && e.stopPropagation ){
+            e.stopPropagation();
+         }else{
+             window.event.cancelBubble = true;
+             return false;
+         }
+        _ul.find('li').click(function(){
+            _this.html($(this).html());
+            _input.val($(this).data('id'));
+        });
+    }
+    
+    function _check(){
+    	var _this = $(this);
+    	var _cb = _this.find('input:checkbox');
+    	var _ck = 'n';
+    	var _tk = opt.tk;
+    	var _tp = _this.parents('.gwclb').data('tp')
+    	var _id = _this.parents('.gwclb').data('id')
+    	 if(_cb.is(':checked')){
+    		 _cb.removeAttr('checked');
+    		 _this.find('span').attr('class','off')
+    	 }else{
+    		 _cb.attr("checked", true)
+    		 _this.find('span').attr('class','on')
+    		 _ck = 'y'
+    	 }
+    	 $.post(
+                 opt.choiceUrl, 
+                 {id:_id,tp:_tp,ck:_ck,token:_tk},
+                 function(res){
+                   var res = $.parseJSON(res);
+                   if(res.done == false){
+						if(_ck == 'y'){
+							_cb.removeAttr('checked');
+							_this.find('span').attr('class','off')
+						}else{
+							 _cb.attr("checked", true)
+							 _this.find('span').attr('class','on')
+						}
+	                    return;
+                   }else{
+                 	  $(".houji").find('span').html(res.retval.order_amount);
+                 	 $('.jiesua').find('a').html('结算 ('+res.retval.goods_num+')')
+                 	 $('.jiesua').attr('data-jsn',res.retval.goods_num);
+                   }
+         })
+    }
+    
+    function _checkAll(){
+    	var _this = $(this),_cls = _this.attr('class')
+    	
+    	var _list = $('.wdgwc_box').find('.gwclb').find('.m_gwctu')
+    	var _hd = 'n';
+    	if(_cls == 'off'){
+    		//_this.attr('class','on');
+    		_list.find('span').attr('class','on')
+    		_list.find('input:checkbox').attr("checked", true)
+    		_hd = 'y'
+    	}else{
+    		//_this.attr('class','off');
+    		_list.find('span').attr('class','off')
+    		_list.find('input:checkbox').removeAttr('checked');
+    		_hd = 'n'
+    	}
+    	
+    	$.post(opt.choiceAllUrl,{hd:_hd,token:opt.tk},function(res){
+    		if(res.done == true){
+    			 $(".houji").find('span').html(res.retval.amount);
+    			 $('.jiesua').find('a').html('结算 ('+res.retval.goods_num+')');
+    			 $('.jiesua').attr('data-jsn',res.retval.goods_num);
+    		}
+    	},"json");
+    	
+    }
+    
+    function _alert(msg){
+    	layer.open({
+	        content: msg,
+	        btn: ['确定'],
+	    }); 
+    }
+    
+    function _action(){
+        
+        $main.find(".jia").unbind().bind("click", change);
+        $main.find(".jian").unbind().bind("click", change);
+        $main.find(".change").unbind().bind("blur", _input);
+        
+        $main.find(".scal").unbind().bind("click", drop);
+        
+        $main.find(".select-item").unbind().bind("click",_emb);
+        
+        //$main.find('.backshop').unbind().bind("click",function(){location.href="/";})
+        $main.find(".jiesua").unbind().bind("click",_submit);
+        
+        $main.find('.m_gwctu').unbind().bind('click',_check);
+        $('#checkAll').find('span').unbind().bind('click',_checkAll);
+        
+        $('.one_to_one').unbind().bind('click',_one_to_one);
+        
+        if(document.referrer){
+        	var strs = document.referrer.split("/");
+        	var url = '/'+strs[strs.length-1];
+        	if(url == opt.checkoutUrl){
+        		return
+        	}else{
+        		$('#cartback').attr('href',url);
+        		//$.post(opt.setPreUrl,{url:url},function(res){})
+        		
+        	}
+        }
+    	
+        
+    }
+}

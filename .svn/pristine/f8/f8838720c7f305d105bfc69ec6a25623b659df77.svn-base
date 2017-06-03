@@ -1,0 +1,14 @@
+            <ul>
+            {foreach from=$liangtis item=item key=key}
+                <li data-id="{$item.user_id}" data-phone="{$item.phone_mob}" data-name="{$item.realname}" {if $key==$check} class="cur" {/if}>
+                     {if $item.is_free}
+			   			<i>收费 ¥100</i>
+			   			{else}
+			   			<span>免费</span>
+			   			{/if}
+                    <p class="p1">姓名：{$item.real_name}</p>
+                    <p class="p2">电话：{$item.phone_mob}</p>
+                    <p class="p3">地区：{$item.address}</p>
+                </li>
+            {/foreach}
+            </ul>

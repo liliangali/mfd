@@ -1,0 +1,20 @@
+@charset "utf-8";
+body {background:url(images/body_bg2.gif) left center repeat-x !important; color:#333;}
+input { outline:none;}
+
+#enter {width:480px; margin:0 auto; position:relative; padding-top:70px; overflow:hidden;}
+#enter .glzx_logo {text-align:center; margin-bottom:18px;}
+
+.glydl {width:480px; height:312px; background:url(images/glydl.png) left top no-repeat;}
+.glybt { height:35px; line-height:35px; font-size:16px; padding-left:15px;}
+.glydl .m_dlyfgl { padding:40px 0 0 60px;}
+.m_dlyfgl td { font-size:14px; height:32px; padding-bottom:20px;}
+
+.validates {position: absolute; top: 96px; +top: 100px; left: 390px;}
+.text { border:none; background-image:url(images/htdl_07.png); background-repeat:no-repeat; background-position:left top; height:32px;  line-height:32px; padding:0 10px; width:260px;  color: #555;}
+.text2 {border:none; background: url(images/htdl_07.png) left top no-repeat; height:32px; line-height:32px; padding:0 10px; width:260px;  color: #555;}
+
+.validate {position: relative; top: 5px; +top: 3px;}
+.btnEnter {border: 0; width:118px; height:36px; background: #e66800; border-radius:5px; color:#fff; margin-right:90px; float:left; transition:1s all ease;}
+.btnEnter:hover { background:#d05f02;}
+.btnBorget {border: 0; height:36px; line-height:36px; font-size:14px; background:none; float:left;}

@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>体验店</title>
+<link href="../../static/css/experience.css" rel="stylesheet"
+	type="text/css" />
+
+<script type="text/javascript" src="../../static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?v=2.0&ak=D86faa317d5dd0367df3ea346f27ec86"></script>
+<!-- 加载百度地图样式信息窗口 -->
+<script type="text/javascript"
+	src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+<link rel="stylesheet"
+	href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+<!-- 加载城市列表 -->
+<script type="text/javascript"
+	src="http://api.map.baidu.com/library/CityList/1.2/src/CityList_min.js"></script>
+
+</head>
+
+<body>
+	<!--头部/S-->
+	<div class="head">
+		<div class="nav">
+			<a href="#" class="logo fl"></a>
+			<div class="navBox fr">
+				<ul class="fl">
+					<li><a href="#" target="_blank">男士</a></li>
+					<li><a href="#" target="_blank">活动</a></li>
+					<li><a href="#" target="_blank">评选</a></li>
+					<li><a href="#" target="_blank">潮流</a></li>
+					<li><a href="#" target="_blank">体验店</a></li>
+				</ul>
+				<div class="car fl">
+					<a href="#" target="_blank"></a>
+				</div>
+				<div class="uCenter fl">
+					<a href="#" target="_blank"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--头部/E-->
+	<div class="container">
+		<div class="banner">
+			<img src="../../static/img/tyd_banner.jpg" width="1539" height="620" />
+		</div>
+		<div class="wzword">
+			<p class="tyd_mfd">
+				<img src="../../static/img/tyd_mfd.png" width="140" height="139" />
+			</p>
+			<p class="ess">NATIONAL STORE ADDRESS</p>
+			<p class="dmzs">麦富迪店面展示</p>
+			<p class="border"></p>
+			<p class="originality">mfd麦富迪是集时尚创意、优雅个性与一身的定制品牌，颠覆了国人传统的时尚理念，开启了中国高端定制品牌的新篇章！</p>
+		</div>
+		<div class="pic">
+			<img src="../../static/img/tyd_pic.jpg" width="1539" height="603" />
+		</div>
+		<div class="position">
+			<h2>
+				SHOP ADDRESS<br />
+				<span>店面地址</span>
+			</h2>
+			<div class="wapnr">
+
+
+
+				<div id="allmap" style="width: 809px; height: 563px; float: left;"></div>
+
+
+				<div class="address fl">
+					<h4>
+						具体地址<br />
+						<span>SPECIFIC ADDRESS</span>
+					</h4>
+					<!--{foreach from=$goods_list item=good}-->
+					<dl class="site">
+						<dd>
+							<p class="shopdz fl site_name">{$good.site_name}</p>
+							<p class="bor fl">
+
+								<input type="hidden" name="siteid" value="{$good.city_id}" /> <input
+									type="hidden" class="lng" name="lng" value="{$good.lng}" /> <input
+									type="hidden" class="lat" name="lat" value="{$good.lat}" />
+								<input
+									type="hidden" class="site_phone" name="site_phone" value="{$good.site_phone}" />
+								
+								
+								
+							</p>
+						</dd>
+						<dt class="address">{$good.address}</dt>
+					</dl>
+					<!--{/foreach}-->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--底部/S-->
+	<div class="footer">
+		<div class="footers">
+			<div class="contact fl">
+				mfd联系方式<br />
+				<br />TEL:4009-899-899<br />Email：mfd@mfd.cn
+			</div>
+			<div class="time fl">
+				mfdmfd体验店营业时间<br />
+				<br />周一 至 周五 : 11:00am - 08:30pm<br />周末、节假日 : 11：00am - 09:00pm
+			</div>
+			<div class="scanning fl">
+				@2015 mfd.cn<br />All&nbsp;rights&nbsp;reserved<br />
+				<br />
+				<img src="../../static/img/hd_icon6.png" width="367" height="47" />
+			</div>
+		</div>
+	</div>
+	<!--底部/E-->
+	<script type="text/javascript">
+   var map = new BMap.Map("allmap");
+   
+   
+   $(function(){
+	   $site=$(".site:eq(0)");
+	   m_addOverlay($site);
+	   //alert(1);
+	   $(".site").click(function(){
+		   m_addOverlay($(this));
+	   });
+   });
+   
+   function m_addOverlay(jobj)
+   {
+	   map.clearOverlays();
+	   var lng=jobj.find('.lng').val();
+	   var lat=jobj.find('.lat').val();
+	   
+	   var address=jobj.find('.address').text();
+	   var site_phone=jobj.find('.site_phone').val();
+	   var site_name=jobj.find('.site_name').text();
+	   
+	if(lng.length>0&&lat.length>0)
+	{
+	   
+	   var point = new BMap.Point(lng, lat);
+	   map.centerAndZoom(point, 15);
+		var marker = new BMap.Marker(point);  // 创建标注
+		
+		//marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+		
+		
+		
+		
+		var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="#" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：'+address+'<br/>电话：'+site_phone+'<br/>' +
+                  '</div>';
+		var searchInfoWindow = null;
+		searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+			title  : site_name,      //标题
+			width  : 290,             //宽度
+			height : 105,              //高度
+			panel  : "panel",         //检索结果面板
+			enableAutoPan : true,     //自动平移
+			searchTypes   :[
+				BMAPLIB_TAB_SEARCH,   //周边检索
+				BMAPLIB_TAB_TO_HERE,  //到这里去
+				BMAPLIB_TAB_FROM_HERE //从这里出发
+			]
+		});
+		
+		marker.addEventListener("click", function(e){
+		    searchInfoWindow.open(marker);
+	    });
+
+		
+		
+		
+		map.addOverlay(marker);               // 将标注添加到地图中
+	}
+	   
+	   
+   }
+   
+   
+ 	
+   
+   </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>我的麦券</title>
+
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+
+
+</head>
+<script>window.onunload=function(){};</script>
+<body style="background:#f6f6f6;">
+<div class="main">
+
+  <div class="sydyj">
+    <div class="ksydyj">可使用抵用券<span>({$count})</span></div>
+  </div>
+    
+  {if $data}
+  <form id="debitForm">
+  {foreach from=$data item=ditems key=dkeys}
+      <!--<div class="xfj">{assign var=cloth value=$customs.$dkeys}{$cloth.cate_name}券</div>-->
+
+	  
+	  <div class="debits">
+	  {foreach from=$ditems item=ditem key=dkey}
+	  <div class="sydyj" data-id="{$ditem.id}" data-name="{$ditem.name}" data-sn="{$ditem.code}">
+	   <a href="javascript:void(0)" style="display:block;">
+		   {if $debit.$dkey}
+		   {assign var=dsd value=$debit.$dkey}
+		   {/if}
+	     <input type="checkbox" {if $debit.$dkey && $dsd.category == $dkeys} checked="checked" {/if} name="debit[{$dkeys}]" value="{$ditem.id}" style="display:none;">
+	     <h1 class="{if $debit.$dkey && $dsd.category == $dkeys} xfj_on{else}xfj_off {/if} ">{$ditem.money|price}</h1>
+	     <p class="yxqsj">截止日期:<span>{$ditem.end_time|date:Y-m-d}</span></p>
+	   </a>
+	  </div>
+      {/foreach}
+      </div>
+  {/foreach}
+  <a href="javascript:void(0)" id="subDibet" class="wysy">确 定</a>
+  </form>
+  
+  {else}
+  暂无抵扣券
+  {/if}
+</div>
+
+
+<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+
+<script type="text/javascript">
+
+function checkDebitss(){
+	var _this = $(this);
+    var _id = _this.data('id')
+    var _hc = _this.find('input:checkbox').attr('checked');
+    _this.parents('.debits').find('input:checkbox').removeAttr('checked');
+    _this.parents('.debits').find('h1').attr('class','xfj_off');
+    
+    if( _hc == 'checked'){
+    	$('.debits').find('.sydyj').each(function(){
+            $(this).unbind().bind('click',checkDebit)
+        });
+        
+    }else{
+    	
+    	$('.debits').find('.sydyj').each(function(){
+            if($(this).data('id') == _id && $(this).find('input:checkbox').attr('checked') == 'checked'){
+                $(this).parents('.debits').find('input:checkbox').removeAttr('checked');
+                $(this).parents('.debits').find('h1').attr('class','xfj_off');
+            }
+        })
+        
+        _this.find('input:checkbox').attr('checked','checked');
+        _this.find('h1').attr('class','xfj_on');
+        
+        //_this.parents('form').siblings(".sudyj").unbind('click').end().bind('click',checkDebit);
+        
+        /* $('.debits').find('.sydyj').each(function(){
+            if($(this).data('id') == _id && $(this).find('input:checkbox').attr('checked') != 'checked'){
+                $(this).unbind();
+            }
+        }) */
+    }
+}
+
+function checkDebit(){
+    var _this = $(this);
+    var _id = _this.data('id')
+    var _hc = _this.find('input:checkbox').attr('checked');
+    
+    _this.parents('#debitForm').find('input:checkbox').removeAttr('checked');
+    _this.parents('#debitForm').find('h1').attr('class','xfj_off');
+    
+    if( _hc == 'checked'){
+        $('#debitForm').find('.sydyj').each(function(){
+            $(this).unbind().bind('click',checkDebit)
+        });
+        
+    }else{
+        
+        $('#debitForm').find('.sydyj').each(function(){
+            if($(this).data('id') == _id && $(this).find('input:checkbox').attr('checked') == 'checked'){
+                $(this).parents('.debits').find('input:checkbox').removeAttr('checked');
+                $(this).parents('.debits').find('h1').attr('class','xfj_off');
+            }
+        })
+        
+        _this.find('input:checkbox').attr('checked','checked');
+        _this.find('h1').attr('class','xfj_on');
+        
+    }
+}
+
+$('#debitForm').find('.sydyj').unbind().bind('click',checkDebit)
+//$('.debits').find('.sydyj').unbind().bind('click',checkDebit)
+
+function _alert(msg){
+    layer.open({
+        content: '<p style="text-align:center">'+msg+'</p>',
+        btn: ['确定'],
+    }); 
+}
+
+
+$('#subDibet').unbind().bind('click',function(){
+	
+	$(this).parents('form').ajaxSubmit({
+        type:"post",
+        //data:{id:_id},
+        dataType:"json",
+        url:"{link app=cart act=debitSave}?time="+ (new Date()).getTime(),
+        //beforeSubmit:function(formData,jqForm,options){return _oj.valid();},
+        success:function (res,statusText) {
+            if(res.done == false){
+                _alert(res.msg);
+            }else{
+            	sessionStorage.removeItem('coin');
+                sessionStorage.removeItem('coinval');
+//                history.go(-1)
+//                return false;
+                var mfd_cart_is_check = "{$smarty.get.mfd_cart_is_check}";
+                if(mfd_cart_is_check)
+                {
+                    location.href="{link app=cart act=checkout}?mfd_cart_is_check=1&did="+res.retval;
+                }
+                else
+                {
+                    location.href="{link app=cart act=checkout}?did="+res.retval;
+                }
+
+            }
+        }
+    });
+	
+	
+})
+
+
+</script>
+</body>
+</html>

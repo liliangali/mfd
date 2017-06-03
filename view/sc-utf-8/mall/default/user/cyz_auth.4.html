@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>安全中心</title>
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+</head>
+
+<body>
+{include file="../header-new.html"}
+   <div class="user_box">
+  {include file=member.menu.html}
+   <div class="user_right user_rights fr">
+        <h4>实名认证</h4>
+        <div class="verification verificationwc">
+            <ul>
+                <li>1.验证身份</li>
+                <li>2.绑定银行卡</li>
+                <li class="current">3.审核失败</li>
+            </ul>
+        </div>  
+        <div class="rzzhx">
+         {if $auth_info.status eq '0'}
+          <div class="examineone examinetwo">您的认证资料已在<span>审核中....</span></div>
+          <p class="shtishi">认证资料审核周期为1-3个工作日，请耐心等待！</p>  
+        {elseif $auth_info.status eq '1'}
+           <div class="examineone examinethree">恭喜您，您的实名认证已经成功</div>
+           <p class="shtishi">您提交的资料已经审核通过，认证已成功，如需修改请点击<a href="member-cyz_auth_4.html">修改认证信息</a></p>
+        {else}
+         	<div class="examineone">抱歉，您的认证资料<span>审核失败....</span></div>
+            <p class="shtishi">您提交的资料，经工作人员审核存在以下问题！</p>    
+        {/if}  
+        
+            <div class="shzltx"><span class="rightdq">真实姓名：</span><span class="shrzcolor">{$auth_info.realname}</span></div>
+            <div class="shzltx"><span class="rightdq">手机号码：</span><span class="shrzcolor">{$auth_info.mobile}</span></div>
+            <div class="shzltx"><span class="rightdq">身份证号码：</span><span class="shrzcolor">{$auth_info.card}</span></div>
+            <div class="shzltx"><span class="rightdq">所在地区：</span><span class="shrzcolor">{$country} {$p} {$c}</span></div>
+            <div class="shzltx"><span class="rightdq">详细地址：</span><span class="shrzcolor">{$auth_info.address}</span></div>
+            <div class="shzltx"><span class="rightdq">绑定银行卡号：</span><span class="shrzcolor">{$auth_info.bankcard}</span></div>
+             {if $auth_info.status eq '2' } 
+            <div class="shibai">失败原因，真实姓名与身份证不符，请<a href="member-cyz_auth_4.html">【重新认证】</a></div>   
+            {/if}     
+            
+        </div>
+    </div> 
+    </div> 
+{include file=footer.html}
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/static/pc/js/public.js"></script> 
+</body>
+</html>

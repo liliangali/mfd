@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>麦富迪海报</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			font: inherit;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		html {
+			-webkit-text-size-adjust: none;
+			height: 100%;
+		}
+
+		.bodyclass{
+			max-width: 640px;
+			min-width: 320px;
+		}
+
+		body {
+
+			width: 100%;
+			font-family: PingFangSC-Regular, Helvetica, "Droid Sans", Arial, sans-serif;
+			background: #fffdf6;
+			overflow-scrolling: touch;
+			overflow-x: hidden;
+			margin: 0 auto;
+		}
+
+
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+
+		.hb_top {
+			background-image: url(static/img/mfd_1.png);
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			width: 100%;
+			height: 15.4rem;
+			position: relative;
+		}
+
+		.hb_top_1 {
+			width: 2.75rem;
+			height: auto;
+			position: absolute;
+			left: 6.25%;
+			bottom: 0.5rem;
+		}
+
+		.hb_top_2 {
+			width: 3.5rem;
+			height: auto;
+			position: absolute;
+			right: 3.125%;
+			bottom: 0.5rem;
+		}
+
+		.hb_top_1 p,
+		.hb_top_2 p {
+			font-size: 0.6rem;
+			-webkit-transform-origin-x: 0;
+			-webkit-transform: scale(0.83);
+			text-align: center;
+			line-height: 20px;
+		}
+
+		.hb_top_2 p{
+			width: 4.2rem;
+		}
+
+
+
+		.hb_top_2 img {
+			box-shadow: 0px 0px 3px #000000;
+		}
+
+		.hb_top_3 {
+			width: 46.25%;
+			height: 7.4rem;
+			position: absolute;
+			left: 50%;
+			bottom: -23.125%;
+			margin-left: -23.125%;
+			border-radius: 50%;
+		}
+
+		.hb_top_3 img{
+			border-radius: 50%;
+		}
+
+		.hb_xx {
+			width: 100%;
+			height: 6rem;
+			position: relative;
+			font-size: 0.5rem;
+			margin-bottom: 1rem;
+		}
+
+		.hb_xx_left {
+			background-image: url(static/img/mfd_6.png);
+			background-size: 100% 100%;
+			width: 8rem;
+			height: 4rem;
+			line-height: 1rem;
+			position: absolute;
+			left: 0.5rem;
+			bottom: 0;
+			color: #63625f;
+		}
+
+		.hb_xx_left p:nth-child(4) {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		.hb_xx_right {
+			background-image: url(static/img/mfd_7.png);
+			background-size: 100% 100%;
+			width: 6.5rem;
+			height: 3rem;
+			line-height: 1rem;
+			position: absolute;
+			right: 0.5rem;
+			bottom: 0;
+			text-align: right;
+			color: #63625f;
+		}
+
+		.hb_xx_right p:nth-child(2) {
+			text-indent: 2em;
+			display: -webkit-box;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: normal;
+			word-wrap: break-word;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+		}
+	</style>
+	<script src="../static/v1/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="diy/js/html2canvas.js"></script>
+	<script>
+		//<![CDATA[
+		(function() {
+			window.onload = function(){
+//                html2canvas(document.body, {
+//                    "logging": true, //Enable log (use Web Console for get Errors and Warnings)
+//                    "proxy": "../html2canvasproxy.php"
+//                }).then(function(canvas) {
+//                    var img = new Image();
+//
+//                    img.onload = function() {
+//                        img.onload = null;
+//                        document.body.appendChild(img);
+//                    };
+//
+//                    img.onerror = function() {
+//                        img.onerror = null;
+//                        if(window.console.log) {
+//                            window.console.log("Not loaded image from canvas.toDataURL");
+//                        } else {
+//                            alert("Not loaded image from canvas.toDataURL");
+//                        }
+//                    };
+//
+//                    img.src = canvas.toDataURL("image/png");
+//                });
+				html2canvas(document.body, {
+					onrendered: function(canvas) {
+//						return ;
+//					console.log(canvas)
+//						document.body.appendChild(canvas);
+
+
+//						img.src = canvas.toDataURL("image/png");
+
+						$.ajax({
+							type: "POST",
+//					     url: "fdiy-upfile.html",
+							url: "default-fimg.html",
+							data:{
+								imgUrl:canvas.toDataURL("image/png"),
+							},
+							success: function(res){
+
+
+								var img = new Image();
+								img.onload = function() {
+									img.onload = null;
+									$("body").empty();
+									$("body").removeClass('bodyclass');
+									document.body.appendChild(img);
+
+								};
+
+								img.onerror = function() {
+									img.onerror = null;
+									if(window.console.log) {
+										window.console.log("Not loaded image from canvas.toDataURL");
+									} else {
+										alert("Not loaded image from canvas.toDataURL");
+									}
+								};
+								img.src = res;
+//								console.log(res)
+							},
+						});
+
+					}
+				});
+
+			};
+		})();
+		//]]>
+	</script>
+
+
+<script type="text/javascript">
+	var docEl = document.documentElement,
+			//当设备的方向变化（设备横向持或纵向持）此事件被触发。绑定此事件时，11
+			//注意现在当浏览器不支持orientationChange事件的时候我们绑定了resize 事件。
+			//总来的来就是监听当然窗口的变化，一旦有变化就需要重新设置根字体的值
+			resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+			recalc = function() {
+				//设置根字体大小
+				var tagFont = 20 * (docEl.clientWidth / 320)
+				if(tagFont > 30) {
+					docEl.style.fontSize = '30px';
+				} else {
+					docEl.style.fontSize = 20 * (docEl.clientWidth / 320) + 'px';
+				}
+			};
+	//绑定浏览器缩放与加载时间
+	window.addEventListener(resizeEvt, recalc, false);
+	document.addEventListener('DOMContentLoaded', recalc, false);
+</script>
+</head>
+<body class="bodyclass">
+<div class="hb_top">
+	<div class="hb_top_1">
+		<img src="static/img/0.jpeg" />
+		<p>{$member_info.nickname}</p>
+	</div>
+
+	<div class="hb_top_2">
+		<img src="static/img/1.jpeg" />
+		<p>长按识别二维码</p>
+	</div>
+
+	<div class="hb_top_3">
+		<img src="static/img/2.jpg" />
+	</div>
+</div>
+
+<div class="hb_xx">
+	<div class="hb_xx_left">
+		<p>狗狗：<span>{$goods_item.dog_name}</span></p>
+		<p>犬期：<span>{$goods_item.quanqi}</span></p>
+		<p>生日：<span>{$goods_item.dog_date}</span></p>
+		<p>功效：<span>{$goods_item.gongxiao_str}</span></p>
+	</div>
+
+	<div class="hb_xx_right">
+		<p>主人寄语</p>
+		<p>{$goods_item.dog_desc}</p>
+	</div>
+</div>
+<div class="hb_bottom">
+	<img src="static/img/mfd_2.png" />
+</div>
+</body>
+</html>
+<script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
+<script>
+	//检测是否是微信浏览器
+
+	var ua1 = navigator.userAgent.toLowerCase();
+
+		wx.config({
+			debug: false,
+			appId: "{$config[appId]}",
+			timestamp: "{$config[timestamp]}",
+			nonceStr: "{$config[nonceStr]}",
+			signature: "{$config[signature]}",
+			jsApiList: [
+			'onMenuShareTimeline',
+			'onMenuShareAppMessage'
+			]
+		});
+
+
+
+		wx.ready(function () {
+			// 在这里调用 API
+			wx.onMenuShareTimeline({
+				title: '{$goods_item.goods_name}', // 分享标题
+				link: '{$goods_item.url}', // 分享链接
+				imgUrl: '{$goods_item.style}', // 分享图标
+				success: function () {
+				},
+				cancel: function () {
+				}
+			});
+
+
+			wx.onMenuShareAppMessage({
+				title: '这里是可自定义标题', // 分享标题
+				desc: '这里是描述这里是描述', // 分享描述
+				link: '{$goods_item.url}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				imgUrl: '{$goods_item.style}', // 分享图标
+				type: '', // 分享类型,music、video或link，不填默认为link
+				dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				success: function () {
+					// 用户确认分享后执行的回调函数
+				},
+				cancel: function () {
+					// 用户取消分享后执行的回调函数
+				}
+			});
+
+		});
+
+
+
+
+
+
+
+
+
+
+
+</script>

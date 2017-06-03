@@ -1,0 +1,79 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#first_form').validate({
+        rules: {
+            value: {
+                min: 0.00000000000001,
+                max: 10,
+                
+            },
+        },
+        messages: {
+            value: {
+                min: "折扣错误!",
+                max: "折扣错误!"
+            },
+         },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+    });
+});
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>定制初体验</span></li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="first_form">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15"><label for="types"> 定制初体验 :</label></th>
+        <td class="paddingT15 wordSpacing5">
+        <input type="hidden" name="key" value="discount" />
+        <input id="value" type="text" class="infoTableInput required" type="text" name = 'value' value ="{$data.value}" /><span>请输入0 ~ 10 的折扣率,用以首次下单订单商品总价的折扣!</span>
+        </td>
+      </tr>
+      <tr class="promotion" id="promotion" ></tr>
+      <tr>
+        <th class="paddingT15"><label> 是否开启 :</label></th>
+        <td class="paddingT15 wordSpacing5">
+          <select id="active" name="active">
+             {html_options options=$active selected=$data.active}
+          </select>
+        </td>
+      </tr>
+      
+      <tr>
+	      <th class="paddingT15"><label> 可用数量 :</label></th>
+	      <td class="paddingT15 wordSpacing5"><input id="numbers" type="text" name="numbers" value="{$data.numbers|default:0}" class="infoTableInput required digits"/></td>
+      <tr>
+      
+	  <tr>
+	    <th class="paddingT15"><label> 开始时间 :</label></th>
+	    <td class="paddingT15 wordSpacing5">
+            <input class="infoTableInput2 pick_date" id="start_time" type="text" name="start_time" value="{if $data.start_time}{$data.start_time|date:Y-m-d}{/if}" />
+	    </td>
+	  </tr>
+	  <tr>
+        <th class="paddingT15"><label> 结束时间 :</label></th>
+        <td class="paddingT15 wordSpacing5">
+            <input class="infoTableInput2 pick_date" id="end_time" type="text" name="end_time" value="{if $data.end_time}{$data.end_time|date:Y-m-d}{/if}" />
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="tijia" type="submit"  value="{$lang.submit}" />
+          <input class="congzi" type="reset"  value="{$lang.reset}" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}
+<script type="text/javascript">
+$('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+$('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+</script>

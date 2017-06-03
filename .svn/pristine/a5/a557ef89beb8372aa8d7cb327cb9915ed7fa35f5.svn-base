@@ -1,0 +1,138 @@
+{include file=member.header.html}
+<div class="w">
+  <div class="AreaBox clearfix">
+   {include file=member.menu.html}
+    <div class="con">
+         <h2 class="tit">修改手机号码</h2>
+        
+        <div class="sjbd">
+         <div class="sjbdbc clearfix">
+          <h4>手机绑定</h4>
+          <div class="sjbc_sb_2">
+           <div class="lthx">
+           <p {if $step == 1} style="width:35%" {elseif $step == 2}style="width:66%" {else} style="width:100%" {/if}></p>
+           </div>
+           <ul>
+            <li class="on">第一步：核实手机号码</li>
+            <li>第二步：输入新的手机号码</li>
+            <li>第三步：验证新号码</li>
+            <li style="padding-right:0;">第四步：修改成功</li>
+           </ul>
+          </div>
+         </div>
+         
+         {if $step == 1}
+         <div class="srsjh">
+         <form method="post">
+          <p>请输入您的手机号码：<input type="text" name="phone" value="" placeholder="请输入你的新手机号" /><span>！请输入正确的手机号。</span></p>
+          <input type="hidden" name='step' value="2" />
+          <input type="submit" value="确定" class="mqrtj" />
+          </form>
+         </div>
+         
+         <dl class="xsdfw">
+          <dt>手机绑定成功后，您可以享有以下服务：</dt>
+          <dd>① 手机号码登录： 可直接使用“手机号码”登录到阿里裁缝</dd>
+          <dd>② 重要事件提醒： 进行（支付/提现/服务商中标/需求收到报价）时，可及时收到短信提醒</dd>
+          <dd>③ 账号保护： 在您进行登陆及修改密码等敏感操作时，未经您授权的操作将不被允许</dd>
+         </dl>
+         {elseif $step == 2}
+         <div class="tjbdsj">
+         <form method="post">
+          <p class="m_ts">请您查收手机短信，并将验证码填写到下面完成绑定，此服务免费。</p>
+          <table cellpadding="0" cellspacing="0" border="0" width="100%">
+           <tr>
+            <th>手机号码：</th>
+            <td colspan="2" class="wdsjh">{$phone}</td>
+           </tr>
+           
+           <tr>
+            <th>验证码：</th>
+            <td width="170"><input type="text" name="code" value="" placeholder="请输入您的验证码" class="qsrsjh" /></td>
+            <td><a href="javascript:void(0)" class="cxhq" onclick="sendCodes()" data-time="60">60秒重新获取</a></td>
+           </tr>
+                      
+           <tr>
+            <th></th>
+            <input type="hidden" name="phone" value="{$phone}" />
+            <input type="hidden" name="step" value="3" />
+            <td colspan="2"><input type="submit" value="提交并完成绑定" class="tjbwcbd" /></td>
+           </tr>           
+          </table>
+          </form>
+         </div>
+         
+         <dl class="xsdfw">
+          <dt>如果您没有收到验证码短信</dt>
+          <dd>① 短信到达需要1～2分钟，若您长时间未收到确认短信，建议您重发验证码</dd>
+          <dd>② 每条短信验证码5分钟内输入有效</dd>
+          <dd>③ 如果您的手机号码填写有误或者一直无法完成绑定，建议您<a href="#" class="ghsj">更换手机号码</a></dd>
+         </dl>
+         {else}
+         <div class="tjbdsj">
+          <p class="m_nybd"> v　您已经完成了手机绑定！</p>
+          <p class="sjhxg">您绑定的手机号码是：<span>{$phone}</span><a href="{link app=member act=tailor arg0=editPhone }">修改号码</a></p>
+         </div>
+         
+         <dl class="xsdfw">
+          <dt>手机绑定成功后，您可以享有以下服务：</dt>
+          <dd>① 手机号码登录： 可直接使用“手机号码”登录到阿里裁缝</dd>
+          <dd>② 重要事件提醒： 进行（支付/提现/服务商中标/需求收到报价）时，可及时收到短信提醒</dd>
+          <dd>③ 账号保护： 在您进行登陆及修改密码等敏感操作时，未经您授权的操作将不被允许</dd>
+         </dl> 
+         {/if}
+        </div>
+       
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+//下一步按钮
+
+function sendCodes(){
+                  $.ajax({
+                      "url":"/ajax-bingMobileCode.html",
+                      "data": "phone={$phone}&category=editPhone&type=editPhone&opt=reset" ,
+                      "type": "POST",
+                      'dataType':'json',
+                      "success": function(res) {
+                          if(res.err){
+                              msg('出错:'+res.msg);
+                          }
+                          else
+                          {
+                              $('.cxhq').attr('data-time',res.msg)
+                              countdowns();
+                          }
+                      }
+                  });
+             
+         }
+
+//倒计时按钮
+function countdowns(){
+    var obj=$('.cxhq'),
+    time=obj.attr('data-time');
+    if(time>0){
+    
+        obj.addClass('disabled').unbind('click');
+        var n=time;
+        var timer=setInterval(function(){
+            n--
+            if(n<0){
+                obj.text('重新发送').removeClass('disabled');
+                obj.bind('click',sendCodes);
+                clearInterval(timer);   
+                return
+            }
+            obj.text('('+n+')秒重新发送');
+        },1000) 
+    }
+}
+
+
+
+</script>
+
+{include file=footer.html}

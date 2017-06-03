@@ -1,0 +1,33 @@
+<p class="bcltsj">发票信息<a href="javascript:;" class="saveInvoice">【保存发票信息】</a></p>
+
+<div class="flow-fp">
+   <ul id="needinvoice">
+      <li class="nofp {if !$invoice.invoiceneed}on{/if}"><label style="*margin-top:-5px;"><input type="radio" value="0" name="invoiceneed" {if !$invoice.invoiceneed}checked{/if}></label><span>不需要发票</span></li>
+      <li class="souyfp {if $invoice.invoiceneed}on{/if}"><label style="*margin-top:-5px;"><input type="radio" value="1" name="invoiceneed" {if $invoice.invoiceneed}checked{/if}></label><span>索要发票</span></li>
+   </ul>
+   <div class="flow-nr flow-invoice" {if !$invoice.invoiceneed}style="display:none;"{/if}>
+   <form id="invoiceForm">
+       <dl class="fp_lx" style="width:920px;">
+           <dt>发票类型：</dt>
+           <dd>
+           <span><label style="*margin-top:-5px;"><input type="radio" name="invoicetype" value="1" {if $invoice.invoicetype neq 2}checked{/if}></label>个人</span>
+           <span><label style="*margin-top:-5px;"><input type="radio" name="invoicetype" value="2" {if $invoice.invoicetype eq 2}checked{/if}></label>公司</span></dd>
+       </dl>
+       <dl style="width:920px;">
+           <dt>发票抬头：</dt>
+           <dd><input type="text" name="invoicetitle" value="{$invoice.invoicetitle}" class="flow_taitou" maxlength="200"></dd>
+       </dl>
+       <dl>
+           <dt>发票内容：</dt>
+           <dd>
+	              <select class="fp_select" name="invoicecontent">
+	                 <option value="1">服装</option>
+	              </select>
+           </dd>
+       </dl>
+       </form>
+   </div>
+   
+</div>
+
+<div class="but_pos"><input type="button" value="" class="tjyiuyoexx saveInvoice"></div>

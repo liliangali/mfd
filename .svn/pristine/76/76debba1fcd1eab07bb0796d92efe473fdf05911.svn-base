@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+			<form action = "http://api.alicaifeng.com/soap/club.php?act=yh_add" method="post" enctype="multipart/form-data" >
+			token:<input type="text" name="token" value="tokentokenshao" /><br>
+			chen_id:<input type="text" name="chen_id" value="129" /><br>
+			   log: <input type="file" name="yhImg"  /><br>
+			<input type="submit" value="提交了啊" />
+			</form>
+</body>
+</html>

@@ -1,0 +1,1 @@
+ALTER TABLE `cf_detail_comments` ADD `is_img` INT(10) NOT NULL DEFAULT '0' COMMENT '是否有图0无1是' AFTER `impression`, ADD `jd_id` INT(10) NOT NULL DEFAULT '0' COMMENT '生长阶段' AFTER `is_img`;

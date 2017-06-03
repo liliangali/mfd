@@ -1,0 +1,105 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ajax_tree1.js}" charset="utf-8"></script>
+<script type="text/javascript">
+$(function(){
+    $('#selecttype').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            cate_id: {
+            	required : true,
+            },
+        },
+        messages : {
+            cate_id : {
+                required : '请选择分类',
+            },
+        }
+    });
+});
+
+</script>
+<script>
+$().ready(function() {
+	$("#cate_id").change(function() {
+		$("#selecttype").submit();
+	})
+})
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=goodstype&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <table  class="distinction">
+        <!--{if $type_list}-->
+        
+        <tr class="tatr1">
+            <td class="w30"><input id="checkall_1" type="checkbox" class="checkall" />{$lang.checkall}</td>
+            <td width="50%"><span class="all_checkbox"><label for="checkall_1"></label></span>类型名称</td>
+            <td>属性数</td>
+            <td>状态</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        
+        <!--{/if}-->
+      
+        <!--{foreach from=$type_list item=type}-->
+        <tr>
+            <td class="align_center w30"><input type="checkbox" class="checkitem" value="{$gcategory.cate_id}" /></td>
+            <td class="align_center">
+            {$type.type_name}
+            </td>
+            <td class="align_center">
+            100
+           </td>
+           
+           <td>
+           <!--{if $type.enabled}-->
+            <img src="templates/style/images/positive_enabled.gif" ectype="inline_edit" fieldname="is_on_sale" fieldid="{$part.part_id}" fieldvalue="1" title="{$lang.editable}"/>
+            <!--{else}-->
+            <img src="templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="is_on_sale" fieldid="{$part.part_id}" fieldvalue="0" title="{$lang.editable}"/>
+            <!--{/if}-->
+           </td>
+           
+            <td class="handler">
+            <span>
+            <a href="index.php?app=attribute&amp;id={$type.type_id}">属性列表</a>|
+            <a href="index.php?app=goodstype&amp;act=edit&amp;id={$type.type_id}">{$lang.edit}</a>|
+      		<a href="javascript:if(confirm('{$lang.drop_confirm}'))window.location = 'index.php?app=goodstype&amp;act=drop&amp;id={$type.type_id}';">{$lang.drop}</a>
+            </span>
+            </td>
+            
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="5">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+        
+        <tfoot>
+            <tr class="tr_pt10">
+            <!-- {if $gcategory} -->
+            <!-- 
+                <td class="align_center"><label for="checkall1"><input id="checkall_2" type="checkbox" class="checkall"></label></td>
+                <td colspan="4" id="batchAction">
+                    <span class="all_checkbox"><label for="checkall_2">{$lang.checkall}</label></span>&nbsp;&nbsp;
+                    <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=parttype&act=droptype" presubmit="confirm('{$lang.drop_confirm}');" />
+                </td>
+              -->
+            <!--{/if}-->
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+{include file="footer.html"}

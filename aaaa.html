@@ -1,0 +1,59 @@
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>drag</title>
+<link rel="stylesheet" href="../css/jquery.range.css">
+<script src="../js/jquery-3.1.0.min.js"></script>
+<script src="../js/jquery.range.js"></script>
+<head>
+    <style>
+        .highlighttext{
+            background-color:yellow;
+            font-weight:bold;
+        }
+        .demo{
+            display: inline-block;
+        }
+        #g1{
+            margin: 40px auto;
+        }
+    </style>
+
+</head>
+<body>
+<div class="dragTime_box">
+    <span>延时：</span>
+    <div class="demo">
+        <input type="hidden" class="single-slider" value="5" />
+    </div>
+    <span>分钟</span>
+    <button id="g1">获取值</button>
+</div>
+<input type="button" value="改变值" id="changeValue">
+<script>
+    var test;
+    $(function () {
+        test = $('.single-slider').jRange({
+            from: 0,
+            to: 30,
+            step: 1,
+            scale: [0, 10, 20, 30],
+            format: '%s',
+            width: 224,
+            showLabels: true,
+            showScale: true
+        });
+
+        $("#g1").click(function () {
+            var aa = $(".single-slider").val();
+            alert(aa);
+        });
+    });
+
+    $('#changeValue').click(function(){
+        test.setValue(10);
+    });
+</script>
+</body>
+</head>
+</html>

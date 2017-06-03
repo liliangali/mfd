@@ -1,0 +1,259 @@
+{include file=header.html}
+<link type="text/css" href="../../static/css/detailed_product.css" rel="stylesheet" />
+<script type="text/javascript" src="../../static/js/jQselect.js"></script>
+<div class="detailed_top">
+ <div class="xq_center clearfix">
+   <div class="xqtop_left"><img src="{$info.source_img}"></div>  
+   <div class="xqtop_right"></div>
+ </div>
+ 
+ <div class="xqjj_jgwc">
+  <div class="kuadu">
+   <h1>{$info.name}</h1>
+   <h2>{$info.price|price}</h2>
+   <p class="fgxxz">
+   {if $attrs}
+        {foreach from=$attrs item=attr}
+            {$attr.attr_name}：{$attr.attr_value}<br/>
+        {/foreach}
+   {/if}
+   </p>
+   
+   <div class="gwcjj">
+    <div class="jajia_box"><a href="#" class="a_1">-</a><input type="text" value="1" name="number" id="number"><a href="#" class="a_2">+</a></div>
+    <div class="jrgwcal"><a href="javascript:;" onclick="addToCart()" class="addCart">加入购物车</a></div>
+   </div>
+   
+   <div class="cmxz_box">
+      <div class="my-lt">
+         <a href="javascript:;" class="paddingr" id="xzbm">标准码定制</a><a href="#" class="cur" id="mylt">量体定制</a><a href="javascript:;" id="look_cm">查看尺码表</a>
+      </div>
+      <div id="goods-gg" style="display:none;">
+          <div class="xzbjhsh xftz">
+            <select id="a" style="display: none" name="a">
+            {foreach from=$size item=sz}
+                <option value="{$sz.Id}">{$sz.Name}</option>
+            {/foreach}
+            </select>
+           </div> 
+      </div>
+  
+   </div>
+   
+   <div class="krlgf">
+     <div class="left div_1">
+      <p class="p1"><a href="{link app=designer arg0=1 arg1=0 arg2=$design.id}"><img src="{$design.photo_url}"></a></p>
+      <p class="p2"><a href="{link app=designer arg0=1 arg1=0 arg2=$design.id}">{$design.username}</a></p>
+     </div>
+     
+     <div class="div_2 right">
+      <p class="p1">{$design.signaturl}</p>
+      <p class="p2"><span>作品：<font>{$design.count}</font></span><span>关注：<font>{$design.popularity}</font></span></p>
+     </div>
+   </div>
+   
+   <div class="scfxfp">
+    <div class="p1 left"><a href="javascript:favorite();">收藏</a></div>
+    <div class="p2 left"><a href="{link app=demand act=sue}">分享</a><p class="fxsgal"><a href="#" class="a1 left"></a><a href="#" class="a2 left"></a><a href="#" class="a3 left"></a><a href="#" class="a4 left"></a></p></div>
+    <div class="p3 left"><a href="#">发布需求</a></div>
+   </div>   
+   
+ </div>
+  </div>
+</div>
+
+
+<div class="detailed_center clearfix">
+  <div class="xqcenter_left">
+   {$info.content}
+  </div>
+  
+  <div class="xqcenter_right">
+    <div class="commentLayer"></div>
+  
+  <p class="spzx">商品咨询</p>
+  <div class="questionLayer"></div>
+  
+  <div class="wyzx">
+   <input type="text" value="" placeholder="我要咨询" class="input_1 questionInput" name="question">
+   <input type="button" value="咨询" class="input_2 questionButton">
+  </div>
+    
+  </div>
+</div>
+
+<div class="tjdp">
+  {if $links}
+  <div class="goods_list2">
+
+     <h1>RECOMMENDATION<br/>推荐搭配</h1>
+     <ul>
+     {foreach from=$links item=link}
+       <li>
+         <p><a href="{link app=custom arg=$link.cid}"><img src="{$link.small_img}"></a></p>
+         <h2><a href="{link app=custom arg=$link.cid}">{$link.name}</a></h2>
+         <h6>{$link.price}</h6>
+       </li>
+    {/foreach}
+     </ul>
+  </div>
+ {/if}
+</div>
+
+<!--底部结束-->
+<script src="../../static/js/public.js"></script>
+<script src="../../static/js/jquery.cookie.js"></script>
+<script src="../../static/expand/layer/layer.min.js"></script>
+<script type="text/javascript">
+
+var id = '{$info.id}';
+
+function addToCart(){
+	var data = {};
+	var num = parseInt($("#number").val());
+	var size = "diy";
+	$(".my-lt a").each(function(){
+	    if($(this).hasClass("cur") && $(this).attr("id") == "xzbm"){
+	       size = $("#a").val();
+		}
+	})
+	data.type = "custom";
+	data.quantity = num ? num : 1;
+	data.goods_id = id;
+	data.size = size;
+	data.ajax = 1;
+    $.post("{link app=cart act=add}",data,function(res){
+        var res = eval("("+res+")");
+        if(res.done == false){
+            if(res.retval == "login"){
+         	    login(function(){addToCart()});
+            }else{
+                msg(res.msg,330,150);
+                return false;
+            }
+        }else{
+            $(".minCart").html(res.retval.goods_num);
+            $this = $(".addCart");
+        	var t=$($this).offset().top+35,
+        	l=$($this).offset().left-127;
+            var html='<div id="carInfo" class="carInfo" style="left:'+l+'px;top:'+t+'px;z-index:9999">\
+            				<h3>商品已成功加入购物车</h3>\
+            				<p>购物车共计<span>'+res.retval.goods_num+'</span>件&nbsp;&nbsp;合计:<span>'+res.retval.amount+'</span></p>\
+            				<div class="btnBox">\
+            					<button class="btn1">继续购物</button><button class="btn2">去购物车结算</button>\
+            				</div>\
+            			</div>';
+            $('#carInfo').remove();
+            $('body').append(html);
+            $('#carInfo .btn1').click(function(){
+            	$('#carInfo').remove();
+            });
+            $('#carInfo .btn2').click(function(){
+            	$('#carInfo').remove();
+            	location.href="{link app=cart}";
+            });
+        }
+    })
+}
+
+function goToPage(obj){
+	var url = $(obj).data("url");
+    $.get(url,{custom_id:id}, function(res){
+        var html = eval("("+res+")");
+        $(".questionLayer").html(html.retval);
+    })
+}
+
+function favorite(){
+	  if(hasLogin() == 0){
+          login(function(){favorite()});
+		}else{
+	    	$.post("{link app=my_favorite act=add}",{id:id,type:'custom'}, function(res){
+		        var res = eval("("+res+")");
+			    if(res.done == true){
+	                msg(res.msg,330,150);
+	        		//location.href='{link app=my_favorite}';  //跳转地址
+	        		return;
+	    		}else{
+	                msg(res.msg,330,150);
+            		return;
+	    		}
+		    })
+	  }
+}
+
+$(document).ready(function(){
+    $(".questionButton").click(function(){
+        var v = $(".questionInput").val();
+        if(v.length == 0){
+        	msg("请填写要咨询的问题！",330,150);
+            return false;
+        }
+        $.post("{link app=custom act=commit}", {custom_id:id,content:v}, function(res){
+            var res = eval("("+res+")");
+            if(res.done == true){
+                msg(res.retval,330,150);
+                $(".questionInput").val('');
+            }else{
+                msg(res.msg,330,150);
+            }
+        })
+    })
+    var $t = new Date().getTime()
+    $.get("{link app=custom act=ask arg=1}?"+$t,{custom_id:id,t:$t}, function(res){
+        var html = eval("("+res+")");
+        $(".questionLayer").html(html.retval);
+    })
+     
+     $.get("{link app=detail_comment act=loadComment arg=1}",{id:id,cate:'custom',t:$t}, function(res){
+        var html = eval("("+res+")");
+        $(".commentLayer").html(html.retval);
+    })
+    
+})
+
+//弹出尺码表图片
+$('#look_cm').on('click',function(event){
+    $.layer({
+        type: 1,
+        title: '',
+        border : [5, 0.5, '#666'],
+        area: ['600px','400px'],
+        shadeClose: true,
+        page: {html: '<img src="../../static/img/other/yx-pic11.jpg" width="600" height="400">'}
+    });
+
+});
+
+$('#xzbm').click(function(){
+     $(this).addClass('cur');
+     $('#goods-gg').fadeIn();
+	 $('#mylt').removeClass('cur');
+});
+$('#mylt').click(function(){
+     $(this).addClass('cur');
+     $('#goods-gg').fadeOut();
+	 $('#xzbm').removeClass('cur');
+});
+window._bd_share_config = {
+		common : {
+			bdText : '1111',	
+			bdDesc : '1111',	
+			bdUrl : '1111', 	
+			bdPic : ''
+		},
+		share : [{
+			"bdSize" : 24
+		}]
+
+	}
+	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<SCRIPT type=text/javascript>
+//selcet框修饰
+	$(document).ready(function() {
+		$("#a").selectbox();
+	});
+</SCRIPT>
+{include file=footer.html}

@@ -1,0 +1,7 @@
+{foreach from=$comment_list item=comment}
+<div class="pl_list">
+    <p class="p1">{$comment.content}</p>
+    <p class="p2">{$comment.ftime}</p>
+</div>
+<p class="mhxdht"></p>
+{/foreach}

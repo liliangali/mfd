@@ -1,0 +1,102 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+ {$_head_tags}
+ 
+ <script>
+
+$(function(){
+	$('#mf').validate({ 
+		errorClass:"error-on",
+		success : function(label){
+			 label.addClass('error-ok');
+		}, 
+	    rules : {
+	    	authcode : {
+	            required : true,
+	            remote:{
+					url: "kuke-ajaxAuthcode2.html?category=bind&type=phone",     //后台处理程序 
+					type: "get",               //数据发送方式
+					dataType: "json",           //接受数据格式   
+					data: {                     //要传递的数据
+						authcode: function() {
+							return $("#authcode").val();
+						}
+					}
+				}
+	        }
+	    },
+	    messages:{
+	    	authcode : {
+	            required : '必填写',
+	            remote:'验证码错误',
+	        }
+	    }
+	});
+ 	
+	
+	resetSMSCode = function (){
+		$.ajax({
+			"url":"/index.php/kuke-resetSMSCode.html",
+			"data": "phone={$phone}&category=bind&type=phone&opt=reset" ,
+			"type": "GET",
+			'dataType':'json',
+			"success": function(res) {
+				//var res = eval( "(" + res + ")" );
+				if(res.err){
+					alert('出错:'+res.msg);
+				}else{
+					$("#getSMS").html(res.msg);
+					$("#getSMS").unbind('click');
+				}
+			}
+		});	
+	}
+	
+});
+
+</script>
+
+
+  <form id='mf' action="kuke-bindphone.html?opt=3" method="post"> 
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">手机绑定</h1>
+    <p class="bdsj_tu_1"><img src="{$img_url}/images/bdsj_2.gif" /></p>
+  
+ 
+  
+  <div class="bdsjdrb">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    	<input type='hidden' name='phone' value='{$phone}' />
+      <tr>
+        <th>您当前要绑定的手机号码：</th>
+        <td colspan="2" class="dqbdsjh"><span>{$phone}</span><a href="kuke-bindphone.html">[修改号码]</a></td>
+      </tr>
+      
+      <tr>
+        <th>校验码：</th>
+        <td class="bdsj_xym"><input type="text" name='authcode' id='authcode' style="float:left;" value="" /></td>
+      </tr>
+      
+      <tr>
+        <th style="padding:0"></th>
+        <td colspan="2" class="nsrdyzmyc">你输入的验证码有误，请重新输入</td>
+      </tr>
+    </table>
+   </div>
+  
+   
+   
+   <div class="dsmh_cxhqdx">
+     <p>如果5分钟内没有收到校验短信，您可以通过"重新获取短信"重新获取校验码一个账号一天最多可以获取5次验证码</p>
+     <a href="javascript:void(0);" id='getSMS' class="cxhqdx" >{$sec}</a>
+   </div>
+  
+   <p class="m_wcbd"><input type="submit" value="完成绑定" /></p>
+
+  </div>
+   </form>
+  <p class="clear"></p>
+</div>
+{include file="footer.html"}

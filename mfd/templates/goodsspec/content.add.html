@@ -1,0 +1,13 @@
+<tr class="tatr2" attr_num="{$num}">
+    <td>{input_img  name="$img"   dir="specvalue"}</td>
+    <td><input  type="text"  class="infoTableInput" name="spec_value[]"  id="spec_value[]" value=''/><br/></td>
+<!--     <td><select name="is_blank{$num}" id="is_blank{$num}" ><option value='1' selected>是</option><option value='0'>否</option></select></td> -->
+    <td><input type="text" name="sort_order[]" id="sort_order[]" value=''/></td>
+<!--     <td><select name="is_show{$num}" id="is_show{$num}"><option value='1'>是</option><option value='0'>否</option></select></td> -->
+    <td><a href="javascript:void(0)" class="exclude" onclick="delete_content(this)">删除</a></td>
+</tr>
+<script type="text/javascript">
+$(function(){
+    $("a.preview").preview()    
+})
+</script>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>支付与配送方式</title>
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+</head>
+
+<body style="background:#f2f2f2;">
+<div class="main"> 
+  <!--头部开始-->
+  <!--头部结束-->
+   <form id="shipForm">
+   <div class="qrddyx" style="padding:15px 0; width:100%;">
+    <div class="fpxx">
+     <h1>支付方式</h1>
+     <p class="payway p1 clearfix" style="border:0;"><a data-id="1" href="javascript:void(0)" {if $pay.type==1} class="on"{/if}>在线支付</a><a data-id="2" href="javascript:void(0)" {if $pay.type==2} class="on"{/if}>货到付款</a></p>
+     <input type="hidden" name="payway" id="payway" value="{$pay.type}" /> 
+    </div>
+   </div>
+   
+   
+   <div class="qrddyx" style="padding:15px 0 60px 0; width:100%;">
+     <div class="fpxx">
+       <h1>配送方式</h1>
+       
+       <ul class="bk_pt shipway">
+        <li id="ti_1"{if $ship.type==1} class="now_hover" {/if} data-id="1">快递服务</li>
+        <li id="ti_2"{if $ship.type==2} class="now_hover" {/if} data-id="2">门店自提</li>
+        <input type="hidden" name="shipway" id="shipway" value="{$ship.type}" /> 
+       </ul>
+       
+       <div id="tj_1" class="sintj"></div>
+       <div id="tj_2" class="sintj" {if $ship.type==2} style="display:block;" {else} style="display:none;" {/if}>
+        <h1>自提地点</h1>
+        <div class="sgxlk">
+          <p class="szdq">
+            <select>
+              <option>中国</option>
+            </select>
+            <select class="sincity" name="city2">
+            <option value="" id="city2">请选择</option>
+            {html_options options=$regions selected=$ship.city2}
+            </select>
+            <select id="city3" name="city3"></select>
+          </p>
+        </div>
+
+        <div class="methods top34 same" id="serverlist"></div>
+        <input type="hidden" name="server_id" id="server_id" value="{$ship.server_id}">
+        
+       </div>
+
+      </div>
+    </div>
+
+   <div class="bc_sc" style="margin-top:100px;">
+     <input type="button" value="保存" class="input_3">
+   </div>
+   </form>
+</div>
+<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+<script type="text/javascript">
+function _alert(msg){
+    layer.open({
+        content: '<p style="text-align:center">'+msg+'</p>',
+        btn: ['确定'],
+    }); 
+}
+
+$('.payway a').click(function(){
+	
+	$(".payway a").removeClass('on');
+    $(this).addClass('on');
+    
+    var _id = $(this).data('id');
+    $('#payway').val(_id);
+    
+});
+$('.shipway li').click(function(){
+	$('.shipway li').removeClass('now_hover');
+	$(this).addClass('now_hover');
+	var _id = $(this).data('id');
+	$('.sintj').css('display','none');
+	$('#tj_'+_id).css('display','block');
+	$('#shipway').val(_id);
+})
+
+$('.sincity').change(function(){
+    var region_id = $(this).val();
+    getCitys(region_id);
+});
+$('#city3').change(function(){
+    var region_id = $(this).val();
+    getServers(region_id);
+})
+
+$('.input_3').click(function(){
+	$('#shipForm').ajaxSubmit({
+        type:"post",
+        url:"{link app=cart act=shipSave}?time="+ (new Date()).getTime(),
+        //beforeSubmit:function(formData,jqForm,options){return _oj.valid();},
+        success:function (res,statusText) {
+            var res = $.parseJSON(res);
+            if(res.done == false){
+                   alert(res.msg);
+            }else{
+            	//最大的问题是safari的不兼容 history 后退不刷新
+            	//location.replace(document.referrer);  //replace() 方法不会在 History 对象中生成一个新的记录。当使用该方法时，新的 URL 将覆盖 History 对象中的当前记录。//此方法虽然做到了后退并刷新 但是回退到上一个页面后历史记录里的 返回之前的页面的历史记录就被替换掉了 再返回会在之后的页面无限刷新
+            	//location.assign(document.referrer);  //类似页面跳转 还是不行
+
+                //location.reload()
+              //return false;
+                //history.go(document.referrer); //仅支持IE!!!
+                
+                
+                //opener.location.reload()
+                //history.go(-1);
+                //return;
+                
+                //location.assign('{link app=cart act=checkout}');
+                
+                //document.referrer.reload()
+                //return false;
+            	
+                location.href="{link app=cart act=checkout}";
+            }
+        }
+    });
+})
+
+function getServers(region_id,server_id){
+
+	$.post("{link app=cart act=getServe}",{region_id:region_id,server_id:server_id}, function(res){
+        var res = $.parseJSON(res);
+        if(res.done == true){
+            $("#serverlist").html(res.retval.content);
+        }
+    })
+}
+
+function getCitys(region_id,next_id){
+	$.post("{link app=cart act=getServeRegionThree}",{region_id:region_id,next_id:next_id}, function(res){
+        var res = $.parseJSON(res);
+        if(res.done == true){
+            $("#serverlist").empty();
+            $("#city3").html(res.retval);
+        }
+    })
+}
+
+
+</script>
+{if $ship.type == '2'}
+<script type="text/javascript">
+$(function(){
+	var  region_id = "{$ship.city2}"
+    var  next_id  = "{$ship.city3}"
+    var server_id = "{$ship.server_id}"
+   	getCitys(region_id,next_id)
+   	getServers(next_id,server_id)
+})
+</script>
+{/if}
+</body>
+</html>

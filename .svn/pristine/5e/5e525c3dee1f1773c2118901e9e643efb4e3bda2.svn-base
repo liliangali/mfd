@@ -1,0 +1,47 @@
+ {include file=member.header.html}
+<div class="w">
+  <div class="AreaBox clearfix">
+    {include file=member.menu.html}
+    <div class="con">
+        <h2 class="tit">身份认证</h2>
+        <div class="certify">
+          <dl class="real-item clearfix">
+            <dt class="img"><img src="../../static/img/card-01.jpg"></dt>
+            <dd class="desc">
+              <h3>个人认证</h3>
+              <p>需要身份证件扫描件或数码拍摄照片。</p>
+              <p class="grey">每张身份证仅可认证3次</p>
+            </dd>
+            <dd class="btn">
+              <button link-index="1" class="butn" onclick="apply(1)">立即申请 </button>
+            </dd>
+          </dl>
+          <dl class="real-item clearfix">
+            <dt class="img"><img src="../../static/img/card-02.jpg"></dt>
+            <dd class="desc">
+              <h3>企业认证</h3>
+              <p class=""> 需要企业营业执照和组织机构代码证，上传营业执照证件扫描件或数码拍摄照片。 </p>
+            </dd>
+            <dd class="btn">
+              <button link-index="2" class="butn" onclick="apply(2)">立即申请 </button>
+            </dd>
+          </dl>
+        </div>
+    </div>
+  </div>
+</div>
+<script>
+function apply(type)
+{
+	if(type == 1)
+	{
+		window.location.href="{link app=member act=tailor arg0=auth_person_info}";
+	}
+	else
+	{
+		window.location.href="{link app=member act=tailor arg0=auth_business_info}";
+	}
+}
+	
+</script>
+{include file="footer.html"}

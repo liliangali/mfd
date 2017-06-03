@@ -1,0 +1,10 @@
+ <ul class="item">
+ <!--{foreach from=$fashion_list item=v}-->
+    <li>
+	   <p class="p1" onclick="addclicknum({$v.id})" style="cursor:pointer"><img src="{$v.pphoto}" ></p>
+	   <p class="p2" onclick="addclicknum({$v.id})" style="cursor:pointer">{$v.title}</p>
+	   <p class="p3">{$v.pubdate}</p>
+	   <p class="p4" onclick="addclicknum({$v.id})" style="cursor:pointer">{$v.summary}</p>
+    </li>   
+ <!--{/foreach}-->
+ </ul>

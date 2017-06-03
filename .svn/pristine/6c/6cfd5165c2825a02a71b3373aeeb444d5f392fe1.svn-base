@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <title>订单支付成功</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+</head>
+<body>
+
+<div class="main">  
+  <div class="cjcg_box">
+    <p class="ddtjcg">订单支付成功</p>
+    <ul class="ddbh_ul">
+     <li><span>订单编号 : </span>{$order.order_sn}</li>
+     <li><span>付款金额 : </span><font>{$order.order_amount|price}</font></li>
+    </ul>
+  </div>
+  <form action="{link app=order act=goToPay}" id="payform" method="post" target="_blank">
+    <input type="hidden" name="obj" value="{$obj}" />
+    <input type="hidden" name="os" value="{$order.order_sn}" />
+  </form>
+  
+  <p class="ckwdd"><!--<a href="http://www.126.com" class="a_1" onclick="goOrder()">查看我的订单</a>--><a href="http://www.baidu.com/"  class="a_2" onclick="done()">返回首页</a></p>
+  <p class="yjdj">如果有任何问题都可以致电给400-169-8836感谢您对麦富迪网的信任！</p>
+</div>
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script src="http://r.cotte.cn/global/luck/mobile/luck.js"></script>
+<script>
+var auth = '{$auth_id}';
+function done(){
+	 javascript:app.done();
+}
+function goOrder(){
+	 app.toOrder();
+}
+
+if(auth){
+	
+	
+}else{
+	luck.open({
+		content:'阁下，为确保您的账户安全及正常享受平台权益，需要您进行实名认证。',	
+		btn:['以后再说','开始认证'],
+		yes:function(){
+			luck.close();
+			luck.open({content:"好的，以后请到“安全设置”进行实名认证!",time:1500})
+			
+		},
+		no:function(){//确定
+			try{
+				goAuth()
+		    }catch(e){}
+			location.href="http://www.gosetauth.com/";	
+		}
+	});
+	
+}
+
+function goAuth(){
+	app.toSetAuth();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{include file=../header-new.html}
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+
+<!--<editmode></editmode>-->
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+
+<div class="user_box">
+	<!--用户中心左菜单部分 START-->
+	{include file = member.menu.html}
+	<!--用户中心左菜单部分 END-->
+
+    <div class="cardright fr">
+		<div class="coolcard">
+        	<h4>账户余额</h4>
+            <div class="yetx">
+            	<p class="fl yecur">当前余额：<span>{$user_info.money|price}</span></p>
+            	<p class="fr yecztx"><a href="recharge.html" class="xzcur">充值</a><a href="member-put_cash.html">提现</a></p>
+            </div>
+        </div>
+		<form method="post">
+        <div class="recharge">
+        	<div class="czje czjes">转入银行卡：
+				<i>{$owner_bank.bank}</i>
+				<input name="bank_id" type="hidden" value="{$owner_bank.id}">
+			</div>
+            <div class="czje czjes">转入银行卡卡号：<span>{$owner_bank.bank_card}</span></div>
+        	<div class="czje">
+            	<h5>提现金额：</h5>
+                <p class="xjsl"><input id="cash_money" name="cash_money" value="10" type="text">元<br>（提现金额必须是1的整数）</p>
+            </div>
+            <div class="czje">
+            	<h5>支付密码：</h5>
+                <p class="xjsl"><input name="paymentPwd" type="password"><a href="{link app=member act=safe}">找回支付密码</a><br>（提现金额3-5个工作日到账）</p>
+            </div>
+            <input type="submit" value="提现申请" class="ptcz">
+        </div>
+		</form>
+    </div>
+</div>
+<script type="text/javascript" >
+$(document).ready(function(){
+    $("#cash_money").keyup(function(){
+   	    var reg=/^\d+$/;
+
+   	    if(!reg.test($('#cash_money').val())){
+			alert('必须输入正整数请重新输入!');
+			$('#cash_money').val(10);
+			event.preventDefault();
+   	    }
+		
+   	    $("#payform").submit();
+    });
+    
+})
+</script>
+{include file=footer.html}
+
+</body>
+</html>
+

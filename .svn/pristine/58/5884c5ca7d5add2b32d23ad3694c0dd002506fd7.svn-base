@@ -1,0 +1,10 @@
+{include file=header-new.html}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>意见反馈</title>
+</head>
+<body>
+<div style="text-align:center; padding:100px;">这里是意见反馈，提交有奖！</div>
+{include file=footer-new.html}
+
+</body>
+</html>

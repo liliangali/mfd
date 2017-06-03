@@ -1,0 +1,97 @@
+{include file=../user/member.header.html}
+<div class="w">
+  <div class="AreaBox clearfix">
+    {include file=../user/member.menu.html}
+    <div class="con">
+      <h2 class="tit">{$tit}<span class="num">({$page_info.item_count})</span></h2>
+      {if $list}
+      <div class="msgList">
+      	<div class="bar">
+        	<label><input type="checkbox" /></label>
+            <a href="javascript:drop();">删除所选</a>
+        </div>
+        <dl class="listBox">
+        {foreach from=$list item=msg}
+        	<dt{if $msg.is_read eq 0} class="on"{/if}>
+            	<label><input type="checkbox" name="msg[]" value="{$msg.id}"/></label>
+            	<span class="ico"></span>
+                <p data-item='{$msg.id}'>{$msg.content|truncate:15}</p>
+                <span class="time">{$msg.add_time|date:Y-m-d H:i:s}</span>
+            </dt>
+            <dd>
+                {$msg.content}
+            </dd>
+        {/foreach}            
+        </dl>
+        <div class="bar">
+        	<label><input type="checkbox" /></label>
+            <a href="javascript:drop();">删除所选</a>
+        </div>
+      </div>
+          {include file=../page.bottom.html}
+      {else}
+      <div class="noRecord">
+                              您目前没有任何消息
+      </div>
+      {/if}
+    </div>
+  </div>
+</div>
+<!--底部结束-->
+<script type="text/javascript">
+$('.msgList .listBox [type=checkbox]').click(function(){
+	var b=$('.msgList .listBox [type=checkbox]:checked').length==$('.msgList .listBox [type=checkbox]').length;
+	$('.msgList .bar [type=checkbox]').attr('checked',b);	
+});
+$('.msgList .bar [type=checkbox]').click(function(){
+	$('.msgList [type=checkbox]').attr('checked',this.checked)	
+});
+$('.msgList dt p').click(function(){
+	var $this=$(this).parent('dt');
+	var item = $(this).data("item");
+	var obj=$this.next('dd');
+	if(obj.is(':visible')){
+		obj.slideUp('fast')
+	}else{
+		obj.slideDown('fast');
+		if($this.hasClass("on")){
+		    $.get("{link app=member act=readLabel}",{item:item}, function(res){
+				$this.removeClass('on')
+			})
+	    }
+
+	}
+})
+
+function drop(){
+	var box = []; 
+	$(".listBox input").each(function(){
+	if($(this).attr("type") == "checkbox" && $(this).attr("checked"))
+		box.push($(this).val());
+	})
+	var strids = box.join(",");
+	if(!strids){
+		msg('没有选择要删除的消息！')
+	}else{
+		use('/static/expand/layer/layer.min.js',function(){
+			$.layer({
+				area: ['350px','150px'],
+				moveType: 1,
+				shade: [0.3, '#000'],
+				dialog: {
+					msg: '确定要删除选中的消息么？',
+					btns: 2,
+					type: 0,
+					yes: function(){
+						$.get("{link app=member act=dropMsg}",{ids:strids}, function(res){
+							location.reload()
+						})
+					}
+				}
+			})
+		})
+	}
+	
+}
+</script>
+{include file="../user/footer.html"}

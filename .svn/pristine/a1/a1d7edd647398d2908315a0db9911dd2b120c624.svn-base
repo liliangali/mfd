@@ -1,0 +1,153 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+
+{$_head_tags}
+
+<script>
+var getSMSCode = "";
+$(function(){
+	$('#mf').validate({
+		errorClass:"error-on",
+		success : function(label){
+			 label.addClass('error-ok');
+		},
+	    rules : {
+	    	authcode_new : {
+	    		required : true,
+	            rangelength:[6,6],
+	            digits:true,
+		        remote:{
+					url: "/index.php/kuke-ajaxAuthcode2.html?category=phone&type=up-new",     //后台处理程序 
+					type: "get",               //数据发送方式
+					dataType: "json",           //接受数据格式   
+					data: {                     //要传递的数据
+						authcode: function() {
+							return $("#authcode_new").val();
+						}
+					}
+				}
+	        },
+	        phone :{
+	        	required : true,
+	        	rangelength:[11,13],
+	            digits:true
+	        }
+	    },
+	    messages : {
+	    	authcode_new : {
+	    		required : '验证码不能为空',
+	            rangelength:'范围为6-6个数字',
+	            digits:'必须输入整数',
+	            remote:'验证码错误'
+	        },
+	        phone : {
+	        	required : "必填写",
+	        	 rangelength:'范围为11-13个数字',
+		            digits:'必须输入整数'
+	        }
+	    }
+	    //submitHandler:function(form){
+	    //		alert(2);
+	    //		return false;
+	   // }
+	});  
+	
+	getSMSCode = function (){
+		var phone = $("#phone").val();
+		if(!phone)
+			return alert("新手机号为空");
+		$.ajax({
+			"url":"/index.php/kuke-SMSCodeAjax.html",
+			"data": "category=phone&type=up-new&opt=get&phone="+phone ,
+			"type": "GET",
+			'dataType':'json',
+			"success": function(res) {
+				//var res = eval( "(" + res + ")" );
+				if(res.err){
+					alert('出错:'+res.msg);
+				}else{
+					$("#getSMS").html(res.msg);
+					$("#getSMS").unbind('click');
+				}
+			}
+		});	
+	}
+
+	
+	resetSMSCode = function (){
+		$.ajax({
+			"url":"/index.php/kuke-resetSMSCode.html",
+			"data": "phone={$account}&category=phone&type=up-new&opt=reset" ,
+			"type": "GET",
+			'dataType':'json',
+			"success": function(res) {
+				//var res = eval( "(" + res + ")" );
+				if(res.err){
+					alert('出错:'+res.msg);
+				}else{
+					$("#getSMS").html(res.msg);
+					$("#getSMS").unbind('click');
+				}
+			}
+		});	
+	}
+	
+	$("#getSMS").bind('click',getSMSCode);
+	
+});
+</script>
+
+
+  <form id='mf' action="kuke-upphone.html?opt=3" method="post">
+  
+  <input type='hidden' name="authcode" value={$authcode} />
+  
+  
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">修改绑定手机</h1>
+    <p class="bdsj_tu_1"><img src="{$img_url}/images/xgsj_2.gif" /></p>
+  
+  <div class="xgmm_2">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <th>新手机号：</th>
+        <td width="" class="xsjh"><input name='phone' id='phone' type="text" value="" style="float:left;" /></td>
+        <td></td>
+      </tr>
+      
+      <tr>
+        <th style="padding-top:0px;"></th>
+        <td class="aqjb_2" style="padding-top:0px; color:#888;" colspan="2">请填写正确的手机号码，我们将把验证码发送到您的手机</td>
+      </tr>
+      
+      <tr>
+        <th></th>
+        <td class="hqdxyzm" colspan="2"><a href="javascript:void(0);" id='getSMS'>获取短信验证码</a></td>
+      </tr>
+      
+      <tr>
+        <th style="padding-top:10px;">请填写手机校验码：</th>
+        <td class="xsjh" style="padding-top:10px;"><input name='authcode_new' id='authcode_new' type="text" value="" maxlength="6" style="float:left;"  /></td>
+        <td></td>
+      </tr>
+      
+      <tr>
+        <th style="padding-top:0px;"></th>
+        <td style="padding-top:0px; color:#888;" colspan="2">你输入的验证码有误，请重新输入</td>
+      </tr>
+      
+      <tr>
+        <th></th>
+        <td class="baocu"><input type="submit" value="下一步"/></td>
+      </tr>
+      
+    </table>
+   </div>
+
+  </div>
+  </form>
+  <p class="clear"></p>
+
+{include file="footer.html"}

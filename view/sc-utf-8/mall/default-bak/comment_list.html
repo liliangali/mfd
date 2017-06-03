@@ -1,0 +1,7 @@
+{foreach from=$comment_list item=comment}
+<div class="item"> <a href="javascript:void(0)" class="headPic"><img src="{$comment.face}" width="50" height="50" /></a>
+<div class="tbar"><span class="name">{$comment.nickname}</span><span class="time">{$comment.ftime}</span></div>
+<div class="con">{$comment.content}</div>
+<p class="menu"></p>
+</div>
+{/foreach}

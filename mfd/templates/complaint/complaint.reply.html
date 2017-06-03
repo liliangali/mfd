@@ -1,0 +1,114 @@
+{include file="header.html"}
+<div id="rightTop">
+
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=complaint">返回{$lang.manage}</a></li>
+
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="reply">
+        <table class="infoTable">
+            <tbody>
+            <tr>
+                <th class="paddingT15">{$lang.num} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$complaint.id}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.from_nickname} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$complaint.from_nickname}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.to_nickname} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$complaint.to_nickname}</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">{$lang.img} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    {if $complaint.img_url_1 !=''}
+                    <span><a  target="_blank" href="{$complaint.img_url_big_1}"><img src="{$complaint.img_url_1}"></a></span>
+                    {/if}
+                    {if $complaint.img_url_2 !=''}
+                    <span><a target="_blank" href="{$complaint.img_url_big_2}"><img src="{$complaint.img_url_2}"></a></span>
+                    {/if}
+                    {if $complaint.img_url_3 !=''}
+                    <span><a target="_blank" href="{$complaint.img_url_big_3}"><img src="{$complaint.img_url_3}"></a></span>
+                    {/if}
+                    {if $complaint.img_url_4 !=''}
+                    <span><a target="_blank" href="{$complaint.img_url_big_4}"><img src="{$complaint.img_url_4}"></a></span>
+                    {/if}
+
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.content} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$complaint.content}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.time} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$complaint.time|date}</span>
+                </td>
+            </tr>
+
+
+            <tr>
+                <th class="paddingT15">
+                    {$lang.status} :
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="status" name="status">
+                        {html_options options=$status_options selected=$complaint['status']}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><label for="article">{$lang.reply} :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="reply" name="reply" style="width:400px;height:110px;">{$complaint.reply}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input type="hidden" name="id" value="142">
+                    <input class="tijia" type="submit" name="Submit" value="提交">
+                    <font color="red">（ ！！注意： 不改动，不要随便提交 ！！）</font>
+                </td>
+            </tr>
+            <input type="hidden" value="{$complaint.id}" name="c_id" >
+            <input type="hidden" value="{$complaint.to_id}" name="to_id">
+            <input type="hidden" value="{$complaint.from_id}" name="from_id" >
+            <input type="hidden" value="{$complaint.content}"  name="content">
+            <input type="hidden" value="{$complaint.to_nickname}"  name="to_nickname">
+            <input type="hidden" value="{$complaint.from_nickname}"  name="from_nickname">
+
+            <input type="hidden" value="{$complaint.img_url_1}"  name="img_url_1">
+            <input type="hidden" value="{$complaint.img_url_2}"  name="img_url_2">
+            <input type="hidden" value="{$complaint.img_url_3}"  name="img_url_3">
+            <input type="hidden" value="{$complaint.img_url_4}"  name="img_url_4">
+
+            <input type="hidden" value="{$complaint.img_url_big_1}"  name="img_url_big_1">
+            <input type="hidden" value="{$complaint.img_url_big_2}"  name="img_url_big_2">
+            <input type="hidden" value="{$complaint.img_url_big_3}"  name="img_url_big_3">
+            <input type="hidden" value="{$complaint.img_url_big_4}"  name="img_url_big_4">
+
+            </tbody>
+        </table>
+    </form>
+</div>
+
+
+</div>
+
+{include file="footer.html"}

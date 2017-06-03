@@ -1,0 +1,36 @@
+{foreach from=$list item=data}
+  <li>
+	<div class="div_1">
+		<p class="p1">Q</p>
+		<h1>{$data.content}</h1>
+		<p class="p2">{$data.user_name}</p>
+	</div>
+	{if $data.reply}
+	<div class="div_2">
+		<p class="p1">A</p>
+		<h1>{$data.reply.content}</h1>
+	</div>
+	<p class="sijia fr">{$data.reply.dateline|date:complete}</p>
+	 {/if}
+   </li>
+{/foreach}
+
+{if $page_info.page_count > 1}
+	<!--翻页开始-->
+      <div class="cc_page">
+        <!--{if $page_info.prev_link}-->
+        <a href="javascript:;" onclick="goToPage(this)" data-url="{$page_info.prev_link}" title="上一页" class="zjt">&lt;</a>
+        <!--{/if}-->
+         <!--{foreach from=$page_info.page_links key=page item=link}-->
+         <!--{if $page_info.curr_page eq $page}-->
+         <span class="active">{$page}</span>
+          <!--{else}-->
+          <a href="javascript:;" onclick="goToPage(this)" data-url="{$link}">{$page}</a>
+              <!--{/if}-->
+        <!--{/foreach}-->
+        <!--{if $page_info.next_link}-->
+        <a href="javascript:;" onclick="goToPage(this)" data-url="{$page_info.next_link}" title="下一页" class="zjt">&gt;</a>
+        <!--{/if}-->
+     </div>  
+    <!--翻页结束-->
+{/if}

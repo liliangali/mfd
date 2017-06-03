@@ -1,0 +1,5 @@
+<!--{if $smarty.session.user_info.member_lv_id > 1}-->
+{include file=member.menu.entrepreneur.html}
+<!--{else}-->
+{include file=member.menu.consumer.html}
+<!--{/if}-->

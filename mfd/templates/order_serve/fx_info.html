@@ -1,0 +1,293 @@
+{include file="header.html"}
+<style type="text/css">
+    <!--
+    body {background: #fff}
+    -->
+
+
+    body { margin:0;padding:0;color:#333;font:14px/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;}
+    div, form, ul, ol, li, span, p, dl, dt, dd, img, i, em, input, textarea, h1, h2, h3, h4, h5, h6 {margin:0;padding:0;border:0;outline:0;}
+    h1, h2, h3, h4, h5, h6 {font-weight:normal;}
+    ul, ol, li { list-style:none;}
+    em, i {font-style:normal;}
+    table,tr,td{padding:0;margin:0;}
+    .fl{float:left;}
+    .fr{float:right;}
+    a{text-decoration:none;}
+    .container{margin-top:20px;}
+    .title{height:30px;line-height:30px;border-bottom:1px solid #999999;padding-left:27px;}
+
+
+
+    /*====返修订单-订单详情/S====*/
+    .detail{width:72px;height:30px;line-height:30px;text-align:center;border:1px solid #999999;border-bottom:none;color:#f00;}
+    .fhbot{padding-right:27px;}
+    .rate{margin:35px 0 0 65px;}
+    .rate h4{font-weight:700;font-size:14px;color:#333;}
+    .schedule{height:58px; overflow:hidden;margin:21px 0 0 54px;width:850px;}
+    .bar{width:62px;height:46px;border:1px solid #a3a3a3;border-radius:28px; text-align:center;color:#333;padding-top:10px;}
+    .bars{border:1px solid #000; background:#000;color:#fff;}
+    .line{height:56px;}
+    .bor{border-bottom:1px solid #000;width:40px;margin-top:27px;}
+    .shanj{height:0;width:0;overflow:hidden;font-size:0;line-height:0;border-color:transparent transparent transparent #000;border-style:solid;border-width:8px 0 8px 8px;margin-top:19px;}
+    .barhei{line-height:32px;}
+    .fxtada{overflow:hidden;font-size:12px;}
+    .fxtada p{margin-left:20px;line-height:30px; display:inline;}
+    .basic{margin:20px 0 0 34px;}
+    .basic p{line-height:30px;}
+    .basic p a{margin-left:50px;}
+    .basic p span{color:red;padding-left:50px;}
+    .rate h4 span{font-weight:normal;padding-left:20px;}
+    .plan{overflow:hidden;}
+    .product{width:245px;margin-right:20px; display:inline;}
+    .chanp{width:100px; text-align:right;}
+    .kuz{width:125px;margin-left:20px; display:inline;border-bottom:1px solid #6F6F00;}
+    .kuzs{width:655px;}
+    .rates{padding-bottom:60px;}
+    .basics p{color:#999999;}
+    /*====返修订单-订单详情/E====*/
+
+    /*====返修订单-返修编辑页/S====*/
+    .service{margin:43px 0 0 64px;}
+    .service h4{font-weight:700;font-size:14px;color:#333;margin-bottom:20px;padding-left:20px;}
+    .client{height:25px;line-height:25px;margin-bottom:15px;}
+    .xingm{width:140px; text-align:right;}
+    .khinp{width:195px;height:23px;line-height:25px;border:1px solid #999;color:#000;padding-left:5px;}
+    .khinps{width:500px;}
+    .client select{width:202px;height:25px;line-height:25px;border:1px solid #999;color:#000;padding-left:5px;}
+    .tishic{padding-left:10px;color:#999999;}
+    .plany{width:1000px;border-bottom:1px solid #999999;padding-bottom:10px;}
+    .planys{border-bottom:none;}
+    .fapl{margin-right:20px; display:inline;}
+    .fapl input{vertical-align:middle;}
+    .clxg{padding:30px 0 0 50px;}
+    .cm{height:36px;padding-left:16px;}
+    .reduce, .jiahao{border: 1px solid #cccccc;display:block;height:16px;line-height:16px;margin:10px 0;text-align:center;width:16px;}
+    .cm span a{color:#444444;}
+    .numb{border: 1px solid #cccccc;display:block;height:18px;margin:8px 6px;text-align:center;width:39px;}
+    .numbs{border: 1px solid #cccccc;display:block;height:18px;margin:8px 47px;text-align:center;width:39px;}
+    .cyleib{margin:19px 0 0 77px; background:url(../images/dian.jpg) 0 5px no-repeat;padding-left:15px;}
+    .xiuzl{ overflow:hidden;}
+    .xiuzl li{float:left;width:332px;}
+    .xiuzl li .leib{float:left;height:32px;line-height:32px;text-align:right;width:135px;}
+    .xiuzl li select{border:1px solid #d0d0d0;display:block;height:23px;line-height: 20px;margin: 6px 0 0 14px;text-align:center;width:124px;}
+    .xiuzl li .xzput{background-color:#ffffff;border:1px solid #d0d0d0;color:#000000;height:22px;line-height:20px;margin-bottom:2px;margin-top:2px;width:80px;}
+    .xiuzl li .remove{display:block;height:26px;margin:auto;text-align:center;width:30px; background:url(../images/remove.png) no-repeat scroll 50% 50%;cursor:pointer;}
+    .list_result{color:#000000;height:32px;line-height:26px;margin-bottom:1px;margin-top:0;padding-left:3px;vertical-align:middle;}
+    .list_result select{width:120px;border:1px solid #626061;}
+    .list_result .neirwor{width:120px;background-color: #FFF; border: 1px solid #626061; color: #000;height: 20px;line-height:20px;}
+    .list_result .xzscbut{width:16px;height:16px; background:url(../images/remove.png) no-repeat;margin-left:10px; cursor:pointer;}
+    .plany .tsul{height:auto;margin:12px 0 50px;overflow:hidden;width:1000px;}
+    .plany .tsul li{border-right:1px solid #dddddd;float:left;height:285px;margin:0 0 0 50px;overflow:hidden;padding:12px 0;width:447px;}
+    .plany .tsul li .nleft{height:auto;overflow:hidden;width:24px;}
+    .plany .tsul li .nright{width:423px;}
+    .plany .tsul li .nright .nwordy{color:#000000;height:14px;line-height:14px;margin:0 0 10px;width:100%;}
+    .plany .tsul li .nright .nworde{color: #797979;text-indent: 22px;}
+    .plany .tsul li .nright .nwords{height:auto;overflow:hidden;width:272px;}
+    .plany .tsul li .nright .nwords p{height:auto;overflow:hidden;width:272px;}
+    .plany .tsul li .nright .nwords p .rady{display:block;height:auto;min-height:12px;text-align:right;width:16px;}
+    .plany .tsul li .nright .nwords p .faword{color:#797979;display:block;height:auto;line-height:20px;margin:0 0 0 6px;text-align:left;width:250px;}
+    .plany .tsul li .nright .yuany{height:auto;margin:0 36px 0 0;overflow:hidden;position:relative;width:100px;}
+    .plany .tsul li .nright .yuany .pos_img_word{background:#dddddd none repeat scroll 0 0;bottom:0;color:#000000;height:auto;line-height:16px;margin:0;opacity:0.6;padding:0 2px;position:absolute;right:0;width:96px;}
+    .tsbut{clear:both;margin:0 0 50px 100px;}
+    .tsbut span{display:inline-block;margin-left:50px;}
+    .tsbut span input{width:120px;height:38px;line-height:38px;text-align:center; background:#c69b6e;color:#fff; cursor:pointer;}
+    /*====返修订单-返修编辑页/E====*/
+
+</style>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=fx&act=index">返回{$lang.manage}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+
+    <div class="container">
+        <div class="rate">
+            <h4>返修进度</h4>
+            <div class="schedule">
+
+                <!--{foreach from=$status_info item=item key=k}-->
+                {if $fx_info['free']==="0"}
+                    <!--{if $k==0}-->
+                    <div class="bar {if $fx_info.info_status==0}bars {/if}  fl">{if $fx_info.info_status>0}用户提交申请{else}用户未提交申请{/if}</div>
+                    <!--{elseif $k==6}-->
+                    <div class="bar {if $fx_info.info_status==6}bars {/if} barhei  fl">取消订单</div>
+                    <!--{else}-->
+                        <div class="bar {if $fx_info.info_status==$k}bars{/if} {if $k>=5}barhei{/if} fl">{$item}</div>
+                    <!--{/if}-->
+                {else}
+                    <!--{if $k==0}-->
+                    <div class="bar {if $fx_info.info_status==0}bars {/if}  fl">{if $fx_info.info_status>0}用户提交申请{else}用户未提交申请{/if}</div>
+                    <!--{elseif $k==1}-->
+                    <div class="bar {if $fx_info.info_status==1||$fx_info.info_status==2}bars{/if}  fl">{if $fx_info.info_status==1}方案未提交{elseif $fx_info.info_status==2}提交失败{else}方案未提交{/if}</div>
+                    <!--{elseif $k==4}-->
+                    <div class="bar {if $fx_info.info_status==3||$fx_info.info_status==4}bars barhei{else}barhei {/if}  fl">{if $fx_info.info_status==3}审核失败{elseif  $fx_info.info_status==4}审核中{else}审核中{/if}</div>
+                    <!--{elseif $k==10}-->
+                    <div class="bar {if $fx_info.info_status==9||$fx_info.info_status==10}bars barhei{else}barhei {/if}  fl">{if $fx_info.info_status==9}申请发货失败{elseif $fx_info.info_status==10}申请发货{else}申请发货{/if}</div>
+                    <!--{elseif $k==6}-->
+                    <div class="bar {if $fx_info.info_status==6}bars {/if} barhei  fl">取消订单</div>
+                    <!--{else}-->
+                    <div class="bar {if $fx_info.info_status==$k}bars{/if} {if $k>=1}barhei{/if} fl">{$item}</div>
+                    <!--{/if}-->
+                {/if}
+
+
+
+
+                <!--{if $k !=$count_status_info}-->
+                    <div class="line fl">
+                        <p class="bor fl"></p>
+                        <p class="shanj fl"></p>
+                    </div>
+                <!--{/if}-->
+                <!--{/foreach}-->
+            </div>
+            <div class="fxtada">
+
+                <p class="fl">{$fx_info.add_time}</p>
+                <p class="fl">预计：{if $fx_info.send_time}{$fx_info.send_time}{else}暂无{/if}</p>
+            </div>
+        </div>
+
+
+
+        <div class="rate">
+            <h4>基本信息</h4>
+            <div class="basic">
+
+                <p>订单号：{$fx_info.order_sn}<a href="index.php?app=order&act=view&id={$fx_info.order_id}" style="color:#00c;">查看原订单></a></p>
+                <p>返修订单号：{if $fx_info.fx_sn}{$fx_info.fx_sn}{else}暂无{/if}</p>
+                <p>RCMTM订单号：{if $fx_info.rcmtm_id}{$fx_info.rcmtm_id}{else}暂无{/if}</p>
+                <p>商品：{$fx_info.good_name}</p>
+                <p>面料：{$fx_info.fabric}</p>
+                <p>申请时间： {$fx_info.add_time}</p>
+                <p>返修原因：{if $fx_info.reason>=0}{$fx_reason.$fx_info.reason}{else}暂无{/if}</p>
+                <p>收货人姓名：{$fx_info.user_name} </p>
+                <p>收货人电话：{$fx_info.phone_mob} </p>
+                <p>收货人地址： {$fx_info.user_address}</p>
+                <p>收货人邮编： {if $fx_info.zipcode}{$fx_info.zipcode}{else}暂无{/if}</p>
+            </div>
+        </div>
+        <div class="rate">
+            <h4>业务信息</h4>
+            <div class="basic">
+                <p>业务承接：{$fx_info.store_name}&nbsp;&nbsp;&nbsp;{$fx_info.address}</p>
+                {if $fx_info.old_to_time}
+                <p>到店时间：{$fx_info.old_to_time}<span>已被&nbsp;&nbsp;章子怡修改为：{$fx_info.to_time}</span></p>
+                {else}
+                <p>到店时间：{if $fx_info.to_time}{$fx_info.to_time}{else}暂无{/if}</p>
+                {/if}
+
+                <p>承接业务员（ID）:{if $fx_info.liangti_name}{$fx_info.liangti_name}{else}暂无{/if}</p>
+                <p>商品寄回物流单号: {if $fx_info.wl_sn}{$fx_info.wl_sn}{else}暂无{/if}</p>
+                <p>商品发货运单号: {if $fx_info.waybillno}{$fx_info.waybillno}{else}暂无{/if}</p>
+                <!--<p>商品发货物流号: {if $fx_info.send_wl_sn}{$fx_info.send_wl_sn}{else}暂无{/if}</p>-->
+                <p>操作时间: {if $fx_info.status_time}{$fx_info.status_time}{else}暂无{/if}  </p>
+            </div>
+        </div>
+        <div class="rate"><h4>交货日期<span>{$fx_info.send_time}</span></h4></div>
+        <div class="rate">
+            <h4>返修方案</h4>
+            <div class="basic">
+                <div class="plan">
+                    <div class="product fl">
+                        <p class="chanp fl">产品：</p>
+                        <p class="kuz fl">{$fx_info.good_name}</p>
+                    </div>
+                    <div class="product fl">
+                        <p class="chanp fl">面料：</p>
+                        <p class="kuz fl">{$fx_info.fabric}</p>
+                    </div>
+                    <div class="product fl">
+                        <p class="chanp fl">价格：</p>
+                        <p class="kuz fl">{$fx_info.price}元</p>
+                    </div>
+                </div>
+                <!--{if $has_fx_info}-->
+                <div class="plan">
+                    <p class="chanp fl">尺寸修改：</p>
+                    <p class="kuz kuzs fl">{if $has_fx_info}是{else}否{/if}</p>
+                </div>
+
+                    <div class="plan">
+                        <!--{foreach from=$has_fx_info.lt item=v key=k}-->
+                        <div class="product fl">
+
+
+                            <p class="chanp fl">{$v.part_name}：</p>
+                            <p class="kuz fl">{$v.size}</p>
+
+                        </div>
+                        <!--{/foreach}-->
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="plan">
+                        <p class="chanp fl">刺绣信息：</p>
+                        <p class="kuz kuzs fl">
+                            <!--{if $has_fx_info.cx}-->
+                            <!--{foreach from=$has_fx_info.cx item=v key=k}-->
+                                <!--{if $k=='content'}-->
+                                    {if $v!=''}内容：{$v}{else} &nbsp;{/if}
+                                <!--{else}-->
+
+                                <!--{foreach from=$v item=vv key=kk}-->
+                                    {$k}：{$vv}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+                                <!--{/foreach}-->
+                                <!--{/if}-->
+                            <!--{/foreach}-->
+                            <!--{else}-->
+                            否
+                            <!--{/if}-->
+                        </p>
+                    </div>
+
+
+                    <div class="plan">
+                        <p class="chanp fl">特殊处理：</p>
+                        <p class="kuz kuzs fl">
+                            <!--{if $has_fx_info.special}-->
+                            <!--{foreach from=$has_fx_info.special item=v key=k}-->
+                            {$k}：{$v}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+                            <!--{/foreach}-->
+                            <!--{else}-->
+                            否
+                            <!--{/if}-->
+                        </p>
+                    </div>
+                <!--{/if}-->
+
+                <!--{if $fx_info.gy_method}-->
+                <div class="plan">
+                    <p class="chanp fl">工艺处理：</p>
+                    <p class="kuz kuzs fl">
+                       {$fx_info.gy_method}
+                    </p>
+
+                </div>
+
+                <!--{/if}-->
+
+            </div>
+        </div>
+        <div class="rate rates">
+            <h4>操作记录</h4>
+            <div class="basic basics">
+                <!--{foreach from=$log item=item key=k}-->
+                <p>{$item.admin}&nbsp;&nbsp;于&nbsp;&nbsp;&nbsp;&nbsp;{$item.add_time}&nbsp;&nbsp;{$item.content}</p>
+                <!--{/foreach}-->
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{include file="footer.html"}

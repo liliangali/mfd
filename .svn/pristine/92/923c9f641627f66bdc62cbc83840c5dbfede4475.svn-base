@@ -1,0 +1,16 @@
+{if !$widget_data}
+    <div style="padding:10px; text-align:center;">请配置主题图一</div>
+{else}
+<div class="item small" id="recommpic_1"></div>
+<script>
+var datas = [];
+{foreach from=$widget_data item=image name=fe_image}
+  var img = {};
+  img.img   = "/{$image.ad_image_url}";
+  img.href  = "{$image.ad_link_url}";
+  img.title = '';
+  datas.push(img);
+{/foreach}
+$('#recommpic_1').picRoll({datas:datas});
+</script>
+{/if}

@@ -1,0 +1,477 @@
+{include file=header.html}
+<link href="{res file=css/z_kkjd.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/pages.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/pubu.css}" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="{res file=js/jquery-1.7.2.min.js}"></script>
+<script type="text/javascript" src="{res file=js/jquery.masonry.js}"></script>
+<script type="text/javascript" src="{res file=js/jquery.infinitescroll.js}"></script>
+<script type="text/javascript" src="{res file=js/Xslider.js}"></script>
+<script type="text/javascript">
+var isWidescreen=screen.width>=1280; 
+if(isWidescreen){document.write("<style type='text/css'>.sk_demo{width:1000px;}</style>");}
+</script>
+
+<script type="text/javascript">
+function item_masonry(){ 
+	$('.sk_item img').load(function(){ 
+		$('.sk_infinite_scroll').masonry({ 
+			itemSelector: '.sk_masonry_brick',
+			columnWidth:235,
+			gutterWidth:20								
+		});		
+	});
+	$('.sk_item1 img').load(function(){ 
+		$('.sk_infinite_scroll1').masonry({ 
+			itemSelector: '.sk_masonry_brick1',
+			columnWidth:235,
+			gutterWidth:20								
+		});		
+	});
+		 //columnWidth 函数递增控制div左边距
+	$('.sk_infinite_scroll').masonry({ 
+		itemSelector: '.sk_masonry_brick',
+		columnWidth:235,
+		gutterWidth:20								
+	});	
+}
+$(function(){
+//滚动条下拉事件
+	function item_callback(){
+		item_masonry();	
+	}
+	item_callback();  
+	$('.sk_item').fadeIn();
+	var sp = 1
+	$(".sk_infinite_scroll").infinitescroll({
+		navSelector  	: "#more",
+		nextSelector 	: "#more a",
+		itemSelector 	: ".item",
+		loading:{
+			img: "images/masonry_loading_1.gif",
+			msgText: '正在加载中....',
+			finishedMsg: '木有了,看看下一页',
+			finished: function(){
+				sp++;
+				if(sp>=10){ //到第10页结束事件
+					$("#more").remove();
+					$("#infscr-loading").hide();
+					$("#pagebox").show();
+					$(window).unbind('.infscr');
+				}
+			}	
+		},errorCallback:function(){ 
+			$("#pagebox").show();
+		}
+	},function(newElements){
+		var $newElems = $(newElements);
+		$('.sk_infinite_scroll').masonry('appended', $newElems, false);
+		$newElems.fadeIn();
+		item_callback();
+		return;
+	});
+});
+</script>
+</head>
+<body class="kuke_body">
+
+<!--中间开始-->
+<p class="blank20"></p>
+<div class="center_box">
+   <!--猜你喜欢 start-->
+   <div class="guess_like guess_like2">
+            <div class="productshow">
+              <div class="productshow_box">
+                  <div class="scrollcontainer" id="moveid">
+                     <ul>
+                        <li>
+                            <div class="guess_div">
+                              <a href="###"><img src="{res file=images/tu6.gif}" alt="" width="160" height="200" /></a>
+                            </div>
+                            <p>已获 500赞</p>
+                            <p>爱自拍，爱分享的晒货一枚～</p>
+                       </li> 
+                       <li>
+                            <div class="guess_div">
+                              <a href="###"><img src="{res file=images/tu6.gif}" alt="" width="160" height="200" /></a>
+                            </div>
+                            <p>已获 500赞</p>
+                            <p>爱自拍，爱分享的晒货一枚～</p>
+                       </li>
+                       <li>
+                            <div class="guess_div">
+                              <a href="###"><img src="{res file=images/tu6.gif}" alt="" width="160" height="200" /></a>
+                            </div>
+                            <p>已获 500赞</p>
+                            <p>爱自拍，爱分享的晒货一枚～</p>
+                       </li>
+                       <li>
+                            <div class="guess_div">
+                              <a href="###"><img src="{res file=images/tu6.gif}" alt="" width="160" height="200" /></a>
+                            </div>
+                            <p>已获 500赞</p>
+                            <p>爱自拍，爱分享的晒货一枚～</p>
+                       </li>
+                       <li>
+                            <div class="guess_div">
+                              <a href="###"><img src="{res file=images/tu6.gif}" alt="" width="160" height="200" /></a>
+                            </div>
+                            <p>已获 500赞</p>
+                            <p>爱自拍，爱分享的晒货一枚～</p>
+                       </li>
+                       <li>
+                            <div class="guess_div">
+                              <a href="###"><img src="{res file=images/tu6.gif}" alt="" width="160" height="200" /></a>
+                            </div>
+                            <p>已获 500赞</p>
+                            <p>爱自拍，爱分享的晒货一枚～</p>
+                       </li>
+                       <li>
+                            <div class="guess_div">
+                              <a href="###"><img src="{res file=images/tu6.gif}" alt="" width="160" height="200" /></a>
+                            </div>
+                            <p>已获 500赞</p>
+                            <p>爱自拍，爱分享的晒货一枚～</p>
+                       </li>
+                       <li>
+                            <div class="guess_div">
+                              <a href="###"><img src="{res file=images/tu5.gif}" alt="" width="160" height="200" /></a>
+                            </div>
+                            <p>已获 500赞</p>
+                            <p>爱自拍，爱分享的晒货一枚～</p>
+                       </li>
+                       <li>
+                            <div class="guess_div">
+                              <a href="###"><img src="{res file=images/tu6.gif}" alt="" width="160" height="200" /></a>
+                            </div>
+                            <p>已获 500赞</p>
+                            <p>爱自拍，爱分享的晒货一枚～</p>
+                       </li>
+                       <li>
+                            <div class="guess_div">
+                              <a href="###"><img src="{res file=images/tu6.gif}" alt="" width="160" height="200" /></a>
+                            </div>
+                            <p>已获 500赞</p>
+                            <p>爱自拍，爱分享的晒货一枚～</p>
+                       </li>
+                       <li>
+                            <div class="guess_div">
+                              <a href="###"><img src="{res file=images/tu6.gif}" alt="" width="160" height="200" /></a>
+                            </div>
+                            <p>已获 500赞</p>
+                            <p>爱自拍，爱分享的晒货一枚～</p>
+                       </li>
+                    </ul>
+                </div>
+                <p class="clear"></p> 
+              </div>
+              <a class="abtn aleft" href="#left">左移</a>
+              <a class="abtn aright" href="#right">右移</a>
+            </div>
+   </div>
+<!--猜你喜欢 end-->
+<!--瀑布流展示 start-->
+<!--切换效果 start-->
+   <div class="kuke_cont">
+     <ul class="cent_qh_ul">
+        <li class="cur_li" id="ta_1" onClick="tack(1)">西装</li>
+        <li id="ta_2" onClick="tack(2)">衬衫</li>
+        <li id="ta_3" onClick="tack(3)">套装</li>
+        <li id="ta_4" onClick="tack(4)">配搭</li>
+     </ul>
+     <div id="tab_1" class="tab_div" style="display:block;">
+        <!--瀑布流 start-->
+           <div class="sk_demo clearfix">
+      <div class="sk_item_list sk_infinite_scroll">
+      <!--item end-->
+      <div class="sk_item sk_masonry_brick" onMouseOver="this.className='sk_item_2'" onMouseOut="this.className='sk_item'">
+      
+        <div class="sk_kzmdz">
+          <p class="sk_zenzon">
+              <a href="#"><img src="{res file=images/tu1.gif}" /></a>
+              <i><a href="#">赞</a></i>
+          </p>
+          <p class="sk_zzydl_bt"><a href="#">觉得挺好看的，所以拍下看的，所以拍下 来大家评一看的，所以拍下看的，所以拍 下看的，所以拍下下啊～ </a></p>
+          <div class="sk_xh_xl">
+            <p class="sk_m_xh"><a href="#">344</a></p>
+            <p class="sk_xhdssl"><a href="#">99</a></p>
+            <p class="sk_xiaolian"><a href="#">486</a></p>
+          </div>
+        </div>
+        
+        <div class="sk_dzzxyfpl">
+          <div class="sk_sangeyele">
+            <p class="p1"><a href="#"><img src="{res file=images/tu2.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>
+          
+          <div class="sk_sangeyele">
+            <p class="p1"><a href="#"><img src="{res file=images/tu3.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>                  
+        </div>        
+        
+      </div>
+      <!--item end-->
+      <!--item end-->
+      <div class="sk_item sk_masonry_brick" onMouseOver="this.className='sk_item_2'" onMouseOut="this.className='sk_item'">
+      
+        <div class="sk_kzmdz">
+          <p class="sk_zenzon">
+              <a href="#"><img src="{res file=images/tu2.gif}" /></a>
+              <i><a href="#">赞</a></i>
+          </p>
+          <p class="sk_zzydl_bt"><a href="#">觉得挺好看的，所以拍下看的，所以拍下 来大家评一看的，所以拍下看的，所以拍 下看的，所以拍下下啊～ </a></p>
+          <div class="sk_xh_xl">
+            <p class="sk_m_xh"><a href="#">344</a></p>
+            <p class="sk_xhdssl"><a href="#">99</a></p>
+            <p class="sk_xiaolian"><a href="#">486</a></p>
+          </div>
+        </div>
+        
+        <div class="sk_dzzxyfpl">
+          <div class="sk_sangeyele">
+            <p class="p1"><a href="#"><img src="{res file=images/tu2.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>
+          
+          <div class="sk_sangeyele">
+            <p class="p1"><a href="#"><img src="{res file=images/tu3.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>                  
+        </div>        
+        
+      </div>
+      <!--item end-->
+      
+      <!--item end-->
+      <div class="sk_item sk_masonry_brick" onMouseOver="this.className='sk_item_2'" onMouseOut="this.className='sk_item'">
+      
+        <div class="sk_kzmdz">
+          <p class="sk_zenzon">
+              <a href="#"><img src="{res file=images/tu3.gif}" /></a>
+              <i><a href="#">赞</a></i>
+          </p>
+          <p class="sk_zzydl_bt"><a href="#">觉得挺好看的，所以拍下看的，所以拍下 来大家评一看的，所以拍下看的，所以拍 下看的，所以拍下下啊～ </a></p>
+          <div class="sk_xh_xl">
+            <p class="sk_m_xh"><a href="#">344</a></p>
+            <p class="sk_xhdssl"><a href="#">99</a></p>
+            <p class="sk_xiaolian"><a href="#">486</a></p>
+          </div>
+        </div>
+        
+        <div class="sk_dzzxyfpl">
+          <div class="sk_sangeyele">
+            <p class="p1"><a href="#"><img src="{res file=images/tu2.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>
+          
+          <div class="sk_sangeyele">
+            <p class="p1"><a href="#"><img src="{res file=images/tu3.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>                  
+        </div>        
+        
+      </div>
+      <!--item end-->
+      <!--item end-->
+      <div class="sk_item sk_masonry_brick" onMouseOver="this.className='sk_item_2'" onMouseOut="this.className='sk_item'">
+      
+        <div class="sk_kzmdz">
+          <p class="sk_zenzon">
+              <a href="#"><img src="{res file=images/tu5.gif}" /></a>
+              <i><a href="#">赞</a></i>
+          </p>
+          <p class="sk_zzydl_bt"><a href="#">觉得挺好看的，所以拍下看的，所以拍下 来大家评一看的，所以拍下看的，所以拍 下看的，所以拍下下啊～ </a></p>
+          <div class="sk_xh_xl">
+            <p class="sk_m_xh"><a href="#">344</a></p>
+            <p class="sk_xhdssl"><a href="#">99</a></p>
+            <p class="sk_xiaolian"><a href="#">486</a></p>
+          </div>
+        </div>
+        
+        <div class="sk_dzzxyfpl">
+          <div class="sk_sangeyele">
+            <p class="p1"><a href="#"><img src="{res file=images/tu2.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>
+          
+          <div class="sk_sangeyele">
+            <p class="p1"><a href="#"><img src="{res file=images/tu3.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>                  
+        </div>        
+        
+      </div>
+      <!--item end-->
+      <!--item end-->
+      <div class="sk_item sk_masonry_brick" onMouseOver="this.className='sk_item_2'" onMouseOut="this.className='sk_item'">
+      
+        <div class="sk_kzmdz">
+          <p class="sk_zenzon">
+              <a href="#"><img src="{res file=images/tu6.gif}" /></a>
+              <i><a href="#">赞</a></i>
+          </p>
+          <p class="sk_zzydl_bt"><a href="#">觉得挺好看的，所以拍下看的，所以拍下 来大家评一看的，所以拍下看的，所以拍 下看的，所以拍下下啊～ </a></p>
+          <div class="sk_xh_xl">
+            <p class="sk_m_xh"><a href="#">344</a></p>
+            <p class="sk_xhdssl"><a href="#">99</a></p>
+            <p class="sk_xiaolian"><a href="#">486</a></p>
+          </div>
+        </div>
+        
+        <div class="sk_dzzxyfpl">
+          <div class="sk_sangeyele">
+            <p class="p1"><a href="#"><img src="{res file=images/tu2.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>
+          
+          <div class="sk_sangeyele">
+            <p class="p1"><a href="#"><img src="{res file=images/tu3.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>                  
+        </div>        
+        
+      </div>
+      <!--item end-->
+      <!--item end-->
+      <div class="sk_item sk_masonry_brick" onMouseOver="this.className='sk_item_2'" onMouseOut="this.className='sk_item'">
+      
+        <div class="sk_kzmdz">
+          <p class="sk_zenzon">
+              <a href="#"><img src="{res file=images/tu1.gif}" /></a>
+              <i><a href="#">赞</a></i>
+          </p>
+          <p class="sk_zzydl_bt"><a href="#">觉得挺好看的，所以拍下看的，所以拍下 来大家评一看的，所以拍下看的，所以拍 下看的，所以拍下下啊～ </a></p>
+          <div class="sk_xh_xl">
+            <p class="sk_m_xh"><a href="#">344</a></p>
+            <p class="sk_xhdssl"><a href="#">99</a></p>
+            <p class="sk_xiaolian"><a href="#">486</a></p>
+          </div>
+        </div>
+        
+        <div class="sk_dzzxyfpl">
+          <div class="sk_sangeyele">
+            <p class="p1"><a href="#"><img src="{res file=images/tu2.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>
+          
+          <div class="sk_sangeyele">
+            <p class="p1"><a href="#"><img src="{res file=images/tu3.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>                  
+        </div>        
+        
+      </div>
+      <!--item end-->
+      
+     
+     
+      
+
+      </div>
+    </div>
+    <div id="sk_more"><a href="#">正在加载</a></div>
+    
+        <!--瀑布流 end-->
+     </div>
+     <div id="tab_2" class="tab_div">
+         <!--瀑布流 start-->
+           <div class="sk_demo1 clearfix">
+      <div class="sk_item_list1 sk_infinite_scroll1">
+      <!--item end-->
+      <div class="sk_item1 sk_masonry_brick1" onMouseOver="this.className='sk_item_21'" onMouseOut="this.className='sk_item1'">
+      
+        <div class="sk_kzmdz1">
+          <p class="sk_zenzon1">
+              <a href="#"><img src="{res file=images/tu1.gif}" /></a>
+              <i><a href="#">赞</a></i>
+          </p>
+          <p class="sk_zzydl_bt1"><a href="#">觉得挺好看的，所以拍下看的，所以拍下 来大家评一看的，所以拍下看的，所以拍 下看的，所以拍下下啊～ </a></p>
+          <div class="sk_xh_xl1">
+            <p class="sk_m_xh1"><a href="#">344</a></p>
+            <p class="sk_xhdssl1"><a href="#">99</a></p>
+            <p class="sk_xiaolian1"><a href="#">486</a></p>
+          </div>
+        </div>
+        
+        <div class="sk_dzzxyfpl1">
+          <div class="sk_sangeyele1">
+            <p class="p1"><a href="#"><img src="{res file=images/tu2.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>
+          
+          <div class="sk_sangeyele1">
+            <p class="p1"><a href="#"><img src="{res file=images/tu3.gif}" /></a></p>
+            <p class="p2"><span><a href="#">奥罗拉</a></span><span class="ahover">收藏了 <a href="#">这件西服</a></span></p>
+            <p class="clear"></p>
+          </div>                  
+        </div>        
+        
+      </div>
+      <!--item end-->
+
+      </div>
+    </div>
+    <div id="sk_more"><a href="#">正在加载</a></div>
+    
+        <!--瀑布流 end-->
+     </div>
+     <div id="tab_3" class="tab_div">
+        交通位置暂无页面！
+     </div>
+     <div id="tab_4" class="tab_div">
+        交通位置暂无页面！
+     </div>
+ <!--切换效果 end-->
+ </div>
+<!--瀑布流展示 end-->
+   <p class="blank40"></p>
+</div>
+<!--中间结束-->
+<script type="text/javascript">
+$(function(){
+
+	//二、左右切换：最后一个显示在最右侧;
+	$(".productshow:eq(0)").Xslider({
+		unitdisplayed:5,
+		numtoMove:1,
+		autoscroll:2000
+	})
+	
+	$("a").focus(function(){this.blur();});
+})
+</script>
+<script>
+	 function tack(x)
+	 {
+		 for(var i = 1; i < 5; i++)
+		 {
+			 if(i == x)
+			 {
+				 document.getElementById('ta_'+ i).className = 'cur_li';
+				 document.getElementById('tab_'+ i).style.display = 'block';
+			 }
+			 else
+			 {
+				 document.getElementById('ta_'+ i).className = '';
+				 document.getElementById('tab_'+ i).style.display = 'none';
+			 }
+		 }
+	 }
+ </script>
+
+{include file=footer.html}

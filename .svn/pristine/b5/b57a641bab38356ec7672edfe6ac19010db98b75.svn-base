@@ -1,0 +1,11 @@
+
+  {foreach from=$fabrics item=fabric}
+    	<li> 
+            <p class="p1">
+            <a href="fabric_diy-info-{$fabric.fabric_id}.html"><img src="{$fabric.fabric_img}"></a>
+            </p>
+            <p class="p2"><a href="fabric_diy-info-{$fabric.fabric_id}.html">{$fabric.fabric_name}({$fabric.fabric_sn})</a></p>
+            <p class="p3">{$fabric.cate_name}价:{$fabric.cate_price|price}元</p>
+
+        </li>
+  {/foreach}

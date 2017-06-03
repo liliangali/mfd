@@ -1,0 +1,203 @@
+{include file=header-new.html}
+<link href="/public/static/pc/css/ktsp_list.css" type="text/css" rel="stylesheet">
+
+<style>.head {border: none;}</style>
+{if $shufflingnumber == 1}
+<div class="mdsp" style="background: url({$shuffling.img}) center top no-repeat;" title="{$shuffling.title}"><a href="{$shuffling.link_url}" {if $shuffling.is_blank == 1}target="_blank"{/if}></a></div>
+{else}
+<div class="device">
+	<a class="arrow-left" href="#"><i></i></a>
+	<a class="arrow-right" href="#"><i></i></a>
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			{foreach from=$shuffling item=ad}
+                            <div class="swiper-slide" style="background:url({$ad.img}) no-repeat center center;" title="{$ad.title}"><a href="{$ad.link_url}" {if $ad.is_blank == 1}target="_blank"{/if}></a></div>
+			{/foreach}
+		</div>
+	</div>
+	<div class="pagination"></div>
+</div>
+{/if}
+
+<div class="sppl_list clearfix" style="margin-top: 30px;">
+	<h1>品类：</h1>
+	<ul>
+		<li {if !$smarty.get.p_id}class="on" {/if}>
+			<a href="{link app=gallery}?p_id=0&son_id={$smarty.get.son_id}&order={$smarty.get.order}&sort={$smarty.get.sort}"> 全部</a>
+		</li>
+		{foreach from=$pList item=data}
+		<li {if $smarty.get.p_id eq $data.cate_id}class="on" {/if}>
+			<a href="{link app=gallery }?p_id={$data.cate_id}&son_id={$smarty.get.son_id}&order={$smarty.get.order}&sort={$smarty.get.sort}">{$data.cate_name}</a>
+		</li>
+		{/foreach}
+	</ul>
+</div>
+<div class="sppl_list clearfix" style="margin-bottom: 30px; border:0;">
+	<h1>选择：</h1>
+	<ul>
+		<li {if !$smarty.get.son_id}class="on" {/if}>
+			<a href="{link app=gallery}?son_id=0&p_id={$smarty.get.p_id}&order={$smarty.get.order}&sort={$smarty.get.sort}"> 全部</a>
+		</li>
+		{foreach from=$sonList item=data}
+		<li {if $smarty.get.son_id eq $data.cate_id}class="on" {/if}>
+			<a href="{link app=gallery}?son_id={$data.cate_id}&p_id={$smarty.get.p_id}&order={$smarty.get.order}&sort={$smarty.get.sort}">{$data.cate_name}</a>
+		</li>
+		{/foreach}
+	</ul>
+
+</div>
+
+<div class="gnlb">
+	<div class="fllb">
+		<ul class="ktsppx">
+			<li {if !$smarty.get.order} class="on" {/if} style="text-align: left; width: 60px; background: none;"><a href="{link app=gallery}?sort=p_order&p_id={$smarty.get.p_id}&son_id={$smarty.get.son_id} ">综合</a></li>
+			
+			<li {if $smarty.get.order eq 1 && $smarty.get.sort eq "buy_count" }class="on"{/if} style="background: none;">
+			<a href="{link app=gallery}?sort=buy_count&order=0&p_id={$smarty.get.p_id}&son_id={$smarty.get.son_id}">销量</a>
+			</li>
+			
+			<li {if $smarty.get.order eq 1 && $smarty.get.sort eq "price" }class="on"{/if} >
+			<a href="{link app=gallery}?sort=price&order={if $smarty.get.order && $smarty.get.sort eq 'price'}0{else}1{/if}&p_id={$smarty.get.p_id}&son_id={$smarty.get.son_id}">价格</a>
+			</li>
+			
+			<li {if $smarty.get.order eq 1 && $smarty.get.sort eq "uptime" }class="on"{/if} style="background: none; border:none;">
+			<a href="{link app=gallery}?sort=uptime&order=0&p_id={$smarty.get.p_id}&son_id={$smarty.get.son_id}">最新</a>
+			</li>
+        </ul>
+
+		<form action="" method="get" name="SearchForm" onsubmit="return validate();" class="search_form">
+			<input type="text" name="keywords" size="30" placeholder="输入产品关键字" value="{$smarty.get.keywords}"><input type="submit" name="" value="搜索" />
+		</form>
+
+    </div>
+
+<div class="fllb clearfix" style="overflow: initial;">
+  <ul class="ktsp_list " id="brick ">
+   {foreach from=$list item=item}
+   <li class="item "> 
+	<p class="p1 ">
+	   <a href="{link app=goods arg=$item.goods_id}" title='{$item.name}'>
+	     <img src="{$item.thumbnail_pic} " class="img1 ">
+	   </a>
+	 </p>
+     <p class="p2 "><a href="{link app=goods arg=$item.goods_id} " title='{$item.item_name}'>{$item.name}</a></p>
+     <p class="p3 ">¥{$item.price}</p>
+     <p class="p4 ">已售{$item.buy_count}件</p>
+     <div class="scxq animated zoomIn " data-id="{$item.goods_id}"><a href="###" class="a_1 fl like" data-id="{$item.goods_id}"><span class="animated zoomIn" >收藏</span></a>
+     <a href="{link app=goods arg=$item.goods_id}" class="a_2 fr"><span class="animated zoomIn">查看详情</span></a></div>
+   </li>
+  {/foreach}
+  </ul>  
+ </div>
+    <div class="pageLinks ">
+        <!--{if $page_info.page_count}-->
+        <div class="page mtr10">
+         <!--    <a class="stat">{sprintf lang=total_item var1=page_info.item_count}</a> -->
+            <!--{if $page_info.prev_link}-->
+            <a class="former" href="{$page_info.prev_link}"><</a>
+            <!--{else}-->
+            <span class="formerNull"><</span>
+            <!--{/if}-->
+            <!--{if $page_info.first_link}-->
+            <a class="page_link" href="{$page_info.first_link}">1&nbsp;<!--{$page_info.first_suspen}--></a>
+            <!--{/if}-->
+            <!--{foreach from=$page_info.page_links key=page item=link}-->
+            <!--{if $page_info.curr_page eq $page}-->
+            <a class="page_hover" href="{$link}">{$page}</a>
+            <!--{else}-->
+            <a class="page_link" href="{$link}">{$page}</a>
+            <!--{/if}-->
+            <!--{/foreach}-->
+            <!--{if $page_info.last_link}-->
+            <a class="page_link" href="{$page_info.last_link}"><!--{$page_info.last_suspen}-->&nbsp;<!--{$page_info.page_count}--></a>
+            <!--{/if}-->
+            <!-- <a class="nonce">{$page_info.curr_page} / {$page_info.page_count}</a> -->
+            <!--{if $page_info.next_link}-->
+            <a class="down" href="{$page_info.next_link}">></a>
+            <!--{else}-->
+            <span class="downNull">></span>
+            <!--{/if}-->
+        </div>
+        <!--{/if}-->
+    </div>
+</div>
+
+{include file=navicate.html}
+
+
+{include file=footer-new.html}
+<!--底部/E-->
+<script src="/public/global/jquery-1.8.3.min.js "></script> 
+<script src="/public/static/pc/js/public.js "></script> 
+<script src="/public/global/luck/pc/luck.js"></script> 
+<script src="../../static/js/jquery.masonry.js "></script>
+<script src="/public/static/pc/js/category.js "></script>
+<script src="/public/global/idangerous.swiper.js"></script>
+<script>
+	var mySwiper = new Swiper('.swiper-container',{
+		pagination: '.pagination',
+		loop:true,
+		autoplay: 2500,
+		autoplayDisableOnInteraction: false,
+		grabCursor: true,
+		paginationClickable: true
+	})
+	$('.arrow-left').on('click', function(e){
+		e.preventDefault()
+		mySwiper.swipePrev()
+	})
+	$('.arrow-right').on('click', function(e){
+		e.preventDefault()
+		mySwiper.swipeNext()
+	})
+</script>
+
+
+<script>
+$(".like").click(function(){
+	 goods_id = $(this).attr("data-id");
+	var state = getCookie('hasLogin');
+	if(state != 1){
+		loginIn.show(function(res){
+    		if(res.status != "-1"){
+			  favorite(goods_id);
+    		}
+			})
+    }else{
+    	favorite(goods_id);
+    }
+})
+
+function favorite(goods_id){
+	$.post("{link app=my_favorite act=add}",{id:goods_id, type:"goods"}, function(res){
+        var res = eval("("+res+")");
+		alert(res.msg);
+        return false;
+    })
+}
+
+function validate()
+{
+	var keywords = document.forms['SearchForm'].elements['keywords'].value;
+	if(keywords == 0)
+	{
+//		alert('亲~ 请输入商品名称或关键词进行搜索~');
+//		return;
+	}
+}
+
+  //意见反馈弹层
+  $('#feedback').click(function(){
+	  $.getScript('/public/global/luck/pc/luck.js',function(){
+		  luck.open({
+			  title:'意见反馈',
+			  width:'660px',
+			  height:'475px',
+			  content:'<iframe width="660 " height="475 " style="display:block " src="view/sc-utf-8/mall/default/feedback/ajax_feedback.html " frameborder="0 "></iframe>',
+			  addclass:'mfd-luck'
+		  });
+	  })
+  });
+</script>
+</body>
+</html>

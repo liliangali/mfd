@@ -1,0 +1,98 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<style type="text/css">
+    .zcfx a {width:98px !important;}
+    .luck-shade { background:none !important;}
+    .luck-box {background-color: rgba(0,0,0,0.5) !important; width:295px; height:90px;  font-size:20px; border-radius:5px;}
+    .luck-close { display:none;}
+    .luck-con { text-align:center; line-height:90px !important; color:#fff;}
+</style>
+<link href="/public/static/pc/css/user_2.css" rel="stylesheet">
+<div class="user_box">
+
+    {include file=member.menu.html}
+    <div class="user_right user_rights fr">
+        <div class="zztitle">
+            <div class="donation fl">分享给我的顾客</div>
+            <form method="post" action="my_works-shareList-{$work_id}.html">
+            <div class="retrieval">
+                <div class="fr jsput">
+                    <input type="text" name='keyword' value="{$kw}" style="width:170px;padding-left:25px;color:#717171;height:20px;" value="输入关键字进行搜索" onfocus="if(value=='输入关键字进行搜索') {value=''}" onblur="if (value=='') {value='输入关键字进行搜索'}" id="con">
+                    <img src="/public/static/pc/images/search.gif" width="16" height="16" class="ssfdj" />
+                <input type="submit" style="width:50px;font-size:12px;line-height:32px;color:#fff;background:#e66800;height:28px;text-align:center;padding:0px;cursor:pointer;" value="搜索">
+                <input type="hidden" id="wid" name="wid" value="{$work_id}">
+                </div>
+
+            </div>
+            </form>
+        </div>
+
+        <ul class="fxgwdgk" id="share_list">
+            <!--{foreach from=$result item=inv}-->
+            <li>
+
+                <div class="div_1 fl"><img src="{$inv.avatar}" width="61" height="61"></div>
+                <div class="div_2 fl" style="width: 100px">{$inv.nickname}</div>
+                <div class="div_3 fl">{$inv.phone_mob}</div>
+                {if $inv.shared neq 1}
+                 <div class="div_3 div_4 fl"><input type="hidden" name="workid" value="{$inv.wid}"> <a href="#" class="on" onClick="shareRecord(this);">再次分享</a></div>
+                {/if}
+                <div class="div_4 fr">
+                    <input type="hidden" name="id" value="{$inv.invitee}">
+                    <a href="#" class="on" onClick="share(this);">{if $inv.shared eq 1}分享{else}
+                    已分享
+                    {/if}</a>
+                    <input type="hidden" name="shared" value="{$inv.shared}" class="shared">
+                </div>
+            </li>
+            <!--{foreachelse}-->
+            <tr class="no_data" >
+                <h3>未找到符合条件的顾客</h3>
+                <!--<td colspan="7" align="center">未找到符合条件的顾客</td>-->
+            </tr>
+            <!--{/foreach}-->
+        </ul>
+
+    </div>
+</div>
+
+{include file=footer.html}
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#share_list>li>div').children('.shared').each(function(){
+            if($(this).val() != 1){
+                $(this).prev().attr('href','');
+            }
+        })
+    })
+    //ajax再次分享
+function shareRecord(obj){
+    var cid = $(obj).prev().val();
+    var wid = $('#wid').val();
+    var con = $(obj).html();
+    $.post("./my_works-shareRecordWork.html",{id:cid,wid:wid}, function(res){
+        var res = eval("("+res+")");
+        luck.alert(1,res.msg);
+       
+    });
+}
+    function share(obj){
+        var cid = $(obj).prev().val();
+        var wid = $('#wid').val();
+        var con = $(obj).html();
+        $.post("./my_works-shareWork.html",{cid:cid,wid:wid}, function(res){
+            var res = eval("("+res+")");
+            if(res.done){
+             $(obj).html('已分享');
+            }
+        });
+    }
+
+
+
+
+</script>

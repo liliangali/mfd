@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>发票信息</title>
+<link type="text/css" href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+<style>
+.fpxx {margin:0 15px;}
+.fplx {display:box;display:-webkit-box;display:-moz-box; orient: horizontal; width:100%;}
+.fplx li {box-flex:1;-webkit-box-flex:1;-moz-box-flex:1; display:block; text-align:center; font-size:14px; color:#717171; height:40px; line-height:40px; cursor:pointer; position:relative;}
+.fplx li.now_hover { color:#21d0fd; border-bottom:3px solid #21d0fd;}
+.fplx li span { display:block; height:18px; width:1px; background:#ddd; position:absolute; right:-3px; top:13px;}
+.fgx { height:10px; border-top:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; background:#f6f6f6;}
+
+.ptfp { padding-top:7px;}
+.ptfp li {height:44px; border-bottom:1px solid #e6e6e6; display:box;display:-webkit-box;display:-moz-box; orient: horizontal; width:100%;}
+.ptfp li h1 {font-weight:normal; font-size:12px; color:#333; line-height:44px; padding-right:16px; width:70px;}
+.ptfp li input {height:44px; box-flex:1;-webkit-box-flex:1;-moz-box-flex:1; display:block;}
+
+.baoz {position:fixed; left:0; bottom:0; width:100%;}
+.baoz input {margin:0 auto; border-top:1px solid #f5f5f5; background:#f8f8f8; height:44px; width:100%; color:#21d0fd; font-size:14px; cursor:pointer;}
+</style>
+</head>
+
+<body>
+<script>window.onunload=function(){};</script>
+ <div class="main">
+  <form id="invoiceForm">
+  <div class="fpxx">
+    <ul class="fplx">
+      <li id="ti_1" class="now_hover" onClick="ceck_pic(1);" style="margin-right:10px;">普通发票<span></span></li>
+      <li id="ti_3" class="old_hover" onClick="ceck_pic(3);">增值税专用<span></span></li>
+      <li id="ti_2" class="old_hover" onClick="ceck_pic(2);">增值税普通</li>
+    </ul> 
+    <input type="hidden" name="type" value="{$data.type|default:1}" id="invoice_type" />
+   </div>  
+   <p class="fgx"></p>
+  
+   <div class="fpxx">       
+      <div id="tj_1">
+        <ul class="ptfp">
+          <li>
+           <h1>发票抬头</h1>
+           <input type="text" value="{$data.1.title}" placeholder="个人或单位信息" name="invoice[1][title]">
+          </li>
+        </ul>
+      </div>
+      
+      <div id="tj_3" style="display:none;">
+        <ul class="ptfp">
+          <li>
+           <h1>单位名称</h1>
+           <input type="text" value="{$data.3.data.com}" placeholder="输入单位详细注册名称 " name="invoice[3][com]">
+          </li>
+          <li>
+           <h1>识别码</h1>
+           <input type="text" value="{$data.3.data.sn}" placeholder="输入纳税人识别码 " name="invoice[3][sn]">
+          </li>
+          <li>
+           <h1>注册地址</h1>
+           <input type="text" value="{$data.3.data.addr}" placeholder="输入注册时的地址 " name="invoice[3][addr]">
+          </li>
+          <li>
+           <h1>注册电话</h1>
+           <input type="text" value="{$data.3.data.tel}" placeholder="输入注册时的电话 " name="invoice[3][tel]">
+          </li>
+          <li>
+           <h1>开户银行</h1>
+           <input type="text" value="{$data.3.data.bank}" placeholder="输入您的开户银行 " name="invoice[3][bank]">
+          </li>
+          <li>
+           <h1>银行账户</h1>
+           <input type="text" value="{$data.3.data.bank_num}" placeholder="输入您的银行账户 " name="invoice[3][bank_num]">
+          </li>
+        </ul>
+      </div>
+      
+      <div id="tj_2" style="display:none;">
+        <ul class="ptfp">
+          <li>
+           <h1>单位名称</h1>
+           <input type="text" value="{$data.2.title}" placeholder="输入单位详细注册名称 " name="invoice[2][title]">
+          </li>
+        </ul>
+      </div>
+       <p class="baoz"><input type="button" value="保存"></p>
+   </div>
+</form>
+ </div>
+ 
+<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"></script> 
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+<script type="text/javascript">
+var _id = $('#invoice_type').val();
+ceck_pic(_id)
+
+function _alert(msg){
+    layer.open({
+        content: '<p style="text-align:center">'+msg+'</p>',
+        btn: ['确定'],
+    }); 
+}
+
+$('.baoz').click(function(){
+    $('#invoiceForm').ajaxSubmit({
+        type:"post",
+        url:"{link app=cart act=invoiceSave}?time="+ (new Date()).getTime(),
+        //beforeSubmit:function(formData,jqForm,options){return _oj.valid();},
+        success:function (res,statusText) {
+            var res = $.parseJSON(res);
+            if(res.done == false){
+                   _alert(res.msg);
+            }else{
+            	history.go(-1)
+            	return false;
+                location.href="{link app=cart act=checkout}";
+            }
+        }
+    });
+})
+function ceck_pic(ix)
+{
+  for (i=1;i<4;i++)
+  {
+      if (i==ix)
+      {
+          document.getElementById('ti_'+i).className = 'now_hover';
+          document.getElementById('tj_'+i).style.display = 'block';
+          $('#invoice_type').val(i)
+      }
+      else
+      {
+          document.getElementById('ti_'+i).className = 'old_hover'; 
+          document.getElementById('tj_'+i).style.display = 'none'; 
+      }
+  }
+
+}
+</script>
+
+
+
+</body>
+</html>

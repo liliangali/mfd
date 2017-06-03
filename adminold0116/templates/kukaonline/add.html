@@ -1,0 +1,230 @@
+{include file="header.html"}
+<div id="rightTop">
+
+    <ul class="subnav">
+
+        <li><a class="btn1" href="index.php?app=kukaconfig">返回</a></li>
+
+
+
+    </ul>
+</div>
+
+<script>
+    $(function () {
+        $('#user_form').validate({
+            errorPlacement: function (error, element) {
+                $(element).next('.field_notice').hide();
+                $(element).after(error);
+            },
+            success: function (label) {
+                label.addClass('right').text('OK!');
+            },
+            onkeyup: false,
+            rules: {
+            	kuka_num: {
+                    required: true,
+                    number : true,
+                },
+                kuka_name: {
+                    required: true,
+            
+                },
+                expire_time: {
+                    required: true,
+                   
+                },
+                sale_price : {
+                    required : '不能为空！ ',
+                    number:'请输入数字！ ',
+                },
+                description: {
+                    required: true,
+                    minlength: 5
+                }
+            },
+            messages : {
+            	kuka_num : {
+                    required : '不能为空！ ',
+                    number:'请输入数字！ ',
+                },
+                kuka_name : {
+                    required : '不能为空！ ',
+                  
+                },
+                sale_price : {
+                    required : '不能为空！ ',
+                    number:'请输入数字！ ',
+                },
+                expire_time : {
+                    required : '不能为空！ ',
+                   
+                },
+                description: {
+                    required: '请输入备注',
+                    minlength:'最小长度5个字符'
+                }
+            }
+        })
+    });
+</script>
+
+
+
+
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="user_form">
+        <table class="infoTable">
+            <tbody>
+            
+             <tr>
+                <th class="paddingT15">类别 :</th>
+                <td class="paddingT15 wordSpacing5">
+                {$list.name}
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">用途 :</th>
+                <td class="paddingT15 wordSpacing5">
+                {$list.work}
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">库卡名称 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" name="kuka_name" id="kuka_name" value="{$info.kuka_name}"  class="infoTableInput2">
+                    <b style="color:red"></b>
+                </td>
+            </tr>
+            
+		<!--       <tr >
+		        <th class="paddingT15"> <label for="site_name">酷卡品类:</label></th>
+		        <td class="paddingT15 wordSpacing5 obj">
+		         <select name='type' id="type">
+		          {html_options options=$type selected=$info.type}
+		        </select>
+		        </td>
+		      </tr> -->
+		      
+		   <tr>
+                <th class="paddingT15">卡种类 :</th>
+                <td class="paddingT15 wordSpacing5">
+                {foreach from=$type item=item key=key}
+                    {$item}<input type="checkbox" name="type[]" value="{$key}" 
+                    {foreach from=$cof item=checkcate key=key1}
+                    {if $key == $checkcate}
+                      checked
+                    {/if}
+                    {/foreach}
+                    
+                    /><br>
+                {/foreach}
+                </td>
+            </tr>
+		      
+              <tr>
+                <th class="paddingT15">库卡金额:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" name="kuka_num" id="kuka_num" value="{$info.kuka_num}"  class="infoTableInput2">
+                    <b style="color:red"></b>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">销售价格 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" name="sale_price" id="sale_price" value="{$info.sale_price}"  class="infoTableInput2">
+                    <b style="color:red"></b>
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <th class="paddingT15">是否上线 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="radio" name="is_show" value=1 {if $info.is_show} checked=checked {/if}>是     
+                    <input type="radio" name="is_show" value=0 {if !$info.is_show} checked=checked {/if}>否
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">有效期 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" name="expire_time" id="expire_time" value="{$info.expire_time}"  onclick="WdatePicker()" class="infoTableInput Wdate">
+                </td>
+            </tr>
+            
+            <tr>
+			<th class="paddingT15">验证码({$safe_phone|phone_format}) :</th>
+			<td class="paddingT15 wordSpacing5">
+			    <input type="text" value="" name="safe_code" id="name" class="infoTableInput2">
+			    <input type="button" id="btn" value="免费获取验证码" />
+			</td>
+			</tr>
+
+            
+            <tr>
+                <th class="paddingT15">备注说明 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" name="description" value="{$info.content}" id="description" style="width:800px;height: 30px" >
+                    （记录本次发放原因）
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                <input type="hidden" name="id" value="{$info.id}" />
+                    <input type="submit" value="提交"  class="tijia">
+                    <input type="reset" value="重置" name="Submit2" class="congzi">
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </form>
+</div>
+
+
+</div>
+<script type="text/javascript"> 
+
+
+var wait=60;
+function time(o) {
+        if (wait == 0) {
+            o.removeAttribute("disabled");            
+            o.value="免费获取验证码";
+            wait = 60;
+        } else { // www.jbxue.com
+            o.setAttribute("disabled", true);
+            o.value="重新发送(" + wait + ")";
+            wait--;
+            setTimeout(function() {
+                time(o)
+            },
+            1000)
+        }
+    }
+document.getElementById("btn").onclick=function()
+{
+	var _this = this;
+	var re = 1;
+	ress = $.post("index.php?app={$app}&act=sendSafeCode",{router:"{$app}-{$act}"},function(res){
+		if(!res.done)
+	    {
+			alert(res.msg);
+	    }
+		else
+		{
+			time(_this);
+		}	
+	},'json')
+}
+</script> 
+{include file="footer.html"}

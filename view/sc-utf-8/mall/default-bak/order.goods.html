@@ -1,0 +1,56 @@
+
+
+<div class="cart_bd">
+
+   <h1 class="cart_h1">货品信息</h1>
+   <table class="cart_list" width="100%">
+   <tr>
+   	<td><b>货品</b></td>
+   	<td><b>颜色尺码</b></td>
+   	<td><b>单价</b></td>
+   	<td><b>数量</b></td>
+   	<td><b>小计</b></td>			
+   </tr>
+   
+   <!--{foreach from=$goods_info.items item=cart key=store_id name=loop}-->
+   	<tr>
+   		<td colspan="5" style="text-align:left;"><p class="shop_tit">{$lang.store}：<a href="{url app=store&id=$store_id}">{$cart.store_name|escape}</a></p></td>
+   	</tr>
+                <!--{foreach from=$cart.goods item=goods name=cart}-->
+                <tr>
+                    <td width="67">
+                     <p class="goods_pic"><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.goods_image}" alt="{$goods.goods_name|escape}" width="65" height="65" /></a></p>                    
+                    </td>
+                    <td width="31%" style="text-align:left; padding-left:0;">
+                            <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                            <span class="attr">{$goods.specification|escape}</span>
+                    </td>
+                    <td width="15%"><span class="price1">{$goods.price|price}</span></td>
+                    <td width="15%">
+                         {$goods.quantity}
+                    </td>
+                    <td width="15%"><span class="price2" id="item{$goods.rec_id}_subtotal">{$goods.subtotal|price}</span></td>
+                </tr>
+                <!--{/foreach}-->
+           <tr>
+           	<td colspan="2">给卖家留言:<textarea name="postscript[{$store_id}]"></textarea></td>
+           	<td colspan="3" class="shipping">配送方式：<select name="shipping[{$store_id}]" store="{$store_id}">
+           		{foreach from=$shipping_methods.$store_id item=shipping}
+           		<option value="{$shipping.shipping_id}">{$shipping.shipping_name} </option>
+           		{/foreach}
+           	</select></td>
+           </tr>
+           
+      	<tr {if $smarty.foreach.loop.last}class="tdborder"{/if}>
+   		<td colspan="5">
+             <div class="buy_bnt">
+						<p>货款:&nbsp;&nbsp;{$cart.amount|price} + 运费:<span id="shipping_{$store_id}">&yen; 0.00</span> = 店铺合计：<strong class="fontsize1" id="cart{$store_id}_amount">{$cart.amount|price}</strong></p>
+            </div>
+		</td>
+   	</tr>
+
+            
+        <!--{/foreach}-->
+  </table>
+                
+</div>

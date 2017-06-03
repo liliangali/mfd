@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <title>麦富迪尚品</title>
+    <link rel="stylesheet" type="text/css" href="/public/static/photo/css/style.css" media="screen">
+    <script type="text/javascript" src="/public/static/photo/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/public/static/photo/js/jquery.swipe.js"></script>
+</head>
+<body>
+<div class="main">
+    <!--头部开始-->
+    <div class="header">
+        <p class="p1"><a href="javascript:history.go(-1)"><img src="/public/static/photo/images/tw_03.png" /></a></p>
+        <p class="p2">{$series.series_name}</p>
+    </div>
+    <!--头部结束-->
+
+
+    <div class="xiangc">
+		<div id="slider" class="swipe">
+		  <div class="swipe-wrap">
+		  
+		   		{foreach from=$good.image item=imgs}
+				<div><img src="{$imgs}"/></div>
+				 {/foreach}
+		  </div>
+            <div class="swipe-btn">
+                {foreach from=$good.image name=count item=count}
+                <span {if $smarty.foreach.count.first} class="cur"{/if} ></span>
+                {/foreach}
+            </div>
+		</div>
+        <div></div>
+        <h4><a href="#">{$good.good_name}</a></h4>
+        <h5>￥{$good.good_price}</h5>
+        <p class="cpxqtu"><a href="{link app=elephotos act=good_fabric arg0=$good.id}"><img src="/public/static/photo/images/cpxq.png"></a></p>
+    </div>
+<script src="/public/static/wap/js/public.js"></script>
+<script>
+mfdwap.pageIndex()
+
+//页面滚动效果
+Swipe(document.getElementById('slider'), {
+    continuous: false,
+    //auto:1000,
+    callback: function(index, element) {
+        $('.swipe-btn span').eq(index).addClass('cur').siblings().removeClass();
+    }
+});
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,153 @@
+<?php echo $this->fetch('header.html'); ?>
+<style>
+
+</style>
+<script type="text/javascript">
+//<!CDATA[
+$(function()
+{
+    change_background();
+});
+
+function change_background()
+{
+    $("tbody tr").hover(
+    function()
+    {
+        $(this).css({background:"#EAF8DB"});
+    },
+    function()
+    {
+        $(this).css({background:"#fff"});
+    });
+}
+
+function flex(obj)
+{
+    var status = obj.attr('status');
+    var id = obj.attr('fieldid');
+    var pid = obj.parent('td').parent('tr').attr("class");
+    var src = $(obj).attr('src');
+    if(status == 'open')
+    {
+        var pr = $(obj).parent('td').parent('tr');
+        var selfurl = window.location.href;
+        var sr  = pr.clone();
+        var td2 = sr.find("td:eq(1)");
+        td2.prepend("<img class='preimg' src='templates/style/images/treetable/vertline.gif'/>")
+                        .find("img[ectype=flex]")
+                        .remove()
+                        .end()
+                        .find('span')
+                        .remove();
+        var img_count = td2.children("img").length;
+        var td2html = td2.html();
+         $.get(selfurl + "&act=ajax_cate", {id: id}, function(data){
+             if(data)
+             {
+                 var str = '';
+                 var add_child = '';
+                 var res = eval('(' + data + ')');
+                 for(var i = 0; i < res.length; i++)
+                 {
+                     if(res[i].switchs)
+                     {
+                         src =  "<img src='templates/style/images/treetable/tv-expandable.gif' ectype='flex' status='open' fieldid="+res[i].type_id+
+                           " onclick='flex($(this))'><span class='node_name'>" + res[i].type_name + "</span>";
+                     }
+                     else
+                     {
+                         src = "<img src='templates/style/images/treetable/tv-item.gif'><span class='node_name'>" + res[i].type_name + "</span>";
+                     }
+                     if(img_count < (<?php echo $this->_var['max_layer']; ?> -1))
+                     {
+                         add_child = "<a href='index.php?app=pettype&amp;act=add&amp;pid="+res[i].type_id+"'>新增下级</a>";
+                     }
+                     var itd2 = td2html + src;
+                     str+="<tr class='"+pid+" row"+id+"'><td class='align_center w30'><input type='checkbox' class='checkitem' value='" + res[i].type_id + "'></td>"+
+                        "<td class='node' width='50%'>" + itd2 + "</td>"+
+                        "<td class='align_center'><span ectype='inline_edit' fieldname='sort_order' fieldid='" + res[i].type_id + "' datatype='pint' maxvalue='255' title='单击可以编辑' class='editable'>" + res[i].sort_order + "</span></td>"+
+                        "<td class='handler'><span><a href='index.php?app=pettype&act=edit&id=" + res[i].type_id + "'>编辑</a> | <a href='javascript:if(confirm(\""+lang.confirm_delete+"\"))window.location=\"index.php?app=pettype&act=drop&id=" + res[i].type_id + "\";'>删除</a> | " + add_child + "</span></td>";
+                 }
+                pr.after(str);
+                change_background();
+                $('span[ectype="inline_edit"]').unbind('click');
+                $.getScript(SITE_URL+"/includes/libraries/javascript/inline_edit_admin.js");
+             }
+         });
+         obj.attr('src',src.replace("tv-expandable","tv-collapsable"));
+         obj.attr('status','close');
+    }
+    if(status == 'close')
+    {
+        $('.row' + id).hide();
+        obj.attr('src',src.replace("tv-collapsable","tv-expandable"));
+        obj.attr('status','open');
+    }
+}
+var uri = "index.php?app=pettype&act=update_order";
+
+function updateOrder(obj){
+    var arr = new Array();
+    $(".checkitem:checked").each(function(){
+        arr.push($(this).parents("tr").find(":text").val());
+    });
+    $(obj).attr("uri", uri + "&sort_order=" + arr.join(','));
+    return true;
+}
+//]]>
+</script>
+
+<div id="rightTop">
+    
+    <ul class="subnav">
+        <li><span>管理</span></li>
+        <li><a class="btn1" href="index.php?app=pettype&amp;act=add">新增</a></li>
+    </ul>
+</div>
+
+<div class="info2">
+    <table class="distinction">
+        <?php if ($this->_var['types']): ?>
+        <thead>
+        <tr>
+            <th class="w30"><input id="checkall_1" type="checkbox" class="checkall"/></th>
+            <th width="50%"><span class="all_checkbox"><label for="checkall_1">全选</label></span>种类名称</th>
+            <th>排序</th>
+            <th class="handler">操作</th>
+        </tr>
+        </thead>
+        <tbody id="treet1"><?php endif; ?>
+        <?php $_from = $this->_var['types']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'type');if (count($_from)):
+    foreach ($_from AS $this->_var['type']):
+?>
+        <tr class="">
+            <td class="align_center w30"><input type="checkbox" class="checkitem" value="<?php echo $this->_var['type']['type_id']; ?>" /></td>
+            <td class="node" width="50%">
+            <?php if ($this->_var['type']['switchs']): ?>
+            <img src="templates/style/images/treetable/tv-expandable.gif" ectype="flex" status="open" fieldid="<?php echo $this->_var['type']['type_id']; ?>" onclick="flex($(this))">
+            <?php else: ?>
+            <img src="templates/style/images/treetable/tv-item.gif">
+            <?php endif; ?>
+            <span class="node_name"><?php echo htmlspecialchars($this->_var['type']['type_name']); ?></span></td>
+            <td class="align_center"><span ectype="inline_edit" fieldname="sort_order" fieldid="<?php echo $this->_var['type']['type_id']; ?>" datatype="pint" maxvalue="255" title="单击可以编辑" class="editable"><?php echo $this->_var['type']['sort_order']; ?></span></td>
+            <td class="handler">
+            <span>
+            <a href="index.php?app=pettype&amp;act=edit&amp;id=<?php echo $this->_var['type']['type_id']; ?>">编辑</a>
+                |
+                <?php if ($this->_var['type']['layer'] < $this->_var['max_layer']): ?> | <a href="index.php?app=pettype&amp;act=add&amp;pid=<?php echo $this->_var['type']['type_id']; ?>">新增下级</a><?php endif; ?>
+                </span>
+                </td>
+        </tr>
+        <?php endforeach; else: ?>
+        <tr class="no_data">
+            <td colspan="4">您还没添加种类</td>
+        </tr>
+        <?php endif; unset($_from); ?><?php $this->pop_vars();; ?>
+        <?php if ($this->_var['types']): ?></tbody><?php endif; ?>
+    </table>
+
+
+</div>
+
+<?php echo $this->fetch('footer.html'); ?>

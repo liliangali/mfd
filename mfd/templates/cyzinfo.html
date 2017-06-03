@@ -1,0 +1,12 @@
+
+   {foreach from=$list item=val key=key}
+        <select name="{$key}" >
+            {foreach from=$val.children  item=chi}
+                <option value="{$chi.user_id}">{$chi.nickname}-{$chi.user_name}</option>
+             {/foreach}
+        </select>
+             {foreach from=$val.children  item=chi key=key}
+           <input type="hidden"   name="user_ids[{$key}][]" value="{$chi.user_id}">
+               {/foreach}
+   
+  {/foreach}

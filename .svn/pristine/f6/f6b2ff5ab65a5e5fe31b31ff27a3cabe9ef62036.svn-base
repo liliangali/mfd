@@ -1,0 +1,122 @@
+{include file="header.html"}
+<link href="{res file=css/z_kkjd.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/pages.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{res file=js/jquery-1.7.1.min.js}"></script>
+
+</head>
+<body class="kuke_body">
+<!--头部结束-->
+<p class="blank20"></p>
+<!--中间开始-->
+<div class="center_box">
+   <!--左边 start-->
+   <div class="bigp_l">
+      <h1>大牌T台发布</h1>
+      <dl style="border:0;">
+         <dt><a href="#"><img src="../themes/mall/default/styles/default/images/kkjd_4.jpg" width="190" height="206" /></a></dt>
+         <dd>
+            <h4><a href="#" class="f_l">Christopher Raeburn秋冬男装发布</a><a href="#" class="know_more f_r">了解更多</a></h4>
+            <p>对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们是比较喜欢变化的，准确的来说她们比较喜欢也对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们是比较喜欢变化的，准确的来说她们比较喜欢也对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们是比较喜欢变化的，准确的来说她们比较喜欢也对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们是比较喜欢变化的，准确的来说她们比较喜欢也对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们是比较喜欢变化的，准确的来说她们比较喜欢也对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们是比较喜欢变化的，准确的来说她们比较喜欢也</p>
+            <span>2013年11月30日</span>
+         </dd>
+      </dl>
+      <dl>
+         <dt><a href="#"><img src="../themes/mall/default/styles/default/images/kkjd_4.jpg" width="190" height="206" /></a></dt>
+         <dd>
+            <h4><a href="#" class="f_l">Christopher Raeburn秋冬男装发布</a><a href="#" class="know_more f_r">了解更多</a></h4>
+            <p>对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们是比较喜欢变化的，准确的来说她们比较喜欢也对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们</p>
+            <span>2013年11月30日</span>
+         </dd>
+      </dl>
+      <dl>
+         <dt><a href="#"><img src="../themes/mall/default/styles/default/images/kkjd_4.jpg" width="190" height="206" /></a></dt>
+         <dd>
+            <h4><a href="#" class="f_l">Christopher Raeburn秋冬男装发布</a><a href="#" class="know_more f_r">了解更多</a></h4>
+            <p>对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们是比较喜欢变化的，准确的来说她们比较喜欢也对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们是比较喜欢变化的，</p>
+            <span>2013年11月30日</span>
+         </dd>
+      </dl>
+      <dl>
+         <dt><a href="#"><img src="../themes/mall/default/styles/default/images/kkjd_4.jpg" width="190" height="206" /></a></dt>
+         <dd>
+            <h4><a href="#" class="f_l">Christopher Raeburn秋冬男装发布</a><a href="#" class="know_more f_r">了解更多</a></h4>
+            <p>对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们是比较喜欢变化的，准确的来说她们比较喜欢也对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们是比较喜欢变化的，准确的来说她们比较喜欢也对于穿着Christopher Raeburn时装品牌的消费者，Raeburn认为他们是比较喜欢变化的，准确的来说她们比较喜欢也对于穿着Christopher R</p>
+            <span>2013年11月30日</span>
+         </dd>
+      </dl>
+        <!--分页 start-->
+          <p class="blank10"></p>
+        <div class="comments_page">
+            <div class="page">
+               <span class="uppage"><a href="#">上一页</a></span>
+               <div class="page_number">
+                  <a href="#">1</a>
+                  <span>2</span>
+                  <a href="#">3</a>
+                  <a href="#">4</a>
+                  <em>...</em>
+                  <a href="#">10</a>
+               </div>
+               <span class="nextpage"><a href="#">下一页</a></span>
+            </div>
+        </div>
+        <!--分页 end-->
+   </div>
+   <!--左边 end-->
+   <!--右边 start-->
+   <div class="stylist_right">
+      <!--编辑推荐 start-->
+         <div class="fx_goods">
+            <p><img src="../themes/mall/default/styles/default/images/yuanj_top.gif" width="215" height="1" /></p>
+            <div class="bjtj_gs_box">
+               <h5>编辑推荐</h5>
+               <ul>
+                  <li>
+                     <div class="bj_img"><a href="#"><img src="../themes/mall/default/styles/default/images/tu3.gif" width="189" height="199" /></a></div>
+                     <p><a href="#">款毛领毛呢大衣女</a></p>
+                  </li>
+                  <li>
+                     <div class="bj_img"><a href="#"><img src="../themes/mall/default/styles/default/images/tu4.gif" width="189" height="199" /></a></div>
+                     <p><a href="#">款毛领毛呢大衣女</a></p>
+                  </li>
+                   <li>
+                     <div class="bj_img"><a href="#"><img src="../themes/mall/default/styles/default/images/tu3.gif" width="189" height="199" /></a></div>
+                     <p><a href="#">款毛领毛呢大衣女</a></p>
+                  </li>
+               </ul>
+            </div>
+            <p><img src="../themes/mall/default/styles/default/images/yuanj_bot.gif" width="215" height="1" /></p>
+         </div>
+      <!--编辑推荐 end-->
+   </div>
+<!--右边 end-->
+   <p class="blank40"></p>
+<!--大牌面料资讯 start-->
+   <div class="information">
+       <h1>大牌面料品牌的相关的资讯</h1>
+       <div class="information_w">
+           <ul>
+              <li><i></i><a href="#">版潮B2BB3110950,时尚撞色拼接</a></li>
+              <li><i></i><a href="#">领片特殊刺绣设计2014春装新款设计</a></li>
+              <li><i></i><a href="#">休闲西装男外套白西服韩版潮</a></li>
+              <li><i></i><a href="#">韩版潮B2BB3110950,时尚撞色拼接/领片</a></li>
+           </ul>
+           <ul>
+              <li><i></i><a href="#">版潮B2BB3110950,时尚撞色拼接</a></li>
+              <li><i></i><a href="#">领片特殊刺绣设计2014春装新款设计</a></li>
+              <li><i></i><a href="#">休闲西装男外套白西服韩版潮</a></li>
+              <li><i></i><a href="#">韩版潮B2BB3110950,时尚撞色拼接/领片</a></li>
+           </ul>
+           <ul>
+              <li><i></i><a href="#">版潮B2BB3110950,时尚撞色拼接</a></li>
+              <li><i></i><a href="#">领片特殊刺绣设计2014春装新款设计</a></li>
+              <li><i></i><a href="#">休闲西装男外套白西服韩版潮</a></li>
+              <li><i></i><a href="#">韩版潮B2BB3110950,时尚撞色拼接/领片</a></li>
+           </ul>
+       </div>
+   </div>
+<!--大牌面料资讯 end-->
+</div>
+<!--中间结束-->
+
+{include file="footer.html"}

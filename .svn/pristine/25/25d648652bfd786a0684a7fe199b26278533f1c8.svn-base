@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <title>定制页</title>
+    <link rel="stylesheet" type="text/css" href="/fdiy/css/style.css" />
+    <script src="/fdiy/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/fdiy/js/idangerous.swiper.min.js"></script> 
+</head>
+<body>
+<!--头部开始-->
+<header class="w header clearfix" style="display: none;">
+    <a href="javascript:history.go(-1)" class="fh"></a>
+    <a href="#" class="fx"></a>
+</header>
+<!--头部结束-->
+<div class="w main">
+    <div class="diy_datu">
+        <img src="/fdiy/images/diy_img.png" />
+    </div>
+    <div class="wrap clearfix">
+        <div class="tabs">
+            <a href="#" hidefocus="true" class="active"><p class="p1"></p>犬种</a>
+            <a href="#" hidefocus="true"><p class="p2"></p>犬期</a>
+            <a href="#" hidefocus="true"><p class="p3"></p>功效</a>
+            <a href="#" hidefocus="true"><p class="p4"></p>口味</a>
+            <a href="#" hidefocus="true"><p class="p5"></p>规格</a>
+            <a href="#" hidefocus="true"><p class="p6"></p>包装</a>
+        </div>   
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                <div class="content-slide">
+                    <dl class="dzxx" >
+                        <dd class="on">
+                            <p class="p1"><img src="/fdiy/images/hqs.jpg"></p>
+                            <p class="p2">哈骑士</p>
+                        </dd>
+                        <dd>
+                            <p class="p1"><img src="/fdiy/images/hqs.jpg"></p>
+                            <p class="p2">哈骑士</p>
+                        </dd>
+                        <dd>
+                            <p class="p1"><img src="/fdiy/images/hqs.jpg"></p>
+                            <p class="p2">哈骑士</p>
+                        </dd>
+                        <dd>
+                            <p class="p1"><img src="/fdiy/images/hqs.jpg"></p>
+                            <p class="p2">哈骑士</p>
+                        </dd>
+                    </dl>
+                </div>
+                </div>
+                <div class="swiper-slide">
+                <div class="content-slide">
+                    <dl class="packing clearfix">
+                        <dd class="on">怀孕期</dd>
+                        <dd>哺乳期</dd>
+                        <dd>离乳期</dd>
+                        <dd>幼犬期</dd>
+                        <dd>成犬期</dd>
+                    </dl>    
+                </div>
+                </div>
+                <div class="swiper-slide" s-type="1">
+                <div class="content-slide">
+                    <dl class="packing clearfix">
+                        <dd class="on">增强免疫</dd>
+                        <dd>肠道护理</dd>
+                        <dd>关节保户</dd>
+                        <dd>高泽被毛</dd>
+                    </dl>
+                </div>
+                </div>
+                <div class="swiper-slide">
+                <div class="content-slide">
+                    <dl class="packing clearfix">
+                        <dd class="on">鸡肉</dd>
+                        <dd>牛肉</dd>
+                        <dd>鱼肉</dd>
+                        <dd>洁齿骨</dd>
+                    </dl>
+                </div>
+                </div>
+                <div class="swiper-slide">
+                <div class="content-slide">
+                    <dl class="packing clearfix">
+                        <dd class="on">500g</dd>
+                        <dd>1kg</dd>
+                        <dd>1.5kg</dd>
+                        <dd>5kg</dd>
+                    </dl>  
+                </div>
+                </div>
+                <div class="swiper-slide">
+                <div class="content-slide">
+                    <dl class="packing clearfix">
+                        <dd class="on">袋装</dd>
+                        <dd>罐装</dd>
+                        <dd>盒装</dd>
+                        <dd>桶装</dd>
+                    </dl>
+                    <h6 class="gxhbqsj">个性化标签设计</h6>
+                    <dl class="design">
+                        <dd class="scsj"><input name="" type="file"><img src="/fdiy/images/sctu.png"></dd>
+                        <dd><img src="/fdiy/images/gg.jpg"></dd>
+                    </dl>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="gwc_box">
+        <p>定制价：<span class="cdiy_price">398<font>元</font></span></p>
+        <input type="button" value="加入购物车" class="addCart" />
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(window.onresize=function(){
+    var wh=$(window).height();
+    $('.diy_datu').css({height:(wh-310),width:(wh-310)});
+});
+//触屏切换js
+$(function(){
+    var tabsSwiper = new Swiper('.swiper-container',{
+        speed:500,
+        onSlideChangeStart: function(){
+            $(".tabs .active").removeClass('active');
+            $(".tabs a").eq(tabsSwiper.activeIndex).addClass('active');
+        }
+    });
+    $(".tabs a").on('touchstart mousedown',function(e){
+        e.preventDefault()
+        $(".tabs .active").removeClass('active');
+        $(this).addClass('active');
+        tabsSwiper.swipeTo($(this).index());
+    });
+    $(".tabs a").click(function(e){
+        e.preventDefault();
+    });
+});
+try{
+    $basedata = {$basedata};//diy列表数据
+    $rule = {$rule};//冲突配置
+    $mid='{$mid}';
+    $cid='{$cid}';
+    $sid='{$sid}';
+    $gxmaxnum='{$maxnum}';
+    $effectprice='{$aprice}';
+}catch(e){}
+</script>
+<script src="/diy/js/luck.js"></script>
+<script src="/diy/js/diy.js"></script>
+</body>
+</html>

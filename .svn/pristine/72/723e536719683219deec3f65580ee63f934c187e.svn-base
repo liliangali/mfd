@@ -1,0 +1,82 @@
+ {include file=member.header.html}
+<div class="container clearfix">
+{include file=member.menu.html}
+
+ <div class="ucenter_right fr">
+    <div class="title">
+        <ul class="lists fr">
+            <li {if $smarty.get.type == 'all'}class="cur"{/if}><a href="{link app=buyer_order}">全部订单</a></li>
+            <li {if $smarty.get.type == '11'}class="cur"{/if}><a href="{link app=buyer_order}?type=11">未支付订单</a></li>
+            <li {if $smarty.get.type == '40'}class="cur"{/if}><a href="{link app=buyer_order}?type=40">已完成订单</a></li>
+        </ul>
+        <h2>我的订单</h2>
+    </div>
+
+
+<!--循环内容-->
+    <div class="content">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <!--{if $orders}-->
+        <!--{foreach from=$orders item=order}-->
+        <tbody>
+            <tr class="tr_th">
+                <td colspan="4">
+                    <span class="tcol1">订单编号: {$order.order_sn}</span>
+                    
+                    <span class="tcol3">{$order.add_time|date:Y年m月d日 H:i}</span>
+                </td>
+            </tr>
+            <tr class="tr_tb">
+                <td>
+                    <ul class="tr_list clearfix">
+                    <!--{foreach from=$order.goods item=goods}-->
+                        <li>
+                            <div class="tr_list-img fl">
+                                <a href="{link app=custom arg0=$goods.goods_id}" target="_blank"><img src="{$goods.goods_image}" alt="" /></a>
+                            </div>
+                            <div class="tr_list-td fl">
+                                <h4><a href="{link app=custom arg0=$goods.goods_id}" target="_blank">{$goods.goods_name}</a></h4>
+                                <span>{$goods.price|price}</span>
+                            </div>
+                        </li>
+                    <!--{/foreach}-->
+                    </ul>
+                </td>
+                <td><span class="blue">{$order.order_amount|price}</span></td>
+                <td><span class="blue">{$lang.ORDER_STATUS.$order.status}</span></td>
+                <td>
+                    <a href="{link app=buyer_order act=view arg0=$order.order_id}" class="blue">订单详情></a>
+                    {if $order.status == $lang.ORDER_PENDING}
+                        <a href="{link app=order act=paycenter}?id={$order.order_sn}" class="payment cc_btn">立即支付</a>
+                    {elseif $order.status == $lang.ORDER_SHIPPED}
+                        <a href="javascript:void(0)" class="payment cc_btn" onclick="upstatus({$order.order_sn},'确认收货？')">确认收货</a>
+                    {elseif $order.status == $lang.ORDER_PENDING}
+                    {if $order.goods_comment == 'no'}
+                    <a class="payment cc_btn" href="{link app=buyer_order act=order_comments_list}?id={$order.order_id}" class="orderComment">立即评价</a>
+                    {/if}
+                    {/if}
+                </td>
+            </tr>
+        </tbody>
+        <!--{/foreach}-->
+    <!--{/if}-->
+
+
+    </table>    
+  </div>
+<!--循环内容 end-->
+<!--翻页开始-->
+{include file=member.page.bottom.html}
+<!--翻页结束-->
+
+
+
+
+ </div>
+
+
+
+
+ </div>
+
+{include file="footer.html"}

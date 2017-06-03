@@ -1,0 +1,277 @@
+{include file="header.html"}
+<link type="text/css" rel="stylesheet" href="{$img_url}/css/head_footr.css" />
+<link type="text/css" rel="stylesheet" href="{$img_url}/css/coolke.css" />
+<link type="text/css" rel="stylesheet" href="{res file=css/new_pubuliu.css}" />
+<script type="Text/Javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+<script>
+function sub(){
+    if(!$.rc.dialog.islogin())
+        return 0;
+
+	var content = $("#saytext").val();
+	if(!content || content =='你也可以随便说点什么')
+		return alert('请输入点东西吧');
+	
+	$("#mf").submit();
+}
+
+
+var last_div = {$comment_total};
+function ajaxPage(id,page){
+	$.ajax({
+		"url":"/index.php/club-ajaxComment.html",
+		"data": "cate=jiepai_comment&id=" + id + "&page="+page,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			$("#comment_div_"+last_div).after(data.data);
+			if(data.more){
+				$("#comment_more").html(data.more);
+			}else
+				$("#comment_more").html("<a href=''>没有更多了...</a>");
+			
+			
+			last_div = data.last_id - 1;
+		}
+	});
+}
+
+var setLike = function (uid,like_id,cate){
+	if(!$.rc.dialog.islogin())
+		return 0;
+
+	$.ajax({
+		"url":"/index.php/ajax-setLike.html",
+		"data": "uid=" + uid + "&cate="+cate+"&like_id="+like_id ,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			if(data.err){
+				alert(data.msg);
+			}else{
+				//$("#like_"+like_id).attr('class',"yxih");
+				$("#like_"+like_id).attr('class','sk_ylike_a');
+				$("#like_"+like_id).attr('onclick','');
+				var like_num = parseInt( $("#like_num_"+like_id).html() ) + 1;
+				$("#like_num_"+like_id).html(like_num);
+			}
+		}
+	});
+}
+
+$(document).ready(function(){
+	$("#saytext").keyup(
+		function (){
+			var content = $("#saytext").val();
+			if(content.length > 185){
+				content=substring.substr(0,185);
+				$("#saytext").val(content);
+				
+				return alert('已超过185个字符');
+			}
+			
+			var dis = 185 - content.length;
+			$("#max_length").html(dis);
+		}		
+	);
+});
+
+function member_cancle(to_uid){
+	/* if(!$.rc.dialog.islogin())
+		return 0; */
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_unfollow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			//alert('已取消关注');
+			//alert("#fans_"+id);
+			var obj = $("#member_fans_"+to_uid);
+			//alert(obj.html());
+			//obj.html('关注');
+			$("#guanzhu_"+to_uid).attr('class','m_guazu');
+			obj.attr('onclick','member_follow('+to_uid+');');
+			
+			
+			
+		}
+	});
+}
+
+function member_follow(to_uid){
+	if(!$.rc.dialog.islogin())
+	   return 0;
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_follow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			//alert('已关注');
+			//alert("#fans_"+id);
+			var obj = $("#member_fans_"+to_uid);
+			//alert(obj.html());
+			//obj.html('取消关注');
+			$("#guanzhu_"+to_uid).attr('class','m_qxguazu');
+			obj.attr('onclick','member_cancle('+to_uid+ ');');
+		}
+	});
+}
+</script>
+
+<body style="background:#f9f9f9;">
+
+<!-- 中间 开始 -->
+<div class="shaiku_box">
+  <div class="shaiku_l">
+       <h1>{$album.description}</h1>
+       <div class="shaiku_img">
+		{foreach from=$album_photo key=k item=v }
+           <a name="{$v.id}"></a><img src="{$v.url}">
+        {/foreach} 
+          <div class="coolke-copy"><i>所有内容均来自互联网或个人上传，版权归原作者所有，如有侵犯您的权益请联系我们尽快删除！</i></div>
+		</div>
+  </div>     
+  <div class="shaiku_r">
+      <div class="shaiku_user">
+       <p class="m_drtx"><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$user.uid}"><img src="{$user.avatar}" /></a></p>
+       <div class="shaiku_user_info">
+          <h1><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$user.uid}">{uname  uid=$user.uid sub=10}</a><img src="{$user.level_logo}" class="m_daren" /></h1>
+          <p class="m_fstpxh">
+          	<span>粉丝<font>{$user.fans}</font></span>
+          	<span>街拍<font>{$jiepai_num}</font></span>
+          	<span>喜欢<font>{$user.like_num}</font></span>
+          </p>
+          
+          {if !$photo.self}
+	     	{if !$photo.isFans}
+	     		<p class="m_guazu" id='guanzhu_{$photo.uid}'><a href="javascript:void(0);"  id='member_fans_{$photo.uid}' onclick='member_follow({$photo.uid});'>关注</a></p>
+	     	 {else}
+	     		<p class="m_qxguazu" id='guanzhu_{$photo.uid}'><a href="javascript:void(0);"  id='member_fans_{$photo.uid}' onclick='member_cancle({$photo.uid});'>取消关注</a></p>
+	     	{/if}
+	     {else}
+	     	<p class="m_wodekj"><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$user.uid}" class="m_wodekj">个人空间</a></p>
+	     {/if}
+	     
+	     
+       </div>
+     </div>
+     
+     
+     
+     <div class="sk_like_share">
+     <p class="m_scsj">上传时间：{$album_date}</p>
+               {if !$photo.like}
+	           	<a class="sk_like_a" href="javascript:void(0);"    id='like_{$photo.id}'  onclick='setLike({$visitor.user_id},{$photo.id},"jiepai_like");'  >喜欢 </a>
+	           {else} 
+	           	<a class="sk_ylike_a" href="javascript:void(0);">已喜欢 </a>
+	           {/if} 
+               <span class="sk_like_sum" id='like_num_{$photo.id}'>{$photo.like_num}</span>
+              <div class="sk_m_share bdsharebuttonbox" data-tag="share_1">
+		                  <span class="fxd">分享到：</span>
+		                  <a class="bds_163" href="javascript:void(0);" data-cmd="t163">网易</a>
+		                  <a class="bds_sina" href="javascript:void(0);"  data-cmd="tsina">新浪</a>
+		                  <a class="bds_ren" href="javascript:void(0);"  data-cmd="renren">人人</a>
+		                  <a class="bds_zone" href="javascript:void(0);"  data-cmd="qzone">qq空间</a>
+		                  <a class="bds_weixin1" href="javascript:void(0);"  data-cmd="weixin">微信</a>
+		                  <a class="bds_tqq1" href="javascript:void(0);"  data-cmd="tqq">腾讯微博</a>
+		     </div>
+          </div>
+          
+          <!--评论 开始-->
+		    <div class="sk_comments_box">
+			    <div class="sk_com_form">
+					<form action="/index.php/club-streetinfo?opt=1&id={$id}" method='post' id='mf'>
+					<textarea class="input_text" maxlength=185 id="saytext" name="saytext">你也可以随便说点什么</textarea>
+					<p>
+					  <span class="emotion">表情</span>
+					  <span class="shuru">还可以输入<font  id='max_length'>185</font>个字符</span>
+					  <input type="button" class="sub_btn_comm" onclick='sub();' value="">
+					</p>
+				</form>
+			    </div>
+				<div class="sk_comment_list">
+				    {foreach from=$comment key=k item=v }
+				    <dl  id='comment_div_{$k}'>
+                          <dt><a href="{if $v.user.uid}/index.php/club-cooler-{$v.user.uid}.html{else}javascript:void(0);{/if}"><img src="{$v.user.avatar}" width="36" height="36" /></a></dt>
+                          <dd>
+                             <p class="p1"><a href="{if $v.user.uid}/index.php/club-cooler-{$v.user.uid}.html{else}javascript:void(0);{/if}">{uname  uid=$v.user.uid sub=10}</a></p>
+                             <p class="p2">{$v.content}<font>{$v.time}</font></p>
+                          </dd>
+                      </dl>
+					  {/foreach} 
+				</div>
+			</div>
+          <!--评论 结束--> 
+          {if $comment_more}
+          <div class="shaiku_more" id='comment_more'>
+          	<a href="javascript:void(0);" onclick='ajaxPage({$photo.id},{$next_page});'>查看更多</a>
+          </div>
+           {/if}
+  </div>	
+  <p class="clear"></p>	
+</div>
+<!-- 中间结束 -->
+<script type="text/javascript">
+$(function(){
+	 $(".sk_comment_list").find("dl").each(function(){
+		 var O_this = $(this);
+		 var hf     = O_this.find("dd").children(".p2").children(".hf");
+		 var O_TIME = null;
+		 O_this.mousemove(function(){
+		 clearTimeout(O_TIME);
+			  O_this.css("background","#fbfbfb");
+			   O_this.find("dd").children(".p2").children(".hf").show();
+		 });
+		 O_this.mouseout(function(){
+			 O_TIME = setTimeout(function(){
+			   O_this.css("background","#fff");
+			   O_this.find("dd").children(".p2").children(".hf").hide();
+			 },100);
+		 });
+		 hf.mousemove(function(){
+		 clearTimeout(O_TIME);
+			  O_this.css("background","#fbfbfb");
+			   O_this.find("dd").children(".p2").children(".hf").show();
+		 });
+		 
+	 });
+})
+$(function(){
+	$('.emotion').qqFace({
+		id : 'facebox', 
+		assign:'saytext', 
+		path:'{$img_url}/images/arclist/'	//表情存放的路径
+	});
+});
+
+var PINER = {
+	    uid: "<?php echo $_SESSION['user_info']['user_id'] ?>"
+	};
+	
+</script>
+
+<script type="text/javascript" src="{$img_url}/js/jquery.qqFace.js"></script>
+<!--底部开始-->
+{include file="footer.html"}
+</body>
+</html>
+<script>
+	window._bd_share_config = {
+		common : {
+			bdText : '',	
+			bdDesc : '',	
+			bdUrl : '{$site_url}/index.php/club-streetinfo-{$id}.html', 	
+			bdPic : '{$photo.url}'
+		},
+		share : [{
+			"bdSize" : 24
+		}]
+
+	}
+	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>

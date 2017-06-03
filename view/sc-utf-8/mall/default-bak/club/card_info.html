@@ -1,0 +1,32 @@
+
+        <div class="card_info">
+         <a class="uname" href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$user.user_id}" target="_blank"><img src="{$user.avatar}" class="avatar"></a>
+        <div class="info">
+            <p><a class="uname" href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$user.user_id}" target="_blank">{uname uid=$user.uid sub=20}</a><img src="{$user.level_logo}"></p>
+            <p>{$user.province_name} {$user.city_name}</p>
+            <p>
+                <a href="/index.php/club-cooler-{$user.user_id}.html"><span>{$user.fans}</span></a>粉丝
+                <a href="/index.php/club-hwaterfall-1-1-{$user.user_id}.html" class="ml10"><span>{$user.pic_num}</span></a>图片
+                <a href="/index.php/club-like-{$user.user_id}.html" class="ml10"><span>{$user.like_num}</span></a>喜欢
+            </p>
+        </div>
+        <div class="intro">
+            <span class="clr3"><font>标签：</font>{$user.signature}</span>
+        </div>
+    </div>
+    <div class="card_toolbar">
+       <!--{if $visitor.user_id eq $user.user_id }-->
+        	<a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$user.user_id}" class="user_wodekj" target=_blank">我的空间</a>
+         <!--{else}-->
+        <div class="J_follow_bar fl mr10" data-uid="{$user.user_id}">
+            <!--{if $user.ship eq 0}-->
+            <a href="javascript:;" class="J_fo_u fo_u_btn">关注</a>
+            <!--{elseif $user.ship eq 1}-->
+            <span class="fo_u_ok" style="display:none;">已关注</span><a href="javascript:;" class="J_unfo_u green">取消</a>
+            <!--{elseif $user.ship eq 2}-->
+            <a href="javascript:;" class="J_unfo_u green">取消</a>
+            <!--{/if}-->
+        </div>
+        <a href="{:U('message/write', array('to_id'=>$user['id']))}" style="display:none;" class="green" target="_blank">发私信</a>
+        <!--{/if}-->
+    </div>

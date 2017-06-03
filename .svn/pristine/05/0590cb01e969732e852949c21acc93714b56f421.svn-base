@@ -1,0 +1,31 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+	<!--用户中心左菜单部分 START-->
+	{include file = member.menu.html}
+	<!--用户中心左菜单部分 END-->
+    <div class="user_right user_rights fr">
+		<h4 class="collection">麦富迪币购买</h4>
+		{foreach from=$list item=coin}
+        <div class="currency currencycolor">
+            <div class="rencytop rencytopcolor">
+            	<h3>麦富迪币</h3>
+                <div class="ktbbuy">
+                	<p class="fl">购买后增加<span>{$coin.integral}</span>积分</p>
+                    <p class="fr">麦富迪币面值：<span class="size">{$coin.facevalue}</span>元</p>
+                </div>
+            </div>
+            <div class="bexplain">
+            	<p class="fl textword">麦富迪财富快车，享折扣绿色通道：创业者可以一次性购买不同面值的麦富迪币实现更高级别的晋升，并享受相应平台售价的折扣，具体性详情，请联系平台拓展经理。</p>
+                <button class="fr buttoncolr" onclick="location.href='{link app=coinbuy arg=$coin.id}'">购买</button>
+            </div>
+        </div>
+        {/foreach}
+    </div>
+</div>
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+{include file=../footer-new.html}
+</body>
+</html>
+

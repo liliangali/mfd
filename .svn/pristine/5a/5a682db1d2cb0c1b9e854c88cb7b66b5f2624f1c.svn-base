@@ -1,0 +1,48 @@
+{include file="header.html"}
+
+<form action="" method="post" class="specification" id="specification">
+  <div class="tt"><strong>商品规格</strong>点击选择当前商品需要的规格。</div>
+  <div class="td">
+    <div id="update_news" class="clearfix">
+      {include file="set_spec_specs.html"}
+    </div>
+    <div class="action-btns">{button label="生成所有货品" class="btn-primary btn-createAllGoods"}</div>
+    <div style="margin-top:1em;">共<b class="product-number">{$countProducts}</b>件货品</div>
+    <div class="spec-tree">
+      <table cellspacing="0" cellpadding="0" border="0" class="gridlist" id="goods-table">
+        <thead>
+          <tr>
+            <th>规格值</th>
+            <th style="width:auto;">货号</th>
+            <th style="width:4%;">上架</th>
+            <th style="width:6%;">库存</th>
+            <th style="width:6%;">冻结库存</th>
+            <th style="width:15%;">销售价</th>
+            <th style="width:8%;">成本价</th>
+            <th style="width:8%;">市场价</th>
+            <th style="width:8%;">重量(g)</th>
+            <th style="width:8%;">货位</th>
+            <th style="width:5%;">默认货品</th>
+            <th style="width:4%;">操作</th>
+          </tr>
+        </thead>
+        <tbody id="dataNode">
+        </tbody>
+      </table>
+      <div id="pager" class="pager gridlist-footer">
+        <a title="上一页" class="prev" href="javascript:void(0)">&lt;上一页</a>
+        <a title="下一页" class="next" href="javascript:void(0)">下一页&gt;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-action" style="border-top:0;">
+    <{button class="save-action" label=$___b2c="保存"|t:'b2c'}>
+  </div>
+</form>
+ 
+   
+<script type="text/javascript">
+
+</script>
+{include file="footer.html"}

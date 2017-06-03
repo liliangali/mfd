@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+{if $title}
+<title>{$title}</title>
+{else}
+{$page_seo}
+{/if}
+<base href="{$site_url}/" />
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+<meta name="author" content="www.rctailor.com" />
+<meta name="copyright" content="rctailor.com Inc. All Rights Reserved" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+
+<link href="{res file=css/style.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/apply_style.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/head_footr.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{link app=default act=jslang}"></script>
+<script type="Text/Javascript" src="{res file=js/jquery-1.7.1.min.js}"></script>
+<script type="text/javascript" src="{lib file=json.js}"></script>
+<script type="text/javascript" src="{lib file=minicart.js}"></script>
+<script type="text/javascript" src="{res file=js/plugins/rc.js}"></script>
+
+<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+{$_head_tags}
+</head>
+
+<body style="background:#f9f9f9;">
+
+<!-- 反回顶部代码开始 -->
+<script>
+
+function b(){
+	h = $(window).height();
+	t = $(document).scrollTop();
+	if(t > h){
+		$('#gotop').show();
+	}else{
+		$('#gotop').hide();
+	}
+}
+$(document).ready(function(e) {
+	b();
+	$('#gotop').click(function(){
+		$(document).scrollTop(0);	
+	})	
+	
+});
+
+$(window).scroll(function(e){
+	b();		
+});
+
+</script>
+
+
+<div id="gotop" href="javascript:void(0)">
+    <a href="javascript:void(0)" class="go_top"></a>
+</div>
+
+<script>
+function b(){
+	var h=$(window).height();
+	var t=$(document).scrollTop();
+	if(t >h){
+		 $("#gotop").fadeIn(500);
+	  }
+	  else
+	  {
+		 $("#gotop").fadeOut(500);  
+	  }
+}
+
+$(document).ready(function(e){ 
+	b();
+	$("#gotop").click(function(){
+	   $(document).scrollTop(0);	
+	})
+})
+
+$(window).scroll(function(e){
+	b();		
+})
+</script>
+
+<!-- 反回顶部代码结束 -->
+
+<!--头部开始-->
+<div class="m_logo_box">
+  <p class="m_logo"><a href="./"><img src="{res file=images/logo.png}" /></a></p>
+  
+  <div class="m_gjsl" onmouseout="this.className='m_gjsl'" onmouseover="this.className='m_gjsl m_gjsl_2'">
+    <p class="m_jongou">中国</p>
+    <div>
+      <p><a href="#">美国</a></p>
+      <p><a href="#">加拿大</a></p>
+      <p><a href="#">英国</a></p>
+      <p><a href="#">法国</a></p>
+    </div>
+  </div>
+  
+  
+  <script>
+  
+  function search(){
+	  var k = $("#keyword").val();
+	  if(!k || k == '找图片、找定制、找主题、找人')
+		  return alert('不能为空...');
+	  
+	  if(k.length < 2)
+		  return alert('至少输入两个字符(汉字)');
+	  
+	  if(k.length > 50)
+		  return alert('您输入的字符太多了，机器会被累死..请输入50个字条以内...');
+	  
+	  location.href="/index.php/search.html?keyword="+k;
+  }
+  
+  </script>
+  
+  <div class="m_tbssk">
+    <input type="text" id='keyword' value="找图片、找定制、找主题、找人" onfocus="if(value=='找图片、找定制、找主题、找人'){value=''}" onblur="if(value==''){value='找图片、找定制、找主题、找人'}" class="input_1" name="keyword"/>
+    
+    <input type="button" onclick='search()' class="input_2" />
+    <p class="clear"></p>
+  </div>
+
+  <!--移动端下载入口开始-->
+    <!--鼠标经过显示下拉层js-->
+	<script type="text/javascript">
+    $(function(){
+        var $menu = $('.sgapptu');
+        $menu.children('li').each(function(){
+            var $this = $(this);
+            var $h1 = $this.children('h1');
+        
+            $this.bind('mouseenter',function(){
+                $menu.find('.down_tcc').stop(true,true).hide();
+                $h1.addClass("on");
+                $h1.stop().animate(200,function(){
+                $this.find('.down_tcc').slideDown(200);
+                });
+            }).bind('mouseleave',function(){
+                $h1.removeClass("on");
+                $this.find('.down_tcc').stop(true,true).hide();
+                $h1.stop().animate(200);
+            });
+        });
+        
+    });
+    </script>	  
+  
+  <div class="sgxlk">
+     <ul class="sgapptu">
+     
+       <li class="li1">
+         <h1><b>安卓</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3><span>Android</span>客户端</h3>
+
+             <p class="smrwm">1.扫描二维码下载</p>
+             <p class="rwmtupa"><img src="{res file=images/qrcode1.png}" /></p>
+             <p class="smrwm">2.安智市场免费下载</p>
+             <p class="ljmfxz"><a href="../index.php/client.html"></a></p>
+           </div>
+         </div>
+       </li>
+
+       <li class="li2">
+         <h1><b>苹果</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3><span>iPhone</span>客户端</h3>
+             <p class="smrwm">1.扫描二维码下载</p>
+             <p class="rwmtupa"><img src="{res file=images/qrcode2.png}" /></p>
+             <p class="smrwm">2.App Store免费下载</p>
+             <p class="ljmfxz"><a href="../index.php/client.html"></a></p>
+           </div>
+         </div>
+       </li>  
+       
+       <li class="li3">
+         <h1><b>微信</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3>微信移动端</h3>
+             <p class="smrwm">1.扫描二维码关注</p>
+             <p class="rwmtupa"><img src="{res file=images/qrcode3.png}" /></p>
+             <p class="smrwm">RCTAILOR官方微信<br />关注、绑定有惊喜哦！</p>
+           </div>
+         </div>
+       </li>         
+       
+
+     </ul>
+     <p class="clear"></p>
+  </div>
+  <!--移动端下载入口结束-->
+  <p class="clear"></p>
+</div>
+
+<div class="m_nav_box">
+  <div class="m_nav">    
+    <ul class="m_nav_left">
+      <li><a href="./">首页</a></li>
+      <li {if $currentApp eq 'tailor'} class="on"{/if}><a href="{link app=tailor}">找裁缝</a></li>
+      <li {if $currentApp eq 'fabrics'} class="on"{/if}><a href="{link app=fabrics}">选面料</a></li>
+      <li {if $currentApp eq 'club'} class="on"{/if}><a href="{link app=club}">看晒单</a></li>
+      <li {if $currentApp eq 'service'} class="on"{/if} style="background:none;"><a href="/index.php/service.html">要量体</a></li>
+    </ul>
+    <p class="clear"></p>
+    
+    <!--未登录开始-->
+	<!--{if !$visitor.user_id}-->
+      <p class="m_wdlzt"><span><a  href="{link app=member act=entrance}">登录</a></span><span><a href="{link app=member act=register}">注册</a></span></p>
+    <!--未登录结束-->
+    {else}
+    <div class="m_yfmc_on" onMouseOver="this.className='m_yfmc_on m_yfmc_off'" onMouseOut="this.className='m_yfmc_on'">
+      <p class="m_yml">{uname uid=$visitor.user_id sub=8}</p>
+      <div class="m_txtcc">
+        <div class="m_touxia">
+          <p><a href="/index.php/kuke-avatar.html" title="点击修改头像"><img src="{$visitor.avatar}" /></a></p>
+          <ul>
+            <li><a href="/index.php/kuke-index.html">酷客中心</a></li>
+            <li><a href="/index.php/buyer_order.html">我的订单</a></li>
+            <li><a href="/index.php/my_favorite.html">我的收藏</a></li>
+            <li><a href="/index.php/kuke-album.html">我的街拍</a></li>
+          </ul>
+        </div>
+        <p class="clear"></p>
+        
+        <div class="m_ktbjfyhj">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+              <th><a href="/index.php/kuke-coin.html">麦富迪币：</a></th>
+              <td><a href="/index.php/kuke-coin.html">{$visitor.coin}</a></td>
+            </tr>
+            
+            <tr>
+              <th><a href="/index.php/kuke-point.html">积分：</a></th>
+              <td><a href="/index.php/kuke-point.html">{$visitor.point}</a></td>
+            </tr>            
+            
+            <tr>
+              <th><a href="/index.php/kuke-coupon.html">优惠券：</a></th>
+              <td><a href="/index.php/kuke-coupon.html">{$visitor.coupon}</a></td>
+            </tr>            
+          </table>
+        </div>
+        
+        <div class="m_grsz"><a href="/index.php/kuke-userinfo.html">个人设置</a><span><a href="{link app=member act=logout}">[退出]</a></span></div>
+        
+      </div>
+    </div>
+	{/if}
+    
+    <div class="m_qjs_on">
+      <p class="m_gwcqjs">去结算</p>
+      <p class="m_gwcslbg" id="cartGoodsNum"><span class="span_1"></span><font>{$cart_goods_num|default:0}</font><span class="span_2"></span><p class="clear"></p></p>
+      <!--空购物车结束-->
+      
+      <!--购物车列表开始-->
+      <div class="m_gwclb" id="miniCart">
+		
+      </div>
+      <!--购物车列表结束-->
+    </div>
+    
+    
+  </div>
+</div>
+
+<!--头部结束-->
+<script>
+$(document).ready(function(){
+	opt = {};
+	opt.miniCartUrl = "{link app=cart act=miniCart}";
+	opt.miniDropUrl = "{link app=cart act=drop}";
+	miniCart.init(opt);
+})
+</script>

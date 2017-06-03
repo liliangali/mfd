@@ -1,0 +1,162 @@
+{include file=header.html}
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>麦富迪女装</title>
+<link href="../../static/css/design_details_list.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    
+  <div class="sjsjs">
+    <div class="sjs_center">
+       <h1>DESIGNER</h1>
+       <h2>设计师介绍</h2>
+       <p class="p1">{$desgin.content}</p>
+       <p class="p2"><img src="{$desgin.photo_url}"></p>
+       <p class="p3">{$desgin.englishname}&&{$desgin.username}</p>
+    </div>
+  </div>
+
+        
+<div class="container"><h1 class="title">DESIGNE</h1></div>
+ 
+<div class="tabTit">
+<p>
+
+<span class="cur"><a href="{link app=designer act=suit arg0=1 arg1=0 arg2=$desginer_id}">套装</a></span>
+
+{foreach from=$options item=item}
+<span><a href="{link app=designer act=index arg0=1 arg1=0 arg2=$desginer_id}{$item.url}">{$item.cate_name}</a></span>
+{/foreach}
+</p>
+
+</div>
+
+
+<div class="container" id="brick">
+<!--  <div class="sjlb">
+   <ul>
+   {foreach from=$custom_list item=v}
+    <li>
+     <p class="p1"><a href="{link app=custom arg=$v.id}"><img src="{$v.source_img}"></a></p>
+     <p class="p2"><a href="{link app=custom arg=$v.id}">{$v.name}</a></p>
+     <p class="p3">￥{$v.price} </p>
+    </li>
+    {/foreach}
+   </ul>
+
+    <ul>
+    {if $desginer_id}
+   {foreach from=$tz_list item=v}
+    <li>
+     <p class="p1"><a href="{link app=suit arg=$v.id}"><img src="{$v.image}"></a></p>
+     <p class="p2"><a href="{link app=suit arg=$v.id}">{$v.suit_name}</a></p>
+     <p class="p3">￥{$v.price} </p>
+  
+    </li>
+    {/foreach}
+
+    {/if}
+ 
+   </ul>
+ </div> -->
+<!--  <div id="brick" class="brick"></div> -->
+
+<!--翻页开始--><!--
+
+  {if $custom_list || $tz_list}
+   <div class="cc_page">
+    <a href="{$prev_link}" title="上一页" class="zjt">&lt;</a>
+   {foreach from=$pages.page_links key=key item=page}
+                    <a href="{$page}{$url}">{$key}</a>
+                {/foreach}
+    <a href="{$next_link}" title="下一页" class="zjt">&gt;</a>
+ </div>  
+{/if}
+
+
+--><!--翻页结束-->
+</div>
+{include file=footer.html}
+
+</body>
+</html>
+<script src="../../static/js/jquery-1.8.3.min.js"></script>
+<script src="../../static/js/jquery.masonry.js"></script>
+<script src="../../static/js/public.js"></script>
+<script src="../../static/js/jquery.cookie.js"></script>
+<script src="../../static/expand/layer/layer.min.js"></script>
+<script>
+var $container = $('#brick'),delay=null;
+var goods = {};
+goods.url   = '{link app=designer act=loadSuitData}';
+goods.param = "{$formatUrl}";
+</script>
+<script type="text/javascript" src="../../static/js/slides.min.jquery.js"></script>
+<script>
+  $('#slides').slides({
+  preload: true,
+  preloadImage: 'img/loading.gif',
+  play: 5000,
+  pause: 2500,
+  hoverPause: true,
+  animationStart: function(){
+    $('.caption').animate({
+      bottom:-35
+    },100);
+  },
+  animationComplete: function(current){
+    $('.caption').animate({
+      bottom:0
+    },200);
+    if (window.console && console.log) {
+      // example return of current slide number
+      //console.log(current);
+    };
+  }
+});
+
+var $container = $('#brick'),delay=null,flag=null;
+//获取数据
+function getData(){
+  var winh=$(window).height(),
+    bodyh=$container.height();
+  if(($(window).scrollTop()+winh)>=bodyh-350){
+    $(window).off('scroll',getData);
+    if(delay){clearTimeout(delay)}
+    delay=setTimeout(function(){
+      if(!goods.url){
+        //$newElems = $("<div class='item'>加载完成</div>")
+          //$container.append($newElems).masonry("appended",$newElems);
+            return false;
+        }
+        $.get(goods.url+goods.param,function(res){
+            var res = eval("("+res+")");
+            var $newElems = $(res.retval.content);
+            goods.url = res.retval.link;
+        if(flag){
+          $container.append($newElems).masonry("appended",$newElems);
+        }else{
+          $container.append(res.retval.content);
+          $container.imagesLoaded( function(){
+            $container.masonry({
+            columnWidth:0,
+            itemSelector: '.sjlb'
+            });
+          });
+          flag=true;
+        }
+            $(window).on('scroll',getData);
+        });
+      
+    },500)
+  } 
+}
+$(window).on('scroll',getData);
+
+//初始化
+getData();
+</script>

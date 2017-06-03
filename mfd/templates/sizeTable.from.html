@@ -1,0 +1,162 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#user_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            standard_code : {
+                required : true
+            }
+        },
+        messages : {
+            standard_code  : {
+                required : '尺码名称不能为空！',
+            }
+        }
+    });
+});
+
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=sizeTable">尺码管理</a></li>
+    <li><span>添加尺码</span></li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="user_form">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15">名&nbsp;称:</th>
+        <td class="paddingT15 wordSpacing5">
+        <select class="querySelect" name="name_id" id="name_id">
+          <!--{foreach from=$style_list item=style}-->
+          <option value="{$style.id}" {if $size_info.name_id == $style.id}selected{/if}>{$style.name}</option>
+          <!--{/foreach}-->
+        </select>
+          <label class="field_notice">风格名称</label>
+          </td>
+      </tr>
+
+      <tr>
+        <th class="paddingT15">尺码名称:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="standard_code" type="text" name="standard_code" value="{$size_info.standard_code}" />
+          <label class="field_notice">例如：155/78</label>
+          </td>
+      </tr>
+
+      <tr>
+        <th class="paddingT15">性&nbsp;别:</th>
+        <td class="paddingT15 wordSpacing5">
+          <select class="querySelect" name="gender" id="gender">
+            <option value="1" {if $size_info.gender ==1}selected{/if}>男</option>
+            <option value="2" {if $size_info.gender ==2}selected{/if}>女</option>
+          </select>
+          </td>
+      </tr>
+
+      <tr>
+        <th class="paddingT15">胸&nbsp;围:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="xw" type="text" name="xw" value="{$size_info.xw}" />
+          <label class="field_notice"></label>
+          </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">中腰围:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="zyw" type="text" name="zyw" value="{$size_info.zyw}" />
+          <label class="field_notice"></label>
+          </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">臀&nbsp;围:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="tw" type="text" name="tw" value="{$size_info.tw}" />
+          <label class="field_notice"></label>
+          </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">袖&nbsp;肥:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="xf" type="text" name="xf" value="{$size_info.xf}" />
+          <label class="field_notice"></label>
+          </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">总肩宽:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="zjk" type="text" name="zjk" value="{$size_info.zjk}" />
+          <label class="field_notice"></label>
+          </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">袖&nbsp;长:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="xc" type="text" name="xc" value="{$size_info.xc}" />
+          <label class="field_notice"></label>
+          </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">后衣长:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="hyc" type="text" name="hyc" value="{$size_info.hyc}" />
+          <label class="field_notice"></label>
+          </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">身&nbsp;高:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="lheight" type="text" name="lheight" value="{$size_info.lheight}" />
+          <label class="field_notice"></label>
+          </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">净胸围:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="jxw" type="text" name="jxw" value="{$size_info.jxw}" />
+          <label class="field_notice"></label>
+          </td>
+      </tr>
+
+      <tr>
+        <th class="paddingT15">备&nbsp;注:</th>
+        <td class="paddingT15 wordSpacing5">
+          <textarea id="remarks" name="remarks" class="">{$size_info.remarks}</textarea>
+          <label class="field_notice"></label>
+          </td>
+      </tr>
+
+      <tr>
+        <th></th>
+        <input type="hidden" value="{$if_page}" name="if_page">
+        <td class="ptb20"><input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+        <input class="congzi" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<script>
+//$('#lv_type').change(function(){
+//
+//	$.post("/mfd/index.php?app=user&act=getLvs",{mty:$(this).children('option:selected').val()}, function(res){
+//	   var res = eval("("+res+")");
+//	   console.log(res.retval.content);
+//	   if(res.done == true){
+//	        $("#member_lv_id").html(res.retval.content);
+//	    }
+//	});
+//
+//	});
+
+
+</script>
+{include file="footer.html"}

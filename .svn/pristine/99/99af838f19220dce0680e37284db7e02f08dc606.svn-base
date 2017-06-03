@@ -1,0 +1,161 @@
+@charset "utf-8";
+/*布局*/
+.container{ max-width:1540px; margin:0 auto;}
+
+/*title*/
+.title{ text-align:center; clear:both; padding:68px 0 58px;}
+.title img{ display:inline;}
+
+/*banner*/
+.banner{ overflow:hidden;}
+.banner .left,.banner .right{ width:50%}
+.banner img{ width:100%; height:auto;}
+.banner .pic2-txt{ padding:10% 10% 0; font-size:14px;overflow:hidden}
+.banner h4{ font-size:1.1em; font-weight:normal;}
+.banner h4 .line{ display:block; height:1px; background:#96e9d5; overflow:hidden; width:45px; margin:6% 0;}
+.banner p{ font-size:1em;}
+.banner .pic3{ position:relative;}
+.banner .pic3-txt{ position:absolute; right:0; bottom:0; width:40%; height:32%; padding:5% 5% 0; background:#72ccb7; font-size:14px; opacity:0.9; color:#fff;overflow:hidden}
+/*推荐*/
+.recom{ max-width:1210px; margin:0 auto;}
+.recom .tabTit{ text-align:center;}
+.recom .tabTit span{ display:inline-block; width:128px; height:37px; border:solid 1px #eee; text-align:center; line-height:37px; margin:0 8px; cursor:pointer;}
+.recom .tabTit .cur{ background:#eeb013; border-color:#eeb013; color:#fff;}
+.recom .tabLayer{ margin-top:50px; overflow:hidden;}
+.recom .item{ position:relative; width:272px; float:left; font-size:12px; letter-spacing:2px; margin:0 30px 75px 0; overflow:hidden;}
+.recom .item img{ max-width:100%; height:auto;}
+.recom .is-visible{ background:#fff;position: relative;z-index:2;}
+.recom .is-hidden{ background:#fff;height: 100%;left: 0;position: absolute;top: 0;transform: rotateY(180deg);width: 100%;z-index: 1;}
+.recom .is-select{ z-index:3;}
+.recom .item.is-switched .is-visible { -webkit-transform: rotateY(180deg); -moz-transform: rotateY(180deg); -ms-transform: rotateY(180deg); -o-transform: rotateY(180deg); transform: rotateY(180deg); -webkit-animation: cd-rotate 0.5s; -moz-animation: cd-rotate 0.5s; animation: cd-rotate 0.5s; }
+.recom .item.is-switched .is-hidden { -webkit-transform: rotateY(0); -moz-transform: rotateY(0); -ms-transform: rotateY(0); -o-transform: rotateY(0); transform: rotateY(0); -webkit-animation: cd-rotate-inverse 0.5s; -moz-animation: cd-rotate-inverse 0.5s; animation: cd-rotate-inverse 0.5s;}
+@-webkit-keyframes cd-rotate {  0% {
+ -webkit-transform: perspective(800px) rotateY(0);
+}
+ 70% {
+ -webkit-transform: perspective(800px) rotateY(200deg);
+/* this creates the bounce effect */
+}
+ 100% {
+ -webkit-transform: perspective(800px) rotateY(180deg);
+}
+}
+@-moz-keyframes cd-rotate {  0% {
+ -moz-transform: perspective(800px) rotateY(0);
+}
+ 70% {
+ -moz-transform: perspective(800px) rotateY(200deg);
+/* this creates the bounce effect */
+}
+ 100% {
+ -moz-transform: perspective(800px) rotateY(180deg);
+}
+}
+@keyframes cd-rotate {  0% {
+ -webkit-transform: perspective(800px) rotateY(0);
+ -moz-transform: perspective(800px) rotateY(0);
+ -ms-transform: perspective(800px) rotateY(0);
+ -o-transform: perspective(800px) rotateY(0);
+ transform: perspective(800px) rotateY(0);
+}
+ 70% {
+ -webkit-transform: perspective(800px) rotateY(200deg);
+ -moz-transform: perspective(800px) rotateY(200deg);
+ -ms-transform: perspective(800px) rotateY(200deg);
+ -o-transform: perspective(800px) rotateY(200deg);
+ transform: perspective(800px) rotateY(200deg);
+/* this creates the bounce effect */
+}
+ 100% {
+ -webkit-transform: perspective(800px) rotateY(180deg);
+ -moz-transform: perspective(800px) rotateY(180deg);
+ -ms-transform: perspective(800px) rotateY(180deg);
+ -o-transform: perspective(800px) rotateY(180deg);
+ transform: perspective(800px) rotateY(180deg);
+}
+}
+@-webkit-keyframes cd-rotate-inverse {  0% {
+ -webkit-transform: perspective(800px) rotateY(-180deg);
+}
+ 70% {
+ -webkit-transform: perspective(800px) rotateY(20deg);
+/* this creates the bounce effect */
+}
+ 100% {
+ -webkit-transform: perspective(800px) rotateY(0);
+}
+}
+@-moz-keyframes cd-rotate-inverse {  0% {
+ -moz-transform: perspective(800px) rotateY(-180deg);
+}
+ 70% {
+ -moz-transform: perspective(800px) rotateY(20deg);
+/* this creates the bounce effect */
+}
+ 100% {
+ -moz-transform: perspective(800px) rotateY(0);
+}
+}
+@keyframes cd-rotate-inverse {  0% {
+ -webkit-transform: perspective(800px) rotateY(-180deg);
+ -moz-transform: perspective(800px) rotateY(-180deg);
+ -ms-transform: perspective(800px) rotateY(-180deg);
+ -o-transform: perspective(800px) rotateY(-180deg);
+ transform: perspective(800px) rotateY(-180deg);
+}
+ 70% {
+ -webkit-transform: perspective(800px) rotateY(20deg);
+ -moz-transform: perspective(800px) rotateY(20deg);
+ -ms-transform: perspective(800px) rotateY(20deg);
+ -o-transform: perspective(800px) rotateY(20deg);
+ transform: perspective(800px) rotateY(20deg);
+/* this creates the bounce effect */
+}
+ 100% {
+ -webkit-transform: perspective(800px) rotateY(0);
+ -moz-transform: perspective(800px) rotateY(0);
+ -ms-transform: perspective(800px) rotateY(0);
+ -o-transform: perspective(800px) rotateY(0);
+ transform: perspective(800px) rotateY(0);
+}
+}
+.recom .item .name{ height:45px; display:block; line-height:45px; overflow:hidden;}
+.recom .item .price1{ font-size:13px;}
+.recom .item .price2{margin-left:20px; text-decoration:line-through;}
+.recom .item .price .ico{ background:#eeb013; color:#fff; padding:0 2px; font-size:10px; margin-left:2px;}
+.recom .item .btn{ margin-top:20px;}
+.recom .item .btn a{ display:inline-block; width:17px; height:17px; margin-right:20px; background:url(../../static/img/nz-ico1.gif) no-repeat; cursor:pointer;}
+.recom .item .btn .ico1{ background-position:0 2px;}
+.recom .item .btn .ico2{ background-position:-41px 2px;}
+.recom .item .btn .ico3{ background-position:-80px 2px;}
+
+
+@media (min-width:1px) and (max-width:1024px){
+.container { width: 768px; }
+.banner .pic2-txt{font-size:10px; height:93px;}
+.banner .pic3-txt{font-size:10px;}
+.recom .item{ width:235px; margin:0 10px 75px;}
+}
+
+@media (min-width: 1024px) and (max-width:1440px) {
+.container { width:1024px; }
+.banner .pic2-txt{font-size:14px; height:123px;}
+.banner .pic3-txt{font-size:14px;}
+.recom .item{ width:235px; margin:0 10px 75px;}
+}
+
+@media (min-width: 1440px) and (max-width:1540px) {
+.container { width:1440px; }
+}
+
+@media (min-width: 1540px){
+.container { width: 1540px; }
+}
+/*通栏大图*/
+.lzsj {background-attachment: fixed; background-position: 50% 0;  background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height:389px; padding-top:46px; text-align: center; width: 100%; color:#fff;}
+.lzsj h1 {font-weight:normal; font-size:35px; line-height:42px; font-family:宋体;}
+.lzsj h2 {font-weight:normal; font-size:22px; line-height:42px;  font-family:宋体;}
+.lzsj .p1 {font-size:14px; line-height:24px; margin-top:12px; width:80%; margin:0 auto;}
+.lzsj .p2 {width:88px; height:93px; margin:0 auto; padding:25px 0 14px 0;}
+.lzsj .p2 img {width:100%; border:1px solid #fff;}
+.lzsj .p3 {font-size:19px; line-height:24px;}

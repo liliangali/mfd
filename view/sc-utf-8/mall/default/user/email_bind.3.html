@@ -1,0 +1,20 @@
+
+<div class="user_box">
+  {include file=member.menu.html}   
+    <div class="user_right user_rights fr" >
+		<h4>修改绑定邮箱</h4>
+        <div class="verification verificationyx">
+        	<ul>
+            	<li>1.验证身份</li>
+                <li class="current">2.修改绑定邮箱</li>
+                <li>3.完成</li>
+            </ul>
+        </div>  
+        <div class="binding">
+			<p class="mail">已发送验证邮件至<span>{$email}</span></p>
+            <p class="yzword">验证邮件24小时内有效，请尽快登录您的邮箱点击验证链接完成验证。</p>
+            <a href="{$url}"><input type="button" value="查看验证邮件" class="bdxyb yjbut"></a> 
+        </div>
+    </div>
+       
+</div>

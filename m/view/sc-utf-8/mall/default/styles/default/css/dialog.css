@@ -1,0 +1,26 @@
+
+.d-mask { background:#000; filter:alpha(opacity=30); opacity:.3;}
+.d-header{height:45px;}
+.d-inner { background:#FFFFFF; width:700px; padding:0 15px; height:400px;}
+.d-nw, .d-ne, .d-sw, .d-se { width:5px; height:5px; }
+.d-nw, .d-n, .d-ne, .d-w, .d-e, .d-sw, .d-s, .d-se {border:0px;filter:alpha(opacity=20);}
+.d-titleBar { position:relative; height:100%; font-size:14px; border-bottom: 1px solid #ddd; color:#666666; font-size:16px;}
+.d-title { height:45px; line-height:45px;}
+.d-state-drag .d-title { cursor:move;}
+.d-close { font-family: Tahoma,Arial,sans-serif;font-weight: bold; color: #999999; position:absolute;top:6px;right:7px;}
+.d-close:hover{ text-decoration:none; color:#900;}
+.d-content { color:#666; }
+.d-state-focus .d-content { color:#000;  margin:10px auto 0 auto; width:700px; line-height:25px; height:330px; voerflow:hidden; overflow-y:scroll;}
+.d-buttons { background-color:#F6F6F6; border-top: 1px solid #DADEE5; }
+
+.d-state-noTitle .d-close { top:0; right:5px; text-align:center; text-decoration:none; color:#999999; background:none; filter:!important; }
+.d-state-noTitle .d-close:hover, .d-state-noTitle .d-close:active { text-decoration:none; color:#900; }
+
+@media screen and (min-width:0) {/* css3 */
+	.d-state-focus .d-dialog { width:450px; height:400px;}
+
+}
+
+.d_loading{background: url(images/loading.gif) no-repeat scroll 20px center transparent; padding: 10px 40px 10px 50px;}
+
+

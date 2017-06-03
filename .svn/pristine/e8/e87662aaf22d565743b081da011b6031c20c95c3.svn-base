@@ -1,0 +1,47 @@
+{include file=order/member.header.html}
+
+	<div class="ddtjcg m_body">
+	{if $has_store}
+		{if $order.kh_ship_pay == 1}
+			<div class="bottom_50">
+				<h1 class="gxini">支付成功</h1>
+				<p  class="dindanh">订单号：{$order.order_sn}</p>
+				<p  class="dindanh">总金额：¥{$order.order_amount}</p>
+				<p class="wdltbc"><a href="http://www.baidu.com/" onclick="appback()"  class="error_msg" >返回首页</a></p>
+				<p class="zifugc">订单预计{$del_data}会完成您的专属量身定制<br />介时会免费配送至您手上</p>
+			</div>
+		{else}
+			<div class="ddtjcgy_box">
+				<div class="m_zfcgsy">
+					<p class="m_zfcg">支付成功，请安心等待审核。</p>
+				</div>
+				<div class="dd_tit m_scsy"><span  class="w100 next_botton" >返回首页</span></div>
+			</div>
+		{/if}
+	{else}
+
+		{if $order.kh_ship_pay == 1}
+			<div class="ddtjcgy_box">
+				<div class="m_zfcgsy">
+					<p class="m_zfcg">支付成功，请安心等待审核。</p>
+				</div>
+				<div class="dd_tit m_scsy"><span  class="w100 next_botton" >返回首页</span></div>
+			</div>
+		{else}
+			<div class="bottom_50">
+				<h1 class="gxini">支付成功，订单已完成。</h1>
+				<p class="wdltbc"><a href="http://www.baidu.com/" onclick="appback()"  class="error_msg" >返回首页</a></p>
+			</div>
+		{/if}
+
+	{/if}
+	</div>
+	<script type="text/javascript">
+		function appback() {
+			app.done();
+		}
+	</script>
+	
+</div>
+</body>
+</html>

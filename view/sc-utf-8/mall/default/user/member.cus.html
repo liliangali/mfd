@@ -1,0 +1,95 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+{include file=member.menu.html}
+  <div class="user_right user_rights fr">
+    	<div class="zztitle">
+        	<div class="donation fl">转赠优惠券</div>
+            <!--<form  method="get">
+            <div class="retrieval">
+                <div class="fr jsput">
+                    <input type="text" name='keyword' style="width:170px;padding-left:25px;color:#717171;height:20px;" value="{if $keyword}{$keyword}{else}输入关键字进行搜索{/if}" onfocus="if(value=='输入关键字进行搜索') {value=''}" onblur="if (value=='') {value='输入关键字进行搜索'}" id="con">
+                    <img src="/public/static/pc/images/search.gif" width="16" height="16" class="ssfdj" />
+                <input type="submit" style="width:50px;font-size:12px;line-height:32px;color:#fff;background:#e66800;height:28px;text-align:center;padding:0px;cursor:pointer;" value="搜索">
+                </div>
+
+            </div>
+            </form>-->
+        </div>
+        <div class="retrievals">
+        	<input type="text" name='keyword' class="xbssput" value="{if $keyword}{$keyword}{else}用户名或手机号{/if}" onfocus="if(value=='用户名或手机号') {value=''}" onblur="if (value=='') {value='用户名或手机号'}" id="con">
+            <input type="submit" class="xbsssub" value="">
+        </div>
+        <ul class="jscent jscents">
+        {foreach from=$list item=item}
+            <li class="" data-id={$item.user_id}>
+                <div class="zzkqtx fl"><img src="{if $item.avatar}{$item.avatar}{else}/public/static/pc/images/other/006.png{/if}" width="61" height="61"></div>
+                <div class="zsrlist fl"><span>{$item.nickname}</span><span>{$item.user_name}</span><span>（已赠送<i>{$item.total_money}</i>券，还有<i>{$item.total_money_noused}</i>元没消费）</span></div>
+            </li>
+        {/foreach}
+        </ul>
+         <div class="flip fr">
+            {include file=page.bottom.html}
+            </div>
+        <div class="qrbutw"><input type="button" value="确认赠送" class="qrbut"></div>
+    </div>
+</div>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/global/checkbox-master/src/js/checkBo.min.js"></script> 
+<script src="/public/static/pc/js/cart.js"></script>  
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>  
+<script>
+//cotteFn.index()
+//分享
+window._bd_share_config = {
+	common : {
+		bdText : document.title,	
+		bdDesc : '',	
+		bdUrl : window.location.href, 	
+		bdPic : ''
+	},
+	share : [{
+		"bdSize" : 16
+	}]
+}
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<script>
+$(".qrbut").click(function(){
+	var id = $(".fxks").attr('data-id');
+	var d_id = '{$d_id}';
+	$.ajax({
+		type:"POST",
+		url : "{link app=member act=debit_cus}",
+		data:"id="+id+"&d_id="+d_id,
+		dataType: "json",
+		async: false,
+		success:function(res){
+			if(res.done)
+			{
+				luck.poptip({
+					con:'转赠成功',
+					callback:function(){
+						window.location.href="{link app=member act=debit}";
+					},
+				})
+			}
+			else
+			{
+			 	
+
+				luck.poptip({
+					con:'转赠失败',
+				})
+			}	
+		},
+	})
+})
+
+	$('.jscent li').click(function(){
+		$(this).addClass('fxks').siblings().removeClass()	
+	})
+</script>
+{include file=footer.html}

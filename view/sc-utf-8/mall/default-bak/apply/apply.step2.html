@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>加入我们</title>
+<link rel="stylesheet" type="text/css" href="static/css/tailorenter.css">
+<script type="text/javascript" src="static/expand/jquery.js"></script>
+<script  type="text/javascript" src="/static/js/public.js"></script>
+<script>$(function(){twoMenu();})</script>
+</head>
+
+<body>
+<div class="head">
+  <div class="w">
+    <div class="fl"> <a href="index.php" class="logo fl"></a> <span class="logoTxt fl">加入我们</span> </div>
+    <div class="fr"> <span class="btn-angle" data-class="help"><a href="article-view-32.html" class="link">帮助中心</a><i class="angle"></i></span> </div>
+    <div class="bd-menu"> <i class="angle"></i>
+        <div class="help" style="display: none;"> 
+        <a href="article-view-32.html">新手指南</a>
+        <a href="article-view-59.html">关于我们</a>
+        <a href="article-view-66.html">产品保障</a>
+        <a href="article-view-61.html">量体说明</a>
+        <a href="article-view-70.html">支付及物流</a>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="main w">
+  <div class="enter-step enter-1"></div>
+  <div class="myForm">
+  <form method="post" id="apply_form" onsubmit="return validate()">
+  <div class="item">
+  <div class="tit"><em>*</em>店铺名称</div>
+  <input type="text" class="txt" data-type="store_name" id="store_name" name="store_name">
+  </div>
+
+    <div class="item">
+      <div class="tit"><em>*</em> 服务地区</div>
+      <div id="s_1" class="areaSelect" data-input-id="guo">
+            <a href="#" value="">请选择...</a>
+            <a href="#" value="2">中国</a>
+            <a href="#" value="478">英国</a>
+            <a href="#" value="479">意大利</a>
+            <a href="#" value="480">法国</a>
+            <a href="#" value="482">瑞士</a>
+      </div>
+      <input type="hidden" name="region_name" value="">
+      <input type="hidden" name="city_id" value="">
+    </div>
+    <div class="item">
+      <div class="tit"><em>*</em> 详细地址</div>
+      <input type="text" class="txt" data-type="required" id="address" name="address">
+    </div>
+    <div class="item">
+      <div class="tit"><em>*</em> 联系人</div>
+      <input type="text" class="txt fl" id="owner_name" name="owner_name" data-type="required" style="width:165px;">
+      <span class="fl tit2">称谓</span>
+      <div class="fl" id="s_4" data-input-id="sex"> <a href="#">先生</a> <a href="#">女士</a> </div>
+    </div>
+    <div class="item">
+      <div class="tit"><em>*</em> 手机号码</div>
+      <input type="text" class="txt" data-type="phone" id="tel" name="tel" value="{$smarty.cookies.tel}">
+    </div>
+    <div class="item">
+      <div class="tit"><em>*</em> 验证码</div>
+      <input type="text" class="txt fl" name="code" data-type="required" style="width:225px; margin-right:10px;">
+      <span data-time="0" class="fl sendValidate">获取验证码</span></div>
+    <!--<div class="item">
+      <div class="tit"><em>*</em> 电子邮箱</div>
+      <input type="text" class="txt" data-type="emall" name="emall">
+    </div> -->
+    <div class="item">
+      <div class="tit"><em>*</em> 服务方式</div>
+      <div id="server" name="server">
+      <!--{foreach from=$lang.store_arrt_list.1 item=fw}-->
+      <label><input type="checkbox" value="1" name="{$fw.ch}">{$fw.name}</label>
+      <!--{/foreach}-->
+        </div>
+    </div>
+    <div class="item">
+      <div class="tit"><em>*</em> 服务风格</div>
+      <div id="leixing" name="leixing">
+      <!--{foreach from=$lang.store_arrt_list.2 item=fg}-->
+      <label><input type="checkbox" value="1" name="{$fg.ch}">{$fg.name}</label>
+      <!--{/foreach}-->
+        </div>
+    </div>
+    <div class="item" style="height:auto">
+      <div class="tit"><em></em>从业经历</div>
+      <textarea class="depict" name="description"></textarea>
+      <p class="numLen"></p>
+    </div>
+    <div id="error"></div>
+    <a href="javascript:void(0)" class="submit" onclick="if(addressverify())$('#apply_form').submit()"><span>提交申请</span></a></form></div>
+    
+</div>
+<!--底部开始-->
+<div class="w">
+  <div class="footer">
+    <p>&copy;alicaifeng.com 版权所有&nbsp;&nbsp;&nbsp;客服中心：service@alicaifeng.com</p>
+    <p>鲁ICP备10207738    京公网安备110106010015号</p>
+  </div>
+</div>
+<!--底部结束-->
+<script type="text/javascript" src="static/js/tailorenter.js"></script>
+</body>
+</html>

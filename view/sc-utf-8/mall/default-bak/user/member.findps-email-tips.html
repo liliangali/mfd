@@ -1,0 +1,55 @@
+<!-- 异步加载开始 -->
+
+  <div class="pwd-step pwd-1"><p>1、验证身份</p><p class="on">2、重置登录密码</p><p>3、完成</p></div>
+  <div class="verifyOk">
+    <div class="txt"><i class="ico fl"></i><span class="fl">确认邮件已发送至您的邮箱：{$email}</span></div>
+    <div class="btn">
+      <div data-time="{$t}" class="sendValidate fl">({$t})秒重新发送</div>
+      <a href="http://{$emailurl}" target="_blank" class="fl gotoEmall cRed">前往邮箱&gt;</a> </div>
+  </div>
+
+<!-- 异步加载结束 -->
+
+<script type="text/javascript">
+
+//发送验证码
+function sendCode(){
+
+       $.ajax({
+           "url":"/ajax-resetEmail.html",
+           "data": "email={$data.account}&category=findps&type=findps&opt=reset" ,
+           "type": "PSOT",
+           'dataType':'json',
+           "success": function(res) {
+               if(res.err){
+                   msg('出错:'+res.msg);
+               }else{
+                   $('.sendValidate').attr('data-time',res.msg)
+                    countdown();
+               }
+           }
+       });
+  
+}
+//倒计时按钮
+function countdown(){
+    var obj=$('.sendValidate'),
+        time=obj.attr('data-time');
+    if(time>0){
+        obj.addClass('disabled').unbind('click');
+        var n=time;
+        var timer=setInterval(function(){
+            n--
+            if(n<0){
+                obj.text('重新发送').removeClass('disabled');
+                obj.bind('click',sendCode);
+                clearInterval(timer);   
+                return
+            }
+            obj.text('('+n+')秒重新发送');
+        },1000) 
+    }
+}
+countdown();
+
+</script>

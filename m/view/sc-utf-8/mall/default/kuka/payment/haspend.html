@@ -1,0 +1,22 @@
+<div class="main">  
+  <div class="cjcg_box">
+    <p class="ddtjcg">订单支付成功</p>
+    <ul class="ddbh_ul">
+     <li><span>订单编号 : </span>{$order.order_sn}</li>
+     <li><span>付款金额 : </span><font>{$order.order_amount|price}</font></li>
+    </ul>
+  </div>
+  
+  <p class="ckwdd"><!--<a href="http://www.126.com" class="a_1" onclick="goOrder()">查看我的订单</a>--><a href="http://www.baidu.com/"  class="a_2" onclick="goIndex()">返回首页</a></p>
+  <p class="yjdj">如果有任何问题都可以致电给400-989-9899感谢您对衣尚网的信任！</p>
+</div>
+<script>
+function goIndex(){
+    app.done();
+}
+function goOrder(){
+     app.toOrder();
+}
+</script>
+</body>
+</html>

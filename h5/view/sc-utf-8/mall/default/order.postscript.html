@@ -1,0 +1,23 @@
+
+
+<script type="text/javascript">
+function postscript_activation(tt){
+	if (!tt.name)
+	{
+		tt.value    = '';
+		tt.name = 'postscript';
+	}
+
+}
+</script>
+
+
+
+<div class="cart_bd">
+
+    <h1 class="cart_h1">订单留言</h1>
+    <div class="message">
+        <textarea id="postscript" onclick="postscript_activation(this);">{$lang.postscript_desc}</textarea>
+    </div>
+
+</div>

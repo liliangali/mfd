@@ -1,0 +1,91 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=goods&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="goods" />
+                <input type="hidden" name="act" value="index" />
+                产品编号:<input type="text" value="{$query.bn}" name="bn" class="pick_date" />
+                &nbsp;&nbsp;产品名称:<input type="text" value="{$query.name}" name="name" class="pick_date" />
+                &nbsp;&nbsp;商品分类:<select class="querySelect mySelect" name="p_id"><option value="">全部</option>{html_options options=$pList selected=$query.p_id}</select>
+                &nbsp;&nbsp;商品子类:<select class="querySelect mySelect" name="son_id"><option value="">全部</option>{html_options options=$sonList selected=$query.son_id}</select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+
+            </div>
+                        <!--{if $query.name || $query.bn || $query.p_id}-->
+            <a class="left formbtn1" href="index.php?app=goods">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $goodslist}-->
+        <tr class="tatr1">
+            <td align="left">编号</td>
+            <td>产品名称</td>
+            <td align="left">产品价格</td>
+            <td align="left">库存</td>
+            <td>所属分类</td>
+            <td>发往平台</td>
+            <td>是否上架</td>
+            <td>排序</td>
+            <td>{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$goodslist item=goods}-->
+        <tr class="tatr2">
+            <td>{$goods.bn|escape}</td>
+            <td><a href="/goods-{$goods.goods_id}.html" target="_blank">{$goods.name|escape}</a></td>
+            <td>{$goods.price|price}</td>
+            <td>{$goods.store}</td>
+            <td>{$options.$goods.cat_id}</td>
+            <td><!-- {if $goods.is_pc == 1} -->pc|<!-- {/if} --><!-- {if $goods.is_wap == 1} -->wap|<!-- {/if} --><!-- {if $goods.is_app == 1} -->app<!-- {/if} --></td>
+            <!-- {if $goods.marketable} -->
+            <td>是</td>
+            <!-- {else} -->
+            <td>否</td>
+            <!-- {/if} -->
+            <td>{$goods.p_order}</td>
+            <td>
+                <a href="index.php?app=goods&amp;act=edit&amp;id={$goods.goods_id}">{$lang.edit}</a>|
+                <a href="index.php?app=products&amp;act=setspec&amp;goods_id={$goods.goods_id}" target="_blank">编辑货品</a>|
+                <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=goods&amp;act=drop&amp;id={$goods.goods_id}');">{$lang.drop}</a>
+			</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $goodslist}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+<script type="text/javascript">
+
+    
+    $('.mySelect').change(function() {
+        console.log(123)
+        var p_id=$("select[name='p_id']").val();
+        var son_id=$("select[name='son_id']").val();
+        var name=$("input[name='name']").val()
+        window.location.href="index.php?app=goods&act=index&name="+name+"&p_id="+p_id+"&son_id="+son_id;
+    }) 
+
+</script>
+{include file="footer.html"}

@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no">
+<title>无标题文档</title>
+<style>
+*{ padding:0; margin:0;}
+body{min-width:320px;font-size:14px;}
+ul,li{ list-style:none;}
+a{text-decoration:none;}
+input[type="button"], input[type="submit"], input[type="reset"], input[type="text"], input[type="password"] {-webkit-appearance: none;}
+.container{max-width:640px; margin:0 auto;}
+header{ height:45px; line-height:45px; border-bottom:solid 1px #d5d5d5; font-size:18px; padding:0 10px;}
+.main{ padding:0 15px; }
+.tab{ border:solid 1px #21d0fd; border-radius:3px; overflow:hidden;display:box;display:-webkit-box;display:-moz-box; width:100%; orient: horizontal;color:#333; margin-top:15px; line-height:35px;}
+.tab span{box-flex:1;-webkit-box-flex:1;-moz-box-flex:1; display:block; text-align:center;}
+.tab .cur{ background:#21d0fd; color:#fff;}
+h3{ font-size:16px; color:#666; margin:20px 0 10px; font-weight:normal}
+.txt .qmTxt{ width:100%; height:35px;border:solid 1px #d5d5d5; border-radius:5px; padding:0 3px; box-sizing:border-box;}
+.position li{ font-size:14px; line-height:20px;padding:3px 0; color:#717171;}
+.position li span{ display:inline-block; width:20px; height:22px; margin-right:5px; background: url(static//img/m_icon.png) left top no-repeat; cursor: pointer; background-size:20px 250px; vertical-align:middle;}
+.position{ padding-bottom:30px;}
+.position .cur{color:#333}
+.position .cur span{background-position:0 -27px;}
+.scrollBox{ overflow:auto;}
+.fontColor{ overflow:hidden;}
+.fontColor ul{ width:1900px;}
+.fontColor li{float:left; margin:0 10px 10px 0;border:solid 1px #d5d5d5; border-radius:5px; overflow:hidden; padding:1px;}
+.fontColor li img{ display:block;}
+.fontColor .cur { border:2px solid #21d0fd; padding:0;}
+/* .fontColor .cur img{ border-color:#7dddb8;} */
+.btnBox{ height:53px; border-top:solid 1px #ddd; background:#f9f9f9; clear:both; box-sizing:border-box; padding:8px 15px 0;}
+.btnBox .cancel{ float:left; width:40%; height:35px; border:solid 1px #ddd; background:#fff; border-radius:20px; text-align:center; line-height:35px; color:#333;}
+.btnBox .save{ float:right; width:40%; height:35px; border:solid 1px #21d0fd; background:#21d0fd; border-radius:20px; text-align:center; line-height:35px; color:#fff;}
+</style>
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+</head>
+
+<body>
+<div class="container">
+<form>
+<div class="main">
+    <!-- <div class="tab">
+        <span class="cur">{$info.goods.name}</span>
+    </div>
+     -->
+    {if $info.cloth == '0004' || $info.cloth == '0017'}
+    西裤暂不支持刺绣~
+    {else}
+    <div class="embBox embBox_{$info.ident}">
+      {foreach from=$embs.$info.cloth item=eitems}
+            {if $eitems.statusid == 10001}
+		        {if $info.embs.$eitems.id}
+		            {assign var=_sonid value=$info.embs.$eitems.id}
+		            <!-- {* assign var=_son value=$eitems.list.$_sonid *} -->
+		            <!-- <img src="{$_son.image}" /> -->
+		        {/if}
+	            <div class="font color fontColor">
+				    <h3>选择{$eitems.name}</h3>
+                    <div class="scrollBox">
+				    <ul>
+				        {foreach from=$eitems.list item=eitem}
+				        <li class="{if $eitem.id == $_sonid} cur {/if}"  data-id="{$eitem.id}" ><img  width="63" height="63" src="{$eitem.image}" alt="{$eitem.name}"></li>
+				        {/foreach}
+				        <input type="hidden" value="{$info.embs.$eitems.id}"  name="embs[{$info.ident}][{$eitems.id}]" />
+				    </ul>
+                    </div>
+				</div>
+            {elseif  $eitems.statusid == 10008}
+	            <div class="txt">
+			        <h3>输入签名内容</h3>
+                    <input type="text" class="qmTxt" name="embs[{$info.ident}][{$eitems.id}]" value="{$info.embs.$eitems.id}" maxlength="14">
+			    </div>
+            {elseif $eitems.statusid == 10002}
+                <div class="position">
+                <h3>选择位置</h3>
+                    <ul>
+                  {assign var=weizhi value=}
+                  {foreach from=$eitems.list item=l key=__lkey}
+                      <li value="{$__lkey}" {if $info.embs.$eitems.id.$__lkey} class="cur" {/if} >
+                        <span></span>{$l.name}
+                        <input {if $info.embs.$eitems.id.$__lkey} checked="checked" {/if}  value="{$l.id}" type="checkbox"  style="display:none" name="embs[{$info.ident}][{$eitems.id}][{$l.id}]" />
+                      </li>
+                  {/foreach}
+                </ul>
+              </div>
+            {/if}
+       {/foreach}
+    </div>
+    {/if}
+    
+    
+</div>
+{if $info.cloth == '0004' || $info.cloth == '0017'}
+ {else}
+<div class="btnBox">
+	<a href="javascript:history.go(-1)" class="cancel">取消</a>
+	<a href="javascript:void(0)" class="save">保存</a>
+</div>
+{/if}
+</form>
+</div>
+<script type="text/javascript" src="static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+<script>
+$(document).ready(function() {
+    $('.fontColor').find('li').unbind().bind('click',function(){
+        
+        $(this).parent('ul').find('li').removeClass('cur');
+        $(this).addClass('cur');
+        $(this).parent('ul').find('input').val($(this).data('id'));
+        
+    })
+    
+    /* $('.qmTxt').unbind().bind('keyup',function(){
+    	var _str   = $(this).val();
+    	var _length = _str.length;
+    	
+		for(var i = 0; i < _str.length; i++){
+		    if(/[\u4e00-\u9fa5]/.test(_str.charAt(i))){
+		    	_length++;
+		    }
+		}
+		if(_length > 14){
+		    $(this).val(_str.substring(0,14));
+		}
+    }) */
+    
+    $('.position').find('li').unbind().bind('click',function(){
+        /* if($(this).hasClass('cur')){
+            $(this).removeClass('cur')
+            $(this).find('input').removeAttr('checked');
+        }else{
+            $(this).addClass('cur')
+            $(this).find('input').attr('checked','checked');
+        } */
+        //尼玛位置又成单选了!
+	    $(this).parents('.position').find('li').removeClass('cur')
+	    $(this).parents('.position').find('li').find('input').removeAttr('checked');
+	    
+	    $(this).addClass('cur')
+	    $(this).find('input').attr('checked','checked');
+    
+    })
+    $('.save').unbind().bind('click',function(){
+		/**  
+		* 中英文统计(一个中文算两个字符)  
+		*/  
+		function chEnWordCount(str){  
+			var count = str.replace(/[^\x00-\xff]/g,"**").length;  
+			return count;  
+		} 
+		if($('.fontColor:eq(0) .cur').length<=0){
+			layer.open({content:'请选择字体',time:1.5});
+			return	
+		}
+		if($('.fontColor:eq(1) .cur').length<=0){
+			layer.open({content:'请选择颜色',time:1.5});
+			return	
+		}
+		if($('.qmTxt').val()==""){
+			layer.open({content:'请输入签名信息',time:1.5});
+			return	
+		}
+		if(chEnWordCount($('.qmTxt').val())>14){
+			layer.open({content:'签名信息不能大于14个字符',time:1.5});
+			return	
+		}
+		if(!/^([A-Za-z0-9]|[\u4e00-\u9fa5]|\s)*$/.test($('.qmTxt').val())){
+			layer.open({content:'签名信息仅限数字/字母/汉字',time:1.5});
+            return  
+		}
+		if($('.position .cur').length<=0){
+		    layer.open({content:'请选择签名位置',time:1.5});
+			return
+		}
+
+        $(this).parents('form').ajaxSubmit({
+            type:"post",
+            url : '{link app=cart act=embSave}',
+            success:function(res){
+                var res = $.parseJSON(res);
+                if(res.done == true){
+                    location.href='{link app=cart}';
+                }else{
+                        /* layer.open({
+                            content: res.msg,
+                            btn: ['确定','了解更多'],
+                            yes : function(){
+                                layer.closeAll();
+                            },
+                            no : function(){
+                                location.href = res.retval.url;
+                            },
+                            
+                        }); */ 
+                        layer.open({
+                            content: res.msg,
+                            btn: ['确定'],
+                        }); 
+                    }
+                    
+             }
+        });
+    })
+    
+})
+</script>
+</body>
+</html>

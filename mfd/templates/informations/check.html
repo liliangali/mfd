@@ -1,0 +1,272 @@
+{include file="header.html"}
+
+<script type="text/javascript">
+
+$(function(){
+    $('#brand_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            name : {
+                required : true,
+            },
+            service_price : {
+                required : true,
+            },
+            cat_id : {
+                required : true,
+            },
+            
+          
+        },
+        messages : {
+            name : {
+                required : '请填写套装名称',
+            },
+            service_price : {
+                required : '请填写零售价',
+            },
+            cat_id : {
+                required : '请选择商品分类',
+            },
+        }
+    });
+}); 
+</script>
+
+
+
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=informations&amp;act=index">推送记录</a></li>
+        <li><span>推送资讯</span></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="brand_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                  通知标题:</th>
+                <td class="paddingT15 wordSpacing5">
+                <span>{$data.title}</span>
+                </td>
+            </tr>
+    
+              <tr>
+                <th class="paddingT15">
+                   内容形式:</th>
+                <td class="paddingT15 wordSpacing5">
+                <!-- {if $data.con_type==1} -->
+                <span>文本</span>
+                <!-- {else} -->
+                 <span>图片</span>
+                <!-- {/if} -->
+                </td>
+            </tr>  
+  
+        
+               <!-- {if $data.con_type==1} -->
+                 <tr>
+                <th class="paddingT15">
+                    通知内容:</th>
+                <td class="paddingT15 wordSpacing5">
+                <span>{$data.content|escape}</span>
+                </td>
+            </tr>
+               <!-- {else} -->
+                <tr>
+                <th class="paddingT15">
+                    通知内容:</th>
+                <td class="paddingT15 wordSpacing5">
+                   {foreach from=$data.gallery item=gall}
+						  <img  src="{$gall.l_img}" width="90" height="150"></li>
+						{/foreach}
+                </td>
+            </tr>
+               <!-- {/if} --> 
+                <tr>
+            <th class="paddingT15">
+               推送到的平台:</th>
+            <td class="paddingT15 wordSpacing5">
+             <!-- {if $data.trade==0} -->
+                <span>全部平台</span>
+                <!-- {elseif $data.trade==1} -->
+                 <span>ios</span>
+                 <!-- {else} -->
+                  <span>android</span>
+                <!-- {/if} -->
+            </td>
+        </tr>   
+       
+        </table>
+    </form>
+</div>
+
+<script>
+
+
+function add_uploadedfile(file_data)
+{
+    var newImg = '<li id="' + file_data.file_id + '" onclick="selectImg(this)">'+
+    '<input type=hidden name=gallery[] value='+SITE_URL + '/' + file_data.file_path+'>'+
+    '<img width="80px" height="80px" src="' + SITE_URL + '/' + file_data.file_path + '" ondblclick="drop_uploadedfile(' + file_data.file_id + ');"/></li>';
+    $('#thumbnails').prepend(newImg);
+}
+function selectImg(obj){
+	$(obj).parents("ul").find("li").each(function(){
+		$(this).removeClass("on");
+	})
+	
+	$(obj).addClass("on");
+}
+function drop_gallery(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+
+    $('#gallery_' + file_id).remove();
+    
+    $.getJSON('index.php?app=suit&act=drop_gallery&id=' + file_id, function(result){
+        if(result.done == false){
+            alert('drop_error');
+        }
+    });
+}
+
+function drop_uploadedfile(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+
+    $('#' + file_id).remove();
+    
+    $.getJSON('index.php?app=article&act=drop_uploadedfile&file_id=' + file_id, function(result){
+        if(result.done){
+            
+        }else{
+            alert('drop_error');
+        }
+    });
+}
+
+$("#cat_id").change(function(){
+
+    var id = $(this).val();
+    $("#attr").empty();
+    $.get("index.php?app=custom&act=loadAttr",{id:id}, function(res){
+        var res = eval("("+res+")");
+        $("#attr").html(res.retval);
+    });
+})
+
+$(".recommend").click(function(){
+        var ids='';
+        $("#recommend input").each(function(){
+            ids += ids ? ","+$(this).val() : $(this).val();
+        })
+        $.cookie("ids",null);
+    	var url = "index.php?app=link_suitlist";
+    	if(ids){
+    	    url += "&ids="+ids;
+         }
+        window.open(url,'请选择套装','height=800,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+    })
+    
+    
+    function customCallBack(ids){
+
+    $.get('index.php?app=suit&act=loadsuit&ids='+ids,function(result){
+        var result = eval("("+result+")");
+        if(result.done == true){
+            var html='<ul>';
+            for(var i=0;i<result.retval.length;i++){
+                html += "<li>"+result.retval[i].suit_name+"<input type='hidden' name='newRecommend["+result.retval[i].id+"]' value='"+result.retval[i].id+"'> <a href='javascript:;' style='color:blue;' onclick='removeRecs(this)' data-ret='0'>x</a> </li>";
+            }
+            html += "</ul>";
+            $("#recommend").html(html);
+        }else{
+            alert(result.msg);
+            return false;    
+        }
+    });
+}
+function removeRecs(obj){
+    var id = $(obj).attr("data-ret");
+
+    if(id == 0){
+        $(obj).parents("li").remove();
+    }else{
+        $.get("index.php?app=suit&act=removesuitLink",{id:id}, function(res){
+            var res = eval("("+res+")");
+            if(res.done==true){
+            	$(obj).parents("li").remove();
+            }
+        })
+    }
+}
+function onsuit(v1){
+	var v=$(v1).attr("data-id");
+	var ids=$("#jb_"+v).val();
+	var url = "index.php?app=suittype&v="+v+"&ids="+ids;
+	$.cookie("suits",null);
+	 window.open(url,'选择定制面料','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+}
+
+function removeRec(obj){
+    var idn = $(obj).attr("data-ret");
+    var nums = $(obj).attr("data-id");
+    $("#back_"+nums).attr("data-pri",0);
+	$("#back_"+nums).attr("data-cb",0);
+    	$("#jb_"+nums).val(0);
+        $(obj).prev('span').text("");
+        
+}
+
+
+
+$('#pricebtn').click(function(){
+	var n=0;
+	$('#baseBox .back').each(function(i,e){
+		n+=Number($(e).attr('data-pri'));
+	})
+	$('#pricetxt').val(n)
+})
+$('#onbase').click(function(){
+	var n=0;
+	$('#baseBox .back').each(function(i,e){
+		n+=Number($(e).attr('data-cb'));
+	})
+	$('#base_price').val(n)
+})
+
+
+function callBackFab(res,key,name,price,base_price){
+	r = $("#tzids").val();
+	$("#tzids").val(r+','+res);
+	$("#back_"+key).attr('name',res);
+	$("#back_"+key).attr('data-pri',price);
+	$("#back_"+key).attr('data-cb',base_price);
+	$("#back_"+key).text(String(name));
+	$("#jb_"+key).val(res); 
+        $.post("index.php?app=suit&act=edit", { jbk_name: name, cate: key,jbk_ids: res },
+        		   function(data){
+        		    // alert(data);
+        		   
+        
+    })
+ 
+}
+
+
+</script>
+{include file="footer.html"}

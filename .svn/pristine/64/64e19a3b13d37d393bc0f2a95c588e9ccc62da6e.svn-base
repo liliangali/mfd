@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$site_url}/" />
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+{$page_seo}
+<meta name="author" content="www.alicaifeng.com" />
+<meta name="copyright" content="alicaifeng.com Inc. All Rights Reserved" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{res file=css/head_footr.css}" rel="stylesheet" type="text/css" />
+<link type="text/css" href="{res file=css/mobileapp.css}" rel="stylesheet" />
+<link href="/static/css/public.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}"></script>
+<script src="{res file=js/jquery.easing.1.3.js}"></script>
+<script src="{res file=js/jquery.scrollify.min.js}"></script>
+<script>
+$(function() {
+	$('.panel').css({'height':'600'});
+	$.scrollify({
+		section: '.panel'
+	});
+});
+</script>
+</head>
+
+<body>
+
+<!--头部开始-->
+<div class="head_app">
+ <div class="head">
+   <p class="logo_app"><a href="./" class="logo"></a></p>
+   <ul> 
+     <li><a href="./" class="current">首页</a></li>
+     <li><a href="{link app=tailor}">找裁缝</a></li>
+     <li><a href="gallery.html">选款式</a></li>
+     <li><a href="{link app=fabrics}">选面料</a></li>
+     <li style="background:none; padding-right:0;"><a href="{link app=demand-lists}">提需求</a></li>
+   </ul>
+   <p class="clear"></p>
+ </div>
+</div>
+<!--头部结束-->
+
+
+<div class="panel" style="background-color:#c31829; border-bottom:12px solid #000;">
+	<h2><img src="{res file=images/app_tu1.jpg}" /></h2>
+</div>
+<div class="panel" style="background-color:#f2f2f2;">
+	<h2><img src="{res file=images/app_tu2.jpg}" /></h2>
+</div>
+<div class="panel" style="background-color: #f7b62f;">
+	<h2><img src="{res file=images/app_tu3.jpg}" /></h2>
+</div>
+<div class="panel" style="background-color: #f2f2f2;">
+	<h2><img src="{res file=images/app_tu4.jpg}" /></h2>
+</div>

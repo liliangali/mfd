@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{$page_seo}
+<meta name="author" content="alicaifeng.com" />
+<meta name="generator" content="alicaifeng.com V0.5" />
+<meta name="copyright" content="alicaifeng Inc. All Rights Reserved" />
+<link rel="stylesheet" type="text/css" href="/static/css/public.css">
+<script type="text/javascript" src="/static/expand/jquery.js"></script>
+<script  type="text/javascript" src="/static/js/public.js"></script>
+<script  type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+<script  type="text/javascript" src="/static/js/change.city.js"></script>
+{$_head_tags}
+</head>
+
+<body style="background:url(../static/img/body_bg.png) left 138px repeat-x;">
+<!--<editmode></editmode>-->
+<!--头部开始-->
+<div class="head_zcf">
+<div class="topBar topBar-mend">
+  <div class="w">
+    <div class="fr menuList">
+      <!--{if !$visitor.user_id}-->
+        <span><a href="{link app=member act=login}">登录</a></span> <em>|</em> 
+        <span><a href="{link app=member act=register}">注册</a></span> <em>|</em> 
+         <!--{else}-->
+        <span class="btn-angle" data-class="usercenter"><a href="/member-index-user_set.html" class="link">{$visitor.nickname|escape}</a><i class="angle"></i></span> <em>|</em> 
+        <!--{/if}-->
+        <span class="btn-angle" data-class="zhanghu"><a href="member.html" class="link">我是消费者</a><i class="angle"></i></span> <em>|</em> 
+        <span class="btn-angle" data-class="caifeng"><a href="{link app=member act=index arg0=user_message arg1=business}" class="link">消息<i class="num {if $msgCount > 0}num-bg{/if}">{$msgCount|default:0}</i></a><i class="angle"></i></span> <em>|</em> 
+        <span class="btn-angle" data-class="dingzhi"><a href="{link app=member act=tailor}" class="link">我是裁缝</a><i class="angle"></i></span> <em>|</em> 
+    <span class="btn-angle" data-class="help"><a href="article-view-32.html" class="link">帮助中心</a><i class="angle"></i></span>
+    </div>
+  </div>
+  <div class="bd-menu"> <i class="angle"></i>
+    <!--{if $visitor.user_id}-->
+    <div class="usercenter"> 
+        <a href="/member-index-user_set.html">帐号设置</a> 
+        <a href="{link app=member act=logout}">退出登录</a> 
+    </div>
+    <!--{/if}-->
+    <div class="dingzhi"> 
+        <a href="{link app=apply}">我要创业</a> 
+        <a href="{link app=tailor_order act=tailor}">我的订单</a> 
+        <a href="{link app=tailor_customer act=tailor}">我的消费者</a>
+        <a href="{link app=member act=tailor}">管理中心</a>
+    </div>
+    
+    <div class="help"> 
+        <a href="article-view-32.html">新手指南</a>
+        <a href="article-view-59.html">关于我们</a>
+        <a href="article-view-66.html">产品保障</a>
+        <a href="article-view-61.html">量体说明</a>
+        <a href="article-view-70.html">支付及物流</a>
+    </div>
+    
+    <div class="caifeng"> 
+    <a href="{link app=member act=index arg0=user_message arg1=business}">交易提醒  {if $msgTypes.sys}+{$msgTypes.sys}{/if}</a> 
+    <a href="{link app=member act=index arg0=user_message arg1=comment}">评论 {if $msgTypes.cmt}+{$msgTypes.cmt}{/if}</a>
+    <a href="{link app=member act=index arg0=user_message arg1=sync}">互动提醒 {if $msgTypes.syc}+{$msgTypes.syc}{/if}</a>
+    </div>
+    
+    <div class="zhanghu"> 
+        <a href="{if $visitor.user_id}demand-sue.html{else}javascript:login('{$site_url}{link app=demand act=sue}');{/if}">快速定制</a> 
+        <a href="{link app=buyer_order}">我的订单</a> 
+        <a href="{link app=member act=index arg=user_favorite}">我的收藏</a> 
+    </div>
+  </div>
+</div>
+
+  <div class="w" style="position:relative;">
+    <p class="tmbg"><a href="index.php" title="阿里裁缝" style="display:block; width:320px; height:95px;"></a></p>
+    <a href="index.php" title="阿里裁缝" class="logo fl"></a>
+    <div class="anav fl"> <span class="btn-angle"><a href="javascript:viod(0);" class="link">我在{$current_city}</a><i class="angle"></i></span>
+      <div class="bd-menu" id="topCity"> <i class="angle"></i> 
+      {foreach from=$top_city_list item=city key=key}
+      <a href="javascript:;" data-code="{$key}" data-name="{$city.city_name}">{$city.city_name}</a>
+      {/foreach}
+       </div>
+    </div>
+    <div class="fr">
+      <div class="search fl">
+              <form action="{link app=search}" method="get" onsubmit="if(document.forms['search'].keyword.value.length == 0 || document.forms['search'].keyword.value == '输入 婚礼礼服试试...') return false" name="search">
+
+          <input type="text" autocomplete="off" class="txt" name="keyword" {if !$keyword}data-placeholder="输入 婚礼礼服试试..."{else}value="{$keyword}"{/if} id="searchTxt">
+
+          <input type="submit" value="" class="btn">
+        </form>
+        <div class="recomm"></div>
+        </div>
+        <div class="downAppBox fl">
+            <div class="downApp">
+                <span data-class="app" class="btn-angle"><a class="link" href="client.html#1" target="_blank"><i class="icon-phone"></i>阿里裁缝APP</a><i class="angle"></i></span>
+                <div class="bd-menu">
+                    <img src="/static/img/qrcode3.png" width="138" height="138">
+                    <a href="client.html#2" class="ios" title="下载ios系统"></a>
+                    <a href="client.html#3" class="android" title="下载安卓系统"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="base-nav">
+   <div class="w">
+    <ul class="nav fl">
+      <li><a href="index.php" {if $currentApp eq 'default'}class="cur"{/if}>首页</a></li>
+      <li><a href="{link app=tailor}" {if $currentApp eq 'tailor'}class="cur"{/if}>找裁缝</a></li>
+      <li><a href="{link app=gallery}" {if $current eq 'gallery'}class="cur"{/if}>挑款式</a></li>
+      <li><a href="{link app=fabrics}" {if $current eq 'fabric'}class="cur"{/if}>选面料</a></li>
+      <li><a href="{link app=single}" {if $currentApp eq 'single'}class="cur"{/if}>品晒单</a></li>
+    <li style="background:none;"><a href="demand-lists.html" {if $current eq 'demand'}class="cur"{/if}>看需求</a></li>
+    </ul>
+    <div class="navRight fr">
+      <a href="{if $visitor.user_id}demand-sue.html{else}javascript:login('{$site_url}{link app=demand act=sue}');{/if}" class="link" target="_self">发布需求</a>
+    </div>
+   </div> 
+</div>
+<!--头部结束-->
+
+

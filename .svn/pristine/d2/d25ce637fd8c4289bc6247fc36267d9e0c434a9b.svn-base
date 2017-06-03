@@ -1,0 +1,244 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#theForm').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+        	ad_name : {
+                required : true,
+                remote   : {                //唯一
+                url :'index.php?app=ads&act=check_name',
+                type:'get',
+                data:{
+                    ad_name : function(){
+                        return $('#ad_name').val();
+                        },
+                    id  : '{$ads.ad_id}'
+                    }
+                }
+            },
+           
+            position_style : {
+            	required  : true,
+            },
+        },
+        messages : {
+        	ad_name : {
+                required : '名称不能为空',
+                remote   : '名称已经存在'
+            },
+            
+            position_style : {
+            	required : '必填参数'
+            },
+        }
+    });
+});
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=ads">{$lang.manage}</a></li>
+        {if $ad.ad_id}
+        <li><a class="btn1" href="index.php?app=ads&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+<form method="post" name="theForm" id="theForm" enctype="multipart/form-data" >
+  <table  class="infoTable" id="general-table">
+    <tr>
+      <th class="paddingT15">
+                    广告名称:</th>
+      <td class="paddingT15 wordSpacing5">
+        <input  class="infoTableInput2" type="text" id="ad_name" name="ad_name" value="{$ads.ad_name}" size="35" />
+        <br />
+      </td>
+    </tr>
+
+    {if $action eq "add"}
+      <tr>
+       <th class="paddingT15">
+                    媒介类型:</th>
+        <td class="paddingT15 wordSpacing5">
+         <select name="media_type" id="media_type" onchange="showMedia(this.value)">
+        {html_options options=$media_type selected=$ads.media_type}
+         </select>
+        </td>
+      </tr>
+	{else}
+	    <input type="hidden" name="media_type" value="{$ads.media_type}" />
+    {/if}
+    <tr>
+      <th class="paddingT15">
+                    广告位置:</th>
+      <td class="paddingT15 wordSpacing5">
+        <select name="position_id">
+        <option value='0'>站外广告</option>
+        {html_options options=$positionList selected=$ads.position_id}
+        </select>
+      </td>
+    </tr>
+    <tr>
+       <th class="paddingT15">
+                   开始时间:</th>
+      <td class="paddingT15 wordSpacing5">
+        <input  class="infoTableInput2 pick_date" name="start_time" type="text" id="start_time" size="22" value='{$ads.start_time}'/>
+      </td>
+    </tr>
+    <tr>
+       <th class="paddingT15">
+                   结束时间:</th>
+      <td class="paddingT15 wordSpacing5">
+        <input class="infoTableInput2 pick_date" name="end_time" type="text" id="end_time" size="22" value='{$ads.end_time}' />
+      </td>
+    </tr>
+  {if $ads.media_type eq 0 OR $action eq "add"}
+    <tbody id="0">
+    <tr>
+      <td  class="label">广告链接</td>
+      <td>
+        <input type="text" name="ad_link" value="{$ads.ad_link}" size="35" />
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">
+       上传广告图片</td>
+      <td>
+        <input type='file' name='ad_img' size='35' />
+        {if $ads.ad_code && !$ads.img_url}
+        <a href="{$ads.ad_code}" target="_blank" title='点击查看大图'><img src="{$ads.ad_code}" alt="" width="100" height="100" /></a>
+        {/if}
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">或图片网址</td>
+      <td><input type="text" name="img_url" value="{$ads.img_url}" size="35" />
+      </td>
+    </tr>
+    </tbody>
+  {/if}
+  {if $ads.media_type eq 1 OR $action eq "add"}
+    <tbody id="1" style="{if $ads.media_type neq 1 OR $action eq 'add'}display:none{/if}">
+    <tr>
+      <td  class="label">
+        上传Flash文件</td>
+      <td>
+        <input type='file' name='upfile_flash' size='35' />
+      </td>
+    </tr>
+    <tr>
+      <td class="label">或FLash网址</td>
+      <td>
+        <input type="text" name="flash_url" value="{$ads.flash_url}" size="35" />
+      </td>
+    </tr>
+    </tbody>
+  {/if}
+
+  {if $ads.media_type eq 2 OR $action eq "add"}
+    <tbody id="2" style="{if $ads.media_type neq 2 OR $action eq 'add'}display:none{/if}">
+      <tr>
+        <td  class="label">输入广告代码</td>
+        <td><textarea name="ad_code" cols="50" rows="7">{$ads.ad_code}</textarea></td>
+      </tr>
+    </tbody>
+  {/if}
+
+  {if $ads.media_type eq 3 OR $action eq "add"}
+    <tbody id="3" style="{if $ads.media_type neq 3 OR $action eq 'add'}display:none{/if}">
+    <tr>
+      <td  class="label">广告链接</td>
+      <td>
+        <input type="text" name="ad_link2" value="{$ads.ad_link}" size="35" />
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">广告内容</td>
+      <td><textarea name="ad_text" cols="40" rows="3">{$ads.ad_code}</textarea></td>
+    </tr>
+    </tbody>
+ {/if}
+
+    <tr>
+      <td  class="label">是否开启</td>
+      <td>
+        <input type="radio" name="enabled" value="1" {if $ads.enabled eq 1} checked="true" {/if} />开启
+        <input type="radio" name="enabled" value="0" {if $ads.enabled eq 0} checked="true" {/if} />关闭
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">广告联系人</td>
+      <td>
+        <input type="text" name="link_man" value="{$ads.link_man}" size="35" />
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">联系人email</td>
+      <td>
+        <input type="text" name="link_email" value="{$ads.link_email}" size="35" />
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">联系电话</td>
+      <td>
+        <input type="text" name="link_phone" value="{$ads.link_phone}" size="35" />
+      </td>
+    </tr>
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="确认" class="tijia" />
+        <input type="reset" value="取消" class="congzi" />
+        <input type="hidden" name="act" value="{$action}" />
+        {if $action == 'edit'}
+        <input type="hidden" name="media_type" value="{$ads.media_type}" />
+        {/if}
+        <input type="hidden" name="id" value="{$ads.ad_id}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+<script language="JavaScript">
+  document.forms['theForm'].elements['ad_name'].focus();
+  <!--
+  var MediaList = new Array('0', '1', '2', '3');
+  {literal}
+  function showMedia(AdMediaType)
+  {
+    for (I = 0; I < MediaList.length; I ++)
+    {
+      if (MediaList[I] == AdMediaType)
+        document.getElementById(AdMediaType).style.display = "";
+      else
+        document.getElementById(MediaList[I]).style.display = "none";
+    }
+  }
+
+  /**
+   * 检查表单输入的数据
+   */
+  function validate()
+  {
+    validator = new Validator("theForm");
+    validator.required("ad_name",     ad_name_empty);
+    return validator.passed();
+  }
+
+
+  //-->
+ $('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+ $('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
+{include file="footer.html"}

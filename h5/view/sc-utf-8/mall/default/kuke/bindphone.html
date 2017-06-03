@@ -1,0 +1,86 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+     
+{$_head_tags}
+
+<script>
+
+$(function(){
+	$.validator.addMethod("isPhone",function(value,element){
+		var length = value.length;   
+		  var mobile = /^(((1[3|8][0-9]{1})|(15[0-9]{1}))+\d{8})$/;     
+		  return mobile.test(value);   
+	});
+$('#mf').validate({ 
+	 success : function(label){
+		 label.addClass('error-ok');
+	}, 
+	errorClass:"error-on",
+    rules : {
+        phone : {
+            required : true,
+             isPhone:true
+        }
+    },
+    messages:{
+    	phone : {
+            required : '必填写',
+            isPhone: "电话号码错误",
+        }
+    }
+});
+});
+
+</script>
+  
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">手机绑定</h1>
+    <p class="bdsj_tu_1"><img src="{$img_url}/images/bdsj_1.gif" /></p>
+  
+  <form id='mf' action="kuke-bindphone.html?opt=2" method="post">
+  <div class="bdsjdyb">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <th>手机号码：</th>
+        <td width="" class="srbdsjh">
+        	<input type="text" name='phone' id='phone' style="float:left;" value=""/>
+        </td>
+        <td></td>
+      </tr>
+      
+      <tr>
+        <th>&nbsp;</th>
+        <td colspan="2" class="m_xybu"><input type="submit" value="下一步" /></td>
+      </tr>
+    </table>
+   </div>
+   
+   </form>
+   
+   <div class="bdsjydts">
+     <div class="bdsjts">
+       <h1>请您输入正确的手机号码以便接收绑定短信验证码，完成下一步操作。</h1>
+       <p>1. 一个手机号码只能绑定一个账号。</p>
+       <p>2. 绑定手机不收任何费用请您放心使用。</p>
+       <p>3. 为了您的账号安全，绑定成功后，请不要随意修改联系方式。</p>
+     </div>
+
+     <div class="bdsjts">
+       <h1>何时需要手机绑定?</h1>
+       <p>1. 首次使用抵用券手机验证时，会将该手机号与账号自动绑定，手机绑定后不可解绑。</p>
+     </div>
+
+     <div class="bdsjts">
+       <h1>手机绑定有何作用？</h1>
+       <p>1. 可将手机号码同时作为登录账号，并可用手机找回密码。</p>
+       <p>2. 对于任何抵用券，无需再次验证手机，可直接使用。</p>
+     </div>
+   
+   </div>
+
+  </div>
+  <p class="clear"></p>
+</div>
+{include file="footer.html"}

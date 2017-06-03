@@ -1,0 +1,100 @@
+{include file=header2.html}
+<!--导航结束-->
+<link rel="stylesheet" type="text/css" href="static/css/sunsingle.css">
+<div class="w2">
+  <div class="AreaL">
+    <div class="article">
+      <h2>{$member_single.img_name}</h2>
+      <p class="aside"><span>来源于：{$member.nickname}</span><span>时间：{$member_single.add_time|date:Y-m-d}</span><span>浏览：{$popularity}</span></p>
+      <div class="abstract">{$member_single.description}</div>
+      <div class="con"> 
+      <!--{foreach from=$userphoto item=up}-->
+      <img src="{$up.url}" id="{$up.id}" />
+      <!--{/foreach}-->
+      </div>
+      <div class="banquan"> <em class="red">版权声明：</em>图片版权归原作者所有，未经授权严禁转载及使用，一经发现盗图，我司律师团将追究到底。 </div>
+      <div class="share clearfix"> <em class="fl">分享到：</em>
+        <div class="shareList fl"> <a class="sina" title="新浪"></a> <a class="qblog" title="腾讯微薄"></a> <a class="qzone" title="QQ空间"></a> <a class="renren" title="人人"></a> <a class="douban" title="豆瓣"></a> <a class="weixin" title="微信"></a> </div>
+      </div>
+    </div>
+    <div id="editorBox" class="editorBox">
+      <div class="title"><span class="tit">我来说两句</span><em class="num">(<span id="commentNum">0</span>人参与)</em></div>
+      <textarea id="editor" class="editor">你也可以随便说点什么</textarea>
+      <div class="editB">
+        <span class="fl s1 editorBtn">表情</span>
+        <span class="fl s2">还可以输入<span class="red numLen">234</span>个字符</span>
+        <button class="fr submit">发布</button>
+      </div>
+    </div>
+    <div class="comList">
+      <div id="list"></div>
+      <div id="more"></div>
+    </div>
+  </div>
+  <div class="AreaR">
+	  <div class="operate clearfix"> <span class="collect" onclick="addFavorite('{$member_single.id}','{$member_single.img_name}')"> <i ></i><font id="collection_num">{$member_single.collection_num}</font>收藏</span> <a href="#editorBox" target="_self"><span class="comNum"> <i></i>{$member_single.comment_num}评论</span> </a> <span class="share"> <i></i>分享 </span> </div>
+    <div class="picList clearfix">
+      <h2>TA的设计</h2>
+      <!--{foreach from=$same_single item=same}-->
+      <a href="{link app=single act=info arg0=$same.album_id}#{$same.id}"><img src="{$same.url}" width="108" height="108" /></a>
+      <!--{/foreach}--> 
+      </div>
+    <div class="picList clearfix">
+      <h2>最新推荐</h2>
+      <!--{foreach from=$recommend_single item=recommend}-->
+      <a href="{link app=single act=info arg0=$recommend.album_id}#{$recommend.id}"><img src="{$recommend.url}" width="108" height="108" /></a>
+      <!--{/foreach}--> 
+     </div>
+  </div>
+  <div class="shareBox"> <i class="angle"></i>
+      <div class="shareList"> <a class="sina" title="新浪"></a> <a class="qblog" title="腾讯微薄"></a> <a class="qzone" title="QQ空间"></a> <a class="renren" title="人人"></a> <a class="douban" title="豆瓣"></a> <a class="weixin" title="微信"></a> </div>
+    </div>
+</div>
+<!--底部结束-->
+{include file=footer.html}
+<script  type="text/javascript" src="/static/expand/qqface/jquery.qqface.js"></script>
+<script  type="text/javascript" src="/static/js/sunsingle.js"></script>
+<script  type="text/javascript" src="/static/js/single.js"></script>
+<script type="text/javascript">
+function addFavorite(id,kys){
+	
+    if(hasLogin()== 0){
+      login(function(){
+        $.cookie("hasLogin",1);
+        addFavorite(id,kys)
+      })
+      return
+    }
+    var url = "{link app=my_favorite act=add}?type=single";
+    $.get(url, {'item_id':id,'keyword':kys,'ajax':1},  function(data){
+        var data = eval("("+data+")");
+        if(data.done == true){
+          var num = parseInt($("#collection_num").html())+1;
+          $("#collection_num").html(num);
+		  var html="<i id='animate' style='display:none;position:absolute;z-index:11;width:19px;height:17px;background:url(/static/img/comm.png) 0 -22px'></i>";
+				s=$('#collection_num').offset(),
+				sL=s.left+40,
+				sT=s.top+20,
+				e=$('.fixed-nav').offset(),
+				eL=e.left+15,
+				eT=e.top;
+			$('body').append(html);
+			var $animate=$('#animate');
+			$animate.css({left:sL,top:sT,display:'block'}).animate({left:eL,top:eT-50},'slow',function(){
+				$animate.animate({left:eL,top:eT,opacity:0.5},'slow',function(){
+					$animate.remove()
+				})
+			});
+		}else{
+        	msg(data.msg);
+		}
+    });
+}
+
+$(document).ready(function(){
+	$.sc({
+		loadUrl:'{link app=single act=loadComment arg0=$member_single.id}',
+		postUrl:'{link app=single act=commit arg=$member_single.id}'
+	})
+})
+</script>

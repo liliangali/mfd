@@ -1,0 +1,558 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>mfd下单模块</title>
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<style>
+/**
+ * 下单流程
+ */
+.cartPop{ width:420px; height:550px; overflow:hidden; position:relative; margin:0 auto;background:#fff;}
+.cartPop h2.tit{ font-weight:normal; height:45px; border-bottom:solid 1px #dfdfdf; line-height:45px; text-align:center; font-size:16px;}
+.cartPop h2.tit .close,.cartPop h2.tit .back{ width:45px; height:45px; background:url(/public/static/pc/images/slx_icon.png) no-repeat 16px -418px; cursor:pointer;}
+
+.cartPop h2.tit .back{ visibility:hidden; position:absolute; left:0; top:0;}
+.cartPop h2.tit .close{ background-position:20px -460px; transition:all .3s;}
+.cartPop h2.tit .close:hover{ transform:rotate(180deg)}
+.cartPop .bottomBar{ position:absolute; z-index:2; left:0; bottom:0; width:100%; height:60px; line-height:60px; background:#f8f8f8;}
+.cartPop .errorInfo{ height:30px; background:#ffe1e1; color:#f00; text-align:center; line-height:30px; position:absolute; width:100%; left:0; bottom:60px; transform:translate3d(0,30px,0);-webkit-transform:translate3d(0,30px,0); transition:all .2s;-webkit-transition:all .2s; visibility:hidden; z-index:1; opacity:0}
+.cartPop .errorInfo.show{ visibility:visible;transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0); opacity:1;}
+.cartPop .addCart{ display:block;font-size:18px; width:160px; height:40px; background:#21d0fd; color:#fff; border:0; margin:10px auto 0;}
+.cartPop .next{font-size:18px; width:160px; height:40px; background:#21d0fd; color:#fff; border:0;display:block; margin:10px auto 0;}
+.cartPop .bigBtn{ width:285px; height:50px; border:solid 1px #21d0fd; background:#fff; margin:20px auto; display:block;}
+.cartPop .bigBtn:hover{ background:#21d0fd; color:#fff;}
+.cartPop .txtBox{ border:solid 1px #e9e9e9; width:305px; height:35px; padding-left:83px; line-height:35px; margin:0 auto 10px; overflow:hidden;}
+.cartPop .txtBox .name{ float:left; margin-left:-72px;width:5em;}
+.cartPop .txtBox .txt{ width:300px; height:100%; line-height:35px\9; border:0;color:#666;}
+.cartPop .txtBox .xm-select .dropdown{ border:0;}
+.xm-select{ width:305px;}
+.xm-select select{ padding:0; color:#666; height:35px;}
+.cartPop .step1{ padding-top:120px;}
+.cartPop .step2{ padding-top:65px; display:none}
+.cartPop .baseSize .tabTit{ background:#f8f8f8; height:30px; line-height:30px;}
+.cartPop .baseSize .tabTit li{ float:left; width:33.333%; text-align:center; cursor:default;}
+.cartPop .baseSize .tabTit .cur{ background:#21d0fd; color:#fff;}
+.cartPop .baseSize .sizeHelp{ text-align:center; color:#21d0fd; padding:10px;-moz-user-select:none;}
+.cartPop .baseSize .sizeHelp span{ cursor:pointer;}
+.cartPop .baseSize .tabLayer{ height:358px; overflow:auto; color:#666; position:relative;}
+.cartPop .baseSize .tabLayer ul{ margin:0 auto 0 22px; width:380px; overflow:hidden;}
+.cartPop .baseSize .tabLayer li{ float:left; width:85px; height:35px; line-height:35px; text-align:center; border:solid 1px #e6e6e6; margin:0 8px 15px 0; cursor:pointer;}
+.cartPop .baseSize .tabLayer .cur{ border-color:#21d0fd; color:#000;}
+.cartPop .mendian{ width:390px; margin:0 auto;}
+.cartPop .mendian dt{ padding:0 10px 8px; color:#666;}
+.cartPop .mendian dd{ border:solid 1px #efefef; padding:10px 20px; height:128px; overflow:auto;}
+.cartPop .mendian .p2{ color:#666;}
+.cartPop .appoint1{height: 490px;position: relative;z-index:3;}
+.cartPop .appoint2,.cartPop .existingData,.cartPop .record{ padding:0 15px;}
+.cartPop .appoint2 .search,.cartPop .existingData .search{ border:solid 1px #e9e9e9; height:40px;}
+.cartPop .appoint2 .txt,.cartPop .existingData .txt{ width:330px; padding:0 5px; height:100%; border:0;}
+.cartPop .appoint2 .btn,.cartPop .existingData .btn{ width:44px; height:100%; border:0; background:url(/public/static/pc/images/search.gif) no-repeat center center; cursor:pointer;}
+.cartPop .appoint2 .scrollBox,.cartPop .existingData .scrollBox,.cartPop .record .scrollBox{ height:311px; overflow:auto;border:solid 1px #e9e9e9; margin-top:15px; padding:10px 20px;}
+.cartPop .appoint2 .tit{color:#666; margin-top:20px;}
+.cartPop .appoint2 li,.cartPop .existingData li,.cartPop .record li,.cartPop .mendian li{ padding:12px 0; background:url(/public/static/pc/images/checkbox2.gif) no-repeat left 15px; padding-left:25px; cursor:pointer; line-height:24px;}
+.cartPop .appoint2 li.cur,.cartPop .existingData li.cur,.cartPop .record li.cur,.cartPop .mendian li.cur{background:url(/public/static/pc/images/checkbox1.gif) no-repeat left 15px;}
+.cartPop .appoint2 li .p3,.cartPop .existingData li .p3{ color:#666;}
+.cartPop .existingData .scrollBox{ height:335px;}
+.cartPop .record .scrollBox{ height:392px; margin:0;}
+.cartPop .baseSize,.cartPop .fujin,.cartPop .appoint1,.cartPop .appoint2,.cartPop .existingData,.cartPop .record{ padding-top:15px;}
+</style>
+</head>
+
+<body>
+<div class="cartPop" id="JcartPop">
+    <h2 class="tit"> <span class="close fr" id="Jclose" style="display:none"></span> <span class="back fl" id="Jback"></span> <span id="JcartTit" data-id="">选择量体方式</span> </h2>
+    <!--选择量体方式/s-->
+    <div class="step1" id="Jstep1">
+        <button class="bigBtn" id="Jbase-btn" data-id="-2">标准码定制</button>
+        <button class="bigBtn" id="Jamount-btn">量体定制</button>
+    </div>
+    <!--选择量体方式/e--> 
+    
+    <!--量体定制/s-->
+    <div class="step2 hide" id="Jstep2">
+        <button class="bigBtn" id="Jdata-btn" data-id="5">现有量体数据</button>
+        <button class="bigBtn" id="Jfujin-btn" data-id="2">去附近门店量体</button>
+        <button class="bigBtn" id="Jappoint-btn" data-id="6">指定量体师</button>
+        <button class="bigBtn" id="Jrecord-btn" data-id="-1">操作记录</button>
+    </div>
+    <!--量体定制/e--> 
+    
+    <!--标准码/s-->
+    <div class="baseSize hide" id="JbaseSize" data-id="-2">
+        <form id="form-2">
+        <ul class="tabTit">
+            {foreach from=$cloth item=cItem key=cKey name=cName}
+            <li {if $smarty.foreach.cName.first} class="cur" {/if}>{$cItem.name}</li>
+            {/foreach}
+        </ul>
+        <p class="sizeHelp"><a href="size.htm" target="_blank">展开尺码助手</a></p>
+        <div class="tabLayer">
+            {foreach from=$cloth item=cItem key=cKey name=cName}
+            <div style="{if $smarty.foreach.cName.first} display:block; {else} display:none; {/if}">
+                <ul>
+                    <input type="hidden" name="data[size][{$cKey}]" class="size" value="" validate="required" data-name="{$cItem.name}尺码" />
+                    {foreach from=$cItem.size item=sItem}
+                    <li data-id="{$sItem.Id}">{$sItem.Name}</li>
+                    {/foreach}
+                </ul>
+            </div>
+            {/foreach}
+        </div>
+        </form>
+    </div>
+    <!--标准码/e--> 
+    
+    <!--附近门店/s-->
+    <div class="fujin hide" id="Jfujin"  data-id="2">
+    <form id="form2">
+        <input type="hidden" name="data[size]" value="diy" />
+        <div class="txtBox">
+            <label class="name">服务地区：</label>
+            <div class="xm-select">
+                <div class="dropdown">
+                    <label for="J_province" class="iconfont"></label>
+                    <select id="J_province"  name="data[region]" validate="required" data-name="服务地区" >
+                        <option value="">省份/自治区</option>
+                        {foreach from=$region item=item}
+				        <option value="{$item.region_id}">{$item.region_name}</option>
+				        {/foreach}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="txtBox">
+            <label class="name">真实姓名：</label>
+            <input type="text" class="txt"  name="data[realname]" validate="required" data-name="真实姓名" />
+        </div>
+        <div class="txtBox">
+            <label class="name">联系电话：</label>
+            <input type="text" class="txt" name="data[phone]" validate="required|phone" data-name="联系电话" />
+        </div>
+        <div class="txtBox">
+            <label class="name">预约时间：</label>
+            <input type="text" onfocus="my97(this)" name="data[dateline]" class="txt Wdate" validate="required" data-name="预约时间" />
+        </div>
+        <div class="txtBox">
+            <label class="name">时间段：</label>
+            <div class="xm-select">
+                <div class="dropdown">
+                    <label for="J_province" class="iconfont"></label>
+                    <select class="shiduan" id="J_province" name="data[timepart]" validate="required" data-name="时间段" >
+						<option value="">请选择时间段</option>
+                        <option value="am">上午</option>
+                        <option value="pm">下午</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="data[server_id]" value="" id="server_id" validate="required" data-name="服务门店" />
+        <dl class="mendian">
+            <dt>选择门店</dt>
+            <dd>
+            </dd>
+        </dl>
+    </form>
+    </div>
+    <!--附近门店/e--> 
+    
+    <!--指定量体师 1/s-->
+    <form id="form6">
+    <input type="hidden" name="data[size]" value="diy" />
+    <div class="appoint1 hide" id="Jappoint1" data-id="6">
+        <div class="txtBox">
+            <label class="name">所在地区：</label>
+            <div class="xm-select">
+                <div class="dropdown">
+                    <label for="J_province" class="iconfont"></label>
+                    <select id="J_province" name="data[region]" validate="required" data-name="所在地区">
+                        <option value="">省份/自治区</option>
+                        {foreach from=$ltregion item=item}
+                        <option value="{$item.region_id}">{$item.region_name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="txtBox">
+            <label class="name">详细地址：</label>
+            <input type="text" class="txt" validate="required" name="data[address]" data-name="详细地址" />
+        </div>
+        <div class="txtBox">
+            <label class="name">真实姓名：</label>
+            <input type="text" class="txt" validate="required" name="data[realname]" data-name="真实姓名" />
+        </div>
+        <div class="txtBox">
+            <label class="name">联系电话：</label>
+            <input type="text" class="txt" validate="required|phone" name="data[phone]" data-name="联系电话" />
+        </div>
+        <div class="txtBox">
+            <label class="name">预约时间：</label>
+            <input type="text" onfocus="my97(this)" class="txt Wdate" name="data[dateline]" validate="required" data-name="预约时间" />
+        </div>
+        <div class="txtBox">
+            <label class="name">时间段：</label>
+            <div class="xm-select">
+                <div class="dropdown">
+                    <label for="J_province" class="iconfont"></label>
+                    <select class="shiduan" id="J_province" name="data[timepart]" validate="required" data-name="时间段">
+                        <option value="">请选择时间段</option>
+                        <option value="1">上午</option>
+                        <option value="2">下午</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="bottomBar">
+            <button class="next">下一步</button>
+        </div>
+    </div>
+    <!--指定量体师 1/e--> 
+    
+    <!--指定量体师 2/s-->
+    <div class="appoint2 hide" id="Jappoint2" data-id="6">
+        <div class="search">
+            <input type="search" class="txt fl" placeholder="请输入量体师姓名或手机号" />
+            <input type="button" class="btn">
+        </div>
+        <div class="tit" data-id="">已选择：</div>
+        <input type="hidden" name="data[figurerid]" value="" id="figurerid" validate="required" data-name="量体师" />
+        <div class="scrollBox">
+        </div>
+    </div>
+    </form>
+    <!--指定量体师 2/e--> 
+    
+    <!--选择现有量体数据/s-->
+    <div class="existingData hide" id="JexistingData" data-id="5">
+    <form id="form5">
+        <input type="hidden" name="data[size]" value="diy" />
+        <div class="search">
+            <input type="search" class="txt fl" placeholder="请输入量体师姓名或手机号">
+            <input type="button" class="btn">
+        </div>
+        <input type="hidden" name="data[figureid]" id="history_id" validate="required" data-name="量体数据" />
+        <div class="scrollBox">
+        </div>
+    </form>
+    </div>
+    <!--选择现有量体数据/e--> 
+    
+    <!--选择预约记录/s-->
+    <div class="record hide" id="Jrecord" data-id="-1">
+    <form id="form-1">
+        <input type="hidden" name="data[size]" value="diy" />
+        <input type="hidden" name="data[history]" value="1" />
+        <input type="hidden" name="data[history_id]" id="history_id" validate="required" data-name="量体数据" />
+        <div class="scrollBox">
+        </div>
+    </form>
+    </div>
+    <!--选择预约记录/e-->
+    <div class="bottomBar hide" id="JbottomBar">
+        <button class="addCart">加入购物车</button>
+    </div>
+    <div class="errorInfo">错误信息</div>
+</div>
+
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/static/pc/js/public.js"></script> 
+<script src="/public/global/my97date/wdatepicker.js"></script> 
+<script src="/public/global/jquery.form.js"></script>
+<script>
+//预约时间限制
+function my97(obj){
+	var date=new Date();
+	if(date.getHours()>11||$(obj).parents('form').find('.shiduan').val()=='am'){
+		WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'%y-%M-{%d+1}'})		
+	}else{
+		WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'%y-%M-%d'})
+	}
+}
+$('select.shiduan').focus(function(){
+	var date=new Date(),
+		date2=new Date($(this).parents('form').find('.Wdate').val()),
+		arr=[[],[],[]];
+		arr[0].push(date.getMonth());
+		arr[0].push(date.getDate());
+		arr[1].push(date2.getMonth());
+		arr[1].push(date2.getDate());
+		arr[2].push(date.getHours());
+		if(arr[0].join()==arr[1].join()){
+			this.options[1].disabled=true
+			if(arr[2]>=12){
+				this.options[2].disabled=true
+			}
+		}else{
+			this.options[1].disabled=false;
+			this.options[2].disabled=false;	
+		}
+});
+//加入购物车弹层
+;(function(){
+    var node=[
+        [$('#Jstep1'),'选择量体方式'],
+        [$('#Jstep2'),'量体定制 '],
+        [$('#JbaseSize'),'标准码定制 '],
+        [$('#Jfujin'),'去附近门店量体 '],
+        [$('#Jappoint1'),'指定量体师 '],
+        [$('#Jappoint2'),'指定量体师 '],
+        [$('#JexistingData'),'现有量体数据 '],
+        [$('#Jrecord'),'选择预约记录 '],
+    ],
+    cartStep=[node[0]],//记录当前步骤
+    JcartTit=$('#JcartTit'),//标题
+    JcartPop=$('#JcartPop'),
+    JbottomBar=$('#JbottomBar'),
+    JaddCar=$('#JbottomBar .addCart'),
+    Jerror=$('.errorInfo');
+    //错误提示
+    function error(e){
+        Jerror.text(e).addClass('show');
+        setTimeout(function(){
+            Jerror.removeClass('show');    
+        },1500)    
+    }
+    //步骤、标题
+    function step(obj){
+        cartStep.push(obj);
+        JcartTit.text(obj[1]);
+        JcartTit.data('id',obj[0].data('id'))
+        $('#Jback').css('visibility','visible');
+    }
+    //关闭
+    $('#Jclose').click(function(){
+        JcartPop.removeClass('show');
+        $('#cartShadow').remove();
+        $.each(cartStep,function(i,e){
+            if(i>0){
+                e[0].hide();
+            }
+        });
+        node[0][0].show();
+        JcartTit.text(node[0][1]);
+        cartStep=[node[0]];
+        JbottomBar.hide();
+        //console.log(cartStep)
+    });
+    //返回
+    $('#Jback').click(function(){
+        if(cartStep.length>1){
+            $(cartStep.pop()[0]).hide();
+            $(cartStep[cartStep.length-1][0]).show();
+            JcartTit.text(cartStep[cartStep.length-1][1]);
+        }
+        if(cartStep.length==1){
+            $('#Jback').css('visibility','hidden');
+            JbottomBar.hide();    
+        }
+        if(cartStep.join().indexOf('量体定制')>=0){
+            JbottomBar.hide();
+        }
+    });
+    //标准码        
+    $('#Jbase-btn').click(function(){
+        $('#Jstep1').hide();
+        node[2][0].show();
+        step(node[2]);
+        JbottomBar.show();
+    });
+    //标准码->选项卡
+    node[2][0].find('.tabTit').on('click','li',function(){
+        $(this).addClass('cur').siblings('li').removeClass('cur');
+        node[2][0].find('.tabLayer').children('div').eq($(this).index()).siblings('div').hide().end().show();    
+    });
+    //标准码->选项
+    node[2][0].find('.tabLayer').on('click','li',function(){
+        $(this).addClass('cur').siblings().removeClass('cur');
+        $(this).parent('ul').find('.size').val($(this).data('id'))
+    });
+    //量体定制
+    $('#Jamount-btn').click(function(){
+        $('#Jstep1').hide();
+        node[1][0].show();
+        step(node[1]);
+    });
+    
+    //现有量体数据 -s
+    $('#Jdata-btn').click(function(){
+        node[1][0].hide();
+        searchHis()
+        node[6][0].show();
+        step(node[6]);
+        JbottomBar.show();
+    });
+    node[6][0].find('.search').find('.btn').on('click',searchHis)
+    node[6][0].find('.search').find('.txt').on('keydown',function(e){
+        if(e.keyCode==13){
+        	searchHis()
+        	return false;
+        }
+    })
+    function searchHis(){
+    	var _val = node[6][0].find('.search').find('.txt').val();
+    	var _id  = node[6][0].find('#history_id').val();
+    	$.post('{link app=measure act=ajaxCustomer}',{val:_val,id:_id},function(res){
+            if(res.done==true){
+                node[6][0].find('.scrollBox').html(res.retval.content)
+                node[6][0].find('#history_id').val(res.retval.check)
+            }
+        },"json");
+    	return false;
+    }
+    node[6][0].find('.scrollBox').on('click','li',function(){
+        $(this).addClass('cur').siblings().removeClass('cur');
+        node[6][0].find('#history_id').val($(this).data('id'))
+        
+    })
+    //现有量体数据 -e
+    
+    //去附近门店量体 -s
+    $('#Jfujin-btn').click(function(){
+        node[1][0].hide();
+        node[3][0].show();
+        step(node[3]);
+        JbottomBar.show();
+        
+        node[3][0].find('#J_province').unbind().bind('change',function(){
+            var region_id = $(this).val();
+            if(region_id){
+            	$.post("{link app=measure act=ajaxServer}",{id:region_id}, function(res){
+                    if(res.done == true){
+                        node[3][0].find('.mendian dd').html(res.retval.content)
+                        node[3][0].find('#server_id').val(res.retval.server)
+                        node[3][0].find('.mendian li').unbind().bind('click',function(){
+                            $(this).addClass('cur').siblings().removeClass('cur');
+                            node[3][0].find('#server_id').val($(this).data('id'))
+                        })
+                    }
+                },"json")
+            }
+        })
+        
+    });
+	//去附近门店量体 -e
+	JaddCar.unbind('click').bind('click',addToCart)
+	
+	function addToCart(){
+		var _this = $(this)
+		var _id = JcartTit.data('id');
+		
+		_this.unbind('click');
+		
+        //alert(_id)
+        $('#form'+_id).ajaxSubmit({
+            type:"post",
+            data:{figuretype:_id},
+            dataType:"json",
+            url:"{link app=measure act=saveData}?time="+ (new Date()).getTime(),
+            beforeSubmit:function(){return $('#form'+_id).validate({error:function(e,t){error(e.data('name')+t)},acticle:true})},
+            success:function (res,statusText) {
+                if(res.done == false){
+                      alert(res.msg);
+                }else{
+                    window.parent['{$fn}'](JSON.stringify(res.retval))
+                    //location.href="{link app=cart act=checkout}";
+                }
+            }
+        });
+        
+        JaddCar.unbind('click').bind('click',addToCart)
+	}
+    	
+    //指定量体师 -s
+    $('#Jappoint-btn').click(function(){
+        node[1][0].hide();
+        node[4][0].show();
+        step(node[4]);
+        JbottomBar.show();
+    });
+    node[4][0].find('.next').click(function(){
+    	
+    	var _form = $(this).parents('form');
+    	var _ck   = _form.find('#figurerid').val();
+    	var _b = $('#Jappoint1').validate({error:function(e,t){error(e.data('name')+t)},acticle:true});
+    	if(!_b) return false;
+    	
+        var _region_id = node[5][0].find('.tit').data('id');
+        var _rgid = node[4][0].find('select').val()
+        
+        if(_region_id == '' || _region_id != _rgid){
+        	_form.ajaxSubmit({
+                type:"post",
+                data:{ck:_ck},
+                dataType:"json",
+                url:"{link app=measure act=ajaxFigurer}?time="+ (new Date()).getTime(),
+                success:function (res,statusText) {
+                    if(res.done == true){
+                        node[5][0].find('.tit').html('已选择：'+res.retval.region.region_name);
+                        node[5][0].find('.tit').data('id' , res.retval.region.region_id);
+                        node[5][0].find('.scrollBox').html(res.retval.content);
+                        node[5][0].find('#figurerid').val(res.retval.check);
+                    }
+                }
+            });
+        }
+        
+        node[4][0].hide();
+        node[5][0].show();
+        step(node[5]);
+        JbottomBar.show();
+		
+		node[5][0].children('.scrollBox').off('click').on('click','li',function(){
+            $(this).addClass('cur').siblings().removeClass('cur');
+            node[5][0].find('#figurerid').val($(this).data('id'))
+        });
+		
+		node[5][0].find('.search').find('.btn').on('click',searchLti)
+	    node[5][0].find('.search').find('.txt').on('keydown',function(e){
+	        if(e.keyCode==13){
+	        	searchLti()
+	            return false;
+	        }
+	    })
+		
+        return false;
+    });
+    
+    
+    function searchLti(){
+        var _val = node[5][0].find('.search').find('.txt').val();
+        node[5][0].find('.scrollBox').find('li').each(function(){
+            if(_val==null || _val==''){
+                $(this).show();
+            }else{
+                $(this).hide();
+                if($(this).data('phone')==_val || $(this).data('name')==_val){
+                    $(this).show();
+                }
+            }
+        })
+        
+        return false;
+    }
+    
+    //指定量体师 -e
+    
+    //操作记录 -s
+    $('#Jrecord-btn').click(function(){
+        node[1][0].hide();
+        node[7][0].show();
+        step(node[7]);
+        JbottomBar.show();
+        $.post("{link app=measure act=ajaxHistory}",{},function(res){
+        	if(res.done==true){
+        		node[7][0].find('.scrollBox').html(res.retval.content);
+        	}
+        },"json")
+    });
+    node[7][0].find('.scrollBox').on('click','li',function(){
+        $(this).addClass('cur').siblings().removeClass('cur');
+        node[7][0].find('#history_id').val($(this).data('id'))
+    });
+  //操作记录 -e
+})()
+
+</script>
+</body>
+</html>

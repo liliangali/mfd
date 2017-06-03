@@ -1,0 +1,50 @@
+
+<div class="tdare relitem">
+	<ul>
+  	{foreach from=$goods_list item=rel}
+  		<li class="item" data-id="{$rel.cst_id}"><a href="javascript:;">x</a> {$rel.cst_name}</li>
+  	{/foreach}
+  	</ul>
+</div>
+<script>
+
+function removeHiddenIdsText(value, container) {
+    if (value.length == 0)
+        return '';
+            
+    //去除前后逗号    
+    value = value.replace(/^,/, '').replace(/,$/, '');
+    container = container.replace(/^,/, '').replace(/,$/, '');
+            
+    if (container == value)
+    {
+        return '';
+    }
+            
+    var sArray = container.split(',');
+    for (var i = sArray.length - 1; i >= 0; --i)
+    {
+        if (sArray[i] == value)
+            sArray[i] = undefined;
+    }
+            
+    var result = sArray.join(',');
+    //因为undefined会连接成,,所以要将,,换成,            
+    result = result.replace(/,,/,',');
+    result = result.replace(/^,/, '').replace(/,$/, '');
+            
+    return result;
+}
+$(".relitem").find("a").each(function(){
+	$(this).click(function(){
+		var temp =new Array();
+		var linkids = $("#input_link_cst").val();
+		var id = $(this).parent("li").attr('data-id');
+		
+		  $(this).parent("li").remove();
+		  
+		  $("#input_link_cst").val(removeHiddenIdsText(id,linkids));
+			/* console.log(removeFromCommaJoinedText(linkids,id)); */
+	})
+})
+</script>

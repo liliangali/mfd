@@ -1,0 +1,1167 @@
+{
+  "sizeAll": [
+    {
+      "Id": "155/82A",
+      "Name": "155/82A",
+      "Dv": true
+    },
+    {
+      "Id": "155/86A",
+      "Name": "155/86A",
+      "Dv": false
+    },
+    {
+      "Id": "155/90A",
+      "Name": "155/90A",
+      "Dv": false
+    },
+    {
+      "Id": "160/84A",
+      "Name": "160/84A",
+      "Dv": false
+    },
+    {
+      "Id": "160/88A",
+      "Name": "160/88A",
+      "Dv": false
+    },
+    {
+      "Id": "160/92A",
+      "Name": "160/92A",
+      "Dv": false
+    },
+    {
+      "Id": "160/96A",
+      "Name": "160/96A",
+      "Dv": false
+    },
+    {
+      "Id": "165/86A",
+      "Name": "165/86A",
+      "Dv": false
+    },
+    {
+      "Id": "165/90A",
+      "Name": "165/90A",
+      "Dv": false
+    },
+    {
+      "Id": "165/94A",
+      "Name": "165/94A",
+      "Dv": false
+    },
+    {
+      "Id": "165/98A",
+      "Name": "165/98A",
+      "Dv": false
+    },
+    {
+      "Id": "165/102A",
+      "Name": "165/102A",
+      "Dv": false
+    },
+    {
+      "Id": "170/88A",
+      "Name": "170/88A",
+      "Dv": false
+    },
+    {
+      "Id": "170/92A",
+      "Name": "170/92A",
+      "Dv": false
+    },
+    {
+      "Id": "170/96A",
+      "Name": "170/96A",
+      "Dv": false
+    },
+    {
+      "Id": "170/100A",
+      "Name": "170/100A",
+      "Dv": false
+    },
+    {
+      "Id": "170/104A",
+      "Name": "170/104A",
+      "Dv": false
+    },
+    {
+      "Id": "175/94A",
+      "Name": "175/94A",
+      "Dv": false
+    },
+    {
+      "Id": "175/98A",
+      "Name": "175/98A",
+      "Dv": false
+    },
+    {
+      "Id": "175/102A",
+      "Name": "175/102A",
+      "Dv": false
+    },
+    {
+      "Id": "175/106A",
+      "Name": "175/106A",
+      "Dv": false
+    },
+    {
+      "Id": "175/110A",
+      "Name": "175/110A",
+      "Dv": false
+    },
+    {
+      "Id": "175/114A",
+      "Name": "175/114A",
+      "Dv": false
+    },
+    {
+      "Id": "175/118A",
+      "Name": "175/118A",
+      "Dv": false
+    },
+    {
+      "Id": "175/122A",
+      "Name": "175/122A",
+      "Dv": false
+    },
+    {
+      "Id": "175/126A",
+      "Name": "175/126A",
+      "Dv": false
+    },
+    {
+      "Id": "175/130A",
+      "Name": "175/130A",
+      "Dv": false
+    }
+  ],
+  "standardAll": {
+    "155/82A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "155/86A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "155/90A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "160/84A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "160/88A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "160/92A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "160/96A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "165/86A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "165/90A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "165/94A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "165/98A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "165/102A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "170/88A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "170/92A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "170/96A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "170/100A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "170/104A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "175/94A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "175/98A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "175/102A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "175/106A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "175/110A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "175/114A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "175/118A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "175/122A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "175/126A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ],
+    "175/130A": [
+      {
+        "Id": "10120",
+        "Name": "腰围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-6",
+        "SIZETO": "8"
+      },
+      {
+        "Id": "10108",
+        "Name": "臀围",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10730",
+        "Name": "裙长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      },
+      {
+        "Id": "12221",
+        "Name": "下摆",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-8",
+        "SIZETO": "8"
+      }
+    ]
+  }
+}

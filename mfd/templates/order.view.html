@@ -1,0 +1,350 @@
+{include file="header.html"}
+<link href="templates/jquery-tipso/css/tipso.min.css" type="text/css" rel="stylesheet"/>
+<script src="templates/jquery-tipso/js/jquery-1.8.3.min.js"></script>
+<script src="templates/jquery-tipso/js/tipso.min.js"></script>
+<div id="rightTop">
+    <p><b>{$lang.order_detail}</b></p>
+    <p><b>&nbsp;&nbsp;<a href="{if $reUrl}{$reUrl}{else}index.php?app=order&amp;act=export{/if}">返回</a></b></p>
+</div>
+<div class="info">
+    <div class="demand">
+    </div>
+    <div class="order_form">
+        <h1>订单日志</h1>
+        <ul style="width: 500px;">
+            {foreach from=$order_log_list item=log key=lovk}
+                <li style="float: left;width: 500px;" data-tipso="{$log.remark}"  {if $log.remark}onmouseover="titleMouseOver(this);"{/if} ">({$log.alttime|date:Y/m/d H:i})&nbsp;&nbsp;<span class="red_common">{$log.log_text}</span>&nbsp;&nbsp;操作人:&nbsp;<span class="red_common">{$log.op_name}</span></li>
+            {/foreach}
+        </ul>
+        <div class="clear"></div>
+    </div>
+        <div class="order_form">
+        <h1>{$lang.order_status}</h1>
+        <ul>
+            <li>{$lang.order_sn} ：{$order.order_sn}</li>
+            <li>{$lang.order_status} ：
+            {if $order.extension eq 'fabricbook'}
+            {$lang.fabricBookOrderStatus.$order.status}
+            {else}
+            {$lang.ORDER_STATUS.$order.status}
+            {/if}
+            {if $order.express} - 快递单号：{$order.express}{/if}
+			{if $order.orderrefund_id} <a href="index.php?app=orderrefund&amp;act=view&amp;id={$order.orderrefund_id}">查看退款详情></a>{/if}
+			</li>
+
+
+
+            {if $order.express} - 快递单号：{$order.express}  - 发货时间：{$order.ship_time|date:Y/m/d H:i}  - 更新帐号：{$order.deliver_name} {/if}</li>
+            <li>{$lang.order_amount} ：<span class="red_common">{$order.order_amount|price}</span></li>
+            <li>零售总价 ：<span class="red_common">{$order.goods_amount|price}</span></li>
+           <!--  <li>余额支付 ：<span class="red_common">{$order.money_amount|price}</span></li> -->
+            <!-- <li>麦富迪币：<span class="red_common">{$order.coin|price}</span></li> -->
+            <li>优惠券  ：<span class="red_common">{$order.debit_amount|price}</span>
+            {if $dlist}
+             (
+              {foreach from=$dlist item=dItem key=dKey}
+              {$dItem.d_name}:{$dItem.d_money|price}
+              {/foreach}
+              )
+              {/if}
+            </li>
+           <!--  <li>酷卡  ：<span class="red_common">{$order.kuka_amount|price}<br/></span>
+            {if $kuka}
+              {foreach from=$kuka item=dItem key=dKey}
+             编号：({$dItem.k_sn}) 金额:{$dItem.k_money|price} ({$dItem.is_line})<br/>
+              {/foreach}
+              {/if}
+            </li> -->
+            <li>[{$order.payment_name}]支付 ：<span class="red_common">{if $real}{$order.final_amount|price}{else}{$real_amount|price}{/if}</span></li>
+			{if $has_delay}
+			<li>{$lang.order_delay} ：<span class="red_common">
+				用户已申请延期收货，操作时间:{$has_delay.delay_time|date:complete}
+			</span></li>
+			{/if}
+
+      
+        </ul>
+        <div class="clear"></div>
+    </div>
+    {if $order.invoice_need}
+    <div class="order_form">
+        <h1>发票信息:</h1>
+        <ul>
+          <li>发票类型：{if $order.invoice_com == '1'}个人{else if $order.invoice_com == '2'}公司{/if}</li>
+           <li>发票抬头：{$order.invoice_type}</li>
+           {if $order.invoice_com == '3'}
+           {foreach from=$order.invoice_title item=tax key=taxKey}
+           <li>{$invoice.$taxKey} ：{$tax}</li>
+           {/foreach}
+           {else}<li>发票内容 ：{$order.invoice_title}</li>{/if}
+         </ul>
+          <div class="clear"></div>
+      </div>
+    {/if}
+    <div class="order_form">
+        <h1>收货信息:</h1>
+        <ul>
+        
+          <li>{$lang.order_consignee}：{$order.ship_name}</li>
+           <li>{$lang.order_consimobile}：{$order_info.ship_mobile}</li>
+           <li>{$lang.order_address} ：{$order.ship_area} {$order.ship_addr}</li>
+
+            {if $order.extension neq 'fabricbook'}
+            {if $order.status == ORDER_ACCEPTED}{if $has_check == 'yes'}<li>审核订单 ：<a href="index.php?app=order&act=check&tp=go&id={$order.order_id}"><span>通过</span></a> | <a href="index.php?app=order&act=check&tp=bc&id={$order.order_id}"><span>不通过</span></a> | <a href="index.php?app=order&act=check&tp=no&id={$order.order_id}">取消</a></li>{/if}{/if}
+            {if $order.status == ORDER_SHIPPED}<li>订单操作 ：<a href="index.php?app=order&act=check&tp=fini&id={$order.order_id}"><span>完成</span></a> | <a href="index.php?app=order&act=check&tp=no&id={$order.order_id}"><span>作废</span></a> {/if}
+            {if $order.status == ORDER_PRODUCTION || $order.status == ORDER_STOCKING || $order.status == ORDER_ACCEPTED || $order.status == ORDER_SHIPPED}
+           {if $order.waybillno}
+		     <li style="color:red;font-weight:bold;">
+            <!--快递：<span> {$order.shipping_name}</span>  发货单号：<span>{$order.waybillno} </span>-->
+
+            <form action="index.php?app=order&act=opts" method="POST">
+            <li style="color:red;font-weight:bold;">
+                快递： <select name="kuaidi">
+                {foreach from=$shiplist item=ship key=key}
+                <option value="{$key}" {if $key == $order.shipping_id} selected {/if} >{$ship}</option>
+                {/foreach}
+            </select>
+
+                发货单号：<input type="text" name="waybillno" value="{$order.waybillno}" >
+                <input type="submit" name="ship"  value="去发货">(该功能为人工发货使用,不懂慎用)
+            </li>
+            <input type="hidden" name="order_id" value="{$order.order_id}">
+            </form>
+
+
+			</li>
+			{else}
+			  <form action="index.php?app=order&act=opts" method="POST">
+            <li style="color:red;font-weight:bold;">
+           快递： <select name="kuaidi">
+           {foreach from=$shiplist item=ship key=key}
+           <option value="{$key}">{$ship}</option>
+           {/foreach}
+            </select>
+     
+                 发货单号：<input type="text" name="waybillno" value="{$order.waybillno}" >
+                <input type="submit" name="ship"  value="去发货">(该功能为人工发货使用,不懂慎用)
+            </li>
+            <input type="hidden" name="order_id" value="{$order.order_id}">
+            </form>
+			{/if}
+ 		
+            {if !$order.waybillno}
+            <form action="index.php?app=order&act=edians" method="POST">
+            <input type="hidden" name="order_id" value="{$order.order_id}">
+             <input type="submit" name="edian"  value="推送e店宝">（该功能为手动推送e店宝，不懂慎用）
+             </form>
+     
+            {/if}
+            {/if}
+            {else}
+            <form action="index.php?app=order&act=opt" method="POST">
+                {if $operation}
+                <li style="color:red;font-weight:bold;">客服操作：
+                    {if $operation.cancel}
+                    <input type="submit" name="cancel" value="取消订单">
+                    {/if}
+                    {if $operation.returned}
+                    <input type="submit" name="returned" value="已退货">
+                    {/if}
+                    {if $operation.ship}
+                    发货单号：<input type="text" name="express" value="">
+                    <input type="submit" name="ship" value="去发货">
+                    {/if}
+                </li>
+                <input type="hidden" name="order_id" value="{$order.order_id}">
+            </form>
+            {/if}
+            {/if}
+        </ul>
+        <div class="clear"></div>
+    </div>
+    <div class="order_form">
+        <h1>{$lang.order_detail}</h1>
+        <ul>
+            <li>用户名 ：{$order.user_name|escape}</li>
+            <!--{if $order.payment_code}-->
+            <li>{$lang.payment_name} ：{$order.payment_name|escape}</li>
+            <!--{/if}-->
+            <!--{if $order.pay_message}-->
+            <li>{$lang.pay_message} ：{$order.pay_message|escape}</li>
+            <!--{/if}-->
+            <li>{$lang.add_time} ：{$order.add_time|date:complete}</li>
+            <!--{if $order.pay_time}-->
+            <li>{$lang.pay_time} ：{$order.pay_time|date:complete}</li>
+            <!--{/if}-->
+            <!--{if $order.shipping_id}-->
+            <li>配送方式 ：{$order.shipping}</li>
+            <!--{/if}-->
+            {if $order.one_num}
+            <li>员工号：{$order.one_num}</li>
+            {/if}
+            <li>类型：
+            {if $order.is_gift == 1}
+            礼品
+            {else}
+            普通
+            {/if}
+            </li>
+            <!--{if $order.memo}-->
+            <li>订单备注 ：{$order.memo}</li>
+            <!--{/if}-->
+        </ul>
+        <div class="clear"></div>
+    </div>
+  <div class="order_form">
+        <h1>商品信息</h1>
+{foreach from=$order_info.order_goods item=list}
+   <!-- <li>{$lang.$emb.e_tname} ：{$emb.e_name}</li> -->
+		<img src="{$list.goods_image}" width="60" />
+		<ul>
+		<li>名称 ： {$list.goods_name}</li>
+            <li>
+
+                上传标签图:<input type="file" name="mesimg" data-orderid="{$list.rec_id}" onchange="readFile(this)">
+          标签图 ：
+                <a href="{$site_url}{$list.style}" target="_blank" class="file_a file_ass{$list.rec_id}" {if $list.style} {else}style="display:none"{/if}>
+                    <img src="{$site_url}{$list.style}" width="100" height="100" class="file_img file_imgss{$list.rec_id}">
+                </a>
+            </li>
+        <li>类型： {if $list.type eq 'fdiy'}diy商品{else}普通{/if}</li>
+            <li>物料编码 ： {$list.code}</li>
+		<li>属性 ： {if $list.type eq 'fdiy'}{$list.spe_name}{else}
+            {foreach from=$list.spe_name item=item}
+            {$item.p_name}:{$item.s_name}&nbsp;
+            {/foreach}
+            {/if}</li>
+        <li>单价 ： {$list.price}</li>
+		<li>数量 ： {$list.quantity}</li>
+		<li>小计 ： {$list.subtotal}</li>
+		{if $list.fav_price}
+		<li>优惠方案 ：{$list.fav_name}&nbsp&nbsp&nbsp{$list.zhek_name}</li>
+		<li>优惠金额 ： {$list.fav_price}</li>
+		{/if}
+            {if $list.type eq 'fdiy'}
+            <li>宠物名称 ： {$list.dog_name}</li>
+            <li>宠物生日 ： {$list.dog_date}</li>
+            <li>主人寄语 ： {$list.dog_desc}</li>
+            <li>时间 ： {$list.time_name}</li>
+            <li>运动量 ： {$list.run_name}</li>
+            <li>体况 ： {$list.body_name}</li>
+            <li>体重 ： {$list.weight}</li>
+            <li>哺乳小狗数目 ： {$list.dog_nums}</li>
+            {if $list.feed_list}
+            <li>饲喂量 ： {$list.feed_list.feed_w}g/天</li>
+            <li>次数 ： {$list.feed_list.nums}</li>
+            {/if}
+            {/if}
+		</ul>
+        <div class="clear"></div>
+         <hr>
+{/foreach}
+<h1>赠品信息-常规商品</h1>
+{foreach from=$order.c_giveaway_list item=c_giveaway}
+<ul>
+<li>名称 ： {$c_giveaway.name}</li>
+<li>货号 ： {$c_giveaway.bn}</li>
+<li>成本价格 ： {$c_giveaway.mktprice}</li>
+<li>最低消费 ： {$c_giveaway.l_money}</li>
+<li>最高消费 ： {$c_giveaway.h_money}</li>
+</ul>
+<div class="clear"></div>
+<hr>
+{/foreach}
+<h1>赠品信息-赠品商品</h1>
+{foreach from=$order.f_giveaway_list item=f_giveaway}
+<ul>
+<li>名称 ： {$f_giveaway.name}</li>
+<li>货号 ： {$f_giveaway.bn}</li>
+<li>成本价格 ： {$f_giveaway.mktprice}</li>
+<li>最低消费 ： {$f_giveaway.l_money}</li>
+<li>最高消费 ： {$f_giveaway.h_money}</li>
+</ul>
+<div class="clear"></div>
+<hr>
+{/foreach}
+<h1>赠品信息-礼包</h1>
+{foreach from=$order.g_giveaway_list item=g_giveaway}
+<ul>
+<li>名称 ： {$g_giveaway.name}&nbsp;<b style="cursor: pointer;color:#ff5400" title='{$g_giveaway.title_list.title}'>[详]</b></li>
+<li>成本价格 ： {$g_giveaway.price}</li>
+<li>最低消费 ： {$g_giveaway.l_money}</li>
+<li>最高消费 ： {$g_giveaway.h_money}</li>
+</ul>
+<div class="clear"></div>
+<hr>
+{/foreach}
+
+
+{if $order.status=='20'}
+     <form method="post" enctype="multipart/form-data" action="index.php?app=order&act=view_img" id="dis_form">
+           <div>
+                <li >
+                    标签图审核:
+               
+                    <select name="status">
+					<option value="0" {if $order.img_status=='0'}selected{/if}>未审核</option>
+					<option value="1" {if $order.img_status=='1'}selected{/if}>审核成功</option>
+					<option value="2" {if $order.img_status=='2'}selected{/if}>审核失败</option>
+					</select>
+                </li>
+            </div> 
+			 <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input type="hidden" name="order_id" value="{$order.order_id}"/>
+    </form>
+{/if}
+    </div>
+</div>
+<script>
+    function readFile(obj)
+    {
+
+        var file = obj.files[0];
+        var order_goods_id = $(obj).attr("data-orderid");
+        //判断类型是不是图片
+        if(!/image\/\w+/.test(file.type)){
+            alert("请确保文件为图像类型");
+            return false;
+        }
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function(e){
+
+
+            $.post("index.php?app=order&act=uploadimg", { id: order_goods_id, upimg:this.result },
+                function(data)
+                {
+                    $('.file_ass'+order_goods_id).css('display',"");
+                    $('.file_imgss'+order_goods_id).attr('src',data);
+                    $('.file_ass'+order_goods_id).attr('href',data);
+                }
+            );
+
+            $(obj).next().val(this.result)
+        };
+
+
+
+
+
+    }
+
+</script>
+
+
+
+{include file="footer.html"}
+<script>
+    /**
+     * 鼠标悬停显示TITLE
+     * @params     obj        当前悬停的标签
+     *
+     */
+    function titleMouseOver(obj) {
+        $(obj).tipso({
+            useTitle: false,
+            width:500,
+            background:'#55b555'
+        });
+    }
+</script>

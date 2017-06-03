@@ -1,0 +1,291 @@
+{include file=header.html}
+<link href="{res file=css/pages.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/surface.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{res file=js/jscrollpane.js}"></script>
+<script type="text/javascript" src="{res file=js/Xslider.js}"></script>
+<!--[if IE 6]>
+<![endif]-->
+<div class="dqwz">当前位置：<a href="./">首页</a><span>></span><a href="{link app=fabrics}">面料工坊</a><span>></span>{$brand_name}</div>
+<!--中间开始-->
+<div class="sur_box">
+   <!--广告图 start-->
+     <div class="surface_banner">
+        <a href="#"><img src="{res file=images/tu12.jpg}" width="1000" height="325" /></a>
+     </div>
+   <!--广告图 end-->
+<!--面料基本款 start-->
+    <div class="surface_list_box">
+          <h1>面料基本款</h1>
+          <div class="sur_saix">
+            <ul class="sur_saix_ul">
+               <li><a href="{link app=fabrics act=lists arg0=$page_info.curr_page arg1=$brand_id}" {if $cate_id == 0}class="cur_a"{/if}>全部</a></li>
+               {foreach from=$glist item=gl}
+               <li><a href="{link app=fabrics act=lists arg0=1 arg1=$brand_id arg2=$gl.cate_id}" {if $gl.cate_id == $cate_id}class="cur_a"{/if}>{$gl.cate_name}</a></li>
+               {/foreach}
+            </ul>
+             <!--{if $fabrics}-->
+	    	{include file=page.bottom3.html}
+	  		<!--{/if}-->
+            
+            <p class="clear"></p>
+          </div>
+          <div class="surface_list"  style="padding-bottom:20px;">
+                <ul>
+                {foreach from=$fabrics item=fabric name=fabrics}
+                   <li {if $smarty.foreach.fabrics.iteration % 4}{else}class="r_end"{/if}>
+                       <a href="{link app=fabrics act=info arg1=$fabric.part_id}">
+                         <img src="{$fabric.part_thumb}" width="221" height="295" />
+                          <span class="png_tm">编号：{$fabric.part_sn}</span>
+                       </a>
+                       <p class="sur_ti"><a href="{link app=fabrics act=info arg=$fabric.fabric_id}">{$fabric.part_name}</a></p>
+                       <p class="sur_price">价格：<font>¥{$fabric.price}</font> /米</p>
+                       <div class="big_intro">
+                           <i {if $smarty.foreach.fabrics.iteration % 4}class="lefti"{else}class="righti"{/if}></i>
+                           <div class="big_intro_t"><span>面料基本款</span><a href="javascript:;"></a></div>
+                           <!--滚动条开始-->
+                                <div class="basic_k">
+                                     <div class="basic_kdiv">
+                                     {foreach from=$fabric.customs item=customs_part}
+                                        <p class="basic_kimg"><a href="#"><img src="{$customs_part.cst_image}" width="135" height="180" /></a></p>
+                                     {/foreach}
+                                     </div>
+                                  </div>
+    						<!--滚动条结束--> 
+                       </div>
+                   </li>
+                {/foreach}  
+                </ul>
+                <p class="clear"></p>
+          </div>
+           
+	   <!--{if $fabrics}-->
+	  
+	    <div class="page_box">{include file=page.bottom1.html}</div>
+	    
+	  <!--{/if}-->
+           <!--分页 start-->
+  
+        <!--分页 end-->
+         <p class="blank30"></p>
+    </div>
+<!--面料基本款 end-->
+<!--新品推荐 start-->
+   <div class="basic_re_box basic_re_box1">
+       <h3>新品推荐</h3>
+        <!--相册轮播开始-->
+  <div class="basic_re_show">
+    <div class="scrollcontainer" id="moveid">
+       <ul>
+       
+          <li class="picimglink">
+            <p><a href="###"><img src="{res file=images/nklgxx.png}" alt="" /></a></p>
+            <div class="pic-txt">
+             <p class="p1"><a href="#">[商务]藏青香槟条纹商务休闲藏青香槟条纹商务休闲藏青香槟条纹商务休闲藏青香槟条纹商务休闲</a></p>
+             <p class="p2">￥3900.00</p>
+            </div>
+          </li>
+          
+      </ul>
+      <p class="clear"></p> 
+    </div>
+    <a class="abtn aleft" href="#left">左移</a>
+    <a class="abtn aright" href="#right">右移</a>
+  </div>
+  
+  <script type="text/javascript">
+  $(".picimglink").bind({
+	  mouseenter: function() {
+		  $(this).children("div").animate({
+			  bottom: "0px"
+		  },
+		  300)
+	  },
+	  mouseleave: function() {
+		  $(this).children("div").clearQueue().animate({
+			  bottom: "-60px"
+		  },
+		  500)
+	  }
+  });
+</script>
+ <!--相册轮播结束--> 
+       
+   </div>
+<!--新品推荐 end-->
+</div>
+<!--中间结束-->
+{include file=footer.html}
+<SCRIPT>
+/*左侧菜单点击*/
+$(".menu_wrap_1").delegate("h4","click",function(){
+	var _thisMeneDetail = $(this).next(".menu_detail")
+		,_menuList = $(this).parents(".menu_list");
+	_menuList.addClass("cur").siblings(".menu_list").removeClass("cur");
+	if(_thisMeneDetail.is( ":visible")){
+		_menuList.removeClass("cur");
+		_thisMeneDetail.slideUp();
+		return false;
+	}else{
+		$(".menu_detail",".menu_list").slideUp();
+		_thisMeneDetail.slideDown();
+		return false;
+	}
+});
+/*左侧菜单*/
+function menuListShow(idx,idx2){
+	$(".menu_list",".menu_wrap_1").removeClass("cur");
+	$(".menu_list",".menu_wrap_1").eq(idx).addClass("cur");
+	$(".menu_list",".menu_wrap_1").eq(idx).find(".menu_detail").show();
+	$(".menu_list",".menu_wrap_1").eq(idx).find("a",".menu_detail").removeClass("cur");
+	$(".menu_list",".menu_wrap_1").eq(idx).find("a",".menu_detail").eq(idx2).addClass("cur");
+}
+</SCRIPT>
+<script type="text/javascript">
+$(function(){
+
+	//二、左右切换：最后一个显示在最右侧;
+	$(".rend_productshow:eq(0)").Xslider({
+		unitdisplayed:3,
+		numtoMove:3,
+		autoscroll:2000
+		//viewedSize:240
+	})
+	//二、左右切换：最后一个显示在最右侧;
+	$(".basic_re_show:eq(0)").Xslider({
+		unitdisplayed:5,
+		numtoMove:1,
+		autoscroll:2000,
+		hoveshow:true
+	})
+	
+	$("a").focus(function(){this.blur();});
+})
+</script>
+<script>
+//流行趋势小图切换;
+ $(function(){
+
+	 $("#moveid ul li").each(function(){
+		  var box = $(this);
+		  var this_obj = $(this).find("dl dd p");
+		  var this_img_src = $(this).find("dl dd p img").eq(0).attr("src");
+		  var this_img_title = $(this).find("dl dd p img").eq(0).attr("title");
+		  
+		  box.find("dl dt").find("img").attr("src",this_img_src);
+		  box.find("dl dt").find("p a").text(this_img_title);
+		  
+		  this_obj.find("span").eq(0).css("opacity","0");
+		 
+		  this_obj.each(function(){
+			   
+			  this_obj.mousemove(function(){
+				   
+				   var src_img = $(this).find("img").attr("src");
+				   var img_txt = $(this).find("img").attr("title");
+										  
+				   this_obj.each(function(){
+					   $(this).find("span").css("opacity","0.5");
+					});
+				   
+				   $(this).find("span").css("opacity","0");
+				   
+				   $(this).parents("dd").siblings("dt").find("img").attr("src",src_img);
+				   $(this).parents("dd").siblings("dt").find("p a").text(img_txt);
+				   
+			  });
+		  });
+		  
+	 });	
+	 
+ })
+ 
+//品牌弹出层
+//品牌弹出层
+
+$(function(){
+    $(".surface_list").find("ul li").each(function(){
+			var Time = null;
+			var Time2 = null;
+            var This = $(this);
+			var i;
+			var h;
+			var j;
+			This.mousemove(function(){
+				clearTimeout(Time2);
+			    i=This.offset().left;
+			    h=This.offset().top;
+
+			
+			//alert($(c).width());
+					if(This.hasClass("r_end")){
+						 j=251
+					}else{
+					    j=This.width()+12
+					}
+			
+			    if(This.hasClass("r_end")){
+					This.css("border","1px solid #9C9D9D");
+				    This.children(".big_intro").css("left",i+j-595).css("top",h).show();
+				}else{
+					This.css("border","1px solid #9C9D9D");
+					This.children(".big_intro").css("left",i+j).css("top",h).show();
+				}
+				
+					jQuery('.big_his_list').height(255).jScrollPane({
+						showArrows: true,
+						animateScroll: true
+					});
+
+			});
+		
+		 This.mouseout(function(){
+		        Time2 = setTimeout(function(){
+				  This.css("border","1px solid #EEEEEE");
+				  This.children(".big_intro").hide();
+				},200);
+		 });
+		 	
+    });
+});
+
+                   /*$(function(){
+				      $(".surface_list").find("ul li").each(function(){
+							var w = $(window).width();	
+							var w3 = w - $(this).offset().left - $(this).width();	
+							var w_top = $(this).offset().top;
+							var w_left = $(this).offset().left+$(this).width()+13;	
+							var w_right = $(window).width() - $(this).offset().left+13;	
+							var obj = $(this);
+							var obj_a = $(this).children(".big_intro").children(".big_intro_t").find("a");
+							var Otime = null;
+							$(this).children(".big_intro").hide();
+
+						   $(this).children(".big_intro").css({"right":"-9999px"});
+
+					       $(this).mousemove(function(ev){
+												 // alert($(this).offset().left);
+						      clearTimeout(Otime);
+							   $(this).children(".big_intro").show();
+							   $(this).children(".big_intro").css("opacity","1");
+							   $(this).css("border","#9c9d9d 1px solid");
+							  if(w3 < 490){
+							    $(this).children(".big_intro").css({"right":w_right+"px","top":w_top+"px"});
+								$(this).children(".big_intro").find("i").addClass("righti");
+							  }else{
+							    $(this).children(".big_intro").css({"left":w_left+"px","top":w_top+"px"});
+								$(this).children(".big_intro").find("i").addClass("lefti");
+							  }
+							});
+						   $(this).mouseout(function(){
+
+						      Otime = setTimeout(function(){obj.children(".big_intro").hide();obj.css("border","#eeeeee 1px solid");},100);
+
+						   });
+						   obj_a.click(function(){
+							    obj.children(".big_intro").hide();
+							})
+					  });
+				     
+				   });*/
+ 
+</script>

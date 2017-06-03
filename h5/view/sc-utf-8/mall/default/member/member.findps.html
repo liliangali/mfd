@@ -1,0 +1,114 @@
+{include file="findps_header.html"}
+
+
+<link href="{res file=css/zhmm.css}" rel="stylesheet" type="text/css" />
+
+<script>
+
+   $(document).ready(function() {
+		$(".account_type").selectbox();
+	});
+	
+
+	function sub(){
+		var account = $("#account").val();
+		var type = $("#select_way").val();
+		if(!account)
+			return $("#tip").html('请输入手机或者邮箱');
+			
+		if(type == 'mobile'){
+			var mobile = /^1[3,5,8]\d{9}$/;
+			if(!mobile.test(account))
+				return $("#tip").html('手机格式错误');
+		}else if(type == 'email'){
+			var email = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+			if(!email.test(account))
+				return $("#tip").html('邮箱格式错误');
+		}else{
+			return $("#tip").html('请选择正确的找回方式...');
+		}
+		
+		var captcha = $("#captcha").val();
+		if(!captcha)
+			return $("#tip_code").html("验证码不能为空");
+		
+		$("#mf").submit();
+	}
+	
+	$(function(){
+	$("#captcha").keydown(function(e){ 
+	    var curKey = e.which; 
+	    if(curKey == 13){
+	    	sub();
+	    } 
+	}); 
+	}); 
+</script>
+
+
+    <div class="find_box">
+    
+        <ul class="findps_step">
+            <li class="on">填写帐号信息<span>1</span></li>
+            <li>身份验证<span>2</span></li>
+            <li>重置密码<span>3</span></li>
+            <li>完成<span>4</span></li>
+        </ul>
+        <p class="clear"></p>
+        
+        
+        <div class="fp_content">
+            <form method="post" action='member-find_password.html?opt=2' name="form_find_password_step1" id="mf">
+
+                  <table cellpadding="0" cellspacing="0" border="0" class="find_table1">
+                    <tr>
+                       <th width="97">
+                        <div class=find_select>
+                        <select class="account_type" style="display: none" name=account_type id="select_way">
+                          <option value=mobile>手机</option>
+                          <option value=email>邮箱</option>
+                        </select>
+                        </div>                            
+                       </th>
+                       <td width="250">
+                         <input type="text" name="account" id="account" class="find_ipt">
+                       </td>
+                       <td>
+                         <span class="tip" id='tip'></span>
+                       </td>
+                    </tr>
+                    <tr>
+                       <th>验证码：</th>
+                       <td>
+                        <input type="text" class="find_ipt w139" name="captcha" id="captcha">
+                        <span id="change_captcha" style="float:left; display:block; height:30px;">
+                        	<a href="javascript:void(0);" onclick="up_code_src();">
+                        	<img id="up_code" width="96" height="30" src="/index.php/ajax-getAuthCode.html" >
+                        	</a>
+                        </span>
+                       </td>
+                       <td><span id='tip_code' style="color:#bb422e;"></span></td>
+                    </tr>
+                    <tr>
+                       <th></th>
+                       <td><input type="button" onclick='sub();' class="sub_btn" onmouseOver="this.className='sub_btn btnbg'" onmouseOut="this.className='sub_btn'" value="下一步"></td>
+                       <td></td>
+                    </tr>                                        
+                  </table>
+
+            </form>
+          </div>
+    </div>
+
+        <script>
+
+            function up_code_src(){
+                var src = "/index.php/ajax-getAuthCode.html?r="+Math.random();
+                $("#up_code").attr('src',src);
+            }
+
+
+
+        </script>
+
+{include file="login_footer.html"}

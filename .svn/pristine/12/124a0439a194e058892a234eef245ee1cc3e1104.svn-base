@@ -1,0 +1,73 @@
+{include file="header.html"}
+{$build_editor}
+<div id="rightTop">
+ 
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=serve">{$lang.manage}</a></li>
+    <li>
+     
+      <span>{$acc}</span>
+      
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="service_form">
+    <table class="infoTable">
+    
+    
+    
+    
+    
+      <tr>
+        <th class="paddingT15"> {$lang.portrait}:</th>
+        <td class="paddingT15 wordSpacing5">
+          
+          
+          {if $service.portrait}<br /><a href="/{$service.portrait}" target="_blank"><img src="../{$service.portrait}" alt="" width="100" height="100" /></a>{/if}
+          
+         </td>
+      </tr>
+
+	  
+	  <tr>
+        <th class="paddingT15"> {$lang.synopsis}:</th>
+        <td class="paddingT15 wordSpacing5">
+		  <textarea id="synopsis" name="synopsis" style="width:550px;height:200px;">{$service.synopsis|escape}</textarea>
+         </td>
+      </tr>
+	  
+	  <tr>
+        <th class="paddingT15"> {$lang.introduce}:</th>
+        <td class="paddingT15 wordSpacing5">
+          
+          
+          <textarea id="introduce" name="introduce" style="width:650px;height:400px;">{$service.introduce|escape}</textarea>
+          
+         </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.longitude}:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="longitude" type="text" name="longitude" value="{$service.longitude|escape}" />
+         </td>
+      </tr>
+      
+      <tr>
+        <th class="paddingT15"> {$lang.latitude}:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="latitude" type="text" name="latitude" value="{$service.latitude|escape}" />
+         </td>
+      </tr>
+     
+     
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

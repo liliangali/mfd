@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<script>
+    alert('aa');
+
+    var xmlHttp = null;
+    if (window.XMLHttpRequest) {
+        xmlHttp = new XMLHttpRequest();
+    } else {
+        xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState === 4) {
+            if (xmlHttp.status === 200) {
+                var data = JSON.parse(xmlHttp.responseText);
+                document.write(decodeURI(data.resultMsg.join(',')));
+            }
+        }
+    };
+
+    var data = [{
+        soId: 'A2016111300001',
+        clientName: 'Lky',
+        soDate: '2016-11-13 10:22:03',
+        clientAddress: 'LiaoCheng',
+        saleOrg: 'Gambol',
+        remark: 'Test',
+        soItems: [{
+            matId: 'A001CH',
+            pckMode: '桶装',
+            unitQty: 1.81,
+            quantity: 2,
+            petName: 'doudou',
+            petAge: '成熟期',
+            petBirthday: '1992-02-12',
+            petWeight: 12.1,
+            petImageURL: 'http://img1.3lian.com/2015/w7/85/d/105.jpg',
+            petBreed: '布偶',
+            petExercise: '',
+            petFeedQty: '15',
+            petFeedFrq: '2~4',
+            masterQuote: 'Thank you',
+            remark: 'Test'
+        },{
+            matId: 'A002CH',
+            pckMode: '袋装',
+            unitQty: 1,
+            quantity: 2,
+            petName: 'doudou',
+            petAge: '幼年期',
+            petBirthday: '1992-02-12',
+            petWeight: 12.1,
+            petImageURL: 'http://7xsbn8.com1.z0.glb.clouddn.com/14732430454.png',
+            masterQuote: 'Thank you2',
+            remark: 'Test'
+        }]
+    }];
+
+    xmlHttp.open('POST','http://58.57.164.144:8060/Services/GambolSalesOrderService.asmx/UploadSO', true);
+    xmlHttp.setRequestHeader('Username', 'eCommerce');
+    xmlHttp.setRequestHeader('Password', 'password');
+    xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+    xmlHttp.send('jsonData=' + encodeURI(JSON.stringify(data)));
+</script>
+</body>
+</html>

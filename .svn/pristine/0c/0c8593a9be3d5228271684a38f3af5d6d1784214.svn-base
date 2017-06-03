@@ -1,0 +1,8 @@
+<h4>服务门面</h4>
+{foreach from=$servers item=sitem key=key}
+<div class="select">
+<input type="radio" value="{$key}" {if $server_id == $key} checked {/if}class="radio serverinput" onClick='javascript:$("#server_id").val($(this).val());'  />
+<p class="address">{$sitem.serve_name}<br><span>{$sitem.serve_address}&nbsp;&nbsp;&nbsp;&nbsp;{$sitem.store_mobile}</span></p>
+</div>
+{/foreach}
+

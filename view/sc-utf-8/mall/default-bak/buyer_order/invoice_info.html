@@ -1,0 +1,61 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+<!--sortlist end-->
+  <form id='myForm' method='post'  enctype="multipart/form-data" >
+  <div class="aqsc_box">
+    <h1 class="grzl">发票信息</h1>
+
+     <div class="m_txgdx">
+       <table cellpadding="0" cellspacing="0" border="0" width="100%">
+          <tr>
+            <th>名称：</th>
+            <td class="licen"><input type="text" name='name' value="{$info.vc_name}" maxlength=10 /></td>
+          </tr>
+          <tr>
+            <th>识别号：</th>
+            <td class="licen"><input type="text" name='sn' value="{$info.vc_sn}" /></td>
+          </tr>
+          <tr>
+            <th>地址：</th>
+            <td class="licen"><input type="text" name='addr' value="{$info.vc_addr}" /></td>
+          </tr>
+          <tr>
+            <th>电话：</th>
+            <td class="licen"><input type="text" name='telphone' value="{$info.vc_phone}" /></td>
+          </tr>
+          <tr>
+            <th>开户行：</th>
+            <td class="licen"><input type="text" name='bank' value="{$info.vc_bank}" /></td>
+          </tr>
+          <tr>
+            <th>银行帐号：</th>
+            <td class="licen"><input type="text" name='num' value="{$info.vc_bank_num}" /></td>
+          </tr>
+          <tr>
+            <th valign="top" style="padding-top:55px;">证件：</th>
+            <td style="padding-top:8px;">
+             <table id="pics_table">
+                {foreach from=$info.vc_pic item=pic}
+                <tr><td><img id='show_img'  src="{$site_url}{$pic}" style="width:100px; height:100px;"/></td></tr>
+                {/foreach}
+            </table>
+
+            </td>
+          </tr>
+
+       </table>
+
+     </div>
+
+    </div>
+    <p class="clear"></p>
+    
+  </div>
+  </form>
+  <p class="clear"></p>
+</div>
+
+
+{include file="footer.html"}

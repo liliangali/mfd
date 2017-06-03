@@ -1,0 +1,18 @@
+Wed, 04 Jan 2017 13:42:00 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:SELECT *,shipping.shipping_id FROM cf_shipping shipping WHERE shipping_id=
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Wed, 04 Jan 2017 13:42:04 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:SELECT *,shipping.shipping_id FROM cf_shipping shipping WHERE shipping_id=
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Wed, 04 Jan 2017 13:44:03 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:SELECT *,shipping.shipping_id FROM cf_shipping shipping WHERE shipping_id=
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Fri, 06 Jan 2017 13:19:49 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '))' at line 1
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  binding_user_id = '3' AND use_status = 0  AND end_time >'1483679989' AND (category = '1,2' OR category in ())
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Fri, 06 Jan 2017 13:19:58 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '))' at line 1
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  binding_user_id = '3' AND use_status = 0  AND end_time >'1483679998' AND (category = '1,2' OR category in ())
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Thu, 12 Jan 2017 16:36:36 +0800	[2]require_once(weipay/lib/WxPay.Config.php): failed to open stream: No such file or directory	/includes/models/accesstoken.model.php	37
+Thu, 12 Jan 2017 16:54:25 +0800	[2]require_once(weipay/lib/WxPay.Config.php): failed to open stream: No such file or directory	/includes/models/accesstoken.model.php	37
+Thu, 12 Jan 2017 16:58:13 +0800	[2]require_once(weipay/lib/WxPay.Config.php): failed to open stream: No such file or directory	/includes/models/accesstoken.model.php	23

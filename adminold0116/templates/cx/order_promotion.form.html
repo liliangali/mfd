@@ -1,0 +1,432 @@
+{include file="header.html"}
+<style>
+.ac_results { padding: 0px; border: 1px solid WindowFrame; background-color: Window; overflow: hidden; z-index: 19891020; /* 1000 */ }
+.ac_results ul { width: 100%; list-style-position: outside; list-style: none; padding: 0; margin: 0; }
+.ac_results iframe { display: none;/*sorry for IE5*/ display/**/: block;/*sorry for IE5*/ position: absolute; top: 0; left: 0; z-index: -1; filter: mask(); width: 3000px; height: 3000px; }
+.ac_results li { margin: 0px; padding: 2px 5px; cursor: pointer; display: block; font: menu; font-size: 12px; overflow: hidden; }
+.ac_over { background-color: Highlight; color: HighlightText; }
+#thumbnails li{
+	    border: 1px solid #eee;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    height: 100px;
+    margin: 0 10px 10px 0;
+    text-align: center;
+    width: 100px;
+}
+.dives{border:1px solid #000; padding:10px 0; width:96%; margin:0px 2% 20px 2%;} 
+.infs{width:96%; margin:0 2%; line-height: 40px;}
+</style>
+<script type="text/javascript">
+$(function(){
+    $('#brand_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            name : {
+                required : true,
+            },
+            price : {
+                required : true,
+            },
+
+            site_name : {
+                required : true,
+            },
+
+            add_time_from : {
+                required : true,
+            },
+            add_time_to : {
+                required : true,
+            },
+
+            casevalue : {
+                required : true,
+            },
+        },
+        messages : {
+            name : {
+                required : '必填',
+            },
+            price : {
+                required : "请填写样衣价格",
+            },
+            site_name : {
+                required : "必选",
+            },
+            add_time_from : {
+                required : "必选",
+            },
+            add_time_to : {
+                required : "必选",
+            },
+            casevalue : {
+                required : "必选",
+            },
+        }
+    });
+});
+</script>
+{$build_editor}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=discount&amp;act=index">{$lang.manage}</a></li>
+        {if $data.id}
+        <li><a class="btn1" href="index.php?app=goods&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="brand_form">
+         <div class="infs"> 基本信息</div>
+         <table class="dives">
+      	
+      		 <tr>
+                <th class="paddingT15">
+                     规则名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="name" type="text" name="name" value="{$rule.name}" />
+                </td>
+            </tr>
+            
+              <tr>
+                <th class="paddingT15">
+                      简介:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea name="introduce" id="introduce" rows="5" cols="24">{$rule.introduce}</textarea>
+                </td>
+            </tr>
+            
+             <tr>
+                <th class="paddingT15">
+                    <label for="if_show">启用状态:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="is_open" value="1" {if $rule.is_open eq 1} checked="checked"{/if} />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="is_open" value="0" {if $rule.is_open eq 0} checked="checked"{/if} />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+            
+             <tr>
+                <th class="paddingT15">
+                        优先级:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="level" type="text" name="level" value="{$rule.level}" />
+                </td>
+            </tr>
+            
+            
+           <tr>
+                <th class="paddingT15">生效平台 :</th>
+                <td class="paddingT15 wordSpacing5">
+                
+                {foreach from=$site item=item key=key}
+                    <input type="checkbox" name="site_name[]" value="{$key}" 
+                    
+                    {foreach from=$cof item=checkcate key=key1}
+                    {if $key == $checkcate}
+                      checked
+                    {/if}
+                    {/foreach}
+                    
+                    />  {$item}
+                {/foreach}
+                
+                </td>
+            </tr>
+            
+             <tr>
+                <th class="paddingT15">
+                    <label for="if_show">是否排它:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="if_ex" onclick="ex(1)" value="1" {if $rule.if_ex eq 1} checked="checked"{/if} />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="if_ex" onclick="ex(0)" value="0" {if $rule.if_ex eq 0} checked="checked"{/if} />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+        <tr class="pt" {if $rule.if_ex neq 1}  style="display:none;" {/if}>
+        <th class="paddingT15"></th>
+            <td class="paddingT15 wordSpacing5">
+              
+                    {foreach from=$rules item=item key=key}
+                                                         规则名称 : {$item.name}&nbsp; &nbsp;&nbsp;优先级 : {$item.level} <br/>
+                    {/foreach}
+                </td>
+         </tr>
+
+            <tr>
+            <th class="paddingT15">
+            <label for="if_show">开始时间:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                <input class="queryInput2 Wdate" type="text" value="{$rule.starttime|date:Y-m-d H:i:s}" style="width:150px" id="add_time_from" name="add_time_from" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                </td>
+            </tr>
+            
+             <tr>
+            <th class="paddingT15">
+            <label for="if_show">结束时间:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                 <input class="queryInput2 Wdate" type="text" value="{$rule.endtime|date:Y-m-d H:i:s}" style="width:150px" id="add_time_to" name="add_time_to" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /> 
+                
+                </td>
+            </tr>
+            
+                      
+           <tr>
+                <th class="paddingT15">会员等级 :</th>
+                <td class="paddingT15 wordSpacing5">
+                
+                {foreach from=$lvs item=item key=key}
+                    <input type="checkbox" name="member_lv[]" value="{$item.member_lv_id}" 
+                    
+                    {foreach from=$member_lv item=checkcate key=key1}
+                    {if $item.member_lv_id == $checkcate}
+                      checked
+                    {/if}
+                    {/foreach}
+                    
+                    />  {$item.name}
+                {/foreach}
+                
+                </td>
+            </tr>
+      		
+          </table>
+            
+       <div class="infs"> 优惠条件 </div>
+         <table class="dives">     
+             <tr>
+                <th class="paddingT15">
+                    <label for="if_show"></label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="favorable" value="1" onclick="ces(1)" {if $rule.favorable eq 1} checked="checked"{/if} />
+                    <label for="yes">当订单商品总价满X时，对所有商品优惠</label><br/>
+                </td>
+            </tr>
+            
+               <tr>
+                <th class="paddingT15">
+                    <label for="if_show"></label></th>
+                <td class="paddingT15 wordSpacing5">
+                 
+                    <input id="no" type="radio" name="favorable" value="2" onclick="ces(2)" {if $rule.favorable eq 2} checked="checked"{/if} />
+                    <label for="no">当订单商品数量满X时，给予优惠</label><br/>
+                </td>
+            </tr>
+               <tr>
+                <th class="paddingT15">
+                    <label for="if_show"></label></th>
+                <td class="paddingT15 wordSpacing5">
+                 
+                    <input id="no" type="radio" name="favorable" value="3" onclick="ces(3)" {if $rule.favorable eq 3} checked="checked"{/if} />
+                    <label for="no">对所有订单给予优惠</label><br/>
+                </td>
+            </tr>
+            
+            <tr class="econ">
+                {if $rule.favorable eq 1}
+                <th class="paddingT15"></th>
+               <td>订单金额满<input class="infoTableInput" id="name" style="width:80px;"  type="text" name="favorablevalue1" value="{$rule.favorable_value}" />
+               </td>
+               {elseif $rule.favorable eq 2}
+                <th class="paddingT15"></th>
+               <td>当订单商品数量满<input class="infoTableInput" id="name" style="width:80px;"  type="text" name="favorablevalue2" value="{$rule.favorable_value}" />给与优惠
+               </td>
+               {elseif $rule.favorable eq 3}
+                <th class="paddingT15"></th>
+               <td>对所有订单给予优惠
+               </td>
+               {/if}
+            
+            </tr>
+   
+          </table>  
+            
+       
+            
+           <div class="infs">优惠方案</div>
+         <table  id="yhcase"  class="dives">
+
+			<tr>
+                <th class="paddingT15">
+                    <label for="if_show"></label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="yhcase" value="1" onclick="res(1)"  {if $rule.yhcase eq 1} checked="checked"{/if} />
+                    <label for="yes">订单免运费</label><br/>
+                </td>
+            </tr>
+            
+               <tr>
+                <th class="paddingT15">
+                    <label for="if_show"></label></th>
+                <td class="paddingT15 wordSpacing5">
+                 
+                    <input id="no" type="radio" name="yhcase" value="2" onclick="res(2)" {if  $rule.yhcase eq 2} checked="checked"{/if} />
+                    <label for="no">订单以固定折扣出售</label><br/>
+               
+                </td>
+            </tr>
+               <tr>
+                <th class="paddingT15">
+                    <label for="if_show"></label></th>
+                <td class="paddingT15 wordSpacing5">
+                 
+                    <input id="no" type="radio" name="yhcase" value="3" onclick="res(3)" {if  $rule.yhcase eq 3} checked="checked"{/if} />
+                    <label for="no">订单以固定价格购买</label><br/>
+                  
+                </td>
+            </tr>
+               <tr>
+                <th class="paddingT15">
+                    <label for="if_show"></label></th>
+                <td class="paddingT15 wordSpacing5">
+
+                    <input id="no" type="radio" name="yhcase" value="4" onclick="res(4)" {if  $rule.yhcase eq 4} checked="checked"{/if} />
+                    <label for="no">订单减去固定折扣出售</label><br/>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show"></label></th>
+                <td class="paddingT15 wordSpacing5">
+
+                    <input id="no" type="radio" name="yhcase" value="5" onclick="res(5)" {if  $rule.yhcase eq 5} checked="checked"{/if} />
+                    <label for="no">订单减去固定价格购买</label><br/>
+                </td>
+            </tr>
+
+            <tr class="vcon">
+                {if $rule.yhcase eq 2}
+                <th class="paddingT15"></th>
+               <td>订单价格乘以<input class="infoTableInput" id="name" style="width:80px;"  type="text" name="casevalue" value="{$rule.yhcase_value}" />%折扣出售
+               </td>
+               {elseif $rule.yhcase eq 3}
+                <th class="paddingT15"></th>
+               <td>订单价格以<input class="infoTableInput" id="name" style="width:80px;"  type="text" name="casevalue" value="{$rule.yhcase_value}" />出售
+               </td>
+               {elseif $rule.yhcase eq 4}
+                <th class="paddingT15"></th>
+               <td>订单价格减去<input class="infoTableInput" id="name" style="width:80px;"  type="text" name="casevalue" value="{$rule.yhcase_value}" />%折扣出售
+               </td>
+               {elseif $rule.yhcase eq 5}
+                <th class="paddingT15"></th>
+               <td>订单价格优惠<input class="infoTableInput" id="name" style="width:80px;"  type="text" name="casevalue" value="{$rule.yhcase_value}" />出售
+               </td>
+               {/if}
+            </tr>
+         </table>  
+   
+            <table style="padding:10px 0; width:96%; margin:0px 2% 20px 2%;">
+      
+            
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="id" value="{$rule.id}">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+
+<script>
+function res(cs){
+	var yhcase = $('#yhcase');
+    var _html;
+    var  v = $('.vcon');
+    if(cs==2){
+        _html =
+               
+                '<th class="paddingT15"></th>'+
+                '<td>'+'订单价格乘以'+'<input class="infoTableInput" id="name" style="width:80px;"  type="text" name="casevalue" value="" />'+'%折扣出售'+'</td>';
+        v.html(_html);
+
+    }
+    if(cs==3){
+            _html =
+                '<th class="paddingT15"></th>'+
+                '<td>'+'订单价格以'+'<input class="infoTableInput" id="name" style="width:80px;"  type="text" name="casevalue" value="" />'+'出售'+'</td>';
+         v.html(_html);
+
+    }
+    if(cs==4){
+            _html =
+                '<th class="paddingT15"></th>'+
+                '<td>'+'订单价格减去'+'<input class="infoTableInput" id="name" style="width:80px;"  type="text" name="casevalue" value="" />'+'%折扣出售'+'</td>';
+          v.html(_html);
+
+    }
+    if(cs==5){
+            _html =
+                '<th class="paddingT15"></th>'+
+                '<td>'+'订单价格优惠'+'<input class="infoTableInput" id="name" style="width:80px;"  type="text" name="casevalue" value="" />'+'出售'+'</td>';
+          v.html(_html);
+
+    }
+    if(cs==1){
+          _html='';
+         v.html(_html);
+    }
+
+
+}
+
+function ces(cs){
+	var yhcase = $('#yhcase');
+    var _html;
+    var  v = $('.econ');
+    if(cs==1){
+        _html =
+               
+                '<th class="paddingT15"></th>'+
+                '<td>'+'订单金额满'+'<input class="infoTableInput" id="favorablevalue1" style="width:80px;"  type="text" name="favorablevalue1"   value="" />'+'</td>';
+        v.html(_html);
+
+    }
+    if(cs==2){
+            _html =
+                '<th class="paddingT15"></th>'+
+                '<td>'+'当订单商品数量满'+'<input class="infoTableInput" id="favorablevalue2" style="width:80px;"  type="text" name="favorablevalue2"   value="" />'+'给予优惠'+'</td>';
+         v.html(_html);
+
+    }
+    if(cs==3){
+            _html =
+                '<th class="paddingT15"></th>'+
+                '<td>'+'对所有订单给予优惠'+'</td>';
+          v.html(_html);
+
+    }
+
+}
+
+function ex(cs){
+	if(cs==1){
+		$('.pt').show();
+	}
+	if(cs==0){
+		$('.pt').hide();
+	}
+	
+}
+
+
+</script>
+
+{include file="footer.html"}

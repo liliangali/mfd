@@ -1,0 +1,1 @@
+ALTER TABLE `cf_category_goods` ADD `pry` INT(10) NOT NULL DEFAULT '0' COMMENT '主分类标识' AFTER `goods_id`;

@@ -1,0 +1,53 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ajax_tree.js}" charset="utf-8"></script>
+<div id="rightTop">
+    <ul class="subnav">
+    	<li><span>活动管理</span></li>
+        <li><a class="btn1" href="index.php?app=active&amp;act=add">添加活动</a></li>
+
+<!-- 		 <li><a class="btn1" href="index.php?app=active&amp;act=add_location">添加活动位置</a></li> -->
+    </ul>
+</div>
+
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+  		<!-- {if $pagearr} -->
+        <thead>
+        <tr class="tatr1">			
+			<th>序号</th>
+			<!-- <th width="110">活动位置</th> -->
+			<th width="210">活动标题</th>
+			<th width="260">活动连接</th>
+			<th width="200">图片</th>
+			<th width="200">点击量</th>
+			<th>是否显示</th>
+			<th>操作</th>
+        </tr>
+        </thead>
+        <!-- {/if} -->
+        <tbody id="treet1">
+        <!--{foreach from=$pagearr item=t name='imgs'}-->    
+			<tr align="center" border="1"  >	
+				<th>{$t.l_order}</th>
+				<!-- <th width="110">{$t.tpl_title}</th> -->
+				<th width="210">{$t.title}</th>
+				<th width="260">{$t.link}</th>
+				<th width="200"><a href="{$t.uploadfiles}" target="_blank"><img src="{$t.uploadfiles}" width="100" height="50" /></a></th>
+				<th width="260">{$t.clicknum}</th>
+				<th>{if $t.is_show eq 1}是{elseif $t.is_show eq 0}否{/if}</th>
+				<th>[<a href="{url app=active&act=edit&id=$t.id}">{$lang.edit}</a>][<a href="javascript:if(confirm('{$lang.drop_confirm}'))window.location = 'index.php?app=active&amp;act=del&amp;id={$t.id}';">{$lang.drop}</a>]<font color="red"><I>(谨慎操作！)</I></font></th>
+			</tr>
+		<!-- {/foreach} -->
+		</tbody>
+    </table>
+    <!-- {if $pagearr} -->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!-- {/if} -->
+</div>
+
+{include file="footer.html"}

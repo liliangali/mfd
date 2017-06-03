@@ -1,0 +1,68 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+  <!--用户中心左菜单部分 START-->
+    {include file = member.menu.html}
+    <!--用户中心左菜单部分 END-->
+    <div class="user_right user_rights fr">
+        <h4 class="collection">酷卡购买</h4>
+        <!--{if $list}-->
+               <!--{foreach from=$list item=item}-->
+        <div class="currency currencycolor">
+            <div class="rencytop rencytopcolor">
+                <h3>{$item.kuka_name}</h3>
+                <div class="ktbbuy">
+                    <p class="fl">酷卡面值：<span>{$item.kuka_num}</span>元</p>
+                    <p class="fr">售卖价格：<span class="size">{$item.sale_price}</span>元</p>
+                </div>
+            </div>
+            <div class="bexplain">
+                <p class="fl textword">{$item.content}</p>
+               <a href="kuka_buy-checkout.html?kuka_id={$item.id}" target="_blank"> <button class="fr buttoncolr">购买</button></a>
+            </div>
+        </div>
+        <!--{/foreach}-->
+        <!--{else}-->   
+        <tr>
+          <td>
+            <div class="empty">
+                <div>暂无商品信息<br><p><a href="./" class="cc_btn s_btn">麦富迪首页</a></p></div>
+            </div>
+         </td>
+       </tr>
+      <!--{/if}-->   
+
+    </div>
+</div>
+
+
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/global/jquery.swipe.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/user.js"></script>
+
+<script>
+
+    cotteFn.kuka()
+
+    //分享
+    window._bd_share_config = {
+        common : {
+            bdText : document.title,
+            bdDesc : '',
+            bdUrl : window.location.href,
+            bdPic : ''
+        },
+        share : [{
+            "bdSize" : 16
+        }]
+    }
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+{include file=../footer-new.html}
+
+
+</body>
+</html>

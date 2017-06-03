@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+.container { margin: 0 auto; max-width:1230px;}
+/*内容*/
+.banner { width: 100%; margin-top:-1px;}
+.banner img { width: 100%; }
+.yxbt { width: 50%; margin: 0 auto; text-align: center; padding: 86px 0 66px 0;}
+.yxbt h1 { font-size: 58px; color: #373737; line-height: 60px; }
+.yxbt p { font-size: 16px; line-height: 24px; color: #656565; margin-top:19px; }
+.cllb { width:1230px; margin: 0 auto; overflow: hidden; }
+.cllb ul { float: left; width: 105.5%; }
+.cllb ul li { float: left; width:31%; margin: 0 30px 48px 0; }
+.cllb ul li:hover .p2 { color: #5fc7ae; }
+.cllb ul li .p1 { max-width:390px; max-height:230px; overflow: hidden;}
+.cllb ul li .p1 img { display: block; transition: opacity 0.3s ease 0s; width: 100%; }
+.cllb ul li:hover .p1 img { opacity: 0.8; }
+.cllb ul li .p2 { font-size: 18px; color: #000000; line-height:24px; height:24px; overflow: hidden; margin-top:21px; transition: color 0.3s ease 0s; }
+.cllb ul li .p3 {padding-top:6px;overflow: hidden; font-size:14px;color:#999999;}
+.cllb ul li .p4{height:70px;line-height:24px; color:#717171;margin-top:9px;overflow:hidden;}
+/*翻页*/
+.page_box { width: 1392px; border-top: 1px solid #ddd; margin: 0 auto; position: relative; padding: 40px 0; }
+.page_box .p1 { position: absolute; left: 8%; top: 40px; background: url(../../static/img/zjt.gif) left 6px no-repeat; padding-left: 28px; line-height: 20px; }
+.page_box .p2 { position: absolute; right: 8%; top: 40px; background: url(../../static/img/yjt.gif) right 6px no-repeat; padding-right: 28px; line-height: 20px; }
+.page_box ul { position: relative; left: 50%; float: left; }
+.page_box ul li { float: left; position: relative; right: 50%; padding: 0 16px; font-size: 14px; line-height: 20px; }
+.page_box ul li a { color: #696969; }
+.page_box ul .on a { color: #000; text-decoration: underline; }
+ @media (min-width:1px) and (max-width:979px) {
+.container { width: 768px; }
+.yxbt { width: 60%; }
+.cllb { width: 600px; }
+.cllb ul li { float: left; width: 45%; margin: 0 30px 48px 0; }
+.page_box { width: 600px; }
+.dblr { width: 640px; }
+}
+ @media (min-width: 980px) and (max-width:1023px) {
+.container { width: 980px; }
+}
+ @media (min-width: 1024px) and (max-width:1439px) {
+.container { width: 1024px; }
+.cllb { width: 900px; }
+.page_box { width: 900px; }
+}
+ @media (min-width: 1440px) and (max-width:1540px) {
+.container { width: 1440px; }
+}
+ @media (min-width: 1230px) {
+.container { width: 1230px; }
+}

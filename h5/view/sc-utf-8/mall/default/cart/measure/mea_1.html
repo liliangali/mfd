@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>coolette mobile</title>
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+</head>
+
+<body>
+<script>window.onunload=function(){};</script>
+
+<div class="main"> 
+ <div class="bzcmsg">
+  <form method="post" data-id="1">
+  <ul class="yysmlt">
+   <li class="jj_box">
+   <img src="../../../../../../static/img/csxt_2.gif" class="csxt">
+        <span>所在城市：</span>
+        <font class="jj_1">
+        <select name="data[region_id]">
+        <option>请选择城市</option>
+        {foreach from=$regions item=item}
+        <option value="{$item.region_id}" {if $data.region_id == $item.region_id} selected {/if}>{$item.region_name}</option>
+        {/foreach}
+        </select>
+        </font>
+   </li>
+   <li class="jj_box"><span>详细地址：</span><font class="jj_1"><input type="text" value="{$data.addr}" name="data[addr]"></font></li>
+   <li class="jj_box"><span>真实姓名：</span><font class="jj_1"><input type="text" value="{$data.real_name}" name="data[real_name]"></font></li>
+   <li class="jj_box">
+   <img src="../../../../../../static/img/csxt_2.gif" class="csxt">
+        <span>性　　别：</span>
+        <font class="jj_1">
+        <select name="data[gender]" id="gender">
+        <option value="10040" {if $data.gender == '10040'} selected {/if}>男</option>
+        <option value="10041" {if $data.gender == '10041'} selected {/if}>女</option>
+        </select>
+       </font>
+   </li>
+   <li class="jj_box"><span>联系电话：</span><font class="jj_1"><input type="text" value="{$data.phone}" name="data[phone]"></font></li>
+   <li class="jj_box" >
+   <img src="../../../../../../static/img/rltu.jpg" class="rltu">
+     <span>预约时间：</span>
+     <font class="srb jj_1"><input type="date" placeholder="例如：2013-05-31" name="data[time]" value="{$data.time}" style="background:none; width:100%; height:45px; font-size:13px;"></font>
+   </li>
+   <li class="jj_box" style="border-bottom:0;">
+   <img src="../../../../../../static/img/csxt_2.gif" class="csxt">
+        <span></span>
+        <font class="jj_1">
+        <select name="data[time_noon]" id="time_noon">
+        <option value="am" {if $data.time_noon == 'am'} selected {/if}>上午</option>
+        <option value="pm" {if $data.time_noon == 'pm'} selected {/if}>下午</option>
+        </select>
+        </font>
+   </li>
+  </ul>
+  <input type="button" value="确 定" class="xiayb saveMea">
+  </form>
+ </div>
+</div>
+
+
+<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+<script type="text/javascript">
+function _alert(msg){
+    layer.open({
+        content: '<p style="text-align:center">'+msg+'</p>',
+        btn: ['确定'],
+    }); 
+}
+
+$('.saveMea').unbind().bind('click',function(){
+    var _oj = $(this).parent('form');
+    meaSave(_oj)
+})
+
+function meaSave(_oj){
+    var _id = _oj.data('id');
+    _oj.ajaxSubmit({
+        type:"post",
+        data:{id:_id},
+        dataType:"json",
+        url:"{link app=cart act=meaSave}?time="+ (new Date()).getTime(),
+        //beforeSubmit:function(formData,jqForm,options){return _oj.valid();},
+        success:function (res,statusText) {
+            if(res.done == false){
+                   _alert(res.msg);
+            }else{
+                history.go(-2)
+                return false;
+                location.href="{link app=cart act=checkout}";
+            }
+        }
+    });
+}
+
+</script>
+
+</body>
+</html>
+

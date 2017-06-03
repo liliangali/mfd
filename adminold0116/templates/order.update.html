@@ -1,0 +1,139 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#coupon_form').validate({
+		rules: {
+			cpn_money: {
+			    min: 0
+			},
+			cpn_prefix:{
+			    maxlength :4
+			}
+	    },
+		messages: {
+			cpn_money: {
+				min: "正确的金额数"
+			},
+			cpn_prefix:{
+			    maxlength :'最多四位'
+			}
+		 },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+    });
+});
+</script>
+
+<div class="info">
+    <form method="post"  action="index.php?app=order&act=updateOrder" enctype="multipart/form-data" id="coupon_form" onsubmit="return toVaild()">
+        <table class="infoTable">
+          
+           <tr>
+                <th class="paddingT15"> 订单编号 :</th>
+                <td class="paddingT15 wordSpacing5">
+                {$order_info.order_sn}
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15"> 当前状态 :</th>
+                <td class="paddingT15 wordSpacing5">
+                {$lang.ORDER_STATUS.$defst}
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">修改状态为  :</th>
+                <td class="paddingT15 wordSpacing5">
+					<select id="status" name="status" class="required " {if $order_info.status == ORDER_CANCELED || $appoint}disabled="disabled"{/if}>
+					<option value="99"{if $order_info.status eq 99} selected="selected"{/if}>订单备注</option>
+					<option value="11"{if $order_info.status eq 11} selected="selected"{/if}>待付款</option>
+					<option value="20"{if $order_info.status eq 20} selected="selected"{/if}>已付款</option>
+					<option value="61"{if $order_info.status eq 61} selected="selected"{/if}>待发货</option>
+					<option value="30"{if $order_info.status eq 30} selected="selected"{/if}>已发货</option>
+					<!-- <option value="41"{if $order_info.status eq 41} selected="selected"{/if}>返修中</option> -->
+					<option value="40"{if $order_info.status eq 40} selected="selected"{/if}>已完成</option>
+			        <!-- <option value="72"{if $order_info.status eq 72} selected="selected"{/if}>订单重下(修改)</option> -->
+					<!-- <option value="80"{if $order_info.status eq 80} selected="selected"{/if}>已退款</option> -->
+					<option value="0"{if $order_info.status eq 0} selected="selected"{/if}>作废</option>
+					<!-- <option value="43"{if $order_info.status eq 43} selected="selected"{/if}>订单异常</option>
+					<option value="44"{if $order_info.status eq 44} selected="selected"{/if}>物流异常</option> -->
+					</select><FONT  style="color: rgb(209, 72, 54);" >提示：如果已付款的订单要改为 已作废，请记得去处理此订单的退款！！！</FONT>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">操作备注  :</th>
+                <td class="paddingT15 wordSpacing5">
+                <textarea  name="remark" id="remark"></textarea>
+                </td>
+            </tr>
+		   <tr>
+		  <th style="padding:20px 20px 5px;">修改记录：</th>
+		  <td>
+		  {foreach from=$order_log_list item=item key=key name=loop}
+		  <p style='border:1px;'><font style = "font-weight:bold">{$smarty.foreach.loop.iteration}、{$item.alttime} {$item.op_name}修改了</font><br>
+		  {$item.log_text}
+		  <p style='border:1px;'><font style = "font-weight:bold">修改原因</font><br>
+		  {$item.remark}
+		  <hr/>
+		  </p>
+		  
+		  {/foreach}
+		  </td>
+		  </tr>
+  
+            <!-- 
+            <tr>
+                <th class="paddingT15"><label for="article">修改状态原因 :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="remark" name="remark" style="width:400px;height:110px;">{$data.cpn_content|escape}</textarea>
+                </td>
+            </tr>
+             -->
+	        <tr>
+	            <th></th>
+	            <td class="ptb20">
+	                <input class="tijia" type="submit" name="Submit" id="Submit" value="提交" />
+	                <input class="congzi" type="reset" name="Submit2" value="重置" />
+	            </td>
+	        </tr>
+        </table>
+        <input type="hidden" name="order_id" value="{$order_info.order_id}" />
+        <input type="hidden" name="modify_id" value="{$appoint}" />
+    </form>
+</div>
+<script type="text/javascript">
+var  order_status = {$defst};
+function toVaild()
+{
+	
+	var status = $('#status').val();
+
+	/* if(status == 0)
+	{
+		alert('请选择审核状态')
+		return false;		
+	} */
+	if(!order_status)
+	{
+		alert('订单已取消 不允许再次修改状态');
+		return false;
+	}
+	
+	var fail_reason = $('#remark').val();
+	if(!fail_reason)
+	{
+		alert('请填写备注')
+		return false;
+	}
+	return true;
+	
+}
+
+
+$('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+$('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
+{include file="footer.html"}

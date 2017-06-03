@@ -1,0 +1,51 @@
+@charset "utf-8";
+.title{text-align:center; margin-top:33px;  overflow:hidden; position:relative;}
+.title .tit{ width:160px; height:16px; line-height:16px;*height:40px;*line-height:40px; font-size:24px;background:#f5f5f5; color:#000; position:absolute; left:50%; top:12px;*top:0; margin-left:-80px;}
+.title .line1{ height:7px; background:#e5e5e5; overflow:hidden; margin-top:14px;}
+.title .line2{ height:3px; background:#ccc; overflow:hidden; margin-top:2px;}
+.title .p{ width:920px; margin:25px auto 0; line-height:20px;}
+.product{ width:1245px; margin-top:5px;}
+.product .item{ width:240px; height:420px; float:left; margin:25px 0 0 0; text-align:center; padding:0 30px;}
+.product .item h2 {font-size:14px; height:40px; line-height:40px; overflow:hidden; margin-top:20px; font-weight:400;}
+.product .item h3 {font-size:16px; height:36px; line-height:18px; overflow:hidden; font-family:Avenir; font-weight:500;}
+.product .item img{ display:block; width:220px; height:300px; margin:0 auto;}
+
+.product .taozhuang {height:470px !important;}
+.product .taozhuang img {display:block; width:320px !important; height:360px !important; margin:0 auto; position:relative; left:-32px;}
+.product .taozhuang .bigPic { overflow:hidden; width:240px; height:360px; position:relative;}
+
+
+
+.product .bigPic{ width:100%;position:relative;  text-align:center;}
+.product .bigPic a{ position: absolute; left:50%; margin-left:-25%; margin-top:-25%; top:50%; width:120px; height:120px; border-radius:50%; overflow:hidden; text-align:center; line-height:120px; color:#fff; background:#000;transition:all ease .3s; opacity:0; filter:alpha(opacity=0); transform:scale(0,0);}
+.product .bigPic:hover a{opacity:0.7; filter:alpha(opacity=70);;transform:scale(1,1);}
+.product .smallPic{ width:75px; height:387px; float:right; position:relative; z-index:2;}
+.product .item li{ width:73px; height:91px; margin-bottom:5px; cursor:pointer; padding:1px;}
+.product .item .cur{padding:0;border:solid 1px #a40001; overflow:hidden;}
+.product table{border-collapse:collapse; background:#f7f7f7; line-height:22px;}
+.product table caption{ background:#f7f7f7; border:solid 1px#e6e6e6; border-bottom:none; text-align:left; padding:5px 15px; color:#000;}
+.product th,.product td{ border:solid 1px #e6e6e6; color:#000; padding:5px 10px;}
+.lhdg { height:50px; line-height:25px; overflow:hidden;}
+.product th{ width:60px; color:#666; font-weight:normal;}
+.page_box{ margin:40px 0 100px;}
+.tzForm{padding:15px 0; margin:0 15px;}
+.tzForm h2{ font-size:16px; color:#333; border-bottom:solid 1px #ddd; line-height:30px;}
+.tzForm dt{ font-size:14px; margin:15px 0 5px;}
+.tzForm dt em{ color:#A40001; padding:0 2px; font-family:serif;}
+.tzForm .txt{ height:30px; width:98%; padding:0 3px; line-height:30px; border:solid 1px #ddd; color:#666;}
+.tzForm select{border:solid 1px #ddd; height:30px; margin-right:5px;}
+#regionCity select{width:78px;}
+.tzForm .validate{ padding-top:10px;}
+.tzForm .validate .txt{ float:left; width:100px;}
+.tzForm .validate .sendValidate{ float:left; width:100px; height:30px; line-height:30px; text-align:center; margin-left:8px; -moz-user-select:none; cursor:pointer; border:solid 1px #ddd;
+ color: #333; background-color: #f5f5f5; background-image: linear-gradient(#fff, #ebebeb); background-image: -webkit-gradient(#fff, #ebebeb); background-image: -moz-linear-gradient(#fff, #ebebeb); -moz-user-select: none; user-select: none;
+}
+.tzForm .sendValidate:hover { background-image: linear-gradient(#ebebeb, #fff); background-image: -webkit-gradient(#ebebeb, #fff); background-image: -moz-linear-gradient(#ebebeb, #fff); }
+.tzForm .sendValidate.disabled, .tzForm .sendValidate.disabled:hover { background: #f8f8f8; cursor: default; }
+.tzForm textarea{ border:solid 1px #ddd; width:272px; height:50px; font-size:12px; line-height:24px; padding:3px; color:#666;}
+.tzForm .tip{ line-height:20px; padding-top:5px;}
+.tzForm #error{ color:#a40001; font-size:14px; text-align:center; padding:10px 0;}
+.tzForm .submit{ width:230px; height:40px; background:#a40001; color:#fff; font-size:14px; border-radius:5px; margin:0 auto; display:block; cursor:pointer;}
+.tzForm .error-css{background-color: #f2dede;border-color: #ebccd1;color: #a94442;}
+
+.h1_tit {font-size:22px; height:40px; line-height:40px; font-weight:400; padding-top:22px;}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>coolette mobile</title>
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+</head>
+
+<body>
+<form action="" id="CartListForm">
+<div class="main"> 
+  
+  <div class="wdgwc_box">
+    {foreach from=$cart.object item=item name=clist}
+    <div class="gwclb clearfix">
+      <p class="m_gwctu"><a href="#"><img src="{$item.goods.image}" /></a></p>
+      <div class="xinxixz">
+        <h3>{$item.goods.name}<span>{$item.goods.price|price}</span><a href="javascript:void(0)" class="scal" data-id="{$item.ident}"></a></h3>
+        {if $item.size == 'diy'}<p class="ltdz">量体定制</p>{else}<p class="ltdz">{$item.size}</p>{/if}
+        <div class="jiajian_2" style="float:none;" data-id="{$item.ident}">
+          <p class="jian" data-do="jian">-</p>
+          <input type="text" value="{$item.quantity}" class="change" name="change" data-num="{$item.quantity}"/>
+          <p class="jia" data-do="jia">+</p>
+        </div>
+        {if !$item.embs}
+         <!--展开、收缩层开始-->
+         <div id="sortlist">       
+           <div class="">
+            <h3><b></b>免费签名</h3>
+            <div class="m_qmlr">
+            <div class="m_tccdiv">
+                
+                {foreach from=$embs.$item.cloth item=eitems key=ekeys}
+	                {if $eitems.statusid == 10008}
+	                   <input name="embs[{$item.ident}][{$eitems.id}]" type="text" value="{$item.embs.$eitems.id}" placeholder="输入签名内容" data-id="{$eitems.id}" class="embs_inp">
+		            {else}
+		            <div class="cart-font">
+			        <div id="select_font" class="select-item serve_time select_font" data-id="{$item.ident}" data-type="font">{if $item.embs.$eitems.id}<img src="{$eitem.image}" title="{$eitem.name}" alt="{$eitem.name}">{else}选择{$eitems.name}{/if}</div>
+			          <input type="hidden" name="embs[{$item.ident}][{$eitems.id}]" value="{$item.embs.$eitems.id}" class="emb_font" />
+			          <ul class="select_box selsect_font_list" id="select_font_list" style="display:none">
+			             {foreach from=$eitems.list item=eitem key=ekey}
+                           {if $eitem.image}
+                           <li data-id='{$ekey}' data-name="{$eitem.name}" ><a href="javascript:void(0)" data-id='{$ekey}'><img src="{$eitem.image}" title="{$eitem.name}" alt="{$eitem.name}">- {$eitem.name}</a></li>
+                           {else}
+                           <li data-id='{$ekey}' data-name="{$eitem.name}" ><a href="javascript:void(0)" data-id='{$ekey}'>{$eitem.name}</a></li>
+                           {/if}
+                        {/foreach}
+			          </ul>
+			        </div>
+	                {/if}
+                {/foreach}
+            </div>
+
+            </div>       
+           </div>    
+         </div>           
+         <!--展开、收缩层结束-->
+         {else}
+         <div class="wdqmlr">签名：<span>
+         
+         {foreach from=$embs.$item.cloth item=iec key=kec}
+            {if $iec.statusid == 10008}
+                {$item.embs.$kec}
+            {elseif $iec.statusid == 10002}
+                {foreach from=$item.embs.$kec item=iecs}
+                    {assign var=Emb value=$iec.list.$iecs}
+                    {$Emb.name}
+                {/foreach}
+            {elseif $iec.statusid == 10001}
+                {assign var=nEmb value=$item.embs.$kec}  {* 528 *}
+                {assign var=Emb value=$iec.list.$nEmb}
+                {$Emb.name}
+            {/if}
+         {/foreach}
+         </span>
+         </div>
+         {/if}
+      
+      </div>
+    </div>
+    {if !$smarty.foreach.clist.last}<p class="gwchst"></p>{/if}
+    {/foreach}
+  </div>
+</div>
+
+<div class="jrgwc_box">
+ <div class="jrgwc main">
+   <h2 class="houji">合计：<span>{$cart.final_amount|price}</span></h2>
+   <p class="jiesua"><a href="javascript:void(0)">去结算</a></p>
+ </div>
+</div>
+</form>
+
+<script type="text/javascript" src="static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="static/js/cart.js"></script>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+    $.cart({
+        dropUrl:"{link app=cart act=drop}",
+        cartUrl:"{link app=cart}",
+        clearUrl:"{link app=cart act=clear}",
+        updateUrl:"{link app=cart act=update}",
+        checkoutUrl:"{link app=cart act=checkout}",
+        checkUrl:"{link app=cart act=check}",
+    });
+    
+    $('.embs_sel').unbind().bind('change',function(){
+    	var _this = $(this);
+    	var _text = _this.find("option:selected").text(); //_this.val()
+    	var _id = _this.data('id');
+    	_this.parents('.xinxixz').find('.wdqmlr').find('.'+_id).html(_text);
+    });
+    $('.embs_inp').unbind().bind('change',function(){
+        var _this = $(this);
+        var _text = _this.val(); //_this.val()
+        var _id = _this.data('id');
+        _this.parents('.xinxixz').find('.wdqmlr').find('.'+_id).html(_text);
+    });
+    $('.embs_sel').each(function(){
+    	var _this = $(this);
+        var _text = _this.find("option:selected").text(); //_this.val()
+        var _id = _this.data('id');
+        _this.parents('.xinxixz').find('.wdqmlr').find('.'+_id).html(_text);
+    });
+    $('.embs_inp').each(function(){
+    	var _this = $(this);
+        var _text = _this.val(); //_this.val()
+        var _id = _this.data('id');
+        _this.parents('.xinxixz').find('.wdqmlr').find('.'+_id).html(_text);
+    })
+    
+    
+});
+
+</script>
+
+   <SCRIPT>
+        $("#sortlist h3").bind("click",function(){
+        var element=$(this).parent();
+        if (element.hasClass("current")){
+            element.removeClass("current");
+        }else{
+            element.addClass("current");
+        }
+    })
+   </SCRIPT>   
+</body>
+</html>

@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0;}
+body{font:14px/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;
+ min-width:768px;}
+ul,li{ list-style:none;}
+.fl{ float:left;}
+.fr{ float:right;}
+img{ display:block; border:none;}
+body a{outline:none;blr:expression(this.onFocus=this.blur());}
+a,a:visited{ color:#212121; text-decoration:none; transition:color .1s;}
+a:hover{ color:#5fc7ae;}
+
+/*布局*/
+.container{width:1230px; margin:0 auto;}
+
+/*设计师介绍*/
+.sjsjs { height:419px; width:100%; background:url(../../static/img/ditu.png) center top no-repeat; margin-top:-1px;}
+.sjs_center { text-align:center; color:#fff; overflow:hidden;}
+.sjs_center h1 { font-family:Vrinda; font-size:48px; height:46px; line-height:46px; margin-top:44px; overflow:hidden; font-weight:normal;}
+.sjs_center h2 { font-size:24px; font-weight:normal; line-height:24px; height:24px; overflow:hidden; margin:15px 0 30px 0;}
+.sjs_center .p1 { font-size:14px; line-height:24px; height:48px; overflow:hidden; padding:0 10%; margin-bottom:16px;}
+.sjs_center .p2 img { width:95px; height:95px; margin:0 auto; border:5px solid #fff; border-radius:50%;}
+.sjs_center .p3 { line-height:24px; height:24px; overflow:hidden; font-size:16px; margin-top:16px;}
+
+.title { color: #373737; font-size: 58px; line-height: 60px; text-align:center; font-family:arial; margin:50px 0 60px 0;}
+
+/*分类*/
+.tabTit{ text-align:center; border-top:1px solid #dfdfdf;}
+.tabTit p {margin-top:-15px;}
+.tabTit span{ display:inline-block; width:124px; height:30px; border-right:solid 1px #eeeded; text-align:center; line-height:30px; cursor:pointer; color:#666;  background:#fff; font-size:18px;}
+.tabTit .cur{color:#000;}
+
+/*列表*/
+.sjlb {width:1200px; margin:0 auto; overflow:hidden;}
+.sjlb ul {width:105%; float:left;}
+.sjlb ul li { float:left; width:273px; height:484px; margin:60px 36px 0 0; text-align:center;}
+.sjlb ul li .p1 img {width:100%; height:364px;}
+.sjlb ul li .p2 {font-size:14px; line-height:24px; height:24px; overflow:hidden; margin:15px 0 10px 0;}
+.sjlb ul li .p2 a { color:#1f1f1d;}
+.sjlb ul li .p3 {font-size:18px; color:#919191; height:24px; line-height:24px; overflow:hidden; margin-bottom:24px;}
+.sjlb ul li .p4 { border-bottom:1px solid #dddede;}
+.sjlb ul li .p4 .xhgwc { background:#fff; margin:0 auto -18px auto; width:124px;}
+.sjlb ul li .p4 a { display:inline-block; width:62px; height:24px; background:#fff url(../../static/img/sjxq.png) 18px top no-repeat; opacity:0.5;}
+.sjlb ul li .p4 .gwc { background-position:-40px 0;}
+.sjlb ul li .p4 a:hover {opacity:0.9; }
+
+/*分页*/
+.cc_page{text-align:center; margin-top:100px; font-size:18px;}
+.cc_page a,.cc_page span{display:inline-block; height:20px; line-height:20px; width:15px; margin:0 12px; border:1px solid transparent; color:#666;}
+.cc_page .active{color:#000;}
+.cc_page .zjt { font-family:宋体; font-weight:bold;}

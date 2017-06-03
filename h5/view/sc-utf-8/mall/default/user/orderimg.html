@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+    <title>修改标签图</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/h5_layout.css" media="screen">
+
+    <style>
+        #clipArea {height:100%; width:100%; top:0; left:0; position:fixed; border-radius:5px; z-index:100;}
+        #clipArea button {position:absolute; bottom:150px; border-radius:4px; left:50%; z-index:9999; background:#e66800; color:#fff; width:80px; height:30px; line-height:30px; margin-left:-40px; font-size:14px;}
+        #view {margin: 0 auto;}
+
+        .jieqtu {width:100%; overflow:hidden; margin:12px 0 20px 0; padding:15px 12px; height:110px; line-height:18px; color:#888;}
+        .jieqtu p {font-size:12px;}
+        .jieqtu .jqdiv { width:80px; height:80px; position:relative; margin-right:15px;}
+        .jieqtu .jqdiv img { width:100%; height:100%;}
+        .jieqtu .jqdiv input { width:80px; height:80px; opacity:0; position:absolute; left:0; top:0;}
+        .jieqtu button { width:80px; height:34px; background:#e66800; float:left; border-radius:5px; color:#fff; font-size:14px; margin:34px 0 0 30px;}
+
+        .qianm {padding:10px 15px;}
+        .qm_ipt {padding:0 10px; border:1px solid #ddd; border-radius:5px !important; height:38px; line-height:38px; background:#fff; font-size:14px; box-sizing:border-box; width:100%; margin-bottom:12px;}
+
+        .jq_img {width:80px; height:80px; border-radius:7px; overflow: hidden; margin-right:10px;}
+        .jq_img img {width:100%;  border-radius:7px;}
+
+        .tijs {color:#717171; line-height:16px; font-size:12px; padding-bottom:8px;}
+        .tijs i {font-style:normal; color:#ff7700; display:block; padding-bottom:5px;}
+
+        .h5_info {padding:12px; margin-bottom:12px;}
+        .h5_info div img {width:60px; height:60px;}
+        .diy_img {margin-right:12px;}
+        .h5_info h1 {font-size:16px; color:#333; padding-bottom:5px;}
+        .h5_info span {color:#e66800; font-weight: bold;}
+
+        .diy_text {font-size:13px; padding:12px;}
+        .diy_text h1 {font-size:12px; color:#999; padding:3px 0;}
+        .diy_text p {padding:5px 0; color:#333;}
+        .diy_text div {line-height:26px; color:#333;}
+
+        .button_div {padding:0 12px;}
+
+    </style>
+
+
+
+</head>
+
+
+
+<body class="bg_gray">
+
+
+<div class="c_db h5_info c_bac bg_white">
+   <div class="diy_img"><img src="{$goods_info.goods_image}"></div>
+   <div class="c_bf1">
+
+      <h1>{$goods_info.goods_name}</h1>
+
+      <span>¥{$goods_info.price}</span>
+   </div>
+</div>
+
+<div class="diy_text bg_white">
+   <h1>定制信息</h1>
+   <p>主人寄语：{$goods_info.dog_desc}</p>
+   <div>
+       生长阶段: {$dog.jieduan}<br>
+       功效选择: {$dog.gongxiao}<br>
+       口味选择: {$dog.kouwei}<br>
+       包装: {$dog.baozhuang}<br>
+       规格: {$dog.kezhong}<br>
+       喂食量: {$goods_info.feed_list.feed_w}克/每天<br>
+       生日: {if $goods_info.dog_date}{$goods_info.dog_date}{else}未设置{/if}
+   </div>
+</div>
+
+<div id="clipArea" style="display:none"><button id="clipBtn">截取</button></div>
+
+<div class="jieqtu c_db c_bac c_bs bg_white">
+
+    <div class="jq_img" style="display: none;"><img src="" class="file_img"></div>
+
+    <div class="jqdiv">
+        <input type="file" id="file">
+        <img src="/diy/images/upload.png" class="sctu">
+    </div>
+    <p class="c_bf1">亲，选择一张狗狗与你相伴的照片，做一个独一无二的包装设计吧！</p>
+</div>
+<input type="hidden" name="order_goods_id"  value="{$goods_info.rec_id}">
+
+<div class="button_div"><input type="button" value="提交" class="button" id="tijiao"></div>
+
+
+<script type="text/javascript" src="/diy/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/diy/js/jquery.fly.min.js"></script>
+<script type="text/javascript" src="/diy/js/layer_mobile/layer.js"></script>
+
+<script src="/diy/js/mobiscroll_002.js" type="text/javascript"></script>
+<script src="/diy/js/mobiscroll_004.js" type="text/javascript"></script>
+<script src="/diy/js/mobiscroll.js" type="text/javascript"></script>
+<script src="/diy/js/mobiscroll_003.js" type="text/javascript"></script>
+<script src="/diy/js/mobiscroll_005.js" type="text/javascript"></script>
+<script src="/diy/js/iscroll-zoom.js"></script>
+<script src="/diy/js/hammer.js"></script>
+<script src="/diy/js/lrz.all.bundle.js"></script>
+<script src="/diy/js/jquery.photoClip.js"></script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        clipArea = new bjj.PhotoClip("#clipArea", {
+            size: [130, 130],
+            outputSize: [640, 640],
+            file: "#file",
+            view: "#view",
+            ok: "#clipBtn",
+            loadStart: function() {
+                $("#clipArea").css("display",'');
+                console.log("照片读取中");
+                $('.jieqtu').hide();
+            },
+            loadComplete: function() {
+                console.log("照片读取完成");
+            },
+            clipFinish: function(dataURL) {
+                $("#clipArea").css("display",'none');
+                $(".jq_img").css("display",'');
+                $('.jieqtu').show();
+                $('.file_img').attr('src',dataURL);
+                $(".zrtx").attr('src',dataURL);
+                $(".sctu").attr("src","/diy/images/xiug.png");
+
+                //判断类型是不是图片
+                /* if(!/image\/\w+/.test(dataURL.type)){
+                 alert("请确保文件为图像类型");
+                 return false;
+                 }
+                 var reader = new FileReader();
+                 reader.readAsDataURL(dataURL);
+                 reader.onload = function(e){
+                 $('.file_img').attr('src',this.result);
+                 //$(".zrtx").attr('src',this.result);
+                 }; */
+                console.log(dataURL);
+            }
+        });
+    });
+
+    $("#tijiao").click(function () {
+
+        var id = $("input[name='order_goods_id']").val();
+        var img = $('.file_img').attr('src') === '/diy/images/sytu.png' ? '' : $('.file_img').attr('src');
+        //$('.file_img').attr('src') === '/diy/images/sytu.png' ? '' : $('.file_img').attr('src'),//个性化标签设置
+        $.post("my_order-addorderimg.html", { id: id, fpic: img },
+                function(data)
+                {
+                    if (data.done)
+                    {
+                        //信息框
+                        layer.open({
+                            content: '上传成功'
+                            ,btn: '我知道了'
+                        });
+                        WeixinJSBridge.invoke('closeWindow',{},function(res){
+                            //alert(res.err_msg);
+                        });
+                    }
+                    else
+                    {
+                        //信息框
+                        layer.open({
+                            content: data.msg
+                            ,btn: '我知道了'
+                        });
+
+                    }
+
+                },'json');
+        })
+
+</script>
+</body>
+</html>

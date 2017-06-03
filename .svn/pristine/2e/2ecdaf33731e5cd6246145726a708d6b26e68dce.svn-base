@@ -1,0 +1,111 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=generalize_member&amp;act=add">{$lang.add}</a></li>
+    </ul>
+
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="generalize_member" />
+                <input type="hidden" name="act" value="index" />
+                在职状态：
+                <select name="status">
+                    {html_options options=$_status selected=$status}
+                </select>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                角色：
+                <select name="type">
+                    {html_options options=$_type selected=$type}
+                </select>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                所属组织：
+                <select name="ge">
+                    {html_options options=$generalize selected=$ge}
+                </select>
+
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                姓名:<input type="text" name="name"  value="{$name}" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=generalize_member">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <!--<div class="fontr">{include file=page.top.html}</div>-->
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+
+        <tr class="tatr1">
+            <td><span ectype="order_by" fieldname="id">ID</span></td>
+            <td><span ectype="order_by" fieldname="name">姓名</span></td>
+            <td><span ectype="order_by" fieldname="gender">性别</span></td>
+            <td><span ectype="order_by" fieldname="phone">手机号</span></td>
+            <td><span ectype="order_by" fieldname="g_id">所属组织</span></td>
+            <td><span ectype="order_by" fieldname="type">角色</span></td>
+            <td><span>当前业绩（注册的创业者数）</span></td>
+            <td><span ectype="order_by" fieldname="status">在职状态</span></td>
+            <td><span>操作</span></td>
+        </tr>
+
+        <!--{if !empty($list)}-->
+        <!--{foreach from=$list item=v key=k}-->
+        <tr class="tatr2">
+            <td>{$v.id}</td>
+            <td>{$v.name}</td>
+            <td>{if $v.gender eq '0'}男{else}女{/if}</td>
+            <td>{$v.phone}</td>
+            <td>{$generalize[$v.g_id]}</td>
+            <td>{$_type[$v.type]}</td>
+            <td>{if empty($inviter_ids[$v.id])}0{else}{$inviter_ids[$v.id]}{/if}</td>
+            <td>{if $v.status eq '0'}离职{else}在职{/if}</td>
+            <td class="handler">
+<a href="javascript:void(0)" onclick='edit("{$v.id}")'>编辑</a>
+
+                |
+
+
+                <a href="javascript:void(0)" onclick="if(confirm('绑定当前BD码的会员将重置绑定到平台默认码上，确定操作？！'))location.href='index.php?app=generalize_member&act=reset_bd&id={$v.id}'"> 重置绑定</a>
+
+
+
+                <!--|
+                <a href="index.php?app=generalize_member&amp;act=del&amp;id={$v.id}">删除</a>-->
+            </td>
+        </tr>
+        <!--{/foreach}-->
+        <!--{else}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+    </table>
+    <!--{if !empty($list)}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+<script>
+    function edit(_id){
+        var  url = "/mfd/index.php?app=generalize_member&act=info&id="+_id;
+        var status = $("#status").val()
+        var name = $("#name").val()
+        var phone = $("#phone").val()
+        var ge = $("#ge").val()
+        var type = $("#type").val()
+
+        url+="&status1="+status+"&name1="+name+"&ge1="+ge+"&jiaose1="+type;
+        self.location = url;
+    }
+
+</script>
+{include file="footer.html"}

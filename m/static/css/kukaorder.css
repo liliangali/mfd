@@ -1,0 +1,22 @@
+body, div, p, ul, ol, li, nav, footer, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, img { padding: 0; margin: 0; }
+body { min-width: 320px; font-size:14px; background:#f6f6f6; color:#717171; font-family:"微软雅黑", "Arial";}
+body a{outline:none;blr:expression(this.onFocus=this.blur());}
+ul, ol, li { list-style: none; }
+img { vertical-align: middle;border: none; max-width:100%;}
+a{ text-decoration:none; color:#333;}
+input,textarea,select { outline:none; list-style-type:none; border:none; padding:0; margin:0;}
+.clearfix:after {content:"."; height:0px; line-height:0px; overflow:hidden; clear:both; display:block; visibility:hidden;}
+.clearfix{zoom:1;}
+.fl { float: left; }
+.fr { float: right;}
+.hide{ display:none;}
+.ddsuccess{text-align:center;border-bottom:1px solid #dfdfdf;padding:40px 0; background:#fff;}
+.cgpic{width:126px;height:90px;margin:0 auto;}
+.cgpic img{width:100%;}
+.ddcgword{font-size:26px;color:#21d0fd;margin-top:35px;}
+.dddetailed{text-align:center;padding:60px 0;}
+.dddetaileds{padding:27px 0;}
+.dddetailed p{line-height:24px;}
+.pay{margin:0 5%;width:90%;height:38px;line-height:38px; text-align:center; background:#21d0fd;margin-bottom:8px;}
+.pay a{color:#fff;display:block;}
+.telephone{width:90%;border-top:1px solid #e5e5e5;height:100px;text-align:center;margin:0 5%;font-size:12px;line-height:24px;padding-top:27px;}

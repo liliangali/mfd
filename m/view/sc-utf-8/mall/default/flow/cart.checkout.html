@@ -1,0 +1,194 @@
+{include file="header2.html"}
+<script type="text/javascript" src="{res file=js/jscrollpane.js}"></script>
+
+<div class="ddxxtjy_smlt">
+  <p class="txddxx">填写核对订单信息</p>
+   
+   <!-- 量体数据 -->
+   {if $aCart.is_diy == 1}
+   <a name="step-1"></a>
+  <div class="m_shxxxg" id="step-1">
+	{include file="figure.cart.info.html"}
+  </div>
+  {/if}
+  <!-- 收货信息 -->
+  <a name="step-2"></a>
+  <div class="m_shxxxg" id="step-2">
+   {include file="address.cart.info.html"}
+  </div>
+  
+  <!-- 支付及配送 -->
+ <a name="step-3"></a>
+  <div class="m_shxxxg" id="step-3">
+   {include file="sp.cart.info.html"}
+  </div>
+    
+    <!-- 发票信息 -->
+  <a name="step-4"></a>
+  <div class="m_shxxxg" id="step-4">
+  	{include file="invoice.cart.info.html"}
+  </div>  
+  
+  
+  <p class="m_spqd">商品清单</p>
+  
+  <div class="m_spqdlb_box">
+   <table cellpadding="0" cellspacing="0" border="0" width="100%" class="m_spqdlb_table">
+       <tr>
+         <th width="260" colspan="2" style="padding-left:20px;">商品名称</th>
+         <th width="124">商品编号</th>
+         <th width="248">定制信息</th>
+         <th width="85">数量</th>
+         <th width="85">售价</th>
+         <th>小计</th>
+       </tr>
+       {foreach from=$aCart.goods_list item=goods}
+       <tr>
+         <td class="ydlvbcxz"><a href="{link app=custom act=info arg0=$goods.goods_id}"><img src="{$goods.goods_image}" /></a></td>
+         <td><a href="{link app=custom act=info arg0=$goods.goods_id}">{$goods.goods_name}</a>
+         {if $goods.source_title}<br>
+         <span>来自<a href="{link app=dissertation act=info arg0=$goods.source_id}">［{$goods.source_title}］</a></span>
+         {/if}
+         </td>
+         <td>{$goods.goods_sn}</td>
+         <td class="dzxx">
+            {if $goods.is_diy}
+	           <span>面料：DBA894A</span>
+	           <span>类型：{$goods.type_name}</span>
+	        {else}
+	        	尺码：{$goods.specification}
+	        {/if}
+         </td>
+         <td style="padding-left:8px;">{$goods.quantity}</td>
+         <td>{$goods.price|price}</td>
+         <td>{$goods.subtotal|price}</td>
+       </tr>
+       {/foreach}
+     </table>
+     <style>
+        .promotion-ul li{height:25px; lien-height:25px;}
+     </style>
+     
+  <!--展开、收缩层开始-->
+      <div id="sortlist">
+    
+        <div class="mc">
+         {if $pmts}
+          <div class="usePromotion current">
+            <h3><b></b>订单促销</h3>
+            <div class="m_tccdiv">
+               <ul class="promotion-ul">
+               {foreach from=$pmts item=pmt}
+                  <li>{$pmt.msg}</li>
+			   {/foreach}
+               </ul>
+            </div>
+          </div>
+          {/if}
+          <div class="useCoupon">
+            <h3><b></b>使用优惠券抵消部分总额</h3>
+            <div class="m_tccdiv couponlay">
+                
+            </div>
+          </div>
+          
+          <div class="useCoin">
+            <h3><b></b>使用麦富迪币抵消部分总额</h3>
+            <div class="m_tccdiv coinlay">
+              
+            </div>       
+          </div>
+    
+          <div class="usePoint">
+            <h3><b></b>使用积分抵消部分总额</h3>
+            <div class="m_tccdiv pointlay">
+              
+            </div>       
+          </div>
+    
+          <div>
+            <h3><b></b>订单备注</h3>
+            <div class="m_tccdiv">
+              <textarea name="postscript" cols="" rows="" maxlength="200" class="dindanbz"></textarea>
+            </div>       
+          </div>
+          
+       </div>
+	   <SCRIPT>
+            $("#sortlist h3").bind("click",function(){
+            var element=$(this).parent();
+            if (element.hasClass("current")){
+                element.removeClass("current");
+            }else{
+                element.addClass("current");
+            }
+        })
+       </SCRIPT>    
+  </div> 
+  
+  <!--展开、收缩层结束-->     
+     
+     
+     <div class="m_wltbxyfd" id="alayer">
+     	{include file="amount.cart.info.html"}
+     </div>
+     
+    <p class="clear"></p>
+  </div>
+  
+  <div class="ltsj_xwbc ordernotice"><p>您需先保存<a href="javascript:;">量体数据</a>，再提交订单<img src="{res file=images/wxtsxsj.gif}" /></p></div>
+  <p class="clear"></p>
+  <div class="m_yfze">
+    <p class="p1">应付总额：<span id="amount">{$aCart.amount|price}</span></p>
+    <p class="p2"><a href="javascript:;" id="submitOrder"></a></p>
+    <p class="tdtjxz submitNotice" style="display:none"></p>
+  </div>
+</div>
+
+
+<!--滚动条JS开始-->
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	//重复引入jquery.1.7.1.min 无法执行$.order
+	$.order({
+		figure :{if $figuredata}true{else}false{/if},
+		needDiy:{$aCart.is_diy},
+		address:{if $address}true{else}false{/if},
+		shipping:{if $shipping}true{else}false{/if},
+		payment:{if $payment}true{else}false{/if},
+		figureUrl:"{link app=cart act=figure}",
+		addressUrl:"{link app=cart act=address}",
+		shipAndPayUrl:"{link app=cart act=shipAndPay}",
+		invoiceUrl:"{link app=cart act=invoice}",
+		regionUrl:"{link app=mlselection}",
+		serviceUrl:"{link app=service act=index arg=1}",
+		submitUrl:"{link app=order act=create}",
+		paycenterUrl:"{link app=paycenter}",
+		dropAddr:"{link app=cart act=dropAddr}",
+		couponUrl:"{link app=cart act=couponlist}",
+		useCoupon:"{link app=cart act=useCoupon}",
+		coinUrl:"{link app=cart act=coin}",
+		pointUrl:"{link app=cart act=point}"
+	});
+})
+</script>  
+<!--滚动条JS结束--> 
+<!-- 反回顶部代码开始 -->
+<script type="text/javascript" src="{res file=js/js.js}"></script>
+<div id="piaofu-right" href="javascript:void(0)">
+    <a href="{link app=cart act=index}" class="yichu"></a>
+      <a href="javascript:;" class="kefu" id="BizQQWPA"></a>
+      <script type="text/javascript">
+      BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4008919867, selector: 'BizQQWPA'});
+      </script>
+</div>
+<div id="gotop1" href="javascript:void(0)" style="display:block;">
+    <a href="javascript:void(0)" class="go_top"></a>
+</div>
+<!-- 反回顶部代码开始 -->
+<!--底部开始-->
+{include file="login_footer.html"}
+<!--底部结束-->
+

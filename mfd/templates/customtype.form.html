@@ -1,0 +1,73 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#type_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onfocusout : false,
+        onkeyup    : false,
+        rules : {
+            type_name : {
+                required : true,
+            },
+            channel:{
+            	required : true,
+            },
+        },
+        messages : {
+            type_name : {
+                required : '类型名称不能为空',
+            },
+            channel : {
+                required : '所属频道不能为空',
+            },
+        }
+    });
+    
+});
+</script>
+<div id="rightTop">
+    
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=customtype">{$lang.manage}</a></li>
+    </ul>
+</div>
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="type_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    	类型名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="type_name" type="text" name="type_name" value="{$info.type_name|escape}" /> 
+                </td>
+            </tr>
+            
+                        <tr>
+                <th class="paddingT15">
+                    	排序:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" type="text" name="sort_order" value="{$info.sort_order|escape}" /> 
+                </td>
+            </tr>
+            
+          <tr>
+            <th></th>
+            <td class="ptb20">
+            	<input type="hidden" name="id" value="{$info.type_id}" />
+                <input class="tijia" type="submit" id="Submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="reset" value="{$lang.reset}" />            
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+
+</script>
+{include file="footer.html"}

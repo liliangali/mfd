@@ -1,0 +1,15 @@
+<h2>产品工艺：</h2>
+<ul class="ul_list">
+{foreach from=$crafts item=cft}
+<li>
+<span>{$cft.name}:</span>
+<select name="crafts[{$cft.id}]" data-cloth="{$cft.clothingID}">
+    <option value="">请选择..</option>
+    {foreach from=$cft.list item=cft_item}
+    <option value="{$cft_item.code}">{$cft_item.code}-{$cft_item.name}</option>
+    {/foreach}
+    {* html_options options=$cft.list  selected="" *}
+</select>
+</li>
+{/foreach}
+</ul>

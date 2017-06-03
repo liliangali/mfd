@@ -1,0 +1,59 @@
+{include file="header.html"}
+<div id="rightTop">
+  
+  <ul class="subnav">
+    <li><span>所有优惠券</span></li>
+    <li><a class="btn1" href="index.php?app=coupon&amp;act=add">新增优惠券</a></li>
+  </ul>
+</div>
+<div class="mrightTop1 info">
+  <div class="fontl">
+    <form method="get">
+      <input type="hidden" name="app" value="coupon" />
+      优惠券名称:
+      <input class="queryInput" type="text" name="cpn_name" value="{$smarty.get.cpn_name|escape}" />
+      <input type="submit" class="formbtn" value="查询" />
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <tr class="tatr1">
+      <td class="firstCell"><input type="checkbox" class="checkall" />全选</td>
+      <td><span ectype="order_by" fieldname="cpn_id">优惠券ID</span></td>
+      <td><span>优惠券名称</span></td>
+      <td><span ectype="order_by" fieldname="add_time">添加时间</span></td>
+      <td><span ectype="order_by" fieldname="start_time">开始时间</span></td>
+      <td><span ectype="order_by" fieldname="end_time">结束时间</span></td>
+      <td><span ectype="order_by" fieldname="cpn_money">抵现金额</span></td>
+      <td><span>优惠券描述</span></td>
+      <td>操作</td>
+    </tr>
+    <!--{foreach from=$coupon_list item=coupon}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$coupon.cpn_id}"/></td>
+      <td>{$coupon.cpn_id}</td>
+      <td>{$coupon.cpn_name|escape}</td>
+      <td>{$coupon.add_time|date:Y-m-d}</td>
+      <td>{$coupon.start_time|date:Y-m-d}</td>
+      <td>{$coupon.end_time|date:Y-m-d}</td>
+      <td>{$coupon.cpn_money|escape|default:0}</td>
+      <td>{$coupon.cpn_content|escape}</td>
+      <td>
+          <a href="index.php?app=coupon&amp;act=send&amp;id={$coupon.cpn_id}">发放</a>
+	      <a href="index.php?app=coupon&amp;act=edit&amp;id={$coupon.cpn_id}">编辑</a>
+	      <a name="drop" href="javascript:drop_confirm('您确定要删除该优惠券吗（不可恢复）？', 'index.php?app=coupon&amp;act=drop&amp;id={$coupon.cpn_id}');">删除</a>
+      </td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15">
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=coupon&act=drop&ret_page={$page_info.curr_page}" presubmit="confirm('您确定要删除该优惠券吗（不可恢复）？')" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+  </div>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}

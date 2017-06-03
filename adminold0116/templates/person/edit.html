@@ -1,0 +1,203 @@
+{include file="header.html"}
+<script  type="text/javascript" src="/static/expand/my97date/wdatepicker.js"></script>
+<div id="rightTop">
+      <ul class="subnav">
+	    <li><a class="btn1" href="index.php?app=authperson&amp;act=index">认证列表</a></li>
+	    <li><span>审核</span></li>
+	  </ul>
+</div>
+<div class="info" >
+    <form method="post" enctype="multipart/form-data" id="theForm" name="theForm"  onsubmit="return toVaild()">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">会员id :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$data.user_id|escape}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">会员名称 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$data.user_name|escape}</span>
+                </td>
+            </tr><!--
+            <tr>
+                <th class="paddingT15">身份证号码 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input type="text" name="card" value="{$data.card}" /></span>
+                </td>
+            </tr>
+            --><tr>
+                <th class="paddingT15">身份证姓名 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input type="text" name="realname" value="{$data.realname|escape}" /> </span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">性别:</th>
+                <td class="paddingT15 wordSpacing5">
+                <select name="gender" class="querySelect">
+                    {html_options options=$sex  selected="$data.gender"}
+                 </select>
+                </td>
+            </tr><!--
+            <tr>
+                <th class="paddingT15">身份证正面 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><a href="{$data.card_face_img}" target="_blank" title="点击查看大图"><img src="{$data.card_face_img}" width="100px" heigh="100px"></a></span>
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">身份证反面 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><a href="{$data.card_back_img}" target="_blank" title="点击查看大图"><img src="{$data.card_back_img}" width="100px" heigh="100px"></a></span>
+                </td>
+            </tr>
+               --><tr>
+                <th class="paddingT15">银行 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input type="text" disabled="true"  name="bank" value="{$data.bank|escape}" /> </span>
+                </td>
+            </tr>
+               <tr>
+                <th class="paddingT15">开户行地址 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input type="text" disabled="true"  name="bankcard_address" value="{$data.bankcard_address|escape}" /> </span>
+                </td>
+            </tr>
+
+              <tr>
+                <th class="paddingT15">银行卡卡号 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input type="text" disabled="true"  name="bankcard" value="{$data.bankcard|escape}" /> </span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">微信 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input type="text" disabled="true"  name="im_weixin" value="{$data.im_weixin|escape}" /> </span>
+                </td>
+            </tr>
+              <tr>
+                <th class="paddingT15">邮箱 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input type="text" disabled="true"  name="email" value="{$data.email|escape}" /> </span>
+                </td>
+            </tr>
+              <tr>
+                <th class="paddingT15">现居住地址:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input type="text" disabled="true"  name="address" value="{$data.address|escape}" /> </span>
+                </td>
+            </tr>
+            <!--
+           
+             <tr>
+                <th class="paddingT15">身份证是否长期:</th>
+                <td class="paddingT15 wordSpacing5">
+                <select name="is_long" class="querySelect">
+		              {html_options options=$is_long  selected="$data.is_long"}
+		        </select>
+                </td>
+            </tr>
+            
+            
+            
+            
+            {if $data.is_long == 0}
+            <tr>
+                <th class="paddingT15">身份证到期时间 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" name="card_due_time" onclick="WdatePicker({minDate:'%y-%M-%d'})" value="{$data.card_due_time|date}">
+                </td>
+            </tr>
+            {/if}
+           
+       
+            
+              --><tr>
+                <th class="paddingT15">联系电话 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input name="phone_mob" type="text" value="{$data.phone_mob}" /></span>
+                </td>
+            </tr><!--
+             <tr>
+                <th class="paddingT15">家庭或工作单位地址 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input name="address" type="text" value="{$data.address}" /></span>
+                </td>
+            </tr>
+            
+             <tr>
+                <th class="paddingT15">认证发起时间 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$data.create_time|date:Y-m-d H:i:s}</span>
+                </td>
+            </tr>
+            
+             -->
+             
+             
+            <tr>
+                <th class="paddingT15">最后更新的时间 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$data.last_update_time|date:Y-m-d H:i:s}</span>
+                </td>
+            </tr>
+             
+                <th class="paddingT15">
+                     状态 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="status" name="status" onchange="changeStatus()">
+                     <option value="0" >请选择</option>
+		              {html_options options=$status  selected=$data.status}
+		            </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">备注 :</th>
+                <td class="paddingT15 wordSpacing5">
+                <textarea {if $data.status != 2 } disabled="true" {/if}  name="fail_reason" id="fail_reason">{$data.fail_reason}</textarea>
+                </td>
+            </tr>
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="id" value="{$data.id}" />
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+            </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+	function changeStatus()
+	{
+		var status = $("#status").val();
+		if(status == 2)
+		{
+			$("#fail_reason").attr("disabled",false)
+		}
+		else
+		{
+			$("#fail_reason").attr("disabled",true);
+		}	
+	}
+	
+	function toVaild()
+	{
+		var status = $('#status').val();
+		var fail_reason = $('#fail_reason').val();
+		if(status == 2 && !fail_reason)
+		{
+			alert('请填写审核失败原因')
+			return false;
+		}
+		return true;
+		
+	}
+
+	
+	
+</script>
+{include file="footer.html"}

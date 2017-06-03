@@ -1,0 +1,70 @@
+{include file=header.html}
+<link href="{res file=css/z_style.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{res file=js/jquery.SuperSlide.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+var REGION_URL="{link app=mlselection act=index arg=region}";
+reginUrl=REAL_SITE_URL+REGION_URL;
+//]]>
+</script>
+{$_head_tags}
+
+<!--头部结束-->
+<div class="dqwz">当前位置：<a href="index.php/">首页</a><span>></span>{$serve_type_name}申请入驻</div>
+<!--中间开始-->
+<div class="center_box">
+  <!--申请步骤 start-->
+     <div class="apply_step">
+         <ul class="step_4">
+            <li class="step_sqrz">申请{$serve_type_name}入驻</li>
+            <li class="step_tjzz">提交资质</li>
+            <li class="step_ddsh">等待审核</li>
+            <li class="step_shjg step_cur">审核结果</li>
+         </ul>
+         <p class="clear"></p>
+     </div>
+  <!--申请步骤 end-->
+  <!--基本信息 start-->
+     <div class="basic_box">
+         <h3><i></i><span>{$serve_type_name}认证申请审核结果</span></h3>
+         <div class="shenh_box">
+          <div class="shenhz">
+         {if $state==1}
+              
+                    <p class="tgsh">
+                   
+                    恭喜你，您的信息已顺利通过审核
+                    
+                    </p>
+                    <p class="shenhjg_txt">
+                    {if $serve_type==2}
+                        您可以查看<a href="{link app=service act=info arg=$idserve}">{$serve_type_name}页面</a><br />
+                        
+                        您可以<a href="{link app=servicemember act=servedetail}">管理{$serve_type_name}</a>内容<br />
+                        {elseif $serve_type==3}
+		   您可以<a href="{link app=servicemember act=profile}">管理{$serve_type_name}</a>内容<br />               
+                        {/if}
+                        <span style="display:none;">您可以<a href="#">授权</a>给其他用户来管理您的{$serve_type_name}内容</span>
+                    </p>
+              {elseif $state==2}
+              
+              <p class="tgsh">
+                    审核失败
+                    </p>
+                   <p class="shenhjg_txt"> 
+                    失败原因: {$reason}
+                    </p>
+               {/if}
+               </div>
+         </div>
+         <div class="h_100"></div>
+     </div>
+  <!--基本信息 end-->
+     
+</div>
+<!--中间结束-->
+<!--底部开始-->
+{include file=footer.html}

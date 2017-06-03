@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>我的酷卡消费者</title>
+<link href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link href="http://r.cotte.cn/cotte/wap/css/slx_style.css" rel="stylesheet" />
+<script type="text/jscript" src="http://r.cotte.cn/cotte/wap/js/layer.js"></script>
+<script type="text/jscript" src="http://r.cotte.cn/global/jquery-1.9.1.min.js"></script>
+</head>
+
+<body style=" background:#e8e8e8;">
+<div class="main">
+	<!--头部开始-->
+	<div class="topBar">
+		<div class="wrap"> <span class="back" onClick="history.go(-1)"></span>
+			<h1>我的酷卡</h1>
+			<div class="sxfl filter"><p><a href="#"></a></p></div>
+		</div>
+        <div class="sta"></div>
+	</div>
+	<!--头部结束-->
+    
+    <ul class="szqh">
+      <li id="ti_1" {if $type == 1}class="now_hover"{else}class="old_hover"{/if} onClick="ceck_pic(1);">未激活({$num_list.notUse|default:0})</li>
+      <li id="ti_2" {if $type == 2}class="now_hover"{else}class="old_hover"{/if} onClick="ceck_pic(2);">已激活({$num_list.haveUsed|default:0})</li>
+      <li id="ti_3" {if $type == 3}class="now_hover"{else}class="old_hover"{/if} onClick="ceck_pic(3);">已过期({$num_list.haveInvalid|default:0})</li>
+    </ul>
+    <div id="tj_1">
+     <!--{if $info}-->
+        <!--{foreach from=$info  name=kuka key=key item=item}-->
+       <div class="wdkj">
+       		<p class="picbj {if $type == 3}picbjs{/if}"></p> 
+            <div class="kkcyword">
+                <div class="kknumber">
+                    <p class="kkbianh fl">编号：{$item.sn}</p>
+                    {if $item.is_used eq '1'}
+                	<p class="kkbianh fr">已激活</p>
+                	{/if}
+                    <p class="fr"></p>
+                </div>
+                {if $item.is_used eq '0'}
+                 <p class="kkgive"><a href="javascript:;" data-sn="{$item.sn}" class="open">激活</a></p>
+                {/if}
+                <div class="kkclip  {if $type == 3}kkclips{/if}">¥<strong>{$item.work_num}</strong>{$item.cate_name}</div>
+                <div class="ddbjpic"></div>
+                <div class="kkprice">
+                    <p class="kkshouj fl">{$item.donation_mes}</p>
+                    <p class="kktada fr">{$item.expire_time|date:Y-m-d}&nbsp;&nbsp;到期<span>{if $item.day}(仅剩{$item.day}天){/if}</span></p>
+                </div>
+            </div>
+       </div>
+     <!--{/foreach}-->
+         <!--{else}-->   
+         <td>
+           <div class="empty">
+               <div>未匹配到酷卡数据</div>
+           </div>
+        </td>
+     <!--{/if}-->   
+    </div>
+    
+     <div style="padding-top:20px;">
+       {include file=member.page.bottom.html}
+    </div>
+    <div id="tj_2" style="display:none;">
+    	<div class="wdkj">
+            <p class="picbj"></p> 
+            <div class="kkcyword">
+                <div class="kknumber">
+                    <p class="kkbianh fl">编号：ETR786523456</p>
+                    <p class="kkbianh fr">已激活</p>
+                </div>
+                <div class="kkclip">¥<strong>3000</strong>麦富迪中秋E卡</div>
+                <div class="ddbjpic"></div>
+                <div class="kkprice">
+                    <p class="kkshouj fl">赠送者:雌和尚</p>
+                    <p class="kktada fr">2015.06.27&nbsp;&nbsp;到期<span>(仅剩10天)</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="wdkj">
+            <p class="picbj"></p> 
+            <div class="kkcyword">
+                <div class="kknumber">
+                    <p class="kkbianh fl">编号：ETR786523456</p>
+                    <p class="kkbianh fr">已激活</p>
+                </div>
+                <div class="kkclip">¥<strong>3000</strong>麦富迪中秋E卡</div>
+                <div class="ddbjpic"></div>
+                <div class="kkprice">
+                    <p class="kkshouj fl">赠送者:雌和尚</p>
+                    <p class="kktada fr">2015.06.27&nbsp;&nbsp;到期<span>(仅剩10天)</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tj_3" style="display:none;">
+        <div class="wdkj">
+            <p class="picbj picbjs"></p> 
+            <div class="kkcyword">
+                <div class="kknumber">
+                    <p class="kkbianh fl">编号：ETR786523456</p>
+                    <p class="fr"></p>
+                </div>
+                <p class="kkgive kkgives"><a href="#">激活</a></p>
+                <div class="kkclip kkclips">¥<strong>3000</strong>麦富迪中秋E卡</div>
+                <div class="ddbjpic"></div>
+                <div class="kkprice">
+                    <p class="kkshouj fl"></p>
+                    <p class="kktada kktadas fr">2015.06.27&nbsp;&nbsp;到期</p>
+                </div>
+            </div>
+        </div>
+        <div class="wdkj">
+            <p class="picbj picbjs"></p> 
+            <div class="kkcyword">
+                <div class="kknumber">
+                    <p class="kkbianh fl">编号：ETR786523456</p>
+                    <p class="kkbianh fr">已激活</p>
+                </div>
+                <div class="kkclip kkclips">¥<strong>3000</strong>麦富迪中秋E卡</div>
+                <div class="ddbjpic"></div>
+                <div class="kkprice">
+                    <p class="kkshouj fl">赠送者:雌和尚</p>
+                    <p class="kktada kktadas fr">2015.06.27&nbsp;&nbsp;已过期</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="http://r.cotte.cn/cotte/wap/js/public.js"></script> 
+<SCRIPT language="javascript" type="text/javascript">
+		  function ceck_pic(ix)
+		  {
+			  window.location.href = "/wealth-kuka-1-"+ix+".html";
+			  return;
+		  	for (i=1;i<4;i++)
+			{
+				if (i==ix)
+				{
+					document.getElementById('ti_'+i).className = 'now_hover';
+					document.getElementById('tj_'+i).style.display = 'block';
+				}
+				else
+				{
+					document.getElementById('ti_'+i).className = 'old_hover'; 
+					document.getElementById('tj_'+i).style.display = 'none'; 
+				}
+			}
+		  
+		  }
+</SCRIPT>
+<script>
+ $('.open').click(function(){
+	    var sn = $(this).data("sn");
+		$.post('/wealth-kukajh.html',{sn:sn},function(res){
+			var res = eval("("+res+")");
+			if(res.done){
+				layer.open({
+					content: res.retval.msg,
+					style: 'background:#000;color:#fff;',
+					time: 2,
+				});	
+				window.location.reload();
+			}else{
+				layer.open({
+					content: res.msg,
+					style: 'background:#000;color:#fff;',
+					time: 2,
+				});	
+			}
+		});
+	 
+  
+}) 
+
+</script>
+</body>
+</html>

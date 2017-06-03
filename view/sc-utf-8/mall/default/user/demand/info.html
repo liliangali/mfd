@@ -1,0 +1,90 @@
+{include file=../user/member.header.html}
+<div class="container clearfix">
+{include file=member.menu.html}
+ <div class="ucenter_right fr">
+ <div class="title"><h2>我的需求</h2></div>
+<!--内容-->
+    <div class="wdxq1">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+     <tr>
+      <th class="ctr">定制标题</th>
+      <th colspan="3" align="left">{$info.md_title}</th>
+     </tr>
+     <tr>
+      <td class="ctr"  width="15%">真实姓名</td>
+      <td width="35%">{$info.uname}</td>
+      <td class="ctr" width="15%">定制预算</td>
+      <td width="35%">{$info.params.4.val}</td>
+     </tr>
+     
+     <tr>
+      <td class="ctr">所在地区</td>
+      <td>{$info.region_name}</td>
+      <td class="ctr">品类</td>
+      <td>{$info.params.2.val}</td>
+     </tr>
+     
+     <tr>
+      <td class="ctr">手机号码</td>
+      <td>{$info.mobile}</td>
+      <td class="ctr">面料</td>
+      <td>{$info.params.3.val}{if $info.md_type == 'lin'}<a href="{link app=fabrics act=info arg0=$info.part.part_id}" target="_blank"><img src="{$info.part.part_img}" width="40" height="50" /></a>{/if}</td>
+     </tr>
+     
+     <tr>
+      <td class="ctr">主题风格</td>
+      <td>{$info.params.1.val}</td>
+      <td class="ctr">尺寸号码</td>
+      <td>{$info.params.5.val}</td>
+     </tr>
+    </table>
+   </div>
+
+
+   <div class="wdxq2">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+     <tr>
+      <td width="15%">备注</td>
+      <td>{$info.remark}</td>
+      <td width="262">
+      
+
+        {if $info.adjunct}
+        {foreach from=$info.adjunct item=adj key=__adjKey name=__adj}
+        <p class="fl"><img src="{$site_url}{$adj}"></p>
+        {/foreach}{/if}
+
+      </td>
+     </tr>
+    </table>
+   </div>
+  <input type="hidden" value="{$info.md_id}" id="md_id" />
+
+<!--报价列表-->
+{include file=demand/offer.html}
+<!--报价列表 end-->
+
+
+
+
+<!--内容 end-->
+<script type="text/javascript" src="/static/expand/jquery.swipe.js"></script> 
+<script  type="text/javascript" src="/static/js/detailed.js"></script>
+<script  type="text/javascript" src="/static/expand/layer/layer.min.js"></script>
+
+ </div>
+
+
+
+
+
+
+
+ </div>
+
+
+
+
+<!--底部开始-->
+{include file="../user/footer.html"}
+<!--底部end-->

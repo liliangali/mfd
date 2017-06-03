@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$site_url}/" />
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+{$page_seo}
+<meta name="author" content="ecmall.shopex.cn" />
+<meta name="copyright" content="ShopEx Inc. All Rights Reserved" />
+<link href="{res file=css/user.css}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="static/css/public.css">
+<link rel="stylesheet" type="text/css" href="static/css/tailorpage.css">
+<script type="text/javascript">
+//<!CDATA[
+var PINER = {uid: "{$session_info_user_id}"}; 
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+var REGION_URL="{link app=mlselection act=index arg=region}";
+var reginUrl=REAL_SITE_URL+REGION_URL;
+//]]>
+</script>
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+{$_head_tags}
+</head>
+<body>
+<div class="head">
+  <div class="w">
+    <div class="fl">
+          <a href="#" target="_blank" class="logo"></a>
+        </div>
+        <div class="fl center">
+            <a href="/" class="home"><i></i>首页</a>
+      </div>
+        <div class="fr">
+          <ul class="navArea">
+            &nbsp;&nbsp;&nbsp;&nbsp;{$lang.hello},{$visitor.user_name|escape}
+            <!--{if !$visitor.user_id}-->
+            [<a href="{url app=member&act=login&ret_url=$ret_url}">{$lang.login}</a>]
+            [<a href="{url app=member&act=register&ret_url=$ret_url}">{$lang.register}</a>]
+            <!--{else}-->
+            [<a href="{url app=member&act=logout}">{$lang.logout}</a>]
+            <!--{/if}-->
+            </ul>
+        </div>
+    </div>
+    <div class="bd-menu"> <i class="angle"></i>
+</div>
+</div>
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+        $('input[ectype="change_store_logo"]').change(function(){
+            var src = getFullPath($(this)[0]);
+            $('img[ectype="store_logo"]').attr('src', src);
+            $('input[ectype="change_store_logo"]').removeAttr('name');
+            $(this).attr('name', 'store_logo');
+        });
+        $('input[ectype="change_store_banner"]').change(function(){
+            var src = getFullPath($(this)[0]);
+            $('img[ectype="store_banner"]').attr('src', src);
+            $('input[ectype="change_store_banner"]').removeAttr('name');
+            $(this).attr('name', 'store_banner');
+        });
+
+        $('#my_store_form').validate({
+            errorPlacement: function(error, element){
+                $(element).next('.field_notice').hide();
+                if($(element).parent().parent().is('b'))
+                {
+                    $(element).parent().parent('b').next('.explain').hide();
+                    $(element).parent().parent('b').after(error);
+                }
+                else
+                {
+                    $(element).after(error);
+                }
+            },
+            success : function(label){
+                if($(label).attr('for') != 'store_logo' && $(label).attr('for') != 'store_banner'  ){
+                    label.addClass('validate_right').text('OK!');
+                    }
+            },
+            rules : {
+                store_name : {
+                    required   : true,
+                    maxlength: 20
+                },
+                tel      : {
+                    required     : true,
+                    checkTel     : true
+                },
+                store_banner : {
+                    accept   : 'png|jpe?g|gif'
+                },
+                store_logo   : {
+                    accept   : 'png|jpe?g|gif'
+                }
+            },
+            messages : {
+                store_name  : {
+                    required   : '{$lang.not_empty}',
+                    maxlength: '{$lang.note_for_store_name}'
+                },
+                tel      : {
+                    required   : '{$lang.not_empty}',
+                    checkTel   : '{$lang.allow_tel}'
+                },
+                store_banner : {
+                    accept  : '{$lang.pic_limit}'
+                },
+                store_logo  : {
+                    accept : '{$lang.pic_limit}'
+                }
+            }
+    });
+   regionInit("region");
+        $(".right").mouseover(function(){
+            $(this).next("div").show();
+        });
+        $(".right").mouseout(function(){
+            $(this).next("div").hide();
+        });
+});
+//]]>
+</script>
+{$editor_upload}
+{$build_editor}
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  
+  <div id="right">
+    <div class="wrap">
+
+        <div class="public">
+            <div class="information">
+            <form method="post" enctype="multipart/form-data" id="my_store_form">
+                    <div class="setup info shop">
+                        <table style="width: 100%">
+                            <tr>
+                                <th class="width2" valign="top"><br />更换封面图 :</th>
+                                <td><input type="file" name="store_logo" size="30" class="text width_normal" style="margin:10px 0 5px 0; border:none;"/><br />&nbsp;<br />
+                                 {if $store.store_logo neq ''}<p><img src="{$store.store_logo}" width="120" height="120" /></p>{/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="width2">姓&nbsp;&nbsp;名 :</th>
+                                <td>
+                                    <p class="td_block"><input id="store_name" type="text" class="text width_normal" name="store_name" value="{$store.store_name|escape}"/></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$lang.region} :</th>
+                                <td><div id="region">
+                                    <input type="hidden" name="region_id" value="{$store.region_id}" class="mls_id" />
+                                    <input type="hidden" name="region_name" value="{$store.region_name|escape}" class="mls_names" />
+                                    <!-- {if $store.store_id} -->
+                                    <span>{$store.region_name|escape}</span>
+                                    <input type="button" value="{$lang.edit}" class="edit_region" />
+                                    <select style="display:none">
+                                      <option>{$lang.select_pls}</option>
+                                      {html_options options=$regions}
+                                    </select>
+                                    <!-- {else} -->
+                                    <select class="select">
+                                      <option>{$lang.select_pls}</option>
+                                      {html_options options=$regions}
+                                    </select>
+                                    <!-- {/if} --></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$lang.address} :</th>
+                                <td>
+                                    <p class="td_block"><input type="text" name="address" class="text width_normal" id="address" value="{$store.address|escape}" /><span class="field_notice">{$lang.address_info}</span></p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>{$lang.tel} :</th>
+                                <td>{$store.tel}</td>
+                            </tr>
+
+                            <tr>
+                                <th>联系QQ :</th>
+                                <td><input name="im_qq" type="text" class="text width_normal" id="im_qq" value="{$store.im_qq}" /></td>
+                            </tr>
+
+                            <tr>
+                                <th>微&nbsp;&nbsp;信 :</th>
+                                <td><input name="im_wx" type="text" class="text width_normal" id="im_wx" value="{$store.im_wx}" /></td>
+                            </tr>
+                            <tr>
+                                <th>Emall :</th>
+                                <td><input name="email" type="text" class="text width_normal" id="email" value="{$store.email}" /></td>
+                            </tr>
+
+                           <tr>
+                                <th>专业经历 :</th>
+                                <td><input name="experience" type="text" class="text width_normal" id="experience" value="{$store.experience}" /></td>
+                            </tr>
+
+                           <tr><th>服务 :</th>
+                           <td>
+                          <!--{foreach from=$lang.store_arrt_list.1 item=fw}-->
+                          <label><input type="checkbox" <!--{if $store.$fw.ch}-->checked<!--{/if}--> value="1" name="{$fw.ch}">{$fw.name}</label>
+                          <!--{/foreach}-->
+                          </td>
+                          </tr>
+
+                           <tr>
+                           <th>专题风格 :</th>
+                           <td>
+                           <!--{foreach from=$lang.store_arrt_list.2 item=fg}-->
+                            <label><input type="checkbox" <!--{if $store.$fg.ch}-->checked<!--{/if}--> value="1" name="{$fg.ch}">{$fg.name}</label>
+                           <!--{/foreach}--></td>
+                           </tr>
+
+                           <tr>
+                                <th class="width2" valign="top"><br />准则封面图 :</th>
+                                <td><input type="file" name="fw_logo" size="30" class="text width_normal" style="margin:10px 0 5px 0; border:none;"/><br />&nbsp;<br />
+                                 {if $store.fw_logo neq ''}<p><img src="{$store.fw_logo}" width="120" height="120" /></p>{/if}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th class="align3">服务准则 :</th>
+                                <td><div class="editor"><div>
+                                    <textarea name="fw_description" id="fw_description" style="width:400px; height:100px;">{$store.fw_description|escape}</textarea></div>
+                                   <div style=" position: relative; top: 10px; z-index: 5;">
+                                    <div class="clear"></div>
+                                    </div>
+                                 </td>
+                             </tr>
+
+
+                             <tr>
+                                <th class="align3">个人简历 :</th>
+                                <td><div class="editor"><div>
+                                    <textarea name="description" id="description" style="width:400px; height:100px;">{$store.description|escape}</textarea></div>
+                                   <div style=" position: relative; top: 10px; z-index: 5;">
+                                    <div class="clear"></div>
+                                    </div>
+                                    <div class="issuance"><input type="submit" class="btn" value="{$lang.submit}" /></div>
+                                 
+								 </td>
+                             </tr>
+
+
+
+
+
+                         </table></form>
+          </div>
+                </div>
+
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="footer">
+  <div class="w">
+    <dl class="first">
+      <dt>关于我们</dt>
+      <dd>
+        <ul>
+          <li><a href="#" target="_blank">集团简介</a></li>
+          <li><a href="#" target="_blank">法律声明</a></li>
+          <li><a href="#" target="_blank">潮流资讯</a></li>
+          <li><a href="#" target="_blank">招聘信息</a></li>
+          <li><a href="#" target="_blank">员工之家</a></li>
+        </ul>
+      </dd>
+    </dl>
+    <dl>
+      <dt>人才成长</dt>
+      <dd>
+        <ul>
+          <li><a href="#" target="_blank">人才理念</a></li>
+          <li><a href="#" target="_blank">薪酬福利</a></li>
+          <li><a href="#" target="_blank">招聘信息</a></li>
+          <li><a href="#" target="_blank">走进红领</a></li>
+          <li><a href="#" target="_blank">企业文化</a></li>
+        </ul>
+      </dd>
+    </dl>
+    <dl>
+      <dt>帮助中心</dt>
+      <dd>
+        <ul>
+          <li><a href="#" target="_blank">物流查询</a></li>
+          <li><a href="#" target="_blank">订单查询</a></li>
+          <li><a href="#" target="_blank">配送方式</a></li>
+          <li><a href="#" target="_blank">支付方式及流程</a></li>
+        </ul>
+      </dd>
+    </dl>
+    <dl>
+      <dt>售后服务</dt>
+      <dd>
+        <ul>
+          <li><a href="#" target="_blank">如何退换货</a></li>
+          <li><a href="#" target="_blank">法律声明</a></li>
+          <li><a href="#" target="_blank">售后服务政策</a></li>
+          <li><a href="#" target="_blank">量体服务</a></li>
+        </ul>
+      </dd>
+    </dl>
+    <dl class="last">
+      <dt>关注我们</dt>
+      <dd>
+        <div class="share"> <span class="sina"></span> <span class="qzone"></span> <span class="weixin"></span> <span class="qqwb"></span> </div>
+        <div class="qrcode">
+          <p>阿里裁缝APP</p>
+          <a href="#">扫描或点击下载</a> </div>
+      </dd>
+    </dl>
+    <div class="bottom"> <a href="#" class="logo fl"></a>
+      <div class="fr">
+        <p>© RCTAILOR 版权所有&nbsp;&nbsp;&nbsp;邮箱：rcmtm@rcmtm.com&nbsp;&nbsp;&nbsp;地址：山东省青岛即墨红领大街17号</p>
+        <p>鲁ICP备10207738&nbsp;&nbsp;&nbsp; 京公网安备110106010015号</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="static/expand/jquery.swipe.js"></script> 
+<script  type="text/javascript" src="static/js/tailorpage.js"></script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+{include file=member.menu.html}
+
+{if $result}
+    <div class="user_right user_rights fr">
+		<h4 class="collection">作品详情</h4>
+        <input type="hidden" name="id" id="id" value="{$result.id}">
+        <input type="hidden" id="member_lv_id" value="{$member_lv_id}">
+        <div class="zpxq_left">
+          <div class="zpxq_nb">
+		  
+		  <div id="slider" class="swipe">
+			  <div class="swipe-wrap">
+			  	<!--{foreach from=$result.imgs item=imgs}-->
+				<p class="p1"><img src="{$imgs}"></p>	
+				<!--{/foreach}-->		
+			  </div>
+		   </div>
+           
+           <p class="p2">{$result.work_name}</p>
+           <p class="p3">¥{$result.pa.price}</p>
+           {if $result.pa.is_sale}
+           <p class="jxsj"><a href="{$result.url}">继续设计</a></p>
+           {else}
+           <p class="jxsj" style="background:#AAAAAA"><a href="#">继续设计</a></p>
+           {/if}
+          </div>
+         <div class="nbal clearfix"> 
+          <ul>
+		 <!--{foreach from=$result.imgs item=imgs name=loop}-->
+			<li {if $smarty.foreach.loop.index == 0}class="on"{/if}></li>	
+		<!--{/foreach}-->	
+          </ul>
+         </div>
+
+		  {if $type_info eq 'info'}
+	          {if $result.pa.is_sale}
+	            <p class="fxbt">分享给我的好友</p>
+				<div class="shareList"> 
+					<a class="wx" data-cmd="wx" title="微信"></a>
+					<a class="tsina" data-cmd="tsina" title="新浪微博"></a>
+					<a class="tqq" data-cmd="tqq" title="腾讯微博"></a>
+					<a class="qzone" data-cmd="qzone" title="QQ空间"></a>
+				</div>
+			  {else}
+			  <p class="fxbt" style="color:#717171">&nbsp;&nbsp;此面料已下架，不能进行修改与分享。</p>
+			  {/if}
+		  {/if}
+
+        </div>
+        
+        <div class="zpxq_right">
+         <h1>设计理念</h1>
+         <div class="sjll">{$result.description}</div>
+         
+         <h1>工艺信息</h1>
+         <div class="gdt">
+		 <!--{foreach from=$result.params_value item=params_value}-->
+		 <h2>{$params_value.name}</h2>
+		 	  <div class="gyxx">
+		 	  <!--{foreach from=$params_value.params item=params}-->
+		 	  {if $params.p_name}
+		 	  {$params.p_name}选择：{$params.s_name} <br/>
+		 	  {/if}
+		 	  <!--{/foreach}-->
+		 	  </div>
+		 <!--{/foreach}-->
+		 </div>
+         
+		{if $type_info eq 'info'}
+	         <div class="fxjl" id="share">
+	         {if $result.pa.is_sale}
+	          <p class="jxsj p1"><a href="{link app=my_works act=shareList arg0=$result.id}">分享我的顾客</a></p>
+	         {else}
+	         <p class="jxsj p1" style="background:#AAAAAA"><a href="#">分享我的顾客</a></p>
+	         {/if}
+	          <p class="jxsj p2"><a href="{link app=my_works act=shareRecord arg0=$result.id}">分享记录</a></p>
+	         </div>
+	         {if $user.member_lv_id < 2}
+		     {if $result.is_counter == 0}
+	 	     <div class="fxjl"><p class="jxsj p1" id="counter"><a href="javascript:;" onclick="counterWork(this)" id="counterWork">推送给邀请人</a></p></div>
+	 	     {else}
+	 	     <div class="fxjl"><p class="jxsj p1" style="background:#AAAAAA"><a href="#">已经反推成功</a></p></div>
+			 {/if}
+			{/if}
+		{else if $type_info eq 'counter'}
+			<h1>来源信息</h1>
+			<div class="gyxx">
+			推送用户：{$result.counter_info.user_name}{if $result.counter_info.nickname}&nbsp;&nbsp;({$result.counter_info.nickname}){/if} <br />
+			推送时间：{$result.counter_add_time} <br />
+			推送备注：{$result.counter_description}
+			</div>
+		{/if}
+        </div>
+		
+    </div>
+{else}
+<div class="user_right user_rights fr">
+<div class="empty">
+	<div>您暂不能观看作品。</div>
+</div>
+</div>
+{/if}
+
+</div>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/luck/pc/luck.js"></script>
+<script src="/public/global/jquery.swipe.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+<script>
+var slider = Swipe(document.getElementById('slider'), {
+	auto: 3000,
+	continuous:false,
+	callback: function(index, element) {
+		$('.nbal li').eq(index).siblings().removeClass('on').end().addClass('on')
+	}
+});
+$('.nbal li').click(function(){
+	slider.slide($(this).index())	
+})
+var lv_id = $('#member_lv_id').val();
+$(document).ready(function(){
+    if(lv_id<2){
+        $('#share').hide();
+    }
+});
+/*===========================*
+	     反推创业者
+*============================*/
+function counterWork(obj){
+	if(window.confirm('确定要推送吗？')){
+		var id = $('#id').val();
+		 $.post("./my_works-counterWork.html",{id:id}, function(res){
+		 var res = eval("("+res+")");
+		 if(res.done == 1){
+		 	//alert(res.retval);
+		 	//location.reload();
+		 	luck.open({
+						title:'推荐给我的邀请人',
+						width:'400px',
+						height:'335px',
+						class:'addclass',
+						content:'<div style="padding:15px 40px 40px 40px;" id="bdm"><p>看上这件作品了？让你的邀请人为你下单，你将获得更大的优惠！同时你还能与Ta一起对此作品继续设计哦</p><textarea style="width: 320px; height: 120px; text-align: left;" tip="" rows="6" name="counter_description" id="counter_description"></textarea><p class="jxsj p1" style="margin-top:30px;width:80px;"><a id="tszp" onclick="tszp()" href="javascript:;">推送</a></p></div>'
+					});
+		 }else if(res.retval == -2){
+		 			luck.open({
+						title:'必须绑定顾问',
+						width:'300px',
+						height:'200px',
+						class:'addclass',
+						content:'<div style="padding:40px;" id="bdm">邀请码：<input type="text" value="" id="invite" name="invite"><p class="jxsj p1" style="margin-top:30px;width:80px;"><a id="bdm" onclick="bdm()" href="javascript:;">提交</a></p></div>'
+					});
+		 }else{
+		 	alert(res.msg);
+		 	location.reload();
+		 }
+		 });
+	}
+}
+function bdm(){
+	var invite = $('#invite').val();
+	//进行验证邀请码
+	$.post("./my_works-addinviter.html",{invite:invite}, function(res){
+			var res = eval("("+res+")");
+			if(res.done){
+				alert('邀请成功')
+				location.reload();
+			}else{
+				alert('邀请码错误!')
+			}
+	});
+
+}
+//推送信息
+function tszp(){
+	var counter_description = $('#counter_description').val();
+	var id = $('#id').val();
+	//进行推送
+	$.post("./my_works-add_counterWork.html",{counter_description:counter_description,id:id}, function(res){
+			var res = eval("("+res+")");
+			if(res.done){
+				alert('推送成功')
+				location.reload();
+			}else{
+				alert('推送失败!')
+			}
+	});
+}
+
+
+/*===========================*
+	      分享 
+*============================*/
+(function(){
+	var _mfd_share_config = {
+		Site:'mfd个性化定制',
+		Text:'mfd·麦富迪',	
+		Desc:'',	
+		Url :'',
+		Pic :'',
+	},
+	shareUrl={
+		sina:function(){
+			return 'http://service.weibo.com/share/share.php?url='+_mfd_share_config.Url+'&title='+_mfd_share_config.Text+'&pic='+_mfd_share_config.Pic
+			},
+		qzone:function(){
+			return 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+_mfd_share_config.Url+'&title='+_mfd_share_config.Text+'&desc='+_mfd_share_config.Desc+'&summary=&site='+_mfd_share_config.Site+'&pics='+_mfd_share_config.Pic
+		},
+		tqq:function(){
+			return 'http://share.v.t.qq.com/index.php?c=share&a=index&url='+_mfd_share_config.Url+'&title='+_mfd_share_config.Text+'&appkey=&pic='+_mfd_share_config.Pic	
+		},
+		sqq:function(){
+			return 'http://connect.qq.com/widget/shareqq/index.html?url='+_mfd_share_config.Url+'&title='+_mfd_share_config.Text+'&desc='+_mfd_share_config.Desc+'&summary=&site='+_mfd_share_config.Site+'&pics='+_mfd_share_config.Pic
+		}
+	};
+
+	$('.shareList').on('click','a',function(){
+		var t=$(this).attr('data-cmd'),url='';
+		//获取站外分享url
+		$.post("./my_works-shareUrl.html",{id:$('#id').val()}, function(res){
+			res=eval('('+res+')');
+			_mfd_share_config.Url=res.retval.url//更新URL
+			_mfd_share_config.Pic=res.retval.imgs.join('||');//分享图片
+			switch(t){
+				case 'tsina':
+					url=shareUrl.sina();
+				break;
+				case 'qzone':
+					url=shareUrl.qzone();
+				break
+				case 'tqq':
+					url=shareUrl.tqq();
+				break;
+				case 'sqq':
+					url=shareUrl.sqq();
+				break;
+				case 'wx':
+					luck.open({
+						title:'微信扫一扫',
+						width:'300px',
+						height:'340px',
+						class:'mfd-luck',
+						content:'<img src="http://qr.liantu.com/api.php?text='+res.shareUrl+'" width="265" height="265" style="display:block;margin:0 auto">'
+					});
+					return
+				break;
+				default :
+					alert('未定义分享')
+			}
+			window.open(url);	
+		})	
+	})
+})();
+</script>
+{include file=footer.html}
+

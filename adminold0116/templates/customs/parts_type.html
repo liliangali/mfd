@@ -1,0 +1,73 @@
+<table>
+<!-- {foreach from=$types item=tp key=tkey} -->
+	<tr><th class="paddingT15"> {$tp.name} : </th><td class="paddingT15 wordSpacing5">
+	<div class="tps" >
+	   <div class="tp_name" value="{$tp.id}" vname="{$tp.name}"  style="width:150px;cursor:pointer;">加载中...</div>
+	   <div id="tp_{$tp.id}"></div>
+	</div></td></tr>
+<!-- {/foreach}  -->
+</table>
+<script type="text/javascript">
+
+$(function(){
+    
+    var _cstId = "{$data.cst_id}";
+    
+    //由于每次点击类型出分类的时候 selected 会被刷新掉  实在找不到解决办法  就让页面加载的时候直接Ajax请求分类数据,而不是点击的时候才出.
+    //当然,为了保险起见,原先的没删,这样的话页面加载的时候没有出的数据,点击之后还能再Ajax请求一次
+    
+    $('.tp_name').each(function(){
+            var _this = $(this);
+            var _id=_this.attr('value');
+            var _div = '#tp_'+_id;
+            var _text=$(_div).html();
+            var _name = _this.attr('vname');
+     
+            //if(_text == '' || _text == null){
+            if(_text.length == 0){
+                $.ajax({
+                    url:"index.php?app=customs&act=ajax_parts_cate",
+                    data:"id="+_id+"&cstId="+_cstId,
+                    success:function(result){
+                        $(_div).html(result);
+                        $(_div).css('display','none');
+                        _this.html(_name);
+                    }
+                });
+            }
+    })
+    
+    function ajax_parts_cate(){
+        
+    }
+    
+    $('.tp_name').each(function(){
+        $(this).click(function(){
+            var _id=$(this).attr('value');
+            var _text=$('#tp_'+_id).html();
+            if(_text.length == 0){
+                /*
+                $.ajax({
+                    url:"index.php?app=customs&act=ajax_parts_cate",
+                    data:"id="+_id+"&cstId="+_cstId,
+                    success:function(result){
+                        $('#tp_'+_id).html(result);
+                    },
+                });
+                
+                $('#tp_'+_id).css('display','block');*/
+            }else{
+                var _css = $('#tp_'+_id).css('display');
+                if(_css == 'none'){
+                    $('#tp_'+_id).css('display','block');
+                }else{
+                    $('#tp_'+_id).css('display','none');
+                }
+                
+            }
+            
+        })
+       
+    });
+});
+</script>

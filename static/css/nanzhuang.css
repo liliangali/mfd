@@ -1,0 +1,118 @@
+*{margin:0;padding:0;}
+body { margin: 0; padding: 0; background:#fff; color:#000; font:14px/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif; min-width:768px;}
+h1, h2, h3, h4, h5, h6, p, form, div, dl, dd, dt, ul, li, img{list-style-type: none;border:0;font-weight:normal;}
+.left{float:left;}
+.right{float:right;}
+img{display:block;}
+a { color: #000; text-decoration: none; outline: 0; transition: color 0.3s ease 0s; }
+a:hover { color: #5fc7ae; text-decoration:none; }
+.display{display:none;}
+
+.clearfix:after {content:"."; height:0px; line-height:0px; overflow:hidden; clear:both; display:block; visibility:hidden;}
+.clearfix{zoom:1;}
+.area{overflow:hidden;}
+
+/*布局*/
+.container{margin:0 auto; overflow:hidden;}
+/*头部*/
+body{position:relative;}
+.dwpic{width:100%; height:534px; position:absolute; top:0; z-index:-1;}
+.dwpic img{width:100%; height:100%; margin:0 auto;}
+.head{height:86px; padding:0 111px; min-width:768px; background:#fff;filter:alpha(opacity=80);  -moz-opacity:0.8;  -khtml-opacity:0.8; opacity:0.8; }
+.head .logo{width:306px; height:40px; background:url(../../static/img/nz_logo.png) no-repeat; margin-top:22px;}
+.head .navBox{margin-top:32px;}
+.head li{float:left; padding-right:18px;font-size:22px;}
+.head .car a{display:block; width:20px; height:18px; background:url(../../static/img/hd_icon01.png) no-repeat;  text-indent:-2000px; margin:8px 0 0 7px;}
+.head .uCenter a{ display:block; width:20px; height:18px; background:url(../../static/img/hd_icon02.png) no-repeat; margin:8px 0 0 13px; text-indent:-2000px;}
+
+/*内容*/
+.textwbr{font-size:41px;text-align:center;margin-top:6%;}
+.textwbr span{width:93px;height:32px;display:block;margin:0 auto;border-bottom:2px solid #393939;}
+.textwbs{font-size:22px; text-align:center;margin-top:70px;}
+.textwbsi{text-align:center;margin-top:11.8%;font-size:37px;}
+.textwbsi span{width:115px;height:43px;display:block;margin:0 auto;border-bottom:5px solid #fd2604;}
+.textwbw{font-size:20px;text-align:center;margin-top:40px;color:#4a4a4a;}
+
+/*下拉*/  
+.menu{ max-width:1200px; width:100%; margin:0 auto; margin-top:3%; position:relative; overflow:hidden;}
+.select_nav {width:580px; margin:0 auto;}
+.select_ul {float:left; padding-left:50px;}
+.select_ul li {float:left; line-height:16px; cursor:pointer; height:44px; line-height:44px; margin:0 1px; width:104px; text-align:center; background:#f1f1f1 url(../../static/img/sjt.png) 85px 19px no-repeat; background-size:11px 6px; font-size:16px;}
+.select_ul .style_img:hover { background:#d4d4d4 url(../../static/img/sjt.png) 85px 19px no-repeat; background-size:11px 6px;}
+.select_ul li ul {display:none;}
+.select_ul li {position:relative; text-align:center;}
+.select_ul li ul {position:absolute; top:44px; left:0; z-index:10; width:104px;  background-color: rgba(255,255,255,0.7); padding-top:2px;}
+.select_ul li ul li {text-align:center; display:block; float:none; height:38px; line-height:38px; overflow:hidden; cursor:pointer; margin:0 0 1px 0; background:#e8e8e8; font-size:14px;}
+.select_ul li ul li:hover {background-color: rgba(0,0,0,0.7); color:#fff;}
+.select_ul li ul li:last-of-type {margin-bottom:0;}
+
+
+.menu dl{margin-top:80px;overflow:hidden; width:105%;}
+.menu dl dd {width:273px; height:460px; float:left; text-align:center; margin:0 36px 66px 0;}
+.menu dl dd img{width:273px;height:364px;}
+.menu dl dd .hymc{font-size:18px; color:#000; line-height:38px; height:38px; background:url(../../static/img/nztx.gif) 55px 7px no-repeat;margin-top:13px; overflow:hidden;}
+.menu dl dd .cpjsmc{font-size:14px;height:27px;line-height:27px;overflow:hidden;}
+.menu dl dd .jine{color:#8f8f8f; height:22px; line-height:22px; overflow:hidden;}
+
+/*内容*/
+.hide{display:none;}
+.top127{margin-top:68px;}
+#containers{width:100%;min-width:768px;max-width:1159px;margin:0 auto;position:relative;z-index:0;margin-top:103px;}
+.slides_container {min-width:768px;max-width:1159px;width:100%;overflow:hidden;position:relative;height:330px;}
+.supplement{min-width:768px;max-width:1159px;width:100%;overflow:hidden;}
+.qhword{width:25%;float:left;text-align:center;margin-left:6.5%;}
+.qhword img{margin:0 auto;}
+.qhword strong{font-size:22px;color:#080808;margin-top:18px;display:block;}
+.qhword .english{font-size:14px;line-height:22px;margin-top:18px;color:#a2a2a2;}
+#slides .next,#slides .prev {position:absolute;top:110px;left:0px;width:37px;height:23px;display:block;z-index:101;}
+#slides .next {left:96.3%;}
+.pagination{display:none;}
+
+/*分页*/
+.cc_page{text-align:center; margin-top:40px; font-size:18px; background:#f1f1f1; height:100px; width:100%; line-height:100px;}
+.cc_page a,.cc_page span{display:inline-block; height:20px; line-height:20px; width:15px; margin:0 12px; border:1px solid transparent; color:#666;}
+.cc_page .active{color:#000;}
+.cc_page .zjt { font-family:宋体; font-weight:bold;}
+
+/*底部*/
+.footer{overflow:hidden;padding:65px 543px; background:#2f3035;margin-top:50px;color:#cbcbcc; font-size:14px; text-align:center;}
+.footer .contact{padding-top:21px;}
+.footer .time{padding-left:9%;padding-top:21px;}
+.footer .scanning{ width:110px;text-align:center;padding-left:26%;font-size:12px;}
+.footer .scanning img{width:110px;height:110px;overflow:hidden;}
+/*响应*/
+@media (min-width: 768px) and (max-width:980px){
+.container {width:768px; }
+.footer{padding:65px 73px;}
+.footer .time{padding-left:7%;}
+.footer .scanning{padding-left:12%;}
+}
+@media (min-width: 980px) and (max-width:1024px){
+.container {width:980px; }
+.footer{padding:65px 100px;}
+.footer .time{padding-left:11%;}
+
+.footer .scanning{padding-left:25%;}
+}
+@media (min-width: 1024px) and (max-width:1280px) {
+.container {width:1024px;}
+.content dl{overflow:hidden;padding-right:3%;}
+.footer{padding:65px 153px;}
+.footer .time{padding-left:7%;}
+.footer .scanning{padding-left:21%;}
+}
+@media (min-width: 1280px) and (max-width:1440px) {
+.container {width:1280px;}
+.footer{padding:65px 232px;}
+.footer .time{padding-left:10%;}
+.footer .scanning{padding-left:26%;}
+}
+@media (min-width: 1440px) and (max-width:1540px) {
+.container {width:1440px;}
+.footer{padding:65px 310px;}
+.footer .time{padding-left:10%;}
+.footer .scanning{padding-left:26%;}
+}
+@media (min-width: 1540px) {
+.container {width: 1540px; }
+}

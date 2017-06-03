@@ -1,0 +1,64 @@
+<style>
+body{ display:none;}/*不许删*/
+
+body { font: 14px/1.5 arial, "Microsoft Yahei", "Hiragino Sans GB", sans-serif; color:#333; background:#fff;}
+body a{outline:none;blr:expression(this.onFocus=this.blur());}
+body, form, ul, ol, li, span, p, dl, dt, dd, img, h1, h2, h3, h4, h5, h6 ,input{ margin: 0; padding: 0; border:none;}
+img { border: 0;}
+input,textarea,button{ outline:0;}
+ul, ol, li { list-style: none }
+em { font-style: normal }
+a { text-decoration: none; color: #333; transition:color ease .3s;-webkit-transition:color ease .3s;}
+a:hover { color: #e66800;}
+.fl { float: left; } 
+.fr { float: right; }
+.clearfix:after { content: "."; height: 0px; line-height: 0px; overflow: hidden; clear: both; display: block; visibility: hidden; }
+.clearfix { zoom: 1; }
+
+.banner { background:url(images/banner_1.jpg) center top no-repeat; height:416px; max-width:1920px;}
+.zttu_qdxp { max-width:1200px; margin:0 auto;}
+.sdpic{width:1200px;overflow:hidden;}
+.sdpic ul li{width:400px;height:686px;overflow:hidden;float:left;}
+</style>
+<div id="zhuanti">
+<div class="banner"></div>
+<div class="zttu_qdxp">
+	<div class="sdpic"><img src="images/sdpic01.jpg" width="1200" height="1083" alt=""></div>
+    <div class="sdpic">
+    	<ul>
+        	<li><a href="http://www.mfd.cn/goods-400.html" target="_blank"><img src="images/sdpic02.jpg" width="400" height="686" alt=""></a></li>
+            <li><a href="http://www.mfd.cn/goods-527.html" target="_blank"><img src="images/sdpic03.jpg" width="400" height="686" alt=""></a></li>
+            <li><a href="http://www.mfd.cn/goods-420.html" target="_blank"><img src="images/sdpic04.jpg" width="400" height="686" alt=""></a></li>
+        </ul>
+    </div>
+    <div class="sdpic"><img src="images/sdpic05.jpg" width="1200" height="1627" alt=""></div>
+    <div class="sdpic"><img src="images/sdpic06.jpg" width="1200" height="657" alt=""></div>
+    <div class="sdpic"><img src="images/sdpic07.jpg" width="1200" height="1116" alt=""></div>
+</div>
+
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script>
+document.domain='mfd.cn';
+$.ajax({
+	url:'/header.html',
+	success: function(d){
+		$('#zhuanti').before(d)
+		$.ajax({
+			url:'/footer.html',
+			success: function(d){
+				$('#zhuanti').after(d);
+				$('body').fadeIn('slow');
+			},
+			error:function(e){}	
+		});
+	},
+	error:function(e){}	
+});
+</script>
+<!--统计代码-->
+<div style="display:none;">
+<script type="text/javascript">
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1256310283'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256310283' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<!--统计代码-->

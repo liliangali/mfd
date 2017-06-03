@@ -1,0 +1,8 @@
+{foreach from=$servers item=sitem key=key}
+<li class="{if $server_id == $key} on {/if} server_li" style="border:none;" data-id="{$key}" >
+  <div class="check">
+   <h1 class="bgww">{$sitem.serve_name}</h1>
+   <p class="bgww">{$sitem.serve_address}<span>{$sitem.store_mobile}</span></p>
+  </div>
+</li>
+{/foreach}

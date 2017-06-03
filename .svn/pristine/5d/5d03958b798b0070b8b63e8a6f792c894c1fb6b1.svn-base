@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>激活优惠券</title>
+<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<link rel="stylesheet" type="text/css" href="/static/css/layer_mobile/need/layer.css">
+<script type="text/javascript" src="/static/css/layer_mobile/layer.js"></script>
+<script type="text/javascript" src="/static/js/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+	<div class="mian">
+
+    	<div class="header">
+			<div class="p1"><a href="javascript:history.go(-1)"></a></div>
+			<div class="p2">激活优惠券</div>
+		</div>
+        <input type="text" placeholder="请输入10位激活码激活" name="code" class="activation" />
+        <button class="jhbut" onClick="lay()">激活</button>
+    </div>
+</body>
+</html>
+<script>
+//激活成功调用这个方法
+
+function lay(){
+	var code =$('.activation').val();
+	$.ajax({
+		"url":"/member-jihuo.html",
+		"data": "code="+code ,
+		"type": "POST",
+		'dataType':'json',
+		"success": function(res) {
+			if(res.done === false){
+				alert(res.msg);
+			}else{
+				layer.open({
+					  anim: 'up',
+					  content:'激活成功<br><span style="font-size:12px;color:#767676;">您可以到我的麦券栏目里查看&nbsp;&nbsp;相关优惠券信息</span>',
+					  btn: ['查看', '购物'],
+					  yes:function(){
+							window.location.href="/member-quan-1.html";
+						},
+					  no:function(){
+							window.location.href="/fdiy-1-3.html";
+						},
+					});
+			
+			}
+		}
+	});	
+}
+</script>

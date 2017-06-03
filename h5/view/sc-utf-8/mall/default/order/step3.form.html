@@ -1,0 +1,140 @@
+{include file=order/member.header.html}
+	<form method="post" action='order-create.html' name="form_order_addapp_step3"  id="orderForm">
+		<div class="dd_tit">
+			<div class="tit_h">
+				{include file=order/items/kh.html}            
+				<div class="h101">
+					{if !empty($addrlist)}
+					<h3>收货地址</h3>
+					<div class="h101_p">
+						<div class="h101_p_left" >
+							<span>{$addrlist.consignee}&nbsp;&nbsp;{$addrlist.phone_mob}</span>
+							<p>{$addrlist.region_name}&nbsp;&nbsp;{$addrlist.address}</p>
+						</div>
+						<div class="h101_p_right"><a href="/order-addrlist.html">></a></div>
+					</div>
+					{else}
+					<div class="h101">
+						<h3>收货地址</h3>
+						<a href="/order-addr_add.html" class="add_adress"><div><font>+</font> <span>添加收货地址</span></div></a>
+					</div>
+					{/if}
+					<input type="hidden" value="{$addrlist.addr_id}" name="kh_addr_id" />
+				</div>
+				<div class="num_mon">
+					<div class="num5">
+						<span>数量</span>
+						<input type="text" value="1" name="kh_order_num" placeholder="1"/>
+					</div>
+					<div class="mon5">
+						<span>金额</span>
+						<input type="text" value="" name="kh_amount" placeholder="0"/>
+						<font>元</font>
+					</div>
+				</div>
+
+				<h3>付款方式</h3>
+				<ul class="a1">
+					<li class="left0">
+						<input type="radio" name="opinions2" checked="checked" id="no-way" value="malipay" />
+						<label for="no-way">移动支付宝</label>
+					</li>
+					<li class="right0">
+						<input type="radio" name="opinions2" id="totally" value="totally"/>
+						<label for="totally">银联在线支付</label>
+					</li>
+
+				</ul>
+				<h3>订单备注</h3>
+				<textarea name="memo" class="textarea05"></textarea>  
+			</div>
+		</div>
+           
+		<div class="dd_tit e5e5e5"><a href="javascript:history.go(-1);" class="w48 left0" >上一步</a><button type="submit" class="w48 right0 next_botton">下一步</button></div>
+	</form>
+	
+	<script>
+		//按钮提交前判断
+		$(document).ready(function() {
+			$(":submit").click(function(event) {
+				$('.input_data>li').each(function(data) {
+					var in_data = $('.input_data>li:eq('+data+')').find("input").val();
+					var dataname = $('.input_data>li:eq('+data+')').find("input").attr("dataname");
+					if(in_data == 0 || in_data == '0.00' || in_data == '') {
+						//执行弹出层
+						easyDialogEmpty('请填写'+dataname+'信息后再进行<br>下一步操作', 2000);
+						event.preventDefault();
+					}
+					if(dataname == '手机' && in_data != '' ) {
+						var isTel = /^1[3458][0-9]{9}$/.test(in_data);
+						if(!isTel) {
+							easyDialogEmpty('您填写手机格式有误！</br>请重新输入', 2000);
+							event.preventDefault();
+						}
+					}
+					if(dataname == '身高' || dataname == '体重') {
+						if(isNaN(in_data)) {
+							easyDialogEmpty('您填写'+dataname+'格式有误！</br>请重新输入', 2000);
+							event.preventDefault();
+						}
+					}
+				});
+				
+				var kh_addr_id   = $('input[name=kh_addr_id]').val();//收获地址
+				var kh_order_num = $('input[name=kh_order_num]').val();//购买数量
+				var kh_amount    = $('input[name=kh_amount]').val();//金额
+				var opinions2    = $('input[name=opinions2]:checked').val();//付款方式
+
+				if(kh_addr_id == 0) {
+					//执行弹出层
+					easyDialogEmpty('请选收货地址后再进行<br>下一步操作', 2000);
+					return false;
+				}
+				if(kh_order_num == 0) {
+					//执行弹出层
+					easyDialogEmpty('请填写面料购买数量后再进行<br>下一步操作', 2000);
+					return false;
+				} else {
+					var isNum = /^[0-9]*[1-9][0-9]*$/.test(kh_order_num);
+					if(!isNum) {
+						easyDialogEmpty('您填写数量格式有误！</br>请重新输入', 2000);
+						event.preventDefault();
+					}
+				}
+				
+				if(kh_amount == 0) {
+					//执行弹出层
+					easyDialogEmpty('请填金额后再进行<br>下一步操作', 2000);
+					return false;
+				} else {
+					var isPrice = /^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/.test(kh_amount);
+					if(!isPrice) {
+						easyDialogEmpty('您填写金额格式有误！</br>请重新输入', 2000);
+						event.preventDefault();
+					}
+				}
+				
+				if(opinions2 == '') {
+					//执行弹出层
+					easyDialogEmpty('请填选择支付方式后再进行<br>下一步操作', 2000);
+					return false;
+				}else if(opinions2 == 'totally'){
+					easyDialogEmpty('银联在线支付暂未开启请选择<br>其他支付方式', 2000);
+					return false;
+				}
+			});
+		});
+		
+		//空处理弹出框
+		function easyDialogEmpty(content, time) {
+			//执行弹出层
+			easyDialog.open({
+				container : {
+					content : content
+				},
+				autoClose : time
+			});
+		}
+	</script>
+</body>
+</html>

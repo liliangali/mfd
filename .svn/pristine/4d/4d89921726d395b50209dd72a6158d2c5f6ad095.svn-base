@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>工艺下单</title>
+<link rel="stylesheet" type="text/css" href="/static/css/public.css">
+<link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+<script type="text/javascript" src="/static/expand/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/order.css">
+</head>
+<body>
+<style>
+.source h2{float:none}
+</style>
+<h1 class="ddtit">工艺下单</h1>
+
+<div class="ddtijiao" id="FormBox_2" style="display: block;">
+<form action="" method="post" id="orderForm_2">
+
+<div class="clearfix">
+    <h2>基本信息</h2>
+    客户姓名:<input type="text" name="fabric[realname]" >
+    性别:<select name="fabric[gender]"><option value="10040">男</option><option value="10041">女</option></select>
+    身高:<input type="text" name="fabric[height]">
+    体重:<input type="text" name="fabric[weight]">
+</div>
+<div class="clearfix">
+    <h2>收货信息</h2>
+    收货地址 <input type="text" name="ship_addr" />
+    收货人   <input type="text" name="ship_name" />
+    联系电话 <input type="text" name="ship_mobile" />
+</div>
+
+
+<div id="figures">
+{include file=orderj/items/figure.html}
+</div>
+
+
+    
+<div class="bnt_box">
+<input type="hidden" name="order_id" value="{$data.order_id}" />
+<input type="hidden" name="jp_id" value="{$data.jp_id}" />
+<input type="hidden" name="ste" value="2" />
+<input type="button" class="order_save order_sub" value="保存" />
+<input type="button" class="order_next order_reset" value="下一步:客户信息" />
+</div>
+</form>
+
+</div>
+<script type="text/javascript" src="static/js/orderj.js"></script>
+<script type="text/javascript" src="/static/expand/jquery.form.js"></script>
+<script>
+$(function(){
+    $.order({
+    	SaveUrl        : "index.php?app=orderj&act=craftOrderSave",
+    	nextUrl        : "index.php?app=orderj&act=craftOrderSave",
+    });
+});
+
+</script>
+
+</body>
+</html>

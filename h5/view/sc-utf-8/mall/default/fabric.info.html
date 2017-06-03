@@ -1,0 +1,118 @@
+{include file="header2.html"}
+<link rel="stylesheet" type="text/css" href="static/css/fabric_details.css">
+<div class="w clearfix">
+ <div class="ml_left">
+  <p><img src="{$fabric.part_img}" /></p>
+ </div>
+ 
+ <div class="ml_right">
+   <h1>{$fabric.part_name}<span>人气：<b>{$fabric.click_count}</b></span></h1>
+   
+  <div  class="mlbh"> 
+   <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+      <th width="80">编号</th>
+      <td width="230">{$fabric.goods_sn}</td>
+      <th width="80">{$firstAttr.attr_name}</th>
+      <td width="230" style="border-right:0;">{$firstAttr.attr_value}</td>
+    </tr>
+    {foreach from=$attrs item=attr name=loop}
+    {if $smarty.foreach.loop.iteration % 2 neq 0}
+    <tr>
+    {/if}
+      <th width="80">{$attr.attr_name}</th>
+      <td width="230"{if $smarty.foreach.loop.iteration % 2 eq 0} style="border-right:0;"{/if}>{$attr.attr_value}</td>
+    {if $smarty.foreach.loop.iteration % 2 eq 0}
+    </tr>    
+    {/if}
+    {/foreach}  
+   </table>
+  </div>
+   {if $fabric.zujian_brief}
+   <h1>面料简介</h1>
+   <p class="mljj">{$fabric.zujian_brief}</p>
+   {/if}
+   <div class="dz_sc clearfix"><a href="{if $visitor.user_id}{link app=demand act=sue arg0=lin arg1=$fabric.part_id}{else}javascript:login('{$site_url}{link app=demand act=sue arg0=lin arg1=$fabric.part_id}'){/if}" class="a_1">用此面料定制</a>
+   <a href="javascript:void(0)" onclick="addFavorite()" class="a_2" id="{$fabric.part_name}">收藏</a></div>
+ </div>
+</div>
+<script>
+function addFavorite(){
+	if(hasLogin()== 0){
+      login(function(){
+        $.cookie("hasLogin",1);
+        addFavorite()
+      })
+      return
+    }
+    var id  ="{$fabric.part_id}",
+    	kys = "{$fabric.part_name}",
+    	url = "{link app=my_favorite act=add}?type=fabric";
+    $.get(url, {'item_id':id,'keyword':kys,'ajax':1}, function(data){
+        var data = eval("("+data+")")
+		if(data.done){
+			var html="<i id='animate' style='display:none;position:absolute;z-index:11;width:19px;height:17px;background:url(../../static/img/comm.png) 0 -22px'></i>";
+				s=$('#{$fabric.part_name}').offset(),
+				sL=s.left+40,
+				sT=s.top+20,
+				e=$('.fixed-nav').offset(),
+				eL=e.left+15,
+				eT=e.top;
+			$('body').append(html);
+			var $animate=$('#animate');
+			$animate.css({left:sL,top:sT,display:'block'}).animate({left:eL,top:eT-50},'slow',function(){
+				$animate.animate({left:eL,top:eT,opacity:0.5},'slow',function(){
+					$animate.remove()
+				})
+			})
+		}else{
+			msg(data.msg);	
+		}
+     
+    });
+}
+</script>
+<div class="w">
+  <div class="title">
+    <div class="line"></div>
+    <h2 class="tit">此面料生产的样衣</h2>
+    <p class="depict">意大利顶级西服面料品牌，由Nino Cerruti创立于1881年，以生产高级布料起家，至今已有130年的历史，注重生活品质及精神哲学的理念，使所创作出来的产品充分表现出静缢、优雅、简洁流畅的风格，是男装定制首选面料之一......</p>
+    {foreach from=$links item=link}
+        <a href="{link app=custom act=minfo arg=$link.cst_id}"><img src="{$link.cst_image}"></a>
+    {/foreach}
+  </div>
+</div>
+
+
+<div class="w">
+  <div class="title">
+    <div class="line"></div>
+    <h2 class="tit">你可能喜欢</h2>
+    <p class="depict">在这里有最优秀的裁缝，最丰富的面料，最好的工艺，最高的性价比，让定制不再奢侈！</p>
+  </div>
+  
+  <div class="slideBox">
+    <div id='swipe1' class='swipe'>
+      <div class='swipe-wrap'>
+        {foreach from=$mlist item=fab name=loop}
+        <div class="item">
+          <ul>
+        {foreach from=$fab item=m}
+            <li><a href="{link app=fabrics act=info arg0=$m.part_id}" target="_blank" class="pic"><img src="{$m.part_small}"></a>
+              <div class="info">
+                  <a href="{link app=fabrics act=info arg0=$m.part_id}" target="_blank">{$m.part_name}</a>
+              </div>
+            </li> 
+        {/foreach}
+          </ul>
+        </div>
+
+       {/foreach}
+      </div>
+    </div>
+    <span class="prev"></span> <span class="next"></span>
+  </div>
+</div>
+<script type="text/javascript" src="static/expand/jquery.swipe.js"></script> 
+<script  type="text/javascript" src="static/js/fabric_details.js"></script>
+{include file="footer.html"}

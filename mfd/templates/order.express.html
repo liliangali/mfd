@@ -1,0 +1,199 @@
+{include file="header.html"}
+<link href="templates/jquery-tipso/css/tipso.min.css" type="text/css" rel="stylesheet"/>
+<script src="templates/jquery-tipso/js/jquery-1.8.3.min.js"></script>
+<script src="templates/jquery-tipso/js/tipso.min.js"></script>
+<style>
+/*====公共/S====*/
+body, div, p, ul, ol, li, nav, footer, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, img { padding: 0; margin: 0; }
+body { min-width: 320px; font-size:12px; background:#fff; color:#333; font-family:"微软雅黑", "Arial";}
+body a{outline:none;blr:expression(this.onFocus=this.blur());}
+button {font-size:12px;}
+ul, ol, li {list-style:none;vertical-align:0;}
+img { vertical-align: middle;border: none; max-width:100%;}
+a{ text-decoration:none; color:#333;}
+input,textarea,select { outline:none; list-style-type:none; border:none; padding:0; margin:0;-webkit-appearance: none; -webkit-border-radius: 0;font-size:12px;}
+.clearfix:after {content:"."; height:0px; line-height:0px; overflow:hidden; clear:both; display:block; visibility:hidden;}
+.clearfix{zoom:1;}
+.fl { float: left; }
+.fr { float: right;}
+.hide{ display:none;}
+#shadowLayer{ width:100%; max-width:640px; height:100%; background:#000; opacity:0.3; z-index:50; position:fixed; top:0; visibility:hidden;left:0;}
+input[type="button"], input[type="submit"], input[type="reset"], input[type="text"], input[type="password"] {-webkit-appearance: none;}
+/*====公共/E====*/
+/*====头部/S====*/
+.topBar {position:relative;z-index:10;height:46px;}
+.topBar .wrap{border-bottom: solid 1px #dfdfdf;position:fixed;width:100%;max-width:640px;}
+.topBar .back{background:url(view/sc-utf-8/mall/default/styles/default/images/sybpic.png) no-repeat center center;display: block;background-size: auto 18px;width: 45px;height: 45px;position:relative;z-index: 2;cursor: pointer;}
+.topBar h1{font: normal 16px/45px '';position: absolute;left:0;top:0;width:100%;text-align:center;z-index:0;}
+/*====头部/E====*/
+.details{margin:20px 15px;height:55px;overflow:hidden;}
+.sfpic{width:55px;height:55px;}
+.infoword{margin-left:14px; display:inline;}
+.word{line-height:19px;color:#686868;}
+.word span{color:#e66800;}
+.zhanwei{height:12px;border-top:1px solid #dfdfdf;border-bottom:1px solid #dfdfdf; background:#eeeeee;}
+.logistics{margin:20px 0 0 15px}
+.logistics h4{font-size:14px;font-weight:normal;border-bottom:1px solid #dfdfdf;padding-bottom:7px;}
+.gzxinx{border-left:1px solid #dfdfdf;margin:15px 0 15px 4px;}
+.wlxxword{margin-left:17px;border-bottom:1px solid #dfdfdf;padding:12px 15px 12px 0;line-height:18px; position:relative;}
+.wlxxwords{color:#e66800;}
+.wlxxword span{color:#e66800;padding:0 5px;}
+.diand{width:7px;height:7px;border:1px solid #ccc; border-radius:50%; position:absolute;left:-22px;top:15px; background:#fff;}
+.diands{border:1px solid #e66800;background:#e66800;}
+</style>
+<div id="rightTop">
+    <p><b>物流信息</b></p>
+    <p><b>&nbsp;&nbsp;<a href="{if $reUrl}{$reUrl}{else}index.php?app=order&amp;act=index{/if}">返回</a></b></p>
+</div>
+<div class="info">
+    <div class="order_form">
+        <section class="details">
+          <!-- <p class="sfpic fl"><img src="./styles/default/images/sfpic.png"></p> -->
+            <div class="infoword fl">
+              <!--<p class="word">物流状态：<span>{$expressInfo.state}</span></p>-->
+                <p class="word">承运公司：{$expressInfo.delivery.logi_name}</p>
+                <p class="word">运单编号：{$expressInfo.delivery.logi_no}</p>
+            </div>
+        </section>
+        <section class="logistics">
+          <h4>物流跟踪</h4>
+            <div class="gzxinx">
+                <!--{foreach from=$expressInfo.delivery.wuliu item=express name=exp key=k}-->
+                <!--{if $smarty.foreach.exp.first}--><!--{/if}-->
+                <div <!--{if $smarty.foreach.exp.first}-->class="wlxxword wlxxwords"<!--{else}-->class="wlxxword"<!--{/if}-->>
+                {$express.context}<br>
+                {$express.ftime}
+                <p <!--{if $smarty.foreach.exp.first}-->class="diand diands"<!--{else}-->class="diand"<!--{/if}-->></p>
+                </div>
+                <!--{/foreach}-->
+            </div>
+        </section>
+    </div>
+   
+
+</div>
+
+{include file="footer.html"}
+<script>
+    /**
+     * 鼠标悬停显示TITLE
+     * @params     obj        当前悬停的标签
+     *
+     */
+    function titleMouseOver(obj) {
+        $(obj).tipso({
+            useTitle: false,
+            width:500,
+            background:'#55b555'
+        });
+    }
+
+/*     $(".onbase").click(function(){
+	var _self=$(this).parents('ul');
+	var old_figure_change=_self.find(".change").html();
+	var old_figure_change1=_self.find(".change1").html();
+	var old_figure_change2=_self.find(".change2").html();
+	var old_figure_change3=_self.find(".change3").html();
+	var old_figure_change4=_self.find(".change4").html();
+	var old_time=_self.find(".order_ids").attr("data-type");
+	var old_noon=_self.find(".order_ids").attr("data-noon");
+	var state_id=_self.find(".order_ids").attr("data-state");
+	var serve_id=_self.find(".order_ids").attr("data-serveid");
+	var son_sn=_self.find(".order_ids").attr("data-son");
+	var cards=_self.find(".order_ids").attr("data-card");
+	var order_id= _self.find(".order_ids").html();
+	if(old_noon == 'am'){
+		var Img='<input type="text" name="add_time_from" class="add_time" onclick="WdatePicker()" class="infoTableInput Wdate" style="width:100px"  value="'+old_time+'">&nbsp&nbsp<select name="times" class="times"><option value="am" selected="selected"  >上午</option><option value="pm"  >下午</option></select>';
+	}else{
+		var Img='<input type="text" name="add_time_from" class="add_time" onclick="WdatePicker()" class="infoTableInput Wdate" style="width:100px"  value="'+old_time+'">&nbsp&nbsp<select name="times" class="times"><option value="am">上午</option><option value="pm" selected="selected" >下午</option></select>';	
+	}
+	
+	var Img1='<input class="buttly"  type="button" name="" value="保存" />&nbsp &nbsp <input class="buttly2"  type="button" name="" value="取消" />';
+	var Img3='<input class="cards" value='+cards+'>(请输入量体师证件号)'; 
+	
+	    _self.find('.change1').html(''); 
+	
+	$.get("index.php?app=order&act=changecon",function(data){
+      	var data = eval("("+data+")");
+      	var options=''; 
+      	var stateopt=''
+	       $.each(data.retval.servels,function(name,value) {
+	    	   if(serve_id ==name)
+	    		   {
+	    		   options +='<option selected="selected" value='+name+'>'+value+'</option>';
+	    		   }else{
+	    			   options +='<option value='+name+'>'+value+'</option>';  
+	    		   }
+	    	 
+	        }); 
+	       $.each(data.retval.lt_state,function(nam,valu) {
+	    	   if(state_id ==nam)
+	    		   {
+	    		   stateopt +='<option selected="selected" value='+nam+'>'+valu+'</option>';
+	    		   }else{
+	    			   stateopt +='<option value='+nam+'>'+valu+'</option>';  
+	    		   }
+	    	 
+	        });
+	       
+	       
+	       var Img4='<select class="state_id">'+stateopt+'</select>';
+	       var Img2='<select class="serve_id">'+options+'</select>';
+	       _self.find('.change2').prepend(Img2); 
+	       _self.find('.change4').prepend(Img4);  
+
+		    
+		     
+      });
+
+	 _self.find('.change3').prepend(Img3);
+	 _self.find('.change1').prepend(Img1);
+	 _self.find('.change').prepend(Img); 
+	
+	         
+	
+	
+	 $(".buttly").click(function(){
+			var addtime=_self.find(".add_time").val();
+			var time=_self.find(".times").val();
+			var order_id= _self.find(".order_ids").html();
+			var state_id= _self.find(".state_id").val();
+			var serve_id= _self.find(".serve_id").val();
+			var cards= _self.find(".cards").val();
+		 	 $.ajax({
+				url:"index.php?app=order&act=changetime",
+		        type: "POST",
+				data:{
+					order_id:order_id,
+					time:time,
+					addtime:addtime,
+					state_id:state_id,
+					serve_id:serve_id,
+					cards:cards,
+					son_sn:son_sn,
+				},
+				success: function(res){
+					var res=eval("("+res+")");
+					
+					if(res.done)
+						{
+						
+						 window.location.reload();
+						}else{
+							alert(res.msg);	
+						}
+				}
+				
+			});  
+		});
+	     _self.find(".buttly2").click(function(){
+		 _self.find(".change").html(old_figure_change);
+		 _self.find(".change1").html(old_figure_change1);
+		 _self.find(".change2").html(old_figure_change2);
+		 _self.find(".change3").html(old_figure_change3);
+		 _self.find(".change4").html(old_figure_change4);
+	 } )
+	 
+}); */
+
+</script>

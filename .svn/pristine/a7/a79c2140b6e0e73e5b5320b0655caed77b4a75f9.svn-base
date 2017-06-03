@@ -1,0 +1,37 @@
+        <div class="mt">
+            <h2 style="border:0">商品清单</h2>
+            <div class="qingdan">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th colspan="2">商品名称</th>
+                    <th>商品信息</th>
+                    <th>单价（元）</th>
+					<th>优惠方案</th>
+                    <th>数量</th>
+                    <th>金额（元）</th>
+					<th>惠后金额（元）</th>
+                </tr>
+                {foreach from=$cart.object item=list}            
+                <tr data-id="{$list.ident}" data-type="{$list.type}">
+                    <td width="50"><a href="{if $list.goods.goods_id>0}{link app=goods arg=$list.goods.goods_id}{else}{$list.goods.goods_url}{/if}"><img src="{$list.goods.image}" width="50" height="50"></a></td>
+                    <td><a href="{if $list.goods.goods_id>0}{link app=goods arg=$list.goods.goods_id}{else}{$list.goods.goods_url}{/if}">
+					   {if $list.type == 'fdiy'}
+						{foreach from=$list.list item=ls}{$ls.dog_name}{/foreach}的专属狗粮{else}{$list.goods.name}{/if}</a></td>
+                    <td>
+						{if $list.type == 'fdiy'}
+						定制商品：<span style="padding-left: 5px;">{$list.goods.dname}</span>
+						{else}
+						{foreach from=$list.list item=ls} 
+						<span style="padding-left: 5px;">{$ls.params.oProducts.spec_info}</span>{/foreach}{/if}
+						</td>
+                    <td>{$list.goods.basePrice|price}</td>
+					<td><p>{if $list.favorable_name}{$list.favorable_name}{/if}</p><p>{if $list.zhek_name}{$list.zhek_name}{/if}</p></td>
+                    <td>{$list.goods.quantity}</td>
+                    <td>{$list.subtotal|price}</td>
+					<td>{$list.favprice|price}</td>
+                </tr>
+           
+                {/foreach}
+            </table>
+            </div>
+        </div>

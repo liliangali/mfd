@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>Insert title here</title>
+
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+
+</head>
+<script>window.onunload=function(){};</script>
+<body style="background:#f6f6f6;">
+<div class="main">
+
+  <div class="sydyj">
+    <div class="ksydyj">可使用酷卡<span>({$count})</span></div>
+  </div>
+    
+  {if $data}
+  <form id="debitForm">
+  {foreach from=$data item=ditem key=dkey}
+	  <div class="sydyj" data-id="{$ditem.id}" data-name="{$ditem.name}" data-sn="{$ditem.sn}">
+	   <a href="javascript:void(0)" style="display:block;">
+	     <input type="checkbox" {if $debit.$dkey} checked="checked" {/if} name="kuka[{$dkeys}]" value="{$ditem.id}" style="display:none;">
+	     <h1 class="{if $debit.$dkey} xfj_on{else}xfj_off {/if} ">{$ditem.work_num|price}</h1>
+	     <p class="yxqsj">有效期:<span>{$ditem.expire_time|date:Y-m-d}</span></p>
+	   </a>
+	  </div>
+  {/foreach}
+  <a href="javascript:void(0)" id="subDibet" class="wysy">确 定</a>
+  </form>
+  {else}
+  暂无可使用的酷卡
+  {/if}
+</div>
+
+
+<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+
+<script type="text/javascript">
+
+function checkKuka(){
+	var _this = $(this);
+    var _id = _this.data('id')
+    var _hc = _this.find('input:checkbox').attr('checked');
+    
+    if( _hc == 'checked'){
+    	_this.find('input:checkbox').removeAttr('checked');
+        _this.find('h1').attr('class','xfj_off');
+    }else{
+        _this.find('input:checkbox').attr('checked','checked');
+        _this.find('h1').attr('class','xfj_on');
+    }
+}
+
+$('#debitForm').find('.sydyj').unbind().bind('click',checkKuka)
+
+function _alert(msg){
+    layer.open({
+        content: '<p style="text-align:center">'+msg+'</p>',
+        btn: ['确定'],
+    }); 
+}
+
+
+$('#subDibet').unbind().bind('click',function(){
+	$(this).parents('form').ajaxSubmit({
+        type:"post",
+        dataType:"json",
+        url:"{link app=cart act=kukaSave}?time="+ (new Date()).getTime(),
+        success:function (res,statusText) {
+            if(res.done == false){
+                _alert(res.msg);
+            }else{
+                history.go(-1)
+                return false;
+            }
+        }
+    });
+	
+	
+})
+
+
+</script>
+</body>
+</html>

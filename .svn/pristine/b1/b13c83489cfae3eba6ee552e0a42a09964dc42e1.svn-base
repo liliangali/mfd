@@ -1,0 +1,142 @@
+{include file="header.html"}
+<script charset="utf-8" type="text/javascript" src="{lib file=jquery.plugins/jquery.validate.js}" ></script>
+<script type="text/javascript">
+$(function(){
+    $('#serve_form').validate({
+        /*errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },*/
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+        	version : {
+                required : true,
+            },
+            large : {
+            	 required : true,
+            },
+            apps : {
+           	    required : true,
+           },
+            link : {
+           	 required : false,
+           },
+           type : {
+             	 required : false,
+             },
+           description : {
+               	 required : false,
+               },
+          
+        },
+        messages : {
+        	version : {
+                required : '必填',
+            },
+            large : {
+                required : '必填',
+            },
+            apps : {
+               required : '必填',
+            },
+            type: {
+            	required : '必填',
+               
+            },
+            description : {
+            	required : '必填'
+            },
+            link : {
+            	required : '必填'
+            },
+           
+        }
+    });
+});
+
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=appset&act=index">管理</a></li>
+    <li>
+      <span>添加</span>
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="serve_form" name="serve_form">
+    <table class="infoTable">
+        <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>版本号:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="version" type="text" id="version" value="{$versions.version}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>安装包大小:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input class="infoTableInput2" name="large" type="text" id="large" value="{$versions.large}" />MB
+      
+      </tr>
+      <tr>
+         <th class="paddingT15"><span style="color:red;">*</span>下载地址:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input class="infoTableInput2" name="link" style="width:300px;" type="text" id="link" value="{$versions.link}" />
+      
+      </tr>
+   
+    <!--  <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>app:</th>
+        <td class="paddingT15 wordSpacing5"><p>
+            <label>
+            <input type="radio" name="apps" value="mfd" {if $versions.app eq "mfd"}checked="checked"{/if} />
+           麦富迪app</label>
+          <label>
+            <input type="radio" name="apps" value="figure" {if $versions.app eq "figure" }checked="checked"{/if} />
+           量体app</label>
+          </p></td>
+      </tr>-->
+    
+       <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>型号:</th>
+        <td class="paddingT15 wordSpacing5"><p>
+            <label>
+            <input type="radio" name="type" value="android" {if $versions.type eq "android"}checked="checked"{/if} />
+            安卓</label>
+            <label>
+            <input type="radio" name="type" value="ios" {if $versions.type eq "ios" }checked="checked"{/if} />
+    ios</label>
+          </p></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"><span style="color:red;">*</span>更新管理:</th>
+        <td class="paddingT15 wordSpacing5"><p>
+            
+          <label>
+            <input type="radio" name="updatecode" value="1" {if $versions.updatecode eq 1 }checked="checked"{/if} />
+         选择更新</label>
+           <label>
+            <input type="radio" name="updatecode" value="2" {if $versions.updatecode eq 2 }checked="checked"{/if} />
+           强制更新</label>
+          </p></td>
+      </tr>
+      <tr>
+                <th class="paddingT15">
+                    更新文字:</th>
+                <td class="paddingT15 wordSpacing5">
+                <textarea  name="description" id="description" style="width:650px;height:300px;">{$versions.description}</textarea>
+                </td>
+            </tr>
+     
+      <tr>
+        <th></th>
+        <td class="ptb20">
+        	<input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="congzi" type="reset" name="Reset" value="{$lang.reset}" />
+         </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

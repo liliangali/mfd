@@ -1,0 +1,127 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <!--<li><a class="btn1" href="index.php?app=jx&amp;act=export">导出</a></li>-->
+    </ul>
+
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="fx" />
+                <input type="hidden" name="act" value="index" />
+                <select class="querySelect" name="field_name">{html_options options=$query_fields selected=$smarty.get.field_name}
+                </select>
+                <input type="text" class="zzinput"  name="field_value" value="{$smarty.get.field_value}"/>
+
+                &nbsp;&nbsp;
+                业务承接：<select class="querySelect" name='sign'>
+                <option value="">全部</option>
+                {html_options options=$sign_info selected=$smarty.get.sign}
+            </select>
+
+
+                当前状态：<select class="querySelect" name='status'>
+                <option value="">全部</option>
+                {html_options options=$status_info selected=$smarty.get.status}
+                </select>
+
+
+                申请时间：<input class="queryInput2" type="text" value="{$query.add_time_from}" style="width:80px" id="add_time_from" name="add_time_from" class="pick_date" />
+                至：<input class="queryInput2" type="text" value="{$query.add_time_to}" style="width:80px" id="add_time_to" name="add_time_to" class="pick_date" />
+
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+        </form>
+    </div>
+
+    <div class="fontr">{include file=page.top.html}</div>
+</div>
+<br/>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+
+        <tr class="tatr1">
+            <!--<td width="3%" class="firstCell"><input type="checkbox" class="checkall" /></td>-->
+            <td width="3%"><span ectype="order_by" fieldname="order_serve.id">ID</span></td>
+            <td width="8%"><span  ectype="order_by" fieldname="order_serve.order_sn">订单号</span></td>
+            <td width="4%"><span  ectype="order_by" fieldname="order_serve.user_name">返修客户</span></td>
+            <td width="12%"><span  ectype="order_by" fieldname="order_serve.sign">业务承接</span></td>
+            <td width="5%"><span  ectype="order_by" fieldname="order_serve.reason">返修原因</span></td>
+            <td width="11%"><span  ectype="order_by" fieldname="order_serve.add_time">申请时间</span></td>
+            <td width="10%"><span  ectype="order_by" fieldname="order_serve.send_time">交货日期</span></td>
+
+            <td width="2%"><span  ectype="order_by" fieldname="order_serve_info.price">返修费用</span></td>
+            <td width="6%"><span  ectype="order_by" fieldname="order_serve_info.fx_sn">返修订单号</span></td>
+            <td  width="6%"><span>RCMTM订单号</span></td>
+            <td width="6%"><span></span>商品名称</td>
+            <td width="5%"><span>当前状态</span></td>
+            <td width="10%"><span>操作</span></td>
+        </tr>
+
+        <!--{if !empty($fx_info)}-->
+
+        <!--{foreach from=$fx_info item=item key=k}-->
+
+
+        <tr class="tatr2">
+            <!--<td rowspan="{$item.serve_info_count}" class="firstCell"><input type="checkbox" class="checkitem" value="{$item.id}" /></td>-->
+            <td rowspan="{$item.serve_info_count}">{$k}</td>
+            <td rowspan="{$item.serve_info_count}">{$item.order_sn}</td>
+            <td rowspan="{$item.serve_info_count}">{$item.user_name}</td>
+            <td rowspan="{$item.serve_info_count}">{if $item.sign==1}{$sign_info.$item.sign}{elseif $item.sign==2}{$item.store_name}{/if}</td>
+            <td rowspan="{$item.serve_info_count}">{$item.reason}</td>
+            <td rowspan="{$item.serve_info_count}">{$item.add_time}</td>
+            <td rowspan="{$item.serve_info_count}">{$item.send_time}</td>
+
+
+            <!--{foreach from=$item.serve_info item=item1 key=kk}-->
+            <!--{if $item1.num>0}-->
+            <tr class="tatr2">
+            <!--{/if}-->
+            <td>{$item1.price}</td>
+            <td>{$item1.fx_sn}</td>
+            <td>{$item1.rcmtm_id}</td>
+            <td>{$item1.good_name}</td>
+            <td title="{if $item1.fail_reason&&($item1.info_status==2 ||$item1.info_status==3)}{$item1.fail_reason}{/if}">{$status_info.$item1.info_status}</td>
+            <td class="indexlabel">
+                <a href="index.php?app=fx&act=info&id={$kk}">详情 </a>
+                {if $item.free==='1'}
+                   |<a href="index.php?app=fx&act=edit_free&id={$kk}"> 编辑</a>
+                {else}
+                   |<a href="index.php?app=fx&act=edit&id={$kk}">编辑</a>
+                {/if}
+
+                <!--{if ($item.free==1&&$admin=='1')||$item.free==0}-->
+                |<a href="index.php?app=fx&act=status&id={$kk}">修改状态</a>
+                <!--{/if}-->
+            </td>
+        </tr>
+            <!--{/foreach}-->
+
+
+
+        <!--{/foreach}-->
+        <!--{else}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+    </table>
+    <!--{if !empty($fx_info)}-->
+
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+
+<script type="text/javascript">
+    //日期
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
+{include file="footer.html"}

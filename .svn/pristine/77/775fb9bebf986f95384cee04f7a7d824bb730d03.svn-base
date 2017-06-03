@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{$page_seo}
+<link rel="stylesheet" type="text/css" href="static/css/style.css">
+<script type="text/javascript" src="static/expand/jquery.js"></script>
+</head>
+
+<body>
+<div class="head">
+  <div class="w">
+  
+    <div class="fl"> 
+     <a href="/" class="logo fl"></a> 
+     <span class="logoTxt fl">{$_rtitle}</span>
+    </div>
+    
+    <div class="fr">
+     <ul class="dlzc_nav">
+         <li><a href="/man-index.html">男士</a></li>
+         <li><a href="/activepublic-index.html">活动</a></li>
+         <li><a href="/work_score-index.html">评选</a></li>
+         <li><a href="/fashion-index.html">潮流</a></li>
+         <li><a href="/service-contactus.html">体验店</a></li>
+     </ul>
+     
+     <div class="gwhwd">
+      <p class="p1"><a href="/cart.html"></a></p>
+      <p class="p2"><a href="/member.html"></a></p>
+     </div>
+    </div>
+    
+ </div>
+</div>

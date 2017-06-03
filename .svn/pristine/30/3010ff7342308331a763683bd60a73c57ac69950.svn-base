@@ -1,0 +1,131 @@
+{include file=header.html}
+<link type="text/css" href="../../static/css/men_list.css" rel="stylesheet" />
+<div class="banner"><a href="#"><img src="../../static/img/ny_banner.png"></a></div>
+
+<div class="container">
+ <div class="list_fl clearfix">
+  <div class="filter" id="filter">
+   <ul>
+    <li class="yxz">
+     <h1>已选择</h1>
+     <div>
+     {foreach from=$selectedArray item=sel}
+        <p>{$sel.name} {if $sel.url}<a href="{$sel.url}">X</a>{/if}</p>
+     {/foreach}
+     </div>
+    </li>
+
+    <li>
+     <h1>分类</h1>
+     <div>
+     {foreach from=$categorys item=cat}
+     <a href="{link app=man}{$cat.url}" {if $cat.selected}class="on"{/if}>{$cat.cate_name}</a>
+    {/foreach}
+    <a href="{link app=man act=suit}" class="on">套装</a>
+    </div>
+    </li>
+    {foreach from=$attr_list item=attr}
+    <li>
+     <h1>{$attr.alias}</h1>
+     <div>
+       {foreach from=$attr.children item=val}
+       <a href="{link app=man act=suit}{$val.url}" {if $val.selected}class="on"{/if}>{$val.name}</a>
+       {/foreach}   
+     </div>
+    </li>
+     {/foreach}
+   </ul>
+  </div>
+   <div class="li_3" id="moreToggle">更多选项<span></span></div>
+ </div>
+ 
+  <div class="menu">
+      <ul class="szph">
+        <li {if $order eq 'sale_num'}class="on {if $sort eq 'ASC'}sj{else}jg{/if}"{/if}><a href="{link app=man act=suit}{$formatUrl}&order=sale_num&sort={if $order eq 'sale_num' && $sort eq ASC}DESC{else}ASC{/if}">销量</a></li>        
+        <li {if $order eq 'price'}class="on {if $sort eq 'ASC'}sj{else}jg{/if}"{/if}><a href="{link app=man act=suit}{$formatUrl}&order=price&sort={if $order eq 'price' && $sort eq ASC}DESC{else}ASC{/if}">价格</a></li>         
+        <li {if $order eq 'add_time'}class="on {if $sort eq 'ASC'}sj_2{else}jg_2{/if}"{/if}><a href="{link app=man act=suit}{$formatUrl}&order=add_time&sort={if $order eq 'add_time' && $sort eq ASC}DESC{else}ASC{/if}">上架时间</a></li>               
+      </ul>  
+    
+    <div id="brick" class="brick">
+
+    </div>
+   </div>
+</div>   
+
+<div class="hstz"></div>
+{include file=man/designer.lib.html}
+
+
+<!--底部/E-->
+<script src="http://cdn.loveqiao.com/jquery.masonry.js"></script>
+<script type="text/javascript" src="../../static/js/slides.min.jquery.js"></script>
+<script>
+var $container = $('#brick'),delay=null;
+var man = {};
+man.url   = '{link app=man act=loadSuitData}';
+man.param = "{$formatUrl}&order={$order}&sort={$sort}";
+
+$('#slides').slides({
+	preload: true,
+	preloadImage: 'img/loading.gif',
+	play: 5000,
+	pause: 2500,
+	hoverPause: true,
+	animationStart: function(){
+		$('.caption').animate({
+			bottom:-35
+		},100);
+	},
+	animationComplete: function(current){
+		$('.caption').animate({
+			bottom:0
+		},200);
+		if (window.console && console.log) {
+			// example return of current slide number
+			//console.log(current);
+		};
+	}
+});
+
+var $container = $('#brick'),delay=null,flag=null;
+//获取数据
+function getData(){
+	var winh=$(window).height(),
+		bodyh=$container.height();
+	if(($(window).scrollTop()+winh)>=bodyh-350){
+		$(window).off('scroll',getData);
+		if(delay){clearTimeout(delay)}
+		delay=setTimeout(function(){
+			if(!man.url){
+				//$newElems = $("<div class='item'>加载完成</div>")
+		    	//$container.append($newElems).masonry("appended",$newElems);
+		        return false;
+		    }
+		    $.get(man.url+man.param,function(res){
+		        var res = eval("("+res+")");
+		        var $newElems = $(res.retval.content);
+		        man.url = res.retval.link;
+				if(flag){
+					$container.append($newElems).masonry("appended",$newElems);
+				}else{
+					$container.append(res.retval.content);
+					$container.imagesLoaded( function(){
+					  $container.masonry({
+						columnWidth:0,
+						itemSelector: '.item'
+					  });
+					});
+					flag=true;
+				}
+		        $(window).on('scroll',getData);
+		    });
+			
+		},500)
+	}	
+}
+$(window).on('scroll',getData);
+
+//初始化
+getData();
+</script>
+{include file=footer.html}

@@ -1,0 +1,39 @@
+{include file=member.header.html}
+<div class="w clearfix">
+ <div class="recharge_left">
+  <h1>提现详情<a href="#">返回收支明细</a></h1>
+  <p class="czcg">操作成功</p>
+  <p class="txje_2">提现金额：<span>{$cash.cash_money}</span> 元</p>
+  <p class="txsq">提现申请已提交，审核通过后，将于2015-01-30之前到账</p>
+  <div class="txsqbz">
+   <div class="div_1">
+    <p class="p1"></p>
+    <ul class="clearfix">
+     <li class="li_1 on">1</li>
+     <li class="li_2">2</li>
+     <li class="li_3">3</li>
+     <li class="li_4"></li>
+    </ul>
+   </div>
+  </div>
+  
+  <ul class="m_sgbz">
+    <li {if $cash.status == 0} class="on" {/if}>提交申请<span>{$cash.create_time|date:Y-m-d H:i:s}</span></li>
+    <li {if $cash.status == 11 || $cash.status == 12} class="on" {/if}>客服审核完成<span>{if $cash.status == 0}预计{$cash.pre_audit_time|date:Y-m-d H:i:s}之前{else}{$cash.audit_time|date:Y-m-d H:i:s}{/if}</span></li>
+    <li {if $cash.status == 20} class="on" {/if}>支付处理完成<span> {if $cash.status < 20}预计{$cash.pre_pay_time|date:Y-m-d H:i:s}之前{else}{$cash.pay_time|date:Y-m-d H:i:s}{/if} </span></li>
+    <li {if $cash.status == 30} class="on" {/if}>提现成功<span>{if $cash.status < 30}预计{$cash.pre_cash_sucess_time|date:Y-m-d H:i:s}之前{else}{$cash.cash_sucess_time|date:Y-m-d H:i:s}{/if}</span></li>
+  </ul>
+  
+ </div>
+ <div class="recharge_right">
+  <h2>需要帮助？</h2>
+  <h3>到账账户</h3>
+  <p class="p1">到账账户信息由申请者手动填写，暂不提供验证，请认真填写。</p>
+  <h3>到账时间</h3>
+  <p class="p1">3-7个工作日内可退回您的支付账户。由于银行处理可能有延迟，具体以账户的到账时间为准。</p>  
+  <h3>申请提现后是否可以取消？</h3>
+  <p class="p1">在申请后24小时以内可以向平台申请取消提现，立即生效，平台自动将申请提现部分冻结资金划入账户余额。</p>   
+ </div>
+</div>
+
+{include file="footer.html"}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>coolette mobile</title>
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+</head>
+
+<body>
+<script>window.onunload=function(){};</script>
+<!--选择量体方式开始-->
+<div class="xzltfs main">
+  <!--头部开始-->
+  <!-- <div class="header clearfix" style="background:#f8f8f8; width:100%; max-width:640px; position:fixed; top:0; z-index:999">
+    <p class="p1" onClick="history.go(-1)"><img src="/static/img/left.png" /></p>
+    <p class="p2" style="color:#333">选择量体方式</p>
+  </div>
+  <div style="height:50px;"></div> -->
+  <!--头部结束-->
+
+
+ <ul>
+    {foreach from=$measures item=item key=key}
+    <li {if $type==$key} class="active" {/if}><a href="javascript:void(0)" data-id="{$key}" class="measureWay" >{$item}</a></li>
+    {/foreach}
+ </ul>
+</div>
+<div id="muMain">
+</div>
+<!--选择量体方式结束-->
+<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script  type="text/javascript" src="static/expand/my97date/wdatepicker.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+<script type="text/javascript">
+function _alert(msg){
+    layer.open({
+        content: '<p style="text-align:center">'+msg+'</p>',
+        btn: ['确定'],
+    }); 
+}
+$('.measureWay').click(function(){
+	
+	location.href="{link app=cart act=meaInfo}?id="+$(this).data('id');
+	return;
+	
+	$.post("{link app=cart act=meaSelect}",{id:$(this).data('id')},function(res){
+              if(res.done == false){
+                  return;
+              }else{
+            	  $('.xzltfs').hide();
+            	  $('#muMain').html(res.retval);
+            	  $('.saveMea').unbind().bind('click',function(){
+            		   var _oj = $(this).parent('form');
+            		   meaSave(_oj)
+            	  })
+              }
+    },"json")
+    
+});
+function meaSave(_oj){
+	var _id = _oj.data('id');
+	_oj.ajaxSubmit({
+        type:"post",
+        data:{id:_id},
+        dataType:"json",
+        url:"{link app=cart act=meaSave}?time="+ (new Date()).getTime(),
+        //beforeSubmit:function(formData,jqForm,options){return _oj.valid();},
+        success:function (res,statusText) {
+            if(res.done == false){
+                   _alert(res.msg);
+            }else{
+            	history.go(-1)
+            	return false;
+                location.href="{link app=cart act=checkout}";
+            }
+        }
+    });
+}
+
+</script>
+
+</body>
+</html>

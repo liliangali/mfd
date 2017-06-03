@@ -1,0 +1,50 @@
+{include file=../user/member.header.html}
+   <div class="w">
+    <div class="AreaBox clearfix">
+        {include file=../user/member.menu.html}
+       
+                <div class="con">
+            <h2 class="tit">收藏的晒单({$page_info.item_count})</h2>
+          {if $collects}
+                         <div class="my_case">
+             <table cellpadding="0" cellspacing="0" width="100%" border="0">
+             <!--{foreach from=$collects item=collect}-->
+              <tr>
+               <td width="78%" class="td_1">
+                <h1><a href="{link app=single act=info arg0=$collect.id}#{$collect.id}">{$collect.description}</a></h1>
+                <ul>
+                <!--{foreach from=$collect.userphoto item=userphoto}-->
+                 <li><a href="{link app=single act=info arg0=$collect.id}#{$userphoto.id}"><img src="{$userphoto.url}" /></a></li>
+                 <!--{/foreach}-->
+                </ul>
+               </td>
+               <td width="22%" class="td_2">
+                <p><a href="{link app=member act=user_favorite_drop}?item_id={$collect.item_id}&type=single">删除</a></p>
+               </td>
+              </tr>            
+              <!--{/foreach}-->
+             </table>
+            </div>
+          {else}
+          <!--没有订单时提示-->
+          <div class="myddts">还没有收藏</div> 
+          <!--没有订单时提示-->
+            
+          {/if}
+           <!--用户中心分页开始--> 
+           <div class="hyzx_fy clearfix">
+            {if $collects}{include file=../user/member.page.bottom.html}{/if}
+           </div>
+           <!--用户中心分页结束--> 
+      
+        </div>
+</div>
+</div>
+
+<!-- <script type="text/javascript">
+collect_single('1','kes');
+
+</script>
+ -->
+{include file="../user/footer.html"}
+

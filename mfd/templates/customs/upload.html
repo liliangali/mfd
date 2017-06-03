@@ -1,0 +1,44 @@
+<html>
+
+
+
+<form action='index.php?app=customs&act=upload&opt=1' method='post' enctype="multipart/form-data">
+<table>
+<tr>
+<td>用户</td>
+<td>
+<select name='uid'>
+
+{foreach from=$member key=k item=v}
+<option value='{$v.user_id}'>{$v.user_name}</option>
+{/foreach}
+
+</select>
+</td>
+</tr>
+
+<tr>
+<td>图片</td>
+<td><input type='file' name='up_file' /></td>
+</tr>
+
+<tr>
+<td>标题</td>
+<td><input type='text' name='title' /></td>
+</tr>
+
+
+<tr>
+<td></td>
+<td><input type='submit' /></td>
+</tr>
+
+
+
+
+
+</table>
+</form>
+
+
+</html>

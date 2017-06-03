@@ -1,0 +1,116 @@
+<div class="priceList">
+<h2><span class="fl">参与报价的裁缝</span>{if $offer.status == 2}{if $offer.type == 1}<a class="fr btn" href="#">参与报价</a>{/if}
+{elseif $offer.status == 3}
+{if $offer.type == 2}
+<em class="fr" style="font-size:13px;font-weight:normal">您选择了{$offer.data.cf_name}为您定制</em>
+{else}
+<em class="fr" style="font-size:13px;font-weight:normal">消费者选择了{$offer.data.cf_name}为他定制</em>
+{/if}
+
+{/if}
+</h2>
+
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th>报价时间</th>
+        <th>裁缝</th>
+        {if $offer.type == 2}<th>报价</th>{/if}
+        <th>备注</th>
+        <th>周期</th>
+        {if $offer.status == 2}{if $offer.type == 2}<th width="80">操作</th>{/if}{/if}
+      </tr>
+    {foreach from=$offer.list item=ofe}
+	
+      <tr>
+        <td class="subtime" data-time="{$ofe.sub_time}"></td>
+        <td>{*$ofe.cf_id*}<a href="{link app=tailor act=info arg0=$ofe.cf_id}">{$ofe.cf_name}</a></td>
+        {if $offer.type == 2}<td>{$ofe.offer}元</td>{/if}
+        <td>{$ofe.remark}</td>
+        <td>{$ofe.del_time}天 
+            <!-- 调试 用户ID写死38先 $ofe.cf_id -->
+            <a onclick="webim.openIm('{encrypt string=$ofe.cf_id operation='E' key='gaofei'}');" href="javascript:void(0);" style="display: inline-block;vertical-align: middle;">
+                <img src="/static/img/opentalk.gif">
+            </a>
+        </td> 
+		
+        {if $offer.status == 2}{if $offer.type == 2}<td><a href="#" class="btn" data-cfname="{$ofe.cf_name}" data-cfid="{$ofe.cf_id}" data-id="{$ofe.of_id}">中标</a></td>{/if}{/if}
+      </tr>
+     {foreachelse}
+     <tr>
+        <td{if $offer.status == 2}{if $offer.type == 2} colspan="6"{else} colspan="4"{/if}{/if}><div class="dongjie">暂无报价</div></td>
+      </tr>
+    {/foreach}
+    </table>
+	
+ {if $offer.pageCount > 1}
+    <div class="page2">
+        <span id="offerPrev" class="prev cur"></span>
+        <a href="javascript:void(0)" class="on">{$offer.page}</a>
+        <em>/</em>
+        <a href="javascript:void(0)">{$offer.pageCount}</a>
+        <span id="offerNext" class="next"></span>
+     </div>
+{/if}
+    {$offer.time}
+<script>
+{if $offer.list}
+var timestamp=new Date().getTime();
+{if $offer.now}
+var _time = {$offer.now};
+{else}
+var _time = parseInt(timestamp/1000);
+{/if}
+
+$('.subtime').each(function(){
+    var _me = $(this).data('time');
+    var _cha = _time-_me;
+    if(_cha < 60){
+        $(this).html("刚刚");
+    }else{
+        var _fen = parseInt(_cha/60);
+        if( _fen < 60){
+            $(this).html(_fen+"分钟前");
+        }else{
+            var _shi = parseInt(_fen/60);
+            if(_shi < 24){
+                $(this).html(_shi+"小时前");
+            }else{
+                $(this).html(parseInt(_shi/24)+"天前");
+            }
+        }
+    }
+    
+});
+
+{if $offer.page > 1}
+$('#offerPrev').click(function(){
+    var _pg = parseInt({$offer.page})-1
+    offerPage(_pg);
+});
+{/if}
+{if $offer.page < $offer.pageCount}
+$('#offerNext').click(function(){
+    var _pg = parseInt({$offer.page})+1
+    offerPage(_pg);
+});
+{/if}
+function offerPage(_pg){
+    $.ajax({
+        url  : "/demand-offerpage.html",
+        data : "&page="+_pg+"&md="+{$offer.md_id},
+        success : function(res){
+            var res = $.parseJSON(res);
+            if(res.done==true){
+                $('#offerList').html(res.retval.content);
+                return;
+            }
+        }
+    })
+}
+
+
+{/if}
+
+</script>
+
+</div>

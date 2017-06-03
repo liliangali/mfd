@@ -1,0 +1,16 @@
+<link href="/diy/css/animate.min.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/diy/js/jquery-1.8.3.min.js"></script>
+<script src="/diy/js/jquery.range-min.js"></script>
+    <input type="hidden" name="weight" class="single-slider" value="23" />aaa
+<script>
+     jres = $('.single-slider').jRange({
+        from: 8,
+        to: 40,
+        step: 1,
+        // scale: [10,20,30,70],
+        format: '%s days',
+        width: 300,
+        showLabels: true,
+        showScale: true
+    });
+</script>

@@ -1,0 +1,213 @@
+{include file=member.header.html}
+{$build_editor}
+
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+.bgwhite { background: #FFFFFF;}
+</style>
+
+<script type="text/javascript">
+var r;
+var img="{if $service.portrait}../{$service.portrait}{else}{$site_url}/data/system/default_user_portrait.gif{/if}";
+$(function(){
+	
+
+	r=Math.random();
+	
+	img=img+'?r='+r
+	
+	
+	$('img[ectype="avatar"]').attr('src',img);
+	
+	$('input[ectype="change_avatar"]').change(function(){
+
+        var src = getFullPath($(this)[0]);
+        $('img[ectype="avatar"]').attr('src', src);
+        $('input[ectype="change_avatar"]').removeAttr('name');
+        $(this).attr('name', 'portrait');
+    });
+});
+
+</script>
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+      <h1 class="grzl" style="margin:0 15px;">服务点主页</h1>
+        <div class="eject_con bgwhite">
+            <div class="add" style="width: 700px;">
+                <form method="post" enctype="multipart/form-data" id="serve_form">
+                    <ul style="width: 700px;">
+                       
+                       
+                       
+                        
+             <li style="padding-bottom:0;"><h3>{$lang.url} :</h3>
+        <p>
+        
+        {$SITE_URL}{link app=service act=info arg=$service.idserve}
+          <a href="{link app=service act=info arg=$service.idserve}" target="_blank">{$lang.view}</a>
+         </p>
+         </li>           
+                        
+        <li><h3 style="margin-bottom:5px;">{$lang.portrait} :</h3>
+        <p>
+          
+          
+                       <div enctype="multipart/form-data" class="information">
+                        <div class="photo width13">
+                            <p><img width="120" height="120" alt="" ectype="avatar" /></p>
+                            <b>
+                                <div class="txt" style="cursor: pointer;">
+                                {$lang.change_portrait}
+                                
+                                <input style="width:120px;" type="file" size="1" maxlength="0" hidefocus="true" ectype="change_avatar" name="portrait" />
+                                
+                                </div>
+                            </b>
+                        </div>
+                        </div>
+                        
+          
+          
+          </p>
+         </li>
+
+	  
+	  <li><h3>{$lang.synopsis} :</h3>
+        <p>
+          <input class="text width_normal" id="synopsis" type="text" name="synopsis" value="{$service.synopsis|escape}" />
+         </p>
+         </li>
+	  
+	  <li style="width: 700px;"><h3>{$lang.introduce} :</h3>
+        <p>
+          <textarea id="introduce" name="introduce" style="width:650px;height:400px;">{$service.introduce|escape}</textarea>
+          </p>
+         </li>
+     
+     <li><h3>{$lang.longitude} :</h3>
+        <p>
+          <input readonly="readonly" class="text width_normal" id="longitude" type="text" name="longitude" value="{$service.longitude|escape}" />
+          </p>
+         </li>
+      
+      <li><h3>{$lang.latitude} :</h3>
+        <p>
+          <input readonly="readonly" class="text width_normal" id="latitude" type="text" name="latitude" value="{$service.latitude|escape}" />
+         </p>
+         </li>
+            
+
+              
+              <li><h3>{$lang.map} :</h3> 添加锚点
+        <p>
+          <div id="allmap" style="overflow:hidden;zoom:1;position:relative;width:540px;height:437px;">	
+    <div id="map" style="height:100%;-webkit-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;"></div>
+    <!--城市列表-->
+	<div class="sel_container"><strong id="curCity">北京市</strong> [<a id="curCityText" href="javascript:void(0)">更换城市</a>]</div>
+	<div class="map_popup" id="cityList" style="display:none;">
+		<div class="popup_main">
+			<div class="title">城市列表</div>
+			<div class="cityList" id="citylist_container"></div>
+			
+		</div>
+	</div>
+    
+</div>
+         </p>
+         </li>
+              
+              
+              <li><h3>{$lang.qq} :</h3>
+        <p>
+          <input class="text width_normal" id="qq" type="text" name="qq" value="{$service.qq|escape}" maxlength="11"/>
+         </p>
+         </li>
+                        
+                    </ul>
+                    <div class="submit">
+                                    <input class="btn" type="submit" value="{$lang.submit}" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=login_footer.html}
+
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=D86faa317d5dd0367df3ea346f27ec86"></script>
+
+<!-- 加载百度地图样式信息窗口 -->
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+<!-- 加载城市列表 -->
+<script type="text/javascript" src="http://api.map.baidu.com/library/CityList/1.2/src/CityList_min.js"></script>
+
+<style type="text/css">
+.eject_con .add ul {  width: 300px;  overflow: hidden; }
+#allmap {margin-right: 300px;height: 100%;overflow: hidden;}
+#result {border-left:1px dotted #999;height:100%;width:295px;position:absolute;top:0px;right:0px;font-size:12px;}
+dl,dt,dd,ul,li{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+dt{
+    font-size:14px;
+    font-family:"微软雅黑";
+    font-weight:bold;
+    border-bottom:1px dotted #000;
+    padding:5px 0 5px 5px;
+    margin:5px 0;
+}
+dd{
+    padding:5px 0 0 5px;
+}
+li{
+    line-height:28px;
+}
+.cityList{height: 320px;width:372px;overflow-y:auto;}
+    .sel_container{z-index:9999;font-size:12px;position:absolute;right:0px;top:0px;width:140px;background:rgba(255,255,255,0.8);height:30px;line-height:30px;padding:5px;}
+    .map_popup {position: absolute;z-index: 200000;width: 382px;height: 344px;right:120px;top:40px;}
+    .map_popup .popup_main { background:#fff;border: 1px solid #8BA4D8;height: 100%;overflow: hidden;position: absolute;width: 100%;z-index: 2;}
+    .map_popup .title {background: url("http://map.baidu.com/img/popup_title.gif") repeat scroll 0 0 transparent;
+    color: #6688CC;font-size: 12px;font-weight: bold;height: 24px;line-height: 25px;padding-left: 7px;}
+    .map_popup button {background: url("http://map.baidu.com/img/popup_close.gif") no-repeat scroll 0 0 transparent;
+    border: 0 none;cursor: pointer;height: 12px;position: absolute;right: 4px;top: 6px;width: 12px;}
+</style>
+
+<script type="text/javascript">
+// 百度地图API功能
+    var map = new BMap.Map('map');
+    map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
+	//var poi = new BMap.Point(116.307852,40.057031);
+
+    
+
+    
+	
+	$(function(){
+		var lng="<!--{$service.longitude}-->"==""?0:"<!--{$service.longitude}-->";
+		var lat="<!--{$service.latitude}-->"==""?0:"<!--{$service.latitude}-->";
+		
+		var poi = new BMap.Point(lng,lat);
+		var logo="/<!--{$service.portrait}-->";
+		
+		var address="<!--{$service.serve_address}-->";
+		var mobile="<!--{$service.mobile}-->";
+		var synopsis="<!--{$service.synopsis}-->";
+		var company_name="<!--{$service.company_name}-->";
+		//创建检索信息窗口对象
+		var searchInfoWindow = mGetSearchInfoWindow(company_name,logo,address,mobile,synopsis);
+		mAddMarker(poi,searchInfoWindow);
+		
+		map.centerAndZoom(poi, 16);
+		
+	});
+</script>
+
+<script type="text/javascript" src="{lib file=mapjs.js}" /></script>

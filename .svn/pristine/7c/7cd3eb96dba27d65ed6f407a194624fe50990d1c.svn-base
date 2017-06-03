@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta content="telephone=no" name="format-detection" />
+<title>收货地址</title>
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+<link type="text/css" href="public/static/wap/css/productlist.css" rel="stylesheet" />
+<script type=text/javascript src="static/js/jquery-1.8.3.min.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+</head>
+<body>
+<div class="main"> 
+    <header class="hdtop">
+        <div class="edit fl">
+            <p class="p1"><a href="javascript:history.go(-1)"><img src="public/static/wap/images/tw_03.png" /></a></p>
+            <p class="p2">收货地址</p>
+        </div>
+    </header>
+    
+     <div class="shrxx">
+        <p class="tjxdz"><a href="{link app=cart act=addressEdit}">新增收货地址</a></p>
+        <ul>
+          {foreach from=$list item=item}
+          <li id="list_{$item.addr_id}" class="{if $item.addr_id == $address.addr_id} on {/if} addr_list" data-id="{$item.addr_id}" >
+            <div class="check">
+            <h1 class="bgww">{$item.consignee}<span>{if $item.phone_mob}{$item.phone_mob}{else}{$item.phone_tel}{/if}</span></h1>
+            <p class="bgww">{$item.region_name} {$item.address}</p>
+            </div>
+            <p class="p3 bgww"><a href="{link app=cart act=addressEdit arg0=$item.addr_id}">【编辑】</a><a href="javascript:void(0)" class="del" data-id="{$item.addr_id}">【删除】</a></p>
+          </li>
+          {/foreach}
+        </ul>
+     </div>
+        
+</div>
+<script>
+$('.check').click(function(){
+	if($(this).parents('li').hasClass('on')) return;
+	var _id = $(this).parents('li').data('id');
+	$.post("{link app=cart act=addressSet}",{id:_id}, function(res){
+        var res = $.parseJSON(res);
+        if(res.done == true){
+        	$('.addr_list').removeClass('on');
+        	$('#list_'+_id).addClass('on');
+        }
+    })
+})
+
+$('.shrxx .del').click(function(){
+    var $this=$(this);
+    var msg=layer.open({
+        content: '确认删除？',
+        btn: ['确认', '取消'],
+        shadeClose: false,
+        yes: function(){
+        	
+        	$.post("{link app=cart act=addressDel}",{id:$this.data('id')}, function(res){
+                var res = $.parseJSON(res);
+                if(res.done == true){
+                	if(res.retval){
+                		$('#list_'+res.retval).addClass('on')
+                	}
+                	$this.parents('li').fadeOut('slow');
+                    layer.close(msg);
+                }else{
+                	
+                }
+            })
+            
+        }
+    });     
+})
+
+</script>
+
+
+<script>
+	//检测是否是微信浏览器
+	function is_weixin() {
+		var ua = navigator.userAgent.toLowerCase();
+		if (ua.match(/MicroMessenger/i) == "micromessenger") {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	if (is_weixin()) {
+		document.getElementById("header").style.display = 'none';
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+	$('#figure_form').validate({
+		rules : {
+		operator_comment : {
+		        required : true
+		    }
+		},
+		messages : {
+	    	
+			operator_comment : {
+	            required : '操作备注不能为空'
+	        }
+		}
+		
+	});
+});
+</script>
+<div id="rightTop">
+
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=figureorderlog&t={$smarty.get.t}">{$lang.manage}</a></li>
+    <li>
+     
+      <span>{$acc}</span>
+      
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="figure_form">
+    <table class="infoTable">
+
+<tr>
+        <th class="paddingT15"> 订单编号:</th>
+        <td class="paddingT15 wordSpacing5">
+        {$figure.order_sn|escape}
+                    </td>
+      </tr>
+
+<tr>
+        <th class="paddingT15"> 添加时间:</th>
+        <td class="paddingT15 wordSpacing5">
+        {$figure.add_time|date:Y-m-d H:i:s}
+                    </td>
+      </tr>
+<tr>
+        <th class="paddingT15"> 买家用户名称:</th>
+        <td class="paddingT15 wordSpacing5">
+        {$figure.buyer_name|escape}
+                    </td>
+      </tr>
+<tr>
+        <th class="paddingT15"> 订单金额:</th>
+        <td class="paddingT15 wordSpacing5">
+        {$figure.order_amount|escape}
+                    </td>
+      </tr>
+<tr>
+        <th class="paddingT15"> 分成比例:</th>
+        <td class="paddingT15 wordSpacing5">
+        {$figure.div_count|escape}
+                    </td>
+      </tr>
+<tr>
+        <th class="paddingT15"> 分成金额:</th>
+        <td class="paddingT15 wordSpacing5">
+        {$figure.div_amount|escape}
+                    </td>
+      </tr>
+<tr>
+        <th class="paddingT15"> 结算状态:</th>
+        <td class="paddingT15 wordSpacing5">
+        {if $figure.operator_state eq 0}
+      		未确认
+      {elseif $figure.operator_state eq 1}
+      		未结算
+      {elseif $figure.operator_state eq 2}
+      		已结算
+      {/if}
+                    </td>
+      </tr>
+{if $figure.settle_time}
+<tr>
+        <th class="paddingT15"> 操作时间:</th>
+        <td class="paddingT15 wordSpacing5">
+        {$figure.settle_time|date:Y-m-d H:i:s}
+                    </td>
+      </tr>
+{/if}
+      
+<tr>
+
+        <th class="paddingT15"> 操作员:</th>
+        <td class="paddingT15 wordSpacing5">
+        {$figure.operator_user|escape}
+                    </td>
+      </tr>
+
+
+<tr>
+       <th class="paddingT15"> 服务点ID:</th>
+        <td class="paddingT15 wordSpacing5">
+        
+        	
+        		{$figure.serviceid|escape}
+        
+                    </td>
+      </tr>
+
+<tr>
+       <th class="paddingT15"> 操作备注:</th>
+        <td class="paddingT15 wordSpacing5">
+        <textarea name="operator_comment" rows="5" cols="30">{$figure.operator_comment|escape}</textarea>
+        
+                    </td>
+      </tr>
+
+      <tr>
+        <th></th>
+        <td class="ptb20">
+        
+        <input type="hidden" name="t" value="{$smarty.get.t}" />
+        
+        <input id="operator_state" type="hidden" name="operator_state" value="" />
+        {if $figure.operator_state eq 0}
+        <input id="btnSubmit" class="congzi" type="button" name="Submit" value="未结算" />
+		<input id="btnwjs" class="tijia" type="button" name="wjs" value="已结算" />
+		{elseif $figure.operator_state eq 1}
+		<input id="btnwjs" class="tijia" type="button" name="wjs" value="已结算" />
+		{/if}
+        <script>
+        $(function(){
+        	$("#btnSubmit").click(function(){
+            	$("#operator_state").val(1);
+            		$("#figure_form").submit();
+					//alert($("#operator_state").val());
+            	});
+        	$("#btnwjs").click(function(){
+        			$("#operator_state").val(2);
+        			$("#figure_form").submit();
+					//alert($("#operator_state").val());
+            	});
+        });
+        </script>
+          
+	</td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

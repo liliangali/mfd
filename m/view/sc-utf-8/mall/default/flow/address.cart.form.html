@@ -1,0 +1,85 @@
+<p class="bcltsj">收货人信息<a href="javascript:;" class="saveAddress">【保存收货人信息】</a></p>
+    
+    {if $addresslist}
+    <div class="biaozm">
+      <div class="lihonwei addresslist">
+      <ul>
+      		{foreach from=$addresslist item=list}
+      		<li {if $address.addr_id eq $list.addr_id}class="on"{/if}><input name="address" type="radio" value="{$list.addr_id}" {if $address.addr_id eq $list.addr_id}checked{/if} /><label><span>{$list.consignee} {$list.phone_mob}</span><span>{$list.address}</span></label>
+      		<input type="hidden" id="addr-consignee-{$list.addr_id}" value="{$list.consignee}">
+      		<input type="hidden" id="addr-phone_mob-{$list.addr_id}" value="{$list.phone_mob}">
+      		<input type="hidden" id="addr-region_id-{$list.addr_id}" value="{$list.region_id}">
+      		<input type="hidden" id="addr-region_name-{$list.addr_id}" value="{$list.region_name}">
+      		<input type="hidden" id="addr-address-{$list.addr_id}" value="{$list.address}">
+      		<input type="hidden" id="addr-email-{$list.addr_id}" value="{$list.email}">
+      		<span class="handle" style="display:{if $address.addr_id eq $list.addr_id}block{else}none{/if}">
+      			<a href="javascript:;">修改</a>
+      			<a href="javascript:;">删除</a>
+      		</span>
+      		</li>
+      		{/foreach}
+      		{if $count < 5}
+      		<li><input name="address" type="radio" value="-1" /><label><span>使用新地址</span></label></li>
+      		{/if}
+      </ul>
+      </div>
+      <p class="clear"></p>    
+    </div>
+    {/if}
+    
+    <p class="clear"></p>
+        
+    <div class="smlt_box addressbox" style="overflow:hidden;{if $addresslist}display:none;{/if} padding-top:10px;">
+    <form id="consignee">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%" class="sameliti">
+        <tr>
+          <th><b>*</b>收货人</th>
+          <td><input type="text" value="{$address.consignee}" class="smltsydinput" name="consignee" maxlength="20"/></td>
+        </tr>
+        
+        <tr>
+            <th><b>*</b>手机号码</th>
+            <td><input type="text" value="{$address.phone_mob}" class="smltsydinput" name="phone_mob" maxlength="11"/></td>
+        </tr>
+
+        <tr>
+            <th><b>*</b>所在地区</th>
+            <td class="fuwudiqu">
+             <div id="region">
+                        
+                        <select>
+                          <option value='0'>请选择</option>
+                         	{html_options options=$regions}
+                        </select>
+            			<select>
+                          <option>请选择</option>
+			
+                        </select>
+                        <select>
+                          
+                          <option>请选择</option>
+		
+                        </select>
+                       <input type="hidden" name="region_id" value="{$address.region_id}" id="region_id" class="mls_id" />
+                        <input type="hidden" name="region_name" value="{$address.region_name|escape}" class="mls_names" id="region_name"/>
+                      </div>
+            </td>
+        </tr> 
+        
+        <tr>
+          <th><b>*</b>详细地址</th>
+          <td><input type="text" value="{$address.address}" class="sxdzinput" name="address" maxlength="100"/></td>
+        </tr>        
+
+        <tr>
+          <th><b>*</b>邮箱</th>
+          <td><input type="text" value="{$address.email}" class="smltsydinput" name="email"/></td>
+        </tr>     
+      </table>
+      	<input type="hidden" name="addr_id" value="{$address.addr_id}">
+      	<input type="hidden" name="update" value="0">
+      </form>
+    </div>
+   
+     <div class="but_pos"><input type="button" value="" class="tjyiuyoexx saveAddress"/></div>
+    

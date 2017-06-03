@@ -1,0 +1,33 @@
+<!--{if $page_info.page_count gt 1}-->
+<div class="cc_page">
+    <!--{if $page_info.prev_link}-->
+    <a class="former" href="{$page_info.prev_link}{if $page_info.parameter}{$page_info.parameter}{/if}" title="上一页">上一页</a>
+    <!--{else}-->
+    上一页
+    <!--{/if}-->
+
+
+    <!--{if $page_info.first_link}-->
+    <a class="page_link" href="{$page_info.first_link}{if $page_info.parameter}{$page_info.parameter}{/if}">1&nbsp;<!--{$page_info.first_suspen}--></a>
+    <!--{/if}-->
+    <!--{foreach from=$page_info.page_links key=page item=link}-->
+    <!--{if $page_info.curr_page eq $page}-->
+    <span class="active">{$page}</span>
+    <!--{else}-->
+    <a class="page_link" href="{$link}{if $page_info.parameter}{$page_info.parameter}{/if}">{$page}</a>
+    <!--{/if}-->
+    <!--{/foreach}-->
+    <!--{if $page_info.last_link}-->
+    <a class="page_link" href="{$page_info.last_link}{if $page_info.parameter}{$page_info.parameter}{/if}"><!--{$page_info.last_suspen}-->&nbsp;<!--{$page_info.page_count}--></a>
+    <!--{/if}-->
+
+
+    <!--{if $page_info.next_link}-->
+    <a href="{$page_info.next_link}{if $page_info.parameter}{$page_info.parameter}{/if}" title="下一页">下一页</a>
+    <!--{else}-->
+    下一页
+    <!--{/if}-->
+
+
+</div>
+<!--{/if}-->

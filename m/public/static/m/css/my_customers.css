@@ -1,0 +1,79 @@
+@charset "utf-8";
+.white {background: #fff; padding: 0 15px; overflow: hidden; border-bottom: 1px solid #dfdfdf;}
+.white_2 {background: #fff; padding-left: 15px; border-top:1px solid #dfdfdf; border-bottom:1px solid #dfdfdf; overflow: hidden;}
+.white_3 {background: #fff; padding: 0 15px; border-top:1px solid #dfdfdf; border-bottom:1px solid #dfdfdf; overflow: hidden;}
+
+/*我的顾客*/
+.ssk {border: 1px solid #dfdfdf; margin: 10px 0; float: left; width: 100%; height: 32px; position: relative;}
+.ssk .input_1 {height: 32px; padding: 0 15px; min-width: 78%;}
+.ssk .input_2 {background: #111 url(/public/static/m/images/icon_1.png) 11px 10px no-repeat; background-size: 25px 250px; height: 34px; display: block; width: 34px; position: absolute; right: 0; top: -1px; }
+
+.letter {font-size: 12px; color: #999; margin: 5px 15px; padding-top: 3px;}
+
+.gklb li { border-bottom: 1px solid #dfdfdf; height: 44px; line-height: 44px; position: relative;}
+.gklb li:last-of-type {border-bottom: none;}
+.gklb li .p1 { background: #fff; height: 45px; position: absolute; left: 0; top: 0; padding-right: 17px;}
+.gklb li .p1 img {width: 30px; height: 30px;}
+.gklb li .p2 {font-size: 12px; color: #333; margin-left: 47px;}
+
+.tjxgk_box {position: relative; width: 100%;}
+.tjxgk {background: #fff; padding: 10px 0; position: fixed; left: 0; bottom: 0; width: 100%;}
+.tjxgk input {border: 1px solid #000; color: #333; font-size: 12px; height: 34px; width: 94%; margin: 0 3%; background: #fff;}
+.gao {height: 80px;}
+
+/*修改备注信息*/
+.title_1 {font-weight: normal; font-size: 12px; color: #999; height: 20px; line-height: 20px; margin: 15px 15px 5px 15px;}
+.bzmc {color: #333; height: 43px; font-size: 12px;}
+.bz {background: #111; font-size: 12px; color: #fff; width: 94%; margin: 10px 3%; height: 38px; position: fixed; bottom: 0; left: 0;}
+
+/*量体数据项*/
+.ltsj {width: 101%; overflow: hidden; max-width: 610px; min-width: 290px;}
+.ltsj li {float: left; border-bottom: 1px solid #dfdfdf; border-right: 1px solid #dfdfdf;  height: 36px; line-height: 36px; width: 50%;box-sizing:border-box; text-align: center; font-size: 12px; color: #333;}
+
+.tstx {overflow: hidden; padding: 10px 0;}
+.tstx li {float: left; width: 50%; font-size: 12px; color: #333; height: 20px; line-height: 20px;}
+
+/*量体数据列表*/
+.ltsj_list li {background: #fff; padding:15px; margin-top: 12px; border-bottom: 1px solid #dfdfdf; border-top: 1px solid #dfdfdf;}
+.ltsj_list li a { display: block; background: url(/public/static/m/images/right_arrow.png) right 25px no-repeat; background-size: 6px 11px;}
+.ltsj_list li h1 {font-size: 12px; color: #333; line-height: 20px; font-weight: normal;}
+.ltsj_list li h2 {font-size: 12px; color: #717171; line-height: 20px; font-weight: normal;}
+
+/*详细资料_绑定顾客*/
+.title_2 {font-weight: normal; font-size: 12px; color: #333; height: 44px; line-height: 44px; margin: 0 15px;}
+.title_2 span {color: #f74c30;}
+.xxzl_bdgk { position: relative; padding:15px 15px 20px 15px;}
+.xxzl_bdgk p {position: absolute; left: 15px; top: 15px; width: 50px; height: 50px;}
+.xxzl_bdgk p img {width: 50px; height: 50px;}
+.xxzl_bdgk .div_1 {padding-left: 70px; margin-top: 5px;}
+.xxzl_bdgk .div_1 h3,.xxzl_bdgk .div_1 h4 {font-size: 12px; color: #333; line-height: 20px; height: 20px; font-weight: normal;}
+.xxzl_bdgk a {display: block; background: url(/public/static/m/images/right_arrow.png) right 15px no-repeat; background-size: 6px 11px;}
+
+.gkxb {margin-top: 12px;}
+.gkxb ul li {border-bottom: 1px solid #dfdfdf; height: 44px; line-height: 44px; overflow: hidden; position: relative; font-size: 12px;}
+.gkxb ul li:last-of-type {border-bottom: none;}
+.gkxb ul li span {position: absolute; right: 15px; top: 0; color: #999;}
+.ltsjyhw a {display: block; background: url(/public/static/m/images/right_arrow.png) right 17px no-repeat; background-size: 6px 11px;}
+.ltsjyhw {padding-right: 15px;}
+.ltsjyhw span {right: 30px !important;}
+.gkxb li input {width: 100%; height: auto;}
+
+/*详细资料_自己添加*/
+.title_3 {font-size: 12px; color: #717171; line-height: 20px; margin: 70px 15px 40px 15px; text-align: center;}
+.fxrwm {width: 117px; height: 117px; margin: 0 auto;}
+.fx_fz {width: 150px; margin: 0 auto;}
+.fx_fz .input_1 {background: #111; color: #fff; width: 100%; height: 30px; margin: 42px 0 14px 0;}
+.fx_fz .input_2 {border: 1px solid #666; background: #fff; text-align: center; color: #000; height: 30px; width: 100%; margin-bottom: 100px;}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+{include file=header2.html}
+<link href="static/css/sun_single.css" rel="stylesheet" type="text/css" />
+<!--导航结束-->
+<div class="dinzizx_box">
+ <div class="tailors_box clearfix">
+   <p class="sycf">设计师作品</p>
+   <ul class="Screening">
+    <!--{if $smarty.get.type_id > 0}-->
+    <li <!--{if $smarty.get.sorting == ''}-->class="on"<!--{/if}-->><a href="{link app=single}?type_id={$smarty.get.type_id}">最新</a></li>
+    <li <!--{if $smarty.get.sorting == 'like_num'}-->class="on"<!--{/if}--> style="border:none;"><a href="{link app=single}?sorting=like_num&type_id={$smarty.get.type_id}">热门</a></li>
+    <!--{else}-->
+    <li <!--{if $smarty.get.sorting == ''}-->class="on"<!--{/if}-->><a href="{link app=single}">最新</a></li>
+    <li <!--{if $smarty.get.sorting == 'like_num'}-->class="on"<!--{/if}--> style="border:none;"><a href="{link app=single}?sorting=like_num">热门</a></li>
+    <!--{/if}-->
+
+
+   </ul>
+ </div>
+  
+  <!--瀑布流 start-->
+
+    <div class="demo clearfix">
+      <div class="item_list infinite_scroll">
+
+      <!--item end-->
+      <!--{foreach from=$single_list item=v}-->
+      <div class="item masonry_brick">
+        <p class="zenzon"><a href="{link app=single act=info arg0=$v.album_id}#{$v.id}"><img src="{$v.img_url}" /></a></p>
+
+         <div class="renqi clearfix">
+          <p class="rq">浏览</p>
+          <p class="sl">{$v.like_num|default:0}</p>
+          <p class="pl">{$v.comment_num|default:0}</p>
+         </div>
+
+        <p class="lbjj">{$v.description}</p>            
+      </div>
+      <!--{/foreach}-->
+      <!--item end-->              
+                  
+      </div>
+    </div>
+
+</div>
+
+
+<!--翻页开始-->
+<div class="page_box clearfix">
+{include file=tailor/tailor.page.bottom.html}
+</div>
+<!--翻页结束-->  
+
+
+<!--底部开始-->
+{include file=footer.html}
+<!--底部结束-->
+<script type="text/javascript" src="static/js/jquery.masonry.js"></script>
+<script type="text/javascript" src="static/js/sun_single.js"></script>
+</body>
+</html>

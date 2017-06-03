@@ -1,0 +1,156 @@
+{include file=member.header.html}
+<div class="w">
+  <div class="AreaBox clearfix">
+    <div class="menu">
+     <div class="headPic"> <img src="{$avatar}" width="150" height="150" /> <a href="member-{$ac}-user_set.html"><span class="edit" >修改个人资料</span></a> </div>
+      <p class="userName">  {if $ac eq 'tailor'} {$user.nickname} {else} {$user.nickname}{/if} </p>
+      <p class="rank">{if $ac eq 'tailor'}{$user.supplierlv[name]}<img src="{$user.supplierlv[lv_logo]}">{else}{$user.memberlv[name]}<img src="{$user.memberlv[lv_logo]}" />{/if}</p>
+      <p class="tailorHome"><a target="_blank" href="tailor-info-{$visitor.user_id}.html">主页预览</a></p>
+      <dl>
+        <dt>账户设置</dt>
+        <dd> <a href="member-tailor-profile.html"><span class="ico5">个人资料</span></a> </dd>
+        <dd> <a class="" href="member-tailor-password.html"><span class="ico5">修改密码</span></a> </dd>
+        <dd> <a class="cur" class="" href="member-tailor-auth.html"><span class="ico5">身份认证</span></a> </dd>
+      </dl>
+    </div>
+    <div class="con" >
+        <h2 class="tit">收支明细</h2>
+        <div class="balance clearfix">
+         <p>您当前的阿里裁缝余额：<span>¥{$user.coin}</span></p>
+         <a href="#">充值</a>
+         <a href="{link app=member act=tailor arg0=cash}">提现</a>
+        </div>
+        
+       <ul class="jyjl clearfix">
+        <li id="ti_1" class="{if $record_type == 'deal'}now_hover {else} old_hover {/if}" onClick="ceck_pic(1);">交易记录</li>
+        <li id="ti_2" class="now_hover">提现记录</li>
+      </ul>
+      
+      <div id="tj_1" style="display:none;">
+        <div class="soso_box clearfix">
+         <p class="p1">交易时间：<input type="text" value="" /> -- <input type="text" value="" /></p>
+         <p class="p2">资金流向：<select><option>全部</option><option>收入</option><option>支出</option></select></p>
+         <div class="lsh">
+          <p>流水号：</p>
+          <input type="text" value="" class="input_1"/>
+          <input type="submit" value="搜索" class="input_2"/>
+         </div>
+        </div>
+       
+        <table cellpadding="0" cellspacing="0" border="0" width="100%" class="szmxbox">
+         <tr>
+          <th>流水号</th>
+          <th>时间</th>
+          <th>详细</th>
+          <th class="jz">金额（元）</th>
+         </tr>
+         
+         <tr>
+          <td>2015011300038890</td>
+          <td>2015-01-13 16:33:14</td>
+          <td>为x'x'x消费者定制下单付款，订单号：132423423</td>
+          <td class="jdje jz">-3200.00</td>
+         </tr>
+         
+         <tr>
+          <td>2015011300038890</td>
+          <td>2015-01-13 16:33:14</td>
+          <td>x'x'x消费者已收货平台回款，订单号：12423423</td>
+          <td class="jjine jz">+3200.00</td>
+         </tr>
+         
+         <tr>
+          <td>2015011300038890</td>
+          <td>2015-01-13 16:33:14</td>
+          <td>充值</td>
+          <td class="jjine jz">+3200.00</td>
+         </tr>                     
+        </table>
+        
+         <!--用户中心分页开始--> 
+         <div class="hyzx_fy clearfix" style="padding-top:15px;">
+          <p class="gjtsj">共<span>2</span>条数据，累计收入<span>2000</span>元，支累计支出<span>300</span>元。</p>
+          <div>
+            <p>共358个记录</p>
+            <a href="#" class="syiye"></a>
+            <a href="#">1</a>
+            <a href="#" class="on">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">...</a>
+            <a href="#">20</a>
+            <a href="#" class="xyiye"></a>
+           </div>
+         </div>  
+         <!--用户中心分页结束-->     
+        <h1 class="myfhd">没有符合条件的收支记录</h1>  
+      </div>
+      
+      
+      
+      <div id="tj_2" >
+       <p class="txje">您正在提现的金额：<span>¥{$cash_total_money}</span></p>
+       <p class="txjlu">提现记录</p>
+       {if $list}
+       <table cellpadding="0" cellspacing="0" border="0" width="100%" class="szmxbox">
+         <tr>
+          <th>申请提交时间</th>
+          <th>提现金额（元）</th>
+          <th>到账账户</th>
+          <th>提现状态</th>
+          <th class="jz">操作</th>
+         </tr>
+         {foreach from=$list item=data}
+         <tr>
+          <td>{$data.create_time|date:Y-m-d H:i:s}</td>
+          <td>{$data.cash_money}</td>
+          <td>{$bank_list[$data.bank_id]}，{$data.bank_card}</td>
+          <td {if $data.status == 30} class="jjine" {/if}>
+          {if $data.status == 0}
+          	申请提现中、等待系统审批
+          {elseif $data.status == 11}
+         	 审批完成、待定支付处理
+         {elseif $data.status == 12}
+         	审批失败,请联系客服
+         {elseif $data.status == 20}
+       		  支付处理完成，等待到账
+         {elseif $data.status == 30}
+          	提现成功
+          {/if}
+          
+          </td>
+          <td class="jz"><a href="{link app=member act=tailor arg0=cash_info arg1=$data.id}">查看详情</a></td>
+         </tr>
+         {/foreach}   
+                   
+        </table>
+        
+        <!--用户中心分页开始--> 
+         <div class="hyzx_fy clearfix" style="padding-top:15px;">
+          <p class="gjtsj">共<span>{$page_info.item_count}</span>条数据，累计收入<span>2000</span>元，支累计支出<span>300</span>元。</p>
+          <div>
+            {include file="member.page.bottom.html"}
+           </div>
+         </div>  
+         <!--用户中心分页结束--> 
+          {else}
+        <h1 class="myfhd">没有符合条件的收支记录</h1>
+          {/if}
+      </div>
+         
+    </div>
+  </div>
+</div>
+<script  type="text/javascript" src="../../static/js/usercenter.js"></script>
+
+<SCRIPT language="javascript" type="text/javascript">
+		  function ceck_pic(ix)
+		  {
+		  	window.location.href = "{link app=member act=tailor arg0=pay_list }";
+		  
+		  }
+</SCRIPT>
+{include file="footer.html"}
+

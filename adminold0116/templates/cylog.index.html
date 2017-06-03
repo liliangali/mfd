@@ -1,0 +1,56 @@
+{include file="header.html"}
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="apply" />
+          <input type="hidden" name="act" value="index" />
+          用户名：<input class="queryInput" type="text" name="username" value="{$username}" />
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=cylog">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $a_list}-->
+    <tr class="tatr1">
+      <td>用户姓名</td>
+      <td>时间</td>
+      <td>重置方式 </td>
+      <td>invitee</td>
+      <td>inviter</td>
+      <td>special_code</td>
+      <td>member_lv_id</td>
+      <td>old_member_lv_id</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$a_list item=list}-->
+    <tr class="tatr2">
+      <td>{$list.user_name}</td>
+      <td width="1000">{$list.add_time|date:Y-m-d H:i:s}</td>
+      <td>{if $list.type eq 0 }自动{else}手动{/if}</td>
+      <td>{$list.invitee}</td>
+      <td>{$list.inviter}</td>
+      <td>{$list.special_code}</td>
+      <td>{$list.member_lv_id}</td>
+      <td>{$list.old_member_lv_id}</td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="6">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $a_list}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

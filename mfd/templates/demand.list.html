@@ -1,0 +1,19 @@
+<table width="100%" cellspacing="0" class="dataTable">
+        <tr class="tatr1">
+            <td align="left">用户名称</td>
+            <td>图片</td>
+            <td>状态</td>
+            <td>发起时间</td>
+            <td>操作</td>
+        </tr>
+        <!--{foreach from=$dmdlist item=dmd}-->
+        <tr class="tatr2">
+            <td>{$dmd.user_name|escape}</td>
+            <td><img src="{$dmd.imgs}" width="100" height="100"></td>
+            <td>未响应</td>
+            <td>{$dmd.add_time|date:complete}</td>
+            <td><a href="javascript:;" onclick="parent.photo(0,[{foreach from=$dmd.imgs item=img name=loop}{src:'{$img}'}{if !$smarty.foreach.loop.last},{/if}{/foreach}])">详细</a>
+                <a href="javascript:;" data-id="{$dmd.id}" class="active">响应</a>
+        </tr>
+        <!--{/foreach}-->
+    </table>

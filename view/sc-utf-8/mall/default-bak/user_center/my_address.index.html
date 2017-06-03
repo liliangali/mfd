@@ -1,0 +1,92 @@
+{include file=../user/member.header.html}
+<style>
+.dzxinxi_box {width:968px; border:1px solid #dfdfdf; margin-top:10px; background:#fff; overflow:hidden; position:relative;}
+.gsdizi {height:40px; line-height:40px; position:relative; padding:0 10px; border-bottom:1px solid #e2e2e2; overflow:hidden; font-size:15px; background:#f3f3f3; color:#000; font-weight:bold;}
+.gsdizi .p1 { position:absolute; right:55px; top:0; font-size:12px;}
+.gsdizi .p1 a { text-decoration:underline;}
+.gsdizi .p2 { position:absolute; right:10px; top:0; font-size:12px;}
+.gsdizi .p2 a { text-decoration:underline;}
+.dzxx_gsdz_left { float:left; width:620px; margin:18px 25px; display:inline; font-size:14px; border-right:1px solid #eee;}
+.dzxx_gsdz_left p { height:26px; line-height:26px; overflow:hidden; color:#333;}
+.dzxx_gsdz_left p span { color:#757575; padding-right:10px;}
+.cz_bnt {width:106px; height:106px; line-height:106px; text-align:center; font-size:14px; position:absolute; top:50%; right:50px; margin-top:-33px;}
+.cz_bnt a { display:block; background:#4d4b4c; color:#fff; border-radius:106px;}
+.cz_bnt a:hover {background:#1d1d1d;}
+.cz_bnt .on {background:#f5f5f5; color:#666;}
+.cz_bnt .on:hover {background:#f5f5f5;}
+.eject_con .add { width: 538px; padding: 20px; overflow: hidden; }
+.eject_con .add ul { width: 538px; overflow: hidden; }
+.eject_con .add li { width: 538px; overflow: hidden; float: left; padding-bottom: 15px; }
+.eject_con .add li h3 { float: left; color: #646665; font-weight: normal; font-size: 12px; line-height:30px; text-align:right; padding-right:10px; width:80px;}
+.eject_con .add li p { float: left; line-height:26px;}
+.eject_con .add li p span { color: #b4b4b4; padding-left: 10px; }
+.eject_con .add .submit { width: 458px; padding:5px 0 0 90px; }
+.eject_con .add .submit .btn { margin:0;}
+.querySelect { margin-top:5px;}
+.eject_con .add li div select {border:1px solid #ddd; height:28px; padding:1px; margin-right:6px;}
+.add li .width_normal {border:1px solid #ccc; height:28px; line-height:28px; padding:0 8px; width:200px;}
+.add li .error {border:1px solid #000 !important;}
+#warning {color:#a40001; width:100%; text-align:center; padding:0 0 10px 0; line-height:26px;}
+#region {line-height:28px;}
+.ad_tips {font-size:14px; color:#757575; line-height:34px; padding-top:10px;}
+.ad_tips span {color:#a40001; padding:0 3px; font-family:Arial, Helvetica, sans-serif; font-weight:bold;}
+</style>
+<script type="text/javascript" src="static/js/address/rctailor.js"></script>
+<script type="text/javascript" src="static/js/address/member.js"></script>
+<script type="text/javascript" src="/index.php/default-jslang.html"></script>
+<script type="text/javascript" src="static/js/address/minicart.js"></script>
+<script type="text/javascript" src="static/js/address/rc.js"></script>
+<script type="text/javascript" src="static/js/address/dialog.js" id="dialog_js"></script>
+<script type="text/javascript" src="static/js/address/jquery.ui.js"></script>
+<script type="text/javascript" src="static/js/address/jquery.validate.js"></script>
+<script type="text/javascript" src="static/js/address/mlselection.js"></script>
+
+
+   <div class="w">
+    <div class="AreaBox clearfix">
+        {include file=../user/member.menu.html}
+       
+        <div class="con">
+        
+            <h2 class="tit">地址管理<a class="thickbox" ectype="dialog" dialog_title="{$lang.add_address}" dialog_id="my_address_add" dialog_width="600" uri="{link app=my_address act=add}">{$lang.add_address}</a></h2>
+            
+            <p class="ad_tips">您已创建<span>{$count_addresses}</span>个收货地址</p>
+                
+            
+            
+            
+                <!--{foreach from=$addresses item=address name=v}-->
+                <div class="dzxinxi_box">
+                  <div class="gsdizi">{$address.al_name}
+                    <p class="p1"><a href="javascript:void(0);" ectype="dialog" dialog_id="my_address_edit" dialog_title="{$lang.edit_address}" dialog_width="700" uri="{link app=my_address act=edit}?addr_id={$address.addr_id}" class="edit1 float_none">修改地址信息</a></p>
+                    <p class="p2"><a href="javascript:drop_confirm('{$lang.drop_confirm}', '{link app=my_address act=drop}?addr_id={$address.addr_id}');" class="delete float_none">删除</a></p>
+                  </div>
+                
+                  <div class="dzxx_gsdz_left">
+                    <p><span>收 货 人&nbsp;：</span>{$address.consignee|escape}</p>
+                    <p><span>地　　址：</span>{$address.region_name|escape}</p>
+                    <p><span>详细地址：</span>{$address.address|escape}</p>
+                    <p><span>手机号码：</span>{$address.phone_mob}</p>
+                    <p><span>固定电话：</span>{$address.phone_tel}</p>
+                    <p><span>电子邮件：</span>{$address.email}</p>
+                  </div>
+                  
+      
+                  <p class="cz_bnt"><!--{if $address.addr_id == $def_addr}--><a class="on">已是默认</a><!--{else}--><a href="{link app=my_address act=edit_def_addr arg=$address.addr_id}">设为默认</a><!--{/if}--></p>
+             
+                </div>
+                <!--{/foreach}-->
+        </div>
+   </div>
+</div>
+{include file="../user/footer.html"}
+
+
+
+
+
+
+
+
+
+

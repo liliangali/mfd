@@ -1,0 +1,147 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+		<!-- <li><a class="btn1" href="{$url}">返回</a></li>
+        <li><a class="btn1" href="index.php?app=client_finance&amp;act=export">导出</a></li> -->
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="client_finance" />
+                <input type="hidden" name="act" value="estp_index" />
+                用户：<input type="text" name="client_name" value="{$smarty.get.client_name}"/>
+                
+                <!-- <input type="hidden" name="user_id" value="{$user_id}"/> -->
+                时间从:<input class="queryInput2 Wdate" type="text" value="{$smarty.get.time_from}" style="width:150px" id="time_from" name="time_from" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                至：<input class="queryInput2 Wdate" type="text" value="{$smarty.get.time_to}" style="width:150px" id="time_to" name="time_to" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                <input type="submit" class="formbtn" name="submit" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=client_finance&act=estp_index">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {if $earning_list}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+
+        <tr class="tatr1">
+        	<td width="5%" class="firstCell"><input type="checkbox" class="checkall" />全选</td>
+            <td width="20%"><span ectype="order_by" fieldname="fyear">时间</span></td>
+            <td width="5%"><span ectype="order_by" fieldname="fmonth">用户名</span></td>
+
+            <td width="5%"><span ectype="order_by" fieldname="fday">创业者姓名</span></td>
+            
+            <td width="15%"><span ectype="order_by" fieldname="order_sn">身份证号</span></td>
+
+            <td width="10%"><span ectype="order_by" fieldname="abstract">收益净额</span></td>
+            
+            <td width="10%"><span ectype="order_by" fieldname="abstract">个税</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="abstract">价税合计</span></td>
+
+        </tr>
+
+        <!--{foreach from=$earning_list item=earning_info}-->
+        <tr class="tatr2">
+        	<td class="firstCell"><input type="checkbox" class="checkitem" value="{$earning_info.user_id}" /></td>
+        	<td>{$earning_info.start_time|date:Y-m-d H:i:s}~{$earning_info.end_time|date:Y-m-d H:i:s}</td>
+        	<td>{$earning_info.user_name}</td>
+        	<td>{$earning_info.real_name}</td>
+        	<td>{$earning_info.identity_card}</td>
+        	<td>{$earning_info.earning_money|price}</td>
+        	<td style="color:red">{$earning_info.tax_money|price}</td>
+        	<td>{$earning_info.all_money|price}</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}--> 
+    </table>
+    {if $earning_list}
+    <div id="dataFuncs">
+          <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+          	  <input type="checkbox" class="checkall" />全选
+	          <!-- <input class="formbtn" type="button" value="订单打印" onclick="print()" /> -->
+	          <input class="export_btn formbtn" data-type="all" type="button" value="导出检索订单" />
+	          <input class="export_btn formbtn" data-type="sel" type="button" value="导出所选订单" />
+	          <input type="hidden" id="conditions" value="{$conditions}">
+      	  </div>
+        <div class="pageLinks">       		 
+            {include file=page.bottom.html}
+            <span class="page mtr10">共{$count}个收益用户，累计发生：收益净额{$earning}元，个税{$income}元</span>
+        </div>      
+    </div>
+    {/if}
+    <div class="clear"></div>
+</div>
+<script type="text/javascript">
+//二级层
+$('.dataTable .showInfo').click(function(){
+	var $this=$(this),obj=$this.parents('tr').next('tr');
+	if($this.hasClass('show')){
+		obj.hide();
+		$this.removeClass('show')
+	}else{
+		obj.show();
+		$this.addClass('show')
+	}
+})
+
+$('.export_btn').unbind().bind('click',function(){
+	var _type = $(this).attr('data-type');
+	
+	if(_type == 'all'){
+		var _condi = '&type=estp_earning_all';
+		$('.mrightTop').find('.fontl').find('input').each(function(){
+	        if($(this).val() && $(this).attr('name')){
+	            if($(this).attr('name') != 'app' && $(this).attr('name') != 'act' && $(this).attr('name')!='submit'){
+	                _condi += '&'+$(this).attr('name')+'='+$(this).val();
+	            }
+	        }
+	    })
+	}else{
+		var _condi = '&type=estp_earning_all';
+		var ids='';
+	    $(".checkitem").each(function(){
+	        if($(this).attr("checked") == true){
+	            ids += ids ? ","+$(this).val() : $(this).val();
+	        }
+	    });
+	    $('.mrightTop').find('.fontl').find('input').each(function(){
+	        if($(this).val() && $(this).attr('name')){
+	            if($(this).attr('name') != 'app' && $(this).attr('name') != 'act' && $(this).attr('name')!='submit'){
+	                _condi += '&'+$(this).attr('name')+'='+$(this).val();
+	            }
+	        }
+	    })
+	    if(ids.length == 0){
+	        return false;
+	    }
+	     _condi += '&user_ids='+ids;
+	}
+	
+	window.open("index.php?app=client_finance&act=export"+_condi);
+	return;
+})
+
+function print(){
+    var ids='';
+    $(".checkitem").each(function(){
+        if($(this).attr("checked") == true){
+            ids += ids ? ","+$(this).val() : $(this).val();
+        }
+    });
+
+    if(ids.length == 0){
+        return false;
+    }
+    window.open("index.php?app=order&act=orderprint&id="+ids);
+}
+</script>
+{include file="footer.html"}

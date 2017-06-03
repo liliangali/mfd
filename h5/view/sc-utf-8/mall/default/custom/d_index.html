@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>麦富迪尚品</title>
+<link href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link href="http://r.cotte.cn/cotte/wap/css/style.css" rel="stylesheet" />
+</head>
+<body>
+<div class="main">
+  <!--头部开始-->
+    <div class="topBar">
+		<div class="wrap">
+			<span class="back" onClick="history.go(-1)"></span>
+			<h1>麦富迪尚品</h1>
+		</div>
+		<div class="sta"></div>
+	</div>
+  <!--头部结束-->
+
+ <div class="x_ktsp">
+   {foreach from=$list item=item }
+       {if $item.title!="全球首发"}
+       <p><a href="{link app=custom act=d_list}?topic={$item.id}"><img src="{$item.small_img}"></a></p>
+       {/if}
+   {/foreach}
+ </div>
+</div>
+{include file="/footer.html"}
+
+
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script src="http://r.cotte.cn/cotte/wap/js/public.js"></script>
+</body>
+</html>

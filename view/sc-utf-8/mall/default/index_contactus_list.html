@@ -1,0 +1,16 @@
+<div id="ajaxres" >
+<!--{foreach from=$goods_list item=good}-->
+<div class="list">
+<div class="zspic" ><img src="../../static/img/zwpic15.png" width="364" height="256" /></div>
+<p>
+<strong class="site_name">{$good.site_name}</strong>
+</p>
+<p>地址：{$good.address}</p>
+<p class="site_phone">电话：{$good.site_phone}
+<input type="hidden" name="siteid" value="{$good.city_id}" /> 
+<input type="hidden" class="lng" name="lng" value="{$good.lng}" /> 
+<input type="hidden" class="lat" name="lat" value="{$good.lat}" />
+</p>
+</div>          
+<!--{/foreach}-->
+</div>

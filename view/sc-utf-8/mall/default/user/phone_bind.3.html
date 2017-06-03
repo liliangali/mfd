@@ -1,0 +1,35 @@
+
+<div class="user_box">
+    {include file=member.menu.html}
+
+    <div class="user_right user_rights fr" >
+        <h4>手机验证</h4>
+        <div class="verification verificationwc">
+            <ul>
+                <li>1.验证身份</li>
+                <li>2.修改已绑定手机</li>
+                <li class="current">3.完成</li>
+            </ul>
+        </div>
+        <div class="binding">
+            <p class="prosit">恭喜您、手机修改成功！</p>
+            <p class="ckaqsz">您新绑定的手机号：{$phone}<a href="member-safe.html" >[查看安全设置]</a><br><span id="num">3</span>秒自动跳转</p>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        function jump(count) {
+            window.setTimeout(function(){
+                count--;
+                if(count > 0) {
+                    $('#num').html(count);
+                    jump(count);
+                } else {
+                    location.href="member-safe.html";
+                }
+            }, 1000);
+        }
+        jump(3);
+    });
+</script>

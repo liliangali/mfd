@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta content="telephone=no" name="format-detection" />
+<title>coolette mobile</title>
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+</head>
+
+<body style="background:#f6f6f6;">
+<script>window.onunload=function(){};</script>
+<form action="" id="CartListForm">
+<div class="main"> 
+  <div class="wdgwc_box">
+    {foreach from=$cart.object item=item name=clist}
+
+	    <div class="gwclb clearfix" data-id="{$item.ident}" data-tp="{$item.type}" {if $smarty.foreach.clist.first}style="padding-top:25px;"{/if}>
+	      <a href="javascript:void(0)" class="scal" data-id="{$item.ident}" data-tp="{$item.type}"></a>
+	      <p class="m_gwctu">{if $item.check=='yes'}<span class="on"></span>{else}<span class="off"></span>{/if}
+	      {if $item.list}
+	         <input type="checkbox" name="check[list][{$item.ident}]" value="{$item.ident}" {if $item.check=='yes'} checked="checked" {/if} style="display: none"  >
+	      {else}
+	          <input type="checkbox" name="check[data][{$item.ident}]" value="{$item.ident}"   {if $item.check=='yes'} checked="checked" {/if} style="display: none"  >
+	      {/if}
+	      <a href="javascript:void(0)"><img src="{$item.goods.image}" /></a>
+	      </p>
+	
+	      <div class="xinxixz">
+	        <h3>{$item.goods.name}</h3>
+	        <p class="ltdz"><span>{$item.goods.markprice|price}</span></p>
+	        <p class="ltdz">{if $item.type == 'fdiy'}
+						定制商品<span style="padding-left: 5px;">{$item.goods.dname}</span>
+						{else}
+						{foreach from=$item.list item=ls} 
+						<span style="padding-left: 5px;">{$ls.params.oProducts.spec_info}</span>{/foreach}{/if}</p>
+	        <div class="jiajian_2" data-id="{$item.ident}" data-tp="{$item.type}" data-ft="{$item.first}">
+	          <p class="jian" data-do="jian">-</p>
+	          <input type="number" value="{$item.quantity}" class="change" name="change" data-num="{$item.quantity}" {if $item.first} readonly {/if} />
+	          <p class="jia" data-do="jia">+</p>
+	        </div>
+	      
+	      </div>
+	    </div>
+
+    {if !$smarty.foreach.clist.last}<p class="gwchst"></p>{else}<p style="height:1px; overflow:hidden; background:#e5e5e5;"></p>{/if}
+    
+    {/foreach}
+    
+  </div>
+</div>
+
+<div class="jrgwc_box">
+ <div class="jrgwc main">
+   <p class="one_to_one m_gwctu qx" id="checkAll">{if $choiceAll}<span class="on"></span>{else}<span class="off"></span>{/if}全选</p>
+   <h2 class="houji">合计：<span>{$cart.check_amount|price}</span></h2>
+   <input type="hidden" name="token" value="{$tk}" />
+   <p class="jiesua" data-jsn="{$cart.check_num}" data-ty='1'><a href="javascript:void(0)">结算 ({$cart.check_num})</a></p>
+ </div>
+</div>
+</form>
+
+<script type="text/javascript" src="static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="static/js/cart.js"></script>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+    $.cart({
+        dropUrl:"/cart-drop.html?token={$tk}",
+        cartUrl:"/cart.html?token={$tk}",
+        clearUrl:"/cart-clear.html?token={$tk}",
+        updateUrl:"/cart-update.html?token={$tk}",
+        checkoutUrl:"/cart-checkout.html?token={$tk}",
+        checkUrl:"{link app=cart act=check}",
+        choiceUrl : "{link app=cart act=choice}",
+        choiceAllUrl : "{link app=cart act=choiceAll}",
+        tk : "{$tk}"
+    });
+    
+    $('.embs_sel').unbind().bind('change',function(){
+    	var _this = $(this);
+    	var _text = _this.find("option:selected").text(); //_this.val()
+    	var _id = _this.data('id');
+    	_this.parents('.xinxixz').find('.wdqmlr').find('.'+_id).html(_text);
+    });
+    $('.embs_inp').unbind().bind('change',function(){
+        var _this = $(this);
+        var _text = _this.val(); //_this.val()
+        var _id = _this.data('id');
+        _this.parents('.xinxixz').find('.wdqmlr').find('.'+_id).html(_text);
+    });
+    $('.embs_sel').each(function(){
+    	var _this = $(this);
+        var _text = _this.find("option:selected").text(); //_this.val()
+        var _id = _this.data('id');
+        _this.parents('.xinxixz').find('.wdqmlr').find('.'+_id).html(_text);
+    });
+    $('.embs_inp').each(function(){
+    	var _this = $(this);
+        var _text = _this.val(); //_this.val()
+        var _id = _this.data('id');
+        _this.parents('.xinxixz').find('.wdqmlr').find('.'+_id).html(_text);
+    })
+    
+    
+});
+
+</script>
+
+   <SCRIPT>
+        $("#sortlist h3").bind("click",function(){
+        var element=$(this).parent();
+        if (element.hasClass("current")){
+            element.removeClass("current");
+        }else{
+            element.addClass("current");
+        }
+    })
+   </SCRIPT>   
+</body>
+</html>

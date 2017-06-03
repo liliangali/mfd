@@ -1,0 +1,13 @@
+ 
+    {foreach from=$data_list item=dev}
+        <div class="item">
+           <p><a href="#"><img src="{$dev.photo_url}"></a></p>
+           <div class="cygs_lr">
+            <h1><span>创业</span>者名称:{$dev.nickname}</h1>
+            <p class="p1">{$dev.reg_time}</p>
+            <p class="p2">{$dev.content}</p>
+           </div>
+        </div>
+    {/foreach}
+   
+   

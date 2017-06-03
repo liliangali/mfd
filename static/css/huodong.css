@@ -1,0 +1,40 @@
+/*布局*/
+.container{margin:0 auto; overflow:hidden;}
+/*banner*/
+.banner{width:100%;height:100%; margin-top:-1px;}
+.banner img{width:100%;height:100%}
+/*内容*/
+.fashion{width:202;height:66px;text-indent:-2000px;background:url(../../static/img/hd_icon03.png) center no-repeat;margin:0 auto;margin-top:62px;}
+.crpxbanner{max-width:1128px;margin:0 auto;margin-top:52px;}
+.crpxbanner img{width:100%;height:100%;}
+.content{width:100%;overflow:hidden;background:#f8f8f8;padding-top:79px;margin-top:50px;}
+.activities{width:1128px;margin:0 auto;overflow:hidden;}
+.activities .area{width:181px;height:61px;text-indent:-2000px;background:url(../../static/img/hd_icon04.png) center no-repeat;float:left;}
+.activities .notes{width:367px;height:47px;text-indent:-2000px;background:url(../../static/img/hd_icon05.png) center no-repeat;margin-top:15px;float:right;}
+.content ul{max-width:1128px;margin:0 auto;margin-top:54px;clear:both;}
+.content ul li{overflow:hidden;margin-bottom:33px;}
+.content ul li img{width:100%;height:100%;}
+.huoddl{max-width:1128px;margin:0 auto;overflow:hidden;}
+.content dl{padding-right:5px;overflow:hidden;margin-bottom:110px;float:right;}
+.content dl dd{float:left;margin-left:16px; font-size:24px; display:inline;}
+.content dl dd a{color:#333;}
+ 
+@media (min-width: 768px) and (max-width:980px){
+.container {width:768px; }
+}
+@media (min-width: 980px) and (max-width:1024px){
+.container {width:980px; }
+}
+@media (min-width: 1024px) and (max-width:1280px) {
+.container {width:1024px;}
+.content dl{overflow:hidden;padding-right:3%;}
+}
+@media (min-width: 1280px) and (max-width:1440px) {
+.container {width:1280px;}
+}
+@media (min-width: 1440px) and (max-width:1540px) {
+.container {width:1440px;}
+}
+@media (min-width: 1540px) {
+.container {width: 1540px; }
+}

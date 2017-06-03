@@ -1,0 +1,55 @@
+{include file=header2.html}
+<link rel="stylesheet" type="text/css" href="static/css/custom.css">
+
+<div class="w2">
+    <div class="title">
+    	<div class="line1"></div>
+        <div class="line2"></div>
+        <span class="tit">所有{$cats.$arg1}</span>
+        <p class="p">以定制为主题的多品牌集合店，聘请专业设计师团队，商品以男士个性化西装定制为主，但种类并不限定某个类别，也涵盖配饰等其他多个品种，各个年龄段的男士，无论商务、休闲、聚会......都可以选择到适合自己的着装。</p>
+    </div>
+    <div class="product clearfix">
+        {foreach from=$list item=goods}
+    	<div class="item">
+        	<div class="bigPic"><img src="{$goods.cst_image}" width="290" height="387" /><a href="{link app=custom act=minfo arg0=$goods.cst_id}">立即定制</a></div>
+            <ul class="smallPic danpin">
+       {foreach from=$append.$goods.cst_id item=img name=loop}
+        {if $smarty.foreach.loop.iteration lt 5}
+           <li{if $smarty.foreach.loop.iteration eq 1} class="cur"{/if} data-pic='{$img.m_img}'><img src="{$img.s_img}" width="75" height="93" /></li>
+        {/if}
+      {/foreach}
+            </ul>
+            <table width="100%" border="0">
+              <caption>{$goods.cst_name}</caption>
+              <tr>
+                <th>面料号</th>
+                <td>{$goods.fabric_sn}</td>
+                <th>款式号</th>
+                <td>{$goods.cst_sn}</td>
+              </tr>
+              <tr>
+                <th>面料成分</th>
+                <td>{$goods.ele}</td>
+                <th>点击次数</th>
+                <td>{$goods.cst_views}</td>
+              </tr>
+              <tr>
+                <th>卖点</th>
+                <td colspan="3">{$goods.cst_description}</td>
+              </tr>
+            </table>
+        </div>
+        {/foreach}
+    </div>
+    <ul class="fixedNav">
+  {foreach from=$cats item=cat key=key}
+    <li{if $key eq $curCat} class="cur"{/if}><a href="{link app=gallery act=goods arg0=1 arg1=$key}">{$cat}</a><i></i></li>
+ {/foreach}
+    <li><a href="{link app=gallery}">套装</a><i></i></li>
+      </ul>
+</div>
+<!--翻页开始-->
+{include file="page.normal.html"}
+<!--翻页结束--> 
+<script  type="text/javascript" src="static/js/custom.js"></script>
+{include file="footer.html"}

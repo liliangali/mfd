@@ -1,0 +1,117 @@
+@charset "utf-8";
+/* CSS Document */
+.orderInfo {margin-bottom:150px;}
+.orderInfo h1 { font-weight:normal;font-size: 28px; margin-top: 50px;}
+.orderInfo h2{ font:normal 19px/45px ''; border-bottom:solid 1px #dfdfdf; margin-bottom:8px;}
+.orderInfo .mt{margin-top:40px;}
+.orderInfo .tabBtn li{ float:left; width:190px; height:50px; border:solid 1px #dfdfdf; padding:1px; text-align:center; line-height:50px; margin-right:10px; font-size:16px; cursor:pointer; background:#fafafa;}
+.orderInfo .tabBtn .cur{ background:#fff; border:solid 2px #e66800; padding:0;}
+.hide { display: none; overflow: hidden; }
+
+/*发票*/
+.fapiao .tip{ margin-bottom:20px; color:#717171;}
+.fapiao .tabLayer{ width:806px; padding-top:20px; clear:both;}
+.fapiao .taitou{ border:solid 1px #dfdfdf;}
+.fapiao .taitou label{ margin-left:20px;}
+.fapiao .taitou input { width: 670px; height: 48px; line-height:48px\9;font-size: 14px; padding: 0 5px; }
+.fapiaoInfo{ border:solid 1px #dfdfdf; padding:20px 40px;}
+.fapiaoInfo li{ padding-left:95px; margin:15px 0; line-height:37px;}
+.fapiaoInfo label{ float:left; margin-left:-95px;}
+.fapiao label i{ color:#F00; padding-right:5px;}
+.fapiaoInfo input{ width:300px; height:35px; line-height:35px\9; border:solid 1px #dfdfdf; padding:0 5px; margin-right:15px;}
+.fapiaoInfo .error{ color:#999;}
+/*配送信息*/
+#addressLayer{ margin-top:15px;}
+
+/*商品清单*/
+.qingdan{ color:#717171; border-bottom:1px solid #dfdfdf; padding-bottom:30px; margin-bottom:50px;}
+.qingdan th{ text-align:left; background:#f9f9f9; height:32px;  font-weight:normal;}
+.qingdan th,.qingdan td{ padding-left:15px;}
+.qingdan td{ padding-top:15px;}
+.qingdan .name{ color:#000;}
+
+/*各种优惠券*/
+.accordion{ margin-top:15px}
+.accordion .tit{ background:url(/public/static/pc/images/toggle.gif) no-repeat; padding-left:25px; line-height:20px;-moz-user-select:none;}
+.accordion .tit.show{ background-position:0 -21px;}
+.accordion .layer{width:705px; margin:10px 0 20px; overflow:hidden; display:none; border:solid 1px #dfdfdf; padding:20px;}
+.accordion .vouchers{ line-height:25px;}
+.accordion .vouchers p span{ margin-right:10px;}
+.accordion .vouchers h4{ font-size:16px; font-weight:normal; margin:10px 0 5px;}
+.accordion .radioBox{ line-height:30px; color:#717171;}
+.accordion .radioBox li{ padding-left:20px; background:url(/public/static/pc/images/radio.gif) no-repeat 0 -42px;-moz-user-select:none;}
+.accordion .radioBox li.cur{ background-position:0 7px;}
+.accordion .grey{ color:#717171;}
+.accordion .cotteMoney .txt,.accordion .yue .txt{ padding:0 3px; border:solid 1px #dfdfdf; width:143px; height:30px; margin-left:10px;  box-sizing:border-box;}
+.accordion .cotteMoney .btn,.accordion .yue .btn{border:solid 1px #dfdfdf;width:70px; height:30px; margin-left:10px; background:#fafafa;}
+.accordion .cotteMoney p,.accordion .yue p{color:#717171; display:inline; padding-left:10px;}
+.accordion .orderRemark{ width:745px; padding:0;}
+.accordion .orderRemark textarea{ border:0;width:100%; height:80px; font-size:14px; resize:vertical; padding:3px; box-sizing:border-box; color:#333;}
+.accordion .payPwd input{ border:solid 1px #dfdfdf; margin:0 10px 0 3px; padding:0 5px; width:200px; height:35px;}
+.list_box{ min-height:135px;}
+/*价格清单*/
+.accounts { position:relative; text-align: right;background:#f9f9f9; padding:15px 0;}
+.accounts .orderDown {width: 160px; height: 45px; border: none; background: #e66800; color: #fff; text-align: center;font-size: 16px; margin-right: 20px; cursor: pointer; }
+.accounts .backCart{width: 160px; height: 45px; border: none; border:solid 1px #ddd; text-align: center; line-height: 46px; font-size: 16px; margin-right: 15px; cursor: pointer; }
+.priceList{ width:250px; position:absolute; right:40px; bottom:100px; line-height:30px;}
+.priceList li{ overflow:hidden;}
+.priceList p{ padding-top:20px; overflow:hidden;}
+.priceList .priceNum{ font-size:24px;}
+.priceList .priceNum em{ font-size:14px;}
+
+
+/*内容*/
+#tab {position: relative;}
+#tab h3 { font-size: 19px; line-height: 24px; font-weight: normal; padding-top: 47px; }
+#tab .tab_box { clear: both; padding-top:20px; }
+.address { overflow: hidden; }
+.address ul li { float: left; width: 22%; height: 135px; border: 1px solid #dfdfdf; padding:10px 15px 20px; font-size: 14px; margin-right: 0.8%; cursor: pointer; background:#fafafa; }
+.address .cur { border: 2px solid #e66800; padding:9px 14px 19px;}
+
+.address ul li .underlined { border-bottom: 1px solid #dfdfdf; line-height: 28px; }
+.address ul li .tele { line-height: 28px; padding-top: 3px; }
+.address ul li .txaddress { height: 55px; overflow: hidden; color: #6d6d6d; line-height: 24px; }
+.caozuoBtn { visibility: hidden; }
+.address li.cur .caozuoBtn { visibility: visible; }
+.caozuoBtn input { width: 50px; height: 22px; margin-right: 5px; cursor: pointer; background: #eee; border: solid 1px #dfdfdf; color: #333; }
+.address ul .syxdz {text-align: center; font-weight: bold; color: #6d6d6d; }
+.address ul .syxdz span{ font:50px/50px ""; color:#8c8c8c;display:block; text-align:center; height:50px; line-height:50px; margin-top:25px;}
+
+.qhnear { width: 60%; border: 1px solid #dfdfdf; overflow: hidden; padding: 2% 0 2% 2.5%; }
+.mendianList .loading{ line-height:50px; color:#e66800}
+.qhnear h4 { clear: both; font-size: 16px; overflow: hidden; height: 20px; padding-bottom: 4px; }
+.qhnear dl { margin-top: 10px; }
+.qhnear dl dd { width: 30%; height: 37px; line-height: 37px; float: left; border: 1px solid #dfdfdf; color: #333333; padding:0 10px; font-size: 14px; cursor: pointer; }
+.qhnear dl dt { line-height: 37px; color: #888888; font-size: 12px; padding-left: 2%; float: left; }
+.qhnear dl.cur dd { border-color:#e66800;}
+.cityselect { padding-bottom: 15px; }
+.cityselect .selects { border: 1px solid #dfdfdf; font-size: 14px; height: 37px; width: 34%; }
+/* 添加弹出 */
+.addto { clear: both; padding: 15px; }
+.addto .tyinput { color: #919191; border: 1px solid #dfdfdf; width: 97%; line-height: 30px; font-size: 14px; padding-left: 3%; margin-bottom: 12px; }
+.tccxl { color: #919191; border: 1px solid #dfdfdf; width: 48%; height: 30px; line-height: 30px; font-size: 14px; padding-left: 2%; margin-bottom: 12px; float: left; cursor: pointer; }
+.tccxls { margin-left: 4%; }
+.fstccxl { color: #919191; border: 1px solid #dfdfdf; width: 100%; height: 30px; line-height: 30px; font-size: 14px; padding-left: 2%; margin-bottom: 12px; float: left; cursor: pointer; }
+.textwby { width: 96%; color: #919191; border: 1px solid #dfdfdf; line-height: 22px; margin-bottom: 12px; padding: 1% 1% 3% 3%; }
+.ddbutt { overflow: hidden; }
+.ddquxiao { width: 48%; float: left; color: #919191; border: 1px solid #dfdfdf; line-height: 30px; cursor: pointer; font-size: 14px; }
+.ddbaocun { margin-left: 4%; border: 1px solid #ff3300; background: #ff3300; color: #fff; }
+/*数量控件*/
+.jiag { width: 155px; padding-right: 20px; font-size: 16px; color: #717171; line-height: 28px; margin-top: 6px; }
+.jajia_box { float: left; width: 132px; border: 1px solid #dfdfdf; height: 28px; line-height: 28px; margin: 5px 82px 0 0; }
+.jajia_box a { display: block; width: 28px; float: left; background: #fafafa; height: 28px; }
+.jajia_box .a_1 { background: url(/public/static/pc/images/slx_icon.png) 8px -340px no-repeat; }
+.jajia_box .a_2 { background: url(/public/static/pc/images/slx_icon.png) 9px -316px no-repeat; }
+.jajia_box input,.jajia_box span { width: 74px; float: left; height: 28px; text-align: center; background: #fff; font-size: 16px; border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdfdf; }
+
+@media screen and (max-width:1024px) {
+.main, .w {max-width:950px;}
+}
+
+@media screen and (max-width:768px) {
+.main, .w {max-width:700px;}
+.orderInfo .tabBtn li { margin-bottom:10px;}
+.accounts {margin-top:150px !important;}
+.accordion .orderRemark {width:600px;}
+.accordion .layer {width:600px;}
+}

@@ -1,0 +1,113 @@
+{include file=member.header.html}
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+</style>
+
+<div class="content">
+ {include file=member.menu.html}
+ <div id="right">            
+  <div class="wrap">
+   {include file=member.submenu.html}
+   <div class="public">
+   <form method="post" enctype="multipart/form-data" id="serve_form">
+   <div class="information">                        
+   <div class="info individual">
+   <table> 
+   {if $mqrcode}                     
+   <tr>
+    <th class="paddingT15" width="120">二维码 :</th>
+    <td class="paddingT15 wordSpacing5"><br /><a href="{link app=service act=info arg=$serve.idserve}" target="_blank"><img src="{$mqrcode}" alt="" width="100" height="100" /></a></td>
+   </tr>                     
+   {/if} 
+     <tr>
+        <th class="paddingT15"> {$lang.business_license} :</th>
+        <td class="paddingT15 wordSpacing5">
+        {if $serve.business_license}<br /><a href="/{$serve.business_license}" target="_blank"><img src="../{$serve.business_license}" alt="" width="100" height="100" /></a>{/if} 
+          
+         </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.tax_card} :</th>
+        <td class="paddingT15 wordSpacing5">
+        {if $serve.tax_card}<br /><a href="/{$serve.tax_card}" target="_blank"><img src="../{$serve.tax_card}" alt="" width="100" height="100" /></a>{/if} 
+         
+         </td>
+      </tr>
+     <tr>
+        <th class="paddingT15"> {$lang.organization_card} :</th>
+        <td class="paddingT15 wordSpacing5">
+        {if $serve.organization_card}<br /><a href="/{$serve.organization_card}" target="_blank"><img src="../{$serve.organization_card}" alt="" width="100" height="100" /></a>{/if} 
+         
+          
+         </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.company_synopsis} :</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.company_synopsis|escape}
+         </td>
+      </tr>
+     <tr>
+        <th class="paddingT15"> {$serve_type_name}等级 :</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.brokerage_level|escape}
+         </td>
+      </tr>
+     
+     
+     <tr>
+        <th class="paddingT15"> {$lang.state} :</th>
+        
+        <td class="paddingT15 wordSpacing5">
+        
+        
+        {if $serve.state==0}
+      	{$lang.state_0}
+      {elseif $serve.state==1}
+      	{$lang.state_1}
+      {elseif $serve.state==2}
+      	{$lang.state_2}
+      {/if}
+		</td>
+          
+         
+      </tr>
+     
+     
+     
+     <tr>
+        <th class="paddingT15"> {$serve_type_name}代码 :</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.rc_code|escape}
+         </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.create_date} :</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.create_date|escape}
+         </td>
+      </tr>
+                                
+                                
+                                
+                                
+                               
+                            </table>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <div class="wrap_bottom"></div>
+            </div>
+
+            <div class="clear"></div>
+
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{include file=login_footer.html}

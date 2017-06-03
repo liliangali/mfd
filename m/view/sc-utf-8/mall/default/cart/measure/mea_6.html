@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>指定量体师</title>
+<link rel="stylesheet" href="static/css/mobiscroll.date.css" />
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+<script>window.onunload=function(){};</script>
+</head> 
+
+<body>
+<div class="main"> 
+ <div class="bzcmsg">
+ <form method="post" data-id="6">
+  <ul class="yysmlt" style="margin-top:20px;">
+  
+   <li class="jj_box">
+   <img src="../../../../../../static/img/csxt_2.gif" class="csxt">
+        <span>服务地区：</span>
+        <font class="jj_1">
+        <select id="Jarea" validate="required" tip="地区" name="data[region_id]">
+        <option value="">请选择</option>
+        {foreach from=$regions item=item}
+        <option value="{$item.region_id}" {if $data.region_id == $item.region_id} selected {/if}>{$item.region_name}</option>
+        {/foreach}
+        </select>
+        <input type="hidden" name="data[liangti]" value="{$data.liangti}" id="liangti"/>
+        </font>
+   </li>
+   <li class="jj_box"><span>真实姓名：</span><font class="jj_1"><input id="JName" validate="required" tip="真实姓名" type="text" placeholder="输入您的真实姓名" name="data[realname]" value="{$data.realname}" /></font></li>
+   <li class="jj_box"><span>联系电话：</span><font class="jj_1"><input id="Jphone" validate="required|phone" tip="手机号" value="{$data.phone}" name="data[phone]" type="tel" maxlength="11"  placeholder="输入您的手机号码" /></font></li>
+   <li class="jj_box">
+   <img src="../../../../../../static/img/rltu.jpg" class="rltu">
+       <span>预约时间：</span>
+       <font class="srb jj_1">
+		<div id="Jdate" class="date-layer"></div>
+       <input name="data[time]" value="{$data.time}" type="text" placeholder="请选择" id="demo_date" />
+       </font>
+   </li>
+   
+   <li class="jj_box" style="border-bottom:0;">
+   <img src="../../../../../../static/img/csxt_2.gif" class="csxt">     
+        <span>量体时段：</span>
+        <font class="jj_1">
+        <select id="Jdata2" validate="required" tip="量体时段" name="data[time_noon]">
+			<option value="">请选择</option>
+			<option value="am" {if $data.time_noon == 'am'} selected {/if}>上午</option>
+			<option value="pm" {if $data.time_noon == 'pm'} selected {/if}>下午</option>
+	    </select>
+        </font>
+   </li>
+  </ul>
+  <input type="button" value="确 定" class="xiayb saveMea">
+  </form>
+ </div>
+</div>
+
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script> 
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+<script src="static/js/mobiscroll.date.js"></script>
+<script>
+$(function () {
+	function setdate(d){
+		$('#demo_date').mobiscroll().date({
+			theme: 'android', 
+			mode: 'scroller',
+			display: 'modal',
+			lang: 'zh',
+			minDate:d,
+			maxDate:(function(){
+				var date=new Date()
+					date.setMonth(date.getMonth()+1);
+				return date	
+			})()
+		});
+	}
+	$('#Jdate').click(function(){
+		var date=new Date();
+		if($('#Jdata2').val()=='am'||date.getHours()>=12){
+			date.setDate(date.getDate()+1);	
+		}
+		setdate(date);
+		$('#demo_date').click()
+	});
+	$('#Jdata2').focus(function(){
+		var date=new Date(),
+			date2=new Date($('#demo_date').val()),
+			arr=[[],[],[]];
+			arr[0].push(date.getMonth());
+			arr[0].push(date.getDate());
+			arr[1].push(date2.getMonth());
+			arr[1].push(date2.getDate());
+			arr[2].push(date.getHours());
+			if(arr[0].join()==arr[1].join()){
+				$('#Jdata2')[0].options[1].disabled=true
+				if(arr[2]>=12){
+					$('#Jdata2')[0].options[2].disabled=true
+				}
+			}else{
+				$('#Jdata2')[0].options[1].disabled=false;
+				$('#Jdata2')[0].options[2].disabled=false;	
+			}
+	})
+});
+</script>
+<script>
+
+function _alert(msg){
+    layer.open({
+        content: '<p style="text-align:center">'+msg+'</p>',
+        btn: ['确定'],
+    }); 
+}
+
+
+$('input:button.xiayb').click(function(){
+	var _id = $('.main').find('form').data('id');
+	$('.main').find('form').ajaxSubmit({
+        type:"post",
+        data:{id:_id},
+        dataType:"json",
+        url:"{link app=cart act=meaSave}?time="+ (new Date()).getTime(),
+        success:function (res,statusText) {
+            if(res.done == false){
+                   _alert(res.msg);
+            }else{
+                location.href="{link app=cart act=checkLiangti}";
+            }
+        }
+    });
+})
+
+$(function(){
+        
+    $('#Jarea').unbind().bind('change',function(){
+        var region_id = $(this).val();
+        if(region_id)
+        getLiangti(region_id)
+    })
+    
+})
+
+
+function getLiangti(region_id){
+    $.post("{link app=cart act=ajaxLiangti}",{region_id:region_id}, function(res){
+        if(res.done == true){
+        	$('#liangti').val(res.retval.id)
+        }else{
+        	_alert('此地区下不存在量体师')
+        }
+    },'json')
+}
+
+
+</script>
+</body>
+</html>

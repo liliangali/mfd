@@ -1,0 +1,25 @@
+
+{if $key == 'point'}
+<th class="paddingT15"><label> 积分数 :</label></th>
+<td class="paddingT15 wordSpacing5"><input id="value" type="text" name="value" value="{$value}" class="infoTableInput required digits"/></td>
+{/if}
+
+{if $key == 'coupon'}
+<th class="paddingT15"><label> 优惠券 :</label></th>
+<td class="paddingT15 wordSpacing5">{input_obj callback="_callback" type="radio" name="value" value="$value" id="coupon" model="coupon" text="请选择优惠券"}</td>
+<script>
+$(function(){
+	_callback();
+});
+function _callback(res){
+	var _id = $('#input_coupon').val();
+	$.ajax({
+		url    : 'index.php?app=promotion&act=ajax_coupon_name',
+		data   : 'id='+_id,
+		success:function(result){
+			$('.input_object').html(result);
+		}
+	});
+}
+</script>
+{/if} 

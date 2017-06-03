@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+{$page_seo}
+<link rel="stylesheet" type="text/css" href="/static/css/mobile_style.css">
+<link href="public/static/wap/css/slx_style.css" rel="stylesheet" />
+
+</head>
+<body style="background:#eee;">
+<div class="main">
+ <div class="yfzx_top">
+   <p class="syshez"><a href="{link app=my_messages act=index}"></a><!-- {if $has_message} --><span></span><!-- {/if} --></p>
+   <p class="syxiaox"><a href="#"></a></p>
+   <div class="yfzxtx">
+   <p class="p1">
+   {if $avatar}
+   <a href="{link app=member act=person}"><img src="{$avatar}" width="74" height="74"></a>
+   {else}
+   <a href="{link app=member act=person}"><img src="public/static/wap/images/yfzxtx.png"></a>
+   {/if}
+   </p>
+   <div>
+     <p class="p2">{$user.nickname}<img src="public/static/wap/images/vip.png"></p>
+     <p class="p3">450积分</p>
+   </div>
+   </div>
+   <a href="{link app=member act=logout}" class="tjdl">退出</a>
+ </div>
+
+ <div class="yfzx_list">
+  <ul>
+   <li class="li_1">
+    <a href="{link app=my_order act=index arg0=all}">
+    <p class="p1"></p>
+    <p class="p2">我的订单</p>
+    <p class="p3">共346个</p></a>
+   </li>
+   <li class="li_2">
+    <a href="{link app=my_favorite}"><p class="p1"></p>
+	<p class="p2">我的收藏</p>
+    <p class="p3"></p></a>
+   </li>
+   <li class="li_3">
+    <a href="{link app=member act=person}"><p class="p1"></p>
+    <p class="p2">个人信息</p>
+    <p class="p3"></p></a>
+   </li>
+   <li class="li_4">
+    <a href="{link app=member act=password}"><p class="p1"></p>
+    <p class="p2">登录密码</p>
+    <p class="p3">修改</p></a>
+   </li>   
+  </ul>
+ </div>
+ 
+ <div class="yfzx_list">
+  <ul>
+   <li class="li_5">
+    <a href="{link app=member act=myerweima}"><p class="p1"></p>
+    <p class="p2">我的二维码</p>
+    <p class="p3"></p></a>
+   </li>
+   <li class="li_6">
+    <a href="{link app=member act=addinviter}"><p class="p1"></p>
+    <p class="p2">我的邀请码</p>
+    <p class="p3">无</p></a>
+   </li>   
+  </ul>
+ </div> 
+ 
+ <div class="yfzx_list">
+  <ul>   
+   <li class="li_7">
+    <a href="{link app=about}"><p class="p1"></p>
+    <p class="p2">关于麦富迪</p></a>
+    <p class="p3"></p>
+   </li>
+  </ul>
+ </div> 
+ 
+ {include file=../footer_new.html}
+</div>
+
+</body>
+</html>

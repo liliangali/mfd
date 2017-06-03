@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>麦富迪APP下载</title>
+<link type="text/css" href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<style>
+.appxzy { background:#21d0fd; height:318px; text-align:center; padding-top:40px; position:relative;}
+.appxzy h2 {font-size:14px; line-height:24px; color:#fff; font-weight:normal; margin:15px 40px 0 40px;}
+.appxzy h3 img {width:131px; height:131px; margin-top:30px;}
+
+.wxjt {width:28px; height:32px; background:url(http://r.cotte.cn/cotte/wap/images/wxjt.png) left top no-repeat; background-size:28px 32px; position:absolute; right:35px; top:22px; display:block;}
+
+.xjiao {background:#fff; height:56px; position:absolute; bottom:-30px; left:-7px; width:110%;
+ transform:rotate(5deg);
+-ms-transform:rotate(5deg); /* Internet Explorer */
+-moz-transform:rotate(5deg); /* Firefox */
+-webkit-transform:rotate(5deg); /* Safari 和 Chrome */
+-o-transform:rotate(5deg); /* Opera */}
+.xjiao_2 {position:fixed; left:0; bottom:0; width:100%;}
+.xjiao_2 div {background:#ddf8ff; height:80px; max-width:700px; margin:0 auto; position:relative; bottom:-55px; left:-7px;
+transform:rotate(8deg);
+-ms-transform:rotate(8deg); /* Internet Explorer */
+-moz-transform:rotate(8deg); /* Firefox */
+-webkit-transform:rotate(8deg); /* Safari 和 Chrome */
+-o-transform:rotate(8deg); /* Opera */}
+
+.pgaz {display:box;display:-webkit-box;display:-moz-box; orient: horizontal; width:100%;}
+.pgaz  li {box-flex:1;-webkit-box-flex:1;-moz-box-flex:1; display:block;}
+.pgaz  li p {font-size:12px; color:#999; line-height:24px; text-align:center; margin-top:12px;}
+.pgaz a img {width:100%;}
+</style>
+</head>
+
+<body>
+ <div class="main">  
+   <div class="appxzy"> 
+     <a href="javascript:history.go(-1)" class="wxjt"></a>  
+     <h2>若微信中无法直接下载，可点击右上角的按钮，选择在浏览器中打开即可下载</h2>
+     <h3><img src="http://r.cotte.cn/cotte/wap/images/ku.png"></h3>
+     <p class="xjiao"></p>
+   </div>
+   
+   <div style="margin:54px 15px 100px 15px;">
+   <ul class="pgaz">
+    <li  style=" margin-right:25px;">
+   		 <a href="{$ios_mfd_link}" class="a1"><img src="http://r.cotte.cn/cotte/wap/images/iphone.png"></a><p>适用于iOS7.0及以上</p>
+    	<div ioslink="{$ios_mfd_link}"></div>
+    </li>
+    <li>
+    	<a href="{$android_mfd_link}" class="a2"><img src="http://r.cotte.cn/cotte/wap/images/android.png"></a><p>适用于Android4.0及以上</p>
+    	<div androidlink="{$android_mfd_link}"></div>	
+    </li>
+   </ul>
+   </div>   
+   <div class="xjiao_2" style="display:none;"><div></div></div>
+ </div>
+<?php require_once 'cs.php';echo '<img src="'._cnzzTrackPageView(1256310341).'" width="0" height="0"/>';?>
+</body>
+</html>

@@ -1,0 +1,55 @@
+/**
+* 用户相关模板文件注释
+*
+* 文件名称		用途		是否异步加载
+*
+* @author xiao5 <xiao5.china@gmail.com>
+* @copyright Copyright 2014 www.alicaifeng.com
+* @package txt
+*/
+
+
+login.html								登陆页面
+
+/———————————————注—————————册—————————————————————/
+
+member.register.html					注册默认页面
+
+member.register-1-email.html			注册-发送邮件提示页面-第二步				异步加载
+
+member.register-1-phone.html			注册-发送邮件提示页面-第二步				异步加载
+
+member.finish-e.html					注册-外链验证邮件注册成功提示页面-第三步
+
+member.finish-h.html					注册-手机验证码验证成功-第三步			异步加载
+
+
+
+/————————找———————回———————密——————码———————————————/
+
+member.findps.html						找回密码（默认页面）
+
+member.findps-email-tips.html			找回密码-发送邮件成功后提示页面			异步加载
+
+member.findps-reset.html				找回密码-验证手机验证码成功重设密码			异步加载
+
+member.findps-reset-email.html			找回密码-外链验证邮件重置密码
+
+member.findps-success.html				找回密码-重置密码成功提示页面
+
+
+/————————用———————户———————中——————心———————————————/
+
+footer.html
+
+member.header.html
+
+member.index.html
+
+member.menu.html
+
+member.profile.html
+
+member.submenu.html
+
+

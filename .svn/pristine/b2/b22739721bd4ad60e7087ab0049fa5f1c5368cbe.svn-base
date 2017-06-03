@@ -1,0 +1,41 @@
+{include file="header.html"}
+<link href="templates/webim/css/layim.css" type="text/css" rel="stylesheet"/>
+<script src="../static/expand/my97date/wdatepicker.js"></script>
+<style>
+body { font-size: 12px; margin: 0; padding: 0; }
+.main { width: 600px; margin: 0 auto; border: solid 1px #ddd; }
+.layim_chatview { height: auto; margin-top: 100px; }
+.filterBar { height: 50px; width: 600px; line-height:50px; text-align:center; background: #fff; position: fixed; top: 0; z-index: 2; border-bottom: solid 1px #ddd; box-shadow: 0 0 5px #ccc; }
+.filterBar .Wdate{ width:100px; height:25px; padding:0 3px; border:solid 1px #ddd;}
+.filterBar .btn{ width:50px; height:25px; border:0; background:#1b9af7; border-radius:3px; color:#fff; box-shadow:0 5px 0 #077ace; margin-left:10px;}
+</style>
+<div class="main">
+  <div class="filterBar">
+  <form action="index.php">
+      <span>筛选：</span>
+      <input type="text" name="start" value="{$query.start}" class="Wdate" onfocus="WdatePicker({maxDate:'%y-%M-%d'})">
+      至
+      <input type="text" name="end" value="{$query.end}" class="Wdate" onfocus="WdatePicker({maxDate:'%y-%M-%d'})">
+      <input type="hidden" name="app" value="history">
+      <input type="hidden" name="ids" value="{$query.ids}">
+      <input type="submit" value="确定" class="btn">
+  </form>
+  </div>
+  <ul id="layim_area100003-0001" class="layim_chatview layim_chatthis">
+  {foreach from=$msglist item=msg}
+    <li class="layim_chateme">
+    {if $msg.to_user}
+      <div class="layim_chatuser"><span class="layim_chattime">{$msg.time}</span><span class="layim_chatname">{$msg.user_name}</span><img src="{$msg.face}"></div>
+      <div class="layim_chatsay">{$msg.content} <em class="layim_zero"></em></div>
+    </li>
+   {else}
+    <li class="">
+      <div class="layim_chatuser"><img src="{$msg.face}"><span class="layim_chatname">{$msg.user_name}</span><span class="layim_chattime">{$msg.time}</span></div>
+      <div class="layim_chatsay">{$msg.content}<em class="layim_zero"></em></div>
+    </li>
+   {/if}
+  {/foreach}
+  </ul>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+</div>
+{include file="footer.html"}

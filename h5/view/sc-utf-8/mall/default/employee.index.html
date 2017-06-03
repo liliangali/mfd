@@ -1,0 +1,85 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        <div class="wrap">
+	    <h1 class="syhtmdbt">员工信息管理<a href="javascript:viod" onclick="go('{link app=$modelname act=add}');" class="qkqb">{$lang.add_data}</a></h1>
+
+            <div class="public table">
+                <table class="table_head_line">
+                    <!--{if $datas}-->
+       <tr class="line tr_color">
+                    
+                    
+
+
+      <th>{$lang.ID}</th>
+      <th>{$lang.employee_name} </th>
+      <th><span >{$lang.sex}</span></th>
+      <th><span >{$lang.job_number}</span></th>
+      <th><span >手机号码</span></th>
+      <th><span >{$lang.create_date}</span></th>
+      
+      
+      <th class="handler">{$lang.handler}</th>
+
+
+      </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$datas item=data name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold tr_align"><!--{else}--><tr class="line tr_align"><!--{/if}-->
+                        
+      <td>{$data.$prikey|escape} </td>
+      <td>{$data.employee_name|escape}</td>
+      <td>
+      {if $data.sex eq 0}
+      保密
+      {elseif $data.sex eq 1}
+      男
+      {elseif $data.sex eq 2}
+      女
+      {/if}
+      </td>
+      <td>
+      {$data.job_number|escape}
+
+
+
+      </td>
+      <td>{$data.mobile}</td>
+      <td>{$data.create_date}</td>
+      
+      
+      
+      
+      <td class="handler">
+      <span style="width: 100px">
+      <a href="{link app=$modelname act=edit arg=$data.$prikey}">{$lang.edit}</a> | <a href="javascript:drop_confirm('{$lang.drop_confirm}', '{link app=$modelname act=drop arg=$data.$prikey}');">{$lang.drop}</a>
+        
+        
+        
+      </span>
+      </td>
+
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="6" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                </table>
+                <!--{if $datas}-->
+                   <div style="padding-top:20px;">
+                    {include file=member.page.bottom.html}
+                   </div>
+                    <!--{/if}-->
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+<iframe id='iframe_post' name="iframe_post" src="about:blank" frameborder="0" width="0" height="0"></iframe>
+{include file=login_footer.html}

@@ -1,0 +1,72 @@
+<p class="m_sydtu"><img src="{if $uinfo.zone_img}{$uinfo.zone_img}{else}{$img_url}/images/m_sydtu.jpg{/if}" /></p>
+
+
+  <div class="m_llxldjj">
+    <p class="p1"><img src="{$uinfo.avatar}" /></p>
+    <div>
+      <h1>{uname uid=$uinfo.user_id sub=19}<img src="{$uinfo.level_logo}" class="m_daren" /></h1>
+      <p class="m_wsxtin">{$visitor.signature}</p>
+      <p class="p2" style="height:48px;">{$uinfo.memo}</p>
+      <!-- <p class="p3">标签：<span>甜美</span><span>欧美</span><span>韩系</span><span>简约</span><span>休闲</span></p> -->
+    </div>
+    {if !$is_self}
+    	{if !$isFans}
+    		<a href="javascript:void(0);"  id='user_follow' onclick='member_follow2({$uid})' class="m_guanziu">关注</a>
+    	{else}
+    		<a href="javascript:void(0);"  id='user_follow' onclick='member_cancle2({$uid})' class="m_qxguanziu">取消关注</a>
+    	{/if}
+    {else}
+    	<a href="/index.php/kuke-userinfo.html" class="xggrxx">修改资料</a>
+    {/if}
+  </div>
+    <a name="club"  id="club"></a>
+  <ul class="m_drkjkbdh">
+    <li {if $act == 'album' }class='on'{/if}><a href="index.php/club-album-{$uid}.html#club">酷吧 ({$album_num})</a></li>
+    <li {if $act == 'hwaterfall' && $type == 1}class='on'{/if}><a href="index.php/club-hwaterfall-1-1-{$accessuid}.html#club">个人设计 ({$photo_num})</a></li>
+    <li {if $act == 'hwaterfall' && $type == 2}class='on'{/if}><a href="index.php/club-hwaterfall-1-2-{$accessuid}.html#club">街拍 ({$camera_num})</a></li>
+    <li {if $act == 'like' }class='on'{/if}><a href="index.php/club-like-{$uid}.html#club">喜欢 ({$like_num})</a></li>
+    <li {if $act == 'cooler' }class='on'{/if}><a href="index.php/club-cooler-{$uid}.html#club">粉丝 ({$fans_num})</a></li>
+  </ul>
+  <script>
+
+function member_cancle2(to_uid){
+    if(!$.rc.dialog.islogin())
+        return 0;
+
+	$.ajax({
+		"url":"/index.php/club-ajax_unfollow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+            alert(data.msg);
+			var obj = $("#user_follow");
+			obj.html('关注');
+			obj.attr('class','m_guanziu');
+			obj.attr('onclick','member_follow2('+to_uid+ ')');
+
+		}
+	});
+}
+
+function member_follow2(to_uid){
+    if(!$.rc.dialog.islogin())
+        return 0;
+
+	$.ajax({
+		"url":"/index.php/club-ajax_follow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			var obj = $("#user_follow");
+            alert(data.msg);
+			obj.html('取消关注');
+			obj.attr('class','m_qxguanziu');
+			obj.attr('onclick','member_cancle2('+to_uid+ ')');
+		}
+	});
+}
+
+
+</script>

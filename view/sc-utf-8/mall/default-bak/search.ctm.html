@@ -1,0 +1,45 @@
+{include file="header2.html"}
+<link rel="stylesheet" type="text/css" href="../../static/css/search.css">
+<div class="w">
+{include file="search.title.html"}
+<div class="w2">
+    <div class="product clearfix">
+       {foreach from=$list item=goods}
+    	<div class="item">
+        	<div class="bigPic"><img src="{$goods.cst_image}" width="290" height="387" /><a href="{link app=custom act=minfo arg0=$goods.cst_id}">立即定制</a></div>
+            <ul class="smallPic danpin">
+            {foreach from=$append.$goods.cst_id item=img name=loop}
+            {if $smarty.foreach.loop.iteration lt 5}
+               <li{if $smarty.foreach.loop.iteration eq 1} class="cur"{/if} data-pic='{$img.m_img}'><img src="{$img.s_img}" width="75" height="93" /></li>
+            {/if}
+          {/foreach}
+            </ul>
+            <table width="100%" border="0">
+              <caption>{$goods.cst_name}</caption>
+              <tr>
+                <th>面料号</th>
+                <td>{$goods.fabric_sn}</td>
+                <th>款式号</th>
+                <td>{$goods.cst_sn}</td>
+              </tr>
+              <tr>
+                <th>面料成分</th>
+                <td>{$goods.ele}</td>
+                <th>点击次数</th>
+                <td>{$goods.cst_views}</td>
+              </tr>
+              <tr>
+                <th>卖点</th>
+                <td colspan="3">{$goods.cst_description}</td>
+              </tr>
+            </table>
+        </div>
+    {/foreach}
+ </div>
+    <!--翻页开始-->
+{include file="page.normal.html"}
+<!--翻页结束-->  
+ </div>
+</div>
+<script  type="text/javascript" src="static/js/custom.js"></script>
+{include file="footer.html"}

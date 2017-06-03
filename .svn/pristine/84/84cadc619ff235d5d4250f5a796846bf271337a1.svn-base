@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{$page_seo}
+<link href="{res file=css/style.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/head_footr.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/thickbox.css}" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="{link app=default act=jslang}"></script>
+
+<script type="text/javascript" src="{res file=js/jquery-1.7.1.min.js}"></script>
+<script type="text/javascript" src="{res file=js/thickbox-compressad.js}"></script>
+
+<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+<script type="text/javascript" src="{res file=js/Xslider.js}"></script>
+{$_head_tags}
+</head>
+
+<body>
+
+<!--头部开始-->
+
+<div class="dz_head_top_box">
+  <div class="head_top">
+    <div class="dz_head_top_left">
+       <p class="dz_gjdt"></p>
+       <div class="dz_menu2" onMouseOver="this.className='dz_menu1'" onMouseOut="this.className='dz_menu2'">
+         <p class="wdzf"><a href="#">中国</a></p>
+         <DIV class="list">
+          <P><A href="#">美国</A></P>
+          <P><A href="#">英国</A></P>
+          <P><A href="#">日本</A></P>
+         </DIV>
+       </div> 
+     
+       <p class="dz_zxgf"><!-- <a href="http://onlineservice.rctailor.com/webchat/chat.aspx?siteid=147977" target="_blank">在线客服</a> --></p>      
+    </div>
+    
+    <div class="dz_head_top_right">
+      <p class="dz_qdlzc">Hi,  <!--{if !$visitor.user_id}-->请<a href="{link app=member act=login}">登录</a><b>/</b><a href="{link app=member act=register}">注册</a><!--{else}-->{$visitor.user_name|escape} <a href="{link app=member act=logout}">{$lang.logout}</a> <!--{/if}--><span>|</span></p>
+      <p class="dz_qdlzc"><a href="{link app=buyer_order act=index}">我的订单</a><span>|</span></p>
+      <p class="dz_wdyc"><font></font><a href="{link app=cart act=index}">我的衣橱<span>({$cart_goods_num|default:0})</span>件</a></p>    
+    </div>
+    <p class="clear"></p>
+  </div>
+</div>
+
+
+<div class="dz_logo_box">
+  <p class="dz_logo" style="padding-top:30px;"><a href="./"><img src="{res file=images/logo.png}" /></a></p>
+
+  <div class="wdgwcjdu"><img src="{res file=images/gwc_2.png}" /></div>
+  <p class="clear"></p>
+</div>
+
+</div>
+
+<!--头部结束-->

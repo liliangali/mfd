@@ -1,0 +1,86 @@
+{include file=order/member.header.html}
+<script type="text/javascript">
+$(function(){
+	$('input').customInput();
+	//异步删除
+	$(".h102>li").each(function(e) {
+		var dele = $(".h102>li:eq("+e+")").find(".dele");
+		
+		
+		dele.click(function(){
+			$(this).parent().parent().parent().hide();
+			var deleid = dele.attr("id");
+			$.ajax({
+				type:'post',
+				url:'order-ajaxDropAddr.html',
+				data:'addr_id='+deleid,
+				dataType:'json',
+				success:function(data) {
+					//alert(data.done);
+					//执行弹出层
+					easyDialog.open({
+						container : {
+							content : '收货地址删除成功,请进行<br>下一步操作'
+						},
+						autoClose : 1000
+					});
+				},
+				error:function() {
+					//执行弹出层
+					easyDialog.open({
+						container : {
+							content : '收货地址删除失败<br>请稍后操作'
+						},
+						autoClose : 1000
+					});
+				}
+			});
+		})
+	});
+});
+//设置默认地址
+function setDef(addr_id) {
+	$.ajax({
+		type:'post',
+		url:'order-ajaxDefAddr.html',
+		data:'addr_id='+addr_id,
+		dataType:'text',
+		success:function(msg) {
+			//设置成功跳转页面
+			location.href = "order-addApp.html?opt=3";
+		},
+		error:function() {
+			//执行弹出层
+			easyDialog.open({
+				container : {
+					content : '收货地址设置失败<br>请稍后操作'
+				},
+				autoClose : 2000
+			});
+		}
+	});
+};
+
+</script>
+    <div class="dd_tit bottom_50">
+		<a href="/order-addr_add.html" class="add_adress"><div><font>+</font> <span>添加收货地址</span></div></a>
+		<ul class="h102">
+			{foreach from=$addresses item=addritem}
+			<li>
+				<p class="p01">{$addritem.region_name}&nbsp;&nbsp;{$addritem.phone_mob}</p>
+				<p class="p02">{$addritem.consignee}&nbsp;&nbsp;{$addritem.address}</p>
+				
+				<p class="p03">
+					<span class="p03_l" onclick="setDef({$addritem.addr_id})">
+						<input type="radio" name="addr_id" id="{$addritem.addr_id}" value="{$addritem.addr_id}" style="" {if $addritem.addr_id == $def_addr} checked="checked" {/if}/>
+						<label for="{$addritem.addr_id}" style=" height:25px; line-height:25px;">配送到这里</label>
+					</span>
+					<span class="p03_r"><input type="button" id="{$addritem.addr_id}" class="gay dele"  value="删除"><a class="red" href="{link app=order act=addr_edit}?addr_id={$addritem.addr_id}" >编辑</a></span>
+				</p>
+			</li>
+			{/foreach}
+		</ul>
+    </div>     
+</div>
+</body>
+</html>

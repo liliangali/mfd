@@ -1,0 +1,863 @@
+{include file=member.header.html}
+{$build_editor}
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+.bgwhite { background: #FFFFFF;}
+.error{width:130px; overflow:hidden; float:left;}
+</style>
+<script type="text/javascript">
+$(function(){
+	
+	
+	$('input[name=body_type_19][value={$figure.body_type_19}]').attr('checked','checked');
+	$('input[name=body_type_20][value={$figure.body_type_20}]').attr('checked','checked');
+	$('input[name=body_type_24][value={$figure.body_type_24}]').attr('checked','checked');
+	$('input[name=body_type_25][value={$figure.body_type_25}]').attr('checked','checked');
+	$('input[name=body_type_26][value={$figure.body_type_26}]').attr('checked','checked');
+	$('input[name=body_type_3][value={$figure.body_type_3}]').attr('checked','checked');
+	$('input[name=body_type_2000][value={$figure.body_type_2000}]').attr('checked','checked');
+	
+	$('input[name=styleLength][value={$figure.styleLength}]').attr('checked','checked');
+	
+	
+	
+	
+	
+	
+	//
+	
+	$('#figure_form').validate({
+    rules : {
+			figure_name : {
+	        required : true
+	    },
+		lw : {
+	        required : true,
+	        min : 30,
+	        max : 62
+	    },
+	    xw : {
+	        required : true,
+	        min : 72,
+	        max : 175
+	    },
+	    zyw : {
+	        required : true,
+	        min : 55,
+	        max : 185
+	    },
+	    tw : {
+	        required : true,
+	        min : 70,
+	        max : 200
+	    },
+	    stw : {
+	        required : true,
+	        min : 22,
+	        max : 68
+	    },
+	    zjk : {
+	        required : true,
+	        min : 31,
+	        max : 70
+	    },
+	    yxc : {
+	        required : true,
+	        min : 30,
+	        max : 85
+	    },
+	    zxc : {
+	        required : true,
+	        min : 30,
+	        max : 85
+	    },
+	    qjk : {
+	        required : true,
+	        min : 36,
+	        max : 68
+	    },
+	    hyc : {
+	        required : true,
+	        min : 47,
+	        max : 105
+	    },
+	    yw : {
+	        required : true,
+	        min : 60,
+	        max : 190
+	    },
+	    hd : {
+	        required : true
+	    },
+	    td : {
+	        required : true,
+	        min : 55,
+	        max : 120
+	    },
+	    hyg : {
+	        required : true,
+	        min : 0,
+	        max : 17
+	    },
+	    qyg : {
+	        required : true,
+	        min : 0,
+	        max : 20
+	    },
+	    part_label_10130 : {
+	        required : true,
+	        min : 14,
+	        max : 33
+	    }
+	    ,
+	    part_label_10131 : {
+	        required : true,
+	        min : 14,
+	        max : 33
+	    }
+	    ,
+	    part_label_10725 : {
+	        /* required : true, */
+	        //min : 70,
+	        //max : 140
+	        digits:true
+	    }
+	    ,
+	    part_label_10726 : {
+	        //required : true,
+	        //min : 40,
+	        //max : 82
+	    	digits:true
+	    }
+	    ,
+	    kk : {
+	        //min : 28,
+	        //max : 80
+	    	digits:true
+	    }
+	    ,
+	    hyjc : {
+	        required : true,
+	        min : 35,
+	        max : 60
+	    },
+	    qyj : {
+	        required : true,
+	        min : 37,
+	        max : 60
+	    },
+	    tgw : {
+	        required : true,
+	        min : 45,
+	        max : 113
+	    },
+	    ykc : {
+	        required : true,
+	        min : 70,
+	        max : 135
+	    },
+	    zkc : {
+	        required : true,
+	        min : 70,
+	        max : 135
+	    },
+	     xiw : {
+	        //required : true,
+	        //min : 33,
+	        //max : 103
+	    	 digits:true
+	    }, 
+	    user_name : {
+	        required : true
+	        <!--{if $do eq 'add'}-->
+	        <!--{if $isorder eq '0'}-->
+	        ,
+	        remote   : {
+	        	
+                url :'{link app=figure act=check_user_name}',
+                type:'get',
+                data:{
+                	user_name : function(){
+                        return $('#user_name').val();
+                    }
+                }
+            }
+	        <!--{/if}-->
+	        <!--{/if}-->
+	    }
+	    
+    },
+    messages : {
+
+    	figure_name : {
+	        required : '{$lang.figure_name_empty}'
+	    },
+    	lw : {
+            required : '{$lang.lw_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        xw : {
+            required : '{$lang.xw_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        zyw : {
+            required : '{$lang.zyw_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        tw : {
+            required : '{$lang.tw_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        stw : {
+            required : '{$lang.stw_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        zjk : {
+            required : '{$lang.zjk_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        yxc : {
+            required : '{$lang.yxc_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        zxc : {
+            required : '{$lang.zxc_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        qjk : {
+            required : '{$lang.qjk_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        hyc : {
+            required : '{$lang.hyc_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        yw : {
+            required : '{$lang.yw_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        hd : {
+            required : '{$lang.hd_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        td : {
+            required : '{$lang.td_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        hyg : {
+            required : '{$lang.hyg_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        qyg : {
+            required : '{$lang.qyg_not_empty}',
+            max:'数据错误',
+            min:'数据错误'
+        },
+        kk : {
+            //max:'数据错误',
+            //min:'数据错误'
+            	digits:'数据错误'
+        },
+        hyjc : {
+	        required : '不能为空',
+	        min : '数据错误',
+	        max : '数据错误'
+	    },
+
+	    
+	    qyj : {
+	        required : '不能为空',
+	        min : '数据错误',
+	        max : '数据错误'
+	    },
+	    tgw : {
+	        required : '不能为空',
+	        min : '数据错误',
+	        max : '数据错误'
+	    },
+	    ykc : {
+	        required : '不能为空',
+	        min : '数据错误',
+	        max : '数据错误'
+	    },
+	    zkc : {
+	        required : '不能为空',
+	        min : '数据错误',
+	        max : '数据错误'
+	    },
+	     xiw : {
+	        //required : '不能为空',
+	        //min : '数据错误',
+	        //max : '数据错误'
+	    	 digits:'数据错误'
+	    }, 
+	    part_label_10130 : {
+	        required : '不能为空',
+	        min : '数据错误',
+	        max : '数据错误'
+	    },
+	    part_label_10131 : {
+	        required : '不能为空',
+	        min : '数据错误',
+	        max : '数据错误'
+	    },
+	    part_label_10725 : {
+	        /* required : '不能为空', */
+	        //min : '数据错误',
+	        //max : '数据错误'
+	    	digits:'数据错误'
+	    },
+	    part_label_10726 : {
+	        //required : '不能为空',
+	        //min : '数据错误',
+	        //max : '数据错误'
+	    	digits:'数据错误'
+	    },
+
+        user_name : {
+            required : '{$lang.user_name_not_empty}'
+            	 <!--{if $do eq 'add'}-->
+            	 <!--{if $isorder eq '0'}-->
+                ,
+            remote : '{$lang.user_name_exist}'
+            	<!--{/if}--> 
+            		<!--{/if}--> 
+        }
+    }
+	});
+});
+
+</script>
+<style>
+.figure-table td{padding:10px 0; text-align:right;}
+</style>
+<div class="content"> {include file=member.menu.html}
+  <div id="right">
+    <div class="eject_con bgwhite h3_con" style="padding:0 15px;">
+      <h1 class="syhtmdbt">提交量体数据<span class="lttsdw">提示：量体数据的单位是cm</span></h1>
+      <div class="add figure-box">
+        <form method="post" enctype="multipart/form-data" id="figure_form">
+          <ul id="figure-mo">
+            <li  style="display:none;">
+              <h3>{$lang.userid}:</h3>
+              <p>
+                <input class="text " id="userid" type="text" name="userid" value="{$figure.userid|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.user_name}:</h3>
+              <p> <input class="text " 
+                <!--{if $do neq 'add'}-->
+                readonly="true"
+                <!--{/if}-->
+                id="user_name" type="text" name="user_name" value="{$figure.user_name|escape}" /></p>
+            </li>
+            <li>
+              <h3>{$lang.figure_name}:</h3>
+              <p>
+                <input class="text " id="figure_name" type="text" name="figure_name" value="{$figure.figure_name|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.employee_name}:</h3>
+              <p>
+                
+                <select class="querySelect" name="employee_name" id="employee_name">{html_options options=$employee_name_arr selected=$figure.employee_name}
+          </select>
+                
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.figure_mode}:</h3>
+              <p>
+                <select class="querySelect" name="figure_mode" id="figure_mode">
+                  {html_options options=$figure_mode selected=$figure.figure_mode}
+          
+                </select>
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.height}:</h3>
+              <p>
+                <input class="text " id="height" type="text" name="height" value="{$figure.height|escape}" /><span class="m_ltsjts">cm</span>
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.weight}:</h3>
+              <p><input type="hidden" value="{$smarty.get.order_id}" name="order_id" >
+                <input class="text " id="weight" type="text" name="weight" value="{$figure.weight|escape}" /><span class="m_ltsjts">kg</span>
+              </p>
+            </li>
+
+            <li style="display:none;">
+              <h3>{$lang.figure_type}:</h3>
+              <p> {if $figure.figure_type eq '0'}
+                {$lang.figure_type_0}
+                {elseif $figure.figure_type eq '1'}
+                {$lang.figure_type_1}
+                {/if} </p>
+            </li>
+            <li>
+              <h3>{$lang.lw}(范围:30-62):</h3>
+              <p>
+                <input class="text " id="lw" type="text" name="lw" value="{$figure.lw|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.xw}(范围:72-175):</h3>
+              <p>
+                <input class="text " id="xw" type="text" name="xw" value="{$figure.xw|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.zyw}(范围:55-185):</h3>
+              <p>
+                <input class="text " id="zyw" type="text" name="zyw" value="{$figure.zyw|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.yw}(范围:60-190):</h3>
+              <p>
+                <input class="text " id="yw" type="text" name="yw" value="{$figure.yw|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.tw}(范围:70-200):</h3>
+              <p>
+                <input class="text " id="tw" type="text" name="tw" value="{$figure.tw|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.tgw}(范围:45-113):</h3>
+              <p>
+                <input class="text " id="tgw" type="text" name="tgw" value="{$figure.tgw|escape}" />
+              </p>
+            </li>
+             <li>
+              <h3>{$lang.td}(范围:55-120):</h3>
+              <p>
+                <input class="text " id="td" type="text" name="td" value="{$figure.td|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.stw}(范围:22-68):</h3>
+              <p>
+                <input class="text " id="stw" type="text" name="stw" value="{$figure.stw|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.zjk}(范围:31-70):</h3>
+              <p>
+                <input class="text " id="zjk" type="text" name="zjk" value="{$figure.zjk|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.yxc}(范围:30-85):</h3>
+              <p>
+                <input class="text " id="yxc" type="text" name="yxc" value="{$figure.yxc|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.zxc}(范围:30-85):</h3>
+              <p>
+                <input class="text " id="zxc" type="text" name="zxc" value="{$figure.zxc|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.qjk}(范围:36-68):</h3>
+              <p>
+                <input class="text " id="qjk" type="text" name="qjk" value="{$figure.qjk|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.hyjc}(范围:35-60):</h3>
+              <p>
+                <input class="text " id="hyjc" type="text" name="hyjc" value="{$figure.hyjc|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.hyc}(范围:47-105):</h3>
+              <p>
+                <input class="text " id="hyc" type="text" name="hyc" value="{$figure.hyc|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.hyg}(范围:0-17):</h3>
+              <p>
+                <input class="text " id="hyg" type="text" name="hyg" value="{$figure.hyg|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.qyj}(范围:37-60):</h3>
+              <p>
+                <input class="text " id="qyj" type="text" name="qyj" value="{$figure.qyj|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.qyg}(范围:0-20):</h3>
+              <p>
+                <input class="text " id="qyg" type="text" name="qyg" value="{$figure.qyg|escape}" />
+              </p>
+            </li>
+            
+            
+            <!-- 
+         <li><h3>{$lang.hd}(范围:0-0):</h3>
+        <p>
+          <input class="text " id="hd" type="text" name="hd" value="{$figure.hd|escape}" />
+         </p>
+         </li>
+         
+         -->
+           
+            
+            
+            <li>
+              <h3>{$lang.ykc}(范围:70-135):</h3>
+              <p>
+                <input class="text " id="ykc" type="text" name="ykc" value="{$figure.ykc|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.zkc}(范围:70-135):</h3>
+              <p>
+                <input class="text " id="zkc" type="text" name="zkc" value="{$figure.zkc|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>{$lang.xiw}(范围:33-103):</h3>
+              <p>
+                <input class="text " id="xiw" type="text" name="xiw" value="{$figure.xiw|escape}" />
+              </p>
+            </li>
+            
+            
+            
+            <li>
+              <h3>衬衫左腕围(范围:14-33):</h3>
+              <p>
+                <input class="text " id="part_label_10130" type="text" name="part_label_10130" value="{$figure.part_label_10130|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>衬衫右腕围(范围:14-33):</h3>
+              <p>
+                <input class="text " id="part_label_10131" type="text" name="part_label_10131" value="{$figure.part_label_10131|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>大衣后衣长(范围:70-140):</h3>
+              <p>
+                <input class="text " id="part_label_10725" type="text" name="part_label_10725" value="{$figure.part_label_10725|escape}" />
+              </p>
+            </li>
+            <li>
+              <h3>马甲后衣长(范围:40-82):</h3>
+              <p>
+                <input class="text " id="part_label_10726" type="text" name="part_label_10726" value="{$figure.part_label_10726|escape}" />
+              </p>
+            </li>
+            
+            
+            <li>
+              <h3>{$lang.kk}(范围:28-80):</h3>
+              <p>
+                <input class="text " id="kk" type="text" name="kk" value="{$figure.kk|escape}" />
+              </p>
+            </li>
+            <li style="display:none;">
+              <h3>{$lang.unit}:</h3>
+              <p> {$figure.unit|escape}
+                
+              </p>
+            </li>
+            {if $figure.create_date}
+            <li>
+              <h3>{$lang.create_date}:</h3>
+              <p> {$figure.create_date} </p>
+            </li>
+            {/if}
+            </ul>
+            <div id="size_bodytype" class="horizontal">
+              <ul id="19" class="hline">
+                <li class="hline-left">左肩</li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" checked="true" name="body_type_19" value="10087" onfocus="$.csAddOrder.playShow(-1,-1,10087);">
+                    正常-A</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_19" value="10093" onfocus="$.csAddOrder.playShow(-1,-1,10093);">
+                    轻微溜肩-B</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_19" value="10068" onfocus="$.csAddOrder.playShow(-1,-1,10068);">
+                    中度溜肩-C</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_19" value="10069" onfocus="$.csAddOrder.playShow(-1,-1,10069);">
+                    严重溜肩-D</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_19" value="10094" onfocus="$.csAddOrder.playShow(-1,-1,10094);">
+                    轻微耸肩-E</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_19" value="10072" onfocus="$.csAddOrder.playShow(-1,-1,10072);">
+                    中度耸肩-F</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_19" value="10073" onfocus="$.csAddOrder.playShow(-1,-1,10073);">
+                    严重耸肩-G</label>
+                </li>
+              </ul>
+              <ul id="20" class="hline">
+                <li class="hline-left">右肩</li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" checked="true" name="body_type_20" value="10088" onfocus="$.csAddOrder.playShow(-1,-1,10088);">
+                    正常-A</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_20" value="10095" onfocus="$.csAddOrder.playShow(-1,-1,10095);">
+                    轻微溜肩-B</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_20" value="10070" onfocus="$.csAddOrder.playShow(-1,-1,10070);">
+                    中度溜肩-C</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_20" value="10071" onfocus="$.csAddOrder.playShow(-1,-1,10071);">
+                    严重溜肩-D</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_20" value="10096" onfocus="$.csAddOrder.playShow(-1,-1,10096);">
+                    轻微耸肩-E</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_20" value="10074" onfocus="$.csAddOrder.playShow(-1,-1,10074);">
+                    中度耸肩-F</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_20" value="10075" onfocus="$.csAddOrder.playShow(-1,-1,10075);">
+                    严重耸肩-G</label>
+                </li>
+              </ul>
+              <ul id="24" class="hline">
+                <li class="hline-left">肚</li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" checked="true" name="body_type_24" value="10090" onfocus="$.csAddOrder.playShow(-1,-1,10090);">
+                    正常</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_24" value="10079" onfocus="$.csAddOrder.playShow(-1,-1,10079);">
+                    凸肚</label>
+                </li>
+              </ul>
+              <ul id="25" class="hline">
+                <li class="hline-left">手臂</li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" checked="true" name="body_type_25" value="10091" onfocus="$.csAddOrder.playShow(-1,-1,10091);">
+                    正常</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_25" value="10080" onfocus="$.csAddOrder.playShow(-1,-1,10080);">
+                    手臂靠前</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_25" value="10089" onfocus="$.csAddOrder.playShow(-1,-1,10089);">
+                    轻微手臂靠后</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_25" value="10081" onfocus="$.csAddOrder.playShow(-1,-1,10081);">
+                    严重手臂靠后</label>
+                </li>
+              </ul>
+              <ul id="26" class="hline">
+                <li class="hline-left">臀</li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" checked="true" name="body_type_26" value="10092" onfocus="$.csAddOrder.playShow(-1,-1,10092);">
+                    正常</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_26" value="10082" onfocus="$.csAddOrder.playShow(-1,-1,10082);">
+                    严重凸臀</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_26" value="10083" onfocus="$.csAddOrder.playShow(-1,-1,10083);">
+                    严重坠臀</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_26" value="10084" onfocus="$.csAddOrder.playShow(-1,-1,10084);">
+                    严重平臀</label>
+                </li>
+              </ul>
+            </div>
+            <div id="size_fittype" class="horizontal">
+              <ul id="clothing_style_3" class="hline">
+                <li class="hline-left">着装风格&nbsp;上衣</li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_3" id="body_type_3_10280" value="10280">
+                    非常修身</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_3" id="body_type_3_10281" value="10281">
+                    很修身</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_3" id="body_type_3_10282" value="10282">
+                    修身</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_3" id="body_type_3_10283" value="10283">
+                    正常偏瘦</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" checked="true" name="body_type_3" id="body_type_3_10284" value="10284">
+                    正常</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_3" id="body_type_3_10285" value="10285">
+                    正常偏肥</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_3" id="body_type_3_10286" value="10286">
+                    宽松</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_3" id="body_type_3_10287" value="10287">
+                    很宽松</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_3" id="body_type_3_10288" value="10288">
+                    非常宽松</label>
+                </li>
+              </ul>
+              <ul id="clothing_style_2000" class="hline">
+                <li class="hline-left">着装风格&nbsp;西裤</li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_2000" id="body_type_2000_10280" value="10280">
+                    非常修身</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_2000" id="body_type_2000_10281" value="10281">
+                    很修身</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_2000" id="body_type_2000_10282" value="10282">
+                    修身</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" checked="true" name="body_type_2000" id="body_type_2000_10284" value="10284">
+                    正常</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_2000" id="body_type_2000_10285" value="10285">
+                    正常偏肥</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_2000" id="body_type_2000_10286" value="10286">
+                    宽松</label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" class="radio" name="body_type_2000" id="body_type_2000_10287" value="10287">
+                    很宽松</label>
+                </li>
+              </ul>
+            </div>
+            <div id="style_title" class="horizontal"> 
+	            <ul class="hline">
+	                <li class="hline-left">着装风格&nbsp;西裤</li>
+	                <li>
+	                  <label>
+	                <input type="radio" class="radio" checked="true" name="styleLength" value="20100">
+	                正常款</label>
+	                </li>
+	                <li>
+	                   <label>
+	                <input type="radio" class="radio" name="styleLength" value="20101">
+	                长款</label>
+	                </li>
+	                <li>
+	                  <label>
+	                <input type="radio" class="radio" name="styleLength" value="20102">
+	                短款</label>
+	                </li>
+	            </ul>
+            </div>
+          <div class="submit">
+            <input class="figure-btn" type="submit" value="{$lang.submit}" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+{include file=login_footer.html} 
+<script>
+$(function(){
+	$('#figure-mo').find('li').each(function(){
+		$(this).mousemove(function(){
+			$(this).find('input').css('border','red 1px solid');
+		});
+		$(this).mouseout(function(){
+			$(this).find('input').css('border','#ccc 1px solid');
+		});
+		
+	});
+})
+</script>

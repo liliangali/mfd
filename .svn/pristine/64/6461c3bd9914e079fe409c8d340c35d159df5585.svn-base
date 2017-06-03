@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui">
+<meta name="format-detection" content="telphone=no, email=no">
+{$page_seo}
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/public/static/pc/css/animate.min.css" />
+</head>
+<body>
+<div class="head">
+	<div class="w1" style="">
+		<a href="/" class="logo fl"><img alt="{$site_title}" src="{$site_logo}"></a>
+		<button class="toggleBtn"><i></i><i></i><i></i></button>
+		<ul class="cotteNav fr">
+		<!-- {if $navigates} -->
+		<!-- {foreach from=$navigates item=navigate name=nav} -->
+		          <!-- {if is_array($navigate)} -->
+		          <!-- {if $navigate.children} -->
+		                  <li class="ktspsl" data-cmd="menu">
+			                 <div class="hd"><a href="{$navigate.link}" {if $navigate.title}title="{$navigate.title}"{/if} {if $navigate.alone}target='_blank'{/if} {if $currentApp eq 'man' || $currentApp eq 'goods' || $currentApp eq 'gallery'}class="cur"{else}class="color"{/if}>{$navigate.name}</a></div>
+			              <p class="xljt"></p>
+			              <div class="bd">
+			               <dl>
+			               {foreach from=$navigate.children item=child}
+			                <dd><a href="{$child.link}">{$child.name}</a></dd>
+			               {/foreach}
+			               </dl>
+			              </div>
+			            </li>
+		          <!-- {else} -->
+		                     <li><a href="{$navigate.link}" {if $navigate.title}title="{$navigate.title}"{/if} {if $navigate.alone}target='_blank'{/if} {if $navigate.curr}class="cur"{/if}{if $smarty.foreach.nav.first && $currentApp eq 'default' && !$navigates.curr}class="cur"{/if}>{$navigate.name}</a></li>        
+		          <!-- {/if} -->
+		          <!-- {/if} -->
+		<!-- {/foreach} -->
+		<!-- {/if} -->
+
+			
+		</ul>
+	</div>
+    <!--{if !$visitor.user_id}-->
+    <div class="user" data-cmd="menu">
+        <!--<p class="txmr"><img src="/public/static/pc/images/logo.png"></p>-->
+        <div class="hd"><a href="/member-login.html" class="grey">登录</a>/<a href="/member-register.html" class="grey">注册</a></div>
+    </div>
+    <!--{else}-->
+    <div class="user user_tu" data-cmd="menu">   
+        <p class="txmr"><img src="{$avatar}"></p>
+        <div class="hd"><a href="/member.html">{if $visitor.nickname!=''}{$visitor.nickname}{else}{$visitor.user_name}{/if}</a></div>
+        <div class="bd"> <i class="arrow"></i> <a href="/member.html">账户中心</a> <a href="/member-profile.html">个人资料</a><a href="/my_order.html">我的订单</a> <a href="/my_favorite.html">我的收藏</a> <a href="/member-logout.html">安全退出</a> </div>
+    </div>
+    <!--{/if}-->
+     <div class="cart" data-cmd="menu_cart">
+      <!--{if $cart_goods_num neq 0}-->
+        <div class="hd orange"><a href="/cart.html"><span>{$cart_goods_num|default:0}</span></a></div>
+      <!--{else}-->
+         <div class="hd orange"><a href="/cart.html"><span>0</span></a></div>
+      <!--{/if}-->
+        <div class="bd">
+            <p class="kgwc">亲，你的购物车还是空的，赶紧去选购吧～</p>
+        </div>
+    </div>   
+</div>
+<div class="menuLayer">
+	<ul>
+		<li>
+		<!--{if !$visitor.user_id}-->
+		<a href="/member-login.html">登录/注册</a>
+		<!--{else}-->
+		<a href="/member.html">{if $visitor.nickname!=''}{$visitor.nickname}{else}{$visitor.user_name}{/if}</a>
+		<!--{/if}-->
+		</li>
+		<li><a href="/cart.html">购物车<em id="minNav-cart"></em></a></li>
+		<li><a href="/" {if $currentApp eq 'default'}class="cur"{/if}>首页</a></li>			
+		<li><a href="{link app=gallery}">麦富迪尚品</a></li>
+		<li><a href="/fdiy-1.html" target="_blank">我要定制</a></li>
+
+		<li><a href="/activepublic.html" {if $currentApp eq 'activepublic'}class="cur"{/if}>活动特惠</a></li>
+		<li><a href="/help.html" {if $currentApp eq 'help'}class="cur"{/if}>帮助中心</a></li>
+		<li><a href="/down.html" {if $currentApp eq 'down'}class="cur"{/if} target="_blank">APP下载</a></li>
+	</ul>
+</div>
+
+{if APP != 'professor' && ACT != 'online'}
+<a href="https://www.sobot.com/chat/oldpc/index.html?sysNum=2b17cdee375a475e963aeed478c37fbf&groupid=84c09075813e45f68eae414cf91e897a" class="fixed_kefu" target="_blank"><i></i></a>
+{/if}

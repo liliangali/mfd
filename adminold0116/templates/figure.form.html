@@ -1,0 +1,884 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+
+	$('input[name=body_type_19][value={$figure.body_type_19}]').attr('checked','checked');
+	$('input[name=body_type_20][value={$figure.body_type_20}]').attr('checked','checked');
+	$('input[name=body_type_24][value={$figure.body_type_24}]').attr('checked','checked');
+	$('input[name=body_type_25][value={$figure.body_type_25}]').attr('checked','checked');
+	$('input[name=body_type_26][value={$figure.body_type_26}]').attr('checked','checked');
+	$('input[name=body_type_3][value={$figure.body_type_3}]').attr('checked','checked');
+	$('input[name=body_type_2000][value={$figure.body_type_2000}]').attr('checked','checked');
+	
+	$('input[name=styleLength][value={$figure.styleLength}]').attr('checked','checked');
+	
+	
+	
+	$('#figure_form').validate({
+    rules : {
+		figure_name : {
+	        required : true
+	    },
+		lw : {
+            required : true,
+	        min : 30,
+	        max : 62
+        },
+        xw : {
+            required : true,
+	        min : 72,
+	        max : 175
+        },
+        zyw : {
+            required : true,
+	        min : 55,
+	        max : 185
+        },
+        tw : {
+            required : true,
+	        min : 70,
+	        max : 200
+        },
+        stw : {
+            required : true,
+	        min : 22,
+	        max : 68
+        },
+        zjk : {
+            required : true,
+	        min : 31,
+	        max : 70
+        },
+        yxc : {
+            required : true,
+	        min : 30,
+	        max : 85
+        },
+        zxc : {
+            required : true,
+	        min : 30,
+	        max : 85
+        },
+        qjk : {
+            required : true,
+	        min : 36,
+	        max : 68
+        },
+        hyc : {
+            required : true,
+	        min : 47,
+	        max : 105
+        },
+        yw : {
+            required : true,
+	        min : 60,
+	        max : 190
+        },
+        hd : {
+            required : true
+        },
+        td : {
+            required : true,
+	        min : 55,
+	        max : 120
+        },
+        hyg : {
+            required : true,
+	        min : 0,
+	        max : 17
+        },
+        qyg : {
+            required : true,
+	        min : 0,
+	        max : 20
+        },
+        part_label_10130 : {
+	        required : true,
+	        min : 14,
+	        max : 33
+	    }
+	    ,
+	    part_label_10131 : {
+	        required : true,
+	        min : 14,
+	        max : 33
+	    }
+	    ,
+	    part_label_10725 : {
+	        required : true,
+	        min : 70,
+	        max : 140
+	    }
+	    ,
+	    part_label_10726 : {
+	        required : true,
+	        min : 40,
+	        max : 82
+	    }
+	    ,
+        
+        kk : {
+            required : true,
+	        min : 28,
+	        max : 80
+        }
+        ,
+	    hyjc : {
+	        required : true,
+	        min : 35,
+	        max : 60
+	    },
+	    qyj : {
+	        required : true,
+	        min : 37,
+	        max : 60
+	    },
+	    tgw : {
+	        required : true,
+	        min : 45,
+	        max : 113
+	    },
+	    ykc : {
+	        required : true,
+	        min : 70,
+	        max : 135
+	    },
+	    zkc : {
+	        required : true,
+	        min : 70,
+	        max : 135
+	    },
+	    syzxc : {
+	        required : true,
+	        min : 30,
+	        max : 85
+	    },
+	    cyzxc : {
+	        required : true,
+	        min : 30,
+	        max : 85
+	    },
+	    dyzxc : {
+	        required : true,
+	        min : 30,
+	        max : 85
+	    },
+	    syyxc : {
+	        required : true,
+	        min : 30,
+	        max : 85
+	    },
+	    cyyxc : {
+	        required : true,
+	        min : 30,
+	        max : 85
+	    },
+	    dyyxc : {
+	        required : true,
+	        min : 30,
+	        max : 85
+	    },
+	    syhyc : {
+	        required : true,
+	        min : 47,
+	        max : 105
+	    },
+	    cyhyc : {
+	        required : true,
+	        min : 47,
+	        max : 105
+	    },
+	    dyhyc : {
+	        required : true,
+	        min : 47,
+	        max : 150
+	    },
+	    user_name : {
+	        required : true
+	        <!--{if $smarty.get.act eq 'add'}-->
+	        ,
+	        remote   : {
+	        	
+                url :'{url app=figure}&act=check_user_name',
+                type:'get',
+                data:{
+                	user_name : function(){
+                        return $('#user_name').val();
+                    }
+                }
+            }
+	        <!--{/if}-->
+	    }
+    },
+    messages : {
+    	
+    	figure_name : {
+            required : '{$lang.figure_name_empty}'
+        },
+    	lw : {
+            required : '{$lang.lw_not_empty}'
+        },
+        xw : {
+            required : '{$lang.xw_not_empty}'
+        },
+        zyw : {
+            required : '{$lang.zyw_not_empty}'
+        },
+        tw : {
+            required : '{$lang.tw_not_empty}'
+        },
+        stw : {
+            required : '{$lang.stw_not_empty}'
+        },
+        zjk : {
+            required : '{$lang.zjk_not_empty}'
+        },
+        yxc : {
+            required : '{$lang.yxc_not_empty}'
+        },
+        zxc : {
+            required : '{$lang.zxc_not_empty}'
+        },
+        qjk : {
+            required : '{$lang.qjk_not_empty}'
+        },
+        hyc : {
+            required : '{$lang.hyc_not_empty}'
+        },
+        yw : {
+            required : '{$lang.yw_not_empty}'
+        },
+        hd : {
+            required : '{$lang.hd_not_empty}'
+        },
+        td : {
+            required : '{$lang.td_not_empty}'
+        },
+        hyg : {
+            required : '{$lang.hyg_not_empty}'
+        },
+        qyg : {
+            required : '{$lang.qyg_not_empty}'
+        },
+        kk : {
+            required : '{$lang.kk_not_empty}'
+        },
+        syzxc : {
+            required : '{$lang.syzxc_not_empty}'
+        },
+        cyzxc : {
+            required : '{$lang.cyzxc_not_empty}'
+        },
+        dyzxc : {
+            required : '{$lang.dyzxc_not_empty}'
+        },
+        syyxc : {
+            required : '{$lang.syyxc_not_empty}'
+        },
+        cyyxc : {
+            required : '{$lang.cyyxc_not_empty}'
+        },
+        dyyxc : {
+            required : '{$lang.dyyxc_not_empty}'
+        },
+        syhyc : {
+            required : '{$lang.syhyc_not_empty}'
+        },
+        cyhyc : {
+            required : '{$lang.cyhyc_not_empty}'
+        },
+        dyhyc : {
+            required : '{$lang.dyhyc_not_empty}'
+        },
+        
+        
+        user_name : {
+            required : '{$lang.user_name_not_empty}'
+            	 <!--{if $smarty.get.act eq 'add'}-->
+                ,
+            remote : '{$lang.user_name_exist}'
+            	<!--{/if}--> 
+        }
+
+        
+    }
+	});
+});
+
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=figure">{$lang.manage}</a></li>
+    <li> <span>{$acc}</span> </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="figure_form">
+    <table class="infoTable">
+    <!-- {if $acc eq "新增" } -->
+      <tr>
+        <th class="paddingT15">* 顾客姓名:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="customer_name" type="text" id="customer_name" value="{$figure.customer_name|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15">* 所属电话:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="customer_mobile" type="text" id="customer_mobile" value="{$figure.customer_mobile|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15">* 性别:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input type="radio" name="gender" {if $figure.gender eq 10040}checked="true" {/if} value="10040">男</input>
+        <input type="radio" name="gender" {if $figure.gender eq 10041}checked="true" {/if} value="10041">女</input>
+        </td>
+      </tr>
+      <!-- {else} -->
+      <h3 style="padding:20px 20px 5px;">基本信息</h3>
+      <tr>
+      <td>* 顾客姓名:<span>{$figure.customer_name}</span></td>
+      <td>* 顾客电话:<span>{$figure.customer_mobile}</span></td>
+      
+      </tr>
+      <tr>
+      <td>* 量体师:<span>{$figure.liangti_name}</span></td>
+      <td>* 量体师电话:<span>{$mobile}</span></td>
+      </tr>
+       <tr>
+      <td>* 订单号:<span>{$figure.order_sn}</span></td>
+      <td>* 服务费:<span><font color="#FF0000">￥{$figure.single_fee}元</font></span></td>
+      </tr>
+       <tr>
+      <td>* 订单状态:<span>{$figure.order_zt}</span></td>
+      <td>* 结算状态:<span>{if $figure.liangti_state eq 3}<font color="#00cc00">已结算</font>{else}<font color="#FF0000">待结算</font>{/if}</span></td>
+      </tr>
+       <tr>
+      <td>* 服务方式:
+      <span>
+      <!-- {if $figure.service_mode==4} -->
+                              后台录入
+      <!-- {elseif $figure.service_mode==1} -->
+                             预约上门
+      <!-- {elseif $figure.service_mode==2} -->
+                            预约到店
+      <!-- {elseif $figure.service_mode==3} -->
+                            线下采集
+      <!-- {/if} -->
+       </span></td>
+      <td>* 数据归属: 
+      <span>
+      <!-- {if $figure.id_serve==1} -->
+                         后台录入
+      <!-- {else} -->
+        {$serve.$figure.id_serve}
+      <!-- {/if} -->
+      </span></td>
+      </tr>
+       <tr>
+      <td>* 性别:<span>
+      <!-- {if $figure.gender eq 10040} -->
+                        男
+      <!-- {elseif $figure.gender eq 10041} -->
+                       女
+      <!-- {else} -->
+                      未填写
+      <!-- {/if} -->
+    </span></td>
+      <td>* 提交时间:<span>{$figure.lasttime}</span></td>
+      </tr>
+      <!-- {/if} -->
+      <tr>
+      	<td colspan="2">
+        	<table width="800" border="0" cellspacing="0" cellpadding="0">
+            	
+                	<td>
+       <h3 style="padding:20px 20px 5px;">净体尺寸<span style="font-size:12px; font-weight:normal; padding-left:5px; color:#999">单位(cm\kg)</span></h3>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+     <tr>
+        <th class="paddingT15">* {$lang.lw}(范围:30-62):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="lw" type="text" id="lw" value="{$figure.lw|escape}" /></td>
+         <th class="paddingT15">* {$lang.xw}(范围:72-175):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="xw" type="text" id="xw" value="{$figure.xw|escape}" /></td>
+      </tr>
+       <tr>
+         <th class="paddingT15">* 中腰围(范围:55-185):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="zyw" type="text" id="zyw" value="{$figure.zyw|escape}" /></td>
+        <th class="paddingT15">* 臀围(范围:70-190):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="tw" type="text" id="tw" value="{$figure.tw|escape}" /></td>
+     </tr>
+      <tr>
+          <th class="paddingT15">* 左腕围(范围:33-103):</th>
+          <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="zww" type="text" id="zww" value="{$figure.zww|escape}" /></td>
+          <th class="paddingT15">* 右腕围(范围:33-103):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="yww" type="text" id="yww" value="{$figure.yww|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15">* 上臂围(范围:33-103):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="sbw" type="text" id="sbw" value="{$figure.sbw|escape}" /></td>
+        <th class="paddingT15">* {$lang.zjk}(范围:31-70):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="zjk" type="text" id="zjk" value="{$figure.zjk|escape}" /></td>
+       </tr>
+      <tr>
+         <th class="paddingT15">* {$lang.zxc}(范围:30-85):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="zxc" type="text" id="zxc" value="{$figure.zxc|escape}" /></td>
+        <th class="paddingT15">* {$lang.yxc}(范围:30-85):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="yxc" type="text" id="yxc" value="{$figure.yxc|escape}" /></td>
+     </tr>
+      <tr>
+        <th class="paddingT15">* {$lang.qjk}(范围:36-68):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="qjk" type="text" id="qjk" value="{$figure.qjk|escape}" /></td>
+        <th class="paddingT15">* {$lang.hyjc}(范围:35-60):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="hyjc" type="text" id="hyjc" value="{$figure.hyjc|escape}" /></td>
+        </tr>
+     <tr>
+         <th class="paddingT15">* {$lang.hyc}(范围:47-105):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="hyc" type="text" id="hyc" value="{$figure.hyc|escape}" /></td>
+        <th class="paddingT15">* {$lang.qyj}(范围:37-60):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="qyj" type="text" id="qyj" value="{$figure.qyj|escape}" /></td>
+      </tr>
+     <tr>
+           <th class="paddingT15">* {$lang.yw}(范围:60-190):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="yw" type="text" id="yw" value="{$figure.yw|escape}" /></td>
+        <th class="paddingT15">* {$lang.tgw}(范围:45-113):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="tgw" type="text" id="tgw" value="{$figure.tgw|escape}" /></td>
+        </tr>
+      <tr>
+         <th class="paddingT15">* {$lang.td}(范围:55-120):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="td" type="text" id="td" value="{$figure.td|escape}" /></td>
+        <th class="paddingT15">* {$lang.hyg}(范围:0-17):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="hyg" type="text" id="hyg" value="{$figure.hyg|escape}" /></td>
+        </tr>
+        
+        <tr>
+         <th class="paddingT15">* 上衣左袖长(范围:30-85):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="syzxc" type="text" id="syzxc" value="{$figure.syzxc|escape}" /></td>
+        <th class="paddingT15">* 上衣右袖长(范围:30-85):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="syyxc" type="text" id="syyxc" value="{$figure.syyxc|escape}" /></td>
+        </tr>
+        <tr>
+         <th class="paddingT15">* 衬衣左袖长(范围:30-85):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="cyzxc" type="text" id="cyzxc" value="{$figure.cyzxc|escape}" /></td>
+        <th class="paddingT15">* 衬衣右袖长(范围:30-85):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="cyyxc" type="text" id="cyyxc" value="{$figure.cyyxc|escape}" /></td>
+        </tr>
+        <tr>
+         <th class="paddingT15">* 大衣左袖长(范围:30-85):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="dyzxc" type="text" id="dyzxc" value="{$figure.dyzxc|escape}" /></td>
+        <th class="paddingT15">* 大衣右袖长(范围:30-85):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="dyyxc" type="text" id="dyyxc" value="{$figure.dyyxc|escape}" /></td>
+        </tr>
+        
+        
+         <tr>
+         <th class="paddingT15">* 上衣后衣长(范围:47-105):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="syhyc" type="text" id="dyzxc" value="{$figure.syhyc|escape}" /></td>
+        <th class="paddingT15">* 衬衣后衣长(范围:47-105):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="cyhyc" type="text" id="cyhyc" value="{$figure.cyhyc|escape}" /></td>
+        </tr>
+         <tr>
+         <th class="paddingT15">* 大衣后衣长(范围:47-150):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="dyhyc" type="text" id="dyhyc" value="{$figure.dyhyc|escape}" /></td>
+        <th class="paddingT15">* {$lang.qyg}(范围:0-20):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="qyg" type="text" id="qyg" value="{$figure.qyg|escape}" /></td>
+        </tr>
+        
+      <tr>
+        <th class="paddingT15">* {$lang.zkc}(范围:70-135):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="zkc" type="text" id="zkc" value="{$figure.zkc|escape}" /></td>
+       <th class="paddingT15">* {$lang.ykc}(范围:70-135):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="ykc" type="text" id="ykc" value="{$figure.ykc|escape}" /></td>
+      </tr>
+     <tr>
+       <th class="paddingT15"> {$lang.xiw}(范围:33-103):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="xiw" type="text" id="xiw" value="{$figure.xiw|escape}" /></td>
+        <th class="paddingT15">脚口(范围:33-103):</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="jk" type="text" id="jk" value="{$figure.jk|escape}" /></td>
+     </tr>
+      
+     <tr>
+       <th class="paddingT15">短裤左裤长:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="dkzkc" type="text" id="dkzkc" value="{$figure.dkzkc|escape}" /></td>
+        <th class="paddingT15">短裤右裤长:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="dkykc" type="text" id="dkykc" value="{$figure.dkykc|escape}" /></td>
+      </tr>
+     <tr>
+        <th class="paddingT15">* 身高:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="height" type="text" id="height" value="{$figure.height|escape}" /></td>
+         <th class="paddingT15">* 体重:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="weight" type="text" id="weight" value="{$figure.weight|escape}" /></td>
+     
+       </tr>
+   
+      				</table>
+                   </td>
+                
+            </table>
+        </td>
+      </tr>
+     <tr>
+       
+        <th >特殊体型:</th>
+    
+      <tr>
+        <th>左肩</th>
+        <td>
+            <ul id="19" class="hline">
+              <li>
+                <label>
+                  <input type="radio" class="radio" checked="true" name="body_type_19" value="10087" onfocus="$.csAddOrder.playShow(-1,-1,10087);">
+                  正常-A</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_19" value="10093" onfocus="$.csAddOrder.playShow(-1,-1,10093);">
+                  轻微溜肩-B</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_19" value="10068" onfocus="$.csAddOrder.playShow(-1,-1,10068);">
+                  中度溜肩-C</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_19" value="10069" onfocus="$.csAddOrder.playShow(-1,-1,10069);">
+                  严重溜肩-D</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_19" value="10094" onfocus="$.csAddOrder.playShow(-1,-1,10094);">
+                  轻微耸肩-E</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_19" value="10072" onfocus="$.csAddOrder.playShow(-1,-1,10072);">
+                  中度耸肩-F</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_19" value="10073" onfocus="$.csAddOrder.playShow(-1,-1,10073);">
+                  严重耸肩-G</label>
+              </li>
+            </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>右肩</th>
+        <td>
+           <ul id="20" class="hline">
+              <li>
+                <label>
+                  <input type="radio" class="radio" checked="true" name="body_type_20" value="10088" onfocus="$.csAddOrder.playShow(-1,-1,10088);">
+                  正常-A</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_20" value="10095" onfocus="$.csAddOrder.playShow(-1,-1,10095);">
+                  轻微溜肩-B</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_20" value="10070" onfocus="$.csAddOrder.playShow(-1,-1,10070);">
+                  中度溜肩-C</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_20" value="10071" onfocus="$.csAddOrder.playShow(-1,-1,10071);">
+                  严重溜肩-D</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_20" value="10096" onfocus="$.csAddOrder.playShow(-1,-1,10096);">
+                  轻微耸肩-E</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_20" value="10074" onfocus="$.csAddOrder.playShow(-1,-1,10074);">
+                  中度耸肩-F</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_20" value="10075" onfocus="$.csAddOrder.playShow(-1,-1,10075);">
+                  严重耸肩-G</label>
+              </li>
+            </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>肚</th>
+        <td>
+           <ul id="24" class="hline">
+              <li>
+                <label>
+                  <input type="radio" class="radio" checked="true" name="body_type_24" value="10090" onfocus="$.csAddOrder.playShow(-1,-1,10090);">
+                  正常</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_24" value="10079" onfocus="$.csAddOrder.playShow(-1,-1,10079);">
+                  凸肚</label>
+              </li>
+            </ul>
+        </td>
+      </tr>
+      <tr>
+         <th>手臂</th>
+         <td>
+            <ul id="25" class="hline">
+              <li>
+                <label>
+                  <input type="radio" class="radio" checked="true" name="body_type_25" value="10091" onfocus="$.csAddOrder.playShow(-1,-1,10091);">
+                  正常</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_25" value="10080" onfocus="$.csAddOrder.playShow(-1,-1,10080);">
+                  手臂靠前</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_25" value="10089" onfocus="$.csAddOrder.playShow(-1,-1,10089);">
+                  轻微手臂靠后</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_25" value="10081" onfocus="$.csAddOrder.playShow(-1,-1,10081);">
+                  严重手臂靠后</label>
+              </li>
+            </ul>
+         </td>
+      </tr>
+      <tr>
+         <th>臀</th>
+         <td>
+            <ul id="26" class="hline">
+              <li>
+                <label>
+                  <input type="radio" class="radio" checked="true" name="body_type_26" value="10092" onfocus="$.csAddOrder.playShow(-1,-1,10092);">
+                  正常</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_26" value="10082" onfocus="$.csAddOrder.playShow(-1,-1,10082);">
+                  严重凸臀</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_26" value="10083" onfocus="$.csAddOrder.playShow(-1,-1,10083);">
+                  严重坠臀</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_26" value="10084" onfocus="$.csAddOrder.playShow(-1,-1,10084);">
+                  严重平臀</label>
+              </li>
+            </ul>
+         </td>
+      </tr>
+      
+           <tr>
+         <th>背</th>
+         <td>
+            <ul id="23" class="hline">
+              <li>
+                <label>
+                  <input type="radio" class="radio"  checked="true"  name="body_type_23" value="10097">
+                  正常-A</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_23" value="10098" {if $figure.body_type_23 eq 10098} checked="true" {/if} >
+                 轻微驼背-B </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_23" value="10099" {if $figure.body_type_23 eq 10099} checked="true" {/if} >
+                  中度驼背-C</label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="radio" name="body_type_23" value="10100" {if $figure.body_type_23 eq 10100} checked="true" {/if}  >
+                 严重驼背-D</label>
+              </li>
+            </ul>
+         </td>
+      </tr>
+      
+      </tr>
+      
+       <tr>
+         <th>着装风格&nbsp;上衣</th>
+         <td>
+         <ul id="clothing_style_3" class="hline">
+         {foreach from=$cst_style item=style key=key}
+              <li>
+              <label>
+                  <input type="radio" class="radio" name="body_type_3" id="body_type_3_{$key}" value="{$key}" {if $figure.body_type_3 eq $key} checked="true" {elseif $key==10284} checked="true"{/if}>
+                             {$style}</label>
+              </li>
+              {/foreach}
+         </ul>
+         
+         </td>
+       </tr>
+        <tr>
+         <th>着装风格&nbsp;西裤</th>
+         <td>
+         <ul id="clothing_style_2000" class="hline">
+         {foreach from=$cst_style item=style key=key}
+              <li>
+              <label>
+                  <input type="radio" class="radio" name="body_type_2000" id="body_type_2000_{$key}" value="{$key}"{if $figure.body_type_2000 eq $key} checked="true" {elseif $key==10284} checked="true"{/if}>
+                             {$style}</label>
+              </li>
+              {/foreach}
+         </ul>
+         
+         </td>
+       </tr>
+          <tr>
+         <th>着装风格&nbsp;衬衣</th>
+         <td>
+         <ul id="clothing_style_3000" class="hline">
+         {foreach from=$cst_style item=style key=key}
+              <li>
+              <label>
+                  <input type="radio" class="radio" name="body_type_3000" id="body_type_3000_{$key}" value="{$key}"{if $figure.body_type_3000 eq $key} checked="true" {elseif $key==10284} checked="true"{/if}>
+                             {$style}</label>
+              </li>
+              {/foreach}
+         </ul>
+         
+         </td>
+       </tr>
+          <tr>
+         <th>着装风格&nbsp;大衣</th>
+         <td>
+         <ul id="clothing_style_6000" class="hline">
+         {foreach from=$cst_style item=style key=key}
+              <li>
+              <label>
+                  <input type="radio" class="radio" name="body_type_6000" id="body_type_6000_{$key}" value="{$key}"{if $figure.body_type_6000 eq $key} checked="true" {elseif $key==10284} checked="true"{/if}>
+                             {$style}</label>
+              </li>
+              {/foreach}
+         </ul>
+         
+         </td>
+       </tr>
+         <tr>
+         <th>着装风格&nbsp;马夹</th>
+         <td>
+         <ul id="clothing_style_4000" class="hline">
+         {foreach from=$cst_style item=style key=key}
+              <li>
+              <label>
+                  <input type="radio" class="radio" name="body_type_4000" id="body_type_4000_{$key}" value="{$key}"{if $figure.body_type_4000 eq $key} checked="true" {elseif $key==10284} checked="true"{/if}>
+                             {$style}</label>
+              </li>
+              {/foreach}
+         </ul>
+         
+         </td>
+       </tr>
+          <tr>
+         <th>着装风格&nbsp;女衬衣</th>
+         <td>
+         <ul id="clothing_style_11000" class="hline">
+         {foreach from=$cst_style item=style key=key}
+              <li>
+              <label>
+                  <input type="radio" class="radio" name="body_type_11000" id="body_type_11000_{$key}" value="{$key}"{if $figure.body_type_11000 eq $key} checked="true" {elseif $key==10284} checked="true"{/if}>
+                             {$style}</label>
+              </li>
+              {/foreach}
+         </ul>
+         
+         </td>
+       </tr> 
+      <tr>
+         <th>着装风格&nbsp;女西服</th>
+         <td>
+         <ul id="clothing_style_95000" class="hline">
+         {foreach from=$cst_style item=style key=key}
+              <li>
+              <label>
+                  <input type="radio" class="radio" name="body_type_95000" id="body_type_95000_{$key}" value="{$key}"{if $figure.body_type_95000 eq $key} checked="true" {elseif $key==10284} checked="true"{/if}>
+                             {$style}</label>
+              </li>
+              {/foreach}
+         </ul>
+         
+         </td>
+       </tr> 
+       <tr>
+         <th>着装风格&nbsp;女西裤</th>
+         <td>
+         <ul id="clothing_style_98000" class="hline">
+         {foreach from=$cst_style item=style key=key}
+              <li>
+              <label>
+                  <input type="radio" class="radio" name="body_type_98000" id="body_type_98000_{$key}" value="{$key}"{if $figure.body_type_98000 eq $key} checked="true" {elseif $key==10284} checked="true"{/if}>
+                             {$style}</label>
+              </li>
+              {/foreach}
+         </ul>
+         
+         </td>
+       </tr> 
+         <tr>
+         <th>着装风格&nbsp;男短裤</th>
+         <td>
+         <ul id="clothing_style_15000" class="hline">
+         {foreach from=$cst_style item=style key=key}
+              <li>
+              <label>
+                  <input type="radio" class="radio" name="body_type_15000" id="body_type_15000_{$key}" value="{$key}"{if $figure.body_type_15000 eq $key} checked="true" {elseif $key==10284} checked="true"{/if}>
+                             {$style}</label>
+              </li>
+              {/foreach}
+         </ul>
+         
+         </td>
+       </tr> 
+       
+       <tr>
+         <th> 大衣着装习惯</th>
+         <td>
+         <ul id="clothing_style_15000" class="hline">
+              <li>
+              <label>
+               <input type="radio" class="radio" name="styleDY" value="0A02" {if $figure.styleDY eq '0A02'} checked="true" {elseif !$figure.styleDY} checked="true"{/if} />穿大衣套西服
+               
+              </label>
+              </li>
+              <li>
+              <label>
+              <input type="radio" class="radio" name="styleDY" value="0A01" {if $figure.styleDY eq '0A01'} checked="true"{/if}/>穿大衣不套西服   
+              </label>
+              </li>
+               
+         </ul>
+         </td>
+       </tr> 
+       
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="tijia" type="submit" value="{$lang.submit}" />
+          <input class="congzi" type="reset" name="Reset" value="{$lang.reset}" /></td>
+      </tr>
+    </table>
+  </form>
+    <!-- {if $acc != "新增" } -->
+  <tr>
+  <h3 style="padding:20px 20px 5px;">修改记录：</h3>
+  
+  {foreach from=$figure_edits item=edit key=key name=loop}
+  <p>{$smarty.foreach.loop.iteration}、{$edit.time|date:y-m-d h:i} {$edit.liangti_name}修改了
+  {foreach from=$edit.edit_content item=ed key=key1}
+  {$styles.$ed}
+  {/foreach}。
+  </p>
+  
+  {/foreach}
+  </tr>
+  <!-- {/if} -->
+</div>
+{include file="footer.html"}

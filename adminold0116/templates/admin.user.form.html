@@ -1,0 +1,141 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#user_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            user_name : {
+                required : true,
+                byteRange: [3,15,'{$charset}'],
+                remote   : {
+                    url :'index.php?app=admin&act=check_user',
+                    type:'get',
+                    data:{
+                        user_name : function(){
+                            return $('#user_name').val();
+                        },
+                        id : '{$user.user_id}'
+                    }
+                }
+            },
+            password: {
+                <!--{if $smarty.get.act eq 'add'}-->
+                required : true,
+                <!--{/if}-->
+                maxlength: 20,
+                minlength: 6
+            },
+            email   : {
+                required : true,
+                email : true
+            }
+            {if !$set_avatar}
+            ,
+            portrait : {
+                accept : 'png|gif|jpe?g'
+            }
+            {/if}
+        },
+        messages : {
+            user_name : {
+                required : '{$lang.user_not_empty}',
+                byteRange: '{$lang.user_length_limit}',
+                remote   : '{$lang.name_exist}'
+            },
+            password : {
+                <!--{if $smarty.get.act eq 'add'}-->
+                required : '{$lang.password_empty}',
+                <!--{/if}-->
+                maxlength: '{$lang.password_limit}',
+                minlength: '{$lang.password_limit}'
+            },
+            email  : {
+                required : '{$lang.email_not_empty}',
+                email   : '{$lang.currect_email}'
+            }
+            {if !$set_avatar}
+            ,
+            portrait : {
+                accept : '{$lang.note_portrait}'
+            }
+            {/if}
+        }
+    });
+});
+
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=admin">{$lang.manage}</a></li>
+    <li>
+      <!-- {if $user.user_id} -->
+      <a class="btn1" href="index.php?app=admin&amp;act=add">{$lang.add}</a>
+      <!-- {else} -->
+      <span>{$lang.add}</span>
+      <!-- {/if} -->
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="user_form">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> {$lang.user_name}:</th>
+        <td class="paddingT15 wordSpacing5"><!-- {if $user.user_id} -->
+          {$user.user_name|escape}
+          <!-- {else} -->
+          <input class="infoTableInput2" id="user_name" type="text" name="user_name" value="{$user.user_name|escape}" />
+          <label class="field_notice">{$lang.user_name}</label>
+          <!-- {/if} -->        </td>
+      </tr>
+       
+      <tr>
+        <th class="paddingT15"> {$lang.password}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="password" type="text" id="password" />
+          <!--{if $user.user_id} -->
+          <span class="grey">{$lang.note_password}</span>
+          <!-- {/if} -->        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.email}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="email" type="text" id="email" value="{$user.email|escape}" />
+            <label class="field_notice">{$lang.email}</label>        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.real_name}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="real_name" type="text" id="real_name" value="{$user.real_name|escape}" />        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.gender}:</th>
+        <td class="paddingT15 wordSpacing5"><p>
+            <label>
+            <input name="gender" type="radio" value="0" {if $user.gender eq 0}checked="checked"{/if} />
+            {$lang.unknown}</label>
+            <label>
+            <input type="radio" name="gender" value="1" {if $user.gender eq 1}checked="checked"{/if} />
+            {$lang.male}</label>
+            <label>
+            <input type="radio" name="gender" value="2" {if $user.gender eq 2}checked="checked"{/if} />
+            {$lang.female}</label>
+          </p></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.im_qq}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="im_qq" type="text" id="im_qq" value="{$user.im_qq|escape}" />        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="congzi" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

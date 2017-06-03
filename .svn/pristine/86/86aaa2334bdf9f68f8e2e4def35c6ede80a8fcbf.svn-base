@@ -1,0 +1,72 @@
+
+{include file=header.html}
+
+<script type="text/javascript" src="{lib file=rctailor.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=goodsinfo.js}" charset="utf-8"></script>
+
+<script type="text/javascript" src="{res file=js/jquery-1.7.2.min.js}"></script>
+<script type="text/javascript" src="/themes/mall/default/styles/default/js/Xslider.js"></script>
+
+<div class="gysmlxqy_box">
+  <p class="dqwz">当前位置：<a href="index.php/store.html?id={$store.store_id}">首页</a><span>></span><a href="javascript:viod(0);">面料详情</a><span>></span><font>{$goods.goods_name|escape}</font></p>
+ {include file=goodsinfo.html}
+ <!--{if $customs_list}--> 
+
+<h1 class="gljbk"><span class="hoverspan">关联基本款</span><span>面料描述</span></h1>
+<div id="store-div">
+  <div class="store-tab" style="display:block;">
+	   <div class="gljbk_lb">
+		  <ul>
+		  <!--{foreach from=$customs_list item=coustoms name=loop}-->
+		   <li class="shadow">
+		     <p class="p1"><a href="{link app=custom act=info arg=$coustoms.cst_id}" target="_blank" title="{$coustoms.cst_name}" >
+					<img src="{$coustoms.cst_image}" /></a></p>
+		     <p class="p2"><a href="{link app=custom act=info arg=$coustoms.cst_id}" target="_blank">{$coustoms.cst_name}</a></p>
+		   </li> 
+		   <!--{/foreach}-->
+		  </ul>
+		  <p class="clear"></p>
+	   </div>
+       <!--{else}-->
+       <h1 class="zwgldjbk">暂无关联的基本款</h1>
+       <!--{/if}-->
+  </div>
+  <div class="store-tab">
+      <div class="desc-box">
+       {$goods.description}
+      </div>
+  </div>
+</div>
+
+</div>
+<script>
+$(function(){
+	$('.gljbk span').each(function(){
+		$(this).click(function(){
+			var Index = $(this).index();
+			$('.gljbk span').each(function(){
+				$('.store-tab').css('display','none');
+				$('.gljbk span').removeClass('hoverspan');
+			});
+			$(this).addClass('hoverspan');
+			$('.store-tab').eq(Index).css('display','block');
+		});
+	});
+	
+})
+</script>
+<!-- 反回顶部代码开始 -->
+<script type="text/javascript" src="{res file=js/js.js}"></script>
+<div id="piaofu-right" href="javascript:void(0)">
+    <a href="{link app=cart act=index}" target="_blank" class="yichu"></a>
+	<a id="BizQQWPA" class="kefu" href="javascript:;"></a>
+ <script type="text/javascript">
+        BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4008919867, selector: 'BizQQWPA'});
+ </script>
+
+</div>
+<div id="gotop1" href="javascript:void(0)" style="display:block;">
+    <a href="javascript:void(0)" class="go_top"></a>
+</div>
+<!-- 反回顶部代码开始 -->
+{include file=footer.html}

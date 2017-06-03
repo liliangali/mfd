@@ -1,0 +1,302 @@
+{include file=header.html}
+<div style="width:1200px;margin:0 auto;padding-top:15px;">{include file=curlocal.html}</div>
+<script type="text/javascript">
+//<!CDATA[
+$(function (){
+    var order = '{$smarty.get.order}';
+    var arrow = '';
+
+    switch (order){
+        case 'credit_value desc' : order = '';
+        arrow = '{$lang.down_arrow}';
+        break;
+        default : order = 'credit_value desc';
+    }
+    $('#credit_grade').html('{$lang.credit_grade}' + arrow);
+    $('#credit_grade').click(function(){query('order', order);return false;});
+}
+);
+function query(name, value){
+    $("input[name='"+name+"']").val(value);
+    $('#search').submit();
+}
+
+$(function(){
+		   var OOtime = null;
+				$("#quantity_num").click(function(event){
+					var e=window.event || event;
+					if(e.stopPropagation){
+						e.stopPropagation();
+					}else{
+						e.cancelBubble = true;
+					}   
+					$("#EellFilterQuantity").addClass("filter-price-hover");
+				});
+				$("#EellFilterQuantity").click(function(event){
+					var e=window.event || event;
+					if(e.stopPropagation){
+						e.stopPropagation();
+					}else{
+						e.cancelBubble = true;
+					}
+				});
+				document.onclick = function(){
+					$("#EellFilterQuantity").removeClass('filter-price-hover');
+				};
+				$('.filter-area-text').mousemove(function(){
+					clearTimeout(OOtime);
+					$('#filter-area-a').addClass('filter-area-text_hover');
+					$('#J_FilterArea').show();
+				});
+				$('#J_FilterArea').mousemove(function(){
+					clearTimeout(OOtime);
+					$('#J_FilterArea').show();
+					$('#filter-area-a').addClass('filter-area-text_hover');
+				});
+				$('#J_FilterArea').mouseout(function(){ 
+				  OOtime = setTimeout(function(){
+							 $("#J_FilterArea").hide();
+							 $('#filter-area-a').removeClass('filter-area-text_hover');
+						   },300); 
+				});
+				$('.filter-area-text').mouseout(function(){ 
+				  OOtime = setTimeout(function(){
+							 $("#J_FilterArea").hide();
+							 $('#filter-area-a').removeClass('filter-area-text_hover');
+						   },300); 
+				});
+				
+	
+})
+
+
+
+//]]>
+</script>
+<div class="area">
+
+   <div class="attr-group">
+       <div class="attr-contant">
+           <div id="J_ArrtSelected" class="attr-selected has-selected">
+               <div class="attr-selected-cnt">
+                   <div class="attr-hd" style="line-height: 30px;">您已选择：</div>
+                   <h1><div class="has-selected-hd mt-7 srarch_fl"></div></h1>
+                   <ul class="attr-list">
+                        <li class="mt-7">
+                         {if $query.keyword}
+                            <a class="attr-item attr-sed" href="/index.php?act=store&keyword=&app=search&Submit=搜索" rel="nofollow" title="">                         
+                                <span class="attr-item-text">关键词：{$query.keyword}</span>
+                             {/if}
+                                <i></i>
+                            </a>
+                        </li>
+                    </ul>
+               </div>
+           </div>
+       </div>
+   </div>
+   
+   <div class="filter-tab">
+      <ul>
+        <li class="current">店铺列表</li>
+      </ul>
+   </div>
+   
+   <div class="filter-wrap">
+       <div id="search_filter_list" class="filter-bar clearfix">
+           <p class="page-small">
+                {include file=page.top.html}
+           </p>
+           <div style="clear:both;"></div>
+       </div>
+   </div>
+   
+   <div class="products-list">
+   
+       <!--{foreach from=$stores item=store}-->
+        <div class="store-list-div">
+          <div class="l-store-list">
+            <ul class="l-store-ul">
+                  {if $store.store_logo}<li>
+                    <span class="l-hd"><a class="fs-14 clr-37d mr-8" title="{$store.store_name|escape}" target="_blank" href="{url app=store&id=$store.store_id}"><img src="{$store.store_logo}" height="95" width="95" alt="{$store.store_name|escape}" /></a></span>
+                 </li>{/if}
+
+                  <li class="store-info">
+                        <p class="store store-type">
+                        <a class="fs-14 clr-37d mr-8" title="{$store.store_name|escape}" target="_blank" href="{url app=store&id=$store.store_id}">{$store.store_name|escape}</a>
+                        <span class="clr-999">
+                       
+                        <!--该店铺要求
+                        <span class="fw-600">500</span>
+                        元
+                        <span class="fw-600"></span>
+                        或
+                        <span class="fw-600">5</span>
+                        件起批-->
+                        </span>
+                        </p>
+                  </li>
+                  <li>
+                    <span class="l-hd">卖家信誉：</span>
+                    <span class="v-mid">
+                    <img title="信用:{$store.credit_value}" src="{$store.credit_image}">
+                    </span>
+                 </li>
+ <!--                <li>
+                    <span class="l-hd ls-1">好 评 率：</span>
+                    <span class="clr-580 fw-700">100.00%</span>
+                 </li>
+ -->
+ <!--
+                 <li>
+                    <span class="l-hd ls-8">主     营：</span>
+                    <a class="clr-37d" href="#" target="_blank">女装</a>
+                    <a class="clr-37d" href="#" target="_blank">蕾丝雪纺衫</a>
+                    <a class="clr-37d" href="#" target="_blank">连衣裙</a>
+                    <a class="clr-37d" href="#" target="_blank">衬衫</a>
+                    <a class="clr-37d" href="#" target="_blank">外套</a>
+                    <a class="clr-37d" href="#" target="_blank">t恤</a>
+                    <a class="clr-37d" href="#" target="_blank">半身裙</a>
+                    <a class="clr-37d" href="#" target="_blank">短外套</a>
+                    <a class="clr-37d" href="#" target="_blank">牛仔裤</a>
+                    <a class="clr-37d" href="#" target="_blank">小背心</a>
+                    <a class="clr-37d" href="#" target="_blank">小吊带</a>
+                    <a class="clr-37d" href="#" target="_blank">雪纺衫</a>
+                    <a class="clr-37d" href="#" target="_blank">打底衫</a>
+                    <a class="clr-37d" href="#" target="_blank">短袖</a>                           
+                 </li>
+ -->
+                 <li>
+                    <span class="l-hd">店铺认证：</span>
+                    <span class="legend v-mid">
+                     {$sgrades[$store.sgrade]}&nbsp;&nbsp;&nbsp;地     址：{$store.region_name} {$store.address}
+                   
+                    </span>
+                </li>
+             </ul>
+           </div>
+           <div class="r-store-list">
+               <ul class="r-store-ul">
+                 <!--{foreach from=$store.regoods item=goods}-->
+                  <li>
+                    <div class="pic">
+                        <a href="index.php?app=goods&id={$goods.goods_id}" target="_blank">
+                        <img height="135" width="135" alt="{$goods.goods_name}" src="{$goods.default_image}">
+                        </a>
+                        <a href="index.php?app=goods&id={$goods.goods_id}" target="_blank">
+                        <span class="size-wrap"></span>
+                        <span class="size">{$goods.goods_name}</span>
+                        </a>
+                    </div>
+                    <p class="lh-22 text-center ff-yh fs-14 clr-c03">¥ {$goods.price}</p>
+                  </li>
+                 
+                  <!--{/foreach}-->
+                  
+                  
+               </ul>
+               <div class="store-list-bt text-right">
+                    <a class="clr-37d" target="_blank" href="index.php?app=store&id={$store.store_id}">查看该店<span class="clr-c03">{$store.goods_count}</span>件商品<span class="ff-st">>></span></a>
+                </div>
+           </div>
+           <div class="clear_both"></div>
+        </div>
+         <!--{/foreach}-->
+   </div>
+   
+</div>
+   <div class="filter-wrap" style="width:1200px; margin:0 auto;">
+       <div id="search_filter_list" class="filter-bar clearfix">
+           <p class="page-small">
+                {include file=page.top.html}
+           </p>
+           <div style="clear:both;"></div>
+       </div>
+   </div>
+
+
+
+
+
+
+
+<div class="content" style="display:none;">
+    <div class="left">
+        <div class="module_sidebar">
+            <h2><b>{$lang.scategory}</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <!--{foreach from=$scategorys item=scategory}-->
+                    <dl class="sidebar_list">
+                        <dt class="bg_color1"><a href="{url app=search&act=store&cate_id=$scategory.id}">{$scategory.value|escape}</a></dt>
+                        <!--{foreach from=$scategory.children item=child}-->
+                        <dd><a href="{url app=search&act=store&cate_id=$child.id}">{$child.value|escape}</a></dd>
+                        <!--{/foreach}-->
+                    </dl>
+                    <!--{/foreach}-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="shop_list">
+            <div class="ornament1"></div>
+            <div class="ornament2"></div>
+            <div class="search_bar">
+                <form id="search" method="GET" action="index.php">
+                    <input type="hidden" name="order" value="{$smarty.get.order|escape}"/>
+                    <input type="hidden" name="app" value="search"/>
+                    <input type="hidden" name="act" value="store"/>
+                    <input type="hidden" name="cate_id" value="{$smarty.get.cate_id|escape}"/>
+                    <span class="display_span">{$lang.store_name}</span><input class="table_text" type="text" name="keyword" value="{$query.keyword|escape}" />
+                    <span class="display_span">{$lang.user_name}</span><input class="table_text" type="text" name="user_name" value="{$query.user_name|escape}" />
+                    <span class="display_span">{$lang.region_name}</span>
+                    <select id="region_id" name="region_id" class="display_select">
+                        <option value="">{$lang.region_name}</option>
+                        {html_options options=$regions selected=$query.region_id}
+                    </select>
+                    <input class="table_btn" type="submit" name="Submit" value="{$lang.search}" />
+                </form>
+                <div class="shop_page">
+                    {include file=page.top.html}
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <th class="align1">{$lang.store}</th>
+                    <th>{$lang.goods_num}</th>
+                    <th class="width2">{$lang.seller}</th>
+                    <th><a id="credit_grade" href="javascript:void(0);">{$lang.credit_grade}</a></th>
+                    <th>{$lang.region_name}</th>
+                </tr>
+                <!--{foreach from=$stores item=store}-->
+                <tr>
+                    <td class="width1">
+                        <p class="ware_pic"><a href="{url app=store&id=$store.store_id}"><img src="{$store.store_logo}" width="65" height="65" /></a></p>
+                        <h3>
+                            <a href="{url app=store&id=$store.store_id}">{$store.store_name|escape}</a>
+                        </h3>
+                    </td>
+                    <td class="align2">{$store.goods_count}</td>
+                    <td class="align2"><p class="name">{$store.user_name|escape}</p><a target="_blank" class="email" href="{$site_url}/index.php?app=message&amp;act=send&amp;to_id={$store.user_id}"><img src="{res file=images/web_mail.gif}" alt="{$lang.send_pm}" /></a></td>
+                    <td class="align2">
+                        <!--{if $store.credit_value ge 0}-->
+                        <img src="{$store.credit_image}" />
+                        <!--{else}-->
+                        {$store.credit_value}
+                        <!--{/if}-->
+                    </td>
+                    <td class="align2">{$store.region_name|escape}</td>
+                </tr>
+                <!--{/foreach}-->
+            </table>
+        </div>
+        
+        <div class="shop_list_page">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+</div>  <p class="clear"></p>
+
+{include file=login_footer.html}

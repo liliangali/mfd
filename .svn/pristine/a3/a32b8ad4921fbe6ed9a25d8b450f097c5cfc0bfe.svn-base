@@ -1,0 +1,103 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 
+ * 	Core Owl Carousel CSS File
+ *	v1.24
+ */
+
+/* clearfix */
+
+.innerWrapper {
+    margin: 0 auto;
+    width: 1008px;
+}
+
+.whiteWrap {height:430px; overflow:hidden;}
+
+.owl-carousel .owl-wrapper:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;}
+/* display none until init */
+.owl-carousel{display: none; position: relative; width: 100%; -ms-touch-action: pan-y;}
+.owl-carousel .owl-wrapper{display: none; position: relative; -webkit-transform: translate3d(0px, 0px, 0px);}
+.owl-carousel .owl-wrapper-outer{overflow: hidden; position: relative; width: 100%;}
+.owl-carousel .owl-wrapper-outer.autoHeight{-webkit-transition: height 500ms ease-in-out; -moz-transition: height 500ms ease-in-out;
+-ms-transition: height 500ms ease-in-out; -o-transition: height 500ms ease-in-out; transition: height 500ms ease-in-out;}
+.owl-carousel .owl-item{float: left; height:325px;}
+.owl-controls .owl-page,.owl-controls .owl-buttons div{cursor: pointer;}
+.owl-controls {-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none;
+user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+/* fix */
+.owl-carousel  .owl-wrapper,
+.owl-carousel  .owl-item{-webkit-backface-visibility: hidden; -moz-backface-visibility:    hidden; -ms-backface-visibility:     hidden;
+-webkit-transform: translate3d(0,0,0); -moz-transform: translate3d(0,0,0); -ms-transform: translate3d(0,0,0); width:244px;}
+
+.owl-theme .owl-controls{margin-top:20px; padding-bottom:0px; height:15px; _height:13px; text-align: center; overflow: hidden}
+
+/* Styling Next and Prev buttons */
+
+.owl-theme .owl-controls .owl-buttons div{color: #FFF; display: inline-block; zoom: 1; *display: inline;/*IE7 life-saver */ margin: 5px; padding: 3px 10px;
+font-size: 12px; -webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px; background: #869791; filter: Alpha(Opacity=50);/*IE7 fix*/
+opacity: 0.5;}
+/* Clickable class fix problem with hover on touch devices */
+/* Use it for non-touch hover action */
+.owl-theme .owl-controls.clickable .owl-buttons div:hover{filter: Alpha(Opacity=100);/*IE7 fix*/ opacity: 1; text-decoration: none;}
+
+/* Styling Pagination*/
+
+.owl-theme .owl-controls .owl-page{display: inline-block; zoom: 1; *display: inline;/*IE7 life-saver */}
+.owl-theme .owl-controls .owl-page span{display: block; width: 13px; height: 13px; _height: 13px; margin: 0 9px; background : url(../images/slide-icon.png) no-repeat; background-position: 0 0;
+_background-position: 0 2px; *+background-position: 0 0px; overflow: hidden}
+
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span{
+	background-position: 0 -14px;_background-position: 0 -11px;*+background-position: 0 -14px;
+}
+
+/* If PaginationNumbers is true */
+
+.owl-theme .owl-controls .owl-page span.owl-numbers{height: auto; width: auto; color: #FFF; padding: 2px 10px; font-size: 12px; -webkit-border-radius: 30px;
+-moz-border-radius: 30px; border-radius: 30px;}
+
+
+/*************************************@start h2***********************************/
+.homeTitle {font-family:"微软雅黑", "Arial"; font-size: 21px; height: 40px; line-height: 35px; margin: 0 auto; padding: 45px 0 20px 155px; width: 464px; font-weight: normal;}
+.homeTitle a {cursor: pointer;}
+.homeTitle span {font-family:"微软雅黑", "Arial";background:#000000; color: #FFFFFF; display: inline-block; height: 38px; text-align: center; width: 152px;}
+
+.homeTitle em {font-family:"微软雅黑", "Arial";font-size: 18px; color: #000000; display: inline-block; height: 38px; padding-left: 15px; width: 268px; font-style: normal;}
+
+
+/*************************************@start carouselMod***********************************/
+.carouselMod{ position: relative;}
+.carouselMod .prev-btn {position: absolute; z-index: 100; top:130px; width: 50px; height: 65px; background: url(../images/arrow.png) no-repeat; left:50px; filter:alpha(opacity=0); -moz-opacity:0; -khtml-opacity: 0; opacity: 0; display: block;} 
+.carouselMod .next-btn {position: absolute; z-index: 999; top:130px; width: 50px; height: 65px; background: url(../images/arrow.png) no-repeat 0 -88px; right:50px;filter:alpha(opacity=0); -moz-opacity:0; -khtml-opacity: 0; opacity: 0; display: block;} 
+
+/*************************************@start itemMod***********************************/
+.itemMod .item { position: relative; margin-right:2px; background:none; border:0px; width:244px; height:auto; margin-bottom:0px;}
+.itemMod .item a{ display: block; overflow:hidden; -webkit-tap-highlight-color: transparent; }
+
+.itemMod .item img{ width: 244px; display: block; height: 325px;}
+.itemMod .item .bg{ background: none; _background:none; background-size: contain; width: 100%; height: 298px;position: absolute; left: 0; top:0; z-index: 2;}
+.itemMod .item .layer { background:url(../images/item-hoverbg.png) repeat; background-size: contain; width: 100%;  height:325px;position: absolute; left: 0; top:0; z-index:3; display: none}
+.itemMod .item .layer span{ display: block; height:44px; border-left:4px solid #a40000; border-right:4px solid #a40000; margin-top: 140px; font-size:18px; line-height: 22px; color: #333; text-align: center; padding:0 65px; overflow:hidden;}
+.itemMod .item.on img{ transform: scale(1.04, 1.04); -ms-transform: scale(1.04, 1.04);-webkit-transform: scale(1.04, 1.04);-webkit-transition-timing-function:linear;-moz-transition-timing-function:linear;-o-transition-timing-function:linear;transition-timing-function:linear;-webkit-transition-duration:400ms;-moz-transition-duration:400ms;-o-transition-duration:400ms;transition-duration:400ms;}
+.itemMod .item.del img{transform: scale(1, 1);-ms-transform:scale(1, 1);-webkit-transform: scale(1, 1);-webkit-transition-timing-function:linear;-moz-transition-timing-function:linear;-o-transition-timing-function:linear;transition-timing-function:linear;-webkit-transition-duration:400ms;-moz-transition-duration:400ms;-o-transition-duration:400ms;transition-duration:400ms;}
+.itemMod .item .layer span.fs{ border-left:4px solid #a40000;border-right:4px solid #a40000; }
+.itemMod .item .layer span.fun{ border-left:4px solid #ffcc00; border-right:4px solid #ffcc00; }
+.itemMod .item .layer span.wth{ border-left:4px solid #66cccc;border-right:4px solid #66cccc; }
+.itemMod .item .layer span.car{ border-left:4px solid #ccc;border-right:4px solid #ccc; }
+.itemMod .item .layer span.dig{ border-left:4px solid #00cc00; border-right:4px solid #00cc00;}
+.itemMod .item .layer span.live{ border-left:4px solid #ff9900;border-right:4px solid #ff9900; }
+.itemMod .item .layer span.girl{ border-left:4px solid #ff00cc;border-right:4px solid #ff00cc; }
+.itemMod .item .layer span.people{ border-left:4px solid #ff0000;border-right:4px solid #ff0000; }
+.itemMod .item .layer span.zl{ border-left:4px solid #ff9999; border-right:4px solid #ff9999;}
+.itemMod .item .layer span.bbs{ border-left:4px solid #ff3300;border-right:4px solid #ff3300; }
+
+
+
+
+
+
+
+
+

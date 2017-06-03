@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Api\V1\Transformers;
+
+use App\Models\Order;
+use League\Fractal\TransformerAbstract;
+
+class OrderTransformer extends TransformerAbstract {
+
+    protected $availableIncludes = ['comm'];
+    public function transform(Order $order) {
+        $order->add_time = date("Y-m-d H:i:s",$order->add_time);
+        return $order->toArray();
+//        return [
+//            'id' => $user['user_id'],
+//            'name' => $user['user_name'],
+//        ];
+    }
+    public function includeComm(User $user)
+    {
+            return 11;
+    }
+}
+
+

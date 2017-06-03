@@ -1,0 +1,132 @@
+{include file=member.header.html}
+<div class="w clearfix">
+ <div class="recharge_left">
+  <h1>提现<a href="#">返回收支明细</a></h1>
+  <form method="POST" id="myform">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" class="hytixia">
+    <tr>
+     <th>余额为：</th>
+     <td>¥{$user.money} 元</td>
+    </tr>
+    
+    <tr>
+     <th>冻结：</th>
+     <td>¥2000 元（暂时不可提现，为正在交易中的金额，如保证金等）</td>
+    </tr>
+    
+    <tr>
+     <th>可提现：</th>
+     <td>¥{$user.frozen} 元</td>
+    </tr>
+    
+    <tr>
+     <th colspan="2"><p  class="txts">！仅支持银行借记卡，且开户名须与身份认证中真实姓名/企业名称相同。！</p></th>
+    </tr> 
+        
+    <tr>
+     <th>银行开户名：</th>
+     <td>{$real_name}</td>
+    </tr> 
+        
+    <tr>
+     <th valign="top" style="padding-top:15px;">银行所在地：</th>
+     <td>
+      <select  onchange="getRegion(this,'region2','请选择城市')" name="region1"><option value=""  >请选择省份</option>
+      {html_options options=$region_list selected=''}
+      </select>
+      <select onchange="getRegion(this,'region3','请选择地区')" id="region2" name="region2" validate="selecta"><option value="">请选择城市</option>
+      </select>
+      
+      <!-- 
+      <select id="region3" name="region3"><option value="">请选择地区</option>
+      </select> -->
+      
+      <p class="ts_2">如果找不到所在城市，可以选择所在地区或者上级城市</p>
+     </td>
+    </tr> 
+    
+    <tr>
+     <th>选择银行：</th>
+     <td><select name="bank_id"><option>请选择银行名称</option>
+      {html_options options=$bank_list selected=''}
+     </select></td>
+    </tr>
+    
+    <tr>
+     <th>银行卡号：</th>
+     <td><input type="text" value="" placeholder="银行卡号" validate="required"  maxlength=19  name="bank_card" class="input_1" />
+     
+     </td>
+    </tr> 
+    
+    <tr>
+     <th>提现金额：</th>
+     <td><input type="text" value="" placeholder="提现金额" name="cash_money" validate="number|required" minlength=1 maxlength=10000 class="input_2"/>提现金额需大于1元小于100000</td>
+    </tr>
+
+    <tr>
+     <th>到账时间：</th>
+     <td>3 ~ 7个工作日</td>
+    </tr>                    
+  </table>
+	
+  <p class="qrzf" style="padding-left:35px;"><input type="submit" id="submit-btn" value="申请提现" /></p>
+  </form>
+ </div>
+ <div class="recharge_right">
+  <h2>需要帮助？</h2>
+  <h3>到账账户</h3>
+  <p class="p1">到账账户信息由申请者手动填写，暂不提供验证，请认真填写。</p>
+  <h3>到账时间</h3>
+  <p class="p1">3-7个工作日内可退回您的支付账户。由于银行处理可能有延迟，具体以账户的到账时间为准。</p>  
+  <h3>申请提现后是否可以取消？</h3>
+  <p class="p1">在申请后24小时以内可以向平台申请取消提现，立即生效，平台自动将申请提现部分冻结资金划入账户余额。</p>   
+ </div>
+</div>
+<script>
+
+	$('#myform').verify({
+		validate:{
+				selecta:function(e){
+					if(e.val()==''){
+						e.addClass('error-css');
+						return false;
+					}
+				},
+				
+			},
+		submitBtn:{
+			flag:true,
+			id:$('#submit-btn'),
+			txt:'提交中...'
+		}
+	});
+
+	/**
+	*获得下级城市列表
+	*/
+	function getRegion(obj,nextR,def)
+	{
+		var value = $(obj).val();
+		var data = "region_id="+value;
+		$.ajax({
+			   type: "POST",
+			   url: "{link app=auth act=getRegion}",
+			   data: data,
+			   success: function(msg){
+				   $("#"+nextR).empty();
+				   msg = "<option value=''>"+def+"</option>" + msg;
+				   $("#"+nextR).html(msg);
+			   }
+		});
+		
+		
+	}
+	
+	
+	
+	
+
+</script>
+
+{include file="footer.html"}

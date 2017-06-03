@@ -1,0 +1,31 @@
+{include file=../user/member.header.html}
+<div class="w">
+    <div class="AreaBox clearfix">
+    {include file=../user/member.menu.html}
+        <div class="con">
+            <h2 class="tit">我的晒单<a href="{link app=my_single act=add}">我要晒单</a></h2>
+            <div class="sun_single">
+             <ul>
+             <!--{foreach from=$single item=s}-->
+              <li>
+               <p class="p1"><a href="#"><img src="{$s.img_url}" /></a></p>
+               <p class="p2"></p>
+               <p class="p3"><a href="#">{$s.img_name}</a></p>
+               <a href="{link app=my_single act=drop}?id={$s.id}" class="Delete"></a>
+              </li>
+             <!--{/foreach}-->
+             </ul>
+            </div>
+            
+           <!--用户中心分页开始--> 
+           <div class="hyzx_fy clearfix">
+            <div>
+                {include file="../user/member.page.bottom.html"}
+             </div>
+           </div>  
+           <!--用户中心分页结束-->        
+        </div>
+        
+    </div>
+</div>
+{include file="../user/footer.html"}

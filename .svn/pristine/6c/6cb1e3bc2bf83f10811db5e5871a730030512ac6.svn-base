@@ -1,0 +1,102 @@
+<div id="sinNewDiv">
+    <div class="container">
+        <div class="title">{$type_name}</div>
+        <div class="content">
+         <!--{foreach from=$parts item=pt_item}-->
+         <li>
+         <input type="checkbox" name="parts" value="{$pt_item.part_id}" {if $pt_item.chek=='yes'}checked="checked"{/if} />
+         {$pt_item.part_name}
+         {$pt_item.part_sn}
+         <!-- {*$pt_item.part_thumb*} -->
+         </li>
+        
+        <!-- {/foreach} -->
+        </div>
+        <div style=" text-align:center;">
+          <input class="tijia" id="submit" type="button" name="Submit" value="{$lang.submit}" />
+          <input class="congzi" id="cancel" type="button" name="Submit2" value="{$lang.cancel}" />
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	var _box=$({$box});
+	var _boxWidth=500;
+    //var toTop=(document.body.scrollTop + document.body.clientHeight / 2 - 280) + "px";
+    var toLeft=(document.body.scrollLeft + document.body.clientWidth / 2 - _boxWidth / 2) + "px";
+    var toTop='200px';
+	_box.css('background','FFF');
+	_box.css('display','block');
+	_box.css('position','absolute');
+	_box.css('zIndex','9999');
+	_box.css('width','500px');
+	_box.css('top',toTop);
+    _box.css('left',toLeft);
+    _box.css('background','#FFF');
+    openNewDiv();
+    
+});
+$('#sinNewDiv input#cancel').click(function(){
+    $({$box}).html('');
+    $({$box}).css('display','none');
+    $('#sinMask').remove();
+});
+
+$('#sinNewDiv input#submit').click(function(){
+	var ptVl='';
+    $('#sinNewDiv :checkbox').each(function(){  //:前一定要有空格 否则定位错误
+        if($(this).attr('checked')==true){
+        	ptVl+=$(this).attr('value')+',';
+        }
+    });
+    var _ids=ptVl.substr(0,ptVl.length-1);
+    $("#parts_value_{$type_id}").attr('value',_ids);
+    $("#parts_check_{$type_id}").attr('checked',true);
+    $.ajax({
+    	url:"index.php?app=customs&act=ajax_parts_select",
+    	data:"ids="+_ids,
+    	success:function(result){
+    		$('#parts_select_{$type_id}').html(result);
+    	},
+    });
+
+	$({$box}).html('');
+    $({$box}).css('display','none');
+    $('#sinMask').remove();
+    
+});
+
+
+/*
+//弹出层滚动居中
+function newDivCenter() {
+    sinNewDiv.style.top = (document.body.scrollTop + document.body.clientHeight / 2 - 280) + "px";
+    sinNewDiv.style.left = (document.body.scrollLeft + document.body.clientWidth / 2 - newDivWidth / 2) + "px";
+}
+if (document.all){
+    window.attachEvent("onscroll", newDivCenter);
+}else{
+    window.addEventListener('scroll', newDivCenter, false);
+}
+*/
+
+function docEle() {return document.getElementById(arguments[0]) || false;}
+function openNewDiv() {
+    var m = "sinMask";
+    if (docEle(m)) document.body.removeChild(docEle(m));
+    var newMask = document.createElement("div");
+    newMask.id = m;
+    newMask.style.position = "absolute";
+    newMask.style.zIndex = "1";
+    _scrollWidth = Math.max(document.body.scrollWidth, document.documentElement.scrollWidth);
+    _scrollHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    newMask.style.width = _scrollWidth + "px";
+    newMask.style.height = _scrollHeight + "px";
+    newMask.style.top = "0px";
+    newMask.style.left = "0px";
+    newMask.style.background = "#33393C";
+    newMask.style.filter = "alpha(opacity=40)";
+    newMask.style.opacity = "0.40";
+    document.body.appendChild(newMask);
+}
+</script>

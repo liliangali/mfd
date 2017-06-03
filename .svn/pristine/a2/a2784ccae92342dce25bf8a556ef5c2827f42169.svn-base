@@ -1,0 +1,107 @@
+
+<div class="user_box">
+    {include file=member.menu.html}
+    <div class="user_right user_rights fr">
+        <h4>手机验证</h4>
+        <div class="verification verificationyx">
+            <ul>
+                <li>1.验证身份</li>
+                <li class="current">2.修改已绑定手机</li>
+                <li>3.完成</li>
+            </ul>
+        </div>
+        <div class="binding">
+            
+         
+            <form method="post" action="member-phone_bind_3.html" id="phone_bind2">
+            <div class="card">
+                <p class="sjyzm fl">新手机号码：</p>
+                <input type="text" class="bdinp fl"  id="tel" name="tel" value="{$smarty.cookies.tel}" />
+            
+                <p class="tssryz fl">请输入新手机号</p>
+            </div>
+        
+            <div class="card cards">
+                <p class="sjyzm fl">手机校验码：</p>
+                <input type="text" class="bdinp fl" name="code">
+         
+                <input type="button" class="bdbut fl sendValidate"  value="获取验证" id="getCode" onclick="sendcode(this)" />
+                <p class="tssryz fl">请输入手机校验码</p>
+            </div>
+            <input type="submit" value="下一步" class="bdxyb">
+            </form>
+        </div>
+    
+    </div>
+</div>
+
+<script type="text/javascript">
+    //var countdown=60;
+    var  type = 'phone_bind';
+    function sendcode(val) {
+    	  var isMobile = /^1[34578][0-9]{9}$/;
+  	    if(!isMobile.test($('#tel').val()))
+  	    {
+  		      
+  		     alert('手机号码不合规范');   
+  		     return false;
+  		}
+        $.post("./member-sendCode.html",{phone:$('#tel').val(),type:type},function(res){
+            var res = eval("("+res+")");
+            if(res.done){
+               settime(val,60);
+            }
+        })
+   }
+    function settime(obj,n){
+        var _self=$(obj),t=_self.val();
+        _self.attr('disabled',true).val('倒计时'+(n--)+'秒');
+        (function(){
+            if(n>0){
+                _self.attr('disabled',true).val('倒计时'+(n--)+'秒');
+                setTimeout(arguments.callee,1000);
+            }else{
+                _self.attr('disabled',false).val(t);    
+            }   
+        })()
+    }
+    
+
+</script>
+<script>
+    $(function(){
+
+        $('#phone_bind2').ajaxForm({
+            beforeSubmit:function(){
+                var b=$('#phone_bind2').validate({
+                    submitBtn:{
+                        flag:true,
+                    },
+                    acticle:true,
+                    error:function(obj,error){cotteFn.error(obj,error)}
+                });
+           
+                if(!b){
+                    return false
+                }
+            },
+            success:function(res){
+                var res = eval("("+res+")");
+                if(!res.done){
+                    alert(res.msg)
+                    $('.bdxyb').val('下一步')
+
+                }else{
+                    $('.user_box').replaceWith(res.retval.content);
+                }
+
+            },
+            error:function(){
+                alert('error')
+                $('.bdxyb').val('下一步')
+            }
+        })
+
+
+    });
+</script>

@@ -1,0 +1,18 @@
+<style>
+.diy-dy{width:887px; margin:0 auto;}
+.diy-dy img{float:left;}
+
+</style>
+<div class="diy-dy">
+<img src="{res file=images/dayi_1.jpg}" width="886">
+<img src="{res file=images/dayi_2.jpg}" width="886">
+<img src="{res file=images/dayi_3.jpg}" width="886">
+<img src="{res file=images/dayi_4.jpg}" width="886">
+<img src="{res file=images/dayi_5.jpg}" width="886">
+<img src="{res file=images/dayi_6.jpg}" width="886">
+<img src="{res file=images/dayi_7.jpg}" width="886">
+<img src="{res file=images/dayi_8.jpg}" width="886">
+<img src="{res file=images/dayi_9.jpg}" width="886">
+<img src="{res file=images/dayi_10.jpg}" width="886">
+<p class="clear"></p>
+</div>

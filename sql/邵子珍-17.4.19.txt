@@ -1,0 +1,1 @@
+ALTER TABLE `cf_detail_comments` ADD `quan_id` INT(10) NOT NULL COMMENT '»Æ÷÷id' AFTER `jd_id`; 

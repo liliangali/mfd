@@ -1,0 +1,9 @@
+            <ul>
+            {foreach from=$liangtis item=item key=key}
+                <li data-id="{$key}" data-phone="{$item.phone_mob}" data-name="{$item.realname}" {if $key==$check} class="cur" {/if}>
+                    <p class="p1">姓名：{$item.realname}</p>
+                    <p class="p2">电话：{$item.phone_mob}</p>
+                    <p class="p3">门店：{$item.serve_name}</p>
+                </li>
+            {/foreach}
+            </ul>

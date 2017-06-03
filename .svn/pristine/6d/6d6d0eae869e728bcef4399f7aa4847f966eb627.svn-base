@@ -1,0 +1,111 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#group_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {    
+            name : {
+                required : true
+            },
+            site_id :{
+                min : 1
+            },
+             code    :{
+                remote     : {
+                    url:'index.php?app=motif&act=ajax_code_unique',
+                    type:'post',
+                    data:{
+                        id:function(){
+                            return $("#locationid").val();
+                        },
+                        code:function(){
+                            return $("#code").val();
+                        }       
+                    }
+                }
+            },
+        }, 
+        messages : {
+            name : {
+                required : '{$lang.name_empty}'
+            },
+            site_id : {
+               min : '{$lang.site_empty}'
+            },
+            code    : {
+                remote     : '{$lang.code_unique}'
+            },
+        }
+    });
+});
+
+
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=motif">栏目列表</a></li>
+        <li><a class="btn1" href="index.php?app=motif&amp;act=add">添加栏目</a></li>
+        <li><a class="btn1" href="index.php?app=motif&amp;act=group_list">栏目位置列表</a></li>
+        {if $data.id}
+        <li><a class="btn1" href="index.php?app=motif&amp;act=add_group">添加栏目位置</a></li>
+        {else}
+        <li><span>添加栏目位置</span></li>
+        {/if}
+    </ul>
+</div>
+{$build_editor}
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="group_form">
+        <table class="infoTable">
+            
+            <tr>
+                <th class="paddingT15">
+                    栏目位置名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="name" type="text" name="name" value="{$data.name|escape}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    位置标记:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="code" type="text" name="code" value="{$data.code|escape}" /><label class="field_notice">使用标记唯一，最好使用英文和'_'组成的短语</label>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                   所属平台:</th>
+                <td class="paddingT15 wordSpacing5">
+                <!-- {if $data} -->
+                    <input type='text'  disabled='true' value="{$sites.$data.site_id}"/>
+                <!-- {else} -->
+                        <select name="site_id" id="site_id">
+                        <option value='0'>请选择</option>
+                        {html_options options=$sites }
+                    </select>
+                    <!-- {/if} -->
+                </td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                    <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+                    <input type="hidden" id="locationid" name="id" value="{$data.id}"/>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{include file="footer.html"}

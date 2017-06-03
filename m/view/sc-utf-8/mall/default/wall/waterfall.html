@@ -1,0 +1,77 @@
+
+  {foreach from=$item_list item=item}
+    <div class="J_item wall_item">
+
+        <present name="like_manage">
+        <a href="javascript:;" class="J_unlike del_item" title="删除" data-id="{$item.id}"></a>
+        </present>
+
+        <present name="album_manage">
+        <if condition="$album['uid'] eq $visitor['id']">
+        <a href="javascript:;" class="J_delitem del_item" title="删除" data-id="{$item.id}" data-aid="{$album.id}"></a>
+        </if>
+        <else/>
+        <if condition="$item['uid'] eq $visitor['id']">
+        <a href="javascript:;" class="J_delitem del_item" title="删除" data-id="{$item.id}"></a>
+        </if>
+        </present>
+
+        <!--图片-->
+        <ul class="pic">
+            <li>
+                <a href="" title="{$item.title}" target="_blank"><img alt="{$item.title}" class="J_img J_decode_img" src="{$item.img}"></a>
+                <span class="p">¥{$item.price}</span>
+                <a href="javascript:;" class="J_joinalbum addalbum_btn" data-id="{$item.id}"></a>
+            </li>
+        </ul>
+        
+        <!--作者-->
+        <notempty name="item['uname']">
+        <div class="author clearfix">
+            <a href="" target="_blank">
+                <img class="J_card avt fl r3" width="44" height="44" src="{$item.img}" data-uid="18" />
+            </a>
+            <div class="author_name">
+                <a href="" class="J_card clr6 bold" target="_blank" data-uid="{$item.uid}">这里是明智</a><br>
+            </div>
+        </div>
+        </notempty>
+        <!--说明-->
+        <p class="intro clr6">{$item.intro}</p>
+        <!-- 喜欢评论 -->
+        <div class="hot_bt">
+            <a href="#" class="xih">喜欢</a>
+            <span class="xih_cout">12345</span>
+            <a href="#" class="comts_cout">15</a>
+            <span class="comts">评论：</span>
+        </div>
+        <!--操作-->
+        <div class="favorite" style="display:none;"> 
+            <a href="javascript:;" class="J_likeitem like" data-id="{$item.id}" <present name="album">data-aid="{$album.id}"</present>>喜欢</a>
+            <div class="J_like_n like_n <if condition=""><a href="" target="_blank">{$item.likes}</a><i></i></div>
+            
+            <if condition="$item['comments'] gt 0">
+            <span class="creply_n">(<a href="" target="_blank">{$item.comments}</a>)</span>
+            </if>
+            <a class="creply" href="" target="_blank">内容</a> 
+        </div>
+        
+        
+        <!--评论-->
+        <notempty name="item['comment_list']">
+        <ul class="rep_list"  style="display:none;">
+        {foreach key=key item=comment from=$item.comment_list'}
+          
+            <notempty name="item['comment_list'][$i]">
+            <li class="rep_f">
+                <a href="" target="_blank">
+                    <img src="http://localhost/PinPHP_v3.0_release_20121127/PinPHPv3_release_20121127/upload/data/upload/avatar/000/00/00/6f4922f45568161a8cdf4ad2299f6d23_32.jpg" class="J_card avt fl r3" alt="{$comment.uname}" data-uid="{$comment.uid}">
+                </a>
+                <p class="rep_content"><a href="" class="J_card n" target="_blank" data-uid="{$comment.uid}">{$comment.uname}</a>  {$comment.info}</p>
+            </li>
+            </notempty>
+             {/foreach}
+        </ul>
+        </notempty>
+    </div>
+     {/foreach}    

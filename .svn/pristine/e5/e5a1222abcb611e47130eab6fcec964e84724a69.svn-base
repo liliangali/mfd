@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<link rel="stylesheet" type="text/css" href="static/css/public.css">
+<link rel="stylesheet" type="text/css" href="static/css/index.css">
+<script type="text/javascript" src="static/expand/jquery.js"></script>
+<script  type="text/javascript" src="static/js/public.js"></script>
+</head>
+
+
+<body>
+{$_head_tags}
+<!--<editmode></editmode>-->
+<div class="topBar">
+  <div class="w">
+    <div class="fl menuList"> <span>嗨，{$visitor.nickname|escape}欢迎来到阿里裁缝！</span> 
+        <!--{if !$visitor.user_id}-->
+        <span><a href="member-login.html">登录</a></span> <em>|</em> 
+        <span><a href="member-register.html">注册</a></span> <em>|</em> 
+         <!--{else}-->
+        <span class="btn-angle" data-class="zhanghu"><a href="member.html" class="link">我的帐号</a><i class="angle"></i></span> <em>|</em> 
+        <span class="btn-angle" data-class="caifeng"><a href="member-tailor.html" class="link">裁缝中心</a><i class="angle"></i></span> <em>|</em> 
+        <!--{/if}-->        
+		<span class="btn-angle" data-class="help"><a href="#" class="link">帮助中心</a><i class="angle"></i></span> <em>|</em> 
+        <span class="btn-angle" data-class="dingzhi"><a href="#" class="link">发布定制需求</a><i class="angle"></i></span> <em>|</em> 
+        <span class="btn-angle" data-class="app"><a href="#" class="link"><i class="icon-phone"></i>手机裁缝</a><i class="angle"></i></span> 
+
+    </div>
+    <div class="fr">
+      <div class="search">
+        <form>
+          <input type="text" class="txt" data-placeholder="例如：我要找中式西服裁缝">
+          <input type="submit" value="" class="btn">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="bd-menu"> <i class="angle"></i>
+    <div class="app">
+      <p>扫码下载客户端</p>
+      <img src="static/img/qrcode.png" width="82" height="82"> <a href="#" class="iphone"></a> <a href="#" class="android"></a> </div>
+    <div class="dingzhi"> <a href="#">连接</a> <a href="#">连接</a> <a href="#">连接</a> <a href="#">连接</a> <a href="#">连接</a> </div>
+    <div class="help"> <a href="#">连接</a> <a href="#">连接</a> <a href="#">连接</a> <a href="#">连接</a> <a href="#">连接</a> </div>
+    <div class="caifeng"> <a href="#">连接</a> <a href="#">连接</a> <a href="#">连接</a> <a href="#">连接</a> <a href="#">连接</a> </div>
+    <div class="zhanghu"> <a href="#">连接</a> <a href="#">连接</a> <a href="#">连接</a> <a href="#">连接</a> <a href="#">连接</a> </div>
+  </div>
+</div>
+<div class="head">
+  <div class="w"> <a href="index.php" title="阿里裁缝" class="logo fl"></a>
+    <div class="anav fl"> <span class="btn-angle"><a href="#" class="link">青岛</a><i class="angle"></i></span>
+      <div class="bd-menu"> <i class="angle"></i> <a href="#">北京</a> <a href="#">上海</a> <a href="#">天津</a> <a href="#">重庆</a> <a href="#">河北</a> <a href="#">山西</a> <a href="#">河南</a> <a href="#">辽宁</a> <a href="#">黑龙江</a> <a href="#">内蒙古</a> <a href="#">江苏</a> <a href="#">山东</a> <a href="#">安徽</a> <a href="#">浙江</a> <a href="#">福建</a> <a href="#">湖北</a> <a href="#">湖南</a> <a href="#">广东</a> <a href="#">广西</a> <a href="#">江西</a> <a href="#">四川</a> <a href="#">海南</a> <a href="#">贵州</a> <a href="#">云南</a> <a href="#">西藏</a> <a href="#">陕西</a> <a href="#">甘肃</a> <a href="#">青海</a> <a href="#">宁夏</a> <a href="#">新疆</a> </div>
+    </div>
+    <ul class="nav fr">
+      <li><a href="index.php" target="_blank">首页</a></li>
+      <li><a href="{link app=tailor}" target="_blank">选裁缝</a></li>
+      <li><a href="#" target="_blank">选款式</a></li>
+      <li><a href="#" target="_blank">选面料</a></li>
+      <li><a href="#" target="_blank">看晒单</a></li>
+    </ul>
+  </div>
+</div>

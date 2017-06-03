@@ -1,0 +1,44 @@
+<div class="comment_list">
+	{foreach from=$list item=com}
+    <dl>
+                      <dt><a href="{link app=club act=cooler arg0=$com.uid}"><img class="J_card avt fl r3" width="36" height="36" src="{avatar uid=$com.uid size=48}" data-uid="{$com.uid}" />
+                      </a></dt>
+                      <dd>
+                         <p class="p1"><a class="J_card" data-uid="{$com.uid}" href="{link app=club act=cooler arg0=$com.uid}">{uname uid=$com.uid sub=20}</a></p>
+                         <p class="p2">{$com.content}<font>{$com.ftime}</font></p>
+                      </dd>
+                  </dl>
+	{/foreach}
+	
+	<!--{if $page_info.page_count gt 1}-->
+	<div class="page-box">
+		<div id="page">
+		    <!-- <span>{sprintf lang=total_item var1=page_info.item_count}</span> -->
+		    <!--{if $page_info.prev_link}-->
+		    <a class="former" href="javascript:;" data-url="{$page_info.prev_link}">上一页</a>
+		    <!--{else}-->
+		    <span class="former_no">上一页</span>
+		    <!--{/if}-->
+		    <!--{if $page_info.first_link}-->
+		    <a class="page_link" href="javascript:;" data-url="{$page_info.first_link}">1&nbsp;<!--{$page_info.first_suspen}--></a>
+		    <!--{/if}-->
+		    <!--{foreach from=$page_info.page_links key=page item=link}-->
+		    <!--{if $page_info.curr_page eq $page}-->
+		    <span class="page_hover">{$page}</span>
+		    <!--{else}-->
+		    <a class="page_link" href="javascript:;" data-url="{$link}">{$page}</a>
+		    <!--{/if}-->
+		    <!--{/foreach}-->
+		    <!--{if $page_info.last_link}-->
+		    <a class="page_link" href="javascript:;" data-url="{$page_info.last_link}"><!--{$page_info.last_suspen}-->&nbsp;<!--{$page_info.page_count}--></a>
+		    <!--{/if}-->
+		    <!-- <a class="nonce">{$page_info.curr_page} / {$page_info.page_count}</a> -->
+		    <!--{if $page_info.next_link}-->
+		    <a class="down" href="javascript:;" data-url="{$page_info.next_link}">{$lang.next_page}</a>
+		    <!--{else}-->
+		    <span class="down_no">{$lang.next_page}</span>
+		    <!--{/if}-->
+		</div>
+	</div>
+	<!--{/if}-->
+</div>

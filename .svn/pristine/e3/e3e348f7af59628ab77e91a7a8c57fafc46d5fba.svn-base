@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>实名认证</title>
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+</head>
+
+<body>
+{include file="../header-new.html"}
+<div class="user_box">
+ {include file=member.menu.html}
+    <div class="user_right user_rights fr" >
+		<h4>实名认证</h4>
+        <div class="verification">
+        	<ul>
+            	<li class="current">1.验证身份</li>
+                <li>2.绑定银行卡</li>
+                <li>3.提交完成</li>
+            </ul>
+        </div>  
+        <div class="rzsjtx">
+           <form method="post" action="member-cyz_auth_2.html" id="cyz_auth1">
+        	<div class="card cards">
+            	<p class="smzrxx fl">真实姓名：</p>
+                <input type="text" name="realname" value="{$auth_info.realname}" class="bdinp fl">
+            </div>
+            <div class="card cards">
+            	<p class="smzrxx fl">手机号码：</p>
+                <input type="text"  name="mobile"  id="mobile" value="{$phone}" class="bdinp fl">
+            </div>
+            <div class="card cards">
+            	<p class="smzrxx fl">验证码：</p>
+                <input type="text" class="bdinp fl" name="code">
+                <input type="button" class="bdbut fl" value="获取验证" id="getCode" onclick="sendcode(this)">
+                <p class="tssryz fl">请输入手机校验码</p>
+            </div>
+            <div class="card cards">
+            	<p class="smzrxx fl">所在地区：</p>
+        		  <div class="dropdown">
+                  <label for="J_province" class="iconfont"></label>
+                  <select name="country">
+                   	<option value="2">中国</option>
+                  
+               </select>
+               <select  name="p_region_id" onchange="get_region(this)">
+                    {html_options options=$region1 selected=$p_region_id}
+                </select>
+
+                <select  name="region_id" id="region_id">
+                    {html_options options=$region2 selected=$region_id}
+                </select>
+                </div>
+            </div>
+
+
+
+            <div class="card cards">
+            	<p class="smzrxx fl">详细地址：</p>
+                <input type="text" class="bdinp fl" value="{$auth_info.address}" name="address">
+            </div>
+            <div class="card cards">
+            	<p class="smzrxx fl">身份证号码：</p>
+                <input type="text" class="bdinp fl" value="{$auth_info.card}" name="card" >
+            </div>
+            <div class="smzrsc ">
+            	<p class="smzrxx fl">上传本人身份证照：</p>
+              
+            
+           <div class="ui-form-item fl">
+      
+            <div validate="idcardA" class="upload-id" id="uploadPicIdFront">
+            
+              <div class="upload-pic-btn fl"> 
+              <img src="{if $auth_info.card_face_img}{$auth_info.card_face_img}{else}../../static/img/idfront.png{/if}"
+                                     style="width:100px;height:97px;" alt=""
+                                     data-img="{if $auth_info.card_face_img}{$auth_info.card_face_img}{else}../../static/img/idfront.png{/if}" class="def_face_img">
+                
+                <!-- 取消上传操作需要修改的val值 -->
+                 <input type="hidden" name="hid_face_cancel" id="hid_face_cancel" value="{$auth_info.card_face_img_data}">
+                  
+                <!-- 上传图片完成要展示的 -->                   
+                <div class="upload-wrap up_face_hid" {if $auth_info.card_face_img} style="display:block"{/if} > <a href="{$auth_info.card_face_img}" target="_blank" class="upload-link see_face_img" title="点击查看大图">查看</a> 
+                <a href="javascript:;" class="deletefile delete" action-type="deletefile" onclick="delfile('card_face_img','auth','card_face_img','{$auth_info.id}');">×</a> 
+               </div>
+               
+                <input type="file" {if $auth_info.card_face_img} style="display:none"{/if}  onchange="selfile('card_face_img')" name="card_face_img" id="card_face_img" data-progressid="2842923581773.134" name="file" size="100" class="ui-upload-btn">
+
+
+              </div>
+                <img src="/public/static/pc/images/rzzsepic.png" width="150" height="106" class="smrzzstp fl">
+                <!-- 这里隐藏的是图片路径 form提交的时候会用到 -->
+                <input type="hidden" name="hid_face_img" id="hid_face_img" value="{$auth_info.card_face_img_data}">
+              <div class="error error_face_img"></div>
+              <!-- 正在上传中的时候需要调用的 -->
+              <ul class="uploadfile-indicator clearfix face_img" >
+                  <li data-pid="2842924317781.58" class="clearfix" style="display: block;">
+                  <p class="file clearfix"><span class="fl" id="fileImgName"></span>
+                  </p>
+                  <div class="adding clearfix">
+                  <p class="adifile"><span style="width:0%"></span></p>
+                  <p class="fl">正在上传中....</p>
+                  <a action-type="cancel" onclick="cancelFaceImg(1)" class="fr" href="javascript:;">取消</a>
+                  </div>
+                  </li>
+              </ul>
+              
+            </div>
+          </div>
+         
+            </div>
+            
+            
+
+   
+   
+            <div class="card cards">
+            	<p class="smzrxx fl">证件要求：</p>
+                <p class="sfzmgxx fl">身份证上的所有信息清晰可见，必需能看清证件号。照片需免冠，建议未化妆，手持证件人的五官清晰可见。照片内容真实有效，不得做任何更改，支持格式有jpg.jpeg.bmp.png.gif</p>
+            </div>
+            <input type="submit" value="下一步" class="bdxyb bdxybss">
+            </form> 
+        </div>
+    </div>    
+</div>
+{include file=footer.html}
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/global/jquery.form.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+<script type="text/javascript">
+    function get_region(obj)
+    {
+        var p_id = $(obj).val();
+        $.post("./member-get_region.html",{pid:p_id}, function(res){
+            var res = eval("("+res+")");
+            $('#region_id').empty();
+            $('#region_id').append(res.retval)
+        });
+    }
+
+    function updateavatar() {
+        window.location.href='/member-profile.html';
+        //window.location.reload();
+    }
+</script>
+<script type="text/javascript">
+    //var countdown=60;
+    var  type = 'auth';
+    function sendcode(val) {
+        var isMobile = /^1[34578][0-9]{9}$/;
+	    if(!isMobile.test($('#mobile').val())){
+		      
+		     alert('手机号码不合规范');   
+		     return false;
+		    }
+        $.post("./member-sendCode.html",{phone:$('#mobile').val(),type:type},function(res){
+            var res = eval("("+res+")");
+            if(res.done){
+                settime(val,60);
+            }
+        })
+   }
+       function settime(obj,n){
+        var _self=$(obj),t=_self.val();
+        _self.attr('disabled',true).val('倒计时'+(n--)+'秒');
+        (function(){
+            if(n>0){
+                _self.attr('disabled',true).val('倒计时'+(n--)+'秒');
+                setTimeout(arguments.callee,1000);
+            }else{
+                _self.attr('disabled',false).val(t);    
+            }   
+        })()
+    }
+
+</script>
+<script>
+    $(function(){
+
+        $('#cyz_auth1').ajaxForm({
+            beforeSubmit:function(){
+                var b=$('#cyz_auth1').validate({
+                    submitBtn:{
+                        flag:true,
+                    },
+                    acticle:true,
+                    error:function(obj,error){cotteFn.error(obj,error)}
+                });
+              
+                if(!b){
+                    return false
+                }
+            },
+            success:function(res){
+                var res = eval("("+res+")");
+                if(!res.done){
+                    alert(res.msg)
+                    $('.bdxyb').val('下一步')
+
+                }else{
+                    $('.user_box').replaceWith(res.retval.content);
+                }
+
+            },
+            error:function(){
+                alert('error')
+                $('.bdxyb').val('下一步')
+            }
+        })
+
+
+    });
+</script>
+<script type="text/javascript">
+    /**
+    *上传图片
+    */
+    function selfile(type)
+    {
+        var r  = 10000*Math.random();
+        if(type == 'card_face_img')
+        {
+            $(".face_img").css("display",'block')           
+        }
+        else
+        {
+            $(".back_img").css("display",'block')
+        }
+        
+       
+        $('#fileImgName').html($('#'+type).val())
+      
+         $('#cyz_auth1').ajaxSubmit({
+                url:'{link app=member act=upload}?&type='+type+'&r='+r,
+                type:"post",
+                success: function(res) {
+                    var res = $.parseJSON(res);
+                    if(res.done==true)
+                    {
+                        if(res.retval.type == 'card_face_img')
+                        {
+                            //如果$("#hid_face_cancel").val（）值为1 说明 在上传之前执行了 取消操作;
+                            if($("#hid_face_cancel").val())
+                            {
+                                $("#hid_face_cancel").val('');
+                                return;
+                            }
+                            
+                            $(".face_img").css("display",'none') 
+                            
+                            //更换缩罗图的地址
+                            $(".def_face_img").attr('src',res.retval.src);
+                            $(".def_face_img").attr('data-img',res.retval.src);
+                            
+                            //input file隐藏
+                            $("#card_face_img").css("display",'none')
+                            ;
+                            //修改隐藏域的值
+                            $("#hid_face_img").val(res.retval.name)
+                            
+                            //缩罗图展开 查看按钮
+                            $(".up_face_hid").css("display",'block');
+                            $(".see_face_img").attr("href",res.retval.src);
+                            
+                            //清除error错误提示
+                            $(".error_face_img").html('');
+                            
+                        }
+                       
+                        return;
+                    }
+                    else
+                    {
+                        alert(res.msg)
+                    }
+                }
+            });
+    }
+    
+    /**
+    *点击删除图片事件
+    *1 是删除正面图   2是删除反面图
+    */
+    function delfile(type,model,field,auth_id)
+    {   
+    	auth_id=auth_id?auth_id:0;
+        if(type == 'card_face_img')
+        {
+            var img = $("#hid_face_img").val();
+        
+            //=====ajax删除session或者auth表中存在的图片=====
+            $.ajax({
+                   type: "POST",
+                   url: "{link app=member act=del_file}",
+                   data: "img="+img+"&model="+model+"&field="+field+"&id="+auth_id,
+                   success: function(msg){
+                       var res = $.parseJSON(msg);
+                        if(res.done==true)
+                        {
+                            //alert('suceess')
+                        }
+                        else
+                        {
+                            return;
+                        }
+                   }
+                });
+            
+            $(".up_face_hid").css("display",'none'); 
+            $("#card_face_img").css("display",'block');
+            $(".def_face_img").attr('src',"../../static/img/idfront.png");
+            $(".def_face_img").attr('data-img',"../../static/img/idfront.png");
+            //修改隐藏域的值
+            $("#hid_face_img").val('')
+        }
+        else
+        {
+            var img = $("#hid_back_img").val();
+            //=====ajax删除session或者auth表中存在的图片=====
+            $.ajax({
+                   type: "POST",
+                   url: "{link app=member act=del_file}",
+                   data: "img="+img+"&model="+model+"&field="+field+"&id="+auth_id,
+                   success: function(msg){
+                       var res = $.parseJSON(msg);
+                        if(res.done==true)
+                        {
+                            //alert('suceess')
+                        }
+                        else
+                        {
+                            return ;    
+                        }
+                   }
+                });
+            
+            $(".up_back_hid").css("display",'none'); 
+            $("#card_back_img").css("display",'block');
+            $(".def_back_img").attr('src',"../../static/img/idfront.png");
+            $(".def_back_img").attr('data-img',"../../static/img/idfront.png");
+            //修改隐藏域的值
+            $("#hid_back_img").val('')
+        }
+    }
+    
+
+    /**
+    *取消上传的操作
+    *这部操作不仅要隐藏html代码 还要去服务器删除对应的图片
+    */
+    function cancelFaceImg(type)
+    {
+        if(type == 1)
+        {
+            //隐藏
+            $(".face_img").css("display",'none');
+            
+            //给隐藏的input赋
+            $("#hid_face_cancel").val(1);
+            
+        }
+        else
+        {
+            //隐藏
+            $(".back_img").css("display",'none');
+            //给隐藏的input赋
+            $("#hid_back_cancel").val(1);
+            
+        }
+        
+    }
+
+    
+    /**
+    *长期有效的点击事件
+    */
+    $('#cardValidity').click(function(){
+        if(this.checked){
+            $('#idcard').val('长期有效').attr('disabled',true).parents('.ui-form-item').find('.error').text('');
+        }else{
+            
+            var business_life = "{$auth.card_due_time}";
+            if(!business_life)
+            {
+                business_life = '';
+            }
+            $('#idcard').val(business_life).attr('disabled',false)  
+        }
+    })
+</script>
+
+</body>
+</html>

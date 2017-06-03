@@ -1,0 +1,29 @@
+  <div class="gyxxtc">
+    <div class="xygyxx">
+    	<h4>工艺信息</h4>
+    	{foreach from=$result item=res name=loop}
+        <div class="fl gyxif {if $smarty.foreach.loop.iteration % 2 eq 0}gyxifs{/if}">
+        	<h5>{$res.name}</h5>
+        	 {foreach from=$res.items item=chi}
+            <div class="xfxzxx">
+                <p class="fl xxword">{$chi.fname}</p>
+            </div>
+            {/foreach}
+        </div>
+        {/foreach}
+    </div>
+    <div class="xygyxx">
+    	<h4>签名信息</h4>
+    	{foreach from=$embs item=emb name=loop}
+        <div class="fl gyxif {if $smarty.foreach.loop.iteration % 2 eq 0}gyxifs{/if}">
+        	<h5>{$emb.name}</h5>
+        	{foreach from=$emb.out item=out}
+            <div class="xfxzxx">
+            	<p class="fl">{$out.name}：</p>
+                <p class="fl xxword">{if $out._v}{$out.value}{else}<img src="{$out.image}">{/if}</p>
+            </div>
+            {/foreach}
+        </div>
+       {/foreach}
+    </div>
+  </div>

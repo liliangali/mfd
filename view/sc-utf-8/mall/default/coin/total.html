@@ -1,0 +1,7 @@
+<li><span class="fl">金额合计：</span><span class="fr">{$total.goods_amount|price} 元</span></li>
+{if $total.useSurplus}
+<li><span class="fl">余额：</span><span class="fr">-{$total.useSurplus|price}元</span></li>
+{/if}
+<li>
+	<p><span class="fl">应付总额：</span><span class="fr orange priceNum" data-amount="6100">{$total.order_amount|price}<em>元</em></span></p>
+</li>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>app diy</title>
+<link rel="stylesheet" type="text/css" href="http://r.cotte.cn/cotte/diy/oldstatic/style/style.css">
+</head>
+<body class="showLoading">
+<div class="main">
+    <div id="diyShow" class="diyShow">
+        <div id="tzBtnBox" class="tzBtnBox"></div>
+        <div class="showArea" id="showArea"></div>
+    </div>
+    <div class="priceBox">￥<span id="price">00.00</span></div>
+    <div class="btn">
+        <!--<span id="saveWorks">保存</span>
+        <em>-or-</em>-->
+        <span id="orderDown">确认下单</span>
+    </div>
+    <div class="opt show">
+        <div id="switch"><span class="angle"></span></div>
+        <div class="catBox">
+            <ul id="cat1" class="cat1"></ul>
+            <div id="cat2" class="cat2">
+                <div class="loading">加载中...</div>
+            </div>
+        </div>
+    </div>
+    <div id="sizeTable" class="sizeTable">
+    	<div class="step1">
+        	<div class="titBar"><span class="tit fl">尺码选择</span></div>
+            <ul>
+            	<li class="base">标准尺码</li>
+                <li class="amount">量体定制</li>
+            </ul>
+        </div>
+    	<div class="step2">
+            <div class="titBar"><span class="tit fl">尺码选择</span><a href="http://m.mfd.cn/article/spec.html" target="_blank" class="seeSize fr">查看尺码 &gt;</a></div>
+            <div class="tabBar">
+                <ul class="tab fl"><!--js动态加载--></ul>
+                <span class="save fr">下单</span>
+            </div>
+            <div class="scrollBox">
+                <div class="itemList"><div class="loading">加载中...</div></div>
+            </div>
+        </div>
+    </div>
+    <div id="zhezhaoLayer" class="zhezhaoLayer"></div>
+    <div class="refresh" id="refresh">网速不给力！</div>
+</div>
+<script type="text/javascript" src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script> 
+<script src="http://r.cotte.cn/cotte/diy/oldstatic/js/diy.js"></script> 
+<script>
+$uid = {$uid};//用户id
+custom=new Custom({showArea:'showArea'});
+custom.init()
+</script>
+</body>
+</html>

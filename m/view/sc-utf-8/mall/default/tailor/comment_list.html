@@ -1,0 +1,28 @@
+ {foreach from=$comment_list item=comment}
+ <div class="listItem">
+              <div class="hd">
+                  <a href="javascript:;" class="headPic"><img src="{$comment.face}" width="100" height="100"></a>
+                    <span class="phone">{$comment.nickname}</span>
+                    <span class="time">{$comment.ftime}</span>
+                </div>
+                <div class="bd">
+                  <div class="score"><span class="tit">评分：</span><span class="star s{$comment.approve}"></span></div>
+                    <div class="content">
+                      <span class="tit">内容：</span>
+                        <div class="con">{$comment.content}</div>
+                    </div>
+                    {if $comment.imgs}
+                    <div class="sun">
+                      <span class="tit">晒单：</span>
+                        <div class="con">
+                          <ul data-name="快乐小裁缝">
+                            {foreach from=$comment.imgs item=img}
+                              <li><img src="{$img}" width="90" height="120"></li>
+                            {/foreach}
+                            </ul>
+                        </div>
+                    </div>
+                    {/if}
+                </div>
+            </div>
+{/foreach}

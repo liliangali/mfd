@@ -1,0 +1,16 @@
+{if !$widget_data}
+    <div style="padding:10px; text-align:center;">请配置男士左上小图</div>
+{else}
+<div class="item small" id="manpic_s1"></div>
+<script>
+var datas = [];
+{foreach from=$widget_data item=image name=fe_image}
+  var img = {};
+  img.img   = "/{$image.ad_image_url}";
+  img.href  = "{$image.ad_link_url}";
+  img.title = '';
+  datas.push(img);
+{/foreach}
+$('#manpic_s1').picRoll({datas:datas});
+</script>
+{/if}

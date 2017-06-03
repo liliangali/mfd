@@ -1,0 +1,100 @@
+{include file="header.html"}
+<div id="rightTop">
+      <ul class="subnav">
+	    <li><a class="btn1" href="index.php?app=demand&amp;act=index">需求列表</a></li>
+	    <li><span>编辑需求</span></li>
+	  </ul>
+</div>
+<div class="info" >
+    <form method="post" enctype="multipart/form-data" id="theForm" name="theForm">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">编号 :</th>
+                <td class="paddingT15 wordSpacing5">
+                 <input class="infoTableInput required" id="md_sn" type="text" name="md_sn" value="{$data.md_sn|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">标题 :</th>
+                <td class="paddingT15 wordSpacing5">
+                <input class="infoTableInput required" id="md_title" type="text" name="md_title" value="{$data.md_title|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">类型 :</th>
+                <td class="paddingT15 wordSpacing5">
+                <input class="infoTableInput required" id="md_type" type="text" name="" value="{$types.$data.md_type}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">所在地区 :</th>
+                <td class="paddingT15 wordSpacing5">
+               <!-- <input class="infoTableInput required" id="region_name" type="text" name="region_name" value="{$data.region_name|escape}" />-->
+                 <select id="ragion" name="ragion"> 
+                  <option ><a href="#" value="">请选择...</a></option>
+                  <option ><a href="#" value="2">中国</a></option>
+                  <option ><a href="#" value="478">英国</a></option>
+                  <option ><a href="#" value="479">意大利</a></option>
+                  <option ><a href="#" value="480">法国</a></option>
+                  <option ><a href="#" value="482">瑞士</a></option>
+                </select>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">姓名 :</th>
+                <td class="paddingT15 wordSpacing5">
+                <input class="infoTableInput required" id="uname" type="text" name="uname" value="{$data.uname|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">手机 :</th>
+                <td class="paddingT15 wordSpacing5">
+                <input class="infoTableInput required" id="mobile" type="text" name="mobile" value="{$data.mobile}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">添加时间 :</th>
+                <td class="paddingT15 wordSpacing5">
+                <!--  <input class="infoTableInput required" id="add_time" type="text" name="add_time" value="{$data.add_time|date:Y-m-d H:i:s}" />-->
+                <input id="d2a25" type="text" class="Wdate" name="add_time" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                </td>
+                </tr>
+              <!--高级选项-->
+           {foreach from=$items item=item key=key_it} 
+           <tr>
+      <th class="paddingT15">{$cates.$key_it}</th>
+      {foreach from=$item.list item=list name=list}
+        <td class="paddingT15 wordSpacing5">
+            <label><input {if $smarty.foreach.list.first}checked="checked"{/if} type="radio" name="item[{$list.cate}]" value="{$list.id}" /> {$list.name}</label>
+        </td>
+      {/foreach}
+           </tr>
+               {/foreach}
+               <!--高级选项-->
+             <tr>
+                <th class="paddingT15">
+                     状态 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="status" name="status">
+		              {html_options options=$status  selected="$data.status"}
+		            </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">备注 :</th>
+                <td class="paddingT15 wordSpacing5">
+                <textarea  >{$data.remark}</textarea>
+                </td>
+            </tr>
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="id" value="{$data.md_id}" />
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+            </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

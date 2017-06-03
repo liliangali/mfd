@@ -1,0 +1,57 @@
+
+<div id="sortlist" class="kkzx_left"><div class="mc">
+          <!--{foreach from=$_member_menu item=item name=nav_list}-->
+          <div class="item current">
+            <!--{if $item.submenu}-->
+                <h3><b></b>{$item.text}</h3>
+                <ul>
+            <!--{foreach from=$item.submenu item=subitem k=k}-->
+                
+                <!--{if $subitem.name eq $_curitem}-->
+                   <li class="active"><a href="{$subitem.url}"><span class="{$subitem.icon}">{$subitem.text}</span></a></li>
+                    {elseif $act == $subitem.name}
+                    <li class="on"><a href="{$subitem.url}"><span class="{$subitem.icon}">{$subitem.text}</span></a></li>
+                <!--{else}-->
+                    <li class="normal"><a href="{$subitem.url}"><span class="{$subitem.icon}">{$subitem.text}</span></a></li>
+                <!--{/if}-->
+               
+            <!--{/foreach}-->
+                </ul>
+            <!--{/if}-->
+          </div>
+          <!--{/foreach}-->   
+    <script>
+              $("#sortlist h3").bind("click",function(){
+              var element=$(this).parent();
+              if (element.hasClass("current")){
+                  element.removeClass("current");
+              }else{
+                  element.addClass("current");
+              }
+          })
+        </script>    
+    </div>
+    <h1 class="bzzxbt" style="margin-top:30px;">客户服务</h1>
+    <div class="kfrx">
+		<span></span>
+		<p>
+			客服热线
+			<br>
+			<font>400-8919-867</font>
+		</p>
+    </div>
+    <div class="kfyx">
+		<a href="mailto:kefu@rctailor.com">
+		<p class="kfyxyf">客服邮箱</p>
+		<p class="youxiam">kefu@rctailor.com</p>
+		</a>
+    </div>
+    <p class="zxgfzx">
+      <a href="javascript:;" id="BizQQWPA">在线客服</a>
+      <script type="text/javascript">
+      BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4008919867, selector: 'BizQQWPA'});
+      </script>
+	</p>
+    <p class="pjyldz">&nbsp;</p>
+  
+  </div>

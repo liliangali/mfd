@@ -1,0 +1,181 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+<script type="text/javascript" src="{$img_url}/js/jquery.form.js"></script>
+{include file=member.menu.html}
+<script type="Text/Javascript" src="{res file=js/xheditor-1.2.1.min.js}"></script>
+<script type="Text/Javascript" src="{res file=js/xheditor_lang_zh-cn.js}"></script>
+{$_head_tags}
+<script>
+$(pageInit);
+function pageInit()
+{
+	$('#base_info').xheditor({
+		upLinkUrl:"/index.php/kuke-upload_baseinfo.php",
+		upLinkExt:"zip,rar,txt",
+		upImgUrl:"/index.php/kuke-upload_baseinfo.php",
+		upImgExt:"jpg,jpeg,gif,png",
+		upFlashUrl:"upload.php",
+		upFlashExt:"swf",
+		upMediaUrl:"upload.php",
+		upMediaExt:"wmv,avi,wma,mp3,mid",
+		height:"400px",
+		width:"400px",
+		skin:'default',
+		tools:'simple'
+	});
+}
+
+
+$(function(){
+	$('#myForm').validate({ 
+	    rules : {
+	        title : {
+	            required : true
+	        },
+	        base_info:{
+	        	 required : true
+	        }
+	    },
+	    messages:{
+	    	title : {
+	            required : '必填写'
+	        },
+	        base_info : {
+	            required : '必填写'
+	        }
+	    },
+	    submitHandler:function(form){
+//	    	var fileName = $("#fileName").val();
+//	    	if(!fileName)
+//	    		return alert('至少上传一张图片');
+
+            if(!input_num){
+                return alert('请至少上传一张图片');
+            }
+            
+	    	$("#myForm").attr('action','/index.php/kuke-designup.html?opt=1');
+	    	$("#myForm").submit();
+	    }
+	});
+});
+
+</script>
+
+
+<script>
+
+function del_li(){
+	$('#fileName').val('');
+	var uull = $("#img_ul");
+	uull.html('');
+		
+}
+
+$(document).ready(
+		
+	function() {
+		$('#up_file').change(function(){
+			$('#wait_up').html('上传中请等待...');
+			
+			var r  = 10000*Math.random();
+			var options = {
+					url:'/index.php/kuke-upload_kuba.html?r='+r,
+					success: function(data) {
+						var dd = eval( "(" + data + ")" );
+						
+						var uull = $("#img_ul");
+						uull.html('');
+				        var li_html =    '<li>'+
+				             '<p class="p1"><a href="#"><img src="'+dd.src+'" /></a></p>'+
+				             '<p class="p2"><a href="javascript:void(0);" onclick="del_li();">删除</a></p>'+
+				           '</li>';
+				        
+				           uull.html(li_html);
+						
+				        $('#fileName').val(dd.file);
+						$('#wait_up').html('');
+						return 1;
+					} 
+			};
+	
+			$('#myForm').ajaxSubmit(options);
+        
+		});
+	}
+);
+
+</script>
+
+
+<form id='myForm' action='/index.php/kuke-designup.html?opt=1' method='post' enctype="multipart/form-data">
+
+<input type='hidden' name='fileName' id='fileName' />
+
+<div class="aqsc_box">
+  <h1 class="grzl">设计作品上传</h1>
+
+  <div class="tupsc_box">
+    <table cellpadding="0" cellspacing="0" width="100%" border="0">
+      
+      <tr>
+        <th>作品标题：</th>
+        <td class="m_sjsm"><input id='title' name='title' type="text" value="" /></td>
+      </tr>      
+
+      <tr>
+        <th>作品描述：</th>
+        <td class="m_miaosu"><textarea name="base_info" id='base_info' cols="60" rows="25" /></textarea><br />
+		请在此描述您的设计作品的设计理念、面料或者工艺信息等内容</td>
+      </tr>  
+          
+      
+      <tr>
+        <th valign="top" style="padding-top:55px;">图片信息：</th>
+        <td style="padding-top:8px;">
+          <ul class="m_tplb_ul" id='img_ul'>
+           
+          </ul>
+          <p class="clear"></p>
+        </td>
+      </tr>
+      
+      <tr>
+        <th></th>
+        <td class="m_xztp">
+         <div>
+           选择图片
+           <input type="file" value="" name='up_file' id='up_file'  />
+         </div>
+          <p>图片格式只支持（png、gif、jpeg）,且单张最大不能超过2M。</p>
+          <p id='wait_up'></p>
+        </td>
+      </tr>      
+            
+      <tr>
+        <th></th>
+        <td><input type="submit" class="m_kssc" value='上传' /></td>
+      </tr>       
+    </table>
+  </div>
+
+</div>
+<p class="clear"></p>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{include file="footer.html"}

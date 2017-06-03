@@ -1,0 +1,119 @@
+<h1 class="sjstb">设计师投标{if $offer.status == 2}{if $offer.type == 1}<a class="fr btn" href="#">参与报价</a>{/if}
+{elseif $offer.status == 3}
+{if $offer.type == 2}
+<em class="fr" style="font-size:13px;font-weight:normal">您选择了{$offer.data.cf_name}为您定制</em>
+{else}
+<em class="fr" style="font-size:13px;font-weight:normal">消费者选择了{$offer.data.cf_name}为他定制</em>
+{/if}
+
+{/if}</h1>
+<div class="xqxq_box priceList">
+    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+     <tbody><tr>
+      <th width="15%">设计师</th>
+      <th width="15%">报价</th>
+      <th width="15%">联系电话</th>      
+      <th width="10%">制作周期</th>
+      <th width="33%">推荐产品</th>     
+      <th width="12%">选标</th> 
+     </tr>
+     {foreach from=$offer.list item=ofe}
+     <tr>
+      <td>{$ofe.cf_name}</td>
+      {if $offer.type == 2}<td>{$ofe.offer}元</td>{/if}
+      <td>{$ofe.mobile}</td>
+      <td>{$ofe.del_time}天</td>
+      <td><div class="tjcp">
+        {if $ofe.url}<p class="fl"><img src="{$site_url}{$ofe.url}"></p>{/if}
+        {if $ofe.url2}<p class="fl"><img src="{$site_url}{$ofe.url2}"></p>{/if}
+        {if $ofe.url3}<p class="fl"><img src="{$site_url}{$ofe.url3}"></p>{/if}
+        </div></td>
+      <td>{if $offer.status == 2}{if $offer.type == 2}<a href="#" class="btn xz on" data-cfname="{$ofe.cf_name}" data-cfid="{$ofe.cf_id}" data-id="{$ofe.of_id}">中标</a>{/if}{/if}</td>
+     </tr>
+     {foreachelse}
+     <tr>
+        <td{if $offer.status == 2}{if $offer.type == 2} colspan="6"{else} colspan="4"{/if}{/if}><div class="dongjie">暂无报价</div></td>
+      </tr>
+
+     {/foreach}
+
+    </tbody></table>
+
+ {if $offer.pageCount > 1}
+    <div class="page2">
+        <span id="offerPrev" class="prev cur"></span>
+        <a href="javascript:void(0)" class="on">{$offer.page}</a>
+        <em>/</em>
+        <a href="javascript:void(0)">{$offer.pageCount}</a>
+        <span id="offerNext" class="next"></span>
+     </div>
+{/if}
+    
+   </div>
+
+
+<div class="priceList">
+
+    {$offer.time}
+<script>
+{if $offer.list}
+var timestamp=new Date().getTime();
+{if $offer.now}
+var _time = {$offer.now};
+{else}
+var _time = parseInt(timestamp/1000);
+{/if}
+
+$('.subtime').each(function(){
+    var _me = $(this).data('time');
+    var _cha = _time-_me;
+    if(_cha < 60){
+        $(this).html("刚刚");
+    }else{
+        var _fen = parseInt(_cha/60);
+        if( _fen < 60){
+            $(this).html(_fen+"分钟前");
+        }else{
+            var _shi = parseInt(_fen/60);
+            if(_shi < 24){
+                $(this).html(_shi+"小时前");
+            }else{
+                $(this).html(parseInt(_shi/24)+"天前");
+            }
+        }
+    }
+    
+});
+
+{if $offer.page > 1}
+$('#offerPrev').click(function(){
+    var _pg = parseInt({$offer.page})-1
+    offerPage(_pg);
+});
+{/if}
+{if $offer.page < $offer.pageCount}
+$('#offerNext').click(function(){
+    var _pg = parseInt({$offer.page})+1
+    offerPage(_pg);
+});
+{/if}
+function offerPage(_pg){
+    $.ajax({
+        url  : "/demand-offerpage.html",
+        data : "&page="+_pg+"&md="+{$offer.md_id},
+        success : function(res){
+            var res = $.parseJSON(res);
+            if(res.done==true){
+                $('#offerList').html(res.retval.content);
+                return;
+            }
+        }
+    })
+}
+
+
+{/if}
+
+</script>
+
+</div>

@@ -1,0 +1,88 @@
+{include file="login_header.html"}
+<link href="{res file=css/zhmm.css}" rel="stylesheet" type="text/css" />
+
+
+<script>
+var getSMSCode = "";
+$(function(){
+	$('#mf').validate({
+	    rules : {
+	    	ps:{
+				required:true,
+				rangelength:[5,80]
+			},
+
+			ps_sure:{
+				rangelength:[5,80],
+				required:true,
+				equalTo:"#ps"
+			}
+	    },
+	    messages : {
+	    	ps_sure : {
+	            required : '确认密码不能为空',
+	            equalTo:'两次密码不一致',
+	            rangelength:'5-80字符'
+	        },
+	        ps:{
+	        	required:"密码不能为空",
+	        	rangelength:'5-80字符'
+	        }
+	    }
+	    //submitHandler:function(form){
+	    //		alert(2);
+	    //		return false;
+	   // }
+	});  
+	
+});
+</script>
+
+
+
+
+
+
+<div class="find_box">
+
+
+    <ul class="findps_step">
+        <li>填写帐号信息<span>1</span></li>
+        <li>身份验证<span>2</span></li>
+        <li class="on">重置密码<span>3</span></li>
+        <li>完成<span>4</span></li>
+    </ul>
+    <p class="clear"></p>
+
+
+   <div class="fp_content">
+
+            <form method="post" action="/index.php/member-find_password.html?opt=4" name="" id="mf" class="form_border">
+            
+            <input type='hidden' name='account_type' value='{$account_type}' />
+            <input type='hidden' name='authcode' value='{$authcode}' />
+            <input type='hidden' name='account' value='{$account}' />
+            
+            
+                  <table cellpadding="0" cellspacing="0" border="0" class="find_table1">
+                    <tr>
+                       <th width="97">新登录密码：</th>
+                       <td><input type="password" name="ps" id="ps" maxlength="16" class="find_ipt float"></td>   
+                    </tr>
+                    <tr>
+                       <th>确认密码：</th>
+                       <td><input type="password" name="ps_sure" id="ps_sure" maxlength="16" class="find_ipt float"></td>
+                    </tr>  
+                    <tr>
+                       <th></th>
+                       <td><input type="submit" id="submit" value="提交" class="sub_btn" onmouseOver="this.className='sub_btn btnbg'" onmouseOut="this.className='sub_btn'"></td>
+                    </tr>
+                  </table>      
+            
+            </form>
+    </div>
+</div>
+      
+<!--底部信息-->
+
+{include file="login_footer.html"}

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>尚品</title>
+<link rel="stylesheet" type="text/css" href="/static/css/mobile_style.css" media="screen">
+<script type="text/javascript" src="{lib file=jquery-1.8.3.min.js}"></script>
+<script type="text/javascript" src="{lib file=jquery.swipe.js}"></script>
+
+</head>
+<body>
+<div class="main">
+  <!--头部开始-->
+  <div class="header clearfix">
+    <p class="p1"><a href="javascript:history.go(-1)"><img src="/static/images/tw_03.png" /></a></p>
+    <p class="p2">麦富迪尚品</p>
+  </div>
+  <!--头部结束-->
+
+  <div class="xiangc"> 
+     <div id="slider" class="swipe">
+      <div class="swipe-wrap">
+      {foreach from=$goods_con.gallery item=gallery}
+        <div><a href="#"><img src="{$gallery.img_url}" /></a></div>
+      {/foreach}
+      </div>
+     <div class="swipe-btn"> <span class="cur"></span> <span></span> <span></span> <span></span><span></span> </div>
+    </div>
+  </div>
+  
+  <div class="spxq_bt" data-id="{$goods_con.goods_id}">
+  	<h4><a href="#">{$goods_con.name}</a></h4>
+  	{if $goods_con.yhcase}
+    <h5>{$goods_con.yhcase}<b>元</b></h5>
+    {else}
+    <h5>{$goods_con.price}<b>元</b></h5>
+    {/if}
+    <div class="scj"><span>市场价 <del>{$goods_con.mktprice}元</del></span><span>已售{$goods_con.buy_count}件</span></div>
+    <div class="cx"><span>促销</span>{$goods_con.content}</div>
+    <div class="yx cx addCart"><a href="#" style="display:block;" id="clects"><span>已选</span>
+    {foreach from=$goods_con.spec_value item=specvalue}
+    <font>{$specvalue}</font>
+    {/foreach}
+    <font>1个</font>
+    </a></div>
+  </div>
+  
+  <h1 class="xgcp">商品详情</h1>
+  <div class="spxqtu" style="text-align: center;">{$goods_con.intro}</div>
+  
+  <h1 class="xgcp">产品参数</h1>
+  <ul class="cpcs">
+  {foreach from=$goods_con.goods_attr item=goodsattr}
+  	<li><h1>{$goodsattr.attr_name}</h1><p>{$goodsattr.attr_value}</p></li>
+  {/foreach}
+  </ul>
+  
+  <h1 class="xgcp">相关产品</h1>
+  <div class="lb_list" style="margin: 0;">
+    <ul> 
+    {foreach from=$goods_con.cat_goods item=cat_goods}   
+     <li><a href="{link app=product act=content}?id={$cat_goods.goods_id}" style="display:block">
+       <p class="p1"><img src="{$cat_goods.thumbnail_pic}"></p>
+       <p class="p2">{$cat_goods.name}</p>
+        {if $cat_goods.yhcase}
+        <p class="p3">{$cat_goods.yhcase}元</p>
+       {else}
+        <p class="p3">{$cat_goods.price}元</p>
+       {/if}
+     </a></li>    
+    {/foreach}
+    </ul>
+  </div>
+  
+<!--添加购物车弹出层/S-->
+<div class="tjltdz" id="customSize">
+  <div class="jrgwc_xx">
+  	<div class="gwcjzc">
+  		<h1>{$goods_con.name}<span class="gb">x</span></h1>
+  		{foreach from=$spec item=spe}
+  		<h2 >{$spe.spec_name}</h2>
+  		<ul class="spec2_{$spe.spec_id}" data-id="111" >
+  		{foreach from=$spe.val item=spv}
+  			<li {if $spv.is_default eq 1}class="on"{/if} data-id={$spe.spec_id} value="{$spv.spec_value_id}">{$spv.spec_value}</li>
+  		{/foreach}
+  		</ul>
+  		{/foreach}
+  		
+  		
+  		<h2>数量</h2>
+  		<div class="gwcsl clearfix">
+  			<div class="gwcjj"><p class="p1"></p><input type="text" class="nums"  <!-- onchange="number(this)" --> value="1"><p class="p2"></p></div>
+  			<p class="kc">库存<span id="numbers">{$goods_con.store}</span>件</p>
+  		</div>
+
+  	</div>
+  	  <div class="sc_jrgwc">
+  	  {if $goods_con.is_collect ==1}
+  	  <p class="ysc">已收藏</p> 
+  	  {else}
+  	  <p class="sc">收藏</p> 
+  	  {/if}
+  			 
+  			<p class="jrgwc" >加入购物车<span id="prices">{if $goods_con.yhcase}{$goods_con.yhcase}{else}{$goods_con.price}{/if}元</span></p>
+  		</div>
+  </div>
+</div>
+<!--添加购物车弹出层/E--> 
+
+<p style="height: 70px;"></p>
+  	  <div class="zyjr_box sc_jrgwc">
+  			 {if $goods_con.is_collect ==1}
+  	          <p class="ysc">已收藏</p> 
+  	         {else}
+  	          <p class="sc">收藏</p> 
+  	         {/if} 
+  			<p {if $goods_con.spec_value}class="jrgwc"{else}class="jrgwc addCart"{/if} >加入购物车<span id="addcarts">{if $goods_con.yhcase}{$goods_con.yhcase}{else}{$goods_con.price}{/if}元</span></p>
+  		</div>
+ </div>
+<div id="product_id" style="display:none;">{$goods_con.product_id}</div>
+<script>
+//页面滚动效果
+Swipe(document.getElementById('slider'), {
+	continuous: false,
+	//auto:1000,
+	callback: function(index, element) {
+		$('.swipe-btn span').eq(index).addClass('cur').siblings().removeClass();
+	} 
+});
+//收藏
+$('.sc').click(function(){
+ var name="hasLogin";
+ var goods_id=$('.spxq_bt').attr("data-id");
+ var haslogin=document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+  if(haslogin){
+	  if(unescape(haslogin[2])== 0){
+			 location.href = "/member-login.html";
+		      return
+		    }  
+  }
+	$.ajax({
+		url:'/my_favorite.html',
+		type:'POST',
+		timeout:5000,
+		dataType:"json",
+		data:{
+			type: 'goods',
+			gid:goods_id,
+		},
+		success:function(data){
+			alert('收藏成功')
+		},
+		error:function(){
+			alert('收藏失败')
+		}
+	});	
+})
+
+
+//加入购物车
+$('.gb').click(function(){
+	$('#customSize').fadeOut(500);
+})
+$('.addCart').click(function(){
+	$('#customSize').fadeIn(500)
+	return false
+})
+$(".gwcjzc li").click(function(){
+	var spec_id=$(this).attr("data-id");
+	var goods_id=$('.spxq_bt').attr("data-id");
+	var num=$('.nums').val();
+	$(".spec2_"+spec_id+" li").removeClass("on");
+	$(this).addClass("on");
+	var spec_value_ids='';
+	$('.gwcjzc li.on').each(function(){
+		 spec_value_ids +=$(this).val()+",";
+		})
+	 $.post("{link app=product act=priceaso}",{spec_value_ids: spec_value_ids,goods_id:goods_id,num:num}, function(res){
+		 var res = $.parseJSON(res);
+	        if(res.done==true){
+	        	$("#prices").html(res.retval.productLists.price)
+	        	$("#numbers").html(res.retval.productLists.store)
+	        	$("#addcarts").html(res.retval.productLists.price)
+	        	$("#product_id").html(res.retval.productLists.product_id)
+	        	var html='<span>已选</span>';
+	        	for(var i = 0; i<res.retval.productLists.spec_value_count;i++)
+	               {
+	            	 html+=" <font>"+res.retval.productLists.spec_value[i]+"</font>";
+	               }
+	        	 html+="<font>"+res.retval.productLists.numbers+"个</font>";
+	        	 $('#clects').html('');
+	             $('#clects').append(html);	        	
+	        }
+	    })
+})
+$(".nums").keyup(function(){
+	var goods_id=$('.spxq_bt').attr("data-id");
+	var num=$('.nums').val();
+	var spec_value_ids='';
+	$('.gwcjzc li.on').each(function(){
+		 spec_value_ids +=$(this).val()+",";
+		})
+			 $.post("{link app=product act=priceaso}",{spec_value_ids: spec_value_ids,goods_id:goods_id,num:num}, function(res){
+		 var res = $.parseJSON(res);
+	        if(res.done==true){
+	        	$("#prices").html(res.retval.productLists.price)
+	        	$("#numbers").html(res.retval.productLists.store)
+	        	$("#addcarts").html(res.retval.productLists.price)
+	        	$("#product_id").html(res.retval.productLists.product_id)
+	        }
+	    })
+	
+})
+
+$(".jrgwc").click(function(){
+	var goods_id=$('.spxq_bt').attr("data-id");
+	var num=$('.nums').val();
+	var product_id=$("#product_id").html()
+	var name="hasLogin";
+	var haslogin=document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+	  if(haslogin){
+		  if(unescape(haslogin[2])== 0){
+				 location.href = "/member-login.html";
+			      return
+			    }  
+	  }  
+	$.ajax({
+		url:'/cart-add.html',
+		type:'POST',
+		timeout:5000,
+		dataType:"json",
+		data:{
+			pid: product_id,
+			gid:goods_id,
+			num:num,
+		},
+		success:function(data){
+			if(data.done){
+				window.location.href='/cart.html'
+			}
+		},
+		error:function(){
+			alert('加入购物车请求出错')
+		}
+	});	
+	
+	/*  $.post("/cart-add.html",{pid: product_id,gid:goods_id,num:num}, function(res){
+		 var res = $.parseJSON(res);
+	        if(res.done==true){
+	        	
+	        }
+	    }) */
+})
+
+</script>
+<script>
+	//检测是否是微信浏览器
+	function is_weixin() {
+		var ua = navigator.userAgent.toLowerCase();
+		if (ua.match(/MicroMessenger/i) == "micromessenger") {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	if (is_weixin()) {
+		document.getElementById("header").style.display = 'none';
+	}
+</script>
+
+</body>
+</html>

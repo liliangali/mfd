@@ -1,0 +1,212 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#view_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {
+        }
+    });
+});
+</script>
+{$build_editor}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=view">所有样衣</a></li>
+    {if $data.v_id}
+    <li><a class="btn1" href="index.php?app=view&amp;act=add">添加样衣</a></li>
+    {else}
+    <li><span>新增样衣</span></li>
+    {/if}
+  </ul>
+</div>
+<div class="info">
+	{if $data.v_id}
+	<form method="post" action="index.php?app=view&act=edit&id={$data.v_id}" enctype="multipart/form-data" id="view_form">
+	{else}
+    <form method="post" action="index.php?app=view&act=add" enctype="multipart/form-data" id="view_form">
+    {/if}
+        <table class="infoTable">
+        	{if $data.v_id}
+        	<tr>
+                <th class="paddingT15"> ID :</th>
+                <td class="">
+						{$data.v_id}
+                </td>
+            </tr>
+             {/if} 
+            <tr>
+                <th class="paddingT15"> 名称 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="v_id" type="hidden" name="v_id" value="{$data.v_id|escape}" />
+                    <input class="infoTableInput required" id="v_name" type="text" name="v_name" value="{$data.v_name|escape}" />
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">库存 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput digits" id="v_store" type="text" name="v_store" value="{$data.v_store|escape|default:0}" />
+                </td>
+            </tr>
+            {if $data.v_id}
+             <tr>
+                <th class="paddingT15"> 分类（男|女|儿童） :</th>
+                <td class="paddingT15 wordSpacing5">
+                	<select id="v_sex" name="v_sex" class="required">
+                        <option value="">{$lang.select_pls}</option>
+                        {html_options options=$v_sex selected=$data.v_sex}
+                    </select>
+                </td>
+            </tr>
+            {else}
+            <tr>
+                <th class="paddingT15"> 分类(男|女|儿童) :</th>
+                <td class="paddingT15 wordSpacing5">
+                	<select id="v_sex" name="v_sex">
+                        <option value="">请选择...</option>
+                        <option value="男款">男款</option>
+                        <option value="女款">女款</option>
+                        <option value="儿童款">儿童款</option>
+                    </select>
+                </td>
+            </tr>
+            {/if}
+            {if $data.v_id}
+             <tr>
+                <th class="paddingT15"> 品类 :</th>
+                <td class="paddingT15 wordSpacing5">
+                	<select id="v_cate" name="v_cate" class="required">
+                        <option value="">{$lang.select_pls}</option>
+                        {html_options options=$v_cate selected=$data.v_cate}
+                    </select>
+                </td>
+            </tr>
+            {else}
+            <tr>
+                <th class="paddingT15"> 品类 :</th>
+                <td class="paddingT15 wordSpacing5">
+                	<select id="v_cate" name="v_cate">
+                        <option value="">请选择...</option>
+                        <option value="西装">西装</option>
+                        <option value="西裤">西裤</option>
+                        <option value="马甲">马甲</option>
+                        <option value="衬衣">衬衣</option>
+                        <option value="大衣">大衣</option>
+                    </select>
+                </td>
+            </tr>
+            {/if}
+            <tr>
+                <th class="paddingT15">面料 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput required" id="v_fabric_sn" type="text" name="v_fabric_sn" value="{$data.v_fabric_sn|escape|default:0}" />
+                </td>
+            </tr>
+            </tr>
+			  <tr>
+                <th class="paddingT15"><label for="service_fee">价格 :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" type="text" id="v_price" name="v_price" value="{$data.v_price|default:0}" />
+                </td>
+            </tr>
+            {if $data.v_id}
+             <tr>
+                <th class="paddingT15"> 颜色 :</th>
+                <td class="paddingT15 wordSpacing5">
+                	<select id="v_color" name="v_color">
+                        <option value="">{$lang.select_pls}</option>
+                        {html_options options=$v_color selected=$data.v_color}
+                    </select>
+                </td>
+            </tr>
+            {else}
+            <tr>
+                <th class="paddingT15"> 颜色 :</th>
+                <td class="paddingT15 wordSpacing5">
+                	<select id="v_color" name="v_color">
+                        <option value="">请选择...</option>
+                        <option value="黑色">黑色</option>
+                        <option value="灰色">灰色</option>
+                        <option value="白色">白色</option>
+                        <option value="粉色">粉色</option>
+                        <option value="红色">红色</option>
+                    </select>
+                </td>
+            </tr>
+            {/if}
+            {if $data.v_id}
+             <tr>
+                <th class="paddingT15"> 材质 :</th>
+                <td class="paddingT15 wordSpacing5">
+                	<select id="v_figure" name="v_figure" >
+                        <option value="">{$lang.select_pls}</option>
+                        {html_options options=$v_figure selected=$data.v_figure}
+                    </select>
+                </td>
+            </tr>
+            {else}
+            <tr>
+                <th class="paddingT15"> 材质 :</th>
+                <td class="paddingT15 wordSpacing5">
+                	<select id="v_figure" name="v_figure">
+                        <option value="">请选择...</option>
+                        <option value="棉">棉</option>
+                        <option value="雪纺">雪纺</option>
+                        <option value="真丝">真丝</option>
+                        <option value="粘胶">粘胶</option>
+                        <option value="其他面料">其他面料</option>
+                    </select>
+                </td>
+            </tr>
+            {/if}
+            {if $data.v_id}
+            <tr>
+                <th>样衣大图 :</th>
+                <td>
+                    {input_img name="v_image" value="$data.v_image" dir="v"}
+                </td>
+            </tr>
+            <tr>
+                <th>样衣缩略图 :</th>
+                <td>
+                    {input_img name="v_dis_image" value="$data.v_dis_image" dir="v"}
+                </td>
+            </tr>
+            {else}
+            <tr>
+                <th>样衣大图 :</th>
+                <td>
+                    {input_img name="v_image" value="" dir="v"}
+                </td>
+            </tr>
+            <tr>
+                <th>样衣缩略图 :</th>
+                <td>
+                    {input_img name="v_dis_image" value="" dir="v"}
+                </td>
+            </tr>
+            {/if}
+            <tr>
+                <th class="paddingT15">
+                    <label for="article">样衣信息:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="v_message" name="v_message" style="width:650px;height:400px;">{$data.v_message|escape}</textarea>
+                </td>
+            </tr>
+             <tr>
+	            <th></th>
+	            <td class="ptb20">
+	                <input class="tijia" type="submit" name="Submit" id="Submit" value="{$lang.submit}" />
+	                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+	            </td>
+	        </tr>
+        </table>
+    </form>
+</div>
+
+{include file="footer.html"}

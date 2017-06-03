@@ -1,0 +1,215 @@
+{include file="header.html"}
+<link rel="stylesheet" href="{res file=css/itemMod.css}">
+<script src="{res file=js/itemMod.js}"></script>
+<script type="text/javascript" src="{res file=js/jquery.masonry.js}"></script>
+<script type="text/javascript" src="{res file=js/jquery.infinitescroll.js}"></script>
+<script type="text/javascript">
+var isWidescreen=screen.width>=1280; 
+if(isWidescreen){document.write("<style type='text/css'>.demo{width:1000px;}</style>");}
+</script>
+
+<script type="text/javascript">
+function item_masonry(){ 
+	$('.item img').load(function(){ 
+		$('.infinite_scroll').masonry({ 
+			itemSelector: '.masonry_brick',
+			columnWidth:235,
+			gutterWidth:20								
+		});		
+	});
+		 //columnWidth 函数递增控制div左边距
+	$('.infinite_scroll').masonry({ 
+		itemSelector: '.masonry_brick',
+		columnWidth:235,
+		gutterWidth:20								
+	});	
+}
+$(function(){
+//滚动条下拉事件
+	function item_callback(){
+		item_masonry();	
+	}
+	item_callback();  
+	$('.item').fadeIn();
+	var sp = 1
+	$(".infinite_scroll").infinitescroll({
+		navSelector  	: "#more",
+		nextSelector 	: "#more a",
+		itemSelector 	: ".item",
+		loading:{
+			img: "images/masonry_loading_1.gif",
+			msgText: '正在加载中....',
+			finishedMsg: '木有了,看看下一页',
+			finished: function(){
+				sp++;
+				if(sp>=10){ //到第10页结束事件
+					$("#more").remove();
+					$("#infscr-loading").hide();
+					$("#pagebox").show();
+					$(window).unbind('.infscr');
+				}
+			}	
+		},errorCallback:function(){ 
+			$("#pagebox").show();
+		}
+	},function(newElements){
+		var $newElems = $(newElements);
+		$('.infinite_scroll').masonry('appended', $newElems, false);
+		$newElems.fadeIn();
+		item_callback();
+		return;
+	});
+});
+</script>
+
+
+
+<!--定制中心开始-->
+<div class="dinzizx_box">
+ <div style="float:left; width:485px;">
+   <ul class="m_wgfllb">   
+     {foreach from=$cat item=v key=k}
+    <li {if $did eq $k}class="on"{/if}><a href="{link app=dissertation act=index arg0=$k}">{$v}</a></li>
+     {/foreach}
+   </ul>
+  </div>
+  <div style="float:right; width:485px;">
+   <ul class="m_wgfllb" style="float:right;">
+    <li><a href="{link app=custom act=lists arg0=3}">西装定制</a></li>
+    <li><a href="{link app=custom act=lists arg0=2000}">西裤定制</a></li>
+    <li><a href="{link app=custom act=lists arg0=3000}">衬衫定制</a></li>
+    <li><a href="{link app=custom act=lists arg0=4000}">马夹定制</a></li>
+    <li style="margin-right:0;"><a href="{link app=custom act=lists arg0=6000}">大衣定制</a></li>
+   </ul>
+  </div>
+   <p class="clear"></p>
+  <!--瀑布流 start-->
+
+    <div class="demo clearfix">
+    {if $data}
+      <div class="item_list infinite_scroll">
+       {foreach from=$data item=it}
+      
+      <!--item end-->
+      <div class="item masonry_brick" onMouseOver="this.className='item_2'" onMouseOut="this.className='item'">
+      
+        <div class="kzmdz">
+          <p class="zenzon"><a href="{link app=dissertation act=info arg0=$it.id}"><img src="{$it.small_img}" /></a></p>
+          <p class="zzydl_bt"><a href="{link app=dissertation act=info arg0=$it.id}"><span>{$it.title|truncate:15:"..."}</span></a><i>{$it.price|price}</i></p>
+          <p class="m_ztjj">{$it.design|_safe|truncate:60:"..."}</p>
+          <div class="xh_xl" itemId='{$it.id}'>
+            {if $it.is_like eq 0}
+            <p class="m_xh"><a href="javascript:;">喜欢</a></p>
+            {else}
+            <p class="y_xh"><a href="javascript:;">已喜欢</a></p>
+            {/if}
+            <p class="xhdssl">{$it.likes}</p>
+            <p class="xiaolian">评论：{$it.comment}</p>
+          </div>
+        </div>
+        
+       {if $it.show_comment && $it.comment_list}
+        <div class="dzzxyfpl">
+          {foreach from=$it.comment_list item=com}
+          <div class="sangeyele">
+            <p class="p1"><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$com.uid}"><img src="{avatar uid=$com.uid}" data-uid="{$com.uid}"  /></a></p>
+            <p class="p2"><span><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$com.uid}">{uname uid=$com.uid sub=20}</a></span>{$com.content}</p>
+            <p class="clear"></p>
+          </div>
+           {/foreach}
+ 
+        </div>   
+         {/if}     
+        
+      </div>
+      <!--item end-->
+       {/foreach}
+     
+              
+      </div>
+      {else}
+      <div style="padding-bottom:10px;">该系列的内容即将登场，以下为您推荐：</div>
+      {/if}
+       
+      <p class="clear"></p>
+    </div>
+
+
+<!--西装五大分类开始-->   
+    <div class="xzwdfl_box">
+      <ul>
+        <li>
+          <h1><a href="{link app=custom act=lists arg0=3}">西装定制</a></h1>
+          <p class="p1"><a href="{link app=custom act=lists arg0=3}"><img src="{res file=images/xz.png}" /></a></p>
+        </li>
+
+        <li>
+          <h1><a href="{link app=custom act=lists arg0=2000}">西裤定制</a></h1>
+          <p class="p4"><a href="{link app=custom act=lists arg0=2000}"><img src="{res file=images/xk.png}" /></a></p>
+        </li>      
+        
+        <li>
+          <h1><a href="{link app=custom act=lists arg0=3000}">衬衫定制</a></h1>
+          <p class="p2"><a href="{link app=custom act=lists arg0=3000}"><img src="{res file=images/cs.png}" /></a></p>
+        </li>        
+        
+        <li>
+          <h1><a href="{link app=custom act=lists arg0=4000}">马夹定制</a></h1>
+          <p class="p3"><a href="{link app=custom act=lists arg0=4000}"><img src="{res file=images/mj.png}" /></a></p>
+        </li>        
+        
+        <li>
+          <h1><a href="{link app=custom act=lists arg0=6000}">大衣定制</a></h1>
+          <p class="p5"><a href="{link app=custom act=lists arg0=6000}"><img src="{res file=images/dy.png}" /></a></p>
+        </li>        
+        
+      </ul>
+      <p class="clear"></p>
+    </div>
+ <!--西装五大分类结束-->  
+
+</div>
+<!--定制中心结束-->
+
+<!--底部开始-->
+{include file="footer.html"}
+<script type="Text/Javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+<link type="text/css" rel="stylesheet" href="{res file=css/new_pubuliu.css}" />
+<script>
+var PINER = {
+        uid: "<?php echo $_SESSION['user_info']['user_id'] ?>"
+    };
+
+$(function(){
+    $(".m_xh").each(function(){
+        var _this=$(this);
+        var _cda=_this.children("a");
+        _cda.click(function(){
+            if(!$.rc.dialog.islogin())return;
+            var _cls = _this.attr('class');
+            if(_cls=='y_xh')return;
+            var _itemId=_this.parent('.xh_xl').attr('itemId');
+            var _count=_this.next('.xhdssl').html();
+            $.ajax({
+                url    :"{link app=dissertation act=ajax_like}",
+                data   :{"itemId":_itemId},
+                dataType: "json", 
+                success:function(result,status){
+                    if(result.num==0){
+                        ///alert(result.msg);
+                        return;
+                    }
+                    //_this.removeClass();
+                    //_this.addClass(result.cls);
+                    _this.attr('class',result.cls);
+                    _cda.html(result.msg);
+                    _this.next('.xhdssl').html(parseInt(_count)+result.num)
+                }
+            });
+        })
+    })
+})
+
+</script>
+

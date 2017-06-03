@@ -1,0 +1,35 @@
+<!--底部开始-->
+<div class="footer_box">
+ <div class="footer">
+   <div class="fx bdsharebuttonbox share-area" data-tag="share_1">
+    <a href="javascript:" data-cmd="qzone" class="a1"></a>
+    <a href="javascript:" data-cmd="tsina" class="a2"></a>
+    <a href="javascript:" data-cmd="weixin" class="a3"></a></div>
+   
+   <ul>
+    <li><a href="./">首页</a></li>                        
+        <li><a href="start.html">如何开始</a></li>
+        <li><a href="diy.html">定制体验</a></li>
+        <li><a href="down.html">下载</a></li>
+        <li><a href="recommend.html">分享</a></li>
+        <li><a href="about.html">关于</a></li>
+   </ul>
+   <p class="bqwt">&copy; 2017 myfoodiepet.com All rights reserved&nbsp;&nbsp;&nbsp;&nbsp;鲁ICP备16029325号-1</p>
+ </div>
+</div>
+<div style="display:none;"><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256310283'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256310283' type='text/javascript'%3E%3C/script%3E"));</script></div>
+<script>
+//分享
+window._bd_share_config = {
+	common : {
+		bdText : document.title,	
+		bdDesc : '',	
+		bdUrl : window.location.href, 	
+		bdPic : ''
+	},
+	share : [{
+		"bdSize" : 16
+	}]
+}
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>

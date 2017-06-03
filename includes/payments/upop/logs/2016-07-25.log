@@ -1,0 +1,79 @@
+2016-07-25 13:55:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[107]------ æŠ¥æ–‡è¿”å›žçš„è¯ä¹¦ID>68759585097 
+2016-07-25 13:55:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[110]------ éªŒè¯ç­¾åè¯ä¹¦ç›®å½• :>E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\certs 
+2016-07-25 13:55:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[120]------ åŠ è½½éªŒç­¾è¯ä¹¦æˆåŠŸ 
+2016-07-25 13:55:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[88]------ æŠ¥æ–‡åŽ»[signature] key=val&ä¸²>accNo=6216***********0018&accessType=0&bizType=000201&certId=68759585097&currencyCode=156&encoding=utf-8&merId=777290058134758&orderId=14694141414878&queryId=201607251035417837448&reqReserved=ï»¿ï»¿ï»¿ï»¿fail&respCode=00&respMsg=success&settleAmt=64&settleCurrencyCode=156&settleDate=0724&signMethod=01&traceNo=783744&traceTime=0725103541&txnAmt=64&txnSubType=01&txnTime=20160725103541&txnType=01&version=5.0.0 
+2016-07-25 13:55:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[90]------ base64_decode[signature]>kÓÑ…ÊåVcäx­»[Sî©;©]¹2Ï­´SÇÇ§~6bÅúIUÓ8Õl¡ýXÑ•n¹‡;u}QnXR£ü=ŽÂFû–óŽj­ã¿¨Ò]• k–&Òi/ê²½ßiÊmhõò®V?¶–'³J%¹º	ºÈ¯Çû;X³Ž$¿ñÖ—ñCÆZ£½7Ï
+[ÄžnFžM+¶Ï®sSk“´@Sô/–Mº‚uLµ>ÅS˜XãûJlJ&XRtµ8bXÉ‹‰KSíÑ 	d“'û—›m®D!=¼²G~q¸’:~,",:æ…ñº˜ÃÎ1“Ô¨Nœu qMï\Ù£ï 
+2016-07-25 13:55:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[93]------ æ‘˜è¦shax16>4a87367371500a26b74352b32e26344499e012d7 
+2016-07-25 13:55:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[95]------ éªŒç­¾å¤±è´¥ 
+2016-07-25 13:55:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[108]------ æŠ¥æ–‡è¿”å›žçš„è¯ä¹¦ID>68759585097 
+2016-07-25 13:55:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[111]------ éªŒè¯ç­¾åè¯ä¹¦ç›®å½• :>E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\certs 
+2016-07-25 13:55:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[121]------ åŠ è½½éªŒç­¾è¯ä¹¦æˆåŠŸ 
+2016-07-25 13:55:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[88]------ æŠ¥æ–‡åŽ»[signature] key=val&ä¸²>accNo=6216***********0018&accessType=0&bizType=000201&certId=68759585097&currencyCode=156&encoding=utf-8&merId=777290058134758&orderId=14694141414878&queryId=201607251035417837448&reqReserved=ï»¿ï»¿ï»¿ï»¿fail&respCode=00&respMsg=success&settleAmt=64&settleCurrencyCode=156&settleDate=0724&signMethod=01&traceNo=783744&traceTime=0725103541&txnAmt=64&txnSubType=01&txnTime=20160725103541&txnType=01&version=5.0.0 
+2016-07-25 13:55:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[90]------ base64_decode[signature]>kÓÑ…ÊåVcäx­»[Sî©;©]¹2Ï­´SÇÇ§~6bÅúIUÓ8Õl¡ýXÑ•n¹‡;u}QnXR£ü=ŽÂFû–óŽj­ã¿¨Ò]• k–&Òi/ê²½ßiÊmhõò®V?¶–'³J%¹º	ºÈ¯Çû;X³Ž$¿ñÖ—ñCÆZ£½7Ï
+[ÄžnFžM+¶Ï®sSk“´@Sô/–Mº‚uLµ>ÅS˜XãûJlJ&XRtµ8bXÉ‹‰KSíÑ 	d“'û—›m®D!=¼²G~q¸’:~,",:æ…ñº˜ÃÎ1“Ô¨Nœu qMï\Ù£ï 
+2016-07-25 13:55:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[93]------ æ‘˜è¦shax16>4a87367371500a26b74352b32e26344499e012d7 
+2016-07-25 14:11:50, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[65]------ ============å¤„ç†å‰å°è¯·æ±‚å¼€å§‹=============== 
+2016-07-25 14:11:50, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[45]------ =====ç­¾åæŠ¥æ–‡å¼€å§‹====== 
+2016-07-25 14:11:50, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[51]------ ç­¾åkey=val&...ä¸² >accessType=0&backUrl=http://local.mfdb2c.com//paynotify-index-201607253282.html&bizType=000201&certId=40220995861346480087409489142384722381&channelType=08&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://local.mfdb2c.com//paynotify-notify-201607253282.html&merId=777290058134758&orderId=14694271096590&reqReserved= é€ä¼ ä¿¡æ¯&signMethod=01&txnAmt=64&txnSubType=01&txnTime=20160725141150&txnType=01&version=5.0.0 
+2016-07-25 14:11:50, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[54]------ æ‘˜è¦sha1x16 >6a6d16ef916add84d941eb1e0aeeeb1653bd6971 
+2016-07-25 14:12:31, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[65]------ ============å¤„ç†å‰å°è¯·æ±‚å¼€å§‹=============== 
+2016-07-25 14:12:31, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[45]------ =====ç­¾åæŠ¥æ–‡å¼€å§‹====== 
+2016-07-25 14:12:31, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[51]------ ç­¾åkey=val&...ä¸² >accessType=0&backUrl=http://local.mfdb2c.com//paynotify-index-201607253282.html&bizType=000201&certId=40220995861346480087409489142384722381&channelType=08&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://local.mfdb2c.com//paynotify-notify-201607253282.html&merId=777290058134758&orderId=14694271512390&reqReserved= é€ä¼ ä¿¡æ¯&signMethod=01&txnAmt=64&txnSubType=01&txnTime=20160725141231&txnType=01&version=5.0.0 
+2016-07-25 14:12:31, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[54]------ æ‘˜è¦sha1x16 >50aa53ccd093cf1a2dcd229bca937933789a7bf1 
+2016-07-25 14:12:31, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[66]------ ç­¾åä¸²ä¸º >gvu6IHGCI/c1V7aBS1+KtQKrc3nN/W8HvAvIEW+X6c8gXoOIMeKReEc57fYa+LVOBj5n7KJiltmz+1GH6Jr+2by+83EfOEhN3JQS4LiNCR3ah6y3ku9YjtCW3PuYpXMzfOHCkKQmhTD2ZTYocYrF/dSYL6bvrEeQcHy1y9CB8Q4= 
+2016-07-25 14:12:31, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[71]------ =====ç­¾åæŠ¥æ–‡ç»“æŸ====== 
+2016-07-25 14:12:31, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[100]------ å‰å°è¯·æ±‚åœ°å€ä¸º>https://101.231.204.80:5000/gateway/api/frontTransReq.do 
+2016-07-25 14:12:31, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[104]------ -------å‰å°äº¤æ˜“è‡ªåŠ¨æäº¤è¡¨å•>--begin---- 
+2016-07-25 14:12:31, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[105]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://101.231.204.80:5000/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.0.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="certId" id="certId" value="40220995861346480087409489142384722381" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://local.mfdb2c.com//paynotify-notify-201607253282.html" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://local.mfdb2c.com//paynotify-index-201607253282.html" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="08" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="merId" id="merId" value="777290058134758" />
+    <input type="hidden" name="orderId" id="orderId" value="14694271512390" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20160725141231" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="64" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="defaultPayType" id="defaultPayType" value="0001" />
+    <input type="hidden" name="reqReserved" id="reqReserved" value=" é€ä¼ ä¿¡æ¯" />
+    <input type="hidden" name="signature" id="signature" value="gvu6IHGCI/c1V7aBS1+KtQKrc3nN/W8HvAvIEW+X6c8gXoOIMeKReEc57fYa+LVOBj5n7KJiltmz+1GH6Jr+2by+83EfOEhN3JQS4LiNCR3ah6y3ku9YjtCW3PuYpXMzfOHCkKQmhTD2ZTYocYrF/dSYL6bvrEeQcHy1y9CB8Q4=" />
+ 
+2016-07-25 14:12:31, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[106]------ -------å‰å°äº¤æ˜“è‡ªåŠ¨æäº¤è¡¨å•>--end------- 
+2016-07-25 14:12:31, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[107]------ ============å¤„ç†å‰å°è¯·æ±‚ ç»“æŸ=========== 
+2016-07-25 14:13:39, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[107]------ æŠ¥æ–‡è¿”å›žçš„è¯ä¹¦ID>68759585097 
+2016-07-25 14:13:39, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[110]------ éªŒè¯ç­¾åè¯ä¹¦ç›®å½• :>E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\certs 
+2016-07-25 14:13:39, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[120]------ åŠ è½½éªŒç­¾è¯ä¹¦æˆåŠŸ 
+2016-07-25 14:13:39, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[88]------ æŠ¥æ–‡åŽ»[signature] key=val&ä¸²>accNo=6216***********0018&accessType=0&bizType=000201&certId=68759585097&currencyCode=156&encoding=utf-8&merId=777290058134758&orderId=14694141414878&queryId=201607251035417837448&reqReserved=ï»¿ï»¿ï»¿ï»¿fail&respCode=00&respMsg=success&settleAmt=64&settleCurrencyCode=156&settleDate=0724&signMethod=01&traceNo=783744&traceTime=0725103541&txnAmt=64&txnSubType=01&txnTime=20160725103541&txnType=01&version=5.0.0 
+2016-07-25 14:13:39, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[90]------ base64_decode[signature]>kÓÑ…ÊåVcäx­»[Sî©;©]¹2Ï­´SÇÇ§~6bÅúIUÓ8Õl¡ýXÑ•n¹‡;u}QnXR£ü=ŽÂFû–óŽj­ã¿¨Ò]• k–&Òi/ê²½ßiÊmhõò®V?¶–'³J%¹º	ºÈ¯Çû;X³Ž$¿ñÖ—ñCÆZ£½7Ï
+[ÄžnFžM+¶Ï®sSk“´@Sô/–Mº‚uLµ>ÅS˜XãûJlJ&XRtµ8bXÉ‹‰KSíÑ 	d“'û—›m®D!=¼²G~q¸’:~,",:æ…ñº˜ÃÎ1“Ô¨Nœu qMï\Ù£ï 
+2016-07-25 14:13:39, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[93]------ æ‘˜è¦shax16>4a87367371500a26b74352b32e26344499e012d7 
+2016-07-25 14:13:39, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[95]------ éªŒç­¾å¤±è´¥ 
+2016-07-25 14:13:44, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[107]------ æŠ¥æ–‡è¿”å›žçš„è¯ä¹¦ID>68759585097 
+2016-07-25 14:13:44, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[110]------ éªŒè¯ç­¾åè¯ä¹¦ç›®å½• :>E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\certs 
+2016-07-25 14:13:44, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[120]------ åŠ è½½éªŒç­¾è¯ä¹¦æˆåŠŸ 
+2016-07-25 14:13:44, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[88]------ æŠ¥æ–‡åŽ»[signature] key=val&ä¸²>accNo=6216***********0018&accessType=0&bizType=000201&certId=68759585097&currencyCode=156&encoding=utf-8&merId=777290058134758&orderId=14694141414878&queryId=201607251035417837448&reqReserved=ï»¿ï»¿ï»¿ï»¿fail&respCode=00&respMsg=success&settleAmt=64&settleCurrencyCode=156&settleDate=0724&signMethod=01&traceNo=783744&traceTime=0725103541&txnAmt=64&txnSubType=01&txnTime=20160725103541&txnType=01&version=5.0.0 
+2016-07-25 14:13:44, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[90]------ base64_decode[signature]>kÓÑ…ÊåVcäx­»[Sî©;©]¹2Ï­´SÇÇ§~6bÅúIUÓ8Õl¡ýXÑ•n¹‡;u}QnXR£ü=ŽÂFû–óŽj­ã¿¨Ò]• k–&Òi/ê²½ßiÊmhõò®V?¶–'³J%¹º	ºÈ¯Çû;X³Ž$¿ñÖ—ñCÆZ£½7Ï
+[ÄžnFžM+¶Ï®sSk“´@Sô/–Mº‚uLµ>ÅS˜XãûJlJ&XRtµ8bXÉ‹‰KSíÑ 	d“'û—›m®D!=¼²G~q¸’:~,",:æ…ñº˜ÃÎ1“Ô¨Nœu qMï\Ù£ï 
+2016-07-25 14:13:44, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[93]------ æ‘˜è¦shax16>4a87367371500a26b74352b32e26344499e012d7 
+2016-07-25 14:13:44, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[95]------ éªŒç­¾å¤±è´¥ 
+2016-07-25 14:16:25, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[107]------ æŠ¥æ–‡è¿”å›žçš„è¯ä¹¦ID>68759585097 
+2016-07-25 14:16:25, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[110]------ éªŒè¯ç­¾åè¯ä¹¦ç›®å½• :>E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\certs 
+2016-07-25 14:16:25, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[120]------ åŠ è½½éªŒç­¾è¯ä¹¦æˆåŠŸ 
+2016-07-25 14:16:25, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[88]------ æŠ¥æ–‡åŽ»[signature] key=val&ä¸²>accNo=6216***********0018&accessType=0&bizType=000201&certId=68759585097&currencyCode=156&encoding=utf-8&merId=777290058134758&orderId=14694141414878&queryId=201607251035417837448&reqReserved=ï»¿ï»¿ï»¿ï»¿fail&respCode=00&respMsg=success&settleAmt=64&settleCurrencyCode=156&settleDate=0724&signMethod=01&traceNo=783744&traceTime=0725103541&txnAmt=64&txnSubType=01&txnTime=20160725103541&txnType=01&version=5.0.0 
+2016-07-25 14:16:25, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[90]------ base64_decode[signature]>kÓÑ…ÊåVcäx­»[Sî©;©]¹2Ï­´SÇÇ§~6bÅúIUÓ8Õl¡ýXÑ•n¹‡;u}QnXR£ü=ŽÂFû–óŽj­ã¿¨Ò]• k–&Òi/ê²½ßiÊmhõò®V?¶–'³J%¹º	ºÈ¯Çû;X³Ž$¿ñÖ—ñCÆZ£½7Ï
+[ÄžnFžM+¶Ï®sSk“´@Sô/–Mº‚uLµ>ÅS˜XãûJlJ&XRtµ8bXÉ‹‰KSíÑ 	d“'û—›m®D!=¼²G~q¸’:~,",:æ…ñº˜ÃÎ1“Ô¨Nœu qMï\Ù£ï 
+2016-07-25 14:16:25, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[93]------ æ‘˜è¦shax16>4a87367371500a26b74352b32e26344499e012d7 
+2016-07-25 14:16:25, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[95]------ éªŒç­¾å¤±è´¥ 

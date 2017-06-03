@@ -1,0 +1,19 @@
+<ul>
+{foreach from=$addresslist item=list name=ads}
+	<li data-id="0001" {if $smarty.foreach.ads.first && !$defAddr} class="cur" {/if} {if $list.addr_id eq $defAddr} class="cur" {/if}>
+		<p class="underlined">{$list.consignee}</p>
+		<p class="tele">{$list.phone_mob}</p>
+		<p class="txaddress">{$list.region_name}{$list.address}</p>
+		<div class="caozuoBtn">
+			<input type="button" class="edit" value="编辑" data-id="{$list.addr_id}">
+			<input type="button" class="del" value="删除" data-id="{$list.addr_id}">
+		</div>
+	</li>
+{/foreach}
+   {if $count < 5}
+	<li id="addAddress" class="syxdz">
+		<span>+</span>
+		使用新地址
+	</li>
+	{/if}
+</ul>

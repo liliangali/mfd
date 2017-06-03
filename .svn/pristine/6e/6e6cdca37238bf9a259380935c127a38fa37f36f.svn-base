@@ -1,0 +1,7 @@
+<?php
+
+/*
+ * User Controller Routes
+ *
+ */
+$api->post('/wx/qr', 'Wx\WxController@qrcode');

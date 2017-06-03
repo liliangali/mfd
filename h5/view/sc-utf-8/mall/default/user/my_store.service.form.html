@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$site_url}/" />
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+{$page_seo}
+<meta name="author" content="ecmall.shopex.cn" />
+<meta name="copyright" content="ShopEx Inc. All Rights Reserved" />
+<link href="{res file=css/user.css}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="static/css/public.css">
+<link rel="stylesheet" type="text/css" href="static/css/tailorpage.css">
+<script type="text/javascript">
+//<!CDATA[
+var PINER = {uid: "{$session_info_user_id}"}; 
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+var REGION_URL="{link app=mlselection act=index arg=region}";
+var reginUrl=REAL_SITE_URL+REGION_URL;
+//]]>
+</script>
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+{$_head_tags}
+</head>
+<body>
+
+
+
+<div class="head">
+  <div class="w">
+    <div class="fl">
+          <a href="#" target="_blank" class="logo"></a>
+        </div>
+        <div class="fl center">
+            <a href="/" class="home"><i></i>首页</a>
+      </div>
+        <div class="fr">
+          <ul class="navArea">
+            &nbsp;&nbsp;&nbsp;&nbsp;{$lang.hello},{$visitor.user_name|escape}
+            <!--{if !$visitor.user_id}-->
+            [<a href="{url app=member&act=login&ret_url=$ret_url}">{$lang.login}</a>]
+            [<a href="{url app=member&act=register&ret_url=$ret_url}">{$lang.register}</a>]
+            <!--{else}-->
+            [<a href="{url app=member&act=logout}">{$lang.logout}</a>]
+            <!--{/if}-->
+            </ul>
+        </div>
+    </div>
+    <div class="bd-menu"> <i class="angle"></i>
+</div>
+</div>
+
+
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  
+  <div id="right">
+    <div class="wrap">
+
+        <div class="public">
+            <div class="information">
+            <form method="post" enctype="multipart/form-data" id="my_store_form">
+                    <div class="setup info shop">
+                        <table style="width: 100%">
+                            <tr>
+                                <th class="width2">作品名称:</th>
+                                <td>
+                                    <p class="td_block"><input id="img_name" type="text" class="text width_normal" name="img_name" value="{$store_service.img_name}"/></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="width2" valign="top"><br />作品图 :</th>
+                                <td><input type="file" name="img_url" size="30" class="text width_normal" style="margin:10px 0 5px 0; border:none;"/><br />&nbsp;<br />
+                                 {if $store_service.img_url neq ''}<p><img src="{$store_service.img_url}" width="120" height="120" /></p>{/if}
+                                </td>
+                            </tr>
+                             <tr>
+                                <th class="align3">简介 :</th>
+                                <td><div class="editor"><div>
+                                    <textarea name="description" id="description" style="width:400px; height:100px;">{$store_service.description|escape}</textarea></div>
+                                   <div style=" position: relative; top: 10px; z-index: 5;">
+                                    <div class="clear"></div>
+                                    </div>
+                                    <div class="issuance"><input type="submit" class="btn" value="{$lang.submit}" /></div>
+                                 
+                              </td>
+                             </tr>
+
+
+
+
+
+                         </table></form>
+          </div>
+                </div>
+
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="footer">
+  <div class="w">
+    <dl class="first">
+      <dt>关于我们</dt>
+      <dd>
+        <ul>
+          <li><a href="#" target="_blank">集团简介</a></li>
+          <li><a href="#" target="_blank">法律声明</a></li>
+          <li><a href="#" target="_blank">潮流资讯</a></li>
+          <li><a href="#" target="_blank">招聘信息</a></li>
+          <li><a href="#" target="_blank">员工之家</a></li>
+        </ul>
+      </dd>
+    </dl>
+    <dl>
+      <dt>人才成长</dt>
+      <dd>
+        <ul>
+          <li><a href="#" target="_blank">人才理念</a></li>
+          <li><a href="#" target="_blank">薪酬福利</a></li>
+          <li><a href="#" target="_blank">招聘信息</a></li>
+          <li><a href="#" target="_blank">走进红领</a></li>
+          <li><a href="#" target="_blank">企业文化</a></li>
+        </ul>
+      </dd>
+    </dl>
+    <dl>
+      <dt>帮助中心</dt>
+      <dd>
+        <ul>
+          <li><a href="#" target="_blank">物流查询</a></li>
+          <li><a href="#" target="_blank">订单查询</a></li>
+          <li><a href="#" target="_blank">配送方式</a></li>
+          <li><a href="#" target="_blank">支付方式及流程</a></li>
+        </ul>
+      </dd>
+    </dl>
+    <dl>
+      <dt>售后服务</dt>
+      <dd>
+        <ul>
+          <li><a href="#" target="_blank">如何退换货</a></li>
+          <li><a href="#" target="_blank">法律声明</a></li>
+          <li><a href="#" target="_blank">售后服务政策</a></li>
+          <li><a href="#" target="_blank">量体服务</a></li>
+        </ul>
+      </dd>
+    </dl>
+    <dl class="last">
+      <dt>关注我们</dt>
+      <dd>
+        <div class="share"> <span class="sina"></span> <span class="qzone"></span> <span class="weixin"></span> <span class="qqwb"></span> </div>
+        <div class="qrcode">
+          <p>阿里裁缝APP</p>
+          <a href="#">扫描或点击下载</a> </div>
+      </dd>
+    </dl>
+    <div class="bottom"> <a href="#" class="logo fl"></a>
+      <div class="fr">
+        <p>© RCTAILOR 版权所有&nbsp;&nbsp;&nbsp;邮箱：rcmtm@rcmtm.com&nbsp;&nbsp;&nbsp;地址：山东省青岛即墨红领大街17号</p>
+        <p>鲁ICP备10207738&nbsp;&nbsp;&nbsp; 京公网安备110106010015号</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="static/expand/jquery.swipe.js"></script> 
+<script  type="text/javascript" src="static/js/tailorpage.js"></script>
+</body>
+</html>

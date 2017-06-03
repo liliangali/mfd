@@ -1,0 +1,499 @@
+/*
+ 酷客中心样式
+*/
+
+.coolke_box{width:1000px; margin:0 auto;}
+
+.cool_hot_box{width:1000px; margin:0 auto;}
+.cool_ti_box{width:1000px; padding:24px 0 19px 0; overflow:hidden;}
+.cool_ti_box h1{font-size:24px; font-weight:normal; float:left;}
+.cool_ti_box .cool_tab{float:left; padding:5px 0 0 20px;}
+.cool_tab .geren,.cool_tab .jiepai{float:left; height:26px; background:url(../images/coolke-icon.png) no-repeat; line-height:26px; text-align:center; cursor:pointer; overflow:hidden;}
+.cool_tab .geren{width:78px; background-position:0px 0px; }
+.cool_tab .geren_on{background-position:0px -26px; color:#bb422e;}
+.cool_tab .jiepai{width:55px; background-position:-78px 0px;}
+.cool_tab .jiepai_on{background-position:-78px -26px; color:#bb422e;}
+.cool_ti_box .cool_more{float:right; font-size:14px; height:36px; line-height:36px; padding-right:10px; background:url(../images/coolke_jiao.gif) right center no-repeat;}
+.cool_hot_list{width:1000px; margin:0 auto; padding-bottom:20px; float:left; }
+.cool_hot_list ul{width:105%;}
+.cool_hot_list ul li{background:#fff; width:235px; height:438px; float:left; position:relative; margin:20px 20px 0 0;}
+.cool_hot_list ul li .hot_img{float:left; width:235px; height:313px; overflow:hidden;}
+.cool_hot_list ul li .hot_img img{float:left; width:235px;}
+.cool_hot_list ul li .hot_name{width:167px; height:30px; line-height:30px; overflow:hidden; padding-left:68px;}
+.cool_hot_list ul li .hot_name a{color:#bb422e;}
+.cool_hot_list ul li .hot_tu{background:url(../images/coolke-icon.png) no-repeat; width:44px; height:44px; background-position:-134px 0px; padding:3px; position:absolute; left:10px; top:288px; z-index:998; clear:both;}
+.cool_hot_list ul li .hot_jianj{padding:0 10px; line-height:20px; height:40px; overflow:hidden; margin-top:5px; color:#595959;}
+.cool_hot_list ul li .hot_bt{padding:10px 10px; height:26px; line-height:26px;}
+.cool_hot_list ul li .hot_bt a,.cool_hot_list ul li .hot_bt span,.xih_cout s{float:left; background:url(../images/coolke-icon.png) no-repeat;}
+.cool_hot_list ul li .hot_bt .xih{background-position:-186px 0px; width:65px; text-indent:-9999px;}
+.cool_hot_list ul li .hot_bt .yxih{background-position:-509px -51px; width:65px; text-indent:-9999px;}
+
+.cool_hot_list ul li .xih_cout{ margin-left:2px; color:#bb422e; font-family:"Arial"; font-size:14px; position:relative;}
+.cool_hot_list ul li .xih_cout a { background-position:-253px 0px; padding:0 5px; text-align:center; color:#a40000;}
+.cool_hot_list ul li .xih_cout s{display:block; width:3px; height:26px; overflow:hidden; background-position:-299px 0px; position:absolute; right:0px; top:0px; z-index:1;}
+
+
+
+.cool_hot_list ul li .hot_bt .comts{background:none; float:right;}
+.cool_hot_list ul li .hot_bt .comts_cout{background:none; float:right; color:#bb422e; font-size:14px;}
+.cool_hot_list ul li .user_box{display:none; background:url(../images/coolke-icon.png) no-repeat; background-position:0px -53px; width:305px; height:154px; position:absolute; left:10px; top:133px; z-index:2;}
+
+/*
+.cool_hot_list ul li .hot_img_div .hot_img{float:left; width:215px; height:284px; overflow:hidden;}
+.cool_hot_list ul li .hot_tu1{top:274px;}
+.cool_hot_list ul li .user_box1{top:118px; }
+
+ */
+
+.cool_hot_list .user_box .user_jiao{position:absolute; left:19px; top:145px; z-index:300; text-indent:-9999px; background:url(../images/coolke-icon.png) no-repeat; background-position:-186px -28px; width:11px; height:9px;}
+.cool_hot_list .user_box .user_info{padding:11px  0 0 11px; float:left; overflow:hidden;}
+.cool_hot_list .user_box .user_info dt{float:left; width:60px; height:60px; overflow:hidden; }
+.cool_hot_list .user_box .user_info dt img{border-radius:5px; width:60px; height:60px;}
+.cool_hot_list .user_box .user_info dd{width:210px; overflow:hidden; float:left; padding-left:12px;}
+.cool_hot_list .user_box .user_info dd .user_name{hieght:20px; line-height:20px; float:left; width:210px;}
+.cool_hot_list .user_box .user_info dd .user_name a{color:#bb422e; float:left; padding-right:5px;}
+.cool_hot_list .user_box .user_info dd .user_address{ color:#595959; float:left; width:210px;}
+.cool_hot_list .user_box .user_info dd .user_fstpxh{ padding-top:3px; width:210px; float:left;}
+.cool_hot_list .user_box .user_info dd .user_fstpxh span{float:left; padding-right:15px; color:#595959;}
+.cool_hot_list .user_box .user_info dd .user_fstpxh span a{color:#bb422e;}
+.cool_hot_list .user_box .user_info dd .user_fstpxh .user_xih{padding:0;}
+.cool_hot_list .user_box .user_biaoq{float:left; padding:12px 10px 14px 10px; height:14px; width:282px; line-height:14px; overflow:hidden; color:#595959;}
+.cool_hot_list .user_box .user_biaoq font{color:#000; font-size:12px;}
+.cool_hot_list .user_box .user_guanz{float:left; width:59px; height:22px; margin:7px 0 0 12px; display:inline; overflow:hidden; text-indent:-9999px; background:url(../images/coolke-icon.png) -269px -313px no-repeat;}
+.cool_hot_list .user_box .user_guanz:hover{background:url(../images/coolke-icon.png) -269px -339px no-repeat;}
+.cool_hot_list .user_box .user-qxgz{background:url(../images/coolke-icon.png) -336px -313px no-repeat; width:59px;}
+.cool_hot_list .user_box .user-qxgz:hover{background:url(../images/coolke-icon.png) -336px -339px no-repeat; width:59px;}
+.cool_hot_list .user_box .user-wdkj{float:left; width:59px; height:22px; margin:7px 0 0 11px; color:#a40000; background:url(../images/coolke-icon.png) -404px -313px no-repeat; text-indent:-9999px;}
+.cool_hot_list .user_box .user-wdkj:hover{background:url(../images/coolke-icon.png) -404px -339px no-repeat;}
+.cool_dp{width:1000px; margin:0 auto;}
+.cool_dp ul{width:105%;}
+.cool_dp ul li{float:left; width:235px; hieght:313px; position:relative; margin-right:20px; display:inline;}
+.cool_dp ul li img{float:left;}
+.cool_dp ul li span{display:block; width:235px; height:31px; line-height:31px; background: url("../images/rend_p.png") repeat-x; position:absolute; left:0px; bottom:0px; z-index:1;}
+.cool_dp ul li span a{color:#fff; display:block; text-align:center;}
+
+.cool_coolba{width:1000px; margin:0 auto;}
+.cool_coolba ul{width:105%;}
+.cool_coolba ul li{float:left; width:235px; position:relative; margin-right:20px; display:inline; overflow:hidden;}
+.cool_coolba ul li .coolba_img{float:left; width:235px; height:313px;}
+.cool_coolba ul li span{display:block; width:233px; height:31px; line-height:31px; background: url("../images/rend_p.png") repeat-x; position:absolute; left:0px; top:282px; z-index:1;}
+.cool_coolba ul li span a{color:#fff; display:block; text-align:center;}
+.coolba_small{width:105%; float:left; padding:5px 0;}
+.coolba_small a{float:left; width:75px; height:75px; overflow:hidden; margin-right:5px; display:inline;}
+.coolba_small a img{float:left; width:75px; height:75px;}
+.coolba_bott{width:235px; height:89px; overflow:hidden; background:#fff;}
+.coolba_bott1{width:215px; height:36px; border-bottom:#f9f9f9 1px solid; line-height:36px; padding:0 10px;}
+.coolba_bott1 .coolba_pic,.coolba_bott1 .coolba_yan{background:url(../images/coolke-icon.png) no-repeat;}
+.coolba_bott1 .coolba_pic{float:left; background-position:-319px 0px; padding-left:22px;}
+.coolba_bott1 .coolba_yan{float:right; background-position:-476px 0px; padding-left:26px;}
+.coolba_user{width:215px; height:30px; line-height:30px; padding:10px 10px;}
+.coolba_user .coolba_user_img{float:left; width:30px; overflow:hidden;}
+.coolba_user .coolba_username{width:100px; overflow:hidden; padding-left:8px; color:#bb422e;float:left;}
+.coolba_user .coolba_user_guanz{float:right; width:64px; height:24px; overflow:hidden; background:url(../images/coolke-icon.png) no-repeat; background-position:0px -353px; text-indent:-9999px; margin-top:3px;}
+.coolba_user .coolba_user_guanz:hover{float:right; width:64px; height:24px; overflow:hidden; background:url(../images/coolke-icon.png) no-repeat; background-position:0px -384px; text-indent:-9999px; margin-top:3px;}
+.coolba_user .coolba_user_grkj{float:right; width:64px; height:24px; overflow:hidden; background:url(../images/coolke-icon.png) no-repeat; background-position:-472px -311px; text-indent:-9999px; margin-top:3px;}
+.coolba_user .coolba_user_grkj:hover{float:right; width:64px; height:24px; overflow:hidden; background:url(../images/coolke-icon.png) no-repeat; background-position:-472px -342px; text-indent:-9999px; margin-top:3px;}
+.coolba_user .coolba_user_qxguanz{float:right; width:64px; height:24px; overflow:hidden; background:url(../images/coolke-icon.png) no-repeat; background-position:0px -421px; text-indent:-9999px; margin-top:3px;}
+.coolba_user .coolba_user_qxguanz:hover{float:right; width:64px; height:24px; overflow:hidden; background:url(../images/coolke-icon.png) no-repeat; background-position:0px -452px; text-indent:-9999px; margin-top:3px;}
+.coolke_daren{width:960px; margin:30px auto 30px auto; border:#dfdfdf 1px solid; background:#fff; padding:0 20px;}
+.cool_ti_box1{width:960px;}
+.coolke_daren ul{width:105%;}
+.coolke_daren ul li{width:326px; float:left; padding-bottom:20px;}
+.coolke_daren .user_info{ float:left; overflow:hidden;}
+.coolke_daren .user_info dt{float:left; width:80px; height:80px; overflow:hidden; }
+.coolke_daren .user_info dt img{width:80px; height:80px;}
+.coolke_daren .user_info dd{width:210px; overflow:hidden; float:left; padding-left:12px;}
+.coolke_daren .user_info dd .user_name{hieght:20px; line-height:20px; float:left; width:210px;}
+.coolke_daren .user_info dd .user_name a{float:left; padding-right:5px; font-size:14px;}
+.coolke_daren .user_info dd .user_name img{float:left;}
+.coolke_daren .user_info dd .user_fstpxh{ width:210px; float:left; padding-top:5px;}
+.coolke_daren .user_info dd .user_fstpxh span{float:left; padding-right:15px; color:#595959;}
+.coolke_daren .user_info dd .user_fstpxh span a{color:#595959;}
+.coolke_daren .user_info dd .user_fstpxh .user_xih{padding:0;}
+.coolke_daren .user_info dd .user_guanz{height:24px; float:left; width:210px; padding-top:14px;}
+.coolke_daren .user_info dd .user_guanz a{float:left; text-indent:-9999px; width:64px; height:24px; background:url(../images/coolke-icon.png) no-repeat; background-position:0px -353px;}
+.coolke_daren .user_info dd .user_guanz a:hover{float:left; text-indent:-9999px; width:64px; height:24px; background:url(../images/coolke-icon.png) no-repeat; background-position:0px -384px;}
+.coolke_daren .user_info dd .user_guanz .u_qxgz{background:url(../images/coolke-icon.png) 0px -421px no-repeat;}
+.coolke_daren .user_info dd .user_guanz .u_qxgz:hover{background:url(../images/coolke-icon.png) 0px -452px no-repeat;}
+.coolke_daren .user_info dd .user_grkj{height:24px; float:left; width:210px; padding-top:14px;}
+.coolke_daren .user_info dd .user_grkj a{float:left; text-indent:-9999px; width:64px; height:24px; background:url(../images/coolke-icon.png) no-repeat; background-position:-472px -311px;}
+.coolke_daren .user_info dd .user_grkj a:hover{float:left; text-indent:-9999px; width:64px; height:24px; background:url(../images/coolke-icon.png) no-repeat; background-position:-472px -342px;}
+
+
+/*街拍 item_list */
+
+.cool_ti_box1{width:1000px; padding:24px 0 19px 0; overflow:hidden;}
+.cool_ti_box1 h1{font-size:24px; font-weight:normal; float:left;}
+.cool_ti_box1 .cool_tab1{float:left; padding:5px 0 0 20px;}
+.cool_tab1 .geren,.cool_tab1 .jiepai{float:left; height:26px; background:url(../images/coolke-icon.png) no-repeat; line-height:26px; text-align:center; cursor:pointer; overflow:hidden;}
+.cool_tab1 .geren{width:78px; background-position:0px 0px; }
+.cool_tab1 .geren_on{background-position:0px -26px; }
+.cool_tab1 .geren_on a{color:#bb422e;}
+.cool_tab1 .jiepai{width:55px; background-position:-78px 0px;}
+.cool_tab1 .jiepai_on{background-position:-78px -26px; color:#bb422e;}
+.cool_tab1 .jiepai_on a{color:#bb422e;}
+
+.coolke_demo{width:1000px; margin:0 auto;}
+.item_list{position:relative;padding:0 0 50px;}
+.coolke_item{
+	width:235px;background:#fff; margin-bottom:20px;
+}
+.item_t .img{background-color:#FFFFFF;margin:0 auto;position:relative;width:235px;}
+.item_t .img a{display:block;}
+.item_t .img a:hover{background:#000;}
+.item_t .img a img{max-width:235px; width:235px;}
+.item_t .img a:hover img{filter:alpha(opacity=80);-khtml-opacity:0.8;opacity:0.8;-webkit-transition:all 0.3s ease-out;-khtml-transition:all 0.3s ease-out;}
+.item_t .price{
+	position:absolute;bottom:10px;right:0px;background-color:rgba(0, 0, 0, 0.2);color:#FFF;
+	filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr=#33000000, endcolorstr=#33000000); display:none;
+}
+.coolke_item .btns{display:none;}
+.img_album_btn{top:0px;right:0px;position:absolute;background:#ff6fa6;color:#ffffff;height:20px;line-height:20px;width:56px;border-radius:3px;}
+.img_album_btn:hover{color:#fff;}
+.item_t .title{padding:8px 0;line-height:18px;}
+.item_b{padding:10px 8px;}
+.item_b .items_likes .like_btn{background:url("images/fav_icon_word_new_1220.png") no-repeat;display:block;float:left;height:23px;width:59px;margin-right:5px;}
+.item_b .items_likes em{line-height:23px;display:block;float:left;padding:0px 6px;color:#FF6699;font-weight:800;border:1px solid #ff6fa6;border-radius:3px;}
+
+/* more */
+#more{display:block;margin:10px auto 20px;}
+
+/* infscr-loading */
+#infscr-loading{bottom:-10px;left:45%;position:absolute;text-align:center;height:20px;line-height:20px;z-index:100;width:120px;}
+
+/* page */
+.coolke_page{margin-bottom:50px;}
+
+
+/* to_top */
+.to_top a,.to_top a:hover{background:url("../images/gotop.png") no-repeat}
+.to_top a{
+	background-position:0 0;float:left;height:50px;overflow:hidden;width:50px;position:fixed;bottom:35px;cursor:pointer;right:20px;
+	_position:absolute;
+	_right:auto;
+	_left:expression(eval(document.documentElement.scrollLeft+document.documentElement.clientWidth-this.offsetWidth)-(parseInt(this.currentStyle.marginLeft, 10)||0)-(parseInt(this.currentStyle.marginRight, 10)||20));
+	_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop, 10)||20)-(parseInt(this.currentStyle.marginBottom, 10)||20)));
+}
+.to_top a:hover{background-position:-51px 0px;}
+
+
+
+
+.jpbox_name .hot_tu{background:url(../images/coolke-icon.png) no-repeat; width:44px; height:44px; background-position:-134px 0px; padding:3px; position:absolute; left:10px; top:-25px; z-index:11111; clear:both;}
+.jpbox_name .hot_name{width:167px; padding-left:68px; position:relative;}
+.jpbox_name .hot_name a{color:#bb422e;}
+.jpbox_name .hot_name .hot_name1{height:30px; line-height:30px; overflow:hidden;}
+.jpbox_name .hot_jianj{padding:0 10px; line-height:20px; height:40px; overflow:hidden; margin-top:5px; color:#595959;}
+.jpbox_name .hot_bt{padding:10px 10px; height:26px; line-height:26px;}
+.jpbox_name .hot_bt a,.jpbox_name .hot_bt span{float:left; background:url(../images/coolke-icon.png) no-repeat;}
+.jpbox_name .hot_bt .xih{background-position:-186px 0px; width:65px; text-indent:-9999px;}
+.jpbox_name .hot_bt .xih_cout{background-position:-253px 0px; width:49px; text-align:center; margin-left:2px;}
+.jpbox_name .hot_bt .comts{background:none; float:right;}
+.jpbox_name .hot_bt .comts_cout{background:none; float:right; color:#bb422e; font-size:14px;}
+
+.jpbox_name .user_box{display:none; background:url(../images/coolke-icon.png) no-repeat; background-position:0px -53px; width:305px; height:154px; position:absolute; left:10px; top:-182px; z-index:222222;}
+.jpbox_name .user_box .user_jiao{position:absolute; left:19px; top:145px; z-index:300; text-indent:-9999px; background:url(../images/coolke-icon.png) no-repeat; background-position:-186px -28px; width:11px; height:9px;}
+.jpbox_name .user_box .user_info{padding:11px  0 0 11px; float:left; overflow:hidden;}
+.jpbox_name .user_box .user_info dt{float:left; width:60px; height:60px; overflow:hidden; }
+.jpbox_name .user_box .user_info dt img{border-radius:5px; width:60px; height:60px;}
+.jpbox_name .user_box .user_info dd{width:210px; overflow:hidden; float:left; padding-left:12px;}
+.jpbox_name .user_box .user_info dd .user_name{hieght:20px; line-height:20px; float:left; width:210px;}
+.jpbox_name .user_box .user_info dd .user_name a{color:#bb422e; float:left; padding-right:5px;}
+.jpbox_name .user_box .user_info dd .user_address{ color:#595959; float:left; width:210px;}
+.jpbox_name .user_box .user_info dd .user_fstpxh{ padding-top:3px; width:210px; float:left;}
+.jpbox_name .user_box .user_info dd .user_fstpxh span{float:left; padding-right:15px; color:#595959;}
+.jpbox_name .user_box .user_info dd .user_fstpxh span a{color:#bb422e;}
+.jpbox_name .user_box .user_info dd .user_fstpxh .user_xih{padding:0;}
+.jpbox_name .user_box .user_biaoq{float:left; padding:12px 10px 14px 10px; height:14px; width:282px; line-height:14px; overflow:hidden; color:#595959;}
+.jpbox_name .user_box .user_biaoq font{color:#000; font-size:12px;}
+.jpbox_name .user_box .user_guanz{float:left; width:55px; height:22px; margin:4px 0 0 12px; display:inline; overflow:hidden; text-indent:-9999px;}
+
+/*达人列表*/
+.m_drlb_box {width:1000px; margin:0 auto; overflow:hidden;}
+.m_dswdr { font-size:24px; font-weight:normal; height:74px; line-height:80px; overflow:hidden;}
+.m_dswdr span { font-size:26px; padding-right:5px; font-family:arial;}
+.m_drlb_box ul {width:110%; float:left;}
+.m_drlb_box ul li {width:302px; height:88px; float:left; border:1px solid #dfdfdf; background:#fff; margin:0 11px 15px 0; display:inline; padding:11px; position:relative;}
+.m_drlb_box ul li .m_drtx img {width:80px; height:80px; position:absolute; left:11px; top:15px;}
+.m_drlb_box ul li div {padding-left:92px;}
+.m_drlb_box ul li div h1 {font-weight:normal; font-size:14px; height:25px; line-height:25px; overflow:hidden;}
+.m_drlb_box ul li div h1 .m_drdj { position:relative; top:3px; padding-left:8px;}
+.m_drlb_box ul li .m_fstpxh { height:20px; line-height:20px; font-size:12px; color:#888;}
+.m_drlb_box ul li .m_fstpxh span { padding-right:15px;}
+.m_drlb_box ul li .m_fstpxh span font { padding-left:5px; font-size:12px;}
+.m_drlb_box ul li .m_guazu a { display:block; width:64px; height:24px; background:url(../images/coolke-icon.png) 0 -353px no-repeat; margin-top:15px;}
+.m_drlb_box ul li .m_qxgz a { display:block; width:64px; height:24px; background:url(../images/coolke-icon.png) 0 -421px no-repeat; text-indent:-9999px; margin-top:15px;}
+.m_drlb_box ul li .m_qxgz a:hover{background:url(../images/coolke-icon.png) 0 -452px no-repeat;}
+.m_drlb_box ul .off { border:2px solid #a40000; width:302px; height:88px; padding:10px; transition:border-color 0.5s ease 0s;}
+.m_drlb_box ul .off .m_drtx img {width:80px; height:80px; position:absolute; left:10px; top:14px;}
+.m_drlb_box ul .off .m_guazu a { display:block; width:64px; height:24px; background:url(../images/coolke-icon.png) 0 -384px no-repeat; margin-top:15px;}
+.m_drlb_box ul .m_wodekj .u_grkj{display:block; width:64px; height:24px; overflow:hidden; background:url(../images/coolke-icon.png) no-repeat; background-position:-472px -311px; text-indent:-9999px; margin-top:15px;}
+.m_drlb_box ul .m_wodekj .u_grkj:hover{display:block; width:64px; height:24px; overflow:hidden; background:url(../images/coolke-icon.png) no-repeat; background-position:-472px -342px; text-indent:-9999px; margin-top:15px;}
+/*翻页样式*/
+.faye_box {position:relative; left:50%; float:left; padding-top:12px; font-size:14px;}
+.faye_box a,.faye_box span {position:relative; right:50%;}
+.faye_box a { display:block; float:left; padding:0 12px; margin-right:5px; display:inline; height:32px; background:#fff; border-radius:5px; border:1px solid #dfdfdf; line-height:32px; text-align:center;}
+.faye_box span {float:left; height:34px; line-height:34px; padding:0 10px 0 5px;}
+.faye_box .sanyy { background:url(../images/gyszal.gif) left top no-repeat; width:34px; height:34px; border:none; padding:0;}
+.faye_box .xiayy {background:url(../images/gysyal.gif) left top no-repeat; width:34px; height:34px; border:none; padding:0;}
+
+
+/* 街拍（晒酷）详细页 */
+.shaiku_box{width:1000px; margin:30px auto 0 auto; border:#dfdfdf 1px solid; background:url(../images/shaiku_bg.gif) repeat-y;}
+.shaiku_l{width:520px; float:left; overflow:hidden; padding:15px 17px 15px 17px; background:#fcfcfc;}
+.shaiku_l h1{font-size:18px; font-weight:normal; line-height:26px;}
+.shaiku_l .shaiku_img{width:520px; overflow:hidden; margin-top:27px; text-align:center;}
+.shaiku_l .shaiku_img img{max-width:520px; max-height:700px; margin-bottom:20px;}
+.shaiku_r{width:415px; float:right; background:#fff; padding-left:30px;}
+
+.shaiku_user {width:302px; height:88px; float:left; background:#fff; margin:0 11px 15px 0; display:inline; padding:11px; position:relative;}
+.shaiku_user .m_drtx img {width:80px; height:80px; position:absolute; left:0px; top:15px; border-radius:5px;}
+.shaiku_user_info {padding-left:82px; width:308px;}
+.shaiku_user_info h1 {font-weight:normal; font-size:14px; height:25px; line-height:25px; overflow:hidden;}
+.shaiku_user_info h1 .m_drdj { position:relative; top:3px; padding-left:8px;}
+.shaiku_user_info .m_fstpxh { height:20px; line-height:20px; font-size:12px; color:#888;}
+.shaiku_user_info .m_fstpxh span { padding-right:15px;}
+.shaiku_user_info .m_fstpxh span font { padding-left:5px;}
+.shaiku_user_info .m_guazu a,.shaiku_user_info .m_guazu a:hover,.shaiku_user_info .m_qxguazu a,.shaiku_user_info .m_qxguazu a:hover
+,.shaiku_user_info .m_wodekj a,.shaiku_user_info .m_wodekj a:hover{ display:block; text-indent:-9999px; width:64px; height:24px; background:url(../images/coolke-icon.png) no-repeat; margin-top:15px;}
+.shaiku_user_info .m_guazu a{background-position:0 -353px;}
+.shaiku_user_info .m_guazu a:hover{background-position:0 -384px;}
+.shaiku_user_info .m_qxguazu a{background-position:0 -421px;}
+.shaiku_user_info .m_qxguazu a:hover{background-position:0 -452px;}
+.shaiku_user_info .m_wodekj a{background-position:-472px -311px;}
+.shaiku_user_info .m_wodekj a:hover{background-position:-472px -342px;}
+
+.motif_focus .preNext,.m_hl_info_f a,.hot_i,.sk_m_share a,.m_pdgm_but a,.pdgm_goods,.buy_sum .save i,.buy_sum a,.buy_theme dl .hover_dt i,.sk_like_a,.sk_like_sum,.emotion,.sub_btn_comm{background:url(../images/motif.png) no-repeat;}
+.sk_like_share{width:400px; height:50px; overflow:hidden; padding: 0 0 30px 0; border-top:#f3f3f3 1px solid;}
+.sk_like_a,.sk_like_sum,.sk_ylike_a{float:left;}
+.sk_like_a{width:65px; height:26px; background: url("../images/coolke-icon.png") no-repeat;  background-position: -186px 0; text-indent:-9999px; margin-right:3px; display:inline;}
+.sk_ylike_a{width:65px; height:26px;  background: url("../images/coolke-icon.png") no-repeat; background-position: -509px -51px; text-indent:-9999px; margin-right:3px; display:inline;}
+.sk_like_sum{width:49px; height:26px; font-size:14px; background: url("../images/coolke-icon.png") no-repeat; background-position:-253px 0; line-height:26px; text-align:center; color:#bb422e;}
+.sk_m_share{height:29px; float:right;}
+.sk_fx_box{position:absolute; right:0px; top:0px; z-index:1;}
+.sk_m_share span,.sk_m_share a{float:left; height:29px; line-height:29px;}
+.sk_m_share span{ padding-right:5px; width:29px;}
+.bdsharebuttonbox { float:right; height:29px;}
+.bdsharebuttonbox .fxd { float:left; width:50px; height:29px; line-height:29px;}
+.bdsharebuttonbox a{float:left; overflow:hidden;background:url(../images/motif.png) no-repeat; text-indent:-9999px; margin-top:0;}
+.bdsharebuttonbox .bds_163{background:url(../images/motif.png) no-repeat; background-position:0px -336px; margin-top:0; padding:0; width:29px; display:none;}
+.bdsharebuttonbox .bds_163:hover{background:url(../images/motif.png) no-repeat; background-position:-9px -113px;}
+.bdsharebuttonbox .bds_sina{background:url(../images/motif.png) no-repeat; background-position:0px -336px; margin-top:0; padding:0; width:29px; height:29px;}
+.bdsharebuttonbox .bds_sina:hover{background:url(../images/motif.png) no-repeat; background-position:0px -370px; hegiht:29px;}
+.bdsharebuttonbox .bds_ren{background:url(../images/motif.png) no-repeat; display:none; background-position:-69px -113px; margin-top:0; padding:0; width:29px; height:29px;}
+.bdsharebuttonbox .bds_ren:hover{background:url(../images/motif.png) no-repeat; background-position:-69px -113px; height:29px;} 
+.bdsharebuttonbox .bds_zone{background:url(../images/motif.png) no-repeat; background-position:-37px -336px; margin:0 6px 0 0; padding:0; width:29px; height:29px;}
+.bdsharebuttonbox .bds_zone:hover{background:url(../images/motif.png) no-repeat; background-position:-37px -370px; height:29px;}
+.bdsharebuttonbox .bds_weixin1{background:url(../images/motif.png) no-repeat; background-position:-74px -336px; margin-top:0; padding:0; width:29px; height:29px;}
+.bdsharebuttonbox .bds_weixin1:hover{background:url(../images/motif.png) no-repeat; background-position:-74px -370px; height:29px;}
+.bdsharebuttonbox .bds_tqq1{background:url(../images/motif.png) no-repeat; background-position:-111px -336px; margin-top:0; padding:0; width:29px; height:29px;}
+.bdsharebuttonbox .bds_tqq1:hover{background:url(../images/motif.png) no-repeat; background-position:-111px -370px; height:29px;}
+
+
+.sk_comments_box{width:400px; overflow:hidden; float:left;}
+.sk_com_form p{padding:10px 0; width:400px; float:left;}
+.sk_com_form .input_text{width:390px; height:72px; background:url(../images/textarea_bg.gif) no-repeat; resize:none; padding:5px; color:#888888; font-size:12px; float:left;}
+.sk_com_form .emotion{background-position:-366px -219px; width:45px; height:25px; display:block; text-indent:-9999px; cursor:pointer; float:left;}
+.sk_com_form .shuru{float:left; height:24px; line-height:24px; padding-left:15px;}
+.sk_com_form .shuru font{font-size:12px; padding:0 5px; color:#bb422e;}
+.sk_com_form .sub_btn_comm{float:right; width:65px; height:24px; border:0; background-position:-203px -266px; cursor:pointer;}
+.sk_com_form .sub_btn_comm:hover{background:url(../images/motif.png) no-repeat; background-position:-203px -294px;}
+.sk_com_form .qqFace{background:#fff; padding:5px; border:#DFE6F6 1px solid;}
+.sk_comment_list{width:400px; overflow:hidden; border-top:#ccc 1px dashed; padding-top:10px;}
+.sk_comment_list dl{padding:10px 0; float:left; width:400px;}
+.sk_comment_list dt{width:36px; height:36px; float:left;}
+.sk_comment_list dd{width:350px; float:left; margin-left:10px; display:inline;}
+.sk_comment_list dd a{color:#bb422e;}
+.sk_comment_list dd .p1{height:16px; line-height:16px;}
+.sk_comment_list dd .p2{line-height:20px; width:290px; position:relative;}
+.sk_comment_list dd .p2 font{color:#999999; font-size:12px; padding-left:10px;}
+.sk_comment_list dd .p2 .hf{display:none; position:absolute; right:-40px; top:0px;}
+.sk_comment_list dd .p3{line-height:20px; color:#999999}
+
+.shaiku_more{width:400px; float:left; border-radius: 5px; height:34px; line-height:34px; background:#f5f5f5; margin:20px 0;}
+.shaiku_more a{display:block; text-align:center;}
+
+/*达人空间_酷吧列表*/
+.m_drkj_box {width:1000px; margin:0 auto; overflow:hidden;}
+.m_drkj_box .cjxkb_but{display:block; width:91px; height:32px; background:url(../images/coolke-icon.png) no-repeat;
+background-position:0px -307px; line-height:32px; padding-left:35px; font-size:14px; margin-bottom:21px;}
+.m_sydtu { padding-top:20px;}
+.m_sydtu img {width:1000px; height:300px;}
+.m_llxldjj { width:1000px; position:relative; height:132px;}
+.m_llxldjj .p1 {width:170px; height:170px; background:#fff; position:absolute; left:10px; top:-40px; text-align:center;}
+.m_llxldjj .p1 img {width:150px; height:150px; padding-top:10px;}
+.m_llxldjj div { padding:10px 0 0 195px; width:700px; }
+.m_llxldjj div h1 { font-size:16px; font-weight:normal; color:#000; height:28px; line-height:28px;}
+.m_llxldjj div h1 a { color:#000;}
+.m_llxldjj div h1 .m_daren { position:relative; top:3px; padding-left:5px;}
+.m_llxldjj div .m_wsxtin { margin:10px 0; overflow:hidden; height:24px;}
+.m_llxldjj div p { line-height:24px; overflow:hidden;}
+.m_llxldjj div .p2{hieght:48px; overflow:hidden;}
+.m_llxldjj div .p2 span { padding-right:25px;}
+.m_llxldjj div .p3 span { padding-left:15px;}
+.m_guanziu,.m_guanziu:hover,.m_qxguanziu,.m_qxguanziu:hover{width:64px; text-indent:-9999px; height:24px; display:block; position:absolute; right:0; top:10px; background:url(../images/coolke-icon.png) no-repeat;}
+.m_guanziu{background-position:-507px -156px ;}
+.m_guanziu:hover{background-position: -507px -187px;}
+.m_qxguanziu{background-position:-507px -224px;}
+.m_qxguanziu:hover{background-position:-507px -249px;}
+.xggrxx{width:64px; height:24px; display:block; position:absolute; right:0; top:10px; background:url(../images/coolke-icon.png) 0 0 no-repeat;
+background-position:-256px -208px; line-height:24px; color:#fff; text-align:center; text-indent:-9999px;}
+.xggrxx:hover{background-position:-256px -235px;}
+.m_drkjkbdh {width:998px; height:38px; background:#eee; border:1px solid #ddd; margin:20px 0;}
+.m_drkjkbdh li { float:left; height:38px; line-height:38px; font-size:16px; padding:0 40px;}
+.m_drkjkbdh li a { color:#000;}
+.m_drkjkbdh .on { background:#fff; border-right:1px solid #ddd;}
+
+.m_kblb_ul {width:110%; float:left;}
+.m_kblb_ul li {width:213px; height:414px; background:#fff; border:1px solid #dfdfdf; padding:10px; float:left; margin-right:20px; margin-bottom:20px; display:inline;}
+.m_kblb_ul li h1 {font-weight:normal; font-size:14px; height:20px; line-height:20px; overflow:hidden;}
+.m_kblb_ul li .m_tpsc { height:20px; line-height:20px; overflow:hidden; font-size:14px; padding:5px 0 12px 0;}
+.m_kblb_ul li .m_tpsc a{width:66px; color:#888888;}
+.m_kblb_ul li .m_tpsc .pic { display:block; float:left; background:url(../images/drkj_icon.png) left -57px no-repeat; height:20px; padding-left:21px;}
+.m_kblb_ul li .m_tpsc .guanz { display:block; float:left; background:url(../images/drkj_icon.png) left -82px no-repeat; height:20px; padding-left:26px;}
+.m_kblb_ul li.off { border:2px solid #a40000; width:213px; height:414px; padding:9px; position:relative;}
+.m_kblb_ul li .m_tu13 img {width:213px; height:284px;}
+.m_kblb_ul li .m_small{width:105%; height:69px; padding-top:3px;}
+.m_kblb_ul li .m_small p{width:69px; height:69px; float:left; padding-right:3px;}
+
+.m_kblb_ul li .cool-delete{background:url(../images/coolke-icon.png) no-repeat; display:none; position:absolute; right:10px; top:10px; z-index:1;
+background-position:-119px -250px; width:17px; height:17px; overflow:hidden; text-indent:-9999px;}
+.m_kblb_ul li.off .cool-delete:hover{background-position:-147px -250px;}
+.m_kblb_ul li.off .cool-delete{background:url(../images/coolke-icon.png) no-repeat; display:block; position:absolute; right:10px; top:10px; z-index:1;
+background-position:-119px -250px; width:17px; height:17px; overflow:hidden; text-indent:-9999px;}
+
+.m_kblb_ul li .cool-edit{background:url(../images/coolke-icon.png) no-repeat; display:none; position:absolute; right:35px; top:10px; z-index:1;
+background-position:0px -526px; width:17px; height:17px; overflow:hidden; text-indent:-9999px;}
+.m_kblb_ul li.off .cool-edit:hover{background-position:-20px -526px;}
+.m_kblb_ul li.off .cool-edit{background:url(../images/coolke-icon.png) no-repeat; display:block; position:absolute; right:35px; top:10px; z-index:1;
+background-position:0px -526px; width:17px; height:17px; overflow:hidden; text-indent:-9999px;}
+
+
+/*酷客作品介绍页*/
+.kukezp_box{width:1000px; margin:0 auto;  padding:30px 0 0 0;}
+.kukezp_l{float:left; width:745px; overflow:hidden;}
+.kukezp_info{width:703px; border:#dfdfdf 1px solid; padding:20px 20px; background:#fff;}
+.kukezp_info h1 { font-size:24px; text-align:center; line-height:32px; margin-bottom:20px;}
+.kk_title{width:510px; margin:0 auto;}
+.kk_title h1{font-size:12px; font-weight:normal; line-height:25px; float:left; color:#595959; text-align:right; padding-right:10px;}
+.kk_title h1 span { padding-left:10px;}
+.kk_title .kukezp_xhscgm{width:294px; float:right; height:62px; overflow:hidden;}
+.kk_title .kukezp_xhscgm a{background:url(../images/coolke-icon.png) no-repeat; float:left; line-height:83px; height:62px; text-align:center; font-size:15px; color:#595959;}
+.kk_title .kukezp_xhscgm .kk_like{width:81px; background-position:-306px -85px;}
+.kuke_xihuan{float:left; padding:0 5px 10px 0;}
+.kk_sj_left{float:right; width:330px; position: relative; overflow:hidden;}
+.kk_title .kukezp_xhscgm .kk_sc{width:80px; background-position:-387px -85px;}
+.kk_title .kukezp_xhscgm .kk_gom{width:97px; text-align:left; background-position:-475px -85px; margin-left:8px; line-height:20px; color:#fff; padding-left:28px; padding-top:10px;}
+.kk_shux_box{width:683px; float:left; border:#eee 1px solid; background:#fafafa; margin-top:15px; padding:8px 10px; line-height:20px; color:#666;}
+.kk_shux_box dl{width:703px; float:left; color:#666666;}
+.kk_shux_box dt,.kk_shux_box dd{float:left; border-bottom:#fff 1px solid; padding:9px 0;}
+.kk_shux_box dt{background:#f8f8f8; width:95px; text-align:right; padding-right:5px;}
+.kk_shux_box dd{background:#fcfcfc; width:246px; padding-left:5px;}
+.kk_info_img{width:703px; float:left; text-align:center; overflow:hidden; padding:33px 0 50px 0;}
+.kk_info_img img{max-width:705px; margin-bottom:20px;}
+
+.kkzp_comments_box{width:643px; margin-left:30px; display:inline;}
+.kkzp_comments_box .sk_com_form .input_text{width:630px; border:#ccc 1px solid; background:none; border-radius:5px;}
+.kkzp_comments_box .sk_com_form p{width:643px;}
+.kkzp_comments_box .sk_comment_list{width:643px;}
+.kkzp_comments_box .sk_comment_list dl{width:643px;}
+.kkzp_comments_box .sk_comment_list dd{width:556px;}
+.kkzp_comments_box .sk_comment_list dd .p2{width:540px;}
+.kkzp_more{background:#F5F5F5; border-radius: 5px; float: left; height: 34px; line-height: 34px; margin: 20px 0 0 30px;
+ width:643px;}
+.kkzp_more a{text-align:center; display:block;}
+.TAshej_box{width:745px;}
+.TAshej_box h3{padding:32px 0 20px 0; color:#222; font-size:16px; font-weight:normal;}
+.kukezp_r{width:233px; float:right;}
+.kkzp_user_info{width:233px; border:#ccc 1px solid; background:#fff; float:left; padding-bottom:20px;}
+.kkzp_user_info .kkzp_user_tou{width:150px; height:150px; padding:20px 42px 0px 42px;}
+.kkzp_user_info h1 {color: #000000; font-size: 12px; font-weight: normal; height: 28px; line-height: 28px; padding:0 42px; text-align:center;}
+.kkzp_user_info h1 .m_daren { padding-left: 5px; position: relative; top: 3px;}
+.kkzp_jpxhfs{padding:10px 23px 15px 28px; height:32px;}
+.kkzp_jpxhfs a{float:left; width:60px; border-right:#ccc 1px solid; text-align:center;}
+.kkzp_jpxhfs a font{color:#bb422e; font-size:12px;}
+.kkzp_jgz,.kkzp_jgz:hover,.kkzp_gerkj,.kkzp_gerkj:hover,.kkzp_quxgz,.kkzp_quxgz:hover{width:193px; height:32px; line-height:32px; background:url(../images/coolke-icon.png) no-repeat; 
+ display:block; margin:0 auto; text-align:left; color:#bb422e; font-size:15px; text-indent:-9999px;}
+.kkzp_jgz{background-position:-70px -352px;}
+.kkzp_jgz:hover{background-position:-70px -386px;}
+.kkzp_gerkj{background-position:-70px -437px;}
+.kkzp_gerkj:hover{background-position:-70px -481px;}
+.kkzp_quxgz{background-position:-270px -368px;}
+.kkzp_quxgz:hover{background-position:-270px -402px;}
+.kkzp_jgz font{font-size:20px; float:left; padding-left:65px;}
+.TAkb_box{width:235px; float:left;}
+.TAkb_box h3 {color: #222222; font-size: 16px; font-weight: normal; padding: 20px 0 12px 0; float:left; width:235px;}
+.TAkb_box h3 span{float:left;}
+.TAkb_box h3 a{float:right; font-size:12px; line-height:20px; color:#595959;}
+
+.coolke_kbname{padding-bottom:16px; overflow:hidden;}
+.coolke_kbname h1{height:33px; line-height:33px; font-weight:normal; font-size:24px; float:left;}
+.coolke_kbname .coolke_picname{height:20px; width:200px; line-height:20px; margin-top:6px; float:right;}
+.coolke_kbname .coolke_picname span{padding-left:21px; float:right;}
+.coolke_kbname .coolke_picname .coolke-look{float:right;}
+.coolke_kbname .coolke_picname a{color:#888; font-size:14px;}
+.coolke_kbname .coolke_picname a font{color:#bb422e; font-size:14px;}
+.coolke_kbname .coolke_picname .cool_edit{padding-right:16px;}
+.coolke_kbname .cool_edit a,.coolke_kbname .cool_dele a{background:url(../images/coolke-icon.png) no-repeat; padding-left:16px;}
+.coolke_kbname .cool_edit a{background-position:0px -272px;}
+.coolke_kbname .cool_dele a{background-position:-58px -272px;}
+.coolke_kbname .cool_edit a:hover{background-position:0px -250px; color:#a40000;}
+.coolke_kbname .cool_dele a:hover{background-position:-58px -250px; color:#a40000;}
+.coool_space .cool-delete{background:url(../images/coolke-icon.png) no-repeat; display:none; position:absolute; right:0px; top:0px; z-index:1;
+background-position:-119px -250px; width:17px; height:17px; overflow:hidden; text-indent:-9999px;}
+.cool-delete:hover{background-position:-147px -250px;}
+.coool_space:hover .cool-delete{display:block;}
+#TAde_bottom{padding-bottom:0px;}
+.TAdkb{color: #222222; font-size: 16px; font-weight: normal; padding: 20px 15px 12px 15px; float:left; width:203px;}
+.TAdkb span{float:left;}
+.TAdkb a{float:right; font-size:12px; line-height:20px; color:#595959;}
+.TAde_menu{float:left;padding-left:15px;}
+.TAde_menu li{width:185px; height:30px; line-height:30px; float:left; margin-bottom:8px; display:inline; background:url(../images/coolke-icon.png) no-repeat; background-position:0px -210px; padding:0 9px;}
+.TAde_menu li a{float:left; color:#595959;}
+.TAde_menu li span{float:right;}
+
+/*流行趋势滚动CSS开始*/
+.cool_productshow{width:1000px; margin:0 auto;  overflow:hidden; position:relative;}
+.cool_productshow .productshow_box{width:1000px; overflow:hidden; float:left; height:307x; position:relative;}
+.cool_productshow .scrollcontainer{width:1000px; overflow:hidden;  float:left;}
+.cool_productshow .scrollcontainer ul{float:left; overflow:hidden; width:105%;}
+.cool_productshow .scrollcontainer li{float:left; width:235px; overflow:hidden; height:353px; text-align:center; margin-top:20px; margin-right:20px; }
+.cool_productshow .scrollcontainer li dl dt{float:left; width:235px; height:353px; overflow:hidden; position:relative;}
+.cool_productshow .scrollcontainer li dl dt img{width:235px; height:353px; transform: scale(1, 1);-ms-transform:scale(1, 1);-webkit-transform: scale(1, 1);-webkit-transition-timing-function:linear;-moz-transition-timing-function:linear;-o-transition-timing-function:linear;transition-timing-function:linear;-webkit-transition-duration:400ms;-moz-transition-duration:400ms;-o-transition-duration:400ms;transition-duration:400ms;}
+.cool_productshow .scrollcontainer li dl dt:hover img{width:235px; height:353px; transform: scale(1.04, 1.04);-ms-transform: scale(1.04, 1.04);-webkit-transform: scale(1.04, 1.04);-webkit-transition-timing-function:linear;-moz-transition-timing-function:linear;-o-transition-timing-function:linear;transition-timing-function:linear;-webkit-transition-duration:400ms;-moz-transition-duration:400ms;-o-transition-duration:400ms;transition-duration:400ms;}
+.cool_productshow .scrollcontainer li dl dt p{position:absolute; left:0px; bottom:0px; background:#000; height:120px; line-height:120px; width:235px; overflow:hidden; display:none; text-align:center;  filter:alpha(opacity=100); -moz-opacity:10; -khtml-opacity: 10; opacity:10; }
+.cool_productshow .scrollcontainer li dl dt p a{color:#fff; font-size:13px; display:block; height:120px; width:235px;}
+.cool_productshow .scrollcontainer li dl dd{float:left; width:80px; overflow:hidden; margin-left:8px; display:inline;}
+.cool_productshow .scrollcontainer li dl dd p{width:80px; height:98px; overflow:hidden; margin-bottom:5px; position:relative;}
+.cool_productshow .scrollcontainer li dl dd p span{ display:block; width:80px; height:99px; position:absolute; left:0px; top:0px; background:#000; z-index:1; filter:alpha(opacity=50);-moz-opacity:0.50;opacity:0.5;}
+.cool_productshow .scrollcontainer li dl dd p img{width:80px; height:98px;}
+/*流行趋势滚动CSS结束*/
+
+
+/* 新建酷吧 */
+.cool-box{width:998px; border:#ccc 1px solid; margin:30px auto 30px auto; height:665px; background:#fff;}
+.cool-box h1{padding:34px 0 50px 50px; font-size:18px; font-weight:normal;}
+.cool-box dl,.cool-box dt,.cool-box dd{float:left;}
+.cool-box dl{padding-bottom:30px;}
+.cool-box dt{width:138px; text-align:right; height:30px; font-size:13px; line-height:30px;}
+.cool-box dd{width:500px;  padding:0 5px;}
+.cool-box dd .cok_title{width:480px; height:30px; background:url(../images/cok-bg.gif) no-repeat; font-size:13px; padding:0 10px;}
+.cool-box dd .cok_content{width:480px; background:url(../images/cok-cont-bg.gif) no-repeat; height:74px; padding:10px; overflow:hidden; font-size:13px; resize:none;}
+.cool-box .contdd{height:126px;}
+.cool-box .contdd .cok_font{height:32px; line-height:32px; color:#888888;}
+.cool-box .contdd .cok_font font{font-size:12px; color:#a40000;}
+.cool-box .cok-err{width:340px;}
+.cool-box .cok-err .cok-error{height:30px; line-height:30px; background:url(../images/cok-cuo.gif) left center no-repeat;
+padding-left:26px; color:#bb422e;}
+.cool-box .cok-err .cok-ok{background: url("../images/error_icon.gif") no-repeat 0px 3px;}
+.cool-box .cok-but-div{padding-left:144px;}
+.cool-box .cok-but-div .cok-but{width:133px; height:37px; background: url(../images/coolke-icon.png) no-repeat -343px -198px; cursor: pointer;}
+.cool-box .cok-js{padding-bottom:10px;}
+.cool-box .cok-but-div .cok-but{width:133px; height:37px; background: url(../images/coolke-icon.png) no-repeat -343px -236px; cursor: pointer;}
+
+
+.coolke-copy{float:right; height:32px; line-height:32px; width:520px; overflow:hidden; color:#888;}
+.copy-padding{padding:0 25px 25px 0;}
+
+.m_scsj { height:20px; line-height:20px; overflow:hidden; margin:10px 0;}
+.m_scsj span { padding-left:10px;}

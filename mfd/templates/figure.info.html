@@ -1,0 +1,447 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=order&act=view&id={$order_id}">返回订单详情</a></li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="figure_form">
+    <table class="infoTable">
+      
+      
+      <tr>
+        <th class="paddingT15"> {$lang.lw}(范围:30-62):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="lw" type="text" id="lw" value="{$figure.lw|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.xw}(范围:72-175):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="xw" type="text" id="xw" value="{$figure.xw|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.zyw}(范围:55-185):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="zyw" type="text" id="zyw" value="{$figure.xw|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.tw}(范围:70-200):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="tw" type="text" id="tw" value="{$figure.tw|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.stw}(范围:22-68):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="stw" type="text" id="stw" value="{$figure.stw|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.zjk}(范围:31-70):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="zjk" type="text" id="zjk" value="{$figure.zjk|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.yxc}(范围:30-85):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="yxc" type="text" id="yxc" value="{$figure.yxc|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.zxc}(范围:30-85):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="zxc" type="text" id="zxc" value="{$figure.zxc|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.qjk}(范围:36-68):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="qjk" type="text" id="qjk" value="{$figure.qjk|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.hyc}(范围:47-105):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="hyc" type="text" id="hyc" value="{$figure.hyc|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.hyjc}(范围:35-60):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="hyjc" type="text" id="hyjc" value="{$figure.hyjc|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.qyj}(范围:37-60):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="qyj" type="text" id="qyj" value="{$figure.qyj|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.yw}(范围:60-190):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="yw" type="text" id="yw" value="{$figure.yw|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.tgw}(范围:45-113):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="tgw" type="text" id="tgw" value="{$figure.tgw|escape}" /></td>
+      </tr>
+      <!-- 
+     <tr>
+        <th class="paddingT15"> {$lang.hd}:</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="hd" type="text" id="hd" value="{$figure.hd|escape}" />
+                    </td>
+      </tr>
+       -->
+      <tr>
+        <th class="paddingT15"> {$lang.td}(范围:55-120):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="td" type="text" id="td" value="{$figure.td|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.hyg}(范围:0-17):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="hyg" type="text" id="hyg" value="{$figure.hyg|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.qyg}(范围:0-20):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="qyg" type="text" id="qyg" value="{$figure.qyg|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.ykc}(范围:70-135):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="ykc" type="text" id="ykc" value="{$figure.ykc|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.zkc}(范围:70-135):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="zkc" type="text" id="zkc" value="{$figure.zkc|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.xiw}(范围:33-103):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="xiw" type="text" id="xiw" value="{$figure.xiw|escape}" /></td>
+      </tr>
+      
+      <tr>
+        <th class="paddingT15"> 衬衫左碗围(范围:14-33):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="part_label_10130" type="text" id="part_label_10130" value="{$figure.part_label_10130|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> 衬衫右碗围(范围:14-33):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="part_label_10131" type="text" id="part_label_10131" value="{$figure.part_label_10131|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> 大衣后衣长(范围:70-140):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="part_label_10725" type="text" id="part_label_10725" value="{$figure.part_label_10725|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> 马甲后衣长(范围:40-82):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="part_label_10726" type="text" id="part_label_10726" value="{$figure.part_label_10726|escape}" /></td>
+      </tr>
+      
+      <tr>
+        <th class="paddingT15"> {$lang.kk}(范围:28-80):</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="kk" type="text" id="kk" value="{$figure.kk|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.height}:</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="height" type="text" id="height" value="{$figure.height|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.weight}:</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" class="infoTableInput2" name="weight" type="text" id="weight" value="{$figure.weight|escape}" /></td>
+      </tr>
+      <tr style="display:none;">
+        <th class="paddingT15"> {$lang.userid}:</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" readonly="true" class="infoTableInput2" name="userid" type="text" id="userid" value="{$figure.userid|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> 会员:</th>
+        <td class="paddingT15 wordSpacing5"><input  disabled="disabled" 
+          <!--{if $smarty.get.act neq 'add'}-->
+          readonly="true"
+          <!--{/if}-->
+          class="infoTableInput2" name="user_name" type="text" id="user_name" value="{$figure.realname|escape}" /> </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.unit}:</th>
+        <td class="paddingT15 wordSpacing5"> cm </td>
+      </tr>
+      {if $figure.create_date}
+      <tr>
+        <th class="paddingT15"> {$lang.create_date}:</th>
+        <td class="paddingT15 wordSpacing5"> {$figure.create_date|escape} </td>
+      </tr>
+      {/if}
+      <tr>
+        <th>左肩</th>
+        <td>
+            <ul id="19" class="hline">
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" checked="true" name="body_type_19" value="10087" onfocus="$.csAddOrder.playShow(-1,-1,10087);">
+                  正常-A</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_19" value="10093" onfocus="$.csAddOrder.playShow(-1,-1,10093);">
+                  轻微溜肩-B</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_19" value="10068" onfocus="$.csAddOrder.playShow(-1,-1,10068);">
+                  中度溜肩-C</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_19" value="10069" onfocus="$.csAddOrder.playShow(-1,-1,10069);">
+                  严重溜肩-D</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_19" value="10094" onfocus="$.csAddOrder.playShow(-1,-1,10094);">
+                  轻微耸肩-E</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_19" value="10072" onfocus="$.csAddOrder.playShow(-1,-1,10072);">
+                  中度耸肩-F</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_19" value="10073" onfocus="$.csAddOrder.playShow(-1,-1,10073);">
+                  严重耸肩-G</label>
+              </li>
+            </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>右肩</th>
+        <td>
+           <ul id="20" class="hline">
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" checked="true" name="body_type_20" value="10088" onfocus="$.csAddOrder.playShow(-1,-1,10088);">
+                  正常-A</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_20" value="10095" onfocus="$.csAddOrder.playShow(-1,-1,10095);">
+                  轻微溜肩-B</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_20" value="10070" onfocus="$.csAddOrder.playShow(-1,-1,10070);">
+                  中度溜肩-C</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_20" value="10071" onfocus="$.csAddOrder.playShow(-1,-1,10071);">
+                  严重溜肩-D</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_20" value="10096" onfocus="$.csAddOrder.playShow(-1,-1,10096);">
+                  轻微耸肩-E</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_20" value="10074" onfocus="$.csAddOrder.playShow(-1,-1,10074);">
+                  中度耸肩-F</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_20" value="10075" onfocus="$.csAddOrder.playShow(-1,-1,10075);">
+                  严重耸肩-G</label>
+              </li>
+            </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>肚</th>
+        <td>
+           <ul id="24" class="hline">
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" checked="true" name="body_type_24" value="10090" onfocus="$.csAddOrder.playShow(-1,-1,10090);">
+                  正常</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_24" value="10079" onfocus="$.csAddOrder.playShow(-1,-1,10079);">
+                  凸肚</label>
+              </li>
+            </ul>
+        </td>
+      </tr>
+      <tr>
+         <th>手臂</th>
+         <td>
+            <ul id="25" class="hline">
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" checked="true" name="body_type_25" value="10091" onfocus="$.csAddOrder.playShow(-1,-1,10091);">
+                  正常</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_25" value="10080" onfocus="$.csAddOrder.playShow(-1,-1,10080);">
+                  手臂靠前</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_25" value="10089" onfocus="$.csAddOrder.playShow(-1,-1,10089);">
+                  轻微手臂靠后</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_25" value="10081" onfocus="$.csAddOrder.playShow(-1,-1,10081);">
+                  严重手臂靠后</label>
+              </li>
+            </ul>
+         </td>
+      </tr>
+      <tr>
+         <th>臀</th>
+         <td>
+            <ul id="26" class="hline">
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" checked="true" name="body_type_26" value="10092" onfocus="$.csAddOrder.playShow(-1,-1,10092);">
+                  正常</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_26" value="10082" onfocus="$.csAddOrder.playShow(-1,-1,10082);">
+                  严重凸臀</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_26" value="10083" onfocus="$.csAddOrder.playShow(-1,-1,10083);">
+                  严重坠臀</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_26" value="10084" onfocus="$.csAddOrder.playShow(-1,-1,10084);">
+                  严重平臀</label>
+              </li>
+            </ul>
+         </td>
+      </tr>
+      <tr>
+         <th>臀</th>
+         <td>
+            <ul id="26" class="hline">
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" checked="true" name="body_type_26" value="10092" onfocus="$.csAddOrder.playShow(-1,-1,10092);">
+                  正常</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_26" value="10082" onfocus="$.csAddOrder.playShow(-1,-1,10082);">
+                  严重凸臀</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_26" value="10083" onfocus="$.csAddOrder.playShow(-1,-1,10083);">
+                  严重坠臀</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_26" value="10084" onfocus="$.csAddOrder.playShow(-1,-1,10084);">
+                  严重平臀</label>
+              </li>
+            </ul>
+         </td>
+      </tr>
+      <tr>
+         <th>着装风格&nbsp;上衣</th>
+         <td>
+            <ul id="clothing_style_3" class="hline">
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_3" id="body_type_3_10280" value="10280">
+                  非常修身</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_3" id="body_type_3_10281" value="10281">
+                  很修身</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_3" id="body_type_3_10282" value="10282">
+                  修身</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_3" id="body_type_3_10283" value="10283">
+                  正常偏瘦</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" checked="true" name="body_type_3" id="body_type_3_10284" value="10284">
+                  正常</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_3" id="body_type_3_10285" value="10285">
+                  正常偏肥</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_3" id="body_type_3_10286" value="10286">
+                  宽松</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_3" id="body_type_3_10287" value="10287">
+                  很宽松</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_3" id="body_type_3_10288" value="10288">
+                  非常宽松</label>
+              </li>
+            </ul>
+         </td>
+      </tr>
+      <tr>
+         <th>着装风格&nbsp;西裤</th>
+         <td>
+            <ul id="clothing_style_2000" class="hline">
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_2000" id="body_type_2000_10280" value="10280">
+                  非常修身</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_2000" id="body_type_2000_10281" value="10281">
+                  很修身</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_2000" id="body_type_2000_10282" value="10282">
+                  修身</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" checked="true" name="body_type_2000" id="body_type_2000_10284" value="10284">
+                  正常</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_2000" id="body_type_2000_10285" value="10285">
+                  正常偏肥</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_2000" id="body_type_2000_10286" value="10286">
+                  宽松</label>
+              </li>
+              <li>
+                <label>
+                  <input  disabled="disabled" type="radio" class="radio" name="body_type_2000" id="body_type_2000_10287" value="10287">
+                  很宽松</label>
+              </li>
+            </ul>
+         </td>
+      </tr>
+      <tr>
+         <th></th>
+         <td>
+            <ul id="clothing_style_2000" class="hline">
+              <li>
+                <label><input  disabled="disabled" type="radio" class="radio" checked="true" name="styleLength" value="20100">正常款</label>
+              </li>
+              <li>
+                <label><input  disabled="disabled" type="radio" class="radio" name="styleLength" value="20101">长款</label>
+              </li>
+              <li>
+                <label><input  disabled="disabled" type="radio" class="radio" name="styleLength" value="20102">短款</label>
+              </li>
+            </ul>
+         </td>
+      </tr>
+      
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

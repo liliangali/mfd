@@ -1,0 +1,61 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>活动列表</span></li>
+    <li><span>新增活动</span></li>
+  </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="promotion" />
+                <input type="hidden" name="act" value="employee" />
+                <input type="hidden" name="id" value="{$id}">
+                员工编号:<input class="queryInput2" type="text" value="{$query.num}" name="num" class="pick_date" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+        </form>
+    </div>
+    <div class="fontr">
+        {if $orders}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <tr class="tatr1">
+            <!-- <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td> -->
+            <td width="13%"><span ectype="order_by" fieldname="num">编号</span></td>
+            <td width="8%">姓名</td>
+            <td width="12%">部门</td>
+            <td width="10%">活动编码</td>
+            <td width="10%">开始时间</td>
+            <td width="10%">结束时间</td>
+            <td width="7%">状态</td>
+            <!-- <td width="16%">操作</td> -->
+        </tr>
+        <!--{foreach from=$list item=item}-->
+        <tr class="tatr2">
+            <!-- <td class="firstCell"><input type="checkbox" class="checkitem" value="{$item.id}" /></td> -->
+            <td>{$item.num}</td>
+            <td>{$item.name|escape}</td>
+            <td>{$item.com|escape}</td>
+            <td>{$item.one_id|escape}</td>
+            <td>{$item.start_time|date:Y-m-d}</td>
+            <td>{$item.end_time|date:Y-m-d}</td>
+            <td><img src="{if $item.status == '0'}{res file=style/images/right.gif}{else}{res file=style/images/wrong.gif}{/if}">{* res file=style/images/positive_disabled.gif *}</td>
+            <!-- <td></td> -->
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+<div class="pageLinks">
+            {if $list}{include file=page.bottom.html}{/if}
+        </div>
+    <div class="clear"></div>
+</div>
+
+{include file="footer.html"}

@@ -1,0 +1,104 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>推送记录</span></li>
+        <!-- {if $ins > 0 or $iny > 1} -->
+        <li><a class="btn1" data-id="{$ins}" data-iny="{$iny}" >推送资讯</a></li>
+        <!-- {else} -->
+        <!-- {if $tr == 1} -->
+         <li><a class="btn1" href="index.php?app=informations&amp;act=add&tr=1">推送资讯</a></li>
+        <!-- {elseif $tr == 2} -->
+         <li><a class="btn1" href="index.php?app=informations&amp;act=add&tr=2">推送资讯</a></li>
+        <!-- {else} -->
+         <li><a class="btn1" href="index.php?app=informations&amp;act=add">推送资讯</a></li>
+        <!-- {/if} -->
+       
+        <!-- {/if} -->
+    </ul>
+ 
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $information}-->
+        <tr class="tatr1">
+             <td align="left">ID</td>
+            <td>标题</td>
+            <td align="left">通知内容</td>
+             <td align="left">推送平台</td>
+             <td align="left">当前状态</td>
+             <td align="left">发布时间</td>
+             <td align="left">发布者</td>
+            <td>{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$information item=infor}-->
+        <tr class="tatr2">
+            <td>{$infor.id}</td>
+            <td>{$infor.title}</td>
+             <!-- {if $infor.con_type ==1} -->
+            <td>{$infor.content}</td>
+            <!-- {else} -->
+             <td>
+             <!-- {foreach from=$infor.gallery item=in} -->
+             <img src="{$in.l_img}" width="80" height="100"/>
+             <!-- {/foreach} -->
+             </td>
+            <!-- {/if} -->
+            <!-- {if $infor.trade==1} -->
+             <td>ios</td>
+            <!-- {elseif $infor.trade==2} -->
+            <td>android</td>
+            <!-- {else} -->
+            <td>全部平台</td>
+            <!-- {/if} -->
+           
+            <!-- {if $infor.state==1} -->
+            <td>开启</td>
+            <!-- {else} -->
+             <td>已关闭</td>
+            <!-- {/if} -->
+            <td>{$infor.time}</td>
+            <td>{$infor.user}</td>
+             <td>
+                <a href="index.php?app=informations&amp;act=check&amp;id={$infor.id}">详情</a>
+                <!-- {if $infor.state==1} -->
+                |<a href="javascript:drop_confirm('关闭后当前通知将停止推送，确认关闭？', 'index.php?app=informations&amp;act=close&amp;id={$infor.id}');">关闭</a>
+			    <!-- {/if} -->
+			</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $suit_list}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+<script>
+$(document).ready(function(){
+$('span[ectype="inline_edit"]').unbind('click');
+$.getScript(SITE_URL+"/includes/libraries/javascript/inline_edit_admin.js");
+
+$('.btn1').click(function(){
+	var ins=$(".btn1").attr("data-id")
+	var iny=$(".btn1").attr("data-iny")
+	if(ins > 0 || iny>1)
+		{
+		alert("当前有正在进行的通知，请先关闭后才能推送新的通知！");
+		}
+})
+
+
+
+})
+</script>
+{include file="footer.html"}

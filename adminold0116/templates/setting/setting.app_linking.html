@@ -1,0 +1,88 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=setting&amp;act=base_setting">{$lang.base_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=base_information">{$lang.base_information}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=email_setting">{$lang.email_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=captcha_setting">{$lang.captcha_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=store_setting">{$lang.store_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=credit_setting">{$lang.credit_setting}</a></li>
+		<li><a class="btn1" href="index.php?app=setting&amp;act=subdomain_setting">{$lang.subdomain_setting}</a></li>
+		<li><a class="btn1" href="index.php?app=setting&amp;act=appupdate_setting">{$lang.app_setting}</a></li>
+	   <li><span>{$lang.app_linking}</span></li>
+       <!-- <li><a class="btn1" href="index.php?app=setting&amp;act=creditscore_setting">{$lang.creditscore_setting}</a></li> -->
+		<!-- <li><a class="btn1" href="index.php?app=setting&amp;act=profit_setting">{$lang.profit_setting}</a></li> -->
+    </ul>
+</div>
+<style type="text/css">
+	.box input{
+		width:500px;
+	}
+</style>
+<form method="post">
+<div class="order_form">
+	<h1>{$lang.heading}：</h1>
+
+	<div >
+
+			<table class="paddingT15"  >
+				<tr>
+					<td class="paddingT15"></td>
+					<td class="paddingT15 wordSpacing5">
+				</tr>
+				<tr>
+					<td class="paddingT15"></td>
+					<td class="paddingT15 wordSpacing5">
+						<div class='box'><table>
+							<tr>
+								<td class="paddingT15">{$lang.android_share_link}:</td>
+								<td class="paddingT15 wordSpacing5">
+									<input type="text" name="android_share_link" value="{$linking.android_share_link}" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+<!-- 								   <span class="grey">麦富迪app注册</span>  -->
+								</td>
+							</tr>
+							<tr>
+								<td class="paddingT15">{$lang.ios_share_link}:</td>
+								<td class="paddingT15 wordSpacing5">
+									<input type="text" name="ios_share_link" value="{$linking.ios_share_link}" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<!-- <span class="grey">麦富迪app注册</span>  -->
+								</td>
+							</tr>
+							<tr>
+								<td class="paddingT15">{$lang.android_mfd_link}:</td>
+								<td class="paddingT15 wordSpacing5">
+									<input type="text" name="android_mfd_link" value="{$linking.android_mfd_link}" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <!-- <span class="grey">麦富迪app下载</span> --> 
+								</td>
+							</tr>
+							<tr>
+								<td class="paddingT15">{$lang.ios_mfd_link}:</td>
+								<td class="paddingT15 wordSpacing5">
+									<input type="text" name="ios_mfd_link" value="{$linking.ios_mfd_link}" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<!-- <span class="grey">麦富迪app下载</span>  -->
+								</td>
+							</tr>
+
+
+						</table></div>
+					</td>
+				</tr>
+				<tr>
+				<th></th>
+				<td class="ptb20"><input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+					<input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />        
+				</td>
+				</tr>
+			</table>
+		
+	</div>
+	<div class="clear"></div>
+</div>
+
+</form>
+
+{include file="footer.html"}

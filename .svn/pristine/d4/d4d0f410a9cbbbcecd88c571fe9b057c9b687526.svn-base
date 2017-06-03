@@ -1,0 +1,171 @@
+{include file=member.header.html}
+        <div class="kkzx_box">
+
+{include file=member.menu.html}
+    <!--sortlist end-->
+
+        <script type="text/javascript" src="{$img_url}/js/jquery.form.js"></script>
+
+    <script>
+
+        function getCity(){
+            var province = $("#province").val();
+            $.ajax({
+                "url":"/index.php/club-getCity.html",
+                "data": "id=" + province ,
+                "type": "GET",
+                "success": function(data) {
+                    var data = eval( "(" + data + ")" );
+                    $("#city").empty();
+                    for(i = 0;i < data.length;i++){
+                        $("#city").append("<option value='"+data[i].region_id+"'>"+data[i].region_name+"</option>");
+                    }
+                }
+            });
+        }
+
+
+
+        $(document).ready(
+		function() {
+			$('#up_file').change(function(){
+				$('#wait_up').html('上传中请等待...');
+				
+				var r  = 10000*Math.random();
+				var options = {
+						url:'/index.php/kuke-zone_upload.html?r='+r,
+						success: function(data) {
+							var data = eval( "(" + data + ")" );
+							//alert(data);
+							$('#wait_up').html('');
+							$("#zone_img").val(data);
+							$("#show_img").attr('src',data);
+							return 1;
+						} 
+				};
+		
+				$('#myForm').ajaxSubmit(options);
+	        
+			});
+		}
+);
+	
+</script>
+
+  <form id='myForm' action='/index.php/kuke-userinfo.html?opt=1' method='post'  enctype="multipart/form-data" >
+  
+  <input type='hidden' name='zone_img' id='zone_img' />
+  
+  <div class="aqsc_box">
+    <h1 class="grzl">个人资料</h1>
+    <div class="grzl_xgtx">
+      <p class="p1"><a href="#"><img src="{$visitor.avatar}"/></a></p>
+      <div class="xgtx_tcc_1" onMouseOver="this.className='xgtx_tcc_2'" onMouseOut="this.className='xgtx_tcc_1'">
+        <div><a href="/index.php/kuke-avatar.html">修改头像</a></div>      
+      </div>
+    </div>
+    
+    <div class="xgtxgrzl">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%" class="yxxgbg">
+
+        
+        <tr>
+          <th><span>*</span>昵称：</th>
+          <td class="licen"><input type="text" value="{$visitor.nickname}" name='nickname' maxlength=10 />最多10个汉字(字符)</td>
+        </tr>
+        
+        <tr>
+          <th>类型：</th>
+          <td>{$visitor.level.name}</td>
+        </tr>
+      
+      </table>
+      
+     <div class="m_txgdx">
+       <p class="xtyxxixi">选填以下信息，让我们更了解你</p>
+       <table cellpadding="0" cellspacing="0" border="0" width="100%">
+          <tr>
+            <th valign="top">个性签名：</th>
+            <td class="m_wbyu"><textarea name="signature" cols="" rows="" maxlength=150>{$visitor.signature}</textarea></td>
+          </tr>
+          <tr>
+            <th valign="top">个人描述：</th>
+            <td class="m_wbyu"><textarea name="memo" cols="" rows="" maxlength=150 >{$visitor.memo}</textarea></td>
+          </tr>
+          <tr>
+            <th valign="top" style="padding-top:55px;">封面图片：</th>
+            <td style="padding-top:8px;">
+             <img id='show_img' src="{$img_url}/images/kuke_fm.jpg" style="width:322px; height:97px;"/>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td class="m_xztp">
+             <div>
+               选择图片
+               <input type="file"  name='up_file' id='up_file' />
+             </div>
+             <div id='wait_up' style="background:none; width:auto;"></div>
+              <p>建议上传宽度为1000，高度为300的图片为最佳。</p>
+            </td>
+          </tr>                     
+          <tr>
+            <th>真实姓名：</th>
+            <td class="licen"><input type="text" name='real_name' value="{$visitor.real_name}" maxlength=10 /></td>
+          </tr>
+          
+          <tr>
+            <th>性别：</th>
+            <td class="xinbie">
+            	<input type="radio" name="gender" value=1 {if $visitor.gender == 1}checked="checked" {/if} /><span>男</span>
+            	<input type="radio" name="gender" value=2 {if $visitor.gender == 2}checked="checked" {/if} /><span>女</span>
+            </td>
+          </tr> 
+          <tr>
+            <th>省市：</th>
+            <td class="xinbie">
+            	<select name='province' id='province' onchange='getCity()'> 
+            		{$province_op}
+            	</select>
+            	<select name='city' id='city'>
+            		{$city}
+            	</select>
+            </td>
+          </tr> 
+                 
+          
+          <tr>
+            <th>生日：</th>
+            <td class="senre">
+              <select name='year'>
+                <option>选择年</option>
+                {$year}
+              </select>
+              <span>年</span>
+              <select name='month'>
+                <option>选择月</option>
+                {$month}
+              </select>
+              <span>月</span>                
+              <select name='day'>
+                <option>选择日</option>
+                {$day}
+              </select>
+              <span>日</span>  
+              <b>生日关系到您的会员权益，填写后不能修改</b>                                  
+            </td>
+          </tr>        
+       </table>
+       <p class="m_bcxg"><input type="submit" value="保存修改"/></p>
+     </div>
+
+    </div>
+    <p class="clear"></p>
+    
+  </div>
+  </form>
+  <p class="clear"></p>
+</div>
+
+
+{include file="footer.html"}

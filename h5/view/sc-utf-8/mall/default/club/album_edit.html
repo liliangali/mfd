@@ -1,0 +1,55 @@
+{include file="header.html"}
+<link type="text/css" href="{$img_url}/css/head_footr.css" rel="stylesheet" />
+
+<link type="text/css" rel="stylesheet" href="{$img_url}/css/coolke.css" />
+
+{$_head_tags}
+
+<script>
+
+$(function(){
+$('#mf').validate({ 
+    rules : {
+        title : {
+            required : true
+        }
+    },
+    messages:{
+    	title : {
+            required : '必填写'
+        }
+    }
+});
+});
+
+</script>
+
+
+<div class="m_drkj_box">
+{include file="club/uinfo.html"}
+  
+  <p class="clear"></p>
+</div>
+<form id='mf' action='/index.php/club-albumEdit.html?opt=1&id={$album.id}' method='post'>
+<div class="cool-box">
+   <h1>创建新酷吧</h1>
+   <dl>
+     <dt>标题：</dt>
+     <dd><input name='title' type="text" class="cok_title" value='{$album.title}'></dd>
+     <dd class="cok-err"><!-- <p class="cok-error">标题不能为空</p> --></dd>
+   </dl>
+   <dl class="cok-js">
+     <dt>酷吧介绍：</dt>
+     <dd class="contdd">
+        <textarea name='desc' class="cok_content">{$album.description}</textarea>
+     </dd>
+     <dd class="cok-err"></dd>
+   </dl>
+   
+   
+   
+   <div class="cok-but-div"><input type="submit" value="" class="cok-but"></div>
+   <p class="clear"></p>
+</div>
+</form>
+{include file="footer.html"}

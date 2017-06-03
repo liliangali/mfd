@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Api\V1\Transformers;
+
+use App\Models\Order;
+use League\Fractal\TransformerAbstract;
+use App\User;
+
+class UserTransformer extends TransformerAbstract {
+
+    protected $availableIncludes = ['comm'];
+    public function transform(User $user) {
+        return [
+            'id' => $user['user_id'],
+            'name' => $user['user_name'],
+            'avatar' => $user['avatar'],
+            'sex' => $user['gender'],
+            'last_login' => !empty($user['last_login']) ? date("Y-m-d",$user['last_login']) : '未知',
+            'reg_time' => !empty($user['reg_time']) ? date("Y-m-d",$user['reg_time']) : '未知',
+            'order_count' => Order::where("user_id","=",$user['user_id'])->whereIn('status', [11, 20, 30,40,60])->count(),
+        ];
+    }
+    public function includeComm(User $user)
+    {
+            return 11;
+    }
+}
+
+

@@ -1,0 +1,124 @@
+<table>
+<!-- {foreach from=$parts item=part key=key1} -->
+    <!-- {if !$part.son_type} -->
+    <tr>
+    <td width="150" height="30">
+    <input {if $part.check eq 1}checked{/if} class="parts_check" id="parts_check_{$key1}" type="checkbox" name="parts[{$key1}][type_id]" value="{$key1}" />
+    <span class="parts_label" style="width:150px;cursor:pointer;" >
+        {$part.type_name}
+        <input type="hidden" class="parts_items" vdft="{$part.dft}" vids="{$key1}" id="parts_value_{$key1}" name="parts[{$key1}][part_items]" value="{$part.items}" />
+    </span>
+    </td>
+    <td>
+    {$lang.select_dft}
+    <select id="parts_select_{$key1}" name="parts[{$key1}][part_dft]">
+       <option value="">{$lang.select_pls}</option>
+    </select>
+    </td>
+    </tr>
+    <!-- {else} -->
+    <!--  if the parts type have son type --begin -->
+    <!-- {*if $part.son_type*} -->
+    <tr>
+    <td width="150" colspan="2">
+    <input {if $part.check eq 1}checked{/if} class="parts_check" haveson="true" id="parts_check_{$key1}" type="checkbox" name="parts[{$key1}][type_id]" value="{$key1}" />
+    <span class="parts_label" haveson="true" style="width:150px;cursor:pointer;" >
+        {$part.type_name}
+        <input type="hidden" class="parts_items" vdft="{$part.dft}" vids="{$key1}" id="parts_value_{$key1}" name="parts[{$key1}][part_items]" value="{$part.items}" />
+    </span>
+        <div id="parts_son_{$key1}" style="display:none">
+        <table>
+            <!-- {foreach from=$part.son_type item=son key=key2} -->
+            <tr><td width="20"></td>
+            <td>
+            <input {if $son.check eq 1}checked{/if} class="parts_check" id="parts_check_{$key2}" type="checkbox" name="parts[{$key1}][son_type][{$key2}][type_id]" value="{$key2}" />
+            <span class="parts_label" style="width:150px;cursor:pointer;" >
+                {$son.type_name}
+                <input type="hidden" class="parts_items" vdft="{$son.dft}" vids="{$key2}" id="parts_value_{$key2}" name="parts[{$key1}][son_type][{$key2}][part_items]" value="{$son.items}" />
+            </span>
+            </td>
+            <td>
+                {$lang.select_dft}
+                <select id="parts_select_{$key2}" name="parts[{$key1}][son_type][{$key2}][part_dft]">
+                   <option value="">{$lang.select_pls}</option>
+                </select>
+            </td>
+            </tr>
+            <!-- {/foreach} -->
+        </table>
+        </div>
+    </td>
+    </tr>
+    <!--  if the parts type have son type --end  -->
+    <!-- {/if} -->
+<!-- {/foreach} -->
+</table>
+
+<script>
+$(function(){
+    $('.parts_items').each(function(){
+        var _items=$(this).attr('value');
+        var _vids=$(this).attr('vids');
+        var _vdft=$(this).attr('vdft');
+        if(_items!=''){
+            $.ajax({
+                url:"index.php?app=customs&act=ajax_parts_select",
+                data:"ids="+_items+"&dft="+_vdft,
+                success:function(result){
+                    $('#parts_select_'+_vids).html(result);
+                },
+            });
+        }
+    });
+});
+$('.parts_check').each(function(){
+    var _this=$(this);
+    //_this.change(function(){
+   	_this.click(function(){
+    	var _son=_this.attr('haveson');
+    	var _id=_this.attr('value');
+        if(_this.attr('checked')==true){
+            var _items=_this.next().children('#parts_value_'+_id).attr('value');
+            if(_son!='true'){
+                ajax_parts(_id,_items);
+            }else{
+          		$('#parts_son_'+_id).css('display','block');
+            }
+            //_this.parents('#parts_son').prevAll('.parts_check').attr('checked')=true;
+        }else{
+        	$('#parts_son_'+_id).css('display','none');//don't work?
+        }
+    });
+});
+$('.parts_label').each(function(){
+    var _this=$(this);
+    _this.click(function(){
+        var _ck=_this.prev();
+        var _id=_ck.attr('value');
+        var _items=_this.children('#parts_value_'+_id).attr('value');
+        var _son=_this.attr('haveson');
+        if(_son!='true'){
+            ajax_parts(_id,_items);
+        }else{
+        	//$('#parts_son_'+_id).css('display','block');
+        	var _display=$('#parts_son_'+_id).css('display');
+        	if(_display=='block'){
+        		$('#parts_son_'+_id).css('display','none')
+        	}else{
+        		$('#parts_son_'+_id).css('display','block')
+        	}
+        }
+    });
+});
+//点击基本款类型弹窗出组件 ajax
+function ajax_parts(_id,_items){
+    var _newBox='sinNewDivs';
+    $.ajax({
+        url:"index.php?app=customs&act=ajax_parts",
+        data:"type_id="+_id+'&box='+_newBox+'&items='+_items,
+        success:function(result){
+            $('#'+_newBox).html(result);
+        }
+    });
+}
+</script>

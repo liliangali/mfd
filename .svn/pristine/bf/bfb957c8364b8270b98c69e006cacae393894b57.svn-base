@@ -1,0 +1,129 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <!-- <li><a class="btn1" href="index.php?app=lt_business&amp;act=export">导出</a></li>  -->
+    </ul>
+
+</div>
+  <div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="lt_business" />
+                <input type="hidden" name="act" value="index" />
+          <select class="querySelect" name="field">{html_options options=$selects selected=$smarty.get.field}
+                </select><input class="queryInput" type="text" name="search_name" value="{$query.search_name|escape}" />		
+                           下单时间从：<input class="queryInput2 Wdate" type="text" value="{$query.add_time_from}" style="width:150px" id="add_time_from" name="add_time_from" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                 至：<input class="queryInput2 Wdate" type="text" value="{$query.add_time_to}" style="width:150px" id="add_time_to" name="add_time_to" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /> 
+                  发货时间从：<input class="queryInput2 Wdate" type="text" value="{$query.add_time_go}" style="width:150px" id="add_time_go" name="add_time_go" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                 至：<input class="queryInput2 Wdate" type="text" value="{$query.add_time_do}" style="width:150px" id="add_time_do" name="add_time_do" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+               
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+        </form>
+    </div>
+   <!--  <div class="fontr">
+       {include file=page.top.html}
+    </div> -->
+</div>  
+<br/>
+<div class="tdare">
+
+    <table width="100%" cellspacing="0" class="dataTable">
+        <tr class="tatr1">
+          	<td width="5%">门店</td>
+          	<td width="5%">量体师姓名</td>
+          	<td width="5%">量体师证件号</td>
+          	<td width="5%">用户名</td>
+          	<td width="8%">下单时间</td>
+          	<td width="5%">订单号</td>
+          	<td width="5%">rcmtm订单号</td>
+            <td width="5%">订单金额</td>
+          	<td width="5%">品类</td>
+          	<td width="5%">被量体人姓名</td>
+          	<td width="5%">量体数据来源</td>
+          	<td width="5%">量体数据录入时间</td>
+          	<td width="5%">是否第一次使用该量体数据</td>
+          	<td width="5%">订单状态</td>
+          	<td width="5%">发货时间</td>
+           <td width="5%">是否返修/退货</td>
+           <td width="5%">量体费</td>
+        </tr>
+
+        <!--{if !empty($order)}-->
+        <!--{foreach from=$order item=ors key=k}-->
+        <tr class="tatr2">
+           <td>{$serves.$ors.server_id}</td>
+           <td>{$ors.liangti_name}</td>
+           <td width="5%">{$ors.card_number}</td>
+           <td>{$ors.user_name}</td>
+           <td>{$ors.add_time}</td>
+           <td>{$ors.order_sn}</td>
+           <td>
+           <!-- {if $ors.r_order_id} -->
+           <!-- {foreach from=$ors.r_order_id item=rorder} -->
+           {$rorder}<br>
+           <!-- {/foreach} -->
+           <!-- {/if} -->
+          </td>
+           <td>{$ors.money}.00</td>
+           <td>{$ors.cloth}</td>  
+           <td>{$ors.realname}</td>
+           <td>{$ors.measure}</td>
+           <td width="5%">{$ors.modi_time}</td>
+           <td>{$ors.is_history}</td>
+           <td width="5%">{$status.$ors.status}</td>
+           <td width="5%">{$ors.ship_time}</td>
+           <td>否</td>
+           <td>{$ors.business}</td>
+        </tr>
+        <!--{/foreach}-->
+        <!--{else}-->
+        <tr class="no_data">
+            <td colspan="17">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+    </table>
+     <div id="dataFuncs">
+           <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+          <input class="export_btn formbtn" data-type="all" type="button" value="导出检索订单" />
+          <input type="hidden" id="conditions" value="{$conditions}">
+      </div> 
+      <!--{if !empty($order)}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+    </div>
+    
+</div>
+
+<script type="text/javascript">
+$('.export_btn').unbind().bind('click',function(){
+	var _type = $(this).attr('data-type');
+	if(_type == 'all'){
+		var _condi = '&sinexporttype=all';
+		$('.mrightTop').find('.fontl').find('input').each(function(){
+	        if($(this).val() && $(this).attr('name')){
+	            if($(this).attr('name') != 'app' && $(this).attr('name') != 'act'){
+	                _condi += '&'+$(this).attr('name')+'='+$(this).val();
+	            }
+	        }
+	    })
+	   
+	    $('.mrightTop').find('.fontl').find('select').each(function(){
+	        if($(this).val() && $(this).attr('name'))
+	        _condi += '&'+$(this).attr('name')+'='+$(this).val();
+	    })
+	}
+	window.open("index.php?app=lt_business&act=export"+_condi);
+	return;
+})
+
+//日期
+/* $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+$('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'}); */
+</script>
+{include file="footer.html"}

@@ -1,0 +1,43 @@
+{include file=../user/member.header.html}
+   <div class="w">
+    <div class="AreaBox clearfix">
+        {include file=../user/member.menu.html}
+
+        <div class="con">
+        	<h2 class="tit">我的案例<a href="{link app=my_works act=tailor arg0=add}">添加案例</a></h2>
+             
+            <div class="my_case">
+             <table cellpadding="0" cellspacing="0" width="100%" border="0">
+
+             <!--{foreach from=$store_service item=service}-->
+              <tr>
+               <td width="78%" class="td_1">
+                <h1><a href="#">{$service.description}</a></h1>
+                <ul>
+                <!--{foreach from=$service.storephoto item=storephoto}-->
+                 <li><img src="{$storephoto.url}" /></li>
+                <!--{/foreach}-->
+                </ul>
+               </td>
+               <td width="22%" class="td_2">
+                <p><a href="{link app=my_works act=tailor arg0=edit}?id={$service.id}">修改</a></p>
+                <p><a href="{link app=my_works act=drop}?id={$service.id}">删除</a></p>
+               </td>
+              </tr>
+              <!--{/foreach}-->
+             </table>
+            </div>
+            
+           <!--用户中心分页开始--> 
+           <div class="hyzx_fy clearfix">
+            <div>
+				{include file="../user/member.page.bottom.html"}
+             </div>
+           </div>  
+           <!--用户中心分页结束-->        
+        </div>
+
+
+   </div>
+</div>
+ {include file="../user/footer.html"}

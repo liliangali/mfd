@@ -1,0 +1,62 @@
+{include file="header.html"}
+
+<script type="text/javascript">
+$(function(){
+	$('#serve_form').validate({
+    rules : {
+		serve : {
+            required : true,
+            max:99.99,
+            min:0.01
+        }
+
+        
+    },
+    messages : {
+    	serve : {
+            required : '{$lang.serve_not_empty}',
+            max:'{$lang.currect_serve}',
+            min:'{$lang.currect_serve}'
+        }
+    }
+	});
+});
+
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=brokerage">{$lang.manage}</a></li>
+    <li>
+     
+      <span>{$acc}</span>
+      
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="serve_form">
+    <table class="infoTable">
+      
+      <tr>
+        <th class="paddingT15"> {$lang.brokerage_level}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$brokerage.brokerage_level|escape}
+         </td>
+      </tr>
+      
+      <tr>
+        <th class="paddingT15"> {$lang.serve}:</th>
+        <td class="paddingT15 wordSpacing5">
+          %<input class="infoTableInput2" id="serve" type="text" name="serve" value="{$brokerage.serve|escape}" />
+         </td>
+      </tr>
+
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

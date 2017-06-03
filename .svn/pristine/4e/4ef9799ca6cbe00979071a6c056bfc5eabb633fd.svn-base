@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="pragma" content="no-cache">
+<title>mfd</title>
+<style>
+*{ margin:0; padding:0;}
+body{ font-size:14px; background:#f8f8f8;}
+a{ color:#21d0fd; text-decoration:none;}
+.orange{ color:#f50;}
+.switch { border: 1px solid #d9d9d9; border-radius: 11px; height: 22px; width: 50px; transition: all ease .2s; -webkit-transition: all ease .2s; }
+.switch .point { background: #eee none repeat scroll 0 0; border-radius: 50%; height: 20px; margin: 1px 0 0 1px; width: 20px; transition: all ease .2s; -webkit-transition: all ease .2s; display:block; }
+.switch.cur { background: #21d0fd; border-color: #21d0fd; }
+.switch.cur .point { margin: 1px 0 0 29px; background: #fff; }
+.kuka dt{ height:30px; line-height:30px; border-bottom:solid 1px #dfdfdf; border-top:solid 1px #dfdfdf; padding:5px 15px 0; color:#999;}
+.kuka dd{ background:#fff; overflow:hidden;}
+.kuka .payWay .item{ height:50px; line-height:50px; padding-left:75px; position:relative;}
+.kuka .payWay .item:after{ content:''; width:20px; height:20px; background:url(http://m.mfd.cn/static/img/m_icon.png) left 0 no-repeat; background-size:18px auto; position:absolute; right:15px; top:16px; z-index:10;}
+.kuka .payWay .item.cur:after{background-position: left -24px}
+.kuka .payWay .item p{ border-bottom:solid 1px #dfdfdf; padding:0 5px;}
+.kuka .payWay img{ width:50px; float:left; margin:10px 0 0 -60px;}
+.kuka .yue .balance span{ color:#999; margin-left:5px;}
+.kuka .yue .balance{ line-height:50px; padding-left:15px;}
+.kuka .yue .useBalance{ clear:both; border-top:solid 1px #dfdfdf; line-height:50px; margin:0 15px; color:#666; display:none;}
+.kuka .yue .useBalance input{ width:50px; text-align:center; height:25px; box-sizing:border-box; margin:0 5px; border:solid 1px #ddd;}
+.kuka .yue .useBalance .num{ margin-left:10px; color:#f50;}
+.kuka .yue .switch{ float:right; margin-top:12px; margin-right:15px;}
+.kuka .price { line-height:50px; margin:0 15px; border-bottom:solid 1px #ddd; margin-bottom:-1px;}
+.kuka .price span{ float:right;}
+.addCart{ height:45px;}
+.addCart .fixed{ position:fixed; width:100%; height:45px; line-height:45px; background:#fff; bottom:0; left:0;}
+.addCart .button{ float:right; height:100%; padding:0 25px; background:#111111; color:#fff; border:0; font-size:16px;}
+.addCart p{ padding-left:15px; font-size:16px; color:#999;}
+.payPwd { padding:0 30px;}
+.payPwd .tit{ font-size:16px;}
+.payPwd .price{ margin-bottom:10px;}
+.payPwd input{ border:solid 1px #dfdfdf; width:180px; height:25px; text-align:center; display:block; margin:0 auto;}
+.luck-con{ color:#333;}
+.luck-btn-box .no{ color:#21d0fd}
+.luck-btn-box .yes{ color:#666}
+</style>
+
+</head>
+
+<body>
+<form action="{link app=bug_kuka act=create}" method="POST" id="payform"> 
+	<div class="main">
+		<dl class="kuka">
+			<dt>支付方式</dt>
+			<dd class="payWay">
+				<input type="hidden" name="payment" id="payment" value="alipay" />
+				{foreach from=$payments item=pmt name=lpmt}
+				<div class="item alipay cur">
+					<img src="static/images/{$pmt.payment_code}.gif">
+					<p data-id="{$pmt.payment_code}" class="payment_li {if $member.money <= $cart.order_amount} {if $smarty.foreach.lpmt.first} on {/if} {/if}" {if $smarty.foreach.lpmt.last} style="margin-right:0;" {/if}>
+						<p>{$pmt.payment_name}</p>
+					</p>
+				</div>
+				{/foreach}
+				
+			</dd>
+			<dt>余额支付</dt>
+			<dd class="yue">
+				<div class="switch" id="yue"><p class="point"></p></div>
+				<p class="balance">余额<span>{$member.money|price}元可用</span></p>
+				<input type="hidden"  value="{$member.money}"  id="ye"/>
+				<div class="useBalance">
+					使用<input  class="txt surplus" id="JyueTxt" data-max="{$member.money} data-surplus="{$surplus}" type="tel" max="20" min="0" disabled="disabled"  value="" />余额,
+					<span><span class="num surplus_show orange">-0.00</span>元</span>
+				</div>
+			</dd>
+			<dt>支付金额</dt>
+			<dd>
+				<p class="price"><span class="orange">{$args_data.subtotal|price}</span>{if $args_data.extension=='kuka' }酷卡金额{else}酷卡金额{/if}</p>
+				<input type="hidden"  value="{$args_data.subtotal}"  id="subtal"/>
+				<p class="price"><span class="orange surplus_show">-¥0.00</span>余额</p>
+			</dd>
+		</dl>
+		
+		<div class="addCart">
+			<div class="fixed">
+			    <p><a class="jiesua button" id="addCart" href="javascript:void(0)">提交订单</a></p>
+				<input type="hidden" id="final_amount_in"  name="final_amount" value="0" />
+				<input type="hidden" name="otype" id="otype" value="{$args_data.type}" />
+				<p class="price">实付款：<span class="orange" id="final_amount" data-amount="{$args_data.final_amount}">{$args_data.subtotal|price}</span></p>
+			</div>
+		</div>
+	</div>
+</form>
+
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script src="http://r.cotte.cn/global/luck/mobile/luck.js"></script>
+<script>
+//公用切换
+function _switch(fn){
+	var $this=$(this),flag=false;
+	if($this.hasClass('cur')){
+		$this.removeClass('cur');
+		flag=false;	
+	}else{
+		$this.addClass('cur');
+		flag=true;		
+	}
+	if(typeof fn =='function'){
+		fn(flag)	
+	}
+	return flag	
+}
+
+//余额下拉
+$('#yue').click(function(){
+	if($("#ye").val() == 0){
+		luck.open({
+			content:'没有余额,不可使用'
+		})
+		return;
+	}
+	_switch.call(this,function(obj){
+		var ye = $('#ye').val();
+		var sub  = $("#subtal").val();
+	
+		if(!obj){
+		  window.location.reload();
+		  return;
+		  }
+		$.post("{link app=bug_kuka act=checkPayset}", function(res){
+			var res = eval("("+res+")");
+			if(res.done == false){
+				luck.open({
+					content:'为了您的账户资金安全，余额支付时需要启用支付密码。',	
+					btn:['取消','确定'],
+					yes:function(){
+						luck.close();	
+						//js与app交互 跳到app支付密码设置页面
+						 $('#yue').click()
+						
+						
+					},
+					no:function(){//确定
+						if(obj){
+							$('.useBalance').slideDown();
+							if(Number(ye) >= sub){
+								
+								$('#JyueTxt').val(sub);
+								$(".surplus_show").html('-'+sub);					
+								surplus(sub);
+							}else
+							{
+								$('#JyueTxt').val(ye);
+								$(".surplus_show").html('-'+ye);
+								surplus(ye);
+							}
+							
+						}else{
+							$('.useBalance').slideUp();
+						}
+						try{
+    						app.goPaypwd()
+    				    }catch(e){}
+    				    
+    					location.href="http://www.gosetpassword.com/";
+					
+						
+						
+						
+					}
+				});
+			} else {
+				if(obj){
+					$('.useBalance').slideDown();
+					if(Number(ye) >= sub){
+						
+						$('#JyueTxt').val(sub);
+						$(".surplus_show").html('-'+sub);					
+						surplus(sub);
+					}else
+					{
+						$('#JyueTxt').val(ye);
+						$(".surplus_show").html('-'+ye);
+						surplus(ye);
+					}
+				}else{
+					
+					$('.useBalance').slideUp();
+					
+				}
+			}
+		})
+	})
+});
+
+//支付方式选择
+$('.payWay .item').click(function(){
+    var surplus = $('.surplus').val();
+	var sub  = $("#subtal").val();
+   
+	if(surplus != sub )
+	{
+		$(this).addClass('cur').siblings().removeClass('cur');	
+	
+	}
+		
+});
+
+
+//点击支付时，提示使用支付密码（余额）
+$('#addCart').click(function() {
+	var subtotal = "{$args_data.subtotal}";
+	if(subtotal ==''){
+		return false;
+	}
+	var surplus = $(".surplus").val();
+	if(surplus) {//判断是否使用了余额支付，
+		luck.open({
+			content:'<div class="payPwd"><p class="tit">请输入支付密码</p><p class="price">¥'+surplus+'</p><input id="password" type="password">',
+			btn:['取消','确定'],
+			yes:function(){
+				luck.close();
+			},
+			no:function(){
+				var paypwd = $("#password").val();
+				//判断支付密码
+				$.post("{link app=bug_kuka act=checkPaypwd}",{paypwd:paypwd}, function(res){
+					var res = eval("("+res+")");
+					if(res.done == false) {
+						luck.open({
+							content:'支付密码错误！',	
+							btn:['取消','确定'],
+							yes:function(){
+								luck.close();	
+							},
+							no:function(){
+							
+								luck.close();
+								
+							}
+						});
+					} else {
+						$("#payform").submit();//提交表单
+					}
+				})
+				luck.close();
+			}
+		})	
+	} else {
+		$("#payform").submit();//提交表单
+	}
+});
+
+//余额使用-联动
+$(document).ready(function() {
+    $(".surplus").keyup(function(){
+    
+	    var surplus = $(this).val();
+		var sub  = $("#subtal").val();
+	   
+		if(surplus == sub )
+		{
+			$('.payWay .item').removeClass('cur');	
+		
+		}
+	    if(!/^[1-9](\d?)+$/.test(surplus)){
+		    surplus = 0;
+			$(".surplus").val(surplus);
+	    }
+
+	    $.post("{link app=bug_kuka act=surplus}",{surplus:surplus}, function(res){
+		    var res = eval("("+res+")");
+
+		    if(res.done == false){
+		        luck.open({
+		        	content:res.msg,
+		        	time:1500
+		        });
+		        return false;
+			} else {
+				$("#final_amount_in").val(res.retval.amount);
+				$("#final_amount").html(res.retval.amount); //实付款
+				$(".surplus_show").html('-'+res.retval.surplus);
+				var returned = res.retval.returned;
+				if(returned) {
+					$(".surplus").val(returned);
+				}
+			} 
+		})
+    })
+})
+
+function surplus(obj){
+
+    if(!/^[1-9](\d?)+$/.test(obj)){
+	    surplus = 0;
+		$(".surplus").val(obj);
+    }
+
+    $.post("{link app=bug_kuka act=surplus}",{surplus:obj}, function(res){
+	    var res = eval("("+res+")");
+
+	    if(res.done == false){
+	        luck.open({
+	        	content:res.msg,
+	        	time:1500
+	        });
+	        return false;
+		} else {
+			$("#final_amount_in").val(res.retval.amount);
+			$("#final_amount").html(res.retval.amount); //实付款
+			$(".surplus_show").html('-'+res.retval.surplus);
+			var returned = res.retval.returned;
+			if(returned) {
+				$(".surplus").val(returned);
+			}
+		} 
+	})
+	
+
+}
+function goPaypwd(){
+	
+	app.toSetPayPassword();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,663 @@
+{include file="header.html"}
+<style>
+.ac_results { padding: 0px; border: 1px solid WindowFrame; background-color: Window; overflow: hidden; z-index: 19891020; /* 1000 */ }
+.ac_results ul { width: 100%; list-style-position: outside; list-style: none; padding: 0; margin: 0; }
+.ac_results iframe { display: none;/*sorry for IE5*/ display/**/: block;/*sorry for IE5*/ position: absolute; top: 0; left: 0; z-index: -1; filter: mask(); width: 3000px; height: 3000px; }
+.ac_results li { margin: 0px; padding: 2px 5px; cursor: pointer; display: block; font: menu; font-size: 12px; overflow: hidden; }
+.ac_over { background-color: Highlight; color: HighlightText; }
+#thumbnails li{
+	    border: 1px solid #eee;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    height: 100px;
+    margin: 0 10px 10px 0;
+    text-align: center;
+    width: 100px;
+}
+</style>
+<script type="text/javascript">
+$(function(){
+    $('#brand_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            name : {
+                required : true,
+            },
+            price : {
+                required : true,
+            },
+//             small_img:{
+//                 required: true,
+//             },
+//             source_img:{
+//                 required: true,
+//             },
+//             to_site:{
+//                 required: true,
+//             }
+        },
+        messages : {
+            name : {
+                required : '请填写样衣名称',
+            },
+            price : {
+                required : "请填写样衣价格",
+            },
+//             small_img:{
+//                 required: "请上传列表图片",
+//             },
+//             source_img:{
+//                 required: "请上传详情图片",
+//             },
+//             to_site:{
+//                 required: "请选择发布到的站点",
+//             }
+        }
+    });
+});
+</script>
+{$build_editor}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=custom&amp;act=index">{$lang.manage}</a></li>
+        {if $data.id}
+        <li><a class="btn1" href="index.php?app=custom&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="brand_form">
+        <table class="infoTable">
+         <tr>
+                <th class="paddingT15">
+                   款式号:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="design" type="text" name="design" value="{$data.design|escape}" />（默认为空，没有不填写，固化款下单使用）
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                   名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="name" type="text" name="name" value="{$data.name|escape}" />
+                </td>
+            </tr>
+                       <!--  <tr>
+                <th class="paddingT15">
+                   服务费:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" type="text" name="service_price" value="{$data.service_price}" />
+                </td>
+            </tr> -->
+            
+                        <tr style="display: none;">
+                <th class="paddingT15">
+                   简介:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea name="brief" rows="5" cols="50">{$data.brief}</textarea>
+                </td>
+            </tr>
+
+         <tr style="display: none;">
+            <th class="paddingT15">
+               发布到的平台:</th>
+            <td class="paddingT15 wordSpacing5">
+                <select name="to_site">
+                
+                <option value="0">{$lang.select_pls}</option>{html_options options=$to_site selected=$data.to_site}
+                </select>
+            </td>
+        </tr>
+            <tr style="display: none;">
+                <th class="paddingT15">
+                  所属设计师:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="design_id"><option value="0">{$lang.select_pls}</option>{html_options options=$design_list selected=$data.design_id}</select>
+                </td>
+            </tr>
+
+           <tr>
+                <th class="paddingT15">
+             选择定制风格:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="style" id="style">
+                        <option value="0">请选择</option>
+                        {foreach from=$style_list item=style key=key}
+                            <option value="{$key}" {if $data.style eq $key}selected{/if}>{$style}</option>
+                        {/foreach}
+                    </select>
+                </td>
+            </tr>
+            
+               <tr>
+                <th class="paddingT15">
+             选择定制品类:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="category" id="cat" {if $data.category}disabled{/if}>
+                        <option value="0">请选择</option>
+                        {foreach from=$cat_list item=cat key=key}
+                            <option value="{$key}" {if $data.category eq $key}selected{/if}>{$cat.name}</option>
+                        {/foreach}
+                    </select>
+                    {if $data.category}
+                    <input type="hidden" name="category" value="{$data.category}">
+                    {/if}
+                </td>
+            </tr>
+            
+            <tr class="size_style" >
+                <th class="paddingT15">
+             款式尺码选择:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="size_style" id="size_style" >
+                        <option value="0">请选择</option>
+                        {foreach from=$size_style_list item=cat key=key}
+                            <option value="{$key}" {if $data.size_id eq $key}selected{/if}>{$cat.name}</option>
+                        {/foreach}
+                    </select>
+                    {if $data.category}
+                    <input type="hidden" name="category" value="{$data.category}">
+                    {/if}
+                </td>
+            </tr>
+            
+            
+               <tr>
+                <th class="paddingT15 wordSpacing5" valign="top">填写定制项:</th>
+                <td>
+                    <ul class="items">
+                    {foreach from=$items item=dict}
+                    <li data-id="{$dict.item_id}" data-p="{$dict.menu_id}">
+                    <input type='hidden' name='item[{$dict.item_id}]' value="{$dict.menu_id}">
+                    <input type='text' value="{$dict.ecode}" autocomplete='off' readonly='readonly'>
+                    {$dict.name}{if $dict.assign} <input type='text' name="assign[{$dict.item_id}]" value="{$dict.assign}" autocomplete='off' readonly='readonly'>{/if}
+                                                             设为默认工艺：<input type='checkbox' name='is_default[{$dict.item_id}]' value='{$dict.item_id}' {if $dict.is_default}checked{/if}>
+                    <span onclick='dropItem(this)' style='cursor:pointer;'>x<span> </li>
+                    {/foreach}
+                    <li class="add"><input type="text" style="height: 20px;" class="diyItem"></li>
+                    </ul>
+                </td>
+            </tr>
+             <tr>
+                    <th class="paddingT15 wordSpacing5"><a href="javascript:;" style="color:red;" class="fabric"><b>选择面料</b></a>
+                    </th>
+                    <td id="fabric">
+                    {if $fabrics}
+                            <select name="fab">
+                       {foreach from=$fabrics item=val}
+                            <option value="{$val.ID}" {if $val.is_default}selected{/if}>{$val.CODE}</option>
+                       {/foreach}
+                           </select>
+	                    
+                           {foreach from=$fabrics item=val}
+                            <input type="hidden" name="fabs[]" value="{$val.ID}">
+                           {/foreach}
+                     {/if}
+                     <ul id="thumbnails">
+							{foreach from=$fabrics item=fabric_info}
+								{foreach from=$fabric_info.gallery item=gallery_info}
+								  <li style="float:left;<!--{if !$fabric_info.is_default}-->display:none;<!--{/if}-->" id="gallery_{$gallery_info.id}"  data_id ="{$gallery_info.id}">
+								 <img  src="{$gallery_info.source_img}" width="80" height="80"></li>
+								 {/foreach}
+							{/foreach}					     
+						</ul>
+                    </td>
+                    <td>
+                    	
+                    </td>
+                </tr>
+                    
+<!--               <tr> -->
+<!--                 <th class="paddingT15"> -->
+<!--                     选择加工费:</th> -->
+<!--                 <td class="paddingT15 wordSpacing5" id="assignPrice"> -->
+<!--                     <ul> -->
+                  
+<!--                     {foreach from=$priceList item=list key=key} -->
+<!--                         <li>{$list.name}: -->
+<!--                         <select name="assignPrice[{$key}]"> -->
+<!--                             {foreach from=$list.list item=price} -->
+<!--                                 <option value="{$price.price}" {if $assignPrice.$key eq $price.price}selected{/if}>{$price.name}[{$price.price|price}]</option> -->
+<!--                             {/foreach} -->
+<!--                         </select></li> -->
+<!--                     {/foreach} -->
+<!--                     </ul> -->
+<!--                 </td> -->
+<!--             </tr> -->
+            
+              <tr>
+                <th class="paddingT15">
+                    工艺描述:</th>
+                <td class="paddingT15 wordSpacing5">
+                <textarea  name="content" id="content" style="width:650px;height:400px;">{$data.content|escape}</textarea>
+                </td>
+            </tr>
+                                    <tr>
+                <th class="paddingT15">
+                   上架状态:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="radio" name="is_sale" value="1" {if $data.is_sale}checked{/if}/>是
+                   <input type="radio" name="is_sale" value="0" {if !$data.is_sale}checked{/if}/>否
+                </td>
+            </tr>
+            
+            <tr style="display: none;">
+                <th class="paddingT15">
+                   热卖:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="radio" name="is_hot" value="1" {if $data.is_hot}checked{/if}/>是
+                   <input type="radio" name="is_hot" value="0" {if !$data.is_hot}checked{/if}/>否
+                </td>
+            </tr>
+            
+                        <tr style="display: none;">
+                <th class="paddingT15">
+                   是否是首单:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="radio" name="is_first" value="1" {if $data.is_first}checked{/if}/>是
+                   <input type="radio" name="is_first" value="0" {if !$data.is_first}checked{/if}/>否
+                </td>
+            </tr>
+           <tr style="display: none;">
+                <th class="paddingT15">
+                   新品:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="radio" name="is_new" value="1" {if $data.is_new}checked{/if}/>是
+                   <input type="radio" name="is_new" value="0" {if !$data.is_new}checked{/if}/>否
+                </td>
+            </tr>
+          <tr style="display: none;">
+                <th class="paddingT15">
+          <a href="javascript:;" class="recommend" style="color:red;">
+          推荐搭配:</a></th>
+                <td class="paddingT15 wordSpacing5" id="recommend">
+                <ul>
+                {foreach from=$links item=link}
+                    <li>{$link.name}<input type='hidden' name='oldRecommend[]' value="{$link.cid}"> <a href='javascript:;' style='color:red;' onclick='removeRec(this)' data-ret='{$link.linkid}'>x</a> </li>
+                {/foreach}
+                </ul>
+                </td>
+            </tr>
+            
+             
+            <tr style="display: none;">
+                <th class="paddingT15">
+                 订单图片:</th>
+                <td class="paddingT15 wordSpacing5">
+                     {input_img name="small_img" value="$data.small_img" dir="cst"}
+                </td>
+            </tr>
+       
+                   <tr style="display: none;">
+                <th class="paddingT15">
+                  详情图片:</th>
+                <td class="paddingT15 wordSpacing5">
+                     {input_img name="source_img" value="$data.source_img" dir="cst"}
+                </td>
+            </tr>
+                  <tr style="display: none;">
+                <th>相册图片(APP) :</th>
+                <td id="gallery">
+                {$build_upload}
+        <table class="infoTable qdhqx_tab">
+        <tr>
+                <td class="paddingT15 wordSpacing5">
+					 <div id="divSwfuploadContainer">
+                <div id="divButtonContainer" style="float:left;">
+                    <span id="spanButtonPlaceholder"></span>
+                </div>
+                
+                <div id="divFileProgressContainer"></div>
+            </div>
+                </td>
+            </tr>
+
+            <tr>
+            	<td>
+            	文件列表(双击图片进行删除)
+					<ul id="thumbnails">
+						{foreach from=$gallery_list item=gallery}
+						  <li id="gallery_{$gallery.id}"  data_id ="{$gallery.id}"  onclick="selectImg(this)">
+						  <img ondblclick="drop_gallery({$gallery.id})" src="{$gallery.source_img}" width="80" height="80"></li>
+						{/foreach}
+					</ul>
+				</td>
+            </tr>
+            </table>
+                </td>
+            </tr>
+            
+            
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="id" value="{$data.id}">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript" src="/static/expand/jquery.autocomplete.js"></script>
+<script src="{res file=js/jquery.dragsort-0.5.1.js}"></script>
+<script>
+$("#thumbnails").dragsort({ dragSelector: "li", dragBetween: false,placeHolderTemplate: "<li style='background-color:white; border:dashed 1px gray'></li>",dragEnd:stor});
+function stor(){
+	var data=[],li=$("#thumbnails li");
+	for(var i=0;i<li.length;i++){
+		data.push(li[i].getAttribute('data_id')+':'+i)	
+	}
+ 
+	$.ajax({
+		url:"index.php?app=jpjz_dissertation&act=gallarysort",
+        type: "POST",
+		data:{
+			photo_id:data.join()	
+		},
+		success: function(){}
+	})
+}
+
+</script>
+<script>
+var cat = "{$data.category}";
+$(document).ready(function(){
+	loadItem(cat);
+    $("#diy a").bind("click", loadOpt);
+    $(".fabric").unbind("click").bind("click", loadFab);
+//     $("#style").change(function(){
+//     	$('#cat')[0].selectedIndex = 0;
+//     })
+    $("#diy span").bind("click", clearOpt);
+//     $("#cat").change(function(){
+//         var c = $(this).val();
+//         var s = $("#style").val();
+//         if(c != 0){
+//             $.get("index.php?app=custom&act=loadItem", {style:s,category:c}, function(res){
+//                 var res = eval("("+res+")");
+//                 if(res.done == false){
+//                     alert(res.msg);
+//                     return false;
+//                 }else{
+//                     $("#diy").empty().html(res.retval);
+//                     $("#diy a").bind("click", loadOpt);
+//                     $("#diy span").unbind("click").bind("click", clearOpt);
+//                     $(".fabric").unbind("click").bind("click", loadFab)
+//                 }
+//             })
+//         }
+//     })
+	if(cat != '0021' && cat != '0012' && cat != '0011' && cat != '0032')
+   	{
+   		$(".size_style").css("display","none")
+   	}
+    $("#cat").change(function(){
+    	var val = $(this).val();
+    	//如果是女大衣则显示 款式尺码
+    	if(val == '0021' || val == '0012' || val == '0011' || val == '0032')
+    	{
+    		$(".size_style").css("display",'')
+    	}
+    	else
+    	{
+    		$(".size_style").css("display",'none')
+    	}
+    	
+        
+        $(".items li").each(function(){
+            if(!$(this).hasClass("add")){
+                $(this).remove();
+            }
+        })
+        
+        loadItem(val);
+        $.get("index.php?app=custom&act=loadAssign",{cat:val}, function(res){
+            var res = eval("("+res+")");
+            $("#assignPrice").html(res.retval);
+        })
+    });
+//     $(".diyItem").keyup(function(){
+//         var cat = $("#cat").val();
+//         var val = $(this).val();
+//         if(cat.length == 0){
+//             alert("请选择定制品类!");
+//             return false;
+//         }
+//         $.get("index.php?app=custom&act=loadItem",{cat:cat,v:val}, function(res){
+//             var res = eval("("+res+")");
+
+            
+//         })
+//     });
+    
+    $("#type_id").change(function(){
+        var id = $(this).val();
+        $.get("index.php?app=custom&act=loadAttr",{id:id}, function(res){
+            var res = eval("("+res+")");
+            $("#attr").html(res.retval);
+        });
+    })
+    
+    $(".recommend").click(function(){
+        var ids='';
+        $("#recommend input").each(function(){
+            ids += ids ? ","+$(this).val() : $(this).val();
+        })
+        $.cookie("ids",null);
+    	var url = "index.php?app=linkCustom";
+    	if(ids){
+    	    url += "&ids="+ids;
+         }
+        window.open(url,'请选择样衣','height=800,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+    })
+    
+    $("#fabric select").change(function(){
+    	
+    	console.log($(this).children("option:selected"));
+    })
+})
+
+function dropItem(obj){
+    var li = $(obj).parents("li");
+    var p = li.attr("data-p");
+    var check = $(obj).parents("li").find("input[type=radio]").attr("checked");
+    li.remove();
+    $(".items li").each(function(){
+    	if(check){
+            if($(this).attr("data-p") == p){
+               // $(this).find("input[type=radio]").attr("checked", "checked");
+                return;
+            }
+    	}
+    })
+
+}
+
+function loadItem(val){
+	if(val.length == 0){
+	    return;
+	}
+    $.get("index.php?app=custom&act=loadItem",{cat:val}, function(res){
+    	var cData = eval("("+res+")");
+    	data = cData.retval;
+    		//alert(data.length);
+    		$(".diyItem").autocomplete(data,{
+                minChars: 0,//自动完成激活之前填入的最小字符
+                max:20,//列表条目数
+                width: 500,//提示的宽度
+                scrollHeight: 200,//提示的高度
+                matchContains: false,//是否只要包含文本框里的就可以
+                autoFill:false,//自动填充
+                //cacheLength:10000,
+                formatItem: function(data, i, max) {//格式化列表中的条目 row:条目对象,i:当前条目数,max:总条目数
+                   // alert(data.code);
+                	return data.code + ' ['+data.name+']';
+            	},
+        		formatResult: function(data) {//定义最终返回的数据，比如我们还是要返回原始数据，而不是formatItem过的数据
+        			return data.code; 
+        		}
+          }).result(function(event,data){
+        	  $(this).val('');
+        	  var e = true;
+        	  var checked = 'checked';
+        	  $(".items li").each(function(){
+        		  if($(this).attr("data-id") == data.id){
+          			    alert("已选了相同的工艺，请重新选择");
+          			    e = false;
+            	  }
+
+            	  if($(this).attr("data-p") == data.pid){
+          		       //checked = "";
+                  }
+              });
+              
+              var input = '';
+              if(data.sid == "10008"){
+          	      input = "  <input type='text' name='assign["+data.id+"]'>"
+              }
+
+              
+              var html = "<li data-id='"+data.id+"' data-p='"+data.pid+"'><input type='hidden' name='item["+data.id+"]' value='"+data.pid+"'><input type='text' value='"+data.code+"' autocomplete='off' readonly='readonly'> "+ data.name+input+" 设为默认工艺：<input type='checkbox' name='is_default["+data.id+"]' value='"+data.id+"' "+checked+"><span onclick='dropItem(this)' style='cursor:pointer;'>x<span> </li>";
+              var li = $(this).parents("li");
+              if(e){
+            	  li.before(html);
+              }
+          });
+    })
+}
+function loadOpt(){
+	var id   = $(this).attr("data-id");
+	var type = $(this).attr("data-type")
+	var ids  = [];
+	$(".layer"+id).find("input[type=hidden]").each(function(){
+	    ids.push($(this).val());
+    })
+    $.cookie("ids",null);
+	var url = "index.php?app=dict&id="+id+"&type="+type+"&ids="+ids.join(",");
+    window.open(url,'选择定制内容','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+}
+
+function callBack(res){
+    $.post("index.php?app=custom&act=itemInfo",{ids:res.ids,type:res.type,hasC:res.hasC}, function(data){
+        var data = eval("("+data+")");
+        $(".layer"+res.id).empty().append(data.retval);
+    })
+}
+
+function loadFab(){
+	 var v   = $("#cat").val();
+	 var ids  = [];
+	 $("#fabric").find("input[type=hidden]").each(function(){
+	    ids.push($(this).val());
+     })
+	 var url = "index.php?app=fab&v="+v+"&ids="+ids;
+	 $.cookie("fabids",null);
+	 window.open(url,'选择定制面料','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+}
+function callBackFab(res){
+	$.post("index.php?app=custom&act=fabInfo",{ids:res.ids}, function(data){
+        var data = eval("("+data+")");
+        $("#fabric").empty().append(data.retval);
+    })
+}
+
+function clearOpt(){
+	var id = $(this).next("a").attr("data-id");
+	$(".layer"+id).empty();
+}
+
+function add_uploadedfile(file_data)
+{
+    var newImg = '<li id="' + file_data.file_id + '" onclick="selectImg(this)">'+
+    '<input type=hidden name=gallery[] value='+SITE_URL + '/' + file_data.file_path+'>'+
+    '<img width="80px" height="80px" src="' + SITE_URL + '/' + file_data.file_path + '" ondblclick="drop_uploadedfile(' + file_data.file_id + ');"/></li>';
+    $('#thumbnails').prepend(newImg);
+}
+
+function drop_uploadedfile(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+
+    $('#' + file_id).remove();
+    
+    $.getJSON('index.php?app=article&act=drop_uploadedfile&file_id=' + file_id, function(result){
+        if(result.done){
+            
+        }else{
+            alert('drop_error');
+        }
+    });
+}
+
+function drop_gallery(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+
+    $('#gallery_' + file_id).remove();
+    
+    $.getJSON('index.php?app=custom&act=drop_gallery&id=' + file_id, function(result){
+        if(result.done == false){
+            alert('drop_error');
+        }
+    });
+}
+
+function selectImg(obj){
+	$(obj).parents("ul").find("li").each(function(){
+		$(this).removeClass("on");
+	})
+	
+	$(obj).addClass("on");
+}
+
+
+function customCallBack(ids){
+
+    $.get('index.php?app=custom&act=loadCustom&ids='+ids,function(result){
+        var result = eval("("+result+")");
+        if(result.done == true){
+            var html='<ul>';
+            for(var i=0;i<result.retval.length;i++){
+                html += "<li>"+result.retval[i].name+"<input type='hidden' name='newRecommend["+result.retval[i].id+"]' value='"+result.retval[i].id+"'> <a href='javascript:;' style='color:red;' onclick='removeRec(this)' data-ret='0'>x</a> </li>";
+            }
+            html += "</ul>";
+            $("#recommend").html(html);
+        }else{
+            alert(result.msg);
+            return false;    
+        }
+    });
+}
+
+function removeRec(obj){
+    var id = $(obj).attr("data-ret");
+
+    if(id == 0){
+        $(obj).parents("li").remove();
+    }else{
+        $.get("index.php?app=custom&act=removeLink",{id:id}, function(res){
+            var res = eval("("+res+")");
+           // if(res.done==true){
+            	$(obj).parents("li").remove();
+           // }
+        })
+    }
+}
+</script>
+{include file="footer.html"}

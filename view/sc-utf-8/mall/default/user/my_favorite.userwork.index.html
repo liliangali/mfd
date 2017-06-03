@@ -1,0 +1,62 @@
+{include file=member.header.html}
+<div class="container clearfix">
+{include file=member.menu.html}
+
+<!--内容-->
+<div class="ucenter_right fr">
+  <div class="title">
+      <ul class="lists fr">
+          <li><a href="{link app=my_favorite}">商品收藏</a></li>
+          <li class="cur"><a href="{link app=my_favorite act=userwork_list}">作品收藏</a></li>
+          <li><a href="{link app=my_favorite act=suit_list}">套装收藏</a></li>
+      </ul>
+      <h2>个人收藏</h2>
+  </div>
+
+<!--{if $collect_works}-->
+ <div class="sjlb">
+   <ul>
+   <!--{foreach from=$collect_works item=works}-->
+    <li data-id="{$works.item_id}" class="item">
+     <p class="p1"><a href="{link app=work_score act=info}?id={$works.ctm.id}"><img src="{$works.ctm.imgurl}"></a></p>
+     <p class="p2"><a href="#">{$works.ctm.work_name}</a></p>
+     <div class="p4"><p class="xhgwc"><a onclick="dropUserwork({$works.item_id},'确认删除？')" href="#" class="xh"></a></p></div>
+    </li>
+    <!--{/foreach}-->
+   </ul>
+ </div>
+
+ <!--翻页开始-->
+{include file=member.page.bottom.html}
+<!--翻页结束-->
+
+
+<!--{else}-->
+  <div class="content">
+      <div class="empty_box">您暂未收藏任何作品！赶快来逛逛吧。<p><a href="./" class="cc_btn s_btn">麦富迪首页</a></p></div>
+  </div>
+<!--{/if}-->
+
+
+</div>
+<!--内容-->
+
+</div>
+<script type="text/javascript">
+function dropUserwork(id){
+	if(window.confirm('确定要删除？')){
+		$.post("/my_favorite-dropCollect.html",{item_id:id}, function(res){
+		    var res = $.parseJSON(res);
+		    if(res.done == true){
+        		alert(res.msg);
+        		location.href='/my_favorite-userwork_list.html';
+        		return;
+    		}else{
+    			alert(res.msg);
+        		return;
+    		}
+		});
+	}
+}
+</script>
+{include file="footer.html"}

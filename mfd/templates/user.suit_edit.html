@@ -1,0 +1,260 @@
+﻿{include file="header.html"}
+<style>
+    .ac_results { padding: 0px; border: 1px solid WindowFrame; background-color: Window; overflow: hidden; z-index: 19891020; /* 1000 */ }
+    .ac_results ul { width: 100%; list-style-position: outside; list-style: none; padding: 0; margin: 0; }
+    .ac_results iframe { display: none;/*sorry for IE5*/ display/**/: block;/*sorry for IE5*/ position: absolute; top: 0; left: 0; z-index: -1; filter: mask(); width: 3000px; height: 3000px; }
+    .ac_results li { margin: 0px; padding: 2px 5px; cursor: pointer; display: block; font: menu; font-size: 12px; overflow: hidden; }
+    .ac_over { background-color: Highlight; color: HighlightText; }
+</style>
+<script type="text/javascript">
+$(function(){
+    $('#brand_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            name : {
+                required : true,
+            },
+            service_price : {
+                required : true,
+            },
+            cat_id : {
+                required : true,
+            },
+            
+          
+        },
+        messages : {
+            name : {
+                required : '请填写套装名称',
+            },
+            service_price : {
+                required : '请填写价钱',
+            },
+            cat_id : {
+                required : '请添加商品属性',
+            },
+        }
+    });
+});
+</script>
+{$build_editor}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.tz_sub}</span></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="brand_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                   名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="name" type="text" name="name" value="{$data.suit_name|escape}" />
+                </td>
+            </tr>
+                        <tr>
+                <th class="paddingT15">
+                 套装价格:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" type="text" name="service_price" value="{$data.price}" />
+                </td>
+            </tr>
+            
+            <!--  <tr>
+                <th class="paddingT15">
+                   简介:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea name="brief" rows="5" cols="50">{$data.jianjie}</textarea>
+                </td>
+            </tr>-->
+               <tr>
+                <th class="paddingT15">
+                   商品分类:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="cat_id" id="cat_id">
+                                <option value="{$key}">请选择</option>
+                                {foreach from=$options item=op key=key}
+                                    <option value="{$key}" {if $data.cat_id eq $key}selected{/if}>{$op}</option>
+                                {/foreach}
+                             </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" id="attr" class="paddingT15 wordSpacing5" style="padding-left:150px;">
+                  <table>
+                        {foreach from=$attrlist item=attr}
+                            <tr>
+                                <td>{$attr.attr_name}:</td>
+                                <td>  
+                             <select name="attr[{$attr.attr_id}]">
+                                <option value="0">请选择</option>
+                                {foreach from=$attr.values item=v}
+                                    <option value="{$v}" {if $linkattrs.$attr.attr_id eq $v}selected{/if}>{$v}</option>
+                                {/foreach}
+                             </select>
+                                </td>
+                            </tr>
+                        {/foreach}
+                    </table>
+               </td>
+            </tr>
+
+            
+               <tr>
+              
+                <th class="paddingT15">基本款:</th>                               
+                <td >
+               {foreach from=$cat_list item=cat key=key name=foo}          
+                <a href="javascript:;" style="color:red; line-height:50px;" onclick="onsuit(this)" data-id="{$key}"><b>{$cat.name}</b></a>
+                <input id="jb_{$key}" type="hidden" name="{$key}" value="{$jbk_idarr[$smarty.foreach.foo.index]}"/>
+               
+                <span id="back_{$key}" name="" ><!--{if $jbk[$smarty.foreach.foo.index]==""}  -->{$jbk.name}<!-- {else} -->{$jbk[$smarty.foreach.foo.index]}<!-- {/if} --></span>
+               <a href='javascript:;' style='color:red;'  onclick='removeRec(this)' data-id="{$key}" data-ret="{$jbk_idarr[$smarty.foreach.foo.index]|defult:0}">x</a> 
+                <br/>
+               {/foreach}
+                   
+              
+               </td>
+                       
+              </tr>         
+                       
+         
+              <tr>
+                <th class="paddingT15">
+                    详细描述:</th>
+                <td class="paddingT15 wordSpacing5">
+                <textarea  name="content" id="content" style="width:650px;height:400px;">{$data.content|escape}</textarea>
+                </td>
+            </tr>
+
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="id" value="{$data.id}">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+
+<script>
+/*$(document).ready(function(){
+	
+    $("#diy a").bind("click", loadOpt);
+    $(".fabric").unbind("click").bind("click", loadFab);
+    $("#style").change(function(){
+    	$('#cat')[0].selectedIndex = 0;
+    })
+    $("#diy span").bind("click", clearOpt);
+    $("#cat").change(function(){
+        var c = $(this).val();
+        var s = $("#style").val();
+        if(c != 0){
+            $.get("index.php?app=suit&act=loadItem", {style:s,category:c}, function(res){
+                var res = eval("("+res+")");
+                if(res.done == false){
+                    alert(res.msg);
+                    return false;
+                }else{
+                    $("#diy").empty().html(res.retval);
+                    $("#diy a").bind("click", loadOpt);
+                    $("#diy span").unbind("click").bind("click", clearOpt);
+                    $(".fabric").unbind("click").bind("click", loadFab)
+                }
+            })
+        }
+    })
+})
+
+function loadOpt(){
+	var id   = $(this).attr("data-id");
+	var type = $(this).attr("data-type")
+	var ids  = [];
+	$(".layer"+id).find("input[type=hidden]").each(function(){
+	    ids.push($(this).val());
+    })
+    $.cookie("ids",null);
+	var url = "index.php?app=dict&id="+id+"&type="+type+"&ids="+ids.join(",");
+    window.open(url,'选择定制内容','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+}
+function loadFab(){
+	 var v   = $("#cat").val();
+	 var ids  = [];
+	 $("#fabric").find("input[type=hidden]").each(function(){
+	    ids.push($(this).val());
+    })
+	 var url = "index.php?app=fab&v="+v+"&ids="+ids;
+	 $.cookie("fabids",null);
+	 window.open(url,'选择定制面料','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+}
+*/
+$("#cat_id").change(function(){
+
+    var id = $(this).val();
+    $("#attr").empty();
+    $.get("index.php?app=custom&act=loadAttr",{id:id}, function(res){
+        var res = eval("("+res+")");
+        $("#attr").html(res.retval);
+    });
+})
+
+function onsuit(v1){
+	var ids  = [];
+	var v=$(v1).attr("data-id");
+	var styles=$("#style").val();
+	var url = "index.php?app=suittype&v="+v+"&ids="+ids+"&styles="+styles;
+	$.cookie("suits",null);
+	 window.open(url,'选择定制面料','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+}
+
+function removeRec(obj){
+    var idn = $(obj).attr("data-ret");
+    var nums = $(obj).attr("data-id");
+    	$("#jb_"+nums).val(0);
+        $(obj).prev('span').text("");
+        
+}
+
+
+//function callBack(res){
+
+//    $.post("index.php?app=suit&act=itemInfo",{ids:res.ids,type:res.type,hasC:res.hasC}, function(data){
+ //       var data = eval("("+data+")");
+ //       $(".layer"+res.id).empty().append(data.retval);
+ //   })
+//}
+
+
+function callBackFab(res,key,name){
+	r = $("#tzids").val();
+	$("#tzids").val(r+','+res);
+	$("#back_"+key).attr('name',res);
+	$("#back_"+key).text(String(name));
+	$("#jb_"+key).val(res);   
+    
+        
+        $.post("index.php?app=suit&act=edit", { jbk_name: name, cate: key,jbk_ids: res },
+        		   function(data){
+        		    // alert(data);
+        		   
+        
+    })
+}
+
+//function clearOpt(){
+//	var id = $(this).next("a").attr("data-id");
+//	$(".layer"+id).empty();
+//}
+</script>
+{include file="footer.html"}

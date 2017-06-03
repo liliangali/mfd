@@ -1,0 +1,605 @@
+{include file=header.html}
+<link href="{res file=css/z_style.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{res file=js/jquery.SuperSlide.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/jscrollpane.js}"></script>
+
+<link href="{res file=css/new_pubuliu.css}" rel="stylesheet" type="text/css" />
+
+<script type="Text/Javascript" src="{res file=js/plugins/formvalidator.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/user.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+<script type="Text/Javascript" src="{res file=js/addressdata.js}"></script>
+<script type="Text/Javascript" src="{res file=js/address.js}"></script>
+
+<script type="Text/Javascript" src="{res file=js/selectbox/jquery.selectBox.js}"></script>
+<link type="text/css" rel="stylesheet" href="{res file=js/selectbox/jquery.selectBox.css}"/>
+
+<script type="text/javascript">
+//<!CDATA[
+var PINER = {uid: "{$session_info_user_id}"}; 
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+var REGION_URL="{link app=mlselection act=index arg=region}";
+reginUrl=REAL_SITE_URL+REGION_URL;
+//]]>
+</script>
+{$_head_tags}
+
+<script type="text/javascript">
+
+
+function regionChange()
+{
+	
+    // 删除后面的select
+    $(this).nextAll("select").remove();
+    
+    // 计算当前选中到id和拼起来的name
+    var selects = $(this).siblings("select").andSelf();
+    var id = 0;
+    var names = new Array();
+    for (i = 0; i < selects.length; i++)
+    {
+        sel = selects[i];
+        if (sel.value > 0)
+        {
+            id = sel.value;
+            name = sel.options[sel.selectedIndex].text;
+            names.push(name);
+        }
+    }
+    $(".mls_id").val(id);
+    $(".mls_name").val(name);
+    $(".mls_names").val(names.join("\t"));
+
+    var _self = this;
+    if($(_self).nextAll('a:gt(0)').length>0)
+	{
+		//alert($(_self).nextAll('a:gt(0)').text());
+		$(_self).nextAll('a:gt(0)').remove();
+	}
+    
+    // ajax请求下级地区
+    if (this.value > 0)
+    {
+        var _self = this;
+        //var url = REAL_SITE_URL + '/index.php?app=mlselection&type=region';
+        var url = reginUrl+"?type=region";
+        $.getJSON(url, {'pid':this.value}, function(data){
+            if (data.done)
+            {
+
+            	
+            	
+                if (data.retval.length > 0)
+                {
+                	
+                    
+                    $("<select><option>" + lang.select_pls + "</option></select>").change(regionChange).appendTo($(_self).parent());
+                    //alert($(_self).parent().find("select:last").length);
+                    
+                    var data  = data.retval;
+                    for (i = 0; i < data.length; i++)
+                    {
+                    	$(_self).parent().find("select:last").append("<option value='" + data[i].region_id + "'>" + data[i].region_name + "</option>");
+                        
+                    }
+                    $(_self).parent().find("select:last").selectBox();
+                    //alert(1);
+                }else
+                {
+                	//console.log(.text());
+					
+					
+                	$.getJSON('/index.php/service-index-1.html', {'value':$("#region select:eq(2)").val(),'ajax':'1'}, function(data){
+                		if (data.done)
+                        {
+                			$('.serve_his_list').remove();
+							if(data.retval.length>0)
+							{
+								$('.serve_yuyiult').show();
+                            	//console.log(data.retval[0]);
+								
+								$('#serve_box_div').append('<div class="serve_his_list"><div id="servicelist"></div></div>');
+								for(i=0;i<data.retval.length;i++)
+								{
+									idserve=data.retval[i]['idserve'];
+									serve_name=data.retval[i]['serve_name'];
+									mobile=data.retval[i]['mobile'];
+									serve_address=data.retval[i]['serve_address'];
+									
+									
+									
+									$servicelistli=	$('<div class="m_sgp">'+
+											'<p class="p1">'+
+											'<input type="radio" name="radioidserve" value="'+idserve+'" onclick="hiddenidserveval(this)" >'+
+											'</p>'+
+											'<p class="p2">'+serve_name+'</p>'+
+											'<p class="p3">'+serve_address+'</p>'+
+											'<p class="p4">'+mobile+'</p>'+
+											'<p class="p5"><a href="/index.php/service-info-'+idserve+'.html" target="_blank">查看</a></p>'+
+									  '</div>');
+
+									$('#servicelist').append($servicelistli);
+								}
+								$('.serve_his_list').show();
+								if(jQuery('#servicelist').height()>320){
+									jQuery('.serve_his_list').height(320).jScrollPane({
+										showArrows: true,
+										animateScroll: true
+									});
+								}
+                            	
+							}else{
+								$('.serve_yuyiult').hide();
+							}
+							
+                            
+                        }
+                    });
+					
+                	
+                	
+                }
+            }
+            else
+            {
+                alert(data.msg);
+            }
+        });
+    }
+    
+}
+
+
+
+
+
+$(function(){
+	$.ajaxSetup({async : false});
+	regionInit("region");
+
+	
+	$('#region select').selectBox();
+	
+	$('#servicelist').html('');
+	$('.serve_his_list').hide();
+	
+	$('#timeserve').datepicker({dateFormat: 'yy-mm-dd',minDate:1});
+
+	
+	//alert($('#region_id').length);
+	
+	
+
+	
+	
+	var value="<!--{$value}-->";
+	var r2="<!--{$r2}-->";
+	var r1="<!--{$r1}-->";
+	//alert(value);
+	if (r1.length>0){
+		$("#region select:eq(0)").val(r1).trigger("change");
+	}
+	if (r2.length>0){
+		$("#region select:eq(1)").val(r2).trigger("change");
+	}
+	if (value.length>0){
+		$("#region select:eq(2)").val(value).trigger("change");
+	}
+
+	var hiddenidserve='{$smarty.cookies.hiddenidserve}';
+	if(hiddenidserve.length>0)
+	{
+		//alert(hiddenidserve);
+		//$(radioidserve)
+		//alert($("input[name='radioidserve'][value='"+hiddenidserve+"']").length);
+		$("input[name='radioidserve'][value='"+hiddenidserve+"']").attr('checked','checked').trigger('click');
+	}
+	
+	/*
+	if (typeof($_GET['r1']) != "undefined"){
+			$("#region select:eq(0)").val($_GET['r1']).trigger("change");
+	}
+	if (typeof($_GET['r2']) != "undefined"){
+		$("#region select:eq(1)").val($_GET['r2']).trigger("change");
+	}
+	if (typeof($_GET['value']) != "undefined"){
+		$("#region select:eq(2)").val($_GET['value']).trigger("change");
+	}
+	*/
+/*
+	$('.page a').click(function(){
+		alert($(this).attr('href').replace('index','ajax_index'));
+		return false;
+	});
+	*/
+});
+
+
+function getsearchurl(index)
+{
+	var url="{link app=service act="+index+" arg1=1}";
+	var urlpr="/index.php/service-"+index+"-1";
+	var urlex=".html";
+
+	var r1=$("#region select:eq(0)").val();
+	
+	//var value=$("#region_id").val();
+	var r2=$("#region select:eq(1)").length>0?$("#region select:eq(1)").val():"";
+	
+	var value=$("#region select:eq(2)").length>0?$("#region select:eq(2)").val():"";
+	
+	
+	
+	//alert(value);
+	
+	if(r1.length==0||r1=="请选择...")r1='0';
+	if(r2.length==0||r2=="请选择...")r2='0';
+	if(value.length==0||value=="请选择...")value='0';
+
+	url=urlpr+"-"+r1+"-"+r2+"-"+value+urlex;
+	return url;
+}
+
+function regionsearch(){
+	url=getsearchurl('index');
+	
+	//alert(url);
+	location.href=url;
+	return true;
+
+	/*
+	if($("#region select:last").find("option:selected").val()=="请选择...")
+	{
+		alert("请选择地区!");
+		return false;
+	}else{
+		var r1=$("#region select:eq(0)").val();
+		var r2=$("#region select:eq(1)").val();
+		var value=$("#region_id").val();
+
+		if(r1.length==0)r1='0';
+		if(r2.length==0)r2='0';
+		if(value.length==0)value='0';
+
+		url=urlpr+"-"+r1+"-"+r2+"-"+value+urlex;
+
+		//alert(url);
+		location.href=url;
+		return true;
+		}
+	*/
+	
+	
+}
+var $_GET = (function(){
+	var url = window.document.location.href.toString();
+	var u = url.split("?");
+	if(typeof(u[1]) == "string"){
+		u = u[1].split("&");
+		var get = {};
+		for(var i in u){
+			var j = u[i].split("=");
+			get[j[0]] = j[1];
+		}
+		return get;
+	} else {
+		return {};
+	}
+})();
+function hiddenidserveval(obj)
+{
+	$("#hiddenidserve").val($(obj).val());
+	$("#serve_form").attr('action','/index.php/subscribe-index-'+$(obj).val()+'.html');
+	//alert($(obj).val());
+}
+
+function ajax_cookie(cookie_name,cookie_val)
+{
+	$.get('/index.php/serve-ajax_cookie.html?cookie_name='+cookie_name+'&cookie_val='+cookie_val);
+}
+
+</script>
+
+<script type="text/javascript">
+$(function(){
+
+
+	$("input[name='radioidserve']").click(function(){
+		
+
+
+		$("#hiddenidserve").val($(this).val());
+		$("#serve_form").attr('action','/index.php/subscribe-index-'+$(this).val()+'.html');
+
+		
+		});
+
+	
+	
+	$('#serve_form').validate({
+		errorPlacement: function(error, element){
+			//console.log(error.html());
+	        $(element).nextAll('.serve_label').removeClass("serve_error_on").addClass("serve_error_off").html(error);
+	    },
+	    success       : function(label){
+	        label.parent().removeClass("serve_error_off").addClass("serve_error_on");
+	    },
+	    highlight: function(element) {
+	        $(element).next('.serve_label').removeClass("serve_error_on").addClass("serve_error_off");
+	      },
+    rules : {
+    	username : {
+            required : true
+        },mobile : {
+            required : true
+        },subscribe_type : {
+            required : true
+        },address : {
+            required : true
+        },figure_mode : {
+            required : true
+        },hiddenidserve : {
+        	required : true
+        },timeserve:{
+        	required : true
+        },region_id:
+        {
+        	required : true
+        }
+        
+    },
+    messages : {
+    	username : {
+            required : '{$lang.username_not_empty}'
+        },mobile : {
+            required : '{$lang.mobile_not_empty}'
+        },subscribe_type : {
+            required : '{$lang.subscribe_type_not_empty}'
+        },address : {
+            required : '{$lang.address_not_empty}'
+        },figure_mode : {
+            required : '{$lang.figure_mode_not_empty}'
+        },hiddenidserve : {
+        	required : '{$lang.radioidserve_not_empty}'
+        },timeserve : {
+        	required : '请选择服务时间 '
+        },region_id:{
+        	required : '请选择地区 '
+      	}
+        
+    },
+    submitHandler: function(form) {//通过之后回调
+        if(!$.rc.dialog.islogin()){
+
+        	ajax_cookie('username',$(form).find('#username').val());
+
+        	ajax_cookie('mobile',$(form).find('#mobile').val());
+        	ajax_cookie('address',$(form).find('#address').val());
+        	ajax_cookie('timeserve',$(form).find('#timeserve').val());
+        	ajax_cookie('remarks',$(form).find('#remarks').val());
+
+        	ajax_cookie('r1',$("#region select:eq(0)").val());
+        	ajax_cookie('r2',$("#region select:eq(1)").val());
+        	ajax_cookie('value',$("#region select:eq(2)").val());
+        	
+        	ajax_cookie('hiddenidserve',$("#hiddenidserve").val());
+        	
+        	
+
+            $.rc.dialog.login();
+			
+			//console.log();
+			
+			
+			
+			
+			
+			
+			
+        }else{
+              form.submit();    
+          }
+      }
+    
+	});
+});
+
+</script>
+<style>
+#timeopt{
+	padding: 4px 6px;
+	border: #ccc 1px solid;
+	width: 80px;
+	margin-left: 5px;
+	}
+
+</style>
+<!--头部结束-->
+<!--中间开始-->
+<div class="center_box">
+  <div class="tab_qieh">
+     <span class="curspan" id="figure_mode_1">到就近服务点量体<i><img src="{res file=images/jiao-down.gif}"></i></span>
+     <span id="figure_mode_2">我需要上门量体<i><img src="{res file=images/jiao-down.gif}"></i></span>
+     <div class="jjfwd f_l"><p id="smsf"></p><p id="radioidserveerror"></p></div>
+     <p class="clear"></p>
+  </div>
+<form method="post" id="serve_form" name="serve_form" >
+    <input id="hidden_booking_type" name="hidden_booking_type" value="0" type="hidden">
+	<input id="hidden_province" name="hidden_province" value="0" type="hidden">
+	<input id="hidden_city" name="hidden_city" value="0" type="hidden">
+	<input id="hidden_area" name="hidden_area" value="0" type="hidden">
+	<input id="hidden_address" name="hidden_address" value="" type="hidden">
+  <div class="serve_from_box">
+  {if $issubscribe}
+      <div class="serve_ts">
+          您已经提交过量体服务并且还未处理，您可以：<br>
+			<a href="/index.php/service-info-{$idserve}.html" target="_blank"> > 联系服务点</a><br>
+			<a href="/index.php/my_body.html" target="_blank"> > 取消之前的预约</a>
+      </div>
+      {/if}
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="serve_table serve_table2">
+	      <tr>
+	             <th><div>服务地区</div></th>
+	             <td>
+	             <!-- 
+	             <div style="position:  relative;">
+		             <ul id="order_info">
+					<li>
+						<div id="province" class="default">省份 / 直辖市</div><div id="city" class="default">城市</div>
+						<div id="area" class="default">区 / 县</div> 
+					</li>
+					</ul>
+					<ul class="select_box" id="order_province"></ul>
+					<ul class="select_box" id="order_city"></ul>
+					<ul class="select_box" id="order_area"></ul> 
+	              </div>
+	               -->
+	             
+	                <div id="region">
+					{if $region_id}		
+					<select>
+					  <option>{$lang.select_pls}</option>
+					  {html_options options=$regions}
+					</select>
+					{else}
+					<select class="select">
+					  <option>{$lang.select_pls}</option>
+					  {html_options options=$regions}
+					</select>
+					{/if}
+					</div> 
+					<input type="hidden" name="region_name" value="{$store.region_name|escape}" class="mls_names" />
+					<input type="hidden" name="region_id" id="region_id" value="{$region_id}" class="mls_id" />
+					<label class="serve_label serve_error_on"></label>
+	             </td>
+	           </tr>
+	    <tr>
+	             <th><div>真实姓名</div></th>
+	             <td>
+	               <div>
+	               <input name="subscribe_type" id="subscribe_type_1" type="hidden" value="1" class="f_l" style="margin:5px;">
+	               <input name="figure_mode" type="hidden" value="2" class="f_l" style="margin:5px;">
+	               
+	               
+	               
+	                <input type="text" name="username" id="username" class="serve-input f_l" value="{$smarty.cookies.username}" />
+	                <label class="serve_label serve_error_on"></label>
+	               </div>
+	             </td>
+	           </tr>
+	           <tr>
+	             <th><div>手机号码</div></th>
+	             <td>
+	               <div>
+	                <input type="text" name="mobile" id="mobile" class="serve-input f_l" maxlength="11" value="{$smarty.cookies.mobile}" />
+	                <label class="serve_label serve_error_on"></label>
+	               </div>
+	             </td>
+	           </tr>
+	           <tr>
+	             <th><div>详细地址</div></th>
+	             <td>
+	               <div>
+	                <input type="text" name="address" id="address" class="serve-input f_l" maxlength="45" value="{$smarty.cookies.address}" />
+	                <label class="serve_label serve_error_on"></label>
+	               </div>
+	             </td>
+	           </tr>
+	           <tr>
+	             <th><div>预约时间</div></th>
+	             <td>
+	               <div>
+	                <input type="text" name="timeserve" id="timeserve" class="serve-input f_l" style="width:222px;"  value="{$smarty.cookies.timeserve}" />
+					<input id="timeopt" name="timeopt" value="" type="hidden">
+	                
+	                <div style="position:relative;">
+		                <div id="serve_time" class="serve_time">上午</div>
+		                <ul class="select_box" id="serve_time_order">
+		                   <li class="province_li" p_value="1">上午</li>
+                           <li class="province_li" p_value="2">下午</li>
+		                </ul>
+	                </div>
+	               <!--
+	                 <select id="timeopt" name="timeopt" class="f_l" >
+						<option value="1"> 上午 </option>
+						<option value="2"> 下午 </option>
+					</select> --> 
+		   <label class="serve_label serve_error_on"></label>
+	               </div>
+	             </td>
+	           </tr>
+	           
+	           <tr>
+	             <th valign="top"><div style="padding-top:10px;">预约备注</div></th>
+	             <td>
+	               <div>
+	                <textarea name="remarks" id="remarks" rows="6" cols="28" class="serve_texta" style="width:328px; fong-size:14px; padding:3px 5px; height:52px; line-height:20px; border:#e2e2e2 1px solid;">{$smarty.cookies.remarks}</textarea>
+	               </div>
+	             </td>
+	           </tr>
+	      </table>
+	      <p class="clear"></p>
+	      <p class="serve_yuyiult" style="display:none;">
+			<span>就近服务点</span>
+		  </p>
+	      <p class="clear"></p>
+	      <!--滚动条开始-->
+	      <div id="serve_box_div">
+	      </div>
+	      <!--滚动条结束-->
+	      <p class="clear"></p>
+	      <div class="serve_but_box">
+		 <input type="submit" value="" class="serve-tjyy f_l">
+		 <span id="radioidserveerror" colspan='5' style="color:red; float:left; padding-top:-15px;">
+		 <!-- <div style="padding-left:15px; padding-top:9px;">请您先登录后再提交预约量体服务！</div> -->
+		 <input type="hidden" name="hiddenidserve" id="hiddenidserve" value="" />
+		 <label class="serve_label serve_error_on"></label>
+		 </span>
+		</div>
+       </div>
+   </form>    
+   </div>
+   <p class="clear"></p>
+</div>
+<!--中间结束-->
+<!--底部开始-->
+<!-- 反回顶部代码开始 -->
+<script type="text/javascript" src="{res file=js/js.js}"></script>
+<div id="piaofu-right" href="javascript:void(0)">
+    <a href="{link app=cart act=index}" target="_blank" class="yichu"></a>
+      <a href="javascript:;" class="kefu" id="BizQQWPA"></a>
+      <script type="text/javascript">
+      BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4008919867, selector: 'BizQQWPA'});
+      </script>
+</div>
+<div id="gotop1" href="javascript:void(0)" style="display:block;">
+    <a href="javascript:void(0)" class="go_top"></a>
+</div>
+<!-- 反回顶部代码开始 -->
+{include file=footer.html}
+<script>
+$(function(){
+	$('#figure_mode_2').click(function(){
+		$(this).addClass('curspan');
+		$('#figure_mode_1').removeClass('curspan');
+		$('.jjfwd').show();
+		$('#smsf').text('预约上门量体会收取80元服务费');
+
+		$('input[name="figure_mode"]').val('1');
+		
+		
+	});
+	$('#figure_mode_1').click(function(){
+		$(this).addClass('curspan');
+		$('#figure_mode_2').removeClass('curspan');
+		$('.jjfwd').hide();
+
+		$('input[name="figure_mode"]').val('2');
+	});
+	
+});
+</script>

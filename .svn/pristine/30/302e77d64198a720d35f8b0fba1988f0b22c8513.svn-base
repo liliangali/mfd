@@ -1,0 +1,90 @@
+{include file=../header-new.html}
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+
+<!--<editmode></editmode>-->
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+
+<div class="user_box">
+	<!--用户中心左菜单部分 START-->
+	{include file = member.menu.html}
+	<!--用户中心左菜单部分 END-->
+	
+    <div class="user_right user_rights fr">
+		<h4 class="collection">料册管理<a href="fabricbook-applyRecord.html" style="color:#e66800;float:right;font-size:14px;line-height:42px;">申请记录</a></h4>
+        <!--<div class="lcfabric">
+        	<ul>
+				<!--{foreach from=$category key=key item=cate}-->
+			<!--		<li {if $query.category == $key} class="lccurrent" {/if} ><a href="fabricbook.html?category={$key}">{$cate}</a></li>
+					<li><span></span></li>
+				<!--{/foreach}-->
+            <!--    <li><a href="fabricbook-applyRecord.html">申请记录</a></li>
+            </ul>
+        </div>-->
+		
+		<!--面料详情 START-->
+        <div class="cldetails" style="clear:both;">
+			<div class="clcpic fl">
+            	<div class="box">
+                    <ol>
+						<!--{foreach from=$gallery_list name=count  item=count}-->
+							<a  {if $smarty.foreach.count.first} class="selected"{/if} ></a>
+						<!--{/foreach}-->
+                    </ol>
+                    <ul>
+						<!--{foreach from=$gallery_list  name=gallery key=key item=gallery}-->
+							<li {if $smarty.foreach.gallery.first} class="active" style="left:0;z-index:11;"{/if}><img src="{$gallery.image}" width="522" height="398" /></li>
+						<!--{/foreach}-->
+                    </ul>
+                </div>
+            </div>
+			<form action="{link app=buy}" id="payform" method="post" target="_blank">
+            <div class="clword fl">
+            	<h5>{$find_data.name|escape}【{$category[$find_data.category]|escape}】</h5>
+                <p class="clnrms">{$find_data.brief|escape}</p>
+                <div class="clsettle">
+                    <p class="cldeposit">{if $find_data.aftersale eq 0}金额：{else}押金：{/if}<span class="cljgcor">{$find_data.price|price}</span><span class="clthfj">{if $find_data.aftersale eq 1}退回面料时返还押金{/if}</span></p>
+                    <div class="clnum" style=" overflow:hidden;">
+                    	<p class="fl">数量：</p>
+						<div class="clinput jajia_box fl">
+							<a href="#" class="a_1">-</a>
+								<input id="num" name="num" value="1" type="text" placeholder="1">
+							<a href="#" class="a_2">+</a>
+						</div>
+                        <p class="clthfj fl store">( 库存：{$find_data.store} )</p>
+						<input id="store" name="store" value="{$find_data.store}" type="hidden">
+						<input id="fabricId" name="id" value="{$find_data.id}" type="hidden">
+                    </div>
+                    <input type="submit" class="clsqbut" value="开始申请">
+                </div>
+            </div>
+			</form>
+        </div>
+		<!--面料详情 END-->
+    </div>
+	
+</div>
+<!--图片轮播js-->
+<script src="/public/static/pc/js/scrollAd.js"></script> 
+{include file=footer.html}
+
+<script>
+	//数量调整
+	$('.jajia_box').on('click','a',function(){
+		var input=$(this).parent().children('input'),num=Number(input.val()), store_num=Number($("#store").val());
+
+		if(num>1&&$(this).hasClass('a_1')){
+			input.val(num-1)	
+		}
+		if($(this).hasClass('a_2')){
+			if(num >= store_num){
+				alert("库存不足！！");
+			} else {
+				input.val(num+1)
+			}
+		}
+	});
+</script> 
+</body>
+</html>

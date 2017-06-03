@@ -1,0 +1,66 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=motif&amp;act=index">栏目列表</a></li>
+        <li><a class="btn1" href="index.php?app=motif&amp;act=add">添加栏目</a></li>
+        <li><span>栏目位置列表</span></li>
+        <li><a class="btn1" href="index.php?app=motif&amp;act=add_group">添加栏目位置</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+
+             <div class="left">
+            发布平台:<select class="querySelect mySelect" name="sites"><option value="">全部</option>{html_options options=$sites selected=$smarty.get.site}</select>
+            </div>
+
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $locations}-->
+        <tr class="tatr1">
+            <td>位置ID</td>
+            <td>位置名称</td>
+            <td>位置标记</td>
+            <td>所属站点</td>
+            <td>添加时间</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$locations item=list key=k}-->
+        <tr class="tatr2">
+            <td width="200">{$list.id}</td>
+            <td>{$list.name}</td>
+            <td>{$list.code}</td>
+            <td>{$list.site}</td>
+            <td>{$list.add_time|date:complete}</td>
+            <td class="handler">
+                <a href="index.php?app=motif&amp;act=edit_group&amp;id={$list.id}">编辑</a>
+<!--                 <a href="javascript:;" onclick="if(confirm('确定删除吗？')) location.href='index.php?app=motif&amp;act=drop_group&amp;id={$list.id}'">删除</a> -->
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="6">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $items}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+<script type="text/javascript">
+
+    
+    $('.mySelect').change(function() {
+        var site=$("select[name='sites']").val();
+        window.location.href="index.php?app=motif&act=group_list&site="+site;
+    }) 
+
+</script>
+{include file="footer.html"}

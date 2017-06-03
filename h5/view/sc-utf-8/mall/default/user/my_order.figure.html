@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>我的量体数据</title>
+<link type="text/css" href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link type="text/css" href="http://r.cotte.cn/cotte/wap/css/productlist.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="container">
+    	<header class="hdtop">
+            <div class="edit fl">
+                <p class="p1"><a href="javascript:history.go(-1)"><img src="http://r.cotte.cn/cotte/wap/images/tw_03.png" /></a></p>
+                <p class="p2">顾客基本信息</p>
+            </div>
+        </header>
+    <div class="data">
+        	<h4>基本信息</h4>
+            <ul class="tstx tstxs">
+            	  <li>姓名：{$order_figure_info.realname}</li>
+                <li>时间：{$order_figure_info.modi_time|date:Y-m-d}</li>
+                <li>量体：<!-- {if $order_figure_info.measure eq 1} -->（上门）<!-- {elseif $order_figure_info.measure eq 2} -->（到店）{$order_figure_info.serve_name}<!-- {elseif $order_figure_info.measure eq 5} -->（历史量体数据）<!-- {elseif $order_figure_info.measure eq 6} -->（指派量体师）<!-- {/if} --></li>
+                <li>量体师：<!-- {if $order_figure_info.liangti_name} -->{$order_figure_info.liangti_name}<!-- {else} -->未指派<!-- {/if} --></li>
+                <li>服务：<!-- {if $order_figure_info.liangti_state eq 0} -->未指派<!-- {elseif $order_figure_info.liangti_state eq 0} -->未指派<!-- {elseif $order_figure_info.liangti_state eq 1} -->已指派<!-- {elseif $order_figure_info.liangti_state eq 4} -->已保存<!-- {elseif $order_figure_info.liangti_state eq 2 or 3} -->已完成<!-- {/if} --></li>
+            </ul>
+        </div>
+   <!--{if !empty($order_figure)}-->
+        <div class="data">
+        <h4>量体数据</h4>
+            <ul class="sjsz">
+			{foreach from=$order_figure.figure item=figure key=key}
+            	<li >{$figure.name}：{$figure.value|default:0}cm</li>
+            {/foreach}
+            </ul>
+        </div>
+        <div class="data">
+        	<h4>特殊体型</h4>
+            <ul class="tstx">
+			{foreach from=$order_figure.special item=special key=key}
+			<!--{if !empty($special.value)}-->
+            	<li >{$special.name}：{$special.value}</li>
+                 <!--{/if}-->
+                {/foreach}
+            </ul>
+        </div>
+        <div class="data">
+        	<h4>着装风格</h4>
+            <ul class="tstx">
+
+			{foreach from=$order_figure.style item=style key=key}
+			  	<!--{if !empty($style.value)}-->
+                <li >{$style.name}：{$style.value}</li>
+         <!--{/if}-->
+         {/foreach}
+
+            </ul>
+        </div>
+        <div class="data">
+        	<h4>大衣着装习惯</h4>
+            <ul class="tstx">
+			  	<!--{if $order_figure_info.styleDY eq '0A01'}-->
+                <li>穿大衣不套西服</li>
+                <!-- {else} -->
+                 <li>穿大衣套西服</li>
+              <!--{/if}-->
+            </ul>
+        </div>
+		<!--{/if}-->
+    </div>
+</body>
+</html>

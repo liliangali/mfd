@@ -1,0 +1,80 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>{$lang.manage}</span></li>
+    <li><a class="btn1" href="index.php?app=lv&amp;act=add">{$lang.add}</a></li>
+  </ul>
+</div>
+
+<!-- <div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="lv" />
+          <input type="hidden" name="act" value="index" />
+          <select class="querySelect" name="field_name">{html_options options=$query_fields selected=$smarty.get.field_name}
+          </select>
+          <input class="queryInput" type="text" name="field_value" value="{$smarty.get.field_value|escape}" />
+          {$lang.sort_order}:
+          <select class="querySelect" name="sort">{html_options options=$sort_options selected=$smarty.get.sort}
+          </select>
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      {if $filtered}
+      <a class="left formbtn1" href="index.php?app=lv">{$lang.cancel_query}</a>
+      {/if}
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div> -->
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $users}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>{$lang.name}</td>
+      <td><span ectype="order_by" fieldname="experience">{$lang.experience}</span></td>
+      <td><span ectype="order_by" fieldname="default_lv">{$lang.default_lv}</span></td>
+      <!--<td><span ectype="order_by" fieldname="dis_count">{$lang.dis_count}</span></td>-->
+      <!--<td><span ectype="order_by" fieldname="dis_count">BD提成比例</span></td>-->
+      <!--<td><span ectype="order_by" fieldname="dis_count">创业者提成比例</span></td>-->
+<!--&lt;!&ndash;       <td><span ectype="order_by" fieldname="experience">{$lang.experience}</span></td> &ndash;&gt;-->
+      <!--<td><span ectype="order_by" fieldname="lv_type">{$lang.lv_type}</span></td>-->
+       <td class="handler">{$lang.handler}</td>
+
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$users item=user}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$user.member_lv_id}" /></td>
+      <td>{$user.name|escape}</td>
+      <td>{$user.experience|escape}</td>
+       <td><!--{if $user.default_lv}-->{$lang.yes}
+      <!--{else}-->{$lang.no}<!--{/if}-->
+      </td>
+      <!--<td>{$user.dis_count}</td>-->
+     <!--&lt;!&ndash;   <td>{$user.experience}</td> &ndash;&gt;-->
+       <!--<td>{$user.bd_dis_count}%</td>-->
+       <!--<td>{$user.cy_dis_count}%</td>-->
+       <!--<td>{$tname[$user.lv_type]}</td>-->
+     
+      <td class="handler">
+      <span style="width: 100px">
+       &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<a href="index.php?app=lv&amp;act=edit&amp;id={$user.member_lv_id}">{$lang.edit}</a>
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $users}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

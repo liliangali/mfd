@@ -1,0 +1,83 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#type_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onfocusout : false,
+        onkeyup    : false,
+        rules : {
+            type_name : {
+                required : true,
+            },
+            channel:{
+            	required : true,
+            },
+        },
+        messages : {
+            type_name : {
+                required : '类型名称不能为空',
+            },
+            channel : {
+                required : '所属频道不能为空',
+            },
+        }
+    });
+    
+});
+</script>
+<div id="rightTop">
+    
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=goods_type">{$lang.manage}</a></li>
+    </ul>
+</div>
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="type_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    	类型名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="name" type="text" name="name" value="{$info.name|escape}" required/> 
+                </td>
+            </tr>
+             <!-- <tr>
+                <th class="paddingT15">
+                    	类型别名:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="alias" type="text" name="alias" value="{$info.alias|escape}" />(|分隔,前后|) 
+                </td>
+            </tr> -->
+                  
+                  
+                    <tr>
+                <th class="paddingT15">
+                    	规格:</th>
+                <td class="paddingT15 wordSpacing5">
+                {foreach from=$speci_list item=item}
+                    {$item.spec_name}：<input id="alias" type="checkbox" {if $item.is_check}checked{/if} name="speci[]" value="{$item.spec_id}" /> |
+                {/foreach}
+                </td>
+            </tr>    
+            
+          <tr>
+            <th></th>
+            <td class="ptb20">
+            	<input type="hidden" name="id" value="{$info.type_id}" />
+                <input class="tijia" type="submit" id="Submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="reset" value="{$lang.reset}" />            
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+
+</script>
+{include file="footer.html"}

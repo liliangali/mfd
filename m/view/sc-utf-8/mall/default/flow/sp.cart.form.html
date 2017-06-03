@@ -1,0 +1,29 @@
+<p class="bcltsj">支付及配送方式<a href="javascript:;" class="saveShipAndPay">【保存支付及配送方式】</a></p>
+    
+       <p class="yuyiult">支付方式</p>
+       
+           <div class="biaozm" id="pay">
+      <div class="lihonwei">
+      <ul>
+      		{foreach from=$payments item=pay name=loop}
+      		<li style="overflow:hidden;" {if $payment.payment_id eq $pay.payment_id}class="on" {/if}{if !$payment && $smarty.foreach.loop.first}class="on"{/if}><input name="pay" type="radio" value="{$pay.payment_id}" {if $payment.payment_id eq $pay.payment_id}checked {/if}{if !$payment && $smarty.foreach.loop.first}checked{/if}/><span class="psname">{$pay.payment_name}</span>{$pay.payment_desc}</li>
+      		{/foreach}
+      </ul>
+      </div>
+      <p class="clear"></p>    
+    </div> 
+        <p class="yuyiult">配送方式</p>
+        
+            <div class="biaozm">
+      <div class="lihonwei" id="ship">
+      <ul>
+      		{foreach from=$shippings item=ship name=loop}
+      			<li style="overflow:hidden;" {if $shipping.shipping_id eq $ship.shipping_id}class="on" {/if}{if !$shipping && $smarty.foreach.loop.first}class="on"{/if}><input name="ship" type="radio" value="{$ship.shipping_id}" {if $shipping.shipping_id eq $ship.shipping_id}checked {/if}{if !$shipping && $smarty.foreach.loop.first}checked{/if} /><span class="psname">{$ship.shipping_name}</span>{$ship.shipping_desc}</li>
+			{/foreach}
+      </ul>
+      </div>
+      <p class="clear"></p>    
+    </div> 
+     
+    <div class="but_pos"><input type="button" value="" class="tjyiuyoexx saveShipAndPay"/></div>
+    

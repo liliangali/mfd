@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>麦富迪手机版</title>
+<link href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link href="http://r.cotte.cn/cotte/wap/css/style.css" rel="stylesheet" />
+</head>
+<body>
+<div class="main">
+{include file=header-new.html}
+	<div class="indexpage">
+     <div id="slider" class="swipe">
+      <div class="swipe-wrap">
+		  {foreach from=$s_list item=item}
+			<div>
+			<a href="{$item.link_url}"><img src="{$item.img}"></a>
+			</div>
+		  {/foreach}	
+       </div>
+       <div class="swipe-btn"> 
+       {foreach from=$s_list item=item name=loop}
+       <span {if $smarty.foreach.loop.first}class="cur"{/if}></span>
+       {/foreach}
+      
+       </div>
+    </div>
+	</div>
+    
+    <div class="jptj">
+     <h1>经典款式</h1>
+     <h2>Best recommend</h2>
+    </div>
+    
+   <div class="jptj">
+   
+    <ul>
+    {foreach from=$j_list item=item}
+     <li>
+      <a href="{link app=custom act=goodsInfo}?id={$item.id}">
+       <p class="p1"><img src="{$item.image}"></p>
+       <p class="p2">{$item.suit_name}</p>
+       <p class="p3">￥ {$item.price}</p>
+      </a>
+     </li>
+    {/foreach}
+    </ul>
+   </div>
+
+    <div class="jptj">
+     <h1>最受欢迎</h1>
+     <h2>Sales promotion</h2>
+    </div>
+    
+   <div class="jptj">
+    <ul style="border:none;">
+      {foreach from=$b_list item=item}
+     <li>
+      <a href="{link app=custom act=goodsInfo}?id={$item.id}">
+       <p class="p1"><img src="{$item.image}"></p>
+       <p class="p2">{$item.suit_name}</p>
+       <p class="p3">￥ {$item.price}</p>
+      </a>
+     </li>
+    {/foreach}
+     
+    </ul>
+   </div>
+{include file="/footer_new.html"}
+
+	
+</div>
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script src="http://r.cotte.cn/global/jquery.swipe.js"></script>
+<script src="http://r.cotte.cn/cotte/wap/js/public.js"></script>
+<script>
+//页面滚动效果
+Swipe(document.getElementById('slider'), {
+	continuous: false,
+	//auto:1000,
+	callback: function(index, element) {
+		$('.swipe-btn span').eq(index).addClass('cur').siblings().removeClass();
+	} 
+});
+</script>
+<script>
+mfdwap.pageIndex()
+</script>
+</body>
+</html>

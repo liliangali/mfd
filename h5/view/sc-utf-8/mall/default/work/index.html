@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no" >
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+* { margin: 0; padding: 0; }
+body{ min-width:320px; height:100%; overflow:hidden;}
+li, ul { list-style: none; }
+a{ text-decoration:none;}
+.fl { float: left; }
+.fr { float: right; }
+.zhezhaoLayer { position: fixed; top: 0; z-index: 101; width: 100%; max-width: 640px; height: 100%; background: #000; opacity: 0.2; display:none; }
+.main { max-width: 640px; margin: 0 auto; padding:20px 0 70px; box-sizing:border-box;}
+.swipe { max-width:340px; margin:0 auto; overflow: hidden; visibility: hidden; position: relative; padding-bottom: 20px; }
+.swipe-wrap { overflow: hidden; position: relative; }
+.swipe-wrap div { float: left; width: 100%; position: relative; text-align: center; }
+.swipe-wrap img { max-width: 100%; }
+.swipt-btn { position: absolute; bottom: 0; width: 100%; text-align: center }
+.swipt-btn li { width: 10px; height: 10px; border-radius: 50%; background: #eee; display: inline-block; margin: 0 2px; }
+.swipt-btn .cur { background: #7dddb8; }
+.brief { color: #7dddb8; font-size: 14px; line-height: 24px; padding: 20px 10px }
+.downBar { position: fixed; bottom: 0; max-width: 640px; width: 100%; height: 50px; border-top: solid 1px #f2f2f2; background: #f9f9f9; overflow:hidden; }
+.downBar .price { font-size: 16px; color: #333; line-height: 50px; padding-left: 15px; }
+.downBar .price span { font-size: 18px; color: #f30; padding-left: 5px; }
+.downBar .downOrder { height: 36px; border-radius: 18px; line-height: 36px; text-align: center; width: 45%; background: #7dddb8; color: #fff; font-size: 16px; margin-top: 7px; }
+/*尺码*/
+.sizeTable { bottom: 0; max-width: 640px; overflow: hidden; position:fixed; z-index: 102; width: 100%; background: rgba(255, 255, 255, 0.9); height: 300px; transform: translateY(300px); -webkit-transform: translateY(300px); transition: all .5s; -webkit-transition: all .5s; }
+.sizeTable .step1{line-height:120px; text-align:center;}
+.sizeTable .step1 li{ display:inline-block; width:120px; height:120px; border:solid 2px #ddd; margin:50px 10px; border-radius:20px;
+background-color: #fafafa;
+background-image: linear-gradient(#fafafa, #e3e3e3);
+background-image: -webkit-linear-gradient(#fafafa,#e3e3e3);
+background-image: -moz-linear-gradient(#fafafa, #e3e3e3);
+}
+.sizeTable .step1 li:hover,.sizeTable .step1 li:active{color:#666;background: #fff;border-color:#7dddb8;}
+.sizeTable .step2{ display:none;}
+.sizeTable .titBar { padding: 5px 1.5%; clear: both; color: #666; height: 45px; line-height: 45px; padding-right: 15px; border-bottom: solid 1px #d5d5d5; overflow:hidden;}
+.sizeTable .titBar .tit { color: #000; }
+.sizeTable .titBar .seeSize { color: #27af62; }
+.sizeTable .scrollBox { clear: both; height: 193px; overflow-x: hidden; overflow-y: auto; }
+.sizeTable.show { transform: translateY(0); -webkit-transform: translateY(0) }
+.sizeTable .tabBar { padding: 10px; color: #666; overflow: hidden; }
+.sizeTable .tabBar .tab { line-height: 1.5; }
+.sizeTable .tabBar .tab li { float: left; border-bottom: solid 2px rgba(255,255,255,0); padding: 0 20px 3px; }
+.sizeTable .tabBar .tab .cur { color: #27af62; border-color: #7dddb8; }
+.sizeTable .tabBar .save { background: #7dddb8; border-radius: 5px; color: #fff; padding: 2px 10px; }
+.sizeTable .itemList { padding: 0 8px; overflow: hidden; line-height: 30px; color: #666; font-size: 14px; }
+.sizeTable .itemList li { float: left; width: 22%; margin: 1.5%; text-align: center; background: #fff; border-radius: 5px; border: solid 1px #d5d5d5; box-sizing: border-box; }
+.sizeTable .itemList .cur { border-color: #7dddb8; color: #27af62; }
+.sizeTable .loading{ text-align:center; line-height:140px;}
+</style>
+</head>
+<body>
+<div class="main">
+  <div id="slider" class="swipe">
+    <div class="swipe-wrap">
+    {foreach from=$new_articles item=item}
+      <div><img src="{$item.img_url}"></div>
+    {/foreach}
+    </div>
+    <ul class="swipt-btn" id="swipt-btn">
+      <li class="cur"></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <p class="brief">配饰是作为点睛之笔，不可或缺的单品。对于上班族男士而言，领带是最常用的配饰，就像女人的项链一样，应该多种多样。</p>
+    <div class="downBar">
+        <p class="fl price">售价<span>￥{$info.price}</span></p>
+        <span class="fr downOrder" id="orderDown">下订单</span> </div>
+    <div class="sizeTable" id="sizeTable">
+      <div class="step1">
+        <div class="titBar"><span class="tit fl">&lt; 尺码选择</span></div>
+        <ul>
+          <li class="base">标准尺码</li>
+          <li class="amount">量体定制</li>
+        </ul>
+      </div>
+      <div class="step2">
+        <div class="titBar"><span class="tit fl">&lt; 尺码选择</span><a class="seeSize fr" target="_blank" href="http://m.cy.mfd.cn/size.html">查看尺码 &gt;</a></div>
+        <div class="tabBar">
+          <ul class="tab fl"></ul>
+          <span class="save fr" id="okDownOrder">下单</span> </div>
+        <div class="scrollBox">
+          <div class="loading">加载中...</div>
+        </div>
+      </div>
+    </div>
+    <div class="zhezhaoLayer" id="zhezhaoLayer"></div>
+</div>
+
+<script src="../../../../../static/expand/jquery.js"></script> 
+<script src="../../../../../static/expand/jquery.swipe.js"></script> 
+<script>
+function Custom(){
+	this.cache='';
+	this.clothing='0003:0006';//定义初始的id
+	this.api='http://api.dev.mfd.cn/v1/';
+	this['access-token']='101-token';
+}
+
+Custom.prototype.init=function(){
+	_diy=this
+	//幻灯
+	function R(obj){
+		return document.getElementById(obj)	
+	}
+	var slider = Swipe(document.getElementById('slider'), {
+		startSlide: 0,  //起始图片切换的索引位置
+		//auto: 3000, //设置自动切换时间，单位毫秒
+		continuous: true,  //无限循环的图片切换效果
+		disableScroll: true,  //阻止由于触摸而滚动屏幕
+		callback: function(index, element) {
+			var obj=R('swipt-btn'),
+				len=obj.getElementsByTagName('li').length
+				i=len;
+			while(i--){
+				obj.getElementsByTagName('li')[i].className='';	
+			}
+			obj.getElementsByTagName('li')[index].className='cur'	
+		},  //回调函数，切换时触发
+	});
+	$('.main').height($(window).height())
+	
+	this.order();
+}
+
+
+/*======================================*
+			下单 start
+*=======================================*/
+
+Custom.prototype.order=function(){
+	$('#orderDown').click(function(){
+		$('#sizeTable').addClass('show');
+		$('#zhezhaoLayer').unbind('click').click(function(){
+			$('#sizeTable').removeClass('show');
+			$(this).fadeOut('fast');	
+		}).fadeIn('fast');
+	});
+	$('#sizeTable .step1 .base').click(function(){
+		$.ajax({
+			url:_diy.api+'inits/nav',
+			data:{
+				cache:_diy.cache,
+				clothingID:_diy.clothing,
+				'access-token':_diy['access-token']	
+			},
+			dataType:"jsonp",
+			success:function(data){
+				//alert(JSON.stringify(data))
+				_diy.getSizeTable(data.data)
+			},
+			error:function(){
+				alert('获取导航失败')	
+			}
+		});
+		$('#sizeTable .step1').hide();
+		$('#sizeTable .step2').show();
+	});
+	$('#sizeTable .step1 .amount').click(function(){
+		_diy.underOrder()	
+	});
+	$('#sizeTable .step1 .tit').click(function(){
+		$('#sizeTable').removeClass('show');
+		$('#zhezhaoLayer').fadeOut('fast');		
+	});
+	$('#sizeTable .step2 .tit').click(function(){
+		$('#sizeTable .step2').hide();
+		$('#sizeTable .step1').show();
+	});
+}
+Custom.prototype.underOrder=function(){
+	alert('下单成功')	
+}
+
+/*======================================*
+			下单 end
+*=======================================*/
+
+/*======================================*
+			尺码表 start
+*=======================================*/
+
+Custom.prototype.getSizeTable=function(data){
+	alert(JSON.stringify(data))
+	var i,len=data.length,tab=[],layer=[];
+	for(i=0;i<len;i++){
+		tab.push('<li data-id="'+data[i].nav.id+'">'+data[i].nav.name+'</li>');
+		layer.push('<div class="itemList'+(i>0?' hide':'')+'"><div class="loading">加载中...</div></div>');
+		getSize(data[i].nav.id,i);
+	}
+	//tab
+	$('#sizeTable .tab').html(tab.join('')).children('li').click(function(){
+		var n=$(this).index();
+		$(this).siblings().removeClass('cur').end().addClass('cur');
+		$('#sizeTable .itemList').eq(n).siblings().hide().end().show();
+	}).eq(0).trigger('click');
+	
+	//layer
+	$('#sizeTable .scrollBox').html(layer.join('')).on('click','li',function(){
+		$(this).addClass('cur').siblings('.cur').removeClass('cur');
+	})	
+
+	//组织数据
+	function addHtml(data,n){
+		var i,len=data.length,size=[];
+		for(i=0;i<len;i++){
+			size.push('<li'+(data[i].Dv?' class="cur"':"")+' data-id="'+data[i].Id+'">'+data[i].Name+'</li>');
+		}
+		$('#sizeTable .itemList').eq(n).html('<ul>'+size.join('')+'</ul>')
+	}
+	
+	//获取
+	function getSize(id,n){
+		$.ajax({
+			url:_diy.api+'sizes/qsizeinfo',
+			data:{
+				cache:_diy.cache,
+				clothingID:id,
+				'access-token':_diy['access-token']	
+			},
+			dataType:"jsonp",
+			success:function(data){
+				addHtml(data,n);
+			},
+			error:function(){
+				alert('获取尺码error')	
+			}
+		});
+	}
+	//保存尺码
+	$('#sizeTable .save').click(function(){
+		var flag=true;
+		$('#sizeTable .itemList').each(function(index, element) {
+            if($(this).find('.cur').length<=0){
+				flag=false
+				return flag;
+			}
+        });
+		if(flag){
+			_diy.underOrder()	
+		}else{
+			alert('尺码选择不完整')
+		}
+	})
+}
+
+/*======================================*
+			尺码表 end
+*=======================================*/
+
+var custom=new Custom()
+custom.init();
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

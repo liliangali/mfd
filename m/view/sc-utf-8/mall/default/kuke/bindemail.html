@@ -1,0 +1,78 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+<!--sortlist end-->
+{$_head_tags}
+
+<script>
+
+$(function(){
+$('#mf').validate({
+	errorClass:"error-on",
+	success : function(label){
+		 label.addClass('error-ok');
+	}, 
+    rules : {
+        email : {
+            required : true,
+            email:true,
+        }
+    },
+    messages:{
+    	email : {
+            required : '必填写',
+            email: "邮箱错误",
+        }
+    }
+});
+});
+
+</script>
+
+ <form id='mf' action="kuke-bindemail.html?opt=2" method="post">
+  
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">邮箱绑定</h1>
+    <p class="bdsj_tu_1"><img src="{$img_url}/images/yxbd_1.gif" /></p>
+  
+  <div class="bdsjdyb">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <th width="195">邮箱：</th>
+        <td class="srbdsjh"><input name='email' type="text" style="float:left;" value=""/></td>
+      </tr>
+      
+      <tr>
+        <th>&nbsp;</th>
+        <td colspan="2" class="m_xybu"><input type="submit" value="下一步" /></td>
+      </tr>
+    </table>
+   </div>
+   
+   <div class="bdsjydts">
+     <div class="bdsjts">
+       <h1>请您输入正确的邮箱账号以便接收绑定短信验证码，完成下一步操作。</h1>
+       <p>1. 一个邮箱只能绑定一个账号。</p>
+       <p>2. 绑定邮箱不收任何费用请您放心使用。</p>
+       <p>3. 为了您的账号安全，绑定成功后，请不要随意修改联系方式。</p>
+     </div>
+
+     <div class="bdsjts">
+       <h1>何时需要邮箱绑定?</h1>
+       <p>1. 首次使用抵用券邮箱验证时，会将该邮箱与账号自动绑定，邮箱绑定后不可解绑。</p>
+     </div>
+
+     <div class="bdsjts">
+       <h1>邮箱绑定有何作用？</h1>
+       <p>1. 可将邮箱同时作为登录账号，并可用邮箱找回密码。</p>
+       <p>2. 对于任何抵用券，无需再次验证邮箱，可直接使用。</p>
+     </div>
+   
+   </div>
+
+  </div>
+  </form>
+  <p class="clear"></p>
+
+{include file="footer.html"}

@@ -1,0 +1,51 @@
+<table width="745" border="0" class="ddxxltsj">
+        <tr class="y_l_atr">
+          <td>用户：{$info.user_name}</td>
+
+        <!-- </tr>
+        <tr class="y_l_atr">
+          <td>麦富迪币：{if $info.coin_type ==1}<span style="color:#0000FF;">+{$info.coin}</span>{elseif $info.coin_type == 2}<span style="color:red;">-{$info.coin}</span>{/if}</td>
+
+        </tr> -->
+        <tr class="y_l_atr">
+          <td>积分：{if $info.point_type ==1}<span style="color:#0000FF;">+{$info.point}</span>{elseif $info.point_type == 2}<span style="color:red;">-{$info.point}</span>{/if}</td>
+
+        <!-- </tr>
+        <tr class="y_l_atr">
+          <td>余额：{if $info.money_type ==1}<span style="color:#0000FF;">+{$info.money}</span>{elseif $info.money_type == 2}<span style="color:red;">-{$info.money}</span>{/if}</td>
+
+        </tr> -->
+        <tr class="y_l_atr">
+          <td>等级变更：{$info.newlv}</td>
+
+        </tr class="y_l_atr">
+        <tr class="y_l_atr">
+          <td>调解原因：{$info.brief}</td>
+
+        </tr>
+        <tr>
+          <td>凭证：
+          {if $imgs}
+          {foreach from=$imgs item=link}
+          <a target="_blank" href="{$link.source_img}"><img style="margin:8px 0 0 10px;" width="60" height="60" src="{$link.source_img}"></a>
+          {/foreach}
+          {else}
+          暂无凭证
+          {/if}
+          </td>
+        </tr>
+        <tr class="y_l_b">
+          <td>驳回原因:
+          <p class="xd"><textarea name="content" id="content" cols="" rows="" placeholder=""></textarea></p>
+          </td>
+
+        </tr>
+
+        <tr>
+        <td class="y_l_a">
+        <input type="hidden" name="ac_id" id="ac_id"  value="{$info.id}" />
+	    <input class="congzi" type="button" name="bh" id="bh"  value="驳回" />
+	    <input class="tijia" type="button"name="tg"  id="tg" value="通过" />
+		 </td>
+        </tr>
+</table>

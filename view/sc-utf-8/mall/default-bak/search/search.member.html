@@ -1,0 +1,138 @@
+{include file="header.html"}
+<link href="{$img_url}/css/head_footr.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="{res file=css/coolke.css}" />
+<script type="Text/Javascript" src="{res file=js/jquery-1.7.1.min.js}"></script>
+
+<link type="text/css" rel="stylesheet" href="{res file=css/new_pubuliu.css}" />
+<script type="text/javascript" src="{$img_url}/js/coolke.js"></script>
+
+<script>
+
+function member_cancle(to_uid){
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_unfollow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			alert('已取消关注');
+			//alert("#fans_"+id);
+			var obj = $("#member_fans_"+to_uid);
+			//alert(obj.html());
+			//obj.html('关注');
+			obj.attr('class','');
+			obj.attr('onclick','member_follow('+to_uid+');');
+			
+		}
+	});
+}
+
+function member_follow(to_uid){
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_follow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			alert('已关注');
+			//alert("#fans_"+id);
+			var obj = $("#member_fans_"+to_uid);
+			//alert(obj.html());
+			//obj.html('取消关注');
+			obj.attr('class','u_qxgz');
+			obj.attr('onclick','member_cancle('+to_uid+');');
+		}
+	});
+}
+
+</script>
+<style>
+/* 搜索切换 */
+.search_box{width:1000px; margin:0 auto;}
+.search_h1{height:29px; line-height:29px; width:1000px; overflow:hidden; font-size:18px; font-weight:normal; color:#717171;
+padding:24px 0 16px 0;}
+.search_h1 font{font-size:18px; color:#333333;}
+.search_qh{width:1000px; margin:0 auto; position:relative; border:#dddddd 1px solid; background:#eeeeee;  border-bottom:#999999 1px solid; height:39px;}
+.search_qh .search_qh_ul{ height:40px; position:absolute; left:-1px; top:-1px; z-index:1; line-height:40px; width:1000px; }
+.search_qh .search_qh_ul li{ padding:0 41px; height:40px; line-height:40px; float:left; background:url({res file=images/ser-line.gif}) left center no-repeat; font-size:16px; text-align:center; cursor:pointer;}
+.search_qh .search_qh_ul .cur_li{ padding:0 41px; background:none #f9f9f9; color:#fff; position:relative; border:#999999 1px solid; border-bottom:none; }
+.search_qh .search_qh_ul .cur_li a{color:#bb422e; font-size:16px;}
+#bg-none{background:none;}
+</style>
+<div class="search_box">
+      <h1 class="search_h1">搜索结果：<font>{$smarty.get.keyword}</font></h1>
+      <div class="search_qh">
+			<ul class="search_qh_ul">
+		       <li id="bg-none"><a href="{link app=search act=photo}?keyword={$smarty.get.keyword}">街拍({$count.photo})</a></li>
+		       <li>
+           <a href="{link app=search act=street}?keyword={$smarty.get.keyword}">设计({$count.street})</a>
+           </li>
+		        <li>
+              <a href="{link app=search act=custom}?keyword={$smarty.get.keyword}">定制({$count.custom})</a>
+            </li>
+            <li >
+              <a href="{link app=search act=dissertation}?keyword={$smarty.get.keyword} ">主题({$count.dissertation})</a>
+            </li>
+		        <li class="cur_li">
+              <a href="{link app=search act=member}?keyword={$smarty.get.keyword} ">酷客({$count.member})</a>
+            </li>
+			</ul>
+		</div>
+</div>
+
+<div class="m_drlb_box" style="padding:30px 0 0 0;">
+
+
+ <ul>
+ 	{if  $member}
+  {foreach from=$member key=k item=v }
+   <li class="on" onmouseover="className='off'" onmouseout="className='on'">
+     <p class="m_drtx"><a href="/index.php/club-cooler-{$v.user_id}.html"><img src="{$v.avatar}" /></a></p>
+     <div>
+       <h1><a href="/index.php/club-cooler-{$v.user_id}.html">{uname uid=$v.user_id sub=18} </a><a href="#"><img src="{$img_url}/images/daren.gif" class="m_daren" /></a></h1>
+       <p class="m_fstpxh">
+       	<span>粉丝<font>{$v.fans}</font></span>
+       	<span>图片<font>{$v.pic_num}</font>
+       	</span><span>喜欢<font>{$v.like_num}</font></span>
+       </p>
+       
+       
+       {if !$v.self}
+              <p class="{if $v.isFans}m_qxgz{else}m_guazu{/if}">
+              <a href="javascript:void(0);" id='member_fans_{$v.user_id}'
+          onclick="{if $v.isFans}member_cancle({$v.user_id}){else}member_follow({$v.user_id}){/if};" 
+          class=""> 
+        </a>
+        </p>
+        {else}
+        <p class="m_wodekj">
+        		<a href="/index.php/club-cooler-{$v.user_id}.html" class="u_grkj">我的空间</a>
+        </p>
+        {/if}
+                               
+       
+       
+     </div>
+   </li>
+    {/foreach} 
+  {else}
+  	暂无数据
+  {/if}
+ </ul>
+ <p class="clear"></p>
+</div>
+
+<!--翻页开始-->
+
+<div style="margin:0 auto 50px auto; width:1000px;">
+    <div class="faye_box">
+    	<a href="#" class="gdstjl">共{if $total}{$total}{else}0{/if}条记录</a>
+    	 {$page_show}   
+    	 </div>
+    <p class="clear"></p>
+</div>
+<!--翻页结束-->
+
+{include file="footer.html"}

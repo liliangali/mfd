@@ -1,0 +1,124 @@
+{include file=../user/member.header.html}
+<div class="w">
+<div class="AreaBox clearfix">
+{include file=../user/member.menu.html}
+<div class="con">
+            <h2 class="tit">报价记录</h2>
+            <div class="query_add">
+              <div id="offer" data-input-id="guo">
+              {if $status==2}
+              <a href="#" id="hie">已中标</a>
+              {elseif $status== 1}
+              <a href="#" id="hie">未中标</a>
+              {elseif $status== 3}
+              <a href="#" id="hie">中标被取消</a>
+              {/if}
+              <a href="{link app=demand_offer act=tailor}">全部状态</a>
+              <a href="{link app=demand_offer act=tailor}?status=2">已中标</a>
+              <a href="{link app=demand_offer act=tailor}?status=1">未中标</a>
+              <a href="{link app=demand_offer act=tailor}?status=3">中标被取消</a>
+              </div>
+              <h5 class="dqcy">当前共参与{$allCount}个报价，获得<span>{$zbCount}</span>个中标。</h5>
+            </div>
+            <!--{if $list}-->
+           <ul class="bj_tit">
+            <li class="li_1">需求名称</li>
+            <li class="li_2">需求发布者</li>
+            <li class="li_3">我的报价（元）</li>
+            <li class="li_4">状态</li>
+           </ul>
+           <ul class="xqlb_ul">
+           <!--ns add 循环的地方-->
+           {foreach from=$list item=itm}
+            <li class="clearfix">
+             <div class="div_1 xqbj">
+               <h1 class="clearfix"><font>{$itm.params.4.val}</font><a href="{link app=demand arg0=$itm.md_id}">{$itm.md_title}</a>
+                {if $itm.md_type =='diy'}
+                  <div class="tip">成衣
+                   <p>来自挑款式的需求<img src="../../static/img/jt.png" /></p>
+                  </div>
+                {/if}
+                {if $itm.md_type =='suit'}
+                    <div class="tip">成衣
+                     <p>来自挑款式的需求<img src="../../static/img/jt.png" /></p>
+                    </div>
+                {/if}
+                {if $itm.md_type =='lin'}
+                    <div class="tip">面
+                     <p>来自面料定制的需求<img src="../../static/img/jt.png" /></p>
+                    </div>
+                {/if}
+               </h1>
+               <p>{$itm.add_time|date:Y/m/d}<span>{$itm.add_time|date:H:i}</span>{$itm.take_in}人参与</p>
+             </div>
+             <p class="fbz">{$itm.uname}</p>
+             <p class="wdbj">¥{$itm.offer.offer}</p>
+             <p class="yzb">{if $itm.offer.status == 2}<span class="green">已中标</span>{elseif  $itm.offer.status == 3}<span class="grey">中标被取消</span>{else}<span class="red">未中标</span>{/if}</p>
+            </li>
+            {/foreach}
+            <!--ns add 结束的地方-->       
+           </ul>
+           <!--{else}-->
+           <ul class="xqlb_ul"><li>暂时还没有数据...</li></ul>
+           <!--{/if}-->
+           <!--用户中心分页开始--> 
+              {include file="../tailor/tailor.page.bottom.html"}
+           <!--用户中心分页结束-->  
+   </div>
+</div>
+</div>
+
+<script type="text/javascript">
+//模拟下拉菜单
+(function($){
+    $.fn.selectsDemand=function(options){
+        defaults={
+            speed:150,
+            width:"90px",
+                        fn:function (){}
+        };
+        var $set=$.extend(defaults,options),$this=$(this),$html=$this.html(),$defaultTxt=$this.children("a:eq(0)").text();
+
+        var $content="<dl class='s_select' style='width:"+$set.width+"'><dt><span class='s_tit'>"+$defaultTxt+"</span><i></i></dt><dd>"+$html+"</dd></dl><input type='hidden' name='"+$this.attr('data-input-id')+"' value='"+$defaultTxt+"' />";
+        $this.html($content);
+                
+        //事件
+        $("dt",$this).click(function(){
+          
+            var obj=$(this).next("dd");
+            if(obj.is(':visible')){
+                obj.slideUp($set.speed);
+                $this.removeClass('s_select_cur');
+                
+            }else{
+              
+                obj.slideDown($set.speed);
+                $this.addClass('s_select_cur');
+            }
+            return false;
+        });
+        $(document).click(function(){
+            $('.s_select>dd').hide();   
+            $('.s_select_cur').removeClass('s_select_cur');
+        });
+
+        var t = '{$status}';
+        if(t) $("#hie").remove();
+    } 
+})(jQuery);
+$("#offer").selectsDemand({width:"120px",speed:120});
+
+
+</script>
+
+<script>
+twoMenu();
+anav();
+$('.xqlb_ul .tip').hover(function(){
+	$(this).find('p').fadeIn(400);	
+},function(){
+	$(this).find('p').hide()	
+})
+</script>
+
+ {include file="../user/footer.html"}

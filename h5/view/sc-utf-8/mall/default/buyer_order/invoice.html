@@ -1,0 +1,118 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+
+<script type="text/javascript">
+$(function(){
+    $('#myForm').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+    });
+    jQuery.extend(jQuery.validator.messages, {
+        required: "必填项!",
+    });
+});
+</script>
+  <form id='myForm' method='post'  enctype="multipart/form-data" >
+  
+  <input type='hidden' name='id' id='id' value="{$order_id}" />
+
+  <div class="aqsc_box">
+    <h1 class="grzl">申请发票</h1>
+
+     <div class="m_txgdx sqfp">
+       <table cellpadding="0" cellspacing="0" border="0" width="100%">
+          <tr>
+            <th>名称：</th>
+            <td class="licen"><input type="text" name='name' class="required" /></td>
+          </tr>
+          <tr>
+            <th>识别号：</th>
+            <td class="licen"><input type="text" name='sn' class="required"  /></td>
+          </tr>
+          <tr>
+            <th>地址：</th>
+            <td class="licen"><input type="text" name='addr' class="required"  /></td>
+          </tr>
+          <tr>
+            <th>电话：</th>
+            <td class="licen"><input type="text" name='telphone' class="required"  /></td>
+          </tr>
+          <tr>
+            <th>开户行：</th>
+            <td class="licen"><input type="text" name='bank' class="required"  /></td>
+          </tr>
+          <tr>
+            <th>银行帐号：</th>
+            <td class="licen"><input type="text" name='num' class="required"  /></td>
+          </tr>
+          <tr>
+            <th valign="top" style="padding-top:55px;">上传证件：</th>
+            
+            <td style="padding-top:8px;">
+            <table id="pics_table">
+            <tr>
+              <td style="padding-top:35px;"><input type="button" id="add_pic" value="新增上传"></td>
+            </tr>
+            </table>
+            </td>
+          </tr>
+       
+       </table>
+       <p class="m_bcxg" style="padding-left:65px; padding-bottom:20px;"><input type="submit" value="提交"/></p>
+     </div>
+
+    </div>
+    <p class="clear"></p>
+    
+  </div>
+  </form>
+  <p class="clear"></p>
+</div>
+
+<script>
+var _nums = 0;
+$(document).ready(function(){
+    $('#add_pic').click(function(){
+        if(_nums>=5)return;
+        _nums++;
+        var d = new Date();
+        var i = d.getTime();
+        $('#pics_table').append("<tr class='tr_up' id='tr_"+i+"'><td class='m_wlsbjg' style='position:relative;'><img id='show_img_"+i+"' src='{$img_url}/images/album_def_small.png' style='width:100px; height:100px;'/><input type='hidden' name='img["+i+"]' id='img_"+i+"' class='required' /><a onclick='delLink("+i+")' class='m_sc'>X</a></td><td class='m_xztp'><div>选择图片<input type='file' vi='"+i+"' class='up_file'  name='up_file' id='up_file' /></div><div class='wait_up_"+i+"' style='background:none; width:auto; padding-left:10px; color:#bb422e;'></div></td></tr>");
+        
+        $('.up_file').each(function(){
+            $(this).change(function(){
+                var vi = $(this).attr('vi');
+				$('.wait_up_'+vi).html('上传中请等待...');
+
+                var r  = 10000*Math.random();
+                var options = {
+                        url:'/index.php/buyer_order-ajax_upload.html?r='+r,
+                        success: function(data) {
+                            var data = eval( "(" + data + ")" );
+                            $('.wait_up_'+vi).html('');
+                            $("#img_"+vi).val(data);
+                            $("#show_img_"+vi).attr('src',"{$site_url}" + data);
+                            return 1;
+                        } 
+                };
+                $('#myForm').ajaxSubmit(options);
+            })
+        });
+    
+    });
+});
+
+function delLink(i){
+    $("#tr_"+i).remove();
+    _nums--;
+}
+
+</script>
+{include file="footer.html"}

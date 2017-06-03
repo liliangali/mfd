@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>{$title}</title>
+<link rel="stylesheet" type="text/css" href="{res file=css/o_system.css}" media="screen">
+<script type="text/javascript" src="{lib file=easydialog/easydialog.min.js}" ></script>
+<link rel="stylesheet" type="text/css" href="{lib file=easydialog/easydialog.css}" media="screen">
+<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+<script type="text/javascript" src="{res file=js/select_order.js}" ></script>
+<script type="text/javascript" src="{res file=js/radio.js}" ></script>
+
+<script type="text/javascript">
+$(function(){
+	$(".select01").selectCss(); 
+
+    $(".a1>li>label,.a2>ul>li>label").addClass("dddd")
+	$(".a1>li,.a2>ul>li").each(function(k){
+		$(".a1>li:eq("+k+"),.a2>ul>li:eq("+k+")").click(function(){
+			$(this).children("label").removeClass("dddd").addClass("moren").end().siblings().children("label").removeClass("moren").addClass("dddd")
+	
+			
+			}) 
+		})
+	
+	//鼠标消失默认值
+	$("input").each(function(n){
+		var keywords = $("input:eq("+n+")").attr("placeholder");
+
+		$("input:eq("+n+")").focus(function(){
+			$(this).attr("placeholder","")
+		}).blur(function(){
+			$(this).attr("placeholder",keywords)
+		});
+	})		
+
+});
+
+</script>
+</head>
+<body>
+<div class="main">

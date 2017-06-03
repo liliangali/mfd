@@ -1,0 +1,90 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+
+<div class="user_box">
+	<!--用户中心左菜单部分 START-->
+	{include file = member.menu.html}
+	<!--用户中心左菜单部分 END-->
+	
+    <div class="cardright fr">
+		<div class="coolcard">
+        	<h4>账户余额</h4>
+            <div class="yetx">
+            	<p class="fl yecur">当前余额：<span>{$userInfo.money|price}</span></p>
+            	<p class="fr yecztx"><a href="recharge.html" class="xzcur">充值</a>
+            	{if $authinfo.status eq '1'}
+            	<a href="member-put_cash.html">提现</a>
+            	{else}
+            	<a href="javascript:;" value="{$authinfo.status}" id ="is_auth" >提现</a>
+            	{/if}
+            	
+            	</p>
+            </div>
+        </div>
+        <div id="point" class="record">
+			<div class="mxjltx">
+                <ul>
+                	<li><a href="{link app=member act=money arg0=0}#point" ><span {if $minus == 0}class="sycur"{/if}>收支明细</span></a></li>
+                    <li><i></i></li>
+                    <li><a href="{link app=member act=money arg0=4}#point" ><span {if $minus == 4}class="sycur"{/if}>充值记录</span></li>
+                    <li><i></i></li>
+                    <li><a href="{link app=member act=money arg0=5}#point" ><span {if $minus == 5}class="sycur"{/if}>提现记录</span></a></li>
+                </ul>
+			</div>
+			
+			<!--交易列表 START-->
+			{if $minus == 0}
+				{include file=moeny_cash/cash_log.html}
+			{elseif $minus == 4 }
+				{include file=moeny_cash/cash_recharge.html}
+			{elseif $minus == 5 }
+				{include file=moeny_cash/cash_put.html}
+			{/if}
+			<!--交易列表 END-->
+			{include file= page.bottom.html}
+        </div>
+		
+    </div>
+</div>
+{include file=footer.html}
+</body>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.form.js"></script> 
+<script src="/public/global/luck/pc/luck.js"></script> 
+<script>
+$('#is_auth').click(function(){
+	var status = $(this).attr('value');
+	if(status == ''){
+	 	  luck.confirm('系统提示','尚未实名认证，暂不能提现。',function(obj){
+					if(obj == false)
+					{
+					//window.open('/member-cyz_auth_1.html');
+					window.location.href="/member-cyz_auth_1.html";
+					}
+		},['取消','去认证']);
+	}else if(status == 0){
+	 	  luck.confirm('系统提示','实名认证审核中，暂不能提现。',function(obj){
+				if(obj == false)
+					{
+					
+					 //window.open('/member-cyz_auth_1.html');
+					window.location.href="/member-cyz_auth_1.html";
+					}
+	},['取消','查看']);
+	  
+	}else if(status ==2){
+	 	  luck.confirm('系统提示','实名认证失败，暂不能提现。',function(obj){
+				if(obj == false)
+					{
+					
+					//window.open('/member-cyz_auth_1.html');
+					window.location.href="/member-cyz_auth_1.html";
+					}
+	},['取消','查看']);
+		
+	}
+  
+})  
+</script>
+</html>
+

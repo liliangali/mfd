@@ -1,0 +1,33 @@
+{
+    "name": "sentry/sentry-laravel",
+    "type": "library",
+    "description": "Laravel integration for Sentry (https://sentry.io)",
+    "keywords": ["logging", "errors", "laravel", "sentry"],
+    "homepage": "https://sentry.io",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "David Cramer",
+            "email": "dcramer@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.4",
+        "illuminate/support": "4.*|5.*",
+        "sentry/sentry": ">=1.6.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^1.8.0",
+        "phpunit/phpunit": "^4.6.6"
+    },
+    "autoload": {
+        "psr-0" : {
+            "Sentry\\SentryLaravel\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.7.x-dev"
+        }
+    }
+}

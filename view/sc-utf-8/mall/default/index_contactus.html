@@ -1,0 +1,298 @@
+
+{include file=header.html}  
+<link href="../../static/css/store.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="../../static/js/layer/layer.m.js"></script>
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=D86faa317d5dd0367df3ea346f27ec86"></script>
+<!-- 加载百度地图样式信息窗口 -->
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+<!-- 加载城市列表 -->
+<script type="text/javascript" src="http://api.map.baidu.com/library/CityList/1.2/src/CityList_min.js"></script>
+
+
+
+    
+    
+    
+    <div class="container">
+    	<div class="works">Experience Store<br /><span>体验店</span></div>
+        <p class="pxhx"><img src="../../static/img/pxhxpic.png" width="1280" height="3" /></p>
+        <div id="tab">
+            <ul class="tab_menu">
+                <li class="selected">按地区查看</li>
+                <li>使用地图查看</li>
+            </ul>
+            <div class="tab_box">
+                <div>
+                    <div id="brick" class="brick" style="">
+                        <!-- 
+                        <!--{foreach from=$goods_list item=good}-->
+                        <div class="list">
+                            <div class="zspic"><img src="../../static/img/zwpic15.png" width="386" height="246" /></div>
+                            <p><strong class="site_name">{$good.site_name}</strong></p>
+							<p class="address" style="width:364px;height:66px;">地址：{$good.address}</p>
+                            <p class="site_phone">电话：{$good.site_phone}
+                            
+                            
+                            <input type="hidden" name="siteid" value="{$good.city_id}" /> 
+                            <input type="hidden" class="lng" name="lng" value="{$good.lng}" /> 
+                            <input type="hidden" class="lat" name="lat" value="{$good.lat}" />
+                            
+                            </p>
+                            
+                        </div>
+                        <!--{/foreach}-->
+                          -->
+                	</div>
+                </div>
+                <div class="hide">
+                    <div id="allmap" class="map fl" style="width:940px;height:700px;float:left;">
+                    <img src="../../static/img/yx-pic17.jpg" width="970" height="700" style="display:none;" />
+                    </div>
+                    
+                    <div class="address fl" style="float:right;">
+                    	<ul>
+                    	
+                    	<!--{foreach from=$goods_list item=good}-->
+                    	
+                            <li class="site">
+                            
+                            <strong class="site_name">{$good.site_name}</strong><br /><span>{$good.address}</span><br /><i class="fa"></i> <span class="site_phone">{$good.site_phone}</span>
+                            
+                            <input type="hidden" name="siteid" value="{$good.city_id}" /> 
+                            <input type="hidden" class="lng" name="lng" value="{$good.lng}" /> 
+                            <input type="hidden" class="lat" name="lat" value="{$good.lat}" />
+                            
+                            </li>
+                            
+                            
+                        <!--{/foreach}-->
+                        
+                        
+            			</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    
+    
+<script src="/static/js/jquery.masonry.js"></script>
+<script>
+var $container = $('#brick'),num=0,delay=null,flag=null;
+var mp=0;
+//获取数据
+function getData(){
+	var winh=$(window).height(),
+		bodyh=$container.height();
+	if(($(window).scrollTop()+winh)>=bodyh-350){
+		$(window).off('scroll resize',getData);
+		if(delay){clearTimeout(delay)}
+		delay=setTimeout(function(){
+				
+				
+				
+			//模拟数据
+			
+			num+=8;
+			var html='',_h;
+			function rgb(){
+				return Math.round(Math.random()*255)	
+			}
+			
+			function geth(){
+				var h=Math.round(Math.random()*200)+350;
+				//console.log(h);
+				_h=h
+				return h
+			}
+			
+			mp+=1;
+			
+			//console.log(mp);
+			$.get("http://new.www.dev.mfd.cn/service-contactus.html?ajax=1&mp="+mp,function(data){
+				var jobj=eval('('+data+')');
+				
+				if(jobj.done==true)
+				{
+					
+					//alert($(jobj.retval.trim()).find(".list").length);
+					
+					for(var i=0;i<$(jobj.retval.trim()).find(".list").length;i++){
+						//console.log($(jobj.retval.trim()).find(".list:eq("+i+")"));
+						if(i<=3&&mp==1)
+							{
+						html+='<div class="list" onclick="aa(this)">'+$(jobj.retval.trim()).find(".list:eq("+i+")").html()+'</div>';
+							}else
+
+								{
+								html+='<div class="list" onclick="aa(this)">'+$(jobj.retval.trim()).find(".list:eq("+i+")").html()+'</div>';		
+								}
+						
+					}
+					
+					
+					
+					
+					
+					
+					
+					if(flag){
+						var $newElems = $(html);
+						$container.append($newElems).masonry("appended",$newElems);
+					}else{
+						$container.append(html);
+						$container.imagesLoaded( function(){
+						  $container.masonry({
+							columnWidth:60,
+							itemSelector: '.list'
+						  });
+						});
+						flag=true;
+					}
+					$(window).on('scroll resize',getData);
+					
+				}
+				
+				
+				
+				
+			});
+			/*
+			for(var i=num;i<=num+8;i++){
+				
+				
+				html+='<div class="list" style="height:'+geth()+'px;line-height:'+_h+'px;background:rgb('+rgb()+','+rgb()+','+rgb()+')">'+i+'</div>';
+				
+				
+				
+				
+			}
+			*/
+			
+			
+			//模拟数据end	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		},500)
+	}	
+}
+$(window).on('scroll resize',getData);
+
+//初始化
+getData();
+$(document).ready(function(){
+	var $tab_li = $('#tab ul li');
+	$tab_li.click(function(){
+		$(this).addClass('selected').siblings().removeClass('selected');
+		var index = $tab_li.index(this);
+		$('div.tab_box > div').eq(index).show().siblings().hide();
+		if(index==0){
+			$container.masonry('reload')
+		}else if(index==1)
+		{
+			$site=$(".site:eq(0)");
+			m_addOverlay($site);
+		}
+		
+	});	
+	
+	
+});
+
+
+
+
+
+var map = new BMap.Map("allmap");
+
+
+$(function(){
+	   //$site=$(".site:eq(0)");
+	   //m_addOverlay($site);
+	   //alert(1);
+	   $(".site").click(function(){
+		   m_addOverlay($(this));
+	   });
+});
+
+function m_addOverlay(jobj)
+{
+	   map.clearOverlays();
+	   var lng=jobj.find('.lng').val();
+	   var lat=jobj.find('.lat').val();
+	   
+	   var address=jobj.find('.address').text();
+	   var site_phone=jobj.find('.site_phone').val();
+	   var site_name=jobj.find('.site_name').text();
+	   
+	   //alert(lng);
+	   
+	if(lng.length>0&&lat.length>0)
+	{
+	   
+	   var point = new BMap.Point(lng, lat);
+	   map.centerAndZoom(point, 15);
+		var marker = new BMap.Marker(point);  // 创建标注
+		
+		//marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+
+		var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                 '<img src="#" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                 '地址：'+address+'<br/>电话：'+site_phone+'<br/>' +
+               '</div>';
+		var searchInfoWindow = null;
+		searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+			title  : site_name,      //标题
+			width  : 290,             //宽度
+			height : 105,              //高度
+			panel  : "panel",         //检索结果面板
+			enableAutoPan : true,     //自动平移
+			searchTypes   :[
+				BMAPLIB_TAB_SEARCH,   //周边检索
+				BMAPLIB_TAB_TO_HERE,  //到这里去
+				BMAPLIB_TAB_FROM_HERE //从这里出发
+			]
+		});
+
+		marker.addEventListener("click", function(e){
+		    searchInfoWindow.open(marker);
+	    });
+
+		map.addOverlay(marker);               // 将标注添加到地图中
+	}
+
+}
+
+</script>
+<script>
+    function aa(obj){
+    	
+    	var lng=$(obj).find(".lng").val();
+    	var lat=$(obj).find(".lat").val();
+    	
+		layer.open({
+		type: 1,
+		closeBtn:[0, true],
+		content: '<div class="wappic"><img src="http://api.map.baidu.com/staticimage?center='+lng+','+lat+'&width=700&height=500&zoom=15" width="700" height="500" /><p class="guanbi" onclick="layer.closeAll()"></p></div>',
+		style: ''
+	});
+	}
+    
+    //
+</script>
+{include file=footer.html}
+    
+    
+    
+

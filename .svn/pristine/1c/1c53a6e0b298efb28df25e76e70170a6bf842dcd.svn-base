@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>下载页</title>
+<!-- <link href="{$yf_theme_path}Public/css/style.css" rel="stylesheet"> -->
+<link rel="stylesheet" type="text/css" href="/static/css/style1.css">
+</head>
+
+<body>
+	<div class="container">
+    	<p class="xzword">若微信中无法直接下载，可点击右上角的按钮<br>选择在浏览器中打开即可下载</p>
+        <div class="xzjies">
+        	<h1>您身边的宠物食品工厂</h1>
+            <p class="jiescon">国内唯一的宠物食品个性化定制<br>平台, 为您的爱宠提供国际化<br>品质的个性化食品解<br>决方案与服务。</p>
+            <img src="/static/images/xzzsjpic.png" class="xzzsj">
+            <img src="/static/images/xzyxjpic.png" class="xzyxj">
+        </div>
+        <div class="xzipan"><p class="xzip fl"><a href="javascript:;"><img src="/static/Public/images/xzippic.png"></a></p><p class="xzip fr"><a href="/down/android.apk"><img src="/static/Public/images/xzanpic.png"></a></p></div>
+    </div>
+</body>
+</html>

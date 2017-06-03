@@ -1,0 +1,30 @@
+ {include file=member.header.html}
+<div class="w">
+    <div class="AreaBox clearfix">
+        {include file=member.menu.html}
+
+        <div class="con">
+            <h2 class="tit">修改密码</h2>
+            <form method="post" id="password_form">
+                <div class="pwdEdit">
+                    <div class="item">
+                        <div class="t">旧密码：</div>
+                        <input type="password" class="txt" name="orig_password">
+                    </div>
+                    <div class="item">
+                        <div class="t">设置密码：</div>
+                        <input type="password" class="txt" placeholder="6-20个大小写英文字母、符号或数字" name="new_password">
+                    </div>
+                    <div class="item">
+                        <div class="t">确认密码：</div>
+                        <input type="password" class="txt" name="confirm_password">
+                    </div>
+                    <div class="error"></div>
+                    <input type="button" value="确认修改" class="btn"
+                        onclick="pwdEdit()" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{include file="footer.html"}

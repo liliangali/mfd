@@ -1,0 +1,41 @@
+<div class="dialog_login clearfix">
+    <form id="J_dlogin_form" action="/index.php/club-ajax_do_login.html" method="post">
+    <p id="J_login_fail" class="login_fail">请输入用户名</p> 
+    <div class="login_form">
+        <dl>
+            <dt><input type="text" class="J_username text" onblur="if(value==''){value='手机或邮箱'}" onfocus="if(value=='手机或邮箱'){value=''}" value="手机或邮箱" id="username" name="username"></dt>
+            <dt>
+            <input type="text" class="J_password pass" id="pwd1" name="pwd1" value="密码" >
+            <input type="password" class="J_password pass" id="pwd2" name="pwd" value="" style="display:none;">
+            </dt>
+            <dt class="jzwj"><label class="jz"><input type="checkbox" checked="" class="checkbox" name="remember">记住帐号</label>
+                <a href="/index.php/member-find_password.html" class="wjmm">忘记密码？</a>
+            </dt>
+            <dt class="login_dt"><input type="submit" id="submit" class="btn login_btn" value=""> </dt>
+            <dt class="hmzh_ljzc" style="padding-right:32px;">还没有帐号？<a href="{link app=member act=register}">立即注册</a></dt>
+            <dt class="hzzhdl" style="display:none;">合作网站帐号登录：</dt>
+            <dt class="hzzhdl_s"  style="display:none;">
+				<a class="dyg_a" href="#"></a>
+				<a class="drg_a" href="#"></a>
+				<a class="dsag_a" href="#"></a>
+				<a class="dsig_a" href="#"></a>
+			</dt>
+        </dl>
+    </div>
+    </form>
+      </div>
+<script type="text/javascript">
+  $("#pwd1").focus(function(){
+      if($(this).val() == "密码"){
+    	  $(this).hide();
+		  $("#pwd2").show().focus(); 
+      }
+  });
+  $("#pwd2").blur(function(){
+	  if($(this).val() == ""){
+		 $(this).hide();
+		 $("#pwd1").show();
+		 
+	  }
+	  }); 
+</script>

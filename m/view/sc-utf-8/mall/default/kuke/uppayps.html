@@ -1,0 +1,125 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+<!--sortlist end-->
+{$_head_tags}
+
+<script>
+var getSMSCode = "";
+$(function(){
+	$('#mf').validate({
+		errorClass:"error-on",
+		success : function(label){
+			 label.addClass('error-ok');
+		}, 
+	    rules : {
+	    	authcode : {
+	    		required : true,
+	            rangelength:[6,6],
+	            digits:true,
+		        remote:{
+					url: "/index.php/kuke-ajaxAuthcode2.html?category=payps&type=up",     //后台处理程序 
+					type: "get",               //数据发送方式
+					dataType: "json",           //接受数据格式   
+					data: {                     //要传递的数据
+						authcode: function() {
+							return $("#authcode").val();
+						}
+					}
+				}
+	        }
+	    },
+	    messages : {
+	    	authcode : {
+	    		required : '验证码不能为空',
+	            rangelength:'范围为6-6个数字',
+	            digits:'必须输入整数',
+	            remote:'验证码错误'
+	        }
+	    }
+	    //submitHandler:function(form){
+	    //		alert(2);
+	    //		return false;
+	   // }
+	});  
+	
+	getSMSCode = function (){
+		$.ajax({
+			"url":"/index.php/kuke-SMSCodeAjax.html",
+			"data": "category=payps&type=up&opt=get" ,
+			"type": "GET",
+			'dataType':'json',
+			"success": function(res) {
+				//var res = eval( "(" + res + ")" );
+				if(res.err){
+					alert('出错:'+res.msg);
+				}else{
+					$("#getSMS").html(res.msg);
+					$("#getSMS").unbind('click');
+				}
+			}
+		});	
+	}
+
+	
+	resetSMSCode = function (){
+		$.ajax({
+			"url":"/index.php/kuke-resetSMSCode.html",
+			"data": "phone={$account}&category=payps&type=up&opt=reset" ,
+			"type": "GET",
+			'dataType':'json',
+			"success": function(res) {
+				//var res = eval( "(" + res + ")" );
+				if(res.err){
+					alert('出错:'+res.msg);
+				}else{
+					$("#getSMS").html(res.msg);
+					$("#getSMS").unbind('click');
+				}
+			}
+		});	
+	}
+	
+	$("#getSMS").bind('click',getSMSCode);
+	
+});
+</script>
+
+  <form id='mf' action="kuke-uppayps.html?opt=2" method="post">
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">修改支付密码</h1>
+    <p class="bdsj_tu_1"><img src="{$img_url}/images/xgmm_1.gif" /></p>
+  
+  <div class="xgmm_1">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <th>已绑定手机：</th>
+        <td class="ybdsjh" colspan="2"><span>{$hide_phone}</span><font>（若该手机号无法接收验证短信，请拨打客服电话4008-919-867更改验证手机）</font></td>
+      </tr>
+      
+      <tr>
+        <th></th>
+        <td class="hqdxyzm" colspan="2"><a href="javascript:void(0);" id='getSMS'>获取短信验证码</a></td>
+      </tr>
+      
+      <tr>
+        <th>校验码：</th>
+        <td class="xiaoyama" width=""><input name="authcode" id='authcode' type="text" value="" style="float:left;" /></td>
+        <td></td>
+      </tr>      
+      
+      <tr>
+        <th>&nbsp;</th>
+        <td class="m_xybu" colspan="2" style="padding-top:30px;"><input type="submit" value="下一步" /></td>
+      </tr>
+    </table>
+   </div>
+
+  </div>
+  </form>
+  
+  
+  <p class="clear"></p>
+
+{include file="footer.html"}

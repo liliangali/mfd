@@ -1,0 +1,10 @@
+<div class="m_shxx_bt"><p>发票信息</p><span class="lightTitle"></span></div>
+<p class="clear"></p>
+{if !$invoice.invoiceneed}
+<p class="mqmyshrxx">{$lang.invoiceneed[$invoice.invoiceneed]}</p>
+{/if}
+{if $invoice.invoiceneed}
+<p class="mqmyshrxx">{$lang.invoicetype[$invoice.invoicetype]}</p>
+<p class="mqmyshrxx">{$invoice.invoicetitle}</p>
+<p class="mqmyshrxx">{$lang.invoicecontent[$invoice.invoicecontent]}</p>
+{/if}

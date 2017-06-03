@@ -1,0 +1,51 @@
+{include file="header.html"}
+<div id="rightTop">
+      <ul class="subnav">
+	    <li><a class="btn1" href="index.php?app=demand&amp;act=items">所有需求项</a></li>
+	    <li><a class="btn1" href="index.php?app=demand&amp;act=addItem">新增需求项</a></li>
+	    <li><span>设置默认项</span></li>
+	  </ul>
+</div>
+<div class="info" >
+    <form method="post" enctype="multipart/form-data" id="theForm" name="theForm">
+        <table class="infoTable">
+             <tr>
+                <th class="paddingT15">
+                     分类 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="cate" name="cate">
+		              <option value="">请选择</option>
+		              {html_options options=$cate  selected="$data.cate"}
+		            </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">选项 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="item" name="item">
+                      <option value="">请选择</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="id" value="{$data.id}" />
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+            </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+$('#cate').change(function(){
+    $.ajax({
+        url  : "index.php?app=demand&act=ajaxdft",
+        data : "cate="+$(this).val(),
+        success : function(res){
+            $('#item').html(res);
+        }
+    });
+})
+</script>
+{include file="footer.html"}

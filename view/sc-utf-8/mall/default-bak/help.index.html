@@ -1,0 +1,38 @@
+{include file=header2.html}
+
+<style>
+.art_left {width:198px; float:left; border:1px solid #e5e5e5; font-size:14px;}
+.art_left dt {font-size:20px; line-height:40px; padding:8px 0 0 20px; margin-bottom:10px;}
+.art_left dd {height:42px; line-height:42px; overflow:hidden;}
+.art_left dd a {padding:0 20px 0 25px; display:block;}
+.art_left dd.on a {border-left:4px solid #ff4c03; background:#f6f6f6;}
+
+
+.art_right {width:938px; float:right; overflow:hidden; line-height:24px; font-size:14px; border:1px solid #e5e5e5; padding:20px;}
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="static/css/help.css">
+<div class="w helpPage">
+   <div class="art_left">
+      <dl>
+        <dt>关于我们</dt>
+        <dd class="on"><a href="#">公司简</a></dd>
+        <dd><a href="#">管理团队</a></dd>
+        <dd><a href="#">定制文化</a></dd>
+        <dd><a href="#">发展历程</a></dd>
+        <dd><a href="#">公司新闻</a></dd>
+        <dd><a href="#">加入我们</a></dd>
+        <dd><a href="#">联系我们</a></dd>
+      </dl>
+   </div>
+   <div class="art_right">
+     {$article.content}
+   </div>
+
+</div>
+<script type="text/javascript">
+twoMenu();
+anav();
+</script>
+{include file="footer.html"} 

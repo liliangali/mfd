@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TA的主页--手艺最好的裁缝都在这里！</title>
+{$page_seo}
+<link rel="stylesheet" type="text/css" href="static/css/public.css">
+<link rel="stylesheet" type="text/css" href="static/css/tailorpage.css">
+<script type="text/javascript" src="static/expand/jquery.js"></script>
+<script  type="text/javascript" src="static/js/public.js"></script>
+
+{$_head_tags}
+</head>
+
+<body>
+<!--头部开始-->
+<div class="m_head">
+    <div class="w">
+        <div class="fl left">
+            <a href="{link app=tailor act=info arg0=$tailor.store_id }" <!--{if $act == 'info'}-->class="cur"<!--{/if}-->><!-- {if $visitor.user_id != $tailor.store_id} -->TA<!-- {else} -->我<!-- {/if} -->的故事<i></i><em></em></a>
+            <a href="{link app=tailor act=service}?store_id={$tailor.store_id}" <!--{if $act == 'service'}-->class="cur"<!--{/if}-->><!-- {if $visitor.user_id != $tailor.store_id} -->TA<!-- {else} -->我<!-- {/if} -->的案例<i></i><em></em></a>
+            <a href="{link app=tailor act=info arg0=$tailor.store_id }#1"><!-- {if $visitor.user_id != $tailor.store_id} -->TA<!-- {else} -->我<!-- {/if} -->的服务<i></i><em></em></a>
+            <a href="{link app=tailor act=info arg0=$tailor.store_id }#2"><!-- {if $visitor.user_id != $tailor.store_id} -->TA<!-- {else} -->我<!-- {/if} -->的口碑<i></i><em></em></a>
+            <a href="http://wpa.qq.com/msgrd?v=3&uin=442413729&site=qq&menu=yes" target="_blank">在线咨询<i></i></a>
+        </div>
+        
+        <div class="fr right">
+        </div>
+        
+    </div>
+</div>
+<!--头部结束-->

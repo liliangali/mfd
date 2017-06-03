@@ -1,0 +1,42 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>尺码名称</span></li>
+        <li><a class="btn1" href="index.php?app=sizeStyle&amp;act=add">添加名称</a></li>
+    </ul>
+</div>
+
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $style_list}-->
+    <tr class="tatr1">
+      <td>id</td>
+      <td>风格名称</td>
+      <td>是否显示</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$style_list item=list}-->
+    <tr class="tatr2">
+      <td>{$list.id}</td>
+      <td>{$list.name}</td>
+      <td>{if $list.is_show == 1}是{elseif $list.is_show == 2}否{/if}</td>
+      <td class="handler">
+      <a href="index.php?app=sizeStyle&amp;act=edit&amp;id={$list.id}">编辑</a>
+      <a href="javascript:;" onclick="if(confirm('确定删除吗？')) location.href='index.php?app=sizeStyle&amp;act=drop&amp;id={$list.id}'">删除</a>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="6">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $style_list}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

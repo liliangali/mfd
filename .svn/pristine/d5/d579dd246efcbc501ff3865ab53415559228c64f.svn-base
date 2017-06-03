@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIY</title>
+<link rel="stylesheet" type="text/css" href="diy/style/style.css">
+</head>
+
+<body>
+<h1 id="info" align="center" style="background:#f5f5f5; border-bottom:solid 1px #ddd; font-weight:normal; font-size:24px; padding:10px;">信息</h1>
+<div class="main clear">
+  <div class="diyBox clear">
+    <div class="AreaL fl">
+      <div id="showArea" class="showArea"><!--js动态添加数据--></div>
+      <canvas id="test" style=" display:none"><!--不要删除，用于检测浏览器兼容--></canvas>
+      <div class="operateBtn"> <span id="leftRotate" title="左转"><i></i>左转</span> <span id="rightRotate" title="右转"><i></i>右转</span> <span id="reset" title="初始"><i></i>初始</span> <span id="explain" title="说明"><i></i>说明</span> <span id="share" title="分享"><i></i>分享</span> </div>
+    </div>
+    <div class="AreaR fr">
+      <div class="options">
+        <div class="hd">
+          <h1><span>CAMEO</span> 经典正事黑灰色西装</h1>
+          <p><span>￥9980.00</span><em>生产周期：7天</em></p>
+        </div>
+        <div class="bd" id="tabBox">
+          <div data-tab='tit' class="tabTit"> <span>面料选择</span> <span>款式设计</span> <span class="cur">个性化</span> </div>
+          <div data-tab='layer' class="tabLayer">
+            <div style="display:none">
+              <dl class="fabric clear">
+                <dt>面料设计</dt>
+                <dd>
+                  <ul id="fabric-out">
+                    <li class="cur" data-id='001'><img src="diy/images/process/fabric/01.jpg" width="76" height="65"><i></i></li>
+                    <li data-id='002'><img src="diy/images/process/fabric/02.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/01.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/02.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/01.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/02.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/01.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/02.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/01.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/02.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/01.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/02.jpg" width="76" height="65"><i></i></li>
+                  </ul>
+                </dd>
+              </dl>
+              <dl class="fabric clear">
+                <dt>里料设计</dt>
+                <dd>
+                  <ul id="fabric-in">
+                    <li><img src="diy/images/process/fabric/01.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/02.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/01.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/02.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/01.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/02.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/01.jpg" width="76" height="65"><i></i></li>
+                    <li><img src="diy/images/process/fabric/02.jpg" width="76" height="65"><i></i></li>
+                  </ul>
+                </dd>
+              </dl>
+            </div>
+            <div style="display:none;">
+              <div data-tab-style="tit" class="tabTit2 fl"> <span class="cur">驳头型</span> <span>驳头眼</span> <span>肩型</span> <span>前门扣</span> <span>胸口带</span> <span>下口袋</span> <span>袖口数量</span> <span>后开叉</span> </div>
+              <div data-tab-style="layer" class="tabLayer2 fl">
+                <ul id="style" class="style">
+                  <li class="cur"><img src="diy/images/process/graph/36_S.png"> <span>单排三粒扣</span> <i></i></li>
+                  <li> <img src="diy/images/process/graph/37_S.png"> <span>单排三粒扣</span> <i></i></li>
+                  <li> <img src="diy/images/process/graph/38_S.png"> <span>单排三粒扣</span> <i></i></li>
+                  <li> <img src="diy/images/process/graph/39_S.png"> <span>单排三粒扣</span> <i></i></li>
+                  <li> <img src="diy/images/process/graph/40_S.png"> <span>单排三粒扣</span> <i></i></li>
+                  <li> <img src="diy/images/process/graph/40_S.png"> <span>单排三粒扣</span> <i></i></li>
+                  <li> <img src="diy/images/process/graph/42_S.png"> <span>单排三粒扣</span> <i></i></li>
+                  <li> <img src="diy/images/process/graph/43_S.png"> <span>单排三粒扣</span> <i></i></li>
+                  <li> <img src="diy/images/process/graph/44_S.png"> <span>单排三粒扣</span> <i></i></li>
+                  <li> <img src="diy/images/process/graph/45_S.png"> <span>单排三粒扣</span> <i></i></li>
+                  <li> <img src="diy/images/process/graph/46_S.png"> <span>单排三粒扣</span> <i></i></li>
+                  <li> <img src="diy/images/process/graph/47_S.png"> <span>单排三粒扣</span> <i></i></li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="tabTit3" data-tab-detail='tit'> <span class="cur">刺绣信息</span> <span>扣子装饰</span> <span>锁眼线色</span> </div>
+              <div class="tabLayer3" data-tab-detail='layer'>
+                <div class="cixiu">
+                  <div class="item clear"> <span class="tit">内容</span>
+                    <input type="text" id="cixiuCon" class="cixiuCon" maxlength="20" placeholder="最多输入20字">
+                  </div>
+                  <div class="item clear"> <span class="tit">字体</span>
+                    <ul id="font" class="font">
+                      <li><img src="diy/images/process/font/font1.jpg" width="80" height="40"></li>
+                      <li><img src="diy/images/process/font/font2.jpg" width="80" height="40"></li>
+                      <li><img src="diy/images/process/font/font3.jpg" width="80" height="40"></li>
+                      <li><img src="diy/images/process/font/font4.jpg" width="80" height="40"></li>
+                      <li><img src="diy/images/process/font/font5.jpg" width="80" height="40"></li>
+                    </ul>
+                  </div>
+                  <div class="item clear"> <span class="tit">颜色</span>
+                    <div class="color"> <span id="colorCur" class="colorCur"><img src="diy/images/process/line/770_S.png" width="23" height="32"></span> <span id="editColor" class="editColor">更换</span> </div>
+                    <div class="colorList">
+                      <ul>
+                        <li><img src="diy/images/process/line/351_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/352_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/353_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/354_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/355_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/356_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/761_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/762_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/763_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/764_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/765_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/766_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/767_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/768_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/769_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/770_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/771_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/772_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/773_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/774_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/775_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/776_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/777_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/778_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/779_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/780_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/781_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/782_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/783_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/784_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/785_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/786_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/787_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/788_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/789_S.png" width="23" height="32"></li>
+                        <li><img src="diy/images/process/line/790_S.png" width="23" height="32"></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="item clear"> <span class="tit" style="margin-top:0">位置</span>
+                    <ul id="position" class="position">
+                      <li class="cur" title="点击选择"><i></i>右里袋上方的面料上（直过面除外）</li>
+                      <li title="点击选择"><i></i>左里袋上方的面料上（直过面除外）</li>
+                      <li title="点击选择"><i></i>领底呢</li>
+                      <li title="点击选择"><i></i>客户名牌</li>
+                    </ul>
+                  </div>
+                </div>
+                <div id="kouzi" class="kouzi" style="display:none">
+                  <ul>
+                    <li class="cur"> <img src="diy/images/process/buttons/376_S.png" width="62" height="60"> <span>奶白色果壳</span> <i></i></li>
+                    <li> <img src="diy/images/process/buttons/376_S.png" width="62" height="60"> <span>奶白色果壳</span> <i></i></li>
+                    <li> <img src="diy/images/process/buttons/376_S.png" width="62" height="60"> <span>奶白色果壳</span> <i></i></li>
+                    <li> <img src="diy/images/process/buttons/376_S.png" width="62" height="60"> <span>奶白色果壳</span> <i></i></li>
+                    <li> <img src="diy/images/process/buttons/376_S.png" width="62" height="60"> <span>奶白色果壳</span> <i></i></li>
+                    <li> <img src="diy/images/process/buttons/376_S.png" width="62" height="60"> <span>奶白色果壳</span> <i></i></li>
+                    <li> <img src="diy/images/process/buttons/376_S.png" width="62" height="60"> <span>奶白色果壳</span> <i></i></li>
+                    <li> <img src="diy/images/process/buttons/376_S.png" width="62" height="60"> <span>奶白色果壳</span> <i></i></li>
+                    <li> <img src="diy/images/process/buttons/376_S.png" width="62" height="60"> <span>奶白色果壳</span> <i></i></li>
+                    <li> <img src="diy/images/process/buttons/376_S.png" width="62" height="60"> <span>奶白色果壳</span> <i></i></li>
+                    <li> <img src="diy/images/process/buttons/376_S.png" width="62" height="60"> <span>奶白色果壳</span> <i></i></li>
+                    <li> <img src="diy/images/process/buttons/376_S.png" width="62" height="60"> <span>奶白色果壳</span> <i></i></li>
+                  </ul>
+                </div>
+                <div class="suoyan" style="display:none">
+                    <div data-tab-suoyan="tit" class="tabTit2 fl">
+                    	<span class="cur">前门扣</span> <span>袖子扣</span> <span>黄</span> <span>绿</span> <span>青</span> <span>蓝</span> <span>紫</span></div>
+                    <div data-tab-suoyan="layer" class="tabLayer2 fl">
+                    <ul id="suoyanx" class="suoyanx">
+                        <li><img src="diy/images/process/line/351_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/352_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/353_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/354_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/355_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/356_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/761_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/762_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/763_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/764_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/765_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/766_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/767_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/768_S.png" width="63" height="62"></li>
+                        <li><img src="diy/images/process/line/772_S.png" width="63" height="62"></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bigBtn">
+          <div id="setSize" class="setSize fl"><i></i>选择尺码</div>
+          <div class="addCar fl">加入购物车</div>
+        </div>
+      </div>
+    </div>
+    <div class="AreaC fr">
+    	<ul class="taocan">
+        	<li class="cur">西服</li>
+        	<li>西裤</li>
+        	<li>衬衫</li>
+        </ul>
+    </div>
+    <div class="sizeLayer"></div>
+    <script id="sizeLayer" type="text/html">
+			<span class="closeLayer"></span>
+			<div class="step step1">
+				<dl data-event="next">
+					<dt>标准码定制</dt>
+					<dd>您可以在标准码的基础上根据自己<br>的体形对数据进行微调</dd>
+				</dl>
+				<dl>
+					<dt>我要量体定制</dt>
+					<dd>量体定制可分为<br>上门量体服务 或 到门店量体</dd>
+				</dl>
+			</div>
+			<div class="step step3" style="display:none">
+				<div id="sizeTabtit" class="tabtit">
+					<span class="cur">上衣</span>
+					<span>裤子</span>
+				</div>
+				<div id="sizeTablayer" class="tablayer">
+					<div>
+						<div class="default">
+							<input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84">
+						</div>
+					</div>
+					<div style="display:none;">
+						<div class="default">
+							<input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84"><input type="button" value="160/84">
+						</div>
+					</div>
+					<div class="btnBox">
+						<input type="button" value="上一步" class="prev" data-event="prev">
+						<input type="button" value="完成尺码选择" class="next" data-event="ok">
+					</div>
+				</div>
+			</div>
+		</script>
+    <div class="zhezhao"></div>
+  </div>
+</div>
+<script type="text/javascript" src="diy/js/jquery-1.7.1.min.js"></script> 
+<script src="diy/js/diy.js"></script> 
+<script>
+var data={
+    "result": [
+        {
+            "ID": "37",
+            "imgUrl": "diy/img/001/37_LQ.png",
+            "name": "单排二粒扣",
+            "zindex": "41"
+        },
+        {
+            "ID": "201",
+            "imgUrl": "diy/img/001/554_LQ.png",
+            "name": "西服",
+            "zindex": "33"
+        },
+        {
+            "ID": "49",
+            "imgUrl": "diy/img/001/28_LQ.png",
+            "name": "领带",
+            "zindex": "8"
+        },
+        {
+            "ID": "23",
+            "imgUrl": "diy/img/001/26_LQ.png",
+            "name": "衬衣",
+            "zindex": "6"
+        },
+        {
+            "ID": "51",
+            "imgUrl": "diy/mg/001/452_LQ.png",
+            "name": "平驳头",
+            "zindex": "81"
+        }
+    ]
+}
+
+var custom=new Custom({showArea:'showArea'})
+custom.init(data)
+</script>
+</body>
+</html>

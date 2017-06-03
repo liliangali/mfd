@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>我的财富_消费者</title>
+<link href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link href="http://r.cotte.cn/cotte/wap/css/slx_style.css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="main"> 
+	<!--头部开始-->
+	<div class="topBar">
+		<div class="wrap"> <span class="back" onClick="history.go(-1)"></span>
+			<h1>我的财富</h1>
+		</div>
+		<div class="sta"></div>
+	</div>
+	<!--头部结束-->
+	
+	<div class="wdcfye"> <a href="{link app=wealth act=money}" class="zfyelj">
+		<h1>账户余额（元）</h1>
+		<h2>{$user.money}</h2>
+		<h3>近一个月消费（元）</h3>
+		<h4>{$order_num}</h4>
+		</a> </div>
+	<div class="qxzapp"><a href="http://m.mfd.cn/invite.html">亲，如需提现请下载麦富迪APP<span>></span></a></div>
+	<div class="cflb">
+		<ul>
+			<li class="li_1"> <a href="{link app=wealth act=point}">
+				<p><span>{$user.point}</span><br/>
+					积分</p>
+				</a> </li>
+			<li class="li_2"> <a href="{link app=wealth act=coin}">
+				<p><span>{$user.coin}</span><br/>
+					麦富迪币</p>
+				</a> </li>
+			<li class="li_3"> <a href="{link app=wealth act=kuka}">
+				<p><span>5</span><br/>
+					酷卡</p>
+				</a> </li>
+			<li class="li_4"> <a href="{link app=wealth act=debit}">
+				<p><span>{$debit_num}</span><br/>
+					优惠券</p>
+				</a> </li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript" src="static/js/jquery-1.8.3.min.js"></script>
+<script src="http://r.cotte.cn/cotte/wap/js/public.js"></script> 
+</body>
+</html>

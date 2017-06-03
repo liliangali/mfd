@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <title>选择犬种</title>
+  <link rel="stylesheet" type="text/css" href="/diy/css/stylenew.css" />
+  <link href="/diy/css/animate.min.css" rel="stylesheet" type="text/css">
+  <script src="/fdiy/js/jquery-1.8.3.min.js"></script>
+  <style>
+	body:before {
+	content: ' ';
+	position: fixed;
+	z-index: -1;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: url(/diy/images/dzsy_bg.png) center top no-repeat;
+	background-size: cover;
+	}
+  </style>
+</head>
+<body>
+<section class="main">
+
+<div class="search zsykj_box">
+  <input name="s" type="text" value="" class="zsykj_1">
+  <button onclick="search()">搜索</button>
+</div>
+
+<section class="xzndac">
+   {foreach from=$list item=item }
+  <figure>
+     <figcaption data-url="{link app=fdiy act=index3 arg=$item.cate_id}"><img src="{$item.small_img}"></figcaption>
+     <p>{$item.cate_name}</p>
+  </figure>
+  {/foreach}
+ 
+</section>
+  	<div class="next"><a href="##">下一步<span></span></a></div>
+</section>
+<script>
+//选择犬种动画效果
+function clickFlash(){
+	var objs=$(".xzndac figcaption");
+	objs.bind("click",function(){
+		//$(this).children("figcaption").addClass("animated pulse select").end().siblings().children("figcaption").removeClass("animated pulse select");
+		objs.removeClass("animated pulse select");
+		$(this).addClass("animated pulse select");
+		
+		var url = $(this).data("url");
+		$(".next a").attr("href",url);
+		
+		$(".next").fadeIn("fast",function(){
+			$(".next").click(function(){
+				loadingText($(this).find("span").eq(0),"...");//加载中提示效果
+			})
+		});
+		
+	})
+}
+function loadingText(obj,text){
+	obj.addClass("animated fadeInLeft infinite");
+	obj.text(text);
+}
+$(clickFlash);
+function search() 
+{
+	var s = $("input[name=s]").val();
+	var url = "{link app=fdiy arg0=1 arg1=3 }?s="+s;
+	window.location.href=url;
+	
+}
+
+</script>
+</body>
+</html>

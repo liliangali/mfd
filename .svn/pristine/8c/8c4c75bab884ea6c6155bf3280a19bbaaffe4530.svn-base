@@ -1,0 +1,253 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#article_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {    
+            title : {
+                required : true
+            },
+            cate_id :{
+                required : true,
+            },
+            code    :{
+                remote     : {
+                	url:'index.php?app=article&act=ajax_code_unique',
+                	type:'post',
+                	data:{
+                		id:function(){
+                			return $("#articleid").val();
+                		},
+                		code:function(){
+                			return $("#code").val();
+                		}		
+                	}
+                }
+            },
+            sort_order:{
+               number   : true
+            },
+            brief:{
+                maxlength:100
+            }
+        },
+        messages : {
+            title : {
+                required : '{$lang.title_empty}'
+            },
+            cate_id : {
+                required : '{$lang.cate_empty}'
+            },
+            code    : {
+                remote     : '{$lang.code_unique}'
+            },
+            sort_order  : {
+                number   : '{$lang.number_only}'
+            },
+            brief:{
+                maxlength:'{简介长度不超过100个字}'
+            }
+        }
+    });
+});
+/*jQuery.validator.addMethod("belong", function(value, element) {   
+
+    // var from = $("#time_from").val();
+    // return value >= from;
+    var flag=1;
+    var img=$('#img').val()
+    var category_id=$("#cate_id").children(':selected').val()
+    if(!category_id){
+        return false
+    }
+    $.get('index.php?app=article&act=ajax_is_classroom',{id:category_id},function(res){
+            if(res){
+                return value
+            }else{
+                return 0
+            }
+      },'json')
+    
+     return flag
+
+}, "麦富迪讲堂的文章要上传展示图片");*/
+
+</script>
+
+<!-- {$build_editor} -->
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=article">{$lang.manage}</a></li>
+        {if $article.article_id}
+        <li><a class="btn1" href="index.php?app=article&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="article_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    {$lang.title}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="title" type="text" name="title" value="{$article.title|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.code}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="code" type="text" name="code" value="{$article.code|escape}" />
+                    <input id="articleid" type="hidden" value="{$id}" />
+                    <label	class="field_notice">{$lang.code_alert}</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">{$lang.category}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="cate_id" name="cate_id"><option value="">{$lang.select_pls}</option>{html_options options=$parents selected=$article.cate_id}</select>
+                </td>
+            </tr>
+            
+           <!--             <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">商品分类:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="parent_id" name="goods_cat">
+                    <option value="0">{$lang.select_pls}</option>
+                     {html_options options=$cat_list selected=$article.goods_cat}
+                    </select>
+                </td>
+            </tr>
+            
+           <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">所属商铺:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="city_id" name="city_id" onchange="selectShop(this)"><option value="">{$lang.select_pls}</option>{html_options options=$city_list selected=$article.city_id}</select>
+                      <select id="shop_id" name="shop_id">
+                    <option value="0">请选择商铺:</option>
+                    {html_options options=$site_list selected=$article.shop_id}
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    {$lang.link}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="link" type="text" name="link" value="{$article.link|escape}" />
+                </td>
+            </tr>
+			-->
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">{$lang.if_show}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="if_show" value="1" {if $article.if_show eq 1} checked="checked"{/if} />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="if_show" value="0" {if $article.if_show eq 0} checked="checked"{/if} />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="sort_order" type="text" name="sort_order" value="{$article.sort_order}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    展示图片:</th>
+                <td class="paddingT15 wordSpacing5 img">
+                     {input_img name="img"  value="$article.img" dir="article"}
+                     <label class='field_notice' style='color:#e66800'>麦富迪讲堂的文章要上传展示图片</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    文章简介:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea name='brief' id='brief' rows="300" cols="200">{$article.brief}</textarea>
+                    <label class='field_notice' style='color:#e66800'>麦富迪讲堂的文章要填写简介</label>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    <label for="article">{$lang.content}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <!-- <textarea id="article" name="content" style="width:650px;height:400px;">{$article.content|escape}</textarea> -->
+                    <!-- 加载Ueditor编辑器的容器 -->
+                    <div style="width:50"><script id="container" name="content" type="text/plain">
+                        {$article.content}
+                    </script></div>
+                </td>
+            </tr>
+         
+            
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+
+    
+</div>
+<!-- 配置文件 -->
+    <script type="text/javascript" src="{lib file=Ueditor/ueditor.config.js}"></script>
+<!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="{lib file=Ueditor/ueditor.all.js}"></script>
+
+<script>
+<!-- 实例化编辑器 -->
+var editor = UE.getEditor('container');
+/*$('#article_form').submit(function(){
+    var flag=1;
+    var img=$('input[name=img]').val()
+    var brief=$('textarea[name=brief]').val()
+    var category_id=$("#cate_id").children(':selected').val()
+    $('textarea[name=brief]').next().remove()
+    $('input[name=img]').next().remove()
+    if(!category_id){
+        // $('#article_form').submit()
+         return true
+    }
+    console.log(444)
+    $.get('index.php?app=article&act=ajax_is_classroom',{id:category_id,img:img,brief:brief},function(res){
+            if(res.done){
+                console.log(111)
+                  $('#article_form').submit()
+                 return true
+            }else{
+                if(res.retval=='img'){
+                    $('input[name=img]').after("<label class='field_notice' style='color:red'>"+res.msg+"</label>")
+                }else{
+                    $('textarea[name=brief]').after("<label class='field_notice' style='color:red'>"+res.msg+"</label>")
+                }
+                console.log(22)
+                return false
+            }
+      },'json')
+     return false;
+     
+})*/
+
+
+</script>
+{include file="footer.html"}

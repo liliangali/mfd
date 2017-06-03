@@ -1,0 +1,102 @@
+{include file=header-new.html}
+<script type="text/javascript" src="/public/static/pc/js/mzp-packed.js"></script>
+<link href="/public/static/pc/css/user.css" type="text/css" rel="stylesheet">
+<div class="mlcurrent">
+	<p class="mlcur"><a href="/">首页</a><span>/</span><a href="fabric_diy.html">面料选择</a><span>/</span><a href="fabric_diy-flist-{$t}.html">{$region}({$brand})</a><span>/</span><a href="#">{$fabric.fabric_name}</a></p>
+</div>
+<div class="mlxxcontent">
+	<div class="mlxxbox">
+        <div class="left-pro">
+            <div class="t1">
+                <div id="showArea">
+                	{foreach from=$gallery item=img name=loop}
+                   		<a href="{$img.source_img}" rel="zoom1" rev="{$img.source_img}"><img src="{$img.middle_img}" /></a>
+                    {/foreach}
+<!--                     <a href="/public/static/pc/images/other/img01.jpg" rel="zoom1" rev="/public/static/pc/images/other/img01.jpg"><img src="/public/static/pc/images/other/img01s.jpg" /></a> -->
+                </div>
+            </div>
+            <div class="t2">
+            {foreach from=$gallery item=img name=loop}
+                   		{if $smarty.foreach.loop.iteration eq 1}<a href="{$img.source_img}" id="zoom1" class="MagicZoom"><img src="{$img.source_img}" id="main_img" class="main_img" style="width:500px; height:625px;"/></a>{/if}
+            {/foreach}
+<!--             <a href="/public/static/pc/images/other/img01.jpg" id="zoom1" class="MagicZoom MagicThumb"><img src="/public/static/pc/images/other/img01.jpg" id="main_img" class="main_img" style="width:500px; height:625px;" /></a> -->
+            </div>
+        </div>
+        <div class="mlxxright">
+            <h4>{$fabric.fabric_name}</h4>
+            <ul class="mlxxfine">
+                <li>编号：{$fabric.fabric_sn}</li>
+                <li>花型：{$fabric.huaxing}</li>
+                <li>颜色：{$fabric.color}</li>
+                <li>纱支：{$fabric.shazhi}</li>
+                <li>成分：{$fabric.material}</li>
+            </ul>
+            <div class="point">
+                <h5>面料介绍</h5>
+                <p>{$fabric.special}</p>
+            </div>
+            <div class="mlxxcategory">
+                <h5>选择定制品类</h5>
+                <ul class="choice_list">
+                	{foreach from=$fprice item=price name=loop}
+                    <li data-cate="{$price.realcate}" {if $smarty.foreach.loop.iteration eq 1}class="cur"{/if}>
+                        <p class="mlxxsuit">{$price.cate_name}</p>
+<!--                         <p class="mlxxprice">原价:<i>¥12980.00</i></p> -->
+                        <p class="mlxxpricing "><span>{$price.price|price}</span></p>
+                    </li>
+                    {/foreach}
+
+<!--                     <li>
+                        <p class="mlxxsuit">西裤</p>
+                        <p class="mlxxprice">原价:<i>¥12980.00</i></p>
+                        <p class="mlxxpricing ">定制价:<span>¥31980.00</span></p>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="mlxxbegin">
+                <a href="javascript:void(0)" data-sn="{$fabric.fabric_sn}" class="mlxxksdz" style="width:418px">开始定制</a>
+                <input type='hidden' id="ret" value="{$ret_url}"/>
+<!--                 <a href="#" class="mlxxsc">收藏</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div style="width:1200px;margin:40px auto;">{$fabric.content}</div>
+{include file=navicate.html}
+
+{include file=footer-new.html}
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/public.js"></script> 
+<script type="text/javascript" src="/public/static/pc/js/zzsc.js"></script>
+<script type="text/javascript">
+$(".mlxxbegin .mlxxksdz").click(function(){
+	var cate=$('.choice_list').find('.cur').attr('data-cate');
+	var code=$(".mlxxksdz").attr("data-sn");
+	var url="fdiy-"+cate+"-"+code+".html";
+	var ret_url=$("#ret").val();
+	$.get("fabric_diy-ajax_check_stock.html",{code:code},function(res){
+		if(res.done){
+			window.location.href=url;
+		}else{
+			if(res.retval==1){
+				window.location.href=res.msg;
+				return;
+			}
+			var content=res.msg;
+			$.getScript('/public/global/luck/pc/luck.js',function(){
+				  luck.poptip({
+					  width:'500px',
+					  con:content,
+					  callback:function(){
+						  
+						 	window.location.href=ret_url;
+						 
+					  }
+				  });
+			  })
+		}
+	},'json');
+	
+})
+</script>

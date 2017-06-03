@@ -1,0 +1,300 @@
+{include file="header.html"}
+<script type="text/javascript" src="{res file=js/utils.js}" charset="utf-8"></script>
+<link href="templates/style/main.css" rel="stylesheet" type="text/css" />
+<link href="templates/style/general.css" rel="stylesheet" type="text/css" />
+<style>
+input{padding:3px;}
+</style>
+<script type="text/javascript">
+$(function(){
+
+	
+    $('#theForm').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            code : {
+                remote   : {                //唯一
+                url :'index.php?app=jpjzpart&act=check_code',
+                type:'get',
+                data:{
+                    goods_sn : function(){
+                        return $('#code').val();
+                        },
+                    }
+                }
+            },
+            small_img : {
+                accept  : 'gif|png|jpe?g'
+            },
+            goods_img : {
+                accept  : 'gif|png|jpe?g'
+            },
+            goods_thumb : {
+                accept  : 'gif|png|jpe?g'
+            },
+           
+            sort_order : {
+                number   : true
+            }
+        },
+        messages : {
+            code : {
+                required : '编号不能为空',
+            },
+            code : {
+            	remote   : '编号已经存在'
+            },
+            small_img  : {
+                accept   : '图片类型不正确'
+            },
+            goods_img  : {
+                accept   : '图片类型不正确'
+            },
+            goods_img_url : {
+            	url : '图片链接格式不正确'
+            },
+            goods_thumb : {
+            	accept  : '图片类型不正确'
+            },
+            goods_thumb_url : {
+            	url  : '图片链接格式不正确'
+            },
+            type_id     : {
+            	required : '{$lang.type_req}'
+            },
+            sort_order     : {
+            	number : '排序必须是一个数字'
+            }
+        }
+    });
+    
+ 
+
+});
+
+/**
+ * 点击类型按钮时切换选项的禁用状态
+ */
+function radioClicked(n)
+{
+  document.forms['zujian_form'].elements["attr_values"].disabled = n > 0 ? false : true;
+}
+
+</script>
+
+<div id="rightTop">
+    <ul class="subnav">
+       
+       <li><a class="btn1" href="index.php?app=jpjzpart&amp;act=index">管理</a></li>
+        <li><span>新增</span></li>
+        
+    </ul>
+</div>
+
+<!-- start goods form -->
+<div class="info">
+    <!-- tab body -->
+  
+      <form enctype="multipart/form-data" action="" method="post" name="theForm" id="theForm">
+        <!-- 最大文件限制 -->
+        <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
+        <!-- 通用信息 -->
+        <table width="90%" id="general-table" align="center">
+		<input type="hidden" name="goods_name" id="goods_name" value="{$goods.goods_name|escape}" />
+		<input type="hidden" name="cat_id" value="1" />
+		<input type="hidden" name="goods_type" value="1" />
+		<input type="hidden" name="brand_id" value="1" />
+		<input type="hidden" name="goods_number" value="1000" />
+		<input type="hidden" name="is_on_sale" value="1" />
+
+		  <tr>
+            <td class="label">
+            面料编号 </td>
+            <td><input type="text" name="code" id="code" value="{$part.code|escape}" size="20"  /><span id="code_notice"></span></td>
+          </tr>
+           
+          <tr>
+            <td id="tbody-goodsAttr" colspan="2" style="padding:0"></td>
+          </tr>
+
+            <tr>
+            <td class="label">上传主图：</td>
+            <td height="100" valign="top">
+            	 {input_img name="part_img" value="$part.part_img" dir="part"}
+            </td>
+            </tr>  
+
+            <tr>
+             <td class="label">其它图片1：</td>
+            <td class="paddingT15 wordSpacing5">
+            <input class="infoTableFile2" type="file" name="url" id="url" />
+            <label class="field_notice">{$lang.note_portrait}</label>
+            </td>
+            </tr>
+            <tr>
+            <td class="label">其它图片2：</td>
+            <td class="paddingT15 wordSpacing5">
+            <input class="infoTableFile2" type="file" name="url2" id="url2" />
+            <label class="field_notice">{$lang.note_portrait}</label>
+            </td>
+            </tr>
+            <tr>
+               <td class="label">其它图片3：</td>
+            <td class="paddingT15 wordSpacing5">
+            <input class="infoTableFile2" type="file" name="url3" id="url3" />
+            <label class="field_notice">{$lang.note_portrait}</label>
+            </td>
+            </tr>
+            <tr>
+            <td class="label">其它图片4：</td>
+            <td class="paddingT15 wordSpacing5">
+            <input class="infoTableFile2" type="file" name="url4" id="url4" />
+            <label class="field_notice">{$lang.note_portrait}</label>
+            </td>
+            </tr>
+            <tr>
+            <td class="label">其它图片5：</td>
+            <td class="paddingT15 wordSpacing5">
+            <input class="infoTableFile2" type="file" name="url5" id="url5" />
+            <label class="field_notice">{$lang.note_portrait}</label>
+            </td>
+            </tr>
+
+        <tr>
+        <td class="label">面料详细描述：</td>
+        <td>{$build_editor}<textarea id="article" name="content" style="width:650px;height:300px;">{$article.content|escape}</textarea>
+        </td>
+        </tr>
+
+ </table>
+
+
+        <div class="button-div">
+          <input type="hidden" name="goods_id" value="{$goods.goods_id}" />
+          {if $code neq ''}
+          <input type="hidden" name="extension_code" value="{$code}" />
+          {/if}
+          <input type="submit" value="{$lang.button_submit}" class="tijia"/>
+          <input type="reset" value="{$lang.button_reset}" class="congzi" />
+        </div>
+        <input type="hidden" name="act" value="add" />
+      </form>
+   
+</div>
+<script type="text/javascript" src="{res file=js/taba.js}" charset="utf-8"></script>
+<!-- end part form -->
+<script>
+function getTypeList()
+{
+ $("#tbody-goodsAttr").empty();
+ var selCat= document.forms['theForm'].elements['cat_id'];
+
+   if (selCat != undefined)
+   {
+       var cat = selCat.options[selCat.selectedIndex].value;
+			
+       $.ajax({
+		type:"POST",
+		url:"index.php?app=jpjzpart&act=get_type",
+		data:"cate_id="+cat,
+		success: function(res) {
+			//alert(res)
+			$("#goods_type").empty();
+			$("#goods_type").append('<option value=0>请选择类型</option>')
+			$(res).each(function(i,item){
+				var $option = $('<option></option>');
+				$option.val(item.type_id);
+				$option.html(item.type_name)
+				$("#goods_type").append($option);
+			})
+		},
+		dataType: 'json'
+	});
+   }
+}
+
+/**
+ * 切换商品类型
+ */
+function getAttrList(goodsId)
+{
+    var selGoodsType = document.forms['theForm'].elements['goods_type'];
+
+    if (selGoodsType != undefined)
+    {
+        var goodsType = selGoodsType.options[selGoodsType.selectedIndex].value;
+				
+        $.ajax({
+			type:"POST",
+			url:"index.php?app=part&act=get_attr",
+			data:"type_id="+goodsType+"&goods_id="+goodsId,
+			success: function(result) {
+				document.getElementById('tbody-goodsAttr').innerHTML = result;
+			},
+			dataType: 'json'
+		});
+    }
+}
+
+/**
+ * 新增一个规格
+ */
+function addSpec(obj)
+{
+    var src   = obj.parentNode.parentNode;
+    var idx   = rowindex(src);
+    var tbl   = document.getElementById('attrTable');
+    var row   = tbl.insertRow(idx + 1);
+    var cell1 = row.insertCell(-1);
+    var cell2 = row.insertCell(-1);
+    var regx  = /<a([^>]+)<\/a>/i;
+
+    cell1.className = 'label';
+    cell1.innerHTML = src.childNodes[0].innerHTML.replace(/(.*)(addSpec)(.*)(\[)(\+)/i, "$1removeSpec$3$4-");
+    cell2.innerHTML = src.childNodes[1].innerHTML.replace(/readOnly([^\s|>]*)/i, '');
+}
+
+/**
+ * 删除规格值
+ */
+function removeSpec(obj)
+{
+    var row = rowindex(obj.parentNode.parentNode);
+    var tbl = document.getElementById('attrTable');
+
+    tbl.deleteRow(row);
+}
+
+/**
+ * 处理规格
+ */
+function handleSpec()
+{
+    var elementCount = document.forms['theForm'].elements.length;
+    for (var i = 0; i < elementCount; i++)
+    {
+        var element = document.forms['theForm'].elements[i];
+        if (element.id.substr(0, 5) == 'spec_')
+        {
+            var optCount = element.options.length;
+            var value = new Array(optCount);
+            for (var j = 0; j < optCount; j++)
+            {
+                value[j] = element.options[j].value;
+            }
+
+            var hiddenSpec = document.getElementById('hidden_' + element.id);
+            hiddenSpec.value = value.join(String.fromCharCode(13)); // 用回车键隔开每个规格
+        }
+    }
+    return true;
+}
+</script>
+{include file="footer.html"}

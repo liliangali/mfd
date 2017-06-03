@@ -1,0 +1,145 @@
+{include file=../user/member.header.html}
+   <div class="w">
+    <div class="AreaBox clearfix">
+        {include file=../user/member.menu.html}
+
+    <div class="con">
+        <h2 class="tit">我的消费者<span class="num">({$page_info.item_count})</span><a href="javascript:addLtData()">添加消费者</a></h2>
+      <div class="myClient">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th>消费者姓名</th>
+            <th>联系电话</th>
+            <th>订单数</th>
+            <th>创建时间</th>
+            <th>量体数据</th>
+            <th>操作</th>
+          </tr>
+          <!--{foreach from=$customer item=c key=k}-->
+          <tr>
+            <td>{$c.customer_name}</td>
+            <td>{$c.customer_mobile}</td>
+            <td>{$c.order_num}</td>
+            <td>{$c.lasttime|date:Y-m-d H:i}</td>
+            {if $c.lw}
+            <td>正常</td>
+            {else}
+            <td>无<a class="entry" onclick="entryLtData('{$c.figure_sn}')">录入</a></td>
+            {/if}
+            
+            <td><a class="edit" onclick="editLtData('{$c.figure_sn}')">编辑</a></td>
+          </tr>
+           <!--{/foreach}-->
+          
+        </table>
+         <div class="hyzx_fy clearfix">{if $customer}{include file=../user/member.page.bottom.html}{/if}</div>
+
+               
+        <div id="addLtData" class="myForm" style="display:none;">
+            <p style="line-height:24px; margin-bottom:30px; width:480px;"><span style="color:#a40001;">提示：</span>消费者昵称是平台给您建立消费者关系的唯一标识，帮助您管理消费者、维护消费者，从而提高您的服务质量和效率，建议填写</p>
+            <form  action="tailor_customer-add.html">
+                <div class="item"><div class="t">消费者昵称：</div>
+                    <input type="text" class="txt" name='nikename' id="nikename" />
+                </div>
+                <div class="item"><div class="t"><i>*</i>消费者姓名：</div>
+                    <input type="text" class="txt" data-type="required" id="uname" name="name" data-tip="消费者姓名" />
+                </div>
+                <div class="item"><div class="t"><i>*</i>消费者手机：</div>
+                    <input type="text" class="txt" name='mobile' data-type="phone" id="uphone" />
+                </div>
+                <dl class="data">
+                    <dt onclick="toggleData(this)"><i></i>录入量体数据 <em class="grey">（单位：CM）</em></dt>
+                    <dd>
+                        <ul>
+                        <!--{foreach from=$positions item=position key=k}-->
+                        {if $position.isshow}
+                        <li><span>{$position.zname}：</span><font>
+                          <input type="text" value="" name="{$k}">
+                          </font></li>
+                          {/if}
+                         <!--{/foreach}-->
+                    </ul>
+                    </dd>
+                </dl>
+                <div id="error" class="error"></div>
+                <input type="button" value="确定" class="btn" onclick="addClient()" />
+                <input type="button" value="取消" class="btn2" onclick="layer.closeAll()" />
+            </form>
+        </div>
+         <!--{foreach from=$customer item=r}-->
+        <div id="editLtData{$r.figure_sn}" class="myForm" style="display:none;">
+        <INPUT TYPE=hidden NAME='editid' VALUE="{$r.figure_sn}">
+                <div class="item"><div class="t">消费者昵称：</div>
+                    <input type="text" class="txt" name='nikename' id="nikename" value="{$r.nickname}" readOnly="true"  />
+                </div>
+                <div class="item"><div class="t"><i>*</i>消费者姓名：</div>
+                    <input type="text" class="txt" data-type="required" id="euname{$r.figure_sn}" value="{$r.customer_name}" data-tip="消费者姓名" />
+                </div>
+                <div class="item"><div class="t"><i>*</i>消费者手机：</div>
+                    <input type="text" class="txt" value="{$r.customer_mobile}" id="euphone{$r.figure_sn}" data-type="phone" />
+                </div>
+                <dl class="data">
+                    <dt>量体数据</dt>
+                    <dd style="display:block">
+                        <ul>
+                        <!--{foreach from=$positions item=position key=k}-->
+                        {if $position.isshow}
+                        <li><span>{$position.zname}：</span><font>
+                          <input type="text" value="{if !$r[$k]}0{else}{$r[$k]}{/if}" name="{$k}">
+                          </font></li>
+                          {/if}
+                         <!--{/foreach}-->
+                    </ul>
+                    </dd>
+                </dl>
+                <div class="error"></div>
+                <input type="button" value="确定" class="btn" onclick="editClient('{$r.figure_sn}')" />
+                <input type="button" value="取消" class="btn2" onclick="layer.closeAll()" />
+        </div>
+        <!--{/foreach}-->
+        
+        <!--{foreach from=$customer item=r}-->
+        <div id="entryLtData{$r.figure_sn}" class="myForm" style="display:none;">
+                <div class="item"><div class="t">消费者昵称：</div>
+                    <input type="text" class="txt" name='nikename' id="nikename" value="{$r.nickname}" readOnly="true"  />
+                </div>
+                <div class="item"><div class="t"><i>*</i>消费者姓名：</div>
+                    <input type="text" class="txt" disabled="disabled"  value="{$r.customer_name}" id="entry_uname{$r.figure_sn}"/>
+                </div>
+                <div class="item"><div class="t"><i>*</i>消费者手机：</div>
+                    <input type="text" class="txt" disabled="disabled" value="{$r.customer_mobile}" id="entry_phone{$r.figure_sn}" />
+                </div>
+                <dl class="data">
+                    <dt>量体数据</dt>
+                    <dd style="display:block">
+                        <ul>
+                         <!--{foreach from=$positions item=position key=k}-->
+                        {if $position.isshow}
+                        <li><span>{$position.zname}：</span><font>
+                          <input type="text" value="{if !$r[$k]}0{else}{$r[$k]}{/if}" name="{$k}">
+                          </font></li>
+                          {/if}
+                         <!--{/foreach}-->
+                    </ul>
+                    </dd>
+                </dl>
+                <div class="error"></div>
+                <input type="button" value="确定" class="btn" onclick="entryClient('{$r.figure_sn}')" />
+                <input type="button" value="取消" class="btn2" onclick="layer.closeAll()" />
+        </div>
+        <!--{/foreach}-->
+      </div>
+      {if !$customer}
+      <div class="noRecord">
+            您目前还没有消费者信息<input type="button" value="添加消费者" onclick="addLtData()">
+      </div>
+      {/if}
+    </div>
+    </div>
+
+
+   </div>
+</div>
+
+<script  type="text/javascript" src="static/js/usercenter.js"></script>
+ {include file="../user/footer.html"}

@@ -1,0 +1,224 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+  	 <li><a class="btn1" href="index.php?app=designer&amp;">创业故事列表</a></li>
+    <li><span>创业盛行一时</span></li>
+
+   
+  
+  </ul>
+</div>
+{$build_editor}
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="dis_form">
+        <table class="infoTable">
+            <tr>
+            <th class="paddingT15">头像上传:</th>
+            <td height="100" valign="top">
+                 {input_img name="small_img" value="$data.small_img" dir="dis"}
+            </td>
+            </tr>
+            
+            <tr>
+            	<th class="paddingT15">相册图片(APP) :</th>
+             
+                <td id="gallery">
+                {$build_upload}
+        	<table class="infoTable qdhqx_tab">
+        	<tr>
+                <td class="paddingT15 wordSpacing5">
+					 <div id="divSwfuploadContainer">
+                <div id="divButtonContainer" style="float:left;">
+                    <span id="spanButtonPlaceholder"></span>
+                </div>
+                
+                <div id="divFileProgressContainer"></div>
+            </div>
+                </td>
+            </tr>
+
+            <tr>
+            	<td>
+            	文件列表(双击图片进行删除)
+					<ul id="thumbnails">
+						{foreach from=$gallery_list item=gallery}
+						  <li id="gallery_{$gallery.id}"  data_id ="{$gallery.id}"  onclick="selectImg(this)">
+						  <img ondblclick="drop_gallery({$gallery.id})" src="{$gallery.source_img}" width="80" height="80"></li>
+						{/foreach}
+					</ul>
+				</td>
+            </tr>
+            </table>
+                </td>
+            </tr>
+
+        	<tr>
+            <th class="paddingT15">中文名称：</th>
+            <td><input type="text" name="chinaname" id="chinaname" /></td>
+            </tr>
+
+        	
+
+            <tr>
+                <th class="paddingT15">
+                    简介:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea name="signaturl" id="signaturl" rows="5" cols="20"></textarea>
+                </td>
+            </tr>
+        	<tr>
+                <th class="paddingT15">
+                    <label for="dis">详细说明:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="content" name="content" style="width:550px;height:300px;">{$data.content|escape}</textarea>
+                </td>
+            </tr>
+
+			<tr><th class="paddingT15">链接：</th><td><input type="text" name="link" id="link" /></td></tr>
+
+			<tr><th class="paddingT15">链接打开方式：</th><td><input type="text" name="linktype" value="_bank" id="linktype" /></td></tr>
+
+			<tr><th class="paddingT15">排序：</th><td><input type="text" name="l_order" value="255" id="lorder" /></td></tr>
+
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">{$lang.if_show}：</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="if_show" value="1" checked="checked" />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="if_show" value="0"  />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+
+		    <tr>
+                <th class="paddingT15">
+          <a href="javascript:;" class="cyz" style="color:red;">
+          关联创业者:</a></th>
+                <td class="paddingT15 wordSpacing5" id="cyz"></td>
+                <td class="layer paddingT15 wordSpacing5">
+                          
+                </td>
+            </tr>
+
+
+     
+         
+       
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+                <input type="hidden" name="id" value="{$data.id}">
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+_did = "{$data.id}";
+$(function(){
+
+    <!-- {if $linkid} -->
+    ajax_cst('{$linkid}');
+    <!-- {/if} -->
+    
+});
+
+
+
+    
+
+
+
+    $(".cyz").click(function(){
+        var ids='';
+        $("#cyz input").each(function(){
+            ids += ids ? ","+$(this).val() : $(this).val();
+        })
+        $.cookie("suits",null);
+        var url = "index.php?app=cyz";
+        if(ids){
+            url += "&ids="+ids;
+         }
+        window.open(url,'请选择创业者','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+    })
+
+    function callBackCyz(ids,vids,name){
+
+        $.get('index.php?app=designer&act=loadCyz&ids='+ids,function(result){
+            var result = eval("("+result+")");
+             $(".layer").empty().append(result.retval);
+
+        });
+    }
+
+    function removeRec(obj){
+    var id = $(obj).attr("data-ret");
+
+    if(id == 0){
+        $(obj).parents("li").remove();
+    }else{
+        $.get("index.php?app=designer&act=removeLink",{id:id}, function(res){
+            var res = eval("("+res+")");
+           // if(res.done==true){
+                $(obj).parents("li").remove();
+           // }
+        })
+    }
+}
+
+
+
+    function add_uploadedfile(file_data)
+    {
+        var newImg = '<li id="' + file_data.file_id + '" onclick="selectImg(this)">'+
+        '<input type=hidden name=gallery[] value='+SITE_URL + '/' + file_data.file_path+'>'+
+        '<img width="80px" height="80px" src="' + SITE_URL + '/' + file_data.file_path + '" ondblclick="drop_uploadedfile(' + file_data.file_id + ');"/></li>';
+        $('#thumbnails').prepend(newImg);
+    }
+    function selectImg(obj){
+    	$(obj).parents("ul").find("li").each(function(){
+    		$(this).removeClass("on");
+    	})
+    	
+    	$(obj).addClass("on");
+    }
+    function drop_gallery(file_id)
+    {
+        if(!window.confirm('确定要移除该图片吗？')){
+            return;
+        }
+
+        $('#gallery_' + file_id).remove();
+        
+        $.getJSON('index.php?app=suit&act=drop_gallery&id=' + file_id, function(result){
+            if(result.done == false){
+                alert('drop_error');
+            }
+        });
+    }
+
+    function drop_uploadedfile(file_id)
+    {
+        if(!window.confirm('确定要移除该图片吗？')){
+            return;
+        }
+
+        $('#' + file_id).remove();
+        
+        $.getJSON('index.php?app=article&act=drop_uploadedfile&file_id=' + file_id, function(result){
+            if(result.done){
+                
+            }else{
+                alert('drop_error');
+            }
+        });
+    }
+	
+	$('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+	$('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+
+</script>
+{include file="footer.html"}

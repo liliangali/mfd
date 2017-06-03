@@ -1,0 +1,75 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<style type="text/css">
+.float_right {float: right;}
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        <div class="wrap">
+          <h1 class="syhtmdbt">服务点订单</h1>
+            <div class="public">
+                <div class="user_search">
+                <form method="get">
+                    <!--{if $query.seller_name or $query.add_time_from or $query.add_time_to or $query.order_sn}-->
+                     <a class="detlink float_right" href="{url app=buyer_order}">{$lang.cancel_query}</a>
+                    <!--{/if}-->
+                    <span>{$lang.add_time}: </span>
+                    <input type="text" class="text1 width2" name="add_time_from" id="add_time_from" value="{$query.add_time_from}"/> &#8211;
+                    <input type="text" class="text1 width2" name="add_time_to" id="add_time_to" value="{$query.add_time_to}"/>
+                    <span>{$lang.order_sn}:</span>
+                    <input type="text" class="text1 width_normal" name="order_sn" value="{$query.order_sn|escape}">
+                    <span>{$lang.order_status}</span>
+                    <select name="type">
+                    {html_options options=$types selected=$type}
+                    </select>
+                    
+                    <input type="submit" class="btn" value="搜索" />
+                </form>
+                </div>
+                <!--{foreach from=$orders item=order}-->
+                <div class="order_form">
+                    <h2>
+                        <p class="num">{$lang.order_sn}: {$order.order_sn}{if $order.extension eq 'groupbuy'}<span class="color8">[{$lang.groupbuy}]</span>{/if}</p>
+                        <p class="name">买家用户名：{$order.buyer_name}</p>
+                        <p class="state">{$lang.order_status}: <strong>{$order.status|modifier:order_status}<!--{if $order.evaluation_status}-->,&nbsp;{$lang.already_evaluate}<!--{/if}--></strong></p>
+                    </h2>
+
+                    
+
+                    <div class="foot">
+                        <p class="time">{$lang.add_time}: {$order.add_time|date:Y-m-d H:i:s}</p>
+                        
+                        <div class="handle">
+                            <div style="float:left;">
+                                {$lang.order_amount}: <b id="order{$order.order_id}_order_amount">{$order.order_amount|price}</b>
+                            </div>
+                            {if $order.isfigure eq true}<a class="btn1" href="{link app=figure act=add arg=$order.buyer_id}?order_id={$order.order_id}" id="order{$order.buyer_id}_evaluate" >订单补录量体数据</a>{/if}
+                        </div>
+                    </div>
+                </div>
+                <!--{foreachelse}-->
+                <div class="order_form member_no_records">
+                    <span>{$lang.no_records}</span>
+                </div>
+                <!--{/foreach}-->
+                <div class="order_form_page">
+                    <div class="page">
+                        {include file=member.page.bottom.html}
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe id='iframe_post' name="iframe_post" src="about:blank" frameborder="0" width="0" height="0"></iframe>
+{include file=login_footer.html}

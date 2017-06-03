@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>阿里品牌商</title>
+<link rel="stylesheet" type="text/css" href="../../static/css/public.css">
+<link rel="stylesheet" type="text/css" href="../../static/css/usercenter.css">
+<script type="text/javascript" src="../../static/expand/jquery.js"></script>
+<script  type="text/javascript" src="../../static/js/public.js"></script>
+</head>
+
+<body>
+<!--头部开始-->
+<div class="head2">
+    <div class="w">
+        <div class="fl left">
+            <a href="member-{$ac}-user.html" {if $type eq 'user' || $type eq 'tailor'} class="cur"{/if} >帐号概览<i></i><em></em></a>
+            <a href="member-{$ac}-user_set.html" {if $type eq 'user_set'} class="cur"{/if}>帐号设置<i></i><em></em></a>
+            <a href="member-{$ac}-user_message.html" {if $type eq 'user_message'} class="cur"{/if}>我的消息<i></i><em></em></a>
+            <a href="member-{$ac}-user_favorite.html" {if $type eq 'user_favorite'} class="cur"{/if}>我的收藏<i></i></a>
+        </div>
+        <div class="fr right">
+            <div class="home_page"><a href="/" title="回 阿里品牌商 主页"></a></div>
+            <div class="topMenu fl">
+                <i></i><i></i><i></i><em></em>
+                <div class="menuList">
+                    <a href="/">首页</a>
+                    <a href="tailor.html">找品牌商</a>
+                    <a href="gallery.html">选款式</a>
+                    <a href="fabrics.html">选面料</a>
+                    <a href="single.html">品晒单</a>
+                    <a href="demand-lists.html">需求中心</a>
+                </div>
+            </div>
+            
+            <!--{if $has_store}-->
+             <!--{if $ac eq 'index'}-->
+             <a href="member-tailor.html" class="my_tailor">我是品牌商</a>
+              <!--{else}-->
+              <a href="member.html" class="my_tailor">我是消费者</a>
+              <!--{/if}-->
+            
+            <!--{/if}-->
+        </div>
+    </div>
+</div>
+<!--头部结束-->

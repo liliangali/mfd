@@ -1,0 +1,69 @@
+{include file=member.header.html}
+<div class="user_box">
+{include file=member.menu.html}
+<div class="user_right user_rights fr">
+		<h4 class="collection">我的收藏</h4>
+		<!--{if $collect_custom}-->
+        <ul>
+        <!--{foreach from=$collect_custom key=key name=loop item=custom}-->
+        	<li {if $smarty.foreach.loop.iteration % 4 == 0}class="wdsc wdscs"{else}class="wdsc"{/if}>
+            	<a href="{link app=custom arg0=$custom.item_id}" target="_blank"><img src="{$custom.ctm.small_img}" class="zstppic"></a>
+                <p class="sctitle"><a href="{link app=custom arg0=$custom.item_id}" target="_blank">{$custom.ctm.name}</a></p>
+                <p class="sctitle">¥{$custom.ctm.price}</p>
+                <div class="gwscbot"><a href="javascript:;" onclick="dropCustom({$custom.item_id},'确认删除？')" class="scshopping scdelete fl">删除</a><a href="{link app=custom arg0=$custom.item_id}" class="scshopping fl">去订制</a></div>
+            </li>
+         <!--{/foreach}-->
+        </ul>
+		<!--翻页开始-->
+		{include file=member.page.bottom.html}
+		<!--翻页结束-->
+		<!--{else}-->
+		  <div class="empty">
+		      <div>您暂未收藏任何商品！赶快来逛逛吧。<br><br><p><a href="./" class="cc_btn s_btn">麦富迪首页</a></p></div>
+		  </div>
+		<!--{/if}-->
+
+</div>
+</div>
+
+{include file=footer.html}
+
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/usercenter.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>  
+<script>
+cotteFn.amputate()
+//分享
+window._bd_share_config = {
+	common : {
+		bdText : document.title,	
+		bdDesc : '',	
+		bdUrl : window.location.href, 	
+		bdPic : ''
+	},
+	share : [{
+		"bdSize" : 16
+	}]
+}
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<script type="text/javascript">
+function dropCustom(id){
+	if(window.confirm('确定要删除？')){
+		$.post("/my_favorite-dropCollect.html",{item_id:id}, function(res){
+		    var res = $.parseJSON(res);
+		    if(res.done == true){
+        		alert(res.msg);
+        		location.href='/my_favorite.html';
+        		return;
+    		}else{
+    			alert(res.msg);
+        		return;
+    		}
+		});
+	}
+}
+</script>

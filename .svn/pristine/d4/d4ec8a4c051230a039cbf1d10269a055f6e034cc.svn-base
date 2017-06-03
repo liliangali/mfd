@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>目标客户信息登记表</title>
+<style>
+body { padding: 0; margin: 0; font-size: 12px; background: #fff; color: #010101; font-family: "微软雅黑", "Arial"; min-width: 320px; -webkit-text-size-adjust: none; }
+h1, h2, h3, h4, h5, h6, p, form, div, dl, dd, dt, ul, li, img { padding: 0; margin: 0; list-style-type: none; border: 0; font-weight: normal;-webkit-tap-highlight-color:rgba(0,0,0,0) }
+input, textarea, select { outline: none; list-style-type: none; border: none; padding: 0; margin: 0; background:#fff;}
+textarea{outline:none;resize:none;}
+img, fieldset { border: 0; }
+input, img { vertical-align: middle; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif; }
+ul, ol { list-style: none; }
+em, address { font-style: normal; }
+a { color: #000; text-decoration: none; }
+table { border-collapse: collapse; }
+.clearfix:after { content: "."; height: 0px; line-height: 0px; overflow: hidden; clear: both; display: block; visibility: hidden; }
+.clearfix { zoom: 1; }
+.jj_box { display: box; display: -webkit-box; display: -moz-box; orient: horizontal; width: 100%; }
+.jj_1 { box-flex: 1; -webkit-box-flex: 1; -moz-box-flex: 1; display: block; }
+.main {margin: 0 auto; max-width: 640px; min-width: 320px; width: 100%; }
+.overhide{ height:100%;overflow:hidden;}
+.fl { float:left;}
+.fr { float:right;}
+
+/*提示页/S*/
+/*简洁头/S*/
+.header { background: #302d2a; border-bottom: 1px solid #ccc; width: 100%; height: 49px; position: relative; line-height: 49px; }
+.header .p1 { position: absolute; left: 3.5%; top: 0px; }
+.header .p1 img { width: 50%; }
+.header .p2 { font-size: 20px; text-align: center; color: #fff; }
+/*简洁头/E*/
+.xqsjb_box {width:93%; margin:0 auto;}
+.dzb_ul { margin:40px 0;}
+.dzb_ul li .p1 {line-height:40px; padding-right:10px;}
+.dzb_ul li .p3 { line-height:20px; margin:20px 0 10px 0;}
+.dzb_ul li .p4 textarea { border:1px solid #e5e5e5; width:100%; padding:0 10px; min-height:60px; line-height:22px; color:#666;}
+.dzb_ul li input { border-bottom:1px solid #e5e5e5; height:38px; width:100%; color:#666;}
+.tijiao { background:#7dddb8; border-radius:20px; height:40px; width:100%; color:#fff; font-size:16px; margin:40px 0 60px 0; cursor:pointer; -webkit-appearance: none;}
+.sex {border: 1px solid #ddd;height: 30px;margin-top: 4px;}
+</style>
+</head>
+<body>
+<div class="main">
+  <!--头部开始-->
+  <div class="header clearfix">
+   <p class="p2">目标客户信息登记表</p>
+  </div>
+  <!--头部结束-->
+  <form method="POST" id="myform">
+  <div class="xqsjb_box">
+    <ul class="dzb_ul">
+     <li class="jj_box"><p class="p1">*填写时间：</p><p  class="p2 jj_1" style=" position:relative">
+	<span style="position:absolute; width:100%; height:100%" onClick="$('#write_time').trigger('click')"></span>
+
+	 <input type="text" name="write_time" id="write_time" validate="required" tip="填写时间" value='{$info.write_time}'></p></li>
+     <li class="jj_box"><p class="p1">*创业顾问：</p><p  class="p2 jj_1"><input type="text" name="consultant" maxlength="10" validate="required|maxlength" tip="创业顾问" maxlength="10" value='{$info.consultant}'></p></li>
+     <li class="jj_box"><p class="p1">*BD码：</p><p  class="p2 jj_1"><input type="text" name="BD"  validate="required|bdcode" tip="BD码" value="{$info.BD}"></p></li>
+     <li class="jj_box"><p class="p1">*客户姓名：</p><p  class="p2 jj_1"><input type="text" name="name" maxlength="10" validate="required|maxlength" tip="客户姓名" value='{$info.name}'></p></li>
+     <li class="jj_box"><p class="p1">*性  别：</p><p  class="p2 jj_1"><select class="sex" name="sex" validate="required|sex" tip="性  别"><option value="0">请选择</option><option value="1" {if $info.sex==1} selected=selected {/if}>男</option><option value="2" {if $info.sex==2} selected=selected {/if}>女</option></select></p></li>
+     <li class="jj_box"><p class="p1">*从事行业及身份：</p><p  class="p2 jj_1"><input type="text" name="job_ident" validate="required" tip="从事行业及身份" value="{$info.job_ident}"></p></li>
+     <li class="jj_box"><p class="p1">*年龄范围：</p><p  class="p2 jj_1"><input type="text" name="age" validate="required" tip="年龄范围" value="{$info.age}"></p></li>
+     <li class="jj_box"><p class="p1">*手机号：</p><p  class="p2 jj_1"><input type="text" name="phone" validate="required|phone" tip="手机号" value="{$info.phone}"></p></li>
+     <li class="jj_box"><p class="p1">微信号(选填)：</p><p  class="p2 jj_1"><input type="text" name="weixin" validate="wx" tip="微信号" value="{$info.weixin}"></p></li>
+     
+     <li>
+      <p class="p3">*目标客户的自身情况简介（如果有店铺可采集店铺图片）：</p>
+      <p class="p4 jj_box"><textarea name="issue1_reply" cols="" rows="" class="jj_1" validate="required" tip="目标客户的自身情况简介">{$info.issue1_reply}</textarea></p>
+     </li>
+     
+     <li>
+      <p class="p3">*目标客户的消费者资源情况简介：</p>
+      <p class="p4 jj_box"><textarea name="issue2_reply" cols="" rows="" class="jj_1" validate="required" tip="目标客户的消费者资源情况简介">{$info.issue2_reply}</textarea></p>
+     </li>     
+     
+     <li>
+      <p class="p3">*你是以什么渠道什么方式找到的目标客户？</p>
+      <p class="p4 jj_box"><textarea name="issue3_reply" cols="" rows="" class="jj_1" validate="required" tip="你是以什么渠道什么方式找到的目标客户">{$info.issue3_reply}</textarea></p>
+     </li>     
+     
+     <li>
+      <p class="p3">*目标客户最关心什么？</p>
+      <p class="p4 jj_box"><textarea name="issue4_reply" cols="" rows="" class="jj_1" validate="required" tip="你与目标客户做了哪些交流">{$info.issue4_reply}</textarea></p>
+     </li>
+     
+     <li>
+      <p class="p3">*目标客户有兴趣参加免费培训并亲自体验定制吗？</p>
+      <p class="p4 jj_box"><textarea name="issue5_reply" cols="" rows="" class="jj_1" validate="required" tip="目标客户有兴趣参加免费培训并亲自体验定制吗">{$info.issue5_reply}</textarea></p>
+     </li>          
+    </ul>
+	{if !$info['id']}
+	<input type="button" value="提 交" class="tijiao">
+    {/if}   
+  </div>
+  </form>
+</div>
+<link rel="stylesheet" href="/static/expand/datecontrol/mobiscroll.date.css">
+<script src="/static/expand/jquery.js"></script>
+<script src="/static/expand/datecontrol/mobiscroll.date.js"></script>
+<script src="/static/js/ask.js"></script>
+</body>
+</html>

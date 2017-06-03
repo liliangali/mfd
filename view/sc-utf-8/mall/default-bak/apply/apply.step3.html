@@ -1,0 +1,144 @@
+{include file=header.html}
+{$build_editor}
+<script src="{lib file=mlselection.js}" charset="utf-8"></script>
+<script src="{lib file=jquery.plugins/jquery.validate.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=rctailor.js}" charset="utf-8"></script>
+<link href="{res file=css/z_style.css}" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.d_inline{display:inline;}
+</style>
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var reginUrl = "{link app=mlselection}";
+$(function(){
+    regionInit("region");
+    $("#apply_form").validate({
+        errorPlacement: function(error, element){
+            var error_td = element.parents('td').next('td');
+            error_td.find('.field_notice').hide();
+            error_td.find('.fontColor3').hide();
+            error_td.append(error);
+        },
+        success: function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        onkeyup: false,
+        rules: {
+            image_1: {
+                accept: "jpg|jpeg|png|gif"
+            },
+            image_2: {
+                accept: "jpg|jpeg|png|gif"
+            },
+            image_3: {
+                accept: "jpg|jpeg|png|gif"
+            },
+            notice: {
+                required : true
+            }
+        },
+        messages: {
+            image_1: {
+                accept: '{$lang.select_valid_image}'
+            },
+            image_2: {
+                accept: '{$lang.select_valid_image}'
+            },
+            image_3: {
+                accept: '{$lang.select_valid_image}'
+            },
+            notice: {
+                required: '{$lang.check_notice}'
+            }
+        }
+    });
+});
+//]]>
+</script>
+<!--中间开始-->
+<div class="center_box">
+  <!--申请服务点步骤 start-->
+     <div class="apply_step">
+         <ul class="step_2">
+            <li class="step_sqrz ">申请供应商入驻</li>
+            <li class="step_tjzz step_cur">提交资质</li>
+            <li class="step_ddsh">等待审核</li>
+            <li class="step_shjg">入驻成功</li>
+         </ul>
+         <p class="clear"></p>
+     </div>
+  <!--申请服务点步骤 end-->
+  <!--基本信息 start-->
+     <div class="basic_box">
+         <h3><i></i><span>裁缝其他信息</span></h3>
+         <div class="basic_tab_box">
+          <form method="post"  enctype="multipart/form-data" id="apply_form">
+             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="basic_table gsqtxx_table">
+              <tr>
+                <th valign="top"><div>可裁缝作品：</div></th>
+                <td valign="top">
+                <div id="file_add">
+                <input id="owner_name" name="owner_name" type="hidden" value="{$smarty.post.owner_name}" />
+                <input id="brand_id" name="brand_id" type="hidden" value="{$smarty.post.brand_id}" />
+                <input id="store_name" name="store_name" type="hidden" value="{$smarty.post.store_name}" />
+                <input id="address" name="address" type="hidden" value="{$smarty.post.address}" />
+                <input id="zipcode" name="zipcode" type="hidden" value="{$smarty.post.zipcode}" />
+                <input id="tel" name="tel" type="hidden" value="{$smarty.post.tel}" />
+                <input id="im_qq" name="im_qq" type="hidden" value="{$smarty.post.im_qq}" />
+                <input id="region_id" name="region_id" type="hidden" value="{$smarty.post.region_id}" />
+                <input id="region_name" name="region_name" type="hidden" value="{$smarty.post.region_name}" />
+                <input id="second" name="second" type="hidden" value="1" />
+                       <p class="tab_p">个人作品一</p>
+                       <p class="up_browse_h up_borwse_bo">
+                                               
+                           <input type="file" name="image_1" id="image_1" />
+                           <label class="errord" style="color:red;"></label>
+                       </p>
+                       
+                       <p class="tab_p">个人作品二：</p>
+                       <p class="up_browse_h up_borwse_bo">
+                                
+                          <input type="file" name="image_2" id="image_2" />
+                          <label class="errord" style="color:red;"></label>
+                       </p>
+                       <p class="tab_p">个人作品三：</p>
+                       <p class="up_browse_h">
+                          
+                          <input type="file" name="image_3" id="image_3" />
+                          <label class="errord" style="color:red;"></label>
+                       </p>
+                </div>
+                      <!--<div class="add_look">
+                          <a href="#" class="jx_add">继续添加</a>
+                          <a href="#" class="look_fl">查看发范例</a>
+                       </div> -->
+                </td>
+              </tr>
+              <tr>
+                <th valign="top"><div>个人简介：</div></th>
+                <td valign="top">
+                <textarea name="description" id="description" style=”width:100%; height:350px;">{$store.description|escape}</textarea>
+                   <input type="hidden" name="notice" value="1">
+                </td>
+              </tr>
+              <tr>
+                <th></th>
+                <td>
+                   <div class="appaly_but_div f_l">
+                      <input type="submit" name="button" value="下一步" class="apply_but_sub f_l" />
+                      <input type="reset" name="reset" value="取消" class="apply_but_res f_l" />
+                    </div>
+                </td>
+              </tr>
+            </table>
+            </form>
+         </div>
+         <div class="h_100"></div>
+     </div>
+  <!--基本信息 end-->
+     
+</div>
+<!--中间结束-->
+{include file=footer.html}

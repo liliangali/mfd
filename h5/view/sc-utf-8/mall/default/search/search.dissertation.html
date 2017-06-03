@@ -1,0 +1,119 @@
+{include file="header.html"}
+<link rel="stylesheet" href="{res file=css/itemMod.css}">
+<script src="{res file=js/itemMod.js}"></script>
+<script type="text/javascript" src="{res file=js/jquery.masonry.js}"></script>
+<script type="text/javascript" src="{res file=js/jquery.infinitescroll.js}"></script>
+<script type="text/javascript">
+var isWidescreen=screen.width>=1280; 
+if(isWidescreen){document.write("<style type='text/css'>.demo{width:1000px;}</style>");}
+</script>
+
+<script type="text/javascript">
+function item_masonry(){ 
+	$('.item img').load(function(){ 
+		$('.infinite_scroll').masonry({ 
+			itemSelector: '.masonry_brick',
+			columnWidth:235,
+			gutterWidth:20								
+		});		
+	});
+		 //columnWidth 函数递增控制div左边距
+	$('.infinite_scroll').masonry({ 
+		itemSelector: '.masonry_brick',
+		columnWidth:235,
+		gutterWidth:20								
+	});	
+}
+$(function(){
+//滚动条下拉事件
+	function item_callback(){
+		item_masonry();	
+	}
+	item_callback();  
+	$('.item').fadeIn();
+	var sp = 1
+	$(".infinite_scroll").infinitescroll({
+		navSelector  	: "#more",
+		nextSelector 	: "#more a",
+		itemSelector 	: ".item",
+		loading:{
+			img: "images/masonry_loading_1.gif",
+			msgText: '正在加载中....',
+			finishedMsg: '木有了,看看下一页',
+			finished: function(){
+				sp++;
+				if(sp>=10){ //到第10页结束事件
+					$("#more").remove();
+					$("#infscr-loading").hide();
+					$("#pagebox").show();
+					$(window).unbind('.infscr');
+				}
+			}	
+		},errorCallback:function(){ 
+			$("#pagebox").show();
+		}
+	},function(newElements){
+		var $newElems = $(newElements);
+		$('.infinite_scroll').masonry('appended', $newElems, false);
+		$newElems.fadeIn();
+		item_callback();
+		return;
+	});
+});
+</script>
+
+<style>
+/* 搜索切换 */
+.search_box{width:1000px; margin:0 auto;}
+.search_h1{height:29px; line-height:29px; width:1000px; overflow:hidden; font-size:18px; font-weight:normal; color:#717171;
+padding:24px 0 16px 0;}
+.search_h1 font{font-size:18px; color:#333333;}
+.search_qh{width:1000px; margin:0 auto; position:relative; border:#dddddd 1px solid; background:#eeeeee;  border-bottom:#999999 1px solid; height:39px;}
+.search_qh .search_qh_ul{ height:40px; position:absolute; left:-1px; top:-1px; z-index:1; line-height:40px; width:1000px; }
+.search_qh .search_qh_ul li{ padding:0 41px; height:40px; line-height:40px; float:left; font-size:16px; text-align:center; cursor:pointer;}
+.search_qh .search_qh_ul .cur_li{ padding:0 41px; background:none #f9f9f9; color:#fff; position:relative; border:#999999 1px solid; border-bottom:none; }
+.search_qh .search_qh_ul .cur_li a{color:#bb422e; font-size:16px;}
+#bg-none{background:none;}
+</style>
+<!--定制中心开始-->
+  <div class="coolke_box">
+     <div class="search_box">
+      
+{include file="search/header.html"}
+
+		</div>
+      <div class="pubuliu_box" style="padding:30px 0 0 0;">
+        <!--瀑布流 start-->
+
+    <div class="demo clearfix">
+      <div class="item_list infinite_scroll">
+       {foreach from=$data item=it}
+      
+      <!--item end-->
+      <div class="item masonry_brick" onMouseOver="this.className='item_2'" onMouseOut="this.className='item'">
+      
+        <div class="kzmdz">
+          <p class="zenzon"><a href="{link app=dissertation act=info arg0=$it.id}"><img src="{$it.small_img}" /></a></p>
+          <p class="zzydl_bt"><a href="{link app=dissertation act=info arg0=$it.id}"><span>{$it.title}</span></a></p>
+          <p class="m_ztjj">{$it.design|_safe|truncate:60:"..."}</p>
+          <div class="xh_xl" itemId='{$it.id}'>
+            {if $it.is_like eq 0}
+            <p class="m_xh"><a href="javascript:;">喜欢</a></p>
+            {else}
+            <p class="y_xh"><a href="javascript:;">已喜欢</a></p>
+            {/if}
+            <p class="xhdssl">{$it.likes}</p>
+            <p class="xiaolian">评论：{$it.comment}</p>
+          </div>
+        </div>
+      </div>
+      <!--item end-->
+       {foreachelse}
+       我们很拼命的找了，还是没有找到您想要的内容...
+       {/foreach}
+      </div>
+    </div>
+      </div>
+</div>
+{include file="footer.html"}
+

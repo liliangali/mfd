@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+.grjs_box {width:1200px; height:174px; margin:0 auto; position:relative;}
+.grjs_box .left { position:absolute; left:10px; top:-20px; width:150px; height:155px; border:10px solid #fff;}
+.grjs_box .left img {width:150px; height:150px;}
+
+.zplist { background:#f6f6f6; overflow:hidden;}
+.zplist li { float:left; width:20%; text-align:center; font-size:18px; color:#666; height:50px; line-height:50px; overflow:hidden;}
+.zplist .on { background:#21d0fd;}
+.zplist .on a { color:#fff;}
+
+.menu{ width:100%; margin:0 auto; overflow:hidden;}
+.menu .brick{margin-top:68px;overflow:hidden; width:105%;}
+.menu .brick .item {width:278px; margin:0 22px 22px 0; background:#f6f6f6;}
+.menu .brick .item img{width:278px;height:416px;}
+.menu .brick .item .cpjsmc{ margin:5px 15px; font-size:14px; color:#333; line-height:24px;}
+.menu .brick .item .jine{ margin:0 15px; font-size:12px; color:#999; line-height:20px; margin-bottom:15px;}

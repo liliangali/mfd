@@ -1,0 +1,63 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">        
+        <div class="wrap">
+           <h1 class="grzl">佣金分成日志</h1>
+            <div class="public table">
+                <table class="table_head_line">
+                    <!--{if $brokerage_logs}-->
+                    <tr class="line_bold">
+                        <th colspan="6"></th>
+                    </tr>
+                    <tr class="line tr_color">
+                    
+                    <th>{$lang.id}</th>
+    
+      <th>{$lang.brokerage_level}</th>
+      
+      <th >{$lang.amount} </th>
+      <th >{$lang.serve} </th>
+      <th >{$lang.brokerage_amount} </th>
+      <th >{$lang.create_date} </th>
+                    
+                        
+
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$brokerage_logs item=brokerage_log name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold tr_align"><!--{else}--><tr class="line tr_align"><!--{/if}-->
+                        
+<td>{$brokerage_log.id|escape}</td>
+    
+      <td >{$brokerage_log.brokerage_level|escape}</td>
+      
+      <td >{$brokerage_log.amount|escape}</td>
+      <td >{$brokerage_log.serve|escape}%</td>
+      <td >{$brokerage_log.brokerage_amount|escape}</td>
+      <td >{$brokerage_log.create_date|escape}</td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="6" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                </table>
+                <!--{if $brokerage_logs}-->
+                    <div class="all_btn all_bg_down">
+
+                    </div>
+                    <div class="pages">
+                        {include file=member.page.bottom.html}
+                    </div>
+                    <!--{/if}-->
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+<iframe id='iframe_post' name="iframe_post" src="about:blank" frameborder="0" width="0" height="0"></iframe>
+{include file=login_footer.html}

@@ -1,0 +1,36 @@
+{include file=order/member.header.html}
+	<!--支付跳转js css-->
+	<script type="text/javascript" src="{lib file=easydialog/easydialog.min.js}" ></script>
+	<link rel="stylesheet" type="text/css" href="{lib file=easydialog/easydialog.css}" media="screen">
+	
+	<div class="ddtjcg m_body">
+		<div class="bottom_50">
+			<h1 class="gxini">订单提交成功</h1>
+			<p class="dindanh">订单号: {$orderInfo.order_sn}<br />支付方式: {if $orderInfo.payment_code eq 'malipay'}支付宝在线支付{elseif $orderInfo.payment_code==alipay}银联在线支付{/if}</p>
+			<p class="dinjin">¥{$orderInfo.order_amount}</p>
+			<form action="{link app=paycenter act=goToPay}" id="payform" method="post" target="_blank">
+			  <input type="hidden" name="obj" value="order" />
+			  <input type="hidden" name="os" value="{$orderInfo.order_sn}" />
+			</form>
+			<p class="wdltbc dl_zc_ns"><input type="submit" value="立即支付" /></p>
+			<p class="zifugc">请在24小时内完成付款，否则订单将会被自动取消<br />支付过程中如有任何问题都可以致电给<br />0532-68677777</p>
+		</div>
+		<script>
+		$(document).ready(function(){
+			$(".dl_zc_ns input").click(function(){
+				dopay();
+			})
+		})
+		function dopay(){
+			$(".dl_zc_ns input").unbind('click');
+			$("#payform").submit();
+		}
+		</script>
+
+	</div>
+	
+</div>
+
+
+</body>
+</html>

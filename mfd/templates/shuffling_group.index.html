@@ -1,0 +1,47 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=shuffling&amp;act=index">轮播图列表</a></li>
+        <li><a class="btn1" href="index.php?app=shuffling&amp;act=add">添加轮播图</a></li>
+        <li><span>轮播图分组列表</span></li>
+        <li><a class="btn1" href="index.php?app=shuffling&amp;act=add_group">添加轮播图分组</a></li>
+    </ul>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $groups}-->
+        <tr class="yx_tatr1">
+            <td>分组ID</td>
+            <td>分组名称</td>
+            <td>所属站点</td>
+            <td>标记</td>
+            <td>添加时间</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$groups item=list key=k}-->
+        <tr class="tatr2">
+            <td width="200">{$list.id}</td>
+            <td>{$list.name}</td>
+            <td>{$list.site}</td>
+            <td>{$list.code}</td>
+            <td>{$list.add_time|date:complete}</td>
+            <td class="handler">
+                <a href="index.php?app=shuffling&amp;act=edit_group&amp;id={$list.id}">编辑</a>
+<!--                 <a href="javascript:;" onclick="if(confirm('确定删除吗？')) location.href='index.php?app=shuffling&amp;act=drop_group&amp;id={$list.id}'">删除</a> -->
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="6">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $items}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

@@ -1,0 +1,72 @@
+{include file="header.html"}
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get" class="form">
+       <div class="left">
+          <input type="hidden" name="app" value="inputobj" />
+          <input type="hidden" name="act" value="index" />
+          {foreach from = $search item=sec}
+            {$sec.1}：<input class="queryInput" type="text" name="{$sec.0}" value="" />
+          {/foreach}
+          <input type="submit" class="formbtn" value="查询" />
+      </div>
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare content" id="input_object">
+	
+</div>
+<input type="hidden" id='sdfsdf' />
+<input type="hidden" id="object_type" />
+<div class="m_qiudin"><a href="javascript:;" class="save">确定</a></div>
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+	var $arg = window.dialogArguments;
+	var idsids = $arg.ids;
+	var isStr = idsids.substr(idsids.length-1,1);
+	if(isStr == ','){
+	    $arg.ids = idsids.substr(0,idsids.length-1);
+	}
+	
+    $("#sdfsdf").val($arg.ids);
+    $("#object_type").val($arg.type);
+    
+	$(".save").click(function(){
+		var _return = new Object();
+		_return.ids=$("#sdfsdf").val();
+		_return.post=$arg.post;
+		window.returnValue=_return;
+		window.close();  
+	})
+	
+	$(".form").submit(function(){
+		{foreach from = $search item=sec1}
+		   var _{$sec1.0} = $(this).find("input[name='{$sec1.0}']").val();
+		{/foreach}
+		
+        $.ajax({
+        	url    : 'index.php?app=inputobj&act=getData&objmodel={$objmodel}{$filter}',
+            data   : {foreach from = $search item=sec2 name=sec2}{if $smarty.foreach.sec2.last}'{$sec2.0}='+_{$sec2.0}{else}'{$sec2.0}='+_{$sec2.0}+'&'+{/if}{/foreach},
+            success: function(res){
+            	$('.content').html(res);
+            	if($arg.ids!=''){
+            		var sArray = $arg.ids.split(',');
+                    $(".input_object_check").each(function(){
+                        var _val = $(this).val();
+                        var _inOf=sArray.indexOf(_val);
+                        if(_inOf != -1){
+                            $(this).attr("checked", true);
+                        }
+                    })
+            	}
+				
+            }
+        });
+		return false;
+	}).submit();
+})
+</script>
+{include file="footer.html"}

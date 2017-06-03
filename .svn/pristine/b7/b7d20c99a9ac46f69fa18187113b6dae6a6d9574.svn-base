@@ -1,0 +1,90 @@
+{include file="header.html"}
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+
+<div class="float_cate">
+  <ul>
+  	<li><a href="{link app=dissertation}">主题</a></li>
+    {foreach from=$cates item=cate}
+    	{if $cateId eq $cate.cate_id}
+    		<li class="on" >{$cate.cate_name}<img src="{res file=images/hsssj.gif}"/></li>
+    	{else}
+    		<li><a href="{link app=custom act=lists arg0=$cate.cate_id}">{$cate.cate_name}</a></li>
+    	{/if}
+    {/foreach}
+  </ul>
+</div>
+
+<link href="{res file=css/custom_pubuliu.css}" rel="stylesheet" type="text/css" />
+<div class="pubuliu_box">
+<h2 class="cos-h2"><strong>{$cat_name}</strong><span>共计<font>{$count}</font>款产品</span></h2>
+<div class="wall_wrap clearfix">
+	<div id="J_waterfall" class="wall_container clearfix" data-uri="{link app=custom act=lists_ajax arg0=$cateId}">
+	    {include file="custom/masonry.html"}
+	</div>
+	<present name="show_load">
+	   <div id="J_wall_loading" class="wall_loading tc gray"><span>加载中...</span></div>
+	</present>
+</div>
+</div>
+<div id="J_returntop" class="return_top"></div>
+
+<script>
+var PINER = {
+    uid: "<?php echo $_SESSION['user_info']['user_id'] ?>", 
+    async_sendmail: "",
+    config: {
+        wall_distance: {$distance},
+        wall_spage_max: {$spage_max}
+    },
+    //URL
+    url: {}
+};
+//语言项目
+var lang = {};
+lang.please_input = "请输入";lang.username = "用户名";lang.password = "密码";lang.login_title = "用户登录";lang.share_title = "我要分享";lang.correct_itemurl = "正确的商品地址";lang.join_album = "加入专辑";lang.create_album = "创建新专辑";lang.edit_album = "修改专辑";lang.confirm_del_album = "删除专辑，专辑里所有的图片都会被删除哦！你确定要删除此专辑吗？";lang.title = "标题";lang.card_loading = "正在获取用户信息";lang.confirm_unfollow = "确定要取消关注么？";lang.wait = "请稍后......";
+
+
+/* $(function(){
+
+	$(".xih").each(function(){
+		var _this=$(this);
+		_this.click(function(){
+			$.rc.dialog.islogin();
+			var _cls = _this.attr('class');
+			if(_cls=='yxih')return;
+			var _itemId=_this.parent(".hot_bt").parent('.J_item').attr('itemId');
+			var _count=_this.next('.xih_cout').html();
+			$.ajax({
+		        url    :"{link app=custom act=ajax_like}",
+		        data   :{"itemId":_itemId},
+		        dataType: "json", 
+		        success:function(result,status){
+		        	if(result.num==0){
+		        		//alert(result.msg);
+	                    return;
+		        	}
+		        	//_this.removeClass();
+	        		//_this.addClass(result.cls);
+	        		_this.attr('class',result.cls);
+		        	_this.html(result.msg);
+		        	_this.next('.xih_cout').html(parseInt(_count)+result.num)
+		        }
+		    });
+		})
+	})
+}) */
+
+</script>
+
+<script type="Text/Javascript" src="{res file=js/jquery.min.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/jquery.tools.min.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/jquery.masonry.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/formvalidator.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+<script type="Text/Javascript" src="{res file=js/wall.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/user.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/item.js}"></script>
+
+<!--底部开始-->
+{include file="footer.html"}

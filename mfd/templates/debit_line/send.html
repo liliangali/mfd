@@ -1,0 +1,203 @@
+{include file="header.html"}
+<div id="rightTop">
+
+    <ul class="subnav">
+        {if $cate>19}
+        <li><a class="btn1" href="index.php?app=special_code&sign=1">返回</a></li>
+        {else}
+        <li><a class="btn1" href="index.php?app=special_code">返回</a></li>
+        {/if}
+    </ul>
+</div>
+
+<script>
+    $(function () {
+        $('#user_form').validate({
+            errorPlacement: function (error, element) {
+                $(element).next('.field_notice').hide();
+                $(element).after(error);
+            },
+            success: function (label) {
+                label.addClass('right').text('OK!');
+            },
+            onkeyup: false,
+            rules: {
+//                user_name: {
+//                    required: true
+//                },
+                expire_time: {
+                    required: true
+                },
+                contents: {
+                    required: true,
+                    maxlength:50,
+                    minlength: 3
+                },
+                description: {
+                    required: true,
+                    maxlength:50,
+                    minlength: 3
+                }
+
+            },
+            messages : {
+//                user_name: {
+//                    required: "请添加用户"
+//                },
+                expire_time: {
+                    required: "请选择特权码有效期"
+                },
+                contents: {
+                    required: '请输入备注说明',
+                    maxlength: '最大长度50个字符',
+                    minlength:'最小长度5个字符'
+                },
+                description: {
+                    required: '请输入备注说明',
+                    maxlength: '最大长度50个字符',
+                    minlength:'最小长度5个字符'
+                }
+
+            }
+        })
+    });
+
+
+    function adds(){
+        $("#notice").remove();
+
+        var user_name = $('#user_name').val();
+        if(user_name ==''){
+            $("#add").after("<font style='color:red' id='notice'>用户不能为空</font>")
+            return false;
+        }
+        var url ="index.php?app=special_code&act=check_user";
+        $.post(url,{user_name:user_name,cate:"{$cate}"}, function(res){
+            var res = eval("("+res+")");
+            if(res.done == true){
+                var _ids = $("#ids").val()
+
+                if(_ids != ''){
+                    $("#ids").val(_ids+','+res.msg)
+                    $("#ids1").val($("#ids1").val()+','+user_name)
+
+                }else{
+                    $("#ids").val(res.msg)
+                    $("#ids1").val(user_name)
+                }
+                $('#user_name').val('')
+            }else{
+                $("#add").after("<font style='color:red' id='notice'>"+res.msg+"</font>")
+            }
+
+        });
+    }
+</script>
+
+
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="user_form">
+        <table class="infoTable">
+            <tbody>
+
+                <font style="color:red;">注意：所有带*的为必填项目</font>
+
+            <tr>
+
+                <th class="paddingT15">
+                    类别 :</th>
+                <td class="paddingT15 wordSpacing5">
+                {$cate_name}
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">用途 :</th>
+                <td class="paddingT15 wordSpacing5">
+                {$work}
+                </td>
+            </tr>
+
+
+            <tr>
+                <th class="paddingT15"> {if $cate==1||$cate==2}越级等级 :{/if}{if $cate>19}麦富迪币面值 :{/if}</th>
+                <td class="paddingT15 wordSpacing5">
+
+
+
+
+                    <input type="text" value="{if $cate==1}4{/if}{if $cate==2}2{/if}" name="work_num" id="work_num" class="infoTableInput2">
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">*发放用户 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" value="" name="user_name" id="user_name" class="infoTableInput2">
+                    <input type="button" value="添加" id="add" onclick="adds()">
+                    <font style="color:red">（请单次添加“一个”用户之后,点击“添加”进行验证）</font>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15"></th>
+                <td class="paddingT15 wordSpacing5">
+                    <TEXTAREA name="ids1" id="ids1" disabled="disabled"></TEXTAREA>
+                    <input type="hidden" name="ids" id="ids">
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <th class="paddingT15">*发放方式 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="radio" value="0" name="tongzhi"  checked="checked">短信通知
+                    <input type="radio"  value="1" name="tongzhi" >系统消息
+
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">*通知内容 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <TEXTAREA style="width: 300px;height: 120px;" id="contents" name="contents">{$message}</TEXTAREA>
+                    限50个汉字和英文
+                </td>
+            </tr>
+
+
+            <tr>
+                <th class="paddingT15">*特权码有效期 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" name="expire_time" id="expire_time"  onclick="WdatePicker()" class="infoTableInput Wdate" >
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">*备注说明 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <TEXTAREA style="width: 300px;height: 120px;" id="description" name="description"></TEXTAREA>
+                    限50个字符
+                </td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input type="hidden" value="{$cate}" name="cate">
+                    <input type="submit" value="提交" name="Submit" class="tijia">
+                    <!--<input type="reset" value="重置" name="Submit2" class="congzi">-->
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </form>
+</div>
+<script>
+
+</script>
+
+</div>
+
+{include file="footer.html"}

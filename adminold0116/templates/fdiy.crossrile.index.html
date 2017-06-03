@@ -1,0 +1,75 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=dictC&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+<!-- <div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="dictC" />
+                <input type="hidden" name="act" value="index" />
+                                                 单品名称:<input type="text" value="{$query.name}" name="name" class="pick_date" />
+               <select name="cid">
+                <option value="0">请选择品类</option>{html_options options=$cat_list vals=name selected=$query.cid}
+               </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+
+            </div>
+                        {if $query.name || $query.to_site}
+            <a class="left formbtn1" href="index.php?app=dictC">{$lang.cancel_query}</a>
+            {/if}
+        </form>
+    </div>
+</div> -->
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $_list}-->
+        <tr class="tatr1">
+           <!--  <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td> -->
+          <!--   <td align="left">品类</td> -->
+            <td>主属性</td>
+            <td align="left">冲突属性</td>
+  <!--           <td align="left">平台</td>
+            <td>添加时间</td>
+            <td>修改时间</td> -->
+             <td>{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$_list item=custom}-->
+        <tr class="tatr2">
+           <!--  <td class="firstCell"><input type="checkbox" class="checkitem" value="{$custom.id}"/></td> -->
+          <!--   <td>{$custom.cid}</td> -->
+            <td>{$custom.cn}</td>
+            <td>{$custom.rn}</td>
+   <!--          <td>{$to_site.$custom.to_site}</td>
+            <td>{$custom.add_time|date:complete}</td>
+            <td>{$custom.last_time|date:complete}</td> -->
+             <td>
+                <a href="../../custom-{$custom.id}.html" target="_blank" style="display:none;">查看</a>
+                <a href="index.php?app=dictC&amp;act=edit&amp;id={$custom.id}">{$lang.edit}</a>
+                <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=dictC&amp;act=drop&amp;id={$custom.id}');">{$lang.drop}</a>
+			</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $_list}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+<!--         <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=dictC&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+        </div> -->
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

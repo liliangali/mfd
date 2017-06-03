@@ -1,0 +1,67 @@
+{include file=../user/member.header.html}
+   <div class="w">
+    <div class="AreaBox clearfix">
+        {include file=../user/member.menu.html}
+    <div class="con">
+          <h2 class="tit">面料查询</h2>  
+          <div class="query_add">
+          <form method="get">
+          <select class="autosubmit" name="attr" style="width:60px;height:30px;float:left;margin-right:10px;">
+          <option <!--{if $smarty.get.attr == ''}-->selected<!--{/if}--> value="">全部</option>
+          <option <!--{if $smarty.get.attr =='大衣'}-->selected<!--{/if}--> value="大衣">大衣</option>
+          <option <!--{if $smarty.get.attr =='西装'}-->selected<!--{/if}--> value="西装">西装</option>
+          <option <!--{if $smarty.get.attr =='西裤'}-->selected<!--{/if}--> value="西裤">西裤</option>
+          <option <!--{if $smarty.get.attr =='衬衫'}-->selected<!--{/if}--> value="衬衫">衬衫</option>
+          </select>
+             <input type="text" value="{$smarty.get.goods_sn|escape}" name="goods_sn" class="input_1"/>
+             <input type="submit" value="查询" class="input_2" />
+            <!--{if $smarty.get.goods_sn || $smarty.get.attr}-->
+            <a class="input_2" style="text-align:center;line-height:30px;" href="{link app=fabric_query act=tailor}">{$lang.cancel_query}</a>
+            <!--{/if}-->
+            </div>
+          </form>
+           <div  class="Fabric_query"> 
+            <table cellpadding="0" cellspacing="0" width="100%" border="0">
+             <tr>
+              <th>面料</th>
+              {foreach from=$attrs item=attr}
+              <th>{$attr.attr_name}</th>
+              {/foreach}
+              <th>面料价格(元/米)</th>
+              <th>库存(米)</th>
+              <th>操作</th>
+             </tr>
+            <!--{foreach from=$part_list item=val}-->
+             <tr>
+              <td class="m_ztby"><a href="#">{$val.goods_sn}</a></td>
+              {if $val.children}
+              {foreach from=$val.children item=chi}
+              <td>{$chi}</td>
+              {/foreach}
+              {else}
+              {foreach from=$attrs item=attr}
+                <td>&nbsp;</td>
+              {/foreach}
+              {/if}
+              <td class="m_ztby">{$val.maket_price}</td>
+              <td>{$val.part_number}</td>
+              <td><a target="_blank" href="{link app=fabrics act=info arg0=$val.part_id}">查看</a>&nbsp;&nbsp;<a href="{link app=fabric_apply act=tailor}?goods_sn={$val.goods_sn}">采购</a></td>
+             </tr> 
+              <!--{/foreach}-->
+                                    
+            </table>  
+           </div>    
+            
+           <!--用户中心分页开始--> 
+           <div class="hyzx_fy clearfix">
+            <div>
+              {include file="../user/member.page.bottom.html"}
+             </div>
+           </div>  
+           <!--用户中心分页结束-->  
+    </div>
+
+
+   </div>
+</div>
+ {include file="../user/footer.html"}

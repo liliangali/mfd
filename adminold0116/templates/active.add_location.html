@@ -1,0 +1,35 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ajax_tree.js}" charset="utf-8"></script>
+<div id="rightTop">
+    <ul class="subnav">
+    		<li><a class="btn1" href="index.php?app=active">活动管理</a></li>
+		 <li><a class="btn1" href="index.php?app=active&amp;act=add">添加活动</a></li>
+		
+		 <li><span>添加活动位置</span></li>
+    </ul>
+</div>
+
+<div class="info2">
+<style>
+
+		table tr td {
+
+			 height:40px;
+			 line-height:30px;
+			 padding-left:5px;
+		}
+	
+</style>
+    <form enctype="multipart/form-data"  method="post">
+		<table>
+			
+			<tr >
+			    <td>添加活动位置：</td><td>
+				<input type="text" name="child_title" />
+			</tr>
+		</table>
+		<input class="tijia" type="submit" value="提交" style="margin:0 0 20px 10px;"/>
+	</form>
+</div>
+
+{include file="footer.html"}

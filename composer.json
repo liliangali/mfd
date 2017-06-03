@@ -1,0 +1,11 @@
+{
+    "require": {
+        "illuminate/database": "*",
+        "overtrue/wechat": "~3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cyteam\\": "vendors/Cyteam"
+        }
+    }
+}

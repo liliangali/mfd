@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Console;
+
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+
+class Kernel extends ConsoleKernel
+{
+    /**
+     * The Artisan commands provided by your application.
+     *
+     * @var array
+     */
+    protected $commands = [
+        Commands\CrmBaseM::class,
+        Commands\CrmFbCategory::class,
+        Commands\CrmGood::class,
+        Commands\CrmMaterial::class,
+        Commands\CrmOrder::class,
+        Commands\CrmOrderGood::class,
+        Commands\CrmPet::class,
+        Commands\CrmPetType::class,
+        Commands\CrmUser::class,
+        Commands\CrmVoucher::class,
+        Commands\CrmVoucherBatch::class,
+        Commands\PayOrder::class,
+        Commands\MakeImg::class,
+    ];
+
+    /**
+     * Define the application's command schedule.
+     *
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @return void
+     */
+    protected function schedule(Schedule $schedule)
+    {
+        // $schedule->command('inspire')
+        //          ->hourly();
+        $schedule->command('crm:order')->daily();
+        $schedule->command('crm:user')->daily();
+        $schedule->command('crm:ordergood')->daily();
+        $schedule->command('crm:basem')->daily();
+        $schedule->command('crm:fbcategory')->daily();
+        $schedule->command('crm:good')->daily();
+        $schedule->command('crm:material')->daily();
+        $schedule->command('crm:order')->daily();
+        $schedule->command('crm:ordergoods')->daily();
+        $schedule->command('crm:pet')->daily();
+        $schedule->command('crm:pettype')->daily();
+        $schedule->command('crm:user')->daily();
+        $schedule->command('crm:voucher')->daily();
+        $schedule->command('crm:voucherbatch')->daily();
+        $schedule->command('qsend:img')->everyMinute();
+        $schedule->command('pay:order')->everyMinute();
+
+    }
+}

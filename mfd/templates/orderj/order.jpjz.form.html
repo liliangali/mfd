@@ -1,0 +1,142 @@
+{include file="header.html"}
+
+<script type="text/javascript">
+$(function(){
+	jQuery.validator.addMethod("positiveinteger", function(value, element) {
+		    return value>0 
+		  }, "Please enter a valid number.");
+    $('#brand_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            
+        	order_amount : {
+                required : true,
+                number   : true,
+                positiveinteger : true,
+            },
+            user_id : {
+	            required : true,
+	            //number   : true,
+	        },
+            jp_id : {
+	            required : true,
+	            //number   : true,
+	        }
+        },
+        messages : {
+        	order_amount : {
+                required : '订单金额不能为空',
+                number   : '必须为数值',
+                positiveinteger: '请输入正数'
+            },
+            user_id : {
+                required : '请选择会员',
+            },
+            jp_id : {
+                required : '请选择作品',
+            },
+        }
+    });
+});
+</script>
+
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=order&amp;act=jpjz">管理</a></li>
+        <li><span>新增订单}</span></li>
+    </ul>
+</div>
+{$build_editor}
+<div class="info">
+    <form method="post" action="index.php?app=order&act=save_jpjz" enctype="multipart/form-data" id="brand_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">订单金额:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="order_amount" type="text" name="order_amount" value="" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">请选择会员:</th>
+                <td class="paddingT15 wordSpacing5">
+                {input_obj post="" filter="" type="radio" callback="uCallBack" class="u_sel" value="" id="u_sele" name="user_id" model="member" text="请选择会员"}
+                <div id="user_name"></div> 
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">请选择作品:</th>
+                <td class="paddingT15 wordSpacing5">
+                 <div id="zuopin_box">请选择作品<input id="input_zuopin" type="hidden" name="jp_id" value=""></div>
+                 <div id="jpjz_name"></div>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">所属客服:</th>
+                <td class="paddingT15 wordSpacing5">
+                 <input type="text" name="kf" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><label for="article">订单描述 :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <div class="editor">
+                        <textarea id="content" name="content" style="width:650px;height:400px;"></textarea>
+                    </div>
+                </td>
+            </tr>
+            
+          <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="reset" value="{$lang.reset}" />            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<script>
+function uCallBack(res){
+	$.post(
+	        'index.php?app=order&act=ajax_user',
+	        {u_id:res.ids},
+	        function(data){
+	            $('#user_name').html(data)
+	        }
+	    )
+	$.post(
+		'index.php?app=order&act=ajax_jp',
+		{u_id:res.ids},
+		function(data){
+			$('#zuopin_box').html(data);
+			$('#jpjz_name').html('');
+		}
+	)
+}
+
+function jCallBack(res){
+	$.post(
+	        'index.php?app=order&act=ajax_hasjp',
+	        {u_id:res.ids},
+	        function(sn){
+	        	if(sn){
+	        		alert('此作品已生成过订单'+sn);
+	        		return;
+	        	}else{
+	        		var _str = '<div>ID:'+res.ids+'</div>';
+	        	    $('#jpjz_name').html(_str);
+	        	}
+	        }
+	    )
+	
+	
+}
+
+</script>
+{include file="footer.html"}

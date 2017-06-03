@@ -1,0 +1,265 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#type_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onfocusout : false,
+        onkeyup    : false,
+        rules : {
+            type_name : {
+                required : true,
+            },
+            channel:{
+            	required : true,
+            },
+        },
+        messages : {
+            type_name : {
+                required : '类型名称不能为空',
+            },
+            channel : {
+                required : '所属频道不能为空',
+            },
+        }
+    });
+    
+});
+</script>
+<div id="rightTop">
+    
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=goodsspec">{$lang.manage}</a></li>
+    </ul>
+</div>
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="type_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    	规格名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="spec_name" type="text" name="spec_name" value="{$info.spec_name|escape}" required/> 
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    	规格备注:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="spec_memo" type="text" name="spec_memo" value="{$info.spec_memo|escape}" /> 
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                    	规格别名:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="alias" type="text" name="alias" value="{$info.alias|escape}" />(|分隔,前后|) 
+                </td>
+            </tr>
+              <tr> 
+              <th class="paddingT15">显示类型:</th>
+              <td class="paddingT15 wordSpacing5"><p>
+                <label>
+                  <input type="radio" name="spec_type" value="text" {if !$info.spec_type || $info.spec_type == 'text'}checked="checked"{/if} />
+                  文字</label>
+                <label>
+                  <input type="radio" name="spec_type" value="image" {if $info.spec_type == 'image'}checked="checked"{/if} />
+                  图片</label> 
+              </p></td>
+            </tr>        
+            
+               <tr >
+                <th class="paddingT15">规格值：</th>
+                <td class="paddingT15 wordSpacing5" >
+                <div class="tdare">
+                    <table width="100%" cellspacing="1" class="dataTable">
+                        <tr class="yx_tatr1">
+                            <td>图片</td><td>规格值</td><!-- <td>是否新窗口打开</td> --><td>排序</td><!-- <td>是否显示</td> --><td>操作</td>
+                        </tr>
+                        <!-- {if $spec_value_list} -->
+                        <!-- {foreach from=$spec_value_list key=k item=content} -->
+                        <tr class="tatr2" attr_num="{$k}">
+                            <td>{input_img  name="$content.img_name"   dir="specvalue" value="$content.spec_image" attr_src="$content.img" title='单击上传图片'}</td>
+						    <td><input  type="text"  class="infoTableInput" name="aspec_value[{$content.spec_value_id}]"  id="link_url{$k}" value="{$content.spec_value}"/><br/></td>
+						
+						    <td><input type="text" name="asort_value[{$content.spec_value_id}]" id="sort_order{$k}" value="{$content.p_order}"/></td>
+						   
+						    <td><a href="javascript:void(0)" class="exclude" onclick="if(confirm('确定删除吗？')) delete_content(this,{$k})">删除</a><input type="hidden" id="id{$k}" name="id{$k}" value="{$content.id}"/>
+						    </td>
+                           
+                        </tr>
+                        <!-- {/foreach} -->
+                        <!-- {/if} -->
+                    </table>
+                    <span><input type="hidden" id="did" name="did" value=""/></span>
+                    </div>
+                    <div style="color:blue" id="add_content" onclick="loadcontent(this)" style="cursor:pointer">+ 添加规格值</div>
+                </td>
+            </tr>
+            
+            
+            
+            <tr> 
+              <th class="paddingT15">显示方式:</th>
+              <td class="paddingT15 wordSpacing5"><p>
+                <label>
+                  <input type="radio" name="spec_show_type" value="flat" {if !$info.spec_show_type || $info.spec_show_type == 'flat' }checked="checked"{/if} />
+                  平铺</label>
+                <label>
+                  <input type="radio" name="spec_show_type" value="select" {if $info.spec_show_type == 'select'}checked="checked"{/if} />
+                  下拉框</label>
+              </p></td>
+            </tr> 
+          <tr>
+            <th></th>
+            <td class="ptb20">
+            	<input type="hidden" name="id" value="{$info.spec_id}" />
+                <input class="tijia" type="submit" id="Submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="reset" value="{$lang.reset}" />            
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+$(function(){
+    var site=$("#site_id").val()
+    if(site==1){
+        $(".is_blank").show();
+    }
+    if($('.tatr2').length){
+    	$('.tatr2:last').children().each(function(){
+    		if($(this).val().length==0){
+    			$("add_content").attr("disabled",'true');
+    		}
+    	})
+    }
+    
+    $("a.preview").preview()    
+    
+    $("#motif_form").submit(function(){
+    	var flag=0;
+    	var sflag=check_content(flag)
+    	flag=sflag?sflag:0;
+    	if(flag){
+    		return false;
+    	}
+    })
+})
+
+function delete_content(obj){
+	var did=$(obj).siblings('input').val()
+	var curr_did=$("#did").val()
+	if(curr_did!=''){
+		did=curr_did+","+did
+	}
+	
+	$(obj).parents("tr .tatr2").slideUp(1000,function(){
+	       $(this).remove();
+	       $("#did").val(did)
+	})
+}
+function get_locations(obj)
+{
+    var site_id = $(obj).val();
+
+    $.post("./index.php?app=motif&act=ajax_get_locations",{siteid:site_id}, function(res){
+        if(res.done){
+            $('#location_id').empty();
+            $('#location_id').append(res.retval)
+        }
+           
+    },'json');
+}
+function changetitle(obj)
+{
+    var info=$(obj).val();
+    var title=$("#title").val();
+    if(title){
+    }else{
+        $("#title").val(info)
+    }
+}
+function loadcontent(obj)
+{
+	var flag=0;
+	var mid=$("#mid")
+	if($('.tatr2')){
+		var num=$('.tatr2:last').attr('attr_num');
+	}else{
+		var num=1
+	}
+	rflag=check_content(flag)
+	flag=rflag?rflag:0;
+	flag = 0;
+    if(flag==1){
+    	return
+    }else{
+    	$("#add_content").bind("onclick",loadcontent);
+    }
+    $.get("./index.php?app=goodsspec&act=load_add_content",{num:num},function(res){
+    	if(res.done){
+            $('.dataTable').append(res.retval)
+            $(this).attr('disabled','true');
+        }
+    },'json');
+}
+
+function check_content(flag){
+// 	console.log(flag)
+	$('.tatr2').each(function(){
+        $(this).children().each(function(){
+            //图片是否上传
+            if($(this).find('div input').length){
+                if($(this).find('div input').val().length==0){
+                    $("#add_content").unbind("click");
+                    flag=1;
+                    if(!$(this).find('.empty').length){
+                    	$(this).find('div input').after("<label class='empty'><font style='color:red'>请上传图片</font></label>")
+                    }
+                    
+                    return false;
+                }else{
+                	if($(this).find('.empty').length){
+                		$(this).find('.empty').remove()
+                	}
+                    return true;
+                }
+            }
+            //其他值是否填写
+            //到删除链接没有值直接跳出
+            if($(this).children('.exclude').length){
+                return 
+            }
+//              console.log($(this).children())
+//             console.log($(this).children().val().length) 
+            if($(this).children().val().length==0){
+                $("#add_content").unbind("click");
+                flag=1;
+                if(!$(this).children().next('.empty').length){
+                	 $(this).children('input').after("<label class='empty'><font style='color:red'>不能为空</font></label>")
+                }
+               
+                return false;
+            }else if($(this).children().next('.empty').length){
+            	$(this).children('.empty').remove()
+            }
+            if(flag){
+                return false;
+            }
+                
+        })
+        if(flag){
+            return false;
+        }
+    })
+    return flag
+}
+
+</script>
+{include file="footer.html"}

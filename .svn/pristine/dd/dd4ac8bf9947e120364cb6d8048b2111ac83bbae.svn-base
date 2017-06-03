@@ -1,0 +1,331 @@
+{include file="header.html"}
+<style>
+.ac_results { padding: 0px; border: 1px solid WindowFrame; background-color: Window; overflow: hidden; z-index: 19891020; /* 1000 */ }
+.ac_results ul { width: 100%; list-style-position: outside; list-style: none; padding: 0; margin: 0; }
+.ac_results iframe { display: none;/*sorry for IE5*/ display/**/: block;/*sorry for IE5*/ position: absolute; top: 0; left: 0; z-index: -1; filter: mask(); width: 3000px; height: 3000px; }
+.ac_results li { margin: 0px; padding: 2px 5px; cursor: pointer; display: block; font: menu; font-size: 12px; overflow: hidden; }
+.ac_over { background-color: Highlight; color: HighlightText; }
+#thumbnails li{
+	    border: 1px solid #eee;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    height: 100px;
+    margin: 0 10px 10px 0;
+    text-align: center;
+    width: 100px;
+}
+.dives{border:1px solid #000; padding:10px 0; width:96%; margin:0px 2% 20px 2%;} 
+.infs{width:96%; margin:0 2%; line-height: 40px;}
+.tijia_g {
+    background: #e66800 none repeat scroll 0 0;
+    border: 1px solid #c35902;
+    border-radius: 5px;
+    color: #fff;
+    height: 28px;
+    width: 72px;
+    float:right;
+    margin-right: 40px;
+}
+</style>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=order">{$lang.manage}</a></li>
+        <li><a class="btn1" href="index.php?app=order&amp;act=export">技术导出</a></li>
+        <li><a class="btn1" href="index.php?app=order&amp;act=exportt">财务导出</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="order" />
+                <input type="hidden" name="act" value="giveaway" />
+				犬型：<select class="querySelect mySelect" name="quanx">
+				<option value="">全部</option>
+				<!--{foreach from=$fbList.quanxList item=quanxList}-->
+				<option {if $query.quanx eq $quanxList.cate_id}selected{/if} value="{$quanxList.cate_id}">{$quanxList.cate_name}</option>
+				<!--{/foreach}-->
+				</select>
+				&nbsp;&nbsp;犬期：<select class="querySelect mySelect" name="quanq">
+				<option value="">全部</option>
+				<!--{foreach from=$fbList.quanqList item=quanqList}-->
+				<option {if $query.quanq eq $quanqList.cate_id}selected{/if} value="{$quanqList.cate_id}">{$quanqList.cate_name}</option>
+				<!--{/foreach}-->
+				</select>
+				&nbsp;&nbsp;营养功效：<select class="querySelect mySelect" name="gongx">
+				<option value="">全部</option>
+				<!--{foreach from=$fbList.gongxList item=gongxList}-->
+				<option {if $query.gongx eq $gongxList.cate_id}selected{/if} value="{$gongxList.cate_id}">{$gongxList.cate_name}</option>
+				<!--{/foreach}-->
+				</select>
+				&nbsp;&nbsp;订单金额： <input type="text" value="{$query.l_money}" name="l_money" class="pick_date" /> - <input type="text" value="{$query.h_money}" name="h_money" class="pick_date" />
+				&nbsp;&nbsp;是否已搭增：<b style="color:red">{if $is_giveaway eq 1}已搭配{else}未搭配{/if}</b>
+				<input type="hidden" id="id" name="id" value="{$smarty.get.id}">
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $query.quanx || $query.quanq || $query.gongx || $query.h_money || $query.l_money}-->
+            <a class="left formbtn1" href="index.php?app=order&amp;act=giveaway&amp;id={$smarty.get.id}">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+		 
+		 <div class="info">
+	     <div class="infs"> 赠品选择</div>
+	     <form method="post" id="formAddgiveaway">
+         <table class="dives">     
+            <tr>
+                <th class="paddingT15">
+                   常规商品:</th>
+                <td class="paddingT15 wordSpacing5">
+                <!--{foreach from=$goods.goodsList item=goodsList}-->
+                <input name="cList[]" class="cList" value="{$goodsList.goods_id}" type="checkbox" {if $goodsList.is_info}checked="checked"{/if}>&nbsp;{$goodsList.name}(￥<b style="color:red">{$goodsList.mktprice}</b>&nbsp;&nbsp;赠送条件：￥{$goodsList.l_money}-￥{$goodsList.h_money})
+                <input type="hidden" id="cprice_{$goodsList.goods_id}" value="{$goodsList.mktprice}">
+                <input type="hidden" id="cname_{$goodsList.goods_id}" value="{$goodsList.name}">
+                <!--{/foreach}-->
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">
+                   非常规商品:</th>
+                <td class="paddingT15 wordSpacing5">
+                <!--{foreach from=$goods.giveawayList item=giveawayList}-->
+                <input name="fList[]" class="fList" value="{$giveawayList.goods_id}" type="checkbox" {if $giveawayList.is_info}checked="checked"{/if}>&nbsp;{$giveawayList.name}(￥<b style="color:red">{$giveawayList.mktprice}</b>&nbsp;&nbsp;赠送条件：￥{$giveawayList.l_money}-￥{$giveawayList.h_money})
+                <input type="hidden" id="fprice_{$giveawayList.goods_id}" value="{$giveawayList.mktprice}">
+                <input type="hidden" id="fname_{$giveawayList.goods_id}" value="{$giveawayList.name}">
+                <!--{/foreach}-->
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                   礼包:</th>
+                <td class="paddingT15 wordSpacing5">
+                <!--{foreach from=$goods.packageList item=package}-->
+                <input name="gList[]" class="gList" value="{$package.id}" type="checkbox" {if $package.is_info}checked="checked"{/if}>&nbsp;{$package.name}<b style="cursor: pointer;color:#ff5400" title='{$package.title_list.title}'>[详]</b>(￥<b style="color:red">{$package.price}</b>&nbsp;&nbsp;赠送条件：￥{$package.l_money}-￥{$package.h_money})
+                <input type="hidden" id="gprice_{$package.id}" value="{$package.price}">
+                <input type="hidden" id="gname_{$package.id}" value="{$package.name}">
+                <!--{/foreach}-->
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                   总价格:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="price" style="width:300px;border:0;font-size:18px;color:red"type="text" name="price" readonly value="{$orders.giveaway_price}" />
+                    <input type="hidden" name="giveaway_name" id="giveaway_name" value="{$orders.giveaway_name}" />
+                </td>
+            </tr>
+           <tr>
+           <th class="paddingT15">
+                   &nbsp;</th>
+           <td class="paddingT15 wordSpacing5">
+			<input type="button" class="tijia_g" value="{$lang.submit}" onclick="$('#formAddgiveaway').submit();" />
+			</td>
+			</tr>
+			</form>
+          </table> 
+          
+
+
+    <div>
+        <ul class="subnav">
+            {if $smarty.get.st == 1}
+            <li><a class="btn1" href="index.php?app=order&act=giveaway&id={$smarty.get.id}">订单详情</a></li>
+            <li><span>赠品记录</span></li>
+            {else}
+            <li><span>订单详情</span></li>
+            <li><a class="btn1" href="index.php?app=order&act=giveaway&id={$smarty.get.id}&st=1">赠品记录</a></li>
+            {/if}
+        </ul>
+     </div>
+    <div {if $smarty.get.st eq 1}style="display:none"{/if}>
+    {include file="order.giveaway_xq.html"}
+    </div>
+
+
+			<table {if $smarty.get.st != 1}style="display:none"{/if} width="100%" cellspacing="0" class="dataTable">
+			<!--{if log_list}-->
+			    <tr class="tatr1">
+			      <td>订单id</td>
+			      <td>用户名称</td>
+			      <td>订单价格</td>
+			      <td>赠品价格</td>
+            <td>赠品总价</td>
+			      <td>赠品名称</td>
+            <td>赠品类型</td>
+			      <td>操作人</td>
+			      <td>添加时间</td>
+			    </tr>
+			 <!--{/if}-->
+			    <!--{foreach from=$log_list item=log}-->
+			    <tr class="tatr2">
+				  <td>{$log.order_id}</td>
+			      <td>{$log.user_name}</td>
+			      <td>{$log.order_price}</td>
+			      <td>{$log.giveaway_price}</td>
+            <td>{$log.price}</td>
+			      <td>{$log.giveaway_name}</td>
+            <td>{if $log.type eq 1}常规商品{elseif $log.type eq 2}赠品{elseif $log.type eq 3}礼包{/if}</td>
+			      <td>{$log.admin_name}</td>
+			      <td>{$log.add_time}</td>
+			    </tr>
+			    <!--{foreachelse}-->
+			    <tr class="no_data">
+			      <td colspan="10">{$lang.no_data}</td>
+			    </tr>
+			    <!--{/foreach}-->
+			  </table>
+
+
+		</div>
+
+
+</div>
+
+
+
+<script>
+$('#formAddgiveaway').submit(function(){
+	var fList='';
+	var cList='';
+	var gList='';
+	var price = $("#price").val();
+	var giveaway_name = $("#giveaway_name").val();
+	$('input.fList').each(function(i){
+		if($(this).is(':checked') == true){
+			fList+=$(this).val()+',';
+		}
+	});
+	$('input.cList').each(function(i){
+		if($(this).is(':checked') == true){
+			cList+=$(this).val()+',';
+		}
+	});
+	$('input.gList').each(function(i){
+		if($(this).is(':checked') == true){
+			gList+=$(this).val()+',';
+		}
+	});
+	fList=fList.substring(0,fList.length-1);
+	cList=cList.substring(0,cList.length-1);
+	gList=gList.substring(0,gList.length-1);
+	var id = $("#id").val();
+	$.getJSON("index.php?app=order&act=addgiveaway",{id:id,price:price,fList:fList,cList:cList,gList:gList,giveaway_name:giveaway_name},function(data){
+    	if(data.done == true){
+            alert('添加成功！');
+            return;
+        }else{
+            alert('添加失败！');
+            return;
+        }
+  	});
+
+	return false;
+});
+
+$(".cList").click(function(){
+    if ($(this).is(':checked') == true) {
+       var cp = $('#cprice_'+ $(this).val()).val();
+       var price = $('#price').val();
+       var zprice = parseInt(cp)+parseInt(price);
+       $("#price").val(zprice);
+       //名字添加
+       var cname = $('#cname_'+ $(this).val()).val();
+       var giveaway_name = $("#giveaway_name").val();
+       giveaway_name += cname+'、';
+       $("#giveaway_name").val(giveaway_name);
+    }else{
+       var cp = $('#cprice_'+ $(this).val()).val();
+       var price = $('#price').val();
+       var zprice = parseInt(price) - parseInt(cp);
+       $("#price").val(zprice);
+       //名字删减
+       var cname = $('#cname_'+ $(this).val()).val();
+       var giveaway_name = $("#giveaway_name").val();
+       if(giveaway_name){
+       	giveaway_name = giveaway_name.replace(cname+'、','');
+       	if(giveaway_name){
+       		$("#giveaway_name").val(giveaway_name);
+       	}else{
+       		$("#giveaway_name").val('');
+       	}
+        
+       }
+       
+    }
+
+});
+
+$(".fList").click(function(){
+    if ($(this).is(':checked') == true) {
+       var fp = $('#fprice_'+ $(this).val()).val();
+       var price = $('#price').val();
+       var fzprice = parseInt(fp)+parseInt(price);
+       $("#price").val(fzprice);
+       //名字添加
+       var fname = $('#fname_'+ $(this).val()).val();
+       var giveaway_name = $("#giveaway_name").val();
+       giveaway_name += fname+'、';
+       $("#giveaway_name").val(giveaway_name);
+    }else{
+       var fp = $('#fprice_'+ $(this).val()).val();
+       var price = $('#price').val();
+       var fzprice = parseInt(price) - parseInt(fp);
+       $("#price").val(fzprice);
+       //名字删减
+       var fname = $('#fname_'+ $(this).val()).val();
+       var giveaway_name = $("#giveaway_name").val();
+       if(giveaway_name){
+       	giveaway_name = giveaway_name.replace(fname+'、','');
+       	if(giveaway_name){
+       		$("#giveaway_name").val(giveaway_name);
+       	}else{
+       		$("#giveaway_name").val('');
+       	}
+        
+       }
+
+
+
+    }
+
+});
+
+$(".gList").click(function(){
+    if ($(this).is(':checked') == true) {
+       var gp = $('#gprice_'+ $(this).val()).val();
+       var price = $('#price').val();
+       var gzprice = parseInt(gp)+parseInt(price);
+       $("#price").val(gzprice);
+       //名字添加
+       var gname = $('#gname_'+ $(this).val()).val();
+       var giveaway_name = $("#giveaway_name").val();
+       giveaway_name += gname+'、';
+       $("#giveaway_name").val(giveaway_name);
+    }else{
+       var gp = $('#gprice_'+ $(this).val()).val();
+       var price = $('#price').val();
+       var gzprice = parseInt(price) - parseInt(gp);
+       $("#price").val(gzprice);
+       //名字删减
+       var gname = $('#gname_'+ $(this).val()).val();
+       var giveaway_name = $("#giveaway_name").val();
+       if(giveaway_name){
+       	//giveaway_name -= gname+'、';
+       	giveaway_name = giveaway_name.replace(gname+'、','');
+       	if(giveaway_name){
+       		$("#giveaway_name").val(giveaway_name);
+       	}else{
+       		$("#giveaway_name").val('');
+       	}
+        
+       }
+
+
+
+    }
+
+});
+</script>
+{include file="footer.html"}

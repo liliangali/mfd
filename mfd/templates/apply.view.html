@@ -1,0 +1,68 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>用户提现&充值申请</p>
+  <ul class="subnav">
+    <li><span>申请审核</span></li>
+    <li><a class="btn4" href="index.php?app=apply">返回申请列表</a></li>
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontl">
+		<b>用户名：</b>{$apply.user_name}
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+ <form method="post" action="index.php?app=apply&act=verify&id={$apply.id}">
+  <table width="100%" cellspacing="0" border="1">
+    
+    <tr class="tatr2">
+      <td width="100" class="firstCell" align="right"><b>申请时间：</b></td>
+      <td align="left">{$apply.add_time|date:Y-m-d H:i:s}</td>
+    </tr>
+    
+        <tr class="tatr2">
+      <td width="100" class="firstCell" align="right"><b>备注：</b></td>
+      <td align="left">{$apply.remark}</td>
+    </tr>
+    
+        <tr class="tatr2">
+      <td width="50" align="right"><b>类型：</b></td>
+      <td align="left">{if $apply.type eq 1}提现{else}充值{/if}</td>
+    </tr>
+    
+        <tr class="tatr2">
+      <td width="50" align="right"><b>申请状态：</b></td>
+      <td align="left">{if $apply.status eq 0}未处理{elseif $apply.status eq 2}已取消{elseif $apply.status eq 3}未通过审核{else}审核通过{/if}</td>
+    </tr>
+
+        <tr class="tatr2">
+      <td width="50" align="right"><b>金额：</b></td>
+      <td align="left" style="color:{if $apply.type eq 1}red{else}green{/if}"><b>{$apply.money}</b></td>
+    </tr>
+	{if $apply.type eq 2}
+        <tr class="tatr2">
+      <td width="50" align="right"><b>支付状态：</b></td>
+      <td align="left" style="color:{if $apply.type eq 1}red{else}green{/if}"><b>{$apply.money}</b></td>
+    </tr>
+    {/if}
+        <tr class="tatr2">
+      <td width="50" align="right" valign="top"><b>操作备注：</b></td>
+      <td align="left"><textarea rows="5" cols="50" name="admin_remark">{$apply.admin_remark}</textarea></td>
+    </tr>
+    
+    <tr class="tatr2">
+      <td width="50"></td>
+      <td align="left"> 
+      {if $apply.status eq 0}
+	      <input type="submit" class="formbtn" value="审核通过" name="finished"/>
+	
+	      <input type="submit" class="formbtn" value="审核无效" name="invalid"/>
+      {/if}
+      </td>
+    </tr>
+  </table>
+</form>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,1 @@
+{input_obj post="" type="radio" filter="uid" arg0="$uid" callback="jCallBack" name="jp_id" class="zuopin" value="" id="zuopin" model="userphoto" text="请选择作品"}

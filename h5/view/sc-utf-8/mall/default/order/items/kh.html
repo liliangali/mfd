@@ -1,0 +1,19 @@
+
+<h3>客户信息</h3>
+	<ul class="c1 input_data">
+		<li>
+			<span>姓名</span>
+			<input type="text" dataname="姓名" value="{$data.kh_name}" name="kh[name]" placeholder="某某姓名"/>
+		</li>
+		<li><span><code>*</code>身高</span>
+			<font class="input_two"><input dataname="身高" type="text" value="{$data.figure.height}" name="figure[height]" /><span>CM</span></font>
+		</li>
+		<li><span>手机</span>
+			<input type="text" dataname="手机" value="{$data.kh_mobile}" name="kh[mobile]" />
+		</li>
+		<li><span><code>*</code>体重</span>
+			<font class="input_two"><input dataname="体重" type="text" value="{$data.figure.weight}" name="figure[weight]" /><span>KG</span></font>
+		</li>
+	</ul>
+	<input type="hidden" name="kh[address]" value="{$data.kh_addr}" />
+	<input type="hidden" name="kh[sex]" value="{$data.kh_sex}" />

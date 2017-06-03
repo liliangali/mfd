@@ -1,0 +1,209 @@
+{include file=header-new.html}
+
+<link href="/diy/css/public.css" type="text/css" rel="stylesheet" />
+<link href="/diy/css/custom.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="/diy/css/mCustomScrollbar.css">
+<link rel="stylesheet" href="/diy/css/animate.min.css">
+<script src="/diy/js/jquery-1.8.3.min.js"></script>
+<script src="/diy/js/custom.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+
+
+<div class="w content_box" style="margin-top:30px;">
+  
+  
+  
+  <div class="cus_img">
+    
+    <div class="cus_val cdiy_select"><b>已选择：</b>贵宾犬<i>-</i>怀孕期<i>-</i>胎儿发育/增强免疫/肠道护理<i>-</i>鸡肉味<i>-</i>500克<i>-</i>袋装</div>
+  
+    <div class="spdtu"><img src="/diy/images/cptu.jpg"></div>
+      <ul class="czal_box cdiy_fnbtn">
+        <li id="reset" class="li_1"><i class="icon"></i><span>重置</span></li>
+        <li id="share" class="li_2"><i class="icon"></i><span>分享</span>
+            <div class="shareList fenxia animated zoomIn"> 
+                <a title="新郎微博" data-cmd="tsina" class="tsina" href="javascript:void(0);"></a> 
+                <a title="腾讯微博" data-cmd="tqq" class="tqq" href="javascript:void(0);"></a>
+                <a title="微信" data-cmd="weixin" class="weixin" href="javascript:void(0);"></a>                              
+                <a title="QQ空间" data-cmd="qzone" class="qzone" href="javascript:void(0);"></a>
+                <img src="/diy/images/xjt.png" class="xjt">
+            </div>
+        </li>
+        <li id="service" class="li_3">
+        <!-- {if $zc_userid} -->
+<a target="_blank" href="http://www.sobot.com/chat/pc/index.html?sysNum=2b17cdee375a475e963aeed478c37fbf&partnerId={$zc_userid}&uname={$zc_uname}&tel={$zc_tel}&email={$zc_email}">
+        <i class="icon"></i><span>客服</span></a>
+<!-- {else} -->
+<a target="_blank" href="http://www.sobot.com/chat/pc/index.html?sysNum=2b17cdee375a475e963aeed478c37fbf">
+        <i class="icon"></i><span>客服</span></a>
+<!-- {/if} -->
+        </li>
+        <li id="demo" class="li_4" style="display: none;"><i class="icon"></i><span>示意</span></li>
+        <li id="fullScreen" class="li_5"><i class="icon"></i><span>全屏</span></li>
+      </ul>
+    </div>
+
+    <div class="cpxq_tab">
+
+        <div class="cpxq_left clearfix">
+            <ul class="tab_tit cdiy_nav">
+                <li class="on"><img src="/diy/images/diy_01.png">犬种</li>
+                <li><img src="/diy/images/diy_02.png">犬期</li>
+                <li><img src="/diy/images/diy_03.png">功效</li>
+                <li><img src="/diy/images/diy_04.png">口味</li>
+                <li><img src="/diy/images/diy_05.png">规格</li>
+                <li><img src="/diy/images/diy_06.png">包装</li>
+            </ul>
+        </div>
+
+        <div class="cus_right cdiy_data">
+
+            <!--犬种开始-->
+            <div class="show1 clearfix cdiy_qz" style="display:block;">
+                <ul class="tbqh_2 tab_tit2 clearfix cdiy_nav_qz">
+                    <li class="on">全部</li>
+                    <li>小型1<p class="xjt"></p></li>
+                    <li>中型1<p class="xjt"></p></li>
+                    <li>大型1<p class="xjt"></p></li>
+                </ul>
+                <div class="mCustomScrollbar show1_1 img_list">
+                    <ul>
+                        <li class="on"><img src="/diy/images/pic_1.jpg"><p>名称1</p></li>
+                        <li><img src="/diy/images/pic_1.jpg"><p>名称1</p></li>
+                    </ul>
+                </div>
+                <div class="mCustomScrollbar show1_1 img_list" style="display:none;">
+                    <ul>
+                        <li class="on"><img src="/diy/images/pic_1.jpg"><p>名称2</p></li>
+                        <li><img src="/diy/images/pic_1.jpg"><p>名称2</p></li>
+                    </ul>
+                </div>
+                <div class="mCustomScrollbar show1_1 img_list" style="display:none;">
+                    <ul>
+                        <li class="on"><img src="/diy/images/pic_1.jpg"><p>名称3</p></li>
+                        <li><img src="/diy/images/pic_1.jpg"><p>名称3</p></li>
+                    </ul>
+                </div>
+                <div class="mCustomScrollbar show1_1 img_list" style="display:none;">
+                    <ul>
+                        <li class="on"><img src="/diy/images/pic_1.jpg"><p>名称4</p></li>
+                        <li><img src="/diy/images/pic_1.jpg"><p>名称4</p></li>
+                    </ul>
+                </div>
+            </div>
+            <!--犬种结束-->
+            
+            
+            <!--犬期开始-->
+            <div class="mCustomScrollbar show1 text_list clearfix cdiy_qq">
+              <h1>犬期</h1>
+              <ul>
+                <li class="on">怀孕期</li> 
+                <li>哺乳期</li><li>离乳期</li><li>幼犬期</li><li>成犬期</li> 
+              </ul>
+            </div>
+            <!--犬期结束-->
+            
+            <!--功效开始-->
+            <div class="mCustomScrollbar show1 text_list clearfix">
+              <h1>功效</h1>
+              <ul>
+                <li class="on">怀孕期</li> 
+                <li>哺乳期</li><li>离乳期</li><li>幼犬期</li><li>成犬期</li>
+              </ul>
+            </div>
+            <!--功效结束-->   
+            
+            <!--口味开始-->
+            <div class="mCustomScrollbar show1 text_list clearfix">
+              <h1>口味</h1>
+              <ul>
+                <li class="on">怀孕期</li> 
+                <li>哺乳期</li><li>离乳期</li><li>幼犬期</li><li>成犬期</li> 
+              </ul>
+            </div>
+            <!--口味结束-->                        
+            <!--规格开始-->
+            <div class="mCustomScrollbar show1 text_list clearfix">
+              <h1>规格</h1>
+              <ul>
+                <li class="on">怀孕期</li> 
+                <li>哺乳期</li><li>离乳期</li><li>幼犬期</li><li>成犬期</li> 
+              </ul>
+            </div>
+            <!--规格结束-->                        
+
+
+            <!--包装开始-->
+            <div class="mCustomScrollbar show1 text_list clearfix">
+            
+              <h1>包装</h1>
+              <ul>
+                <li class="on">怀孕期</li> 
+                <li>哺乳期</li> 
+                <li>离乳期</li> 
+                <li>幼犬期</li>
+                <li>成犬期</li> 
+              </ul>
+              
+              <h1 class="clear" style="padding-top:10px;">个性化标签设计</h1>
+              <div class="file_box">
+                <input type="file"  id="picFile" onchange="readFile(this)" />  
+                <span></span>
+                <div class="file_img"><img src="/diy/images/dog_2.png"></div>
+              </div>
+              
+            </div>
+            <!--包装结束-->                 
+                       
+
+        </div>
+        
+      
+        <!--加入购物车按钮-->  
+        <div class="js_box clear">
+          <span class="price">￥<span id="price" class="cdiy_price">-</span></span>
+          <button class="addCart fr">加入购物车</button>
+        </div>
+
+
+    </div>
+
+</div>
+
+<script src="/diy/js/mCustomScrollbar.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>
+
+<script>
+    /*高度自适应*/
+    $(document).ready(window.onresize=function()
+    {
+        var wh=$(window).height();
+        $('.spdtu').css({width:(wh-243),height:(wh-243)});
+        $('.cus_right').height(wh-185);
+        $('.cpxq_tab').height(wh-113);
+        $('.img_list').height(wh-250);
+        $('.text_list').height(wh-250);
+        $('.cpxq_left').height(wh-113);
+    });
+    (function($) {
+            $(window).load(function() {
+                    $("#content-1").mCustomScrollbar({
+                            theme: "minimal"
+                    });
+            });
+    })(jQuery);
+
+    try{
+        $basedata = {$basedata};//diy列表数据
+        $rule = {$rule};//冲突配置
+        $mid='{$mid}';
+        $cid='{$cid}';
+        $sid='{$sid}';
+        $gxmaxnum='{$maxnum}';
+        $effectprice='{$aprice}';
+    }catch(e){}
+</script>
+<script src="/diy/js/diy.js"></script>
+</body>
+</html>

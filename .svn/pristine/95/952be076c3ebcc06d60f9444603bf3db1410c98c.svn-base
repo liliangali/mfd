@@ -1,0 +1,209 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+
+<script type="text/javascript" src="{$img_url}/js/jquery.js"></script>
+<script type="text/javascript" src="{$img_url}/js/jquery.form.js"></script>
+
+ <div id="right">
+
+
+       <ul class="tab">
+          <li class="normal"><a href="/index.php/kuke-manageimg.html">上传管理</a></li>
+          <li class="active">图片上传</li>
+       </ul>		
+					
+					
+					<form id='myForm' method='post' enctype="multipart/form-data">
+					<input type='hidden' value="{$row.id}" name='id'  />
+					
+					<div id='div_0'>
+					          <table width="100%" border="0" cellspacing="0" cellpadding="0" class="file_table" style="margin-top:30px;">
+					            <tr>
+					              <th valign="top">分类：</th>
+					              <td valign="top">
+					                <select name="cate_0">
+					                  <option value="1">个人设计</option>
+					                  <option value="2">街拍</option>
+					                </select>
+					              </td>
+					            </tr>          
+					            <tr>
+					              <th valign="top">设计说明：</th>
+					              <td valign="top"><textarea name='title_0' class="textarea">{$row.title}</textarea></td>
+					            </tr>
+					            <tr>
+					              <th valign="top">简介：</th>
+					              <td valign="top"><textarea name='desc_0' class="textarea area">{$row.description}</textarea></td>
+					            </tr>   
+					            <tr>
+					              <th></th>
+					              <td>
+					                <div class="file_box">
+					                  <span>上传图片</span>
+					                  <input type='text' id='img0' name='img0' />
+					                </div>                
+					              </td>
+					            </tr>  
+					            
+					            <tr>
+					              <th></th>
+					              <td class="small_img">  
+					                <img id='img0_img'src="{$row.url}" alt="" />            
+					              </td>
+					            </tr>
+                               
+					          </table>
+          				</div>
+          
+          <div class='sub_box'>
+						<input type='hidden' value="" name='img_total' id='img_total' />
+						<input type='button' class='sub_img' onclick='sub();'  value='提交' style="left:88px;" />
+			</div>		
+					</form>
+								
+
+
+
+<script type="text/javascript">
+	
+function sub(){
+	$("#img_total").val(num);
+	$("#myForm").attr('action','/index.php/kuke-cameraedit.html?opt=1');
+	$("#myForm").submit();
+}
+
+
+function del(div_id){
+	$("#"+div_id).empty();
+}
+
+var num = 0;
+function addImg(){
+	
+	//var last_img_id = "img"+ num+"_img";
+	var last_div_id = "div_"+ num ;
+	num++;
+	
+	
+	var input_name = "img"+ num;
+	var div_name = "div_"+num;
+	$('#'+last_div_id).after("<div id='"+div_name+"' style='display:block;'></div>");
+	
+	var input_or = "<input type='text' id='"+input_name+"' name='"+input_name+"' />";
+	//$('#'+div_name).html(input_or);
+	
+	
+	var new_img_id = "img"+ num+"_img";
+	var img_input = "<img id='"+new_img_id+"' width='50px' height='50px' />";
+	//$('#'+input_name).after(img_input);
+	
+	
+	var input_new_name = input_name + "_new";
+	var input_e = '<input type="file" name="'+input_new_name+'" value="提交" id="'+input_new_name+'" />';
+	
+	//$('#'+new_img_id).after(input_e);
+	
+	var del_a = "<a href='javascript:void(0);' class='del_img'  onclick='del(\""+div_name+"\")'>删除</a>"
+	//$('#'+new_img_id).after(del_a);
+	
+	var title_input_id = "title_"+num;
+	var title_input = "<input class='textarea' type='text' name='"+title_input_id+"' id='"+title_input_id+"' />";
+	//$('#'+new_img_id).after(title_input);
+	
+	
+	var cate_input_id = "cate_"+num;
+	var cate_input = "<select name='"+cate_input_id+"' id='"+cate_input_id+"' ><option value=1>个人设计</option><option value=2>街拍</option></select>";
+	//$('#'+new_img_id).after(cate_input);
+	
+	
+	var desc_input_id = "desc_"+num;
+	var desc_input = "<textarea class='textarea area' name='"+desc_input_id+"'></textarea>";
+	//$('#'+new_img_id).after(desc_input);
+	
+	
+	
+    var str = '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="file_table" style="margin-top:30px;">'+
+        '<tr>'+
+          '<th valign="top">分类：</th>'+
+          '<td valign="top">'+
+            cate_input+
+          '</td>'+
+        '</tr>'+          
+        '<tr>'+
+          '<th valign="top">设计说明：</th>'+
+          '<td valign="top">'+title_input+'</td>'+
+        '</tr>'+
+        '<tr>'+
+          '<th valign="top">简介：</th>'+
+          '<td valign="top">'+desc_input+'</td>'+
+        '</tr>   '+
+        '<tr>'+
+          '<th></th>'+
+          '<td>'+
+            '<div class="file_box">'+
+              '<span>上传图片</span>'+
+              input_or+input_e+del_a+
+            '</div> '+               
+          '</td>'+
+        '</tr>'+ 
+        
+        
+        
+        '<tr>'+
+        '<th></th>'+
+        '<td class="small_img">'+  
+        img_input+         
+        '</td>'+
+      '</tr>'+
+        
+        
+      '</table>';
+      
+	$("#"+div_name).html(str);
+	
+	$('#'+input_new_name).change(function(){
+		$('#'+input_name).val('上传中请等待...');
+		var r  = 10000*Math.random();
+		var options = {
+				url:'/index.php/kuke-upload.html?input_name='+input_new_name+'&r='+r,
+				success: function(data) {
+					$('#'+input_name).val(data);
+					$('#'+new_img_id).attr('src',data);
+				} 
+		};
+
+		$('#myForm').ajaxSubmit(options);
+  });
+}		
+		
+$(document).ready(
+		function() {
+				var input_e = '<input type="file" name="img0_new" value="提交" id="img0_new" />';
+				$('#img0').after(input_e);
+				$('#img0_new').change(function(){
+					$('#img0').val('上传中请等待...');
+					var r  = 10000*Math.random();
+					var options = {
+							url:'/index.php/kuke-upload.html?input_name=img0_new&r='+r,
+							success: function(data) {
+								$('#img0').val(data);
+								$('#img0_img').attr('src',data);
+							} 
+					};
+			
+					$('#myForm').ajaxSubmit(options);
+              });
+				
+});
+					</script>
+                    
+                    </div>  
+					
+		 <p class="clear"></p>	
+         
+      
+         
+</div>
+{include file="footer.html"}

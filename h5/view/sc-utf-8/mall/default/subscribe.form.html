@@ -1,0 +1,126 @@
+{include file=member.header.html}
+{$build_editor}
+
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+.bgwhite { background: #FFFFFF;}
+</style>
+
+
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right" style="width:810px; padding:0 15px;">
+        {include file=member.submenu.html}
+        <div class="eject_con bgwhite">
+            <div class="add" style="width:700px;">
+                <form method="post" enctype="multipart/form-data" id="subscribe_form">
+                    <ul style="width: 700px;">
+
+	  
+         <li><h3>{$lang.subscribe_type}:</h3>
+        <p>
+			{if $subscribe.subscribe_type eq '0'}
+			{$lang.subscribe_type_0}
+			{elseif $subscribe.subscribe_type eq '1'}
+			{$lang.subscribe_type_1}
+			{/if}
+         </p>
+         </li>
+         <li><h3>{$lang.username}:</h3>
+        <p>
+        {$subscribe.username|escape}
+         
+         </p>
+         </li>
+         <li><h3>{$lang.address}:</h3>
+        <p>
+        {$subscribe.address|escape}
+          
+         </p>
+         </li>
+         <li><h3>{$lang.mobile}:</h3>
+        <p>
+        {$subscribe.mobile|escape}
+          
+         </p>
+         </li>
+         
+         
+         
+         
+         <li><h3>{$lang.figure_mode}:</h3>
+        <p>
+			{$figure_mode[$subscribe.figure_mode]}
+          
+         </p>
+         </li>
+         
+         
+         <li><h3>用户备注:</h3>
+        <p>
+          
+          <textarea readonly="readonly" rows="5" cols="30" name="remarks" id="remarks">{$subscribe.remarks|escape}</textarea>
+         </p>
+         </li>
+         
+         
+         
+         {if $subscribe.create_date}
+         <li><h3>{$lang.create_date}:</h3>
+        <p>
+          {$subscribe.create_date}
+          
+         </p>
+         </li>
+	  {/if}
+     {if $subscribe.timeserve}
+     <li><h3>服务时间:</h3>
+        <p>
+          {$subscribe.timeserve}
+          
+          {$timeopt[$subscribe.timeopt]}
+
+         </p>
+         </li>
+     {/if}
+     
+     
+     <li><h3>{$lang.employee_name}:</h3>
+        <p>
+        
+          
+          <select class="querySelect" name="employee_name" id="employee_name">{html_options options=$employee_name_arr selected=$subscribe.employee_name}
+          </select>
+          
+         </p>
+         </li>
+     
+     <li><h3>申请状态:</h3>
+        <p>
+        
+        {if $subscribe.state eq '2'}
+        	{$state[$subscribe.state]}
+        {else}
+        <select {if $subscribe.state neq '0' and $subscribe.state neq '3' and $subscribe.state neq '4'}disabled{/if} class="querySelect" name="state" id="state">{html_options options=$state selected=$subscribe.state}
+          </select>
+        {/if}
+          
+         </p>
+         </li>
+                        
+                    </ul>
+                    <div class="submit">
+                    {if $subscribe.state eq '0' or $subscribe.state eq '3' or $subscribe.state eq '4'}
+                                    <input class="btn" type="submit" value="{$lang.submit}" />
+                                    {/if}
+                                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=login_footer.html}

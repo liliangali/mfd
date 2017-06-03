@@ -1,0 +1,96 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/user_2.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+{include file=member.menu.html}
+    <div class="user_right user_rights fr">
+        <h4 class="collection">我的作品</h4>
+        <!--{if $user.member_lv_id > 1}-->
+        <ul class="plul">
+        <li  class="lccurrent" ><a href="{link app=my_works}" {if $status eq 'index'} class="plcur" {/if}>我的作品</a></li>
+        <li><span></span></li>
+        <li  class="lccurrent" ><a href="{link app=my_works act=Counter}" {if $status eq 'Counter'} class="plcur" {/if}>推送作品</a></li>
+        </ul>
+        <!--{/if}-->
+		{if $status eq 'index'}
+        <!--{if $works}-->
+        <ul class="wdzplb">
+        <!--{foreach from=$works item=work}-->
+          <li>
+            <p class="p1"><a href="{link app=my_works act=info arg0=$work.id}" target="_blank"><img src="{$work.img_url}"></a></p>
+            <p class="p2"><a href="{link app=my_works act=info arg0=$work.id}" target="_blank">{$work.work_name}</a></p>
+            <p class="p2">¥{$work.pa.price}</p>
+            <div class="gwscbot"><a href="javascript:;" onclick="del(this)" id="delwork" class="scshopping scdelete fl">删除</a><input type="hidden" value="{$work.id}"><a href="{link app=my_works act=info arg0=$work.id}" class="scshopping fl">详情</a></div>
+          </li>
+          <!--{/foreach}-->
+        </ul>
+        {include file=member.page.bottom.html}
+      <!--{else}-->
+      <div class="empty">
+		      <div>您暂未有设计商品！赶快来设计吧。<br><br><p><a class="cc_btn s_btn" href="/custom-diy-0001-bformal.html">设计空间</a></p></div>
+	  </div>
+      <!--{/if}-->
+
+		{else if $status eq 'Counter'}
+		<!--{if $user.member_lv_id > 1}-->
+	        <!--{if $Counter}-->
+	        <ul class="wdzplb">
+	        <!--{foreach from=$Counter item=work}-->
+	          <li>
+	            <p class="p1"><a href="{link app=my_works act=info arg0=$work.id arg1=counter}" target="_blank"><img src="{$work.img_url}"></a></p>
+	            <p class="p2"><a href="{link app=my_works act=info arg0=$work.id arg1=counter}" target="_blank">{$work.work_name}</a></p>
+	            <p class="p2">¥{$work.pa.price}</p>
+	            <p class="p2">来源：{$work.x_user.user_name}{if $work.x_user.nickname}({$work.x_user.nickname}){/if}</p>
+	            <div class="gwscbot"><input type="hidden" value="{$work.id}"><a href="{link app=my_works act=info arg0=$work.id arg1=counter}" style="margin-left:62px" class="scshopping fl">详情</a></div>
+	          </li>
+	          <!--{/foreach}-->
+	        </ul>
+	        {include file=member.page.bottom.html}
+	      <!--{else}-->
+	      <div class="empty">
+			      <div>您暂未有顾客的推送记录。<br><br><p></div>
+		  </div>
+	      <!--{/if}-->
+      <!--{/if}-->
+		{/if}
+    </div>
+
+</div>
+{include file=footer.html}
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/usercenter.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>  
+<script>
+cotteFn.amputate()
+//分享
+window._bd_share_config = {
+	common : {
+		bdText : document.title,	
+		bdDesc : '',	
+		bdUrl : window.location.href, 	
+		bdPic : ''
+	},
+	share : [{
+		"bdSize" : 16
+	}]
+}
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+
+function del(obj){
+	if(window.confirm('确定要删除么？')){
+		var id = $(obj).next().val();
+		$.post("./my_works-delWork.html",{id:id}, function(res){
+			var res = eval("("+res+")");
+			if(res.done){
+				alert('删除成功')
+				location.reload();
+			}else{
+				alert('删除失败')
+			}
+	
+		});
+	}
+}
+</script>

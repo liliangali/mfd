@@ -1,0 +1,77 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ajax_tree.js}" charset="utf-8"></script>
+<script type="text/javascript">
+	function getSelectVal(){ 
+		$.get("index.php?app=folly&act=add",{bigname:$("#bigname").val()},function(json){ 
+		    var arr = eval("("+json+")");
+			var smallname = $("#smallname"); 
+			$("#smallname").html("");
+			for(var i=0;i<arr.length;i++){
+			var option = "<option value='"+arr[i]['tid']+"'>"+arr[i]['title']+"</option>"; 
+				smallname.append(option); 
+			}
+		}); 
+	} 
+</script>
+{$build_editor}
+<div id="rightTop">
+
+    <ul class="subnav">
+		 <li><span>添加广告</span></li>
+		 <li><a class="btn1" href="index.php?app=folly&amp;act=add_tpl">添加页面</a></li>
+		 <li><a class="btn1" href="index.php?app=folly&amp;act=add_location">添加广告位</a></li>
+    </ul>
+</div>
+<style>
+		table tr td {
+			 height:40px;
+			 line-height:30px;
+			 padding-left:5px;
+		}
+	
+</style>
+<div class="info2">
+    <form style="margin-left:50px;" enctype="multipart/form-data" action="index.php?app=folly&amp;act=add_do" method="post">
+		<table>
+			<tr >
+			    <td>所属页面：</td><td>
+				<select name="bigname" id="bigname" STYLE="width:150px;" onchange="getSelectVal()" > 
+						<option select='selected'>请选择</option>
+					<!--{foreach from=$selectd item=t name='g1_name'}-->    
+						<option value='{$t.tid}'>{$t.title}</option>
+					<!-- {/foreach} -->	 	
+				</select>
+			</tr>
+			<tr >
+				<td>广告位：</td>
+				<td><select name="smallname" id="smallname" STYLE="width:150px;">
+					<option select='selected'>请选择</option>
+				</select></td>
+			</tr>
+			<tr >
+				<td>所属频道：</td><td>
+				<select name="cate" STYLE="width:150px;">
+				<option select='selected'>请选择</option>
+				<!--{foreach from=$t_l item=t name='g1_name'}-->    
+					<option value='{$t.cate_id}'>{$t.cate_name}</option>
+				<!-- {/foreach} -->	 	
+				</select>
+			</tr>
+			
+		    <tr>
+                <td>描述：</td>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="sumary" name="summary" style="width:100px;height:200px;" ></textarea>
+                </td>
+            </tr>  
+			
+			<tr><td>广告标题：</td><td><input type="text" name="title" id="title" /></td></tr>
+			<tr><td>广告链接：</td><td><input type="text" name="link" id="link" /></td></tr>
+			<tr><td>广告图片：</td><td><input type="file" name="file" id="file" /></td></tr>
+			<tr><td>排序：</td><td><input type="text" name="lorder" id="lorder" /></td></tr>
+		</table>
+		<input class="tijia" type="submit" value="提交" style="margin-bottom:20px;"/>
+	</form>
+</div>
+
+{include file="footer.html"}

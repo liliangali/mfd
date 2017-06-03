@@ -1,0 +1,126 @@
+{include file=header-new.html}
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="mlcurrent">
+	<p class="mlcur"><a href="/">首页</a><span>/</span><a href="fabric_diy.html">面料选择</a><span>/</span><a href="fabric_diy-flist-{$t}.html">{$region}({$brand})</a></p>
+</div>
+<div class="mlment">
+    <div class="fllb">
+        <ul class="flbl_ul">
+            <li><a name="anchor"></a>
+                <h6>品类：</h6>
+                <p class="flsx">
+                   {foreach from=$category item=cat key=k}
+     				<a href="{link app=fabric_diy act=flist arg0=$t arg1=$k arg2=$color}" {if $k eq $cate}class="on"{/if}>{$cat}</a>
+    				{/foreach}
+                 </p>
+            </li>
+        </ul>
+        <ul class="flbl_ul">
+            <li><a name="anchor"></a>
+                <h6>颜色：</h6>
+                <p class="flsx">
+                	<a href="{link app=fabric_diy act=flist arg0=$t arg1=$cate arg2=0}" {if !$color}class="on"{/if}>全部</a>
+                   {foreach from=$colors item=r key=k}
+     				<a href="{link app=fabric_diy act=flist arg0=$t arg1=$cate arg2=$k}" {if $k eq $color}class="on"{/if}>{$r}</a>
+    				{/foreach}
+                 </p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<a name="xl" id="xl"></a>
+<div class="fllb">
+    <ul class="ktsp_list" id="brick">
+    	{foreach from=$fabrics item=fabric}
+    	<li> 
+            <p class="p1">
+            <a href="fabric_diy-info-{$fabric.fabric_id}.html"><img src="{$fabric.fabric_img}"></a>
+            </p>
+            <p class="p2"><a href="fabric_diy-info-{$fabric.fabric_id}.html">{$fabric.fabric_name}（{$fabric.fabric_sn}）</a></p>
+            <p class="p3">{$fabric.cate_name}：{$fabric.cate_price|price}元</p>
+<!--             <p class="p4"><span>活动</span></p>
+            <p class="p5">有效期2015-12-30结束</p> -->
+        </li>
+        {/foreach}
+    </ul>
+</div>
+<!-- <a name="xl" id="xl"></a>
+<div class="fllb">
+ <ul class="ktsp_list" id="brick">
+  
+ </ul>
+</div> -->
+<div class="jzwb" style="display:block">加载完毕</div>
+<input type="hidden" id="url" value="{$url}"/>
+
+{include file=navicate.html}
+
+{include file=footer-new.html}
+<!-- <div style="display:none;">
+<script type="text/javascript">
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1256310283'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256310283' type='text/javascript'%3E%3C/script%3E"));</script>
+</div> -->
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/public.js"></script> 
+<script>
+//幻灯
+/* ;(function(){
+	var len=$('#banner img').length,slider = Swipe(document.getElementById('banner'), {
+		auto: 4000,
+		//continuous: false,
+		callback: function(index, element) {
+			if(len==2){
+				switch(index){
+					case 2:
+					index=0;
+					break;
+					case 3:
+					index=1;
+					break; 	
+				}
+			}
+			$('.swipe-btn span').eq(index).addClass('cur').siblings().removeClass();	
+		}
+	});
+	$('.swipe-prev').click(slider.prev);
+	$('.swipe-next').click(slider.next);
+})(); */
+var $container = $('#brick'),delay=null;
+var url=$('#url').val();
+var man = {
+	url:url,
+};
+//获取数据
+function getData(){
+	var winh=$(window).height(),
+		bodyh=$container.height();
+	if(($(window).scrollTop()+winh)>=bodyh-350){
+		$(window).off('scroll',getData);
+		if(delay){clearTimeout(delay)}
+		$('.jzwb').text('加载中...').show();
+		delay=setTimeout(function(){
+			if(!man.url){
+				$('.jzwb').text('加载完毕').show();
+		        return false;
+		    }
+		    $.get(man.url,function(res){
+		        var res = eval("("+res+")");
+		        var $newElems = $(res.retval.content);
+		        man.url = res.retval.link;
+				$container.append(res.retval.content);
+				$('.jzwb').hide();
+		        $(window).on('scroll',getData);
+		    });
+		},500)
+	}
+}
+$(window).on('scroll',getData);
+//初始化
+getData();
+</script>
+</body>
+</html>

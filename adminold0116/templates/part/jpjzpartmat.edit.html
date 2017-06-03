@@ -1,0 +1,423 @@
+{include file="header.html"}
+<script type="text/javascript" src="{res file=js/utils.js}" charset="utf-8"></script>
+<link href="templates/style/main.css" rel="stylesheet" type="text/css" />
+<link href="templates/style/general.css" rel="stylesheet" type="text/css" />
+<style>
+input{padding:3px;}
+</style>
+<script type="text/javascript">
+$(function(){
+    $('#theForm').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+        	def_part_id : {
+                required : true,
+                remote   : {                //唯一
+                url :'index.php?app=jpjzpart&act=check_part_id',
+                type:'get',
+                data:{
+                	part_id : function(){
+                        return $('#part_id').val();
+                        },
+                    part_id : '{$part.part_id}'
+                    }
+                }
+            },
+            part_sn : {
+                remote   : {                //唯一
+                url :'index.php?app=jpjzpart&act=check_part_sn_name',
+                type:'get',
+                data:{
+                    part_sn : function(){
+                        return $('#part_sn').val();
+                        },
+                    part_id : '{$part.part_id}'
+                    }
+                }
+            },
+           
+            cost_price : {
+            	number : true,
+            },
+            price : {
+            	number : true,
+            },
+            maket_price : {
+            	number : true,
+            },
+            goods_number : {
+            	number : true
+            },
+            warn_number : {
+            	number : true
+            },
+            goods_img : {
+                accept  : 'gif|png|jpe?g'
+            },
+            
+            goods_thumb : {
+                accept  : 'gif|png|jpe?g'
+            },
+           
+            sort_order : {
+                number   : true
+            }
+        },
+        messages : {
+        	def_part_id : {
+                required : '组件ID不能为空',
+                remote   : '组件ID已经存在'
+            },
+            part_sn : {
+            	remote   : '商品货号已经存在'
+            },
+            cat_id  : {
+                required   : '必须选择一个分类'
+            },
+            goods_type : {
+            	required : '类型必须选择'
+            },
+            cost_price  : {
+                number   : '价格必须是数字'
+            },
+            price  : {
+                number   : '价格必须是数字'
+            },
+            maket_price  : {
+                number   : '价格必须是数字'
+            },
+            goods_number  : {
+                number   : '库存必须是一个数字'
+            },
+            warn_number  : {
+                number   : '警告库存必须是一个数字'
+            },
+            goods_img  : {
+                accept   : '图片类型不正确'
+            },
+            goods_img_url : {
+            	url : '图片链接格式不正确'
+            },
+            goods_thumb : {
+            	accept  : '图片类型不正确'
+            },
+            goods_thumb_url : {
+            	url  : '图片链接格式不正确'
+            },
+            type_id     : {
+            	required : '{$lang.type_req}'
+            }
+        }
+    });
+});
+
+/**
+ * 点击类型按钮时切换选项的禁用状态
+ */
+function radioClicked(n)
+{
+  document.forms['zujian_form'].elements["attr_values"].disabled = n > 0 ? false : true;
+}
+
+</script>
+
+
+<script type="text/javascript">
+var reginUrl = "/index.php/mlselection.html";
+$(function(){
+
+	gcategoryInit("gcategory");
+
+});
+function hide_error(){
+    $('#region').find('.error').hide();
+}
+</script>
+<!-- start goods form -->
+<div class="tab-div">
+    <!-- tab bar -->
+    <div id="tabbar-div">
+      <p>
+        <span class="tab-front" id="general-tab">{$lang.tab_general}</span>
+      </p>
+    </div>
+
+    <!-- tab body -->
+    <div id="tabbody-div">
+      <form enctype="multipart/form-data" action="" method="post" name="theForm" id="theForm">
+        <!-- 最大文件限制 -->
+        <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
+        <input type="hidden" name="part_id" value="{$part.part_id}" />
+        <!-- 通用信息 -->
+        <table width="90%" id="general-table" align="center">
+        
+         <tr>
+            <td class="label">组件ID：</td>
+            <td><input type="text" name="def_part_id" id="def_part_id" value="{$part.part_id}" style="float:left;color:{$goods_name_color};" size="30" />
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="label">名称：</td>
+            <td><input type="text" name="goods_name" id="goods_name" value="{$part.part_name|escape}" style="float:left;color:{$goods_name_color};" size="30" />
+            </td>
+          </tr>
+          <tr>
+            <td class="label">
+           	 code编号 ：</td>
+            <td><input type="text" name="part_sn" id="part_sn" value="{$part.part_sn|escape}" size="20"  /><span id="goods_sn_notice"></span></td>
+          </tr>
+         
+          <tr>
+            <td class="label">
+            	编号(供应商填写)：</td>
+            <td><input type="text" name="goods_sn" id="goods_sn" value="{$part.goods_sn|escape}" size="20"  /><span id="goods_sn_notice"></span><br />
+            </td>
+          </tr>
+          
+          <tr>
+            <td class="label">
+           	 ecode工艺编号：</td>
+            <td><input type="text" name="ecode" id="ecode" value="{$goods.ecode|escape}" size="20"  />
+          </tr>
+            
+            {if $_regions[0]['cid']}
+            
+                  <tr>
+      	<th >归属：</th>
+      	<td >
+      		<div id="gcategory">
+
+                        <select onchange="hide_error();"  disabled="disabled">
+                          <option>{$lang.select_pls}</option>
+                          {html_options options=$gcategorys selected=$_regions[0]['cid']}
+                        </select>
+            			<select onchange="hide_error();"  disabled="disabled">
+            			{if $_regions[1]['cid'] }
+            			<option>{$_regions.1.cname}</option>
+            			{else}
+            			<option>{$lang.select_pls}</option>
+            			{/if}
+                        </select>
+                         
+                         <select onchange="hide_error();"  disabled="disabled">
+                         
+                         {if $_regions[2]['cid'] }
+            			<option>{$_regions.2.cname}</option>
+            			{else}
+            			<option>{$lang.select_pls}</option>
+            			{/if}
+                  
+                        </select>
+                       
+                      </div>
+      	</td>
+      </tr>
+            {/if}
+            
+          <!-- <tr>
+            <td class="label">分类：</td>
+            <td><select name="cat_id" id="cate_id" onchange="getTypeList()">
+            <option value="">{$lang.select_please}
+            </option> {html_options options=$parents selected=$part.cate_id}
+            </select>
+            </td>
+          </tr>
+          
+           <tr>
+              <td class="label">类型：</td>
+              <td>
+                <select name="goods_type" id="goods_type" onchange="getAttrList({$part.part_id})">
+                  <option value="">请选择类型</option>
+                  {foreach from=$zujiantype key=key item=item }
+                  <option value="{$key}" {if $part.type_id == $key}selected="selected"{/if}>{$item}</option>
+                  {/foreach}
+                </select><br />
+              <span class="notice-span" style="display:block"  id="noticeGoodsType">{$lang.notice_goods_type}</span>
+              </td>
+          </tr>
+          <tr>
+            <td id="tbody-goodsAttr" colspan="2" style="padding:0">{$goods_attr_html}</td>
+          </tr> -->
+         
+        <!-- 成本价 -->
+          <tr>
+            <td class="label">成本价：</td>
+            <td><input type="text" name="cost_price" id="cost_price" value="{$part.cost_price}" size="20"/>
+          </tr>
+         <!-- 价格 -->
+          <tr>
+            <td class="label">{$lang.lab_shop_price}</td>
+            <td><input type="text" name="price" id="price" value="{$part.price}" size="20"/>
+          </tr>
+          <!-- 市场价格 -->
+          <tr>
+            <td class="label">{$lang.lab_maket_price}：</td>
+            <td><input type="text" name="maket_price" id="maket_price" value="{$part.maket_price}" size="20"/>
+          </tr>
+          <tr>
+            <td class="label">库存数量：</td>
+            <td><input type="text" name="goods_number" id="goods_number" value="{$part.part_number}" size="20" /><br />
+            <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeStorage">{$lang.notice_storage}</span></td>
+          </tr>
+          <tr>
+            <td class="label">{$lang.lab_warn_number}</td>
+            <td><input type="text" name="warn_number" id="warn_number" value="{$part.warn_number}" size="20" /></td>
+          </tr>
+          <tr id="alone_sale_1">
+            <td class="label" id="alone_sale_2">{$lang.lab_is_on_sale}</td>
+            <td id="alone_sale_3">
+            <input type="checkbox" name="is_on_sale" value="1" {if $part.is_on_sale} checked="checked" {/if}/> {$lang.on_sale_desc}</td>
+          </tr>
+          
+          <tr>
+            <td class="label">{$lang.sort_order}：</td>
+            <td><input type="text" name="sort_order" id=""sort_order"" value="{$part.sort_order}" size="20" /></td>
+          </tr>
+          
+         
+          <tr>
+            <td class="label">配搭小图：</td>
+            <td height="100" valign="top">
+            	 {input_img name="part_small" value="$part.part_small" dir="part"}
+            </td>
+          </tr>
+        </table>
+
+        <div class="button-div">
+          <input type="hidden" name="part_id" value="{$part.part_id}" />
+         
+          {if $code neq ''}
+          <input type="hidden" name="extension_code" value="{$code}" />
+          {/if}
+          <input type="submit" id="Submit" value="{$lang.button_submit}" class="tijia" />
+          <input type="reset" value="{$lang.button_reset}" class="congzi" />
+        </div>
+      </form>
+    </div>
+</div>
+<script type="text/javascript" src="{res file=js/taba.js}" charset="utf-8"></script>
+<!-- end goods form -->
+<script>
+$(function(){
+	$('#Submit').click(function(){
+		$('#cate_id').attr('disabled', false);
+		$('#goods_type').attr('disabled', false);
+	});
+});
+</script>
+<script>
+function getTypeList()
+{
+ $("#tbody-goodsAttr").empty();
+ var selCat= document.forms['theForm'].elements['cat_id'];
+
+   if (selCat != undefined)
+   {
+       var cat = selCat.options[selCat.selectedIndex].value;
+			
+       $.ajax({
+		type:"POST",
+		url:"index.php?app=jpjzpart&act=get_type",
+		data:"cate_id="+cat,
+		success: function(res) {
+			//alert(res)
+			$("#goods_type").empty();
+			$("#goods_type").append('<option value=0>请选择类型</option>')
+			$(res).each(function(i,item){
+				var $option = $('<option></option>');
+				$option.val(item.type_id);
+				$option.html(item.type_name)
+				$("#goods_type").append($option);
+			})
+		},
+		dataType: 'json'
+	});
+   }
+}
+
+/**
+ * 切换类型
+ */
+function getAttrList(goodsId)
+{
+    var selGoodsType = document.forms['theForm'].elements['goods_type'];
+
+    if (selGoodsType != undefined)
+    {
+        var goodsType = selGoodsType.options[selGoodsType.selectedIndex].value;
+				
+        $.ajax({
+			type:"POST",
+			url:"index.php?app=jpjzpart&act=get_attr",
+			data:"type_id="+goodsType+"&goods_id="+goodsId,
+			success: function(result) {
+				document.getElementById('tbody-goodsAttr').innerHTML = result;
+			},
+			dataType: 'json'
+		});
+    }
+}
+
+/**
+ * 新增一个规格
+ */
+function addSpec(obj)
+{
+    var src   = obj.parentNode.parentNode;
+    var idx   = rowindex(src);
+    var tbl   = document.getElementById('attrTable');
+    var row   = tbl.insertRow(idx + 1);
+    var cell1 = row.insertCell(-1);
+    var cell2 = row.insertCell(-1);
+    var regx  = /<a([^>]+)<\/a>/i;
+
+    cell1.className = 'label';
+    cell1.innerHTML = src.childNodes[0].innerHTML.replace(/(.*)(addSpec)(.*)(\[)(\+)/i, "$1removeSpec$3$4-");
+    cell2.innerHTML = src.childNodes[1].innerHTML.replace(/readOnly([^\s|>]*)/i, '');
+}
+
+/**
+ * 删除规格值
+ */
+function removeSpec(obj)
+{
+    var row = rowindex(obj.parentNode.parentNode);
+    var tbl = document.getElementById('attrTable');
+
+    tbl.deleteRow(row);
+}
+
+/**
+ * 处理规格
+ */
+function handleSpec()
+{
+    var elementCount = document.forms['theForm'].elements.length;
+    for (var i = 0; i < elementCount; i++)
+    {
+        var element = document.forms['theForm'].elements[i];
+        if (element.id.substr(0, 5) == 'spec_')
+        {
+            var optCount = element.options.length;
+            var value = new Array(optCount);
+            for (var j = 0; j < optCount; j++)
+            {
+                value[j] = element.options[j].value;
+            }
+
+            var hiddenSpec = document.getElementById('hidden_' + element.id);
+            hiddenSpec.value = value.join(String.fromCharCode(13)); // 用回车键隔开每个规格
+        }
+    }
+    return true;
+}
+</script>
+{include file="footer.html"}

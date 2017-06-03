@@ -1,0 +1,26 @@
+<script type="text/javascript">
+	$(function(){
+		$("select").selectCss(); 
+	});
+</script>
+<div id="divselect" >
+	{if $id == 1}
+		{if !empty($list)}
+		<select name="source_id" class="select_zsq select01"  id="select1" data-type="{$id}">
+			<option value="">请选择..</option>
+			{foreach from=$list item=lst}
+			<option {if $lst.md_id eq $sess_data.source_id} selected="selected" {/if} value="{$lst.md_id}">SN-{$lst.md_sn}</option>
+			{/foreach}
+		</select>
+		{/if}
+	{else}
+		{if !empty($list)}
+		<select name="source_id"  class="select_zsq select01"  id="select1" data-type="{$id}">
+			<option value="">请选择..</option>
+			{foreach from=$list item=lst}
+			<option {if $lst.figure_sn eq $sess_data.source_id} selected="selected" {/if} value="{$lst.figure_sn}">{$lst.customer_name}</option>
+			{/foreach}
+		</select>
+		{/if}
+	{/if}
+</div>

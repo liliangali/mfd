@@ -1,0 +1,49 @@
+<h2>产品工艺：</h2>
+{foreach from=$crafts item=cft}
+
+<div class="list_search">{$cft.name} </div>
+<table id="category_{$cft.id}" data-id="{$cft.id}" class="craft_list list_result">
+    <tbody>
+    
+    {if $cft.data}
+        {foreach from=$cft.data item=dt}
+        {if $dt.statusID == 10008}
+        
+         <tr> 
+        <td>  
+            <input class="craft_li craft_li_{$cft.id}" name="craft[{$cft.id}][{$dt.parentId}][code]" type="text" autocomplete="off" readonly="readonly" data-id="{$dt.id}" cloth-id="{$cft.id}" parent-id="{$dt.parentId}" status-id="{$dt.statusID}" value="{$dt.code}">
+           <span> 
+             {$dt.parentName}:{$dt.name}
+             <input class="craft_dt" type="text" name="craft[{$cft.id}][{$dt.parentId}][value]" value="{$dt.value}" /> 
+           </span> 
+        </td> 
+        <td style="width:30px" onclick="$(this).parent().remove()">X</td> 
+        </tr>
+        
+        
+        {else}
+        <tr> 
+        <td>  
+            <input class="craft_li craft_li_{$cft.id}" name="craft[{$cft.id}][{$dt.parentId}][code]" type="text" autocomplete="off" readonly="readonly" data-id="{$dt.id}" cloth-id="{$cft.id}" parent-id="{$dt.parentId}" status-id="{$dt.statusID}" value="{$dt.code}">
+           <span> 
+             {$dt.parentName}:{$dt.name}
+           </span> 
+        </td> 
+        <td style="width:30px" onclick="$(this).parent().remove()">X</td> 
+        </tr>
+        
+        {/if}
+        {/foreach}
+    {/if}
+    <tr>
+        <td>
+        <input id="craft_input_{$cft.id}" type="text" autocomplete="off" >
+        <span></span>
+        </td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+
+{/foreach}
+

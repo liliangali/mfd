@@ -1,0 +1,46 @@
+{include file="header2.html"}
+<style>
+.orderOk{ padding:50px 0 50px 300px;line-height:30px; font-size:16px;}
+</style>
+<div class="orderOk">
+   
+{if $has_store}
+
+{if $order.kh_ship_pay == 1}
+	<div class="ddtjcgy_box">
+	  <div class="m_zfcgsy">
+	   <p class="m_zfcg">支付成功，请尽快联系消费者付款。</p>
+	   <p class="m_scsy"><a href="/">回首页</a></p>
+	  </div>
+	</div>
+{else}
+	<div class="ddtjcgy_box">
+	  <div class="m_zfcgsy">
+	   <p class="m_zfcg">支付成功，请安心等待审核。</p>
+	   <p class="m_scsy"><a href="/">回首页</a></p>
+	  </div>
+	</div>
+{/if}
+
+{else}
+
+{if $order.kh_ship_pay == 1}
+    <div class="ddtjcgy_box">
+      <div class="m_zfcgsy">
+       <p class="m_zfcg">支付成功，请安心等待审核。</p>
+       <p class="m_scsy"><a href="/">回首页</a></p>
+      </div>
+    </div>
+{else}
+    <div class="ddtjcgy_box">
+      <div class="m_zfcgsy">
+       <p class="m_zfcg">支付成功，订单已完成。</p>
+       <p class="m_scsy"><a href="/">回首页</a></p>
+      </div>
+    </div>
+{/if}
+
+{/if}
+</div>
+
+{include file="footer.html"}

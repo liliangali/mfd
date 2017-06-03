@@ -1,0 +1,182 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=setting&amp;act=base_setting">{$lang.base_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=base_information">{$lang.base_information}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=email_setting">{$lang.email_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=captcha_setting">{$lang.captcha_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=store_setting">{$lang.store_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=credit_setting">{$lang.credit_setting}</a></li>
+		<li><a class="btn1" href="index.php?app=setting&amp;act=subdomain_setting">{$lang.subdomain_setting}</a></li>
+	   <li><span>{$lang.app_setting}</span></li>
+	   <li><a class="btn1" href="index.php?app=setting&amp;act=appupdate_linking">{$lang.app_linking}</a></li>
+       <!-- <li><a class="btn1" href="index.php?app=setting&amp;act=creditscore_setting">{$lang.creditscore_setting}</a></li> -->
+		<!-- <li><a class="btn1" href="index.php?app=setting&amp;act=profit_setting">{$lang.profit_setting}</a></li> -->
+    </ul>
+</div>
+
+<form method="post">
+<div class="order_form">
+	<h1>麦富迪App强制更新设置：</h1>
+
+	<div >
+
+			<table class="paddingT15"  >
+				<tr>
+					<td class="paddingT15">IOS企业版</td>
+					<td class="paddingT15 wordSpacing5">
+					</td>
+				</tr>
+				<tr>
+					<td class="paddingT15"></td>
+					<td class="paddingT15 wordSpacing5">
+						<table>
+							<tr>
+								<td class="paddingT15">最新版本号:</td>
+								<td class="paddingT15 wordSpacing5">
+									<input type="text" name="mfd_iosc_version" value="{$setting.mfd.iosc.version}" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+								   <span class="grey">每次app更新时请在这里更新最新的app版本号！</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="paddingT15">是否强制更新:</td>
+								<td class="paddingT15 wordSpacing5">
+								   <input type="radio"  name="mfd_iosc_update" {if $setting.mfd.iosc.if_update}checked{/if} value="1" />
+								   <label>{$lang.yes}</label>
+								   <input type="radio"  name="mfd_iosc_update" {if !$setting.mfd.iosc.if_update}checked{/if} value="0" />
+								   <label>{$lang.no}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								   <span class="grey">如过选择当前版本强制更新，则app会强制用户更新到最新版本！</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="paddingT15">更新连接:</td>
+								<td class="paddingT15 wordSpacing5">
+									<input class="infoTableInput" type="text" name="mfd_iosc_link" value="{$setting.mfd.iosc.link}" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+								   <span class="grey">最新下载更新连接！</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="paddingT15">更新描述:</td>
+								<td class="paddingT15 wordSpacing5">
+									<textarea rows="13" cols="70" name="mfd_iosc_description">{$setting.mfd.iosc.description}</textarea> 
+									&nbsp;&nbsp;&nbsp;&nbsp;
+								   <span class="grey">每次app更新时会提示此次更新的内容！</span>
+								</td>
+							</tr>
+
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="paddingT15">IOS AppStore版</td>
+					<td class="paddingT15 wordSpacing5">
+					</td>
+				</tr>
+				<tr>
+					<td class="paddingT15"></td>
+					<td class="paddingT15 wordSpacing5">
+						<table>
+							<tr>
+								<td class="paddingT15">最新版本号:</td>
+								<td class="paddingT15 wordSpacing5">
+									<input type="text" name="mfd_ioss_version" value="{$setting.mfd.ioss.version}" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+								   <span class="grey">每次app更新时请在这里更新最新的app版本号！</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="paddingT15">是否强制更新:</td>
+								<td class="paddingT15 wordSpacing5">
+								   <input type="radio"  name="mfd_ioss_update" {if $setting.mfd.ioss.if_update}checked{/if} value="1" />
+								   <label>{$lang.yes}</label>
+								   <input type="radio"  name="mfd_ioss_update" {if !$setting.mfd.ioss.if_update}checked{/if} value="0" />
+								   <label>{$lang.no}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								   <span class="grey">如过选择当前版本强制更新，则app会强制用户更新到最新版本！</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="paddingT15">更新连接:</td>
+								<td class="paddingT15 wordSpacing5">
+									<input class="infoTableInput" type="text" name="mfd_ioss_link" value="{$setting.mfd.ioss.link}" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+								   <span class="grey">最新下载更新连接！</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="paddingT15">更新描述:</td>
+								<td class="paddingT15 wordSpacing5">
+									<textarea rows="13" cols="70" name="mfd_ioss_description">{$setting.mfd.ioss.description}</textarea> 
+									&nbsp;&nbsp;&nbsp;&nbsp;
+								   <span class="grey">每次app更新时会提示此次更新的内容！</span>
+								</td>
+							</tr>
+
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="paddingT15">安卓更新设置</td>
+					<td class="paddingT15 wordSpacing5">
+					</td>
+				</tr>
+				<tr>
+					<th class="paddingT15"></th>
+					<td class="paddingT15 wordSpacing5">
+						<table>
+							<tr>
+								<td class="paddingT15">最新版本号:</td>
+								<td class="paddingT15 wordSpacing5">
+									<input type="text" name="mfd_android_version" value="{$setting.mfd.android.version}" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+								   <span class="grey">每次app更新时请在这里更新最新的app版本号！</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="paddingT15">是否强制更新:</td>
+								<td class="paddingT15 wordSpacing5">
+								   <input type="radio"  name="mfd_android_update" {if $setting.mfd.android.if_update}checked{/if} value="1" />
+								   <label>{$lang.yes}</label>
+								   <input type="radio"  name="mfd_android_update" {if !$setting.mfd.android.if_update}checked{/if} value="0" />
+								   <label>{$lang.no}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								   <span class="grey">如过选择当前版本强制更新，则app会强制用户更新到最新版本！</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="paddingT15">更新连接:</td>
+								<td class="paddingT15 wordSpacing5">
+									<input class="infoTableInput" type="text" name="mfd_android_link" value="{$setting.mfd.android.link}" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+								   <span class="grey">最新下载更新连接！</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="paddingT15">更新描述:</td>
+								<td class="paddingT15 wordSpacing5">
+									<textarea rows="13" cols="70" name="mfd_android_description">{$setting.mfd.android.description}</textarea> 
+									&nbsp;&nbsp;&nbsp;&nbsp;
+								   <span class="grey">每次app更新时会提示此次更新的内容！</span>
+								</td>
+							</tr>
+
+						</table>
+					</td>
+				</tr>
+				<tr>
+                <th></th>
+                <td class="ptb20"><input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                    <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />        
+                </td>
+                </tr>
+			</table>
+		
+	</div>
+	<div class="clear"></div>
+</div>
+
+</form>
+
+{include file="footer.html"}

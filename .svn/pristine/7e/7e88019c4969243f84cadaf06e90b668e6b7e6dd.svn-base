@@ -1,0 +1,71 @@
+{include file=../user/member.header.html}
+<div class="w">
+    <div class="AreaBox clearfix">
+        {include file=../user/member.menu.html}
+
+        <div class="con">
+            <h2 class="tit"> 我的量体<font class="grey">({$page_info.item_count})</font></h2>
+            {if $figures}
+            <div class="ltData">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tbody><tr>
+                 <th width="15%" style="text-align:center; padding:0;">编号</th>
+                 <th width="15%">创建日期</th>
+                 <th width="15%">裁缝</th>
+                 <th width="20%">别名</th>
+                 <th width="20%">备注</th>
+                 <th width="25%">操作</th>
+                </tr>
+                      
+                <!--{foreach from=$figures item=figure}-->
+                <tr>
+                 <td style="text-align:center; padding:0;">{$figure.figure_sn}</td>
+                 <td>{$figure.lasttime|date:Y-m-d H:i}</td>
+                 <td>{$figure.owner_name}</td>
+                 <td>{$figure.alias}</td>
+                 <td>{$figure.remark}</td>
+                 <td><a href="#">查看</a></td>
+                </tr>
+                
+                <tr style="display:none">
+                 <td style="border-right:none; font-size:1em;  background:#f3f3f3;" colspan="6">
+                   <div class="dataShow clearfix">
+                   <ul>
+                    <!--{foreach from=$positions item=position key=k}-->
+                       {if $position.isshow}
+                        <li>
+                        <span>{$position.zname}：</span>
+                        <font>{$figure[$k]}</font>
+                        </li>
+                        {/if}
+                    <!--{/foreach}-->
+                   </ul>                     
+                 </div> 
+                 </td>
+                </tr>
+               <!--{/foreach}-->
+              </tbody>
+            </table>
+            </div>
+            {else}
+            <div class="myddts">还没有量体数据</div>
+            {/if}
+            <!--用户中心分页开始-->
+            <div class="hyzx_fy clearfix">{if $figures}{include file=../user/member.page.bottom.html}{/if}</div>
+            <!--用户中心分页结束-->
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+//关注操作 - 验证登录
+function unfollow(fuid){
+      $.getJSON('/ajax-ajaxUnfollow.html', {uid:fuid}, function(result){
+          if(result.status == 1){
+              window.location.reload();
+          }else{
+              msg(result.msg);
+          }
+      });
+}
+</script>
+{include file="../user/footer.html"}

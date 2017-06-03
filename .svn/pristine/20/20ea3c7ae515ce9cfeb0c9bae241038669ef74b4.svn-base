@@ -1,0 +1,90 @@
+{include file=../user/member.header.html}
+   <div class="w">
+    <div class="AreaBox clearfix">
+        {include file=../user/member.menu.html}
+
+    <div class="con">
+        <h2 class="tit">当前申请<a href="javascript:applyCaigou()">申请采购</a></h2>
+        <div class="caigou">
+        <!--{if $store_fabric}-->
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <th>面料号</th>
+                <th>数量（米）</th>
+                <th>备注</th>
+                <th>交货日期</th>
+                <th>状态</th>
+              </tr>
+              <!--{foreach from=$store_fabric item=sf}-->
+              <tr>
+                <td>{$sf.goods_sn}</td>
+                <td>{$sf.num}</td>
+                <td>{$sf.description}</td>
+                <td>{$sf.date}</td>
+                <td><font>{$sf.status_name}</td>
+              </tr>
+            <!--{/foreach}-->
+            </table>
+            <div class="area">
+           <!--用户中心分页开始--> 
+           <div class="hyzx_fy clearfix">
+            <div>
+              {include file="../user/member.page.bottom.html"}
+             </div>
+           </div>  
+           <!--用户中心分页结束-->
+            </div>
+          <!--{else}--> 
+                       <div class="noRecord">
+              您目前还没有采购记录<input type="button" value="申请采购" onclick="applyCaigou()" />
+            </div>
+          <!--{/if}-->
+            <div class="myForm" style="display:none">
+            <form method="post" id="fabric_form" onsubmit="return validate()">
+            <div class="item fl" style="width:120px">
+                <div class="t"><i>*</i>选择面料号：</div>
+               <input type="text" value="{$smarty.get.goods_sn|escape}" size="14" class="txt" data-type="goods_sn" id="goods_sn" name="goods_sn" style="width:100px;">
+            </div>
+            <div class="item fl" style="width:140px">
+                <div class="t"><i>*</i>面料数量：</div>
+                <input type="text" class="txt" size="10" data-type="num" id="num" name="num" data-tip="面料数量" style="width:84px;"/> 米
+            </div>
+            <div class="item" style="clear:both">
+                <div class="t"><i>*</i>交货日期：</div>
+                <input type="text" class="txt Wdate" name="date" id="date" data-type="required" data-tip="交货日期" onClick="WdatePicker({minDate:'%y-%M-{%d+1}'})" />
+            </div>
+            <div class="item">
+                <div class="t"><i>*</i>联系人：</div>
+                <input type="text" class="txt" data-type="required" id="owner_name" name="owner_name" data-tip="联系人" />
+            </div>
+            <div class="item">
+                <div class="t"><i>*</i>联系电话：</div>
+                <input type="text" class="txt" name="phone" id="phone" data-type="phone" data-tip="联系人" />
+            </div>
+            <div class="item">
+                <div class="t">备注：</div>
+                <textarea maxlength="30" name="description" id="description" placeholder="30字以内"></textarea>
+            </div>
+            <div class="error" id="error"></div>
+            <input type="button" value="提交申请" class="btn" onclick="applyCaigou_submit()" />
+            </form>
+        </div>
+
+
+
+
+        </div>
+    </div>
+
+
+   </div>
+</div>
+
+<script  type="text/javascript" src="static/js/usercenter.js"></script>
+<script>
+if('{$smarty.get.goods_sn|escape}'){
+  applyCaigou()
+}
+
+</script>
+ {include file="../user/footer.html"}

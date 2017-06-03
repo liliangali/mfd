@@ -1,0 +1,87 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+  <li>
+    <li><span>管理</span></li>
+	<!-- <li><a class="btn1" href="index.php?app=shopowner&act=add">添加</a></li> -->
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="shopowner" />
+          <input type="hidden" name="act" value="index" />
+          <select class="querySelect" name="field_name">{html_options options=$query_fields selected=$smarty.get.field_name}
+          </select>
+          <input class="queryInput" type="text" name="field_value" value="{$smarty.get.field_value|escape}" />
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=shopowner">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+   
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>店长名称</td>
+      <td>所属门店</td>
+      <td><span ectype="order_by" fieldname="user_name">性别</span></td>
+      <td>联系电话</td>
+       <td >是否单独承接业务</td>
+      <td><span ectype="order_by" fieldname="state">状态</span></td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+  
+    <!--{foreach from=$liangti item=dz}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$serve.idserve}" /></td>
+      <td>{$dz.real_name}</td>
+      <td>{$dz.ctm.serve_name}</td>
+      {if $dz.gender==1}
+      <td>男</td>
+      {elseif $dz.gender==2}
+      <td>女</td>
+      {else}<td>保密</td>{/if}
+      <td>{$dz.user_name}</td>
+      {if $dz.alone==1}
+      <td>是</td>
+      {else}
+      <td>否</td>
+      {/if}
+      <td>
+      {if $dz.state_info==0}
+      	未审核
+      {elseif $dz.state_info==1}
+                     正常
+      {elseif $dz.state_info==2}
+                   注销
+      {/if}
+     </td>
+      
+      <td class="handler">
+      <span style="width: 100px;text-align:center">
+      <a href="index.php?app=shopowner&amp;act=edit&amp;id={$dz.user_id}">编辑</a>
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+</div>
+{include file="footer.html"}

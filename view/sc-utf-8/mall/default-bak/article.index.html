@@ -1,0 +1,49 @@
+{include file=header.html}
+
+<div class="ur_here2" style="width:1200px;">{include file=curlocal.html}</div>
+
+<div class="content" style="margin-top:0; width:1200px;">
+
+    <div class="art_nav">
+    
+        <dl>
+          <dt>{$lang.acategory}</dt>
+            <!-- {foreach from=$acategories item=acategory} -->
+            <dd><a href="{url app=article&cate_id=$acategory.cate_id}">{$acategory.cate_name|escape}</a></dd>
+            <!-- {/foreach} -->
+        </dl>
+        
+        <dl>
+          <dt>{$lang.new_article}</dt>
+            <!-- {foreach from=$new_articles item=new_article} -->
+            <dd><a {if $new_article.link}target="_blank"{/if} href="{url app=article&act=view&article_id=$new_article.article_id}">{$new_article.title|escape}</a></dd>
+            <!-- {foreachelse} -->
+            <dd>{$lang.no_new_article}</dd>
+            <!-- {/foreach} -->            
+        </dl>
+    
+    </div>
+
+    <div class="right2" style="width:984px;">
+    
+            <table class="art_list">
+                <!-- {foreach from=$articles item=article} -->
+                <tr>
+                    <th><a {if $article.link}target="_blank"{/if} href="{url app=article&act=view&article_id=$article.article_id}" class="lebioa">{$article.title|escape}</a></td>
+                    <td>{$article.add_time|date:Y-m-d H:i}</th>
+                </tr>
+                <!-- {foreachelse} -->
+                <tr>
+                  <th colspan="2">{$lang.no_records}</th>
+                </tr>
+                <!-- {/foreach} -->
+            </table>
+
+        {include file=page.bottom.html}
+        
+    </div>
+    <p class="clear"></p>
+    
+</div>
+
+{include file="footer.html"}

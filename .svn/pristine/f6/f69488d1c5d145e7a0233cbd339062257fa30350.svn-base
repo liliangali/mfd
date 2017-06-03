@@ -1,0 +1,11 @@
+<div class="main_visual">
+ <!--{if !$widget_data}-->
+    <div style="padding:10px; text-align:center;">请配置</div>
+    <!--{/if}-->
+        <ul>		
+            <!-- {foreach from=$widget_data item=image name=fe_image} -->			
+            	<li style=" background:url({$image.ad_image_url}) no-repeat 50% top;"><div class="banclj"><a href="{$image.ad_link_url}" onFocus="this.blur();" target="_blank">&nbsp;</a></div></li>
+            <!-- {/foreach} -->
+        </ul>
+
+ </div>

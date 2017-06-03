@@ -1,0 +1,14 @@
+.jtmain{width:1128px;margin:0 auto;}
+.jtcolumn{width:895px;margin:0 auto; text-align:center;color:#666;margin-top:80px;}
+.jtcolumn h1{color:#333;font-size:24px;font-weight:normal;}
+.jtword{line-height:24px;margin-top:16px;}
+.jtul{margin-top:64px;margin-left:-30px;}
+.jtul li{float:left;width:336px;margin-left:30px;margin-bottom:80px; padding:10px; overflow:hidden;}
+.jtul li:hover {}
+.jtul li .zjtjlbtu {width:336px;height:252px; text-align:center; overflow:hidden; transition: box-shadow 0.5s linear 0s;}
+.jtul li .zjtjlbtu:hover {box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);}
+.jtul li .zjtjlbtu img { max-width:100%; max-height:100%; transition: all 0.5s;}
+.jtul li .zjtjlbtu img:hover {transform: scale(1.1);}
+.jtul li .jttitle{font-size:16px;color:#333;height:23px; overflow:hidden;margin-top:16px;}
+.jtul li .jttada{font-size:14px;color:#aeaeae;}
+.jtul li .jtlistnr{font-size:14px;color:#999;line-height:22px;padding-top:10px;max-height:70px; overflow:hidden;}

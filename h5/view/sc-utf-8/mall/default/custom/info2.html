@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>{$title}</title>
+<link type="text/css" href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link type="text/css" href="http://r.cotte.cn/cotte/wap/css/details.css" rel="stylesheet" />
+<!-- <link href="http://r.cotte.cn/cotte/wap/css/style.css" rel="stylesheet" /> -->
+<script>
+	function showHide()
+	{
+		var oDiv=document.getElementById('xxdown');	
+		
+		if(oDiv.style.display=='block')
+		{
+			oDiv.style.display='none';		
+		}
+		else
+		{
+			oDiv.style.display='block';
+		}
+	}
+</script>
+</head>
+<body>
+<div class="main">
+  <!--头部开始-->
+  <div class="fh_sc">
+     <p class="last_step" onClick="history.go(-1)"></p>
+     <p class="collection" onClick="showHide()"></p>
+     <div id="xxdown">
+     	<p class="xqsj"></p>
+     	<ul>
+        	<li><a href="/" target="_blank" class="xqindex">首页</a></li>
+            <li><a href="/my_messages-index.html" target="_blank" class="xqdope">消息</a></li>
+            <li style="border-bottom:none;" ><a href="###" class="xqservice" onclick="phone('400-169-8836')">客服</a></li>
+        </ul>
+     </div>
+  </div>
+  <!--头部结束-->  
+  
+  <div class="xiangc">
+  
+     <div id="slider" class="swipe">
+      <div class="swipe-wrap">
+      {foreach from=$info.result.data.suit_info.gallery_list item=item}
+        <div><a href="###"><img src="{$item.source_img}" /></a></div>
+       {/foreach}  
+      </div>
+     <div class="swipe-btn"><span class="cur"></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    
+    <h4><a href="#">{$title}</a></h4>
+    {if $info.result.data.suit_info.woman_price}
+    <h5>￥{$info.result.data.suit_info.woman_price}</h5>
+    <h5>￥{$info.result.data.suit_info.price}</h5>
+    {else}
+     <h5>￥{$info.result.data.suit_info.price}</h5>
+    {/if}
+    
+  </div>
+  
+  
+   <ul class="plscgwd">
+    <li class="li_1" onClick="share()"><p class="p1"></p><p class="p2">{$info.result.data.comment_num}分享</p></li>
+    <li class="li_2"><p class="p1"></p><p class="p2">加入购物车</p></li>
+    <li class="li_3"><p class="p1"></p><p class="p2">{if $info.result.data.is_collect}已收藏{else}收藏{/if}</p></li>
+   </ul>
+   
+   
+   <div class="gyxinxi">
+     <h1 class="ymbt1">工艺信息</h1>
+     <div class="gyxxbg">
+         <p>
+         {foreach from=$info.result.data.suit_info.points_arr item=item}
+       {$item}
+       <br/>
+       {/foreach}
+       </p>    
+     </div>
+   </div>
+  
+    <div class="gyxinxi">
+     <h1 class="ymbt1">面料介绍</h1>
+     <div class="mljs" style='background: rgba(0, 0, 0, 0) url("{$info.result.data.list_cus.0.fabric_img}") no-repeat scroll center top / 100% 100%;''>
+       <div class="mlbg">
+         <h1><span>mfd</span><br/>高端定制优选面料</h1>
+         <h2>{$info.result.data.list_cus.0.cate_name}</h2>
+         <p>
+         风格: {$info.result.data.list_cus.0.style}<br/>
+         面料编号: {$info.result.data.list_cus.0.fabric}<br/>
+         颜色: {$info.result.data.list_cus.0.yanse}<br/>
+         花型: {$info.result.data.list_cus.0.huaxing}<br/>
+         成分: {$info.result.data.list_cus.0.chengfen}
+         </p>
+       </div>
+     </div>
+   </div>   
+   
+   
+   <div class="cmb_box">
+     <h1 class="ymbt1">尺寸指南</h1>
+     {foreach from=$info.result.data.size_img item=item}
+     <p><img src="{$item}"></p>
+     {/foreach}
+   </div>	
+   
+   <div class="mlby">
+    <h1 class="ymbt1">面料保养</h1>
+    <div class="wzword">
+    	<h4>{$info.result.data.suit_info.fabices}</h4>
+        <p>1、高档全毛料或毛与其他纤维混纺的衣物，建议干洗</p>
+        <p>2、建议采用羊毛专用洗涤剂，挤压洗，忌拧绞，挤压除水，平摊阴干或着半悬挂阴干，勿暴晒</p>
+        <p>3、湿态整形或半干时整形最佳，可除皱纹</p>
+        <p>4、切记用搓衣板搓洗</p>
+    </div>
+   </div>
+        
+   <div class="mlby">
+    <h1 class="ymbt1">定制说明</h1>
+    <p><img src="http://r.cotte.cn/cotte/wap/images/dzsm.jpg"></p>
+   </div>
+ 
+ <div class="xgdp_box">
+  <h1>相关搭配</h1>
+  <ul>
+  
+   {foreach from=$info.result.data.suit_link item=item}
+   <li>
+    <p class="p1"><a href="{link app=custom act=goodsInfo}?id={$item.id}"><img src="{$item.image}"></a></p>
+    {if $item.woman_price}
+    <p class="p2"><span>¥{$item.woman_price}</span><del>¥{$item.price}</del></p>
+    {else}
+     <p class="p2">¥{$item.price}</p>
+    {/if}
+    
+   </li>
+   {/foreach}
+  </ul>
+ </div>
+ 
+ <ul class="tail" id="tail">
+  <li class="li_1" onClick="share()"><a href="###"></a></li>
+  <li class="li_2"><a href="{link app=custom act=preCart arg=$info.result.data.suit_info.id}"></a></li>
+  <li class="li_3"><a href="###"></a></li>
+ </ul>
+    
+</div>
+
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script src="http://r.cotte.cn/global/jquery.swipe.js"></script>
+<script src="http://r.cotte.cn/global/luck/mobile/luck.js"></script>
+<script>
+function sina(){
+	window.open('http://service.weibo.com/share/share.php?url='+location.href+'&title='+document.title+'&pic='+$('img')[0].src)
+}
+function qzone(){
+	window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+location.href+'&title='+document.title+'&pics='+$('img')[0].src)
+}
+
+function sqq(){
+	window.open('http://connect.qq.com/widget/shareqq/index.html?url='+location.href+'&title='+document.title+'&pics='+$('img')[0].src)
+}
+
+function share(){
+	luck.open({
+		title: ['分享','text-align:left'],
+		content: '<div class="btnBox"><a title="QQ空间"" class="cotte_qzone" onclick="qzone()"></a><a title="qq好友" class="cotte_sqq" onclick="sqq()"></a><a title="新浪" class="cotte_tsina" onclick="sina()"></a></div>'
+	});	
+}
+var _id = {$info.result.data.suit_info.id};
+$(".li_3").click(function(res){
+	$.post('/custom-collect.html',{type:'goods',id:_id},function(res){
+	    if(res.done==true){
+	    	$(".li_3 .p2").html("已收藏");
+	    }
+	    
+	    luck.open({content:res.msg,time:1500});
+	},"json");
+})
+$(".li_2").click(function(res){
+	window.location.href = "{link app=custom act=preCart arg=$info.result.data.suit_info.id}";    
+})
+
+function phone(date){
+	 luck.open({
+		  content: date,
+		  btn: [
+		    '取消',
+		    '呼叫'
+		  ],
+		  yes: function () {
+			  luck.close()
+		  },
+		  no: function () {
+			  window.location.href='tel:'+date;
+		  }
+		});
+}
+
+//页面滚动效果
+Swipe(document.getElementById('slider'), {
+	continuous: false,
+	//auto:1000,
+	callback: function(index, element) {
+		$('.swipe-btn span').eq(index).addClass('cur').siblings().removeClass();
+	} 
+});
+
+var tim=null,nt=$('.plscgwd').offset().top;
+$(window).scroll(function(){
+	if(tim){clearTimeout(tim)}
+	tim=setTimeout(function(){
+		var st=$(window).scrollTop();	
+		if(st>nt){
+			$('#tail').addClass('active');	
+		}else{
+			$('#tail').removeClass('active');		
+		}
+	},120)
+})
+document.ontouchstart=function(e){
+    //e.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等  
+    var touch = e.touches[0]; //获取第一个触点  
+    var y = Number(touch.pageY); //页面触点Y坐标  
+    //记录触点初始位置  
+    startY = y;  
+}
+document.ontouchmove=function(e){		
+	var touch = e.touches[0]; //获取第一个触点    
+    var y = Number(touch.pageY); 
+	var n=10//防止误滑动值
+	//判断滑动方向  
+    if (startY-y>n) {  
+		$('#tail').removeClass('active');
+    }else if(y-startY>n){
+		//下
+	}  
+}
+</script>
+</body>
+</html>

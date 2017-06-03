@@ -1,0 +1,336 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#fabric_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+//         onfocusout : false,
+        onkeyup    : false,
+        rules : {
+            brand_name : {
+                required : true,
+                remote   : {
+                    url :'index.php?app=fabric_brand&act=ajax_check_brand',
+                    type:'get',
+                    data:{
+                        id:function()
+                        {
+                        	return $("#brand_id").val();
+                        }
+                    }, 
+                },
+            },
+            ve : {
+            	required : true
+            },
+    /*         region_id : {
+            	required : true,
+            	min : 1
+            }, */
+            uprice : {
+            	required : true,
+            	number : true
+            },
+            fprice : {
+            	required : true,
+            	number : true
+            },
+            sort_order : {
+                number   : true,
+            },
+            // letter_retrieval:{
+            //     onlyletter : true,
+            // }
+
+        },
+        messages : {
+            brand_name : {
+                required : '!该名称不能为空',
+                remote:'该名称已被使用，请填写其他品牌名称'
+            },
+            ve : {
+                required : '!属性值不能为空',
+            },
+  /*           region_id : {
+                required : '该分类不能为空',
+                min : '请选择分类'
+            }, */
+            uprice  : {
+            	required : '!请输入单价',
+                number   : '{$lang.number_only}'
+            },
+            fprice  : {
+            	required : '!请输入固定价',
+                number   : '{$lang.number_only}'
+            },
+            sort_order  : {
+                number   : '{$lang.number_only}'
+            },
+            // letter_retrieval:{
+            // }
+        }
+    });
+});
+jQuery.validator.addMethod("onlyletter", function(value, element) {   
+        return /^[A-Za-z]$/.test(value)
+    }, "请填写属性名称第一个字的拼音首字母");
+</script>
+<div id="rightTop">
+    
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=fabric_brand">{$lang.manage}</a></li>
+        <li><span>{$lang.add}</span></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=base_diy">{$lang.bset}</a></li>
+    </ul>
+</div>
+{$build_editor}
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="fabric_form">
+        <table class="infoTable">
+        
+                   <tr>
+                <th class="paddingT15">
+                    *属性名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                	<input class="infoTableInput" id="brand_name" type="text" name="brand_name" value="{$brand.cate_name|escape}"/>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">
+                    别名(多个别名<i style="color: red;font-size: larger">英文</i>逗号隔开):</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="sname" type="text" name="sname" value="{$brand.sname|escape}"/>
+                </td>
+            </tr>
+            
+                       <tr>
+                <th class="paddingT15">
+                   *属性值:</th>
+                <td class="paddingT15 wordSpacing5">
+                	<input class="infoTableInput" id="ve" type="text" name="ve" value="{$brand.ve|escape}"/>
+                </td>
+            </tr>
+        
+                   <tr>
+                <th class="paddingT15">
+                   *上级分类:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <select name="region_id" id="region_id" class="sgcategory" onchange="get_brands(this)">
+                           <option value="0">{$lang.select_pls}</option>
+                           {html_options options=$region selected=$pid}
+                   	</select><label class="field_notice"></label>
+                </td>
+            </tr>
+            
+            
+                        
+            
+                       <tr>
+                <th class="paddingT15">
+                    *单价:</th>
+                <td class="paddingT15 wordSpacing5">
+                	<input class="infoTableInput" id="uprice" type="text" name="uprice" value="{$brand.uprice}"/>
+                </td>
+            </tr>
+            
+                        
+            
+                       <tr>
+                <th class="paddingT15">
+                    *固定价:</th>
+                <td class="paddingT15 wordSpacing5">
+                	<input class="infoTableInput" id="fprice" type="text" name="fprice" value="{$brand.fprice}"/>
+                </td>
+            </tr>
+                        
+
+ 			<tr>
+            <th>属性缩略图:</th>
+            <td height="100" valign="top">
+            	 {input_img name="small_img" value="$brand.small_img" dir="diy"}
+            </td>
+            </tr>
+            
+             <tr>
+            <th>属性大图:</th>
+            <td height="100" valign="top">
+            	 {input_img name="source_img" value="$brand.source_img" dir="diy"}
+            </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="sort_order" type="text" name="sort_order" value="{$brand.sort_order|default:255}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    字母检索:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="letter_retrieval" id="letter_retrieval" type="text" name="letter_retrieval" value="{$brand.letter_retrieval}" />
+                    <label for="if_show">请填写属性名称第一个字的拼音首字母</label>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">
+                    功效描述(不同犬期对应的功效描述):</th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea name="gongxiao_content">{$brand.gongxiao_content}</textarea>
+                </td>
+            </tr>
+            
+              <tr>
+                <th class="paddingT15">
+                    <label for="if_show">{$lang.if_show}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                 {if $brand}
+                {html_radios name="if_show" options=$show_items checked=$brand.if_show}
+                {else}
+                <label>                	
+                	
+                  <input type="radio" name="if_show" value="1" checked="checked" />
+                  {$lang.yes}</label>
+                <label>
+                  <input type="radio" name="if_show" value="0" />
+                  {$lang.no}</label> 
+                  {/if}
+              </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">{$lang.if_def}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                 {if $brand}
+                {html_radios name="is_def" options=$def_items checked=$brand.is_def}
+                {else}
+                <label>                	
+                  <input type="radio" name="is_def" value="1" checked="checked" />
+                  {$lang.yes}</label>
+                <label>
+                  <input type="radio" name="is_def" value="0" />
+                  {$lang.no}</label> 
+                  {/if}
+                 </td>
+            </tr>
+           
+           <tr>
+                <th class="paddingT15">
+                    <label for="if_show">是否多选:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                 {if $brand}
+                {html_radios name="is_box" options=$box_items checked=$brand.is_box}
+                {else}
+                <label>                	
+                	
+                  <input type="radio" name="is_box" value="1" checked="checked" />
+                  {$lang.yes}</label>
+                <label>
+                  <input type="radio" name="is_box" value="0" />
+                  {$lang.no}</label> 
+                  {/if}
+              </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">是否常用:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                 {if $brand}
+                {html_radios name="if_common" options=$box_items checked=$brand.if_common}
+                {else}
+                <label>                 
+                    
+                  <input type="radio" name="if_common" value="1" checked="checked" />
+                  {$lang.yes}</label>
+                <label>
+                  <input type="radio" name="if_common" value="0" />
+                  {$lang.no}</label> 
+                  {/if}
+              </td>
+            </tr>
+            
+             <tr>
+                <th class="paddingT15">
+                    <label for="if_show">是否独立功效(当选择且仅选择此功效的时候,基料价格为0,功效占比100%):</label></th>
+                <td class="paddingT15 wordSpacing5">
+                 {if $brand}
+                {html_radios name="is_alone" options=$alone_items checked=$brand.is_alone}
+                {else}
+                <label>                	
+                	
+                  <input type="radio" name="is_alone" value="1"  />
+                  {$lang.yes}</label>
+                <label>
+                  <input type="radio" name="is_alone" value="0" checked="checked" />
+                  {$lang.no}</label> 
+                  {/if}
+            </tr>
+
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">是否试吃属性:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    {if $brand}
+                    {html_radios name="is_try" options=$alone_items checked=$brand.is_try}
+                    {else}
+                    <label>
+                        <input type="radio" name="is_try" value="1"  checked="checked" />
+                        {$lang.yes}</label>
+                    <label>
+                        <input type="radio" name="is_try" value="0"  />
+                        {$lang.no}</label>
+                    {/if}
+            </tr>
+
+
+
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">犬种大小:</label></th>
+                <td class="paddingT15 wordSpacing5">
+
+                    <label>
+                        <input type="radio" name="ftype" value="1" {if $brand.ftype eq 1} checked="checked"{/if} />
+                        大型犬</label>
+                    <label>
+                        <input type="radio" name="ftype" value="2" {if $brand.ftype eq 2} checked="checked"{/if} />
+                        中型犬
+                    </label>
+                    <label>
+                        <input type="radio" name="ftype" value="3" {if $brand.ftype eq 3} checked="checked"{/if} />
+                        小型犬
+                    </label>
+                </td>
+            </tr>
+
+
+            
+<!--                
+            <tr>
+                <th class="paddingT15">
+                    <label for="dis">品牌描述:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="content" name="content" style="width:650px;height:400px;">{$brand.content|escape}</textarea>
+                </td>
+            </tr> -->
+            
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input type="hidden" class='brand_id' name="brand_id" id="brand_id" value="{$brand.cate_id}"/>
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

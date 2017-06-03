@@ -1,0 +1,81 @@
+{include file="header.html"}
+<script src="templates/js/jquery.imagePreview.1.0.js"></script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>轮播图列表</span></li>
+        <li><a class="btn1" href="index.php?app=shuffling&amp;act=add">添加轮播图</a></li>
+        <li><a class="btn1" href="index.php?app=shuffling&amp;act=group_list">轮播图分组</a></li>
+        <li><a class="btn1" href="index.php?app=shuffling&amp;act=add_group">添加轮播图分组</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+
+            <p>发往平台:  </p> <span <!-- {if !$smarty.get.site} -->class='on'<!-- {/if} -->" attr_val="0" style="cursor:pointer">全部</span>
+             <!-- {foreach from=$sites key=k item=site} -->
+                              <span <!-- {if $smarty.get.site eq $k} -->class='on'<!-- {/if} --> attr_val="{$k}" style="cursor:pointer">{$site}</span>
+                <!-- {/foreach} -->
+            
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+	<table width="100%" cellspacing="0" class="dataTable">
+		<!--{if $items}-->
+		<tr class="tatr1">
+		    <td>ID</td>
+			<td>轮播图名称</td>
+			<td>图片</td>
+			<td>轮播图tiltle</td>
+            <td>链接</td>
+            <td>平台</td>
+            <td>分组</td>
+            <td>排序</td>
+            <td>显示</td>
+            <td>修改时间</td>
+			
+			<td class="handler">{$lang.handler}</td>
+		</tr>
+		<!--{/if}-->
+		<!--{foreach from=$items item=list}-->
+		<tr class="tatr2">
+			<td>{$list.id}</td>
+            <td>{$list.name}</td>
+            <td><a class='preview' href="javascript:void(0)" attr_src="{$list.img}" attr_hight="400" attr_width="600" title="{$list.name}"><img src="{$list.img}" height="60" /></a></td>
+            <td>{$list.title}</td>
+            <td>{$list.link_url}</td>
+            <td>{$list.site}</td>
+            <td>{$list.groups}</td>
+            <td>{$list.sort_order}</td>
+            {if $list.status==0}<td>否</td>{else}<td>是</td>{/if}
+            <td><!-- {if $list.edit_time} -->{$list.edit_time|date:complete}<!-- {else} -->{$list.add_time|date:complete}<!-- {/if} --></td>
+			<td class="handler" >
+				<a href="index.php?app=shuffling&amp;act=edit&amp;id={$list.id}">编辑</a>|
+				<a href="javascript:;" onclick="if(confirm('确定删除吗？')) location.href='index.php?app=shuffling&amp;act=drop&amp;id={$list.id}'">删除</a>
+			</td>
+		</tr>
+		<!--{foreachelse}-->
+		<tr class="no_data">
+			<td colspan="6">{$lang.no_data}</td>
+		</tr>
+		<!--{/foreach}-->
+	</table>
+	<!--{if $items}-->
+	<div id="dataFuncs">
+		<div class="pageLinks">{include file=page.bottom.html}</div>
+		<div class="clear"></div>
+	</div>
+  <!--{/if}-->
+</div>
+<script type="text/javascript">
+$(function(){
+	$("a.preview").preview()   	
+	$('.fontl span').click(function(){
+	    var site=$(this).attr('attr_val');
+	    var url="index.php?app=shuffling&act=index&site="+site;
+	    window.location=url;
+	})
+})
+
+</script>
+{include file="footer.html"}

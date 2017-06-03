@@ -1,0 +1,5 @@
+Mon, 06 Feb 2017 15:57:54 +0800	[2]strstr(): Empty needle	/eccore/admin.php	88
+Fri, 10 Feb 2017 08:40:24 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:SELECT *,goods_type_spec.id FROM cf_goods_type_spec goods_type_spec WHERE type_id = 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Tue, 28 Feb 2017 09:37:18 +0800	[2]print_r() expects parameter 2 to be boolean, array given	/includes/functions.lib.php	1368

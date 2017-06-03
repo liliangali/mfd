@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>coolette mobile</title>
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+</head>
+
+<body>
+<script>window.onunload=function(){};</script>
+
+<div class="main"> 
+ <div class="bzcmsg">
+ <form method="post" data-id="5">
+  <p class="qsrsj">请输入手机号或姓名查询</p>
+  <div class="sjhmcx jj_box"><input type="text" value="{$data.phone}" name="data[phone]" id="sc_phone" class="jj_1 input_1"><input type="button" id="sc" value="查询" class="jj_1 input_2"></div>
+  <div id="historyList">
+  </div>
+  <input type="text" style="display:none" />
+  <input type="hidden" name="data[history_id]" value="{$data.history_id}" id="history_id" />
+  </form>
+ </div>
+</div>
+<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+
+<script type="text/javascript">
+
+function getHistorys(phone,_id){
+    $.post("{link app=cart act=meaHistory}",{phone:phone,id:_id}, function(res){
+        var res = $.parseJSON(res);
+        if(res.done == true){
+            $("#historyList").html(res.retval.content);
+            $('.history_li').unbind().bind('click',function(){
+                $("#history_id").val($(this).data('id'));
+                $('.history_li').removeClass('on');
+                $(this).addClass('on');
+                
+                var _oj = $(this).parents('form');
+                meaSave(_oj)
+            })
+        }else{
+        	_alert(res.msg)
+        }
+    })
+}
+
+$(function(){
+    var _id = "{$data.history_id}";
+    var phone = "{$data.phone}"; 
+    if(phone && _id)
+    getHistorys(phone,_id);
+    
+})
+
+$('#sc_phone').on('keydown',function(e){
+            var _val = this.value
+            if(e.keyCode==13){
+            	getHistorys(_val)
+            }
+        });
+
+$('#sc').click(function(){
+    var phone = $('#sc_phone').val();
+    getHistorys(phone)
+})
+
+
+function _alert(msg){
+    layer.open({
+        content: '<p style="text-align:center">'+msg+'</p>',
+        btn: ['确定'],
+    }); 
+}
+
+$('.saveMea').unbind().bind('click',function(){
+    var _oj = $(this).parent('form');
+    meaSave(_oj)
+})
+
+function meaSave(_oj){
+    var _id = _oj.data('id');
+    _oj.ajaxSubmit({
+        type:"post",
+        data:{id:_id},
+        dataType:"json",
+        url:"{link app=cart act=meaSave}?time="+ (new Date()).getTime(),
+        //beforeSubmit:function(formData,jqForm,options){return _oj.valid();},
+        success:function (res,statusText) {
+            if(res.done == false){
+                   _alert(res.msg);
+            }else{
+            	history.go(-2)
+            	return false;
+                location.href="{link app=cart act=checkout}";
+            }
+        }
+    });
+}
+
+</script>
+
+</body>
+</html>

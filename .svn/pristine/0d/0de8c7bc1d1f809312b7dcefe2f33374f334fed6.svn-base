@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>{$title}</title>  
+<link href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" type="text/css">
+<link href="http://r.cotte.cn/cotte/wap/css/slx_style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+	<div class="main">	
+		  <!--头部开始-->
+		<div class="topBar">
+			<div class="wrap">
+				<span class="back" onClick="history.go(-1)"></span>
+				<h1>{$title}</h1>
+			</div>  
+			<div class="sta"></div>
+		</div>
+	  <!--头部结束-->
+		<div class="kfxxfk">
+			<ul>
+				<!-- {foreach from=$articles item=article} -->
+				<a href="article-views.html?article_id={$article.article_id}"><li>{$article.title|escape}</li></a>
+				<!-- {foreachelse} -->
+				<li>暂无数据</li>
+				<!-- {/foreach} -->
+			</ul>
+		</div>
+		<p class="clear"></p>
+	</div>
+
+</body>
+</html>

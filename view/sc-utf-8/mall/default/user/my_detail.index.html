@@ -1,0 +1,79 @@
+{include file=member.header.html}
+<div class="container clearfix">
+{include file=member.menu.html}
+ <div class="ucenter_right fr">
+<div class="title"><h2>我的评论</h2></div> 
+
+<!--内容-->
+<!--{if $comment_list}-->
+<!--{foreach from=$comment_list item=item}-->
+<div class="m_ltsj_lb">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <th width="50%" colspan="2">商品信息</th>
+          <th width="25%">购买时间</th>
+          <th width="25%">评价状态</th>
+        </tr>
+        <tr>
+          <td width="10%" class="zbk sptupa"><a href="#"><img src="{$item.goods.goods_image}"></a></td>
+          <td class="ybk"><a href="#">{$item.goods.goods_name}<br/>
+            <span>￥{$item.goods.price}</span></a></td>
+          <td>{$item.order_add_time|date:Y/m/d H:i}</td>
+          <td class="fbpj"><a href="#">查看评价</a>
+            <p class="sjx"></p>
+            <p class="sjb"></p></td>
+        </tr>
+        <tr style="display:none">
+          <td colspan="4" style="background:#fafafa;"><div class="fbpj_pf"> 
+              <!--星级评论打分开始-->
+              <div class="star clearfix"> <span>评分：</span>
+                <ul>
+                    <li <!--{if $item.star >= 1}-->class="on"<!--{/if}--> >1</li>
+                    <li <!--{if $item.star >= 2}-->class="on"<!--{/if}--> >2</li>
+                    <li <!--{if $item.star >= 3}-->class="on"<!--{/if}--> >3</li>
+                    <li <!--{if $item.star >= 4}-->class="on"<!--{/if}--> >4</li>
+                    <li <!--{if $item.star == 5}-->class="on"<!--{/if}--> >5</li>
+                </ul>
+                <span><strong>{$item.star} 分</strong></span> </div>
+              <!--星级评论打分结束-->
+              
+              <p class="star clearfix"><span>心得：</span><span style="width:800px;">{$item.content}</span></p>              
+            </div>
+           </td>
+        </tr>                                 
+      </table>
+    </div>
+<!--{/foreach}-->
+<!--{else}-->
+  <div class="content">
+      <div class="empty_box">您还没有评价过商品，赶快来购物吧！<p><a href="/man.html" class="cc_btn s_btn">商城首页</a><a href="my_favorite.html" class="cc_btn s_btn">我的收藏</a></p></div>
+  </div>
+<!--{/if}-->
+<!--内容 end-->
+
+
+ </div>
+</div>
+
+<script src="../../static/expand/jquery.js"></script>
+<script>
+//发表评价
+$('.m_ltsj_lb a:contains("查看评价")').click(function(){
+	var $this=$(this),obj=$this.parents('tr').next('tr');
+	//obj.find('input[type=text]').attr('disabled',true);
+	//obj.find('.m_baoc').hide();
+	if($this.hasClass('cur')){
+		obj.css('display','none');
+		$this.removeClass('cur');
+	}else{
+		obj.parents('table').find('.show').not(obj).hide()
+		obj.css('display','table-row').addClass('show');
+		$this.parents('table').find('a').not($this).removeClass('cur').end()
+		$this.addClass('cur');
+	};	
+	return false;
+});
+</script>
+
+
+{include file="footer.html"}

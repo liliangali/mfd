@@ -1,0 +1,91 @@
+{include file="header.html"}
+
+<script>
+
+
+
+function del(id){
+	$.ajax({
+		"url":"/admin/index.php",
+		"data": "app=designer&act=del&id=" + id ,
+		"type": "GET",
+		"success": function(res) {
+				if(res.retval='drop_ok'){
+					
+					alert("删除成功");
+				}else{
+					alert("删除失败");
+				}
+				
+				location.reload();
+		}
+	});
+}
+
+
+
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>创业故事列表</span></li>
+
+    <li><a class="btn1" href="index.php?app=designer&amp;act=add">创业盛行一时</a></li>
+  
+  </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="designer" />
+          <input type="hidden" name="act" value="index" />
+         	 中文名:
+          <input class="queryInput" type="text" name="username" value="" />
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+     
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html} </div>
+</div>
+
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <tr class="tatr1">
+    
+      <td width="5%">ID</td>
+      <td>头像</td>
+      <td>中文名</td>
+      <td>排序</td>
+      <td width="22%">链接</td>
+      <td>点击量</td>
+      <td>显示</td>
+      <td>操作</td>
+    </tr>
+
+    <!--{foreach from=$data item=v key=k}-->
+    <tr class="tatr2">
+
+      <td>{$v.id}</td>  
+      <td><a href="{$v.link}" target="_blank"><img src='{$v.photo_url}' width=50 height=50 /></a></td>
+      <td>{$v.username}</td>
+      <td>{$v.l_order}</td>
+      <td>{$v.link}</td>
+      <td>{$v.popularity}</td>
+      <td>{if $v.is_show eq 1}是{else}否{/if}</td>
+      <td>
+      <a href="index.php?app=designer&act=edit&id={$v.id}" >编辑</a>
+        <a href="javascript:void(0);" onclick='del({$v.id});'>删除</a>
+      </td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <div id="dataFuncs">
+    
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+
+{include file="footer.html"}

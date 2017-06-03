@@ -1,0 +1,77 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+    <!--用户中心左菜单部分 START-->
+    {include file = member.menu.html}
+    <!--用户中心左菜单部分 END-->
+    <div class="user_right user_rights fr">
+    	<div class="zztitle">
+        	<div class="donation fl">转赠酷卡</div>
+        </div>
+        <form method="post" action="kuka-getInviteUser.html?sn={$sn}">
+        <div class="retrievals">
+             <input id="sn" name="sncode" value="{$sn}" type="hidden">
+        	<input type="text" class="xbssput" name='keyword' value="{$kw}" value="用户名或手机号" onfocus="if(value=='用户名或手机号') {value=''}" onblur="if (value=='') {value='用户名或手机号'}">
+            <input type="submit" class="xbsssub" value="">
+        </div>
+        </form>
+
+        <ul class="jscent jscents" id="inviterlist">
+           <!--{if $list}-->
+          <!--{foreach from=$list  name=customer key=key item=item}-->
+            <li class="" data-value="{$item.invitee}">
+                <div class="zzkqtx fl"><img src="/public/static/pc/images/other/006.png" width="61" height="61"></div>
+                <div class="zsrlist fl"><span>{$item.nickname}</span><span>{$item.user_name}</span></div>
+              
+            </li>
+             <!--{/foreach}-->
+          <!--{else}-->   
+        <tr>
+          <td>
+            <div class="empty">
+                <div>未匹配到推荐用户数据<br><p><a href="./" class="cc_btn s_btn">麦富迪首页</a></p></div>
+            </div>
+         </td>
+       </tr>
+      <!--{/if}--> 
+        </ul>
+       
+        <div class="qrbutw"><input type="button" value="确认赠送" class="qrbut"></div>
+        
+    </div>
+</div>
+
+
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/global/jquery.swipe.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/user.js"></script>
+
+<script>
+$('#inviterlist li').click(function(){
+	$(this).addClass('fxks').siblings('li').removeClass('fxks');
+	
+})
+    cotteFn.kuka()
+
+    //分享
+    window._bd_share_config = {
+        common : {
+            bdText : document.title,
+            bdDesc : '',
+            bdUrl : window.location.href,
+            bdPic : ''
+        },
+        share : [{
+            "bdSize" : 16
+        }]
+    }
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+{include file=../footer-new.html}
+
+
+</body>
+</html>

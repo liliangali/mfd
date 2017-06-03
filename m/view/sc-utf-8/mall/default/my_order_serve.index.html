@@ -1,0 +1,70 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">        
+        <div class="wrap">
+          <h1 class="syhtmdbt">我的消费者</h1>
+            <div class="public table">
+            
+            <div class="user_search" >
+                <form method="get" >
+                    
+                    <span >用户名: </span>
+                    <input  type="text" class="text1 width2" name="user_name" id="user_name" value="{$smarty.get.user_name}"/> 
+                    
+                    
+                    <input type="submit" class="btn" value="搜索" />
+                </form>
+                </div>
+            
+                <table class="table_head_line">
+                    <!--{if $subscribes}-->
+                    <tr class="line tr_color">
+                      <th style="padding-left:10px; text-align:left;" width="150">用户名</th>
+                      <th width="160">E-MAIL </th>
+                      <th><span  >手机</span></th>
+                      <th><span  >昵称</span></th>                      
+                      <th><span  >上次登录</span></th>
+                      <th><span  >注册时间</span></th>                      
+                      
+                      
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$subscribes item=subscribe name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold tr_align"><!--{else}--><tr class="line tr_align"><!--{/if}-->
+                        
+                    <td style="padding-left:10px; text-align:left;">{$subscribe.user_name|escape} </td>
+                    <td style="text-align:left; padding:0 10px;">{$subscribe.email|escape}</td>
+                    <td>{$subscribe.phone_mob|escape}</td>
+                    
+      
+                    <td>{$subscribe.nickname}</td>
+                    <td>{$subscribe.last_login|date:Y-m-d H:i:s}</td>                  
+                    
+                    <td>{$subscribe.reg_time|date:Y-m-d H:i:s}</td>                  
+          
+
+                    
+
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                      <td colspan="6" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                </table>
+                <!--{if $subscribes}-->
+                       <div style="padding-top:20px;">
+                        {include file=member.page.bottom.html}
+                       </div>
+                    <!--{/if}-->
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+<iframe id='iframe_post' name="iframe_post" src="about:blank" frameborder="0" width="0" height="0"></iframe>
+{include file=login_footer.html}

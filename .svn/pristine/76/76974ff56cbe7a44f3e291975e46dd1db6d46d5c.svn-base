@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+<base href="{$site_url}/" />
+<meta name="author" content="www.rctailor.com" />
+<meta name="copyright" content="rctailor.com Inc. All Rights Reserved" />
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
+{$page_seo}
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link href="/static/css/public.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{link app=default act=jslang}"></script>
+<script type="Text/Javascript" src="/static/expand/jquery.js"></script>
+<script type="text/javascript" src="{lib file=json.js}"></script>
+<script type="text/javascript" src="{lib file=minicart.js}"></script>
+<script type="text/javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="text/javascript" src="{res file=js/js.js}"></script>
+{$_head_tags}
+</head>
+<body>
+<div class="head2">
+	<div class="w" style="width:900px;">
+    	<div class="fr left">
+            <a href="index.php">首页<i></i><em></em></a>
+            <a href="{link app=tailor}" {if $currentApp eq 'tailor'}class="cur"{/if}>找裁缝<i></i><em></em></a>
+            <a href="{link app=gallery}" {if $current eq 'gallery'}class="cur"{/if}>挑款式<i></i><em></em></a>
+            <a href="{link app=fabrics}" {if $current eq 'fabric'}class="cur"{/if}>选面料<i></i><em></em></a>
+            <a href="{link app=single}"><i></i><em></em>品晒单</a>
+            <a href="demand-lists.html" {if $current eq 'demand'}class="cur"{/if}>看需求<i></i></a>
+        </div>
+        <div class="fl right">
+        	<a href="/" class="logo"></a>
+        </div>
+    </div>
+</div>
+

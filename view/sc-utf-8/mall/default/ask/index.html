@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<script type="text/javascript" src="../../static/js/jquery.min.js"></script> 
+<title>需求调研表</title>
+<style>
+body { padding: 0; margin: 0; font-size: 12px; background: #fff; color: #010101; font-family: "微软雅黑", "Arial"; min-width: 320px; -webkit-text-size-adjust: none; }
+h1, h2, h3, h4, h5, h6, p, form, div, dl, dd, dt, ul, li, img { padding: 0; margin: 0; list-style-type: none; border: 0; font-weight: normal;-webkit-tap-highlight-color:rgba(0,0,0,0) }
+input, textarea, select { outline: none; list-style-type: none; border: none; padding: 0; margin: 0; }
+img, fieldset { border: 0; }
+input, img { vertical-align: middle; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif; }
+ul, ol { list-style: none; }
+em, address { font-style: normal; }
+a { color: #000; text-decoration: none; }
+table { border-collapse: collapse; }
+.clearfix:after { content: "."; height: 0px; line-height: 0px; overflow: hidden; clear: both; display: block; visibility: hidden; }
+.clearfix { zoom: 1; }
+.jj_box { display: box; display: -webkit-box; display: -moz-box; orient: horizontal; width: 100%; }
+.jj_1 { box-flex: 1; -webkit-box-flex: 1; -moz-box-flex: 1; display: block; }
+.main {margin: 0 auto; max-width: 640px; min-width: 320px; width: 100%; }
+.overhide{ height:100%;overflow:hidden;}
+.fl { float:left;}
+.fr { float:right;}
+
+/*创业者需求收集表/S*/
+/*简洁头/S*/
+.header { background: #302d2a; border-bottom: 1px solid #ccc; width: 100%; height: 49px; position: relative; line-height: 49px; }
+.header .p1 { position: absolute; left: 3.5%; top: 0px; }
+.header .p1 img { width: 50%; }
+.header .p2 { font-size: 20px; text-align: center; color: #fff; }
+/*简洁头/E*/
+.xqsjb_box {width:93%; margin:0 auto;}
+.xmxbnl { margin-top:22px;}
+.xmxbnl p { line-height:26px; font-size:14px; color:#666;}
+.xmxbnl p input { border:1px solid #e5e5e5; height:24px; border-radius:5px; text-indent:10px; width:100%; font-size:12px; color:#666; -webkit-appearance: none;}
+.xmxbnl p select { border:1px solid #e5e5e5; height:26px; border-radius:5px; width:100%; font-size:12px; color:#666;}
+.xmxbnl .p1 {width:180px; margin-right:10px;}
+.xmxbnl .p2 {margin-right:10px; width:100px;}
+.xmxbnl .p3 {width:100px;}
+.xmxbnl .p3 textarea {width:100%; border:1px solid #e5e5e5; border-radius:5px; height:58px; overflow:auto; -webkit-appearance: none;}
+
+.jiaw { margin-top:22px;}
+.jiaw p { position:relative; margin-top:6px;}
+.jiaw .p1,.jiaw .p2 { margin-right:10px;}
+.jiaw h1 { font-size:15px; color:#666; line-height:24px; overflow:hidden;}
+.jiaw span {display:block; width:30px; line-height:26px; background:#d2d2d2; color:#fff; border-radius:5px; text-align:center;}
+.jiaw select {height:26px; border:1px solid #e5e5e5; color:#666; border-radius:0 5px 5px 0; border-left:0; margin-left:-2px; width:80%;}
+.jiaw select option { padding-left:50%;}
+.tijiao { background:#7dddb8; border-radius:20px; height:40px; width:100%; color:#fff; font-size:16px; margin:40px 0 60px 0; cursor:pointer; -webkit-appearance: none;}
+
+.checkbox { margin-top:22px;}
+.checkbox h1 {font-size:15px; line-height:26px; margin-bottom:5px;}
+.tcc_box {width:100%; color:#666;}
+.tcc_box div {background:#fff; width:100%; padding:10px 0;}
+.tcc_box div p { height:26px; line-height:26px;}
+.tcc_box div p input { margin-right:10px; position:relative; top:-1px;}
+/*创业者需求收集表/E*/
+</style>
+</head>
+<body>
+
+<div class="main">
+  <!--头部开始-->
+  <!--头部结束-->
+  <form method="POST" onsubmit="return validate_form(this)">
+  <div class="xqsjb_box">
+  
+   
+    
+     <div class="xmxbnl jj_box"> 
+     <p class="p2 jj_1">*我的编号<br/><input type="text" name="ident" value="{$info.ident}" required></p>
+    </div>
+     <div class="xmxbnl jj_box"> 
+     <p class="p2 jj_1">手机号码<br/><input type="text" name="phone" id="phone" value="{$info.phone}" ></p>
+     <p class="p3 jj_1">微信号<br/><input type="text" name="weixin" id="weixin" value="{$info.weixin}" ></p>
+    </div>
+    
+    <div class="xmxbnl jj_box"> 
+     <p class="p1 jj_1">*姓名<br/><input type="text" name="name" value="{$info.name}" required></p>
+     <p class="p2 jj_1">性别<br/>
+    <select  name="sex">
+            {html_options options=$ask.sex selected=$info.sex}
+     </select>
+     
+     </p>
+     <p class="p3 jj_1">年龄<br/><input type="text" name="age" value="{$info.age}" ></p>
+    </div>
+    
+    <div class="xmxbnl jj_box"> 
+     <p class="p2 jj_1">职业<br/>
+     
+     <select  name="job_id" id="job_id">
+            {html_options options=$ask.job selected=$info.}
+     </select>
+     </p>
+    </div>
+    
+      <div class="xmxbnl jj_box">
+     <p class="p2 jj_1">省<br/>
+     
+     <select  name="p_region_id" onchange="get_region(this)">
+            {html_options options=$region1 selected=$info.p_region_id}
+     </select>
+     
+     </p>
+     
+     <p class="p3 jj_1">市<br/>
+     
+      <select  name="region_id" id="region_id">
+            {html_options options=$region2 selected=$info.region_id}
+     </select>
+     
+     </p>
+    </div>
+    
+    <div class="xmxbnl jj_box"> 
+     <p class="p3 jj_1">地址<br/><input type="text" name="address" value="{$info.address}" ></p>
+    </div>
+    
+   
+    
+     <div class="xmxbnl jj_box">
+     <p class="p2 jj_1">顾客群体<br/>
+     <select  name="custom" >
+            {html_options options=$ask.customs selected=$info.custom}
+     </select>
+     </p>
+    </div>
+    
+   <div class="checkbox jj_box">
+     <div class="jj_1" style="margin-right:10px;">
+     <h1>面料</h1>
+     <div class="tcc_box">
+      <div>
+      {foreach from=$ask.fabric item=item key=key}
+        <p><input name="fabric[]" type="checkbox" value="{$key}" 
+        	{foreach from=$info.fabric item=item1 }
+        	{if $item1 == $key}
+        	checked
+        	{/if}
+        	{/foreach}
+        
+        >{$item}</p>
+      {/foreach}
+       
+      </div>
+     </div>
+     </div>
+    
+     <div class="jj_1" style="margin-right:10px;">
+     <h1>着装风格</h1>
+     <div class="tcc_box">
+      <div>
+       {foreach from=$ask.style item=item key=key}
+        <p><input name="style[]" type="checkbox" value="{$key}"
+        
+        {foreach from=$info.style item=item1 }
+        	{if $item1 == $key}
+        	checked
+        	{/if}
+        	{/foreach}
+        
+        >{$item}</p>
+      {/foreach}
+      </div>
+     </div>
+     </div>
+     
+    <div class="jj_1">
+     <h1>服装花型</h1>
+     <div class="tcc_box">
+      <div>
+       {foreach from=$ask.color item=item key=key}
+        <p><input name="color[]" type="checkbox" value="{$key}"
+        {foreach from=$info.color item=item1 }
+        	{if $item1 == $key}
+        	checked
+        	{/if}
+        	{/foreach}
+        
+        >{$item}</p>
+      {/foreach}
+      </div>
+     </div>
+     </div>
+    </div>
+    
+    
+    
+  <!--  
+    <div class="xmxbnl jj_box"> 
+     <p class="p3 jj_1">穿衣场合<br/><input type="text" name="situ" value="{$info.situ}"></p>
+    </div>
+    
+     <div class="jiaw"> 
+     <h1>价位</h1>
+      <p class="p3 jj_box"><span class="jj_1">衬衫</span>
+      
+      <select class="jj_1" name="chen_price">
+            {html_options options=$ask.chenyi_price selected=$info.chen_price}
+     </select>
+     
+      </p>
+      <p class="p3 jj_box"><span class="jj_1">西裤</span>
+     <select class="jj_1" name="xiku_price">
+            {html_options options=$ask.xiku_price selected=$info.xiku_price}
+     </select>
+      </p>
+      <p class="p3 jj_box"><span class="jj_1">西服</span>
+      <select class="jj_1" name="xifu_price">
+            {html_options options=$ask.xifu_price selected=$info.xifu_price}
+     </select>
+      </p>
+    </div>
+    
+    
+    <div class="xmxbnl jj_box"> 
+     <p class="p2 jj_1">料册需求<br/>
+     
+     <select class="jj_1" name="liaoce" >
+            {html_options options=$ask.liaoce selected=$info.liaoce}
+     </select>
+     
+     </p>
+     <p class="p3 jj_1">培训需求<br/>
+     
+      <select class="jj_1" name="peixun" >
+            {html_options options=$ask.peixun selected=$info.peixun}
+     </select>
+     
+     </p>
+    </div>
+    
+      <div class="jiaw"> 
+     <h1>量体需求</h1>
+      <p class="p1 jj_box"><span class="jj_1" style="width:100px;">想学习量体</span>
+      <select class="jj_1" name="liangti">
+            {html_options options=$ask.liangti selected=$info.liangti}
+     </select>
+      </p>
+      <p class="p3 jj_box"><span class="jj_1"  style="width:100px;">需要派工</span>
+       <select class="jj_1" name="paigong">
+            {html_options options=$ask.paigong selected=$info.paigong}
+     </select>
+      </p>
+    </div>
+    
+    
+    <div class="xmxbnl jj_box"> 
+     <p class="p3 jj_1">备注<br/><textarea name="remark" cols="" rows="">{$info.remark}</textarea></p>
+    </div>
+    
+    --> 
+	{if !$info['id']}
+    <input type="submit"  value="提 交" class="tijiao">  
+    {/if}
+    </form> 
+  </div>    
+</div>
+
+</body>
+<script>
+
+function validate_form()
+{
+	
+	var phone = $("#phone").val();
+	var weixin = $("#weixin").val();
+	
+	if(!phone && !weixin )
+	{
+		alert('手机号和微信号至少填一个');
+		return false;
+	}
+	
+	
+	if (!confirm("确认提交？")) 
+	{
+		return false;
+	};
+}
+
+
+
+function get_region(obj)
+{
+	var p_id = $(obj).val();
+	$.ajax({
+		   type: "POST",
+		   url: "/ask-get_region.html",
+		   data: "pid="+p_id,
+		   success: function(msg)
+		   {
+			   msg = jQuery.parseJSON(msg)
+			     if(msg.done == true)
+		    	 {
+			    	 $('#region_id').empty();
+			    	 $('#region_id').append(msg.retval)
+		    	 }
+		   }
+		});
+}
+</script>
+</html>

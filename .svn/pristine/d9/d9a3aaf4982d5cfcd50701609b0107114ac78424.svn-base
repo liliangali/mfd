@@ -1,0 +1,62 @@
+
+    <!-- {* $lst2.goods.name *}{* $lst2.goods.price|price *}{* $lst2.goods.image *} -->
+	<div class="cixiu clearfix">
+	    <h4>您是否需要免费签名</h4>
+	    <div class="cixiucon clearfix">
+	       <div id="tab">
+              <dl class="tab_menu">
+                  {foreach from=$list.list item=lst1 name=lst1}
+                  <dt  class="{if $smarty.foreach.lst1.first}selected{/if} tab_menu_dt" data-id="{$lst1.ident}" >{$lst1.goods.category_name}</dt>
+                  {/foreach}
+              </dl>
+           <div class="tab_box">
+           {foreach from=$list.list item=lst2 name=lst2}
+                  
+                  <div id="tab_box_{$lst2.ident}"  class="{if $smarty.foreach.lst2.first} {else} hide{/if} tab_boxs"  > <!-- <div> class="hide" -->
+                  <form>
+                      {foreach from=$embs.$lst2.cloth item=eitems}
+                      {if $eitems.statusid == 10001}
+						<div class="mnSelect" data-id="{$eitems.id}" data-status="{$eitems.statusid}">
+						  <dl class="s_select" style="width:120px">
+						      <dt>
+						          <span class="s_tit">
+						              {if $lst2.embs.$eitems.id}
+						                  {assign var=_sonid value=$lst2.embs.$eitems.id}
+						                  {assign var=_son value=$eitems.list.$_sonid}
+						                  <img src="{$_son.image}" />
+						              {/if}
+						          </span>
+						          <i></i>
+						          <input type="hidden" value="{$lst2.embs.$eitems.id}"  name="embs[{$lst2.ident}][{$eitems.id}]" />
+						      </dt>
+						      <dd style="display: none;max-height:500px;">
+						        {foreach from=$eitems.list item=eitem}
+						            <a href="javascript:void(0)" data-id="{$eitem.id}"><img src="{$eitem.image}" title="{$eitem.name}" /></a>
+						         {/foreach}  
+						        </dd>
+						    </dl>
+						</div>
+                    {elseif  $eitems.statusid == 10008}
+					    <input type="text" class="cixiutxt" placeholder="在此输入您要刺绣的名字" name="embs[{$lst2.ident}][{$eitems.id}]" value="{$lst2.embs.$eitems.id}" />
+					{elseif $eitems.statusid == 10002}
+					    <h5>刺绣位置</h5>
+					    <ul class="clearfix cxPosition">
+					      {assign var=weizhi value=}
+					      {foreach from=$eitems.list item=l key=__lkey}
+					          <li value="{$__lkey}" {if $lst2.embs.$eitems.id.$__lkey} class="cur" {/if} >{$l.name}<input  {if $lst2.embs.$eitems.id.$__lkey} checked="checked" {/if}  value="{$l.id}" type="checkbox"  style="display:none" name="embs[{$lst2.ident}][{$eitems.id}][{$l.id}]" /></li>
+					      {/foreach}
+					    </ul>
+					{/if}
+                      
+                      {/foreach}
+                     <input type="button" value="保存" class="bcbot" data-id="{$lst2.ident}" />
+                  </form>
+                  </div>
+                  
+           {/foreach}
+           </div>
+          </div>
+	   
+	    </div>
+	</div>
+

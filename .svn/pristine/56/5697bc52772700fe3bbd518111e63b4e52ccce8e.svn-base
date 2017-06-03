@@ -1,0 +1,17 @@
+
+<div class="sjlb">
+  <ul>
+    {if $desginer_id}
+   {foreach from=$tz_list item=v}
+    <li>
+     <p class="p1"><a href="{link app=suit arg=$v.id}"><img src="{$v.image}"></a></p>
+     <p class="p2"><a href="{link app=suit arg=$v.id}">{$v.suit_name}</a></p>
+     <p class="p3">￥{$v.price} </p>
+  
+    </li>
+    {/foreach}
+
+    {/if}
+ 
+   </ul>
+ </div>

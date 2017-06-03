@@ -1,0 +1,46 @@
+{include file="header.html"}
+{include file="user.account.header.html"}
+
+<div class="mrightTop">
+  <div class="fontl">
+		用户名：{$user.user_name}
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div>
+ <form method="post" action="index.php?app=profit&act=change_account&id={$user.user_id}">
+  <table width="100%" cellspacing="0" border="0" class="zanfzjbh">
+    
+    <tr>
+      <td width="100" class="firstCell" align="right">备注：</td>
+      <td align="left"><textarea name="remark" cols="50" rows="5"></textarea></td>
+    </tr>
+    
+    <tr >
+      <td width="50" class="firstCell" align="right">可用资金账户：</td>
+      <td align="left">
+       <select name="change_money">
+       	 <option value="1">增加</option>
+       	 <option value="-1">减少</option>
+       </select> <input type="text" name="money" value="0" size="5"> 当前值：{$user.money|price}
+     </td>
+    </tr>
+    
+    <tr >
+      <td width="50" class="firstCell" align="right">冻结资金账户：</td>
+      <td align="left">
+       <select name="change_frozen">
+         <option value="1">增加</option>
+      	 <option value="-1">减少</option>
+       </select> <input type="text" name="frozen" value="0" size="5"> 当前值：{$user.frozen|price}
+      </td>
+    </tr>
+    
+    <tr >
+      <td width="50"></td>
+      <td align="left"> <input type="submit" class="formbtn" value="提交" /></td>
+    </tr>
+  </table>
+</form>
+</div>
+{include file="footer.html"}

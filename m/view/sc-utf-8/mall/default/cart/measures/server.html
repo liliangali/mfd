@@ -1,0 +1,10 @@
+                <ul>
+                {foreach from=$servers item=sitem key=key}
+                    <li data-id="{$key}" {if $key==$server_id} class="cur" {/if}>
+                        <p class="p1">{$sitem.serve_name} {$sitem.store_mobile}</p>
+                        <p class="p2">{$sitem.serve_address}</p>
+                    </li>
+                {/foreach}
+                </ul>
+
+                

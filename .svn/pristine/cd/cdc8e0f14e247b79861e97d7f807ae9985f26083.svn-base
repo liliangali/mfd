@@ -1,0 +1,51 @@
+<script type="text/javascript" src="/static/js/pettype/catmlselection.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/expand/layer/layer.min.js"></script>
+<script type="text/javascript">
+//<!CDATA[
+var typeUrl = "{link app=mlselection}";
+$(function(){
+    typeInit("pettype");
+});
+</script>  
+
+
+ <form method="post"  id="pet_form" target="iframe_post">
+    <div class='addto' >
+    <input type="hidden" name="pet_id" value="{$data.pet_id}" id="pet_id" />
+    <input type="hidden" name="region_id" value="{$data.region_id}" id="region_id" class="mls_id" />
+    <input type="hidden" name="region_name" value="{$data.region_name|escape}" class="mls_names" />
+    <input type="hidden" name="region_list" value="{$data.region_id}" id="type_list" />
+    <input type='text' name='name' value="{$data.name}" placeholder='宠物昵称' class='tyinput' validate='required' >
+    <label><input type="radio" {if $data.gender == 1}checked="checked"{/if} value="1" name="gender">公</label>
+    <label><input type="radio" {if $data.gender == 2}checked="checked"{/if} value="2" name="gender">母</label>
+    
+                        <div id="pettype">
+                        <select name='text' class='tccxl' validate='required'>
+                        {if $defdata.0}
+                           {html_options options=$typesA selected=$defdata.0}
+                        {else}
+                          <option value='0'>请选择</option>  
+                         {html_options options=$typesA}
+                        {/if}
+                        </select>
+                       {if $defdata.1}
+                        <select name='text' class='tccxl tccxls' validate='required'>
+                            {html_options options=$typesB selected=$defdata.1}
+                        </select>
+                        {/if}
+                         {if $defdata.2}
+                         <select name='text' class='fstccxl' validate='required'>
+                          {html_options options=$typesC selected=$defdata.2}
+                        </select>
+                          {/if}
+                    </div>
+
+
+    <input type='text' name ='birthday' value="{$data.birthday}" placeholder='宠物生日' class='tyinput' validate='' />
+    <p><textarea class='textwby' name='summary' placeholder='宠物简介' validate='required'>{$data.summary}</textarea></p>
+    <div class='ddbutt'><input type='button' value='取消' id='quxiao' class='ddquxiao' />
+    <input type='button' value='保存' id='save' class='ddquxiao ddbaocun' />
+    </div>
+    </div>
+</form>

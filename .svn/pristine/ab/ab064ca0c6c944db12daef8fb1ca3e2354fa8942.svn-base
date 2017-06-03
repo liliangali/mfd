@@ -1,0 +1,7 @@
+ALTER TABLE `cf_goods` ADD `is_giveaway` SMALLINT( 5 ) NOT NULL DEFAULT '1' COMMENT '是否赠品（1不是，2是）' AFTER `type_id`;
+
+ALTER TABLE `cf_goods` ADD `quanx_id` INT( 11 ) UNSIGNED NOT NULL COMMENT '犬型',
+ADD `quanq_id` INT( 11 ) UNSIGNED NOT NULL COMMENT '犬期',
+ADD `gongx_id` INT( 11 ) UNSIGNED NOT NULL COMMENT '功效',
+ADD `h_money` DECIMAL( 10, 2 ) NOT NULL DEFAULT '0.00' COMMENT '最高价格',
+ADD `l_money` DECIMAL( 10, 2 ) NOT NULL DEFAULT '0.00' COMMENT '最低价格' 

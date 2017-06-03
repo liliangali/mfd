@@ -1,0 +1,1 @@
+ALTER TABLE `cf_goods_promotion_rules` ADD `yhcase_value2` INT(11) NOT NULL DEFAULT '0' COMMENT '优惠方案值2' AFTER `add_time`;

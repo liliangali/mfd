@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<meta name="description" content="酷享本色 特立独行" />
+<meta name="keywords" content="酷享本色 特立独行" />
+<title>酷享本色 特立独行</title>
+<link href="/public/static/photo/css/style.css" rel="stylesheet" />
+</head>
+<body>
+<div class="main">
+    <!--头部开始-->
+    <div class="header">
+        <p class="p1"></p>
+        <p class="p2">麦富迪尚品</p>
+    </div>
+    <!--头部结束-->
+    <!--{foreach from=$series item=val key=key}-->
+    <div class="bk dzxc1"><a href="{link app=elephotos act=good_list arg0=$val.series_id}" ><img src="{$val.image}"></a></div>
+    <!--{/foreach}-->
+</div>
+</body>
+</html>

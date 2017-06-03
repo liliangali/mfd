@@ -1,0 +1,14 @@
+  <div class="methods">
+    <h4 id="p3">发票信息</h4>
+    <div class="total" id="fapiao">
+      <p class="jxgouwu current" data-id="1"><a href="javascript:void(0)">个人</a></p>
+      <p class="jxgouwu" data-id="2"><a href="javascript:void(0)">单位</a></p>
+      <p class="jxgouwu" data-id="3"><a href="javascript:void(0)">不要发票</a></p>
+      <dl class="taitou" id="taitou">
+        <dt>发票抬头</dt>
+        <dd>
+          <input type="text" placeholder="发票抬头" title="发票抬头" validate="required">
+        </dd>
+      </dl>
+    </div>
+  </div>

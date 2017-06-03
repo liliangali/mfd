@@ -1,0 +1,88 @@
+{include file=header2.html}
+ <link rel="stylesheet" type="text/css" href="static/css/findtailor.css">
+ <div class="w">
+    <div class="tailors_box clearfix">
+     <p class="sycf">服装定制顾问</p>
+     <ul class="Screening">
+      <li <!--{if $smarty.get.sorting == ''}-->class="on"<!--{/if}-->><a href="{link app=tailor}">人气</a></li>
+      <li <!--{if $smarty.get.sorting == 'add_time'}-->class="on"<!--{/if}--> style="border:none;"><a href="{link app=tailor}?sorting=add_time">最新</a></li>
+     </ul>
+     
+     <ul id="category_select" class="select_ul">
+      <li id="leibie">
+      <!--{if $content.content_id}-->
+      <div class="style_img imgbg1"><span>{$content.name}</span><input id="leibie" name="style" value="{$content.content_id}" type="hidden"></div>
+      <!--{else}-->
+      <div class="style_img imgbg1"><span>按主题筛选</span><input id="leibie" name="style" value="0" type="hidden"></div>
+      <!--{/if}-->
+
+    <ul>
+    <li type="1" value="0"><a href="{link app=tailor}">按主题筛选</a></li>
+    <!--{foreach from=$lang.store_arrt_list.2 item=fg key=fgid}-->
+      <li type="1" value="{$fgid}"><a href="{link app=tailor}?type_id=2&content_id={$fgid}">{$fg.name}</a></li>
+    <!--{/foreach}-->   
+    </ul>
+      </li>
+     </ul>
+    </div>
+    
+    <div class="tailor_list clearfix">
+      <ul>
+	 <!--{foreach from=$tailor_list item=v}-->
+        <li>
+          <div class="div_1">
+           <a href="{link app=tailor act=info arg0=$v.store_id}" target="_blank"><img src="/{$v.store_logo}"></a>
+           <a href="{link app=tailor act=info arg0=$v.store_id}" target="_blank" class="detailed">TA的主页</a>
+          </div>
+          
+          <div class="div_2">
+           <a href="{link app=tailor act=info arg0=$v.store_id}"><img src="{$v.member_logo}"></a>
+           <h1><a href="{link app=tailor act=info arg0=$v.store_id}">{$v.owner_name}</a><span>人气<a href="{link app=tailor act=service arg0=$v.store_id}">{$v.popularity}</a></span></h1>
+           <p>{$v.personality}</p>
+          </div>
+        </li>
+	<!--{/foreach}-->
+      </ul>
+    </div>
+</div>
+
+<!--翻页开始-->
+<div class="page_box clearfix">
+{include file=tailor/tailor.page.bottom.html}
+</div>
+<!--翻页结束-->
+</div>  
+
+<!--底部开始-->
+{include file="footer.html"}
+<!--底部结束-->
+<script  type="text/javascript" src="static/js/findtailor.js"></script>
+
+<!--下拉菜单js-->
+<script language="javascript" type="text/javascript">
+  $("#category_select >li").click(function(){
+	  $(this).addClass("select_current");
+  }).mouseout(function(){
+	  $(this).removeClass("select_current");
+  }).bind('click',function(e){
+	  $(this).children("ul").show()
+  })
+  .bind('mouseleave',function(){
+	  $(this).children("ul").hide();
+  });
+  //搜索条件选择
+  $('#leibie >ul>li').live('click', function() {
+	  var li_id = $(this).parent().parent('li').attr('id');
+	  var catMax_li = $('#leibie > div.style_img');
+	  var max_id = $(this).val();
+	  catMax_li.children('input').val(max_id);
+	  catMax_li.children('span').html($(this).html());
+	  if ($(this).html() ) {
+		  catMax_li.children('span').css('color', '#000000');
+	  }
+	  $("#leibie").children('ul').hide();
+  });	  
+
+</script>
+</body>
+</html>

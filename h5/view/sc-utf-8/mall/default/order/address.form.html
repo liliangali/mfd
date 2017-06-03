@@ -1,0 +1,109 @@
+{include file=order/member.header.html}
+<script type="text/javascript" src="/static/js/address/mlselection.js"></script>
+<script type="text/javascript">
+	var reginUrl = "{link app=mlselection}";
+	$(function() {
+		regionInit("region");
+	});
+	function hide_error(){
+		$('#region').find('.error').hide();
+	}
+	//按钮提交前判断
+	$(function() {  
+		$(":submit").click(function(event) {
+			var consignee = $('input[name=consignee]').val();//收件人
+			var phone_mob = $('input[name=phone_mob]').val();//电话
+			var address   = $('input[name=address]').val();//详细地址
+
+			if(consignee == '' || consignee == 'undefined') {
+			
+				//执行弹出层
+				easyDialog.open({
+					container : {
+						content : '请选填写收件人后再进行<br>保存操作'
+					},
+					autoClose : 2000
+				});
+				event.preventDefault();
+				
+			}
+			if(phone_mob=='' || phone_mob=='undefined') {
+				//执行弹出层
+				easyDialog.open({
+					container : {
+						content : '请填写电话后再进行<br>保存操作'
+					},
+					autoClose : 2000
+				});
+				event.preventDefault();
+			} else {
+				var isTel = /^1[3458][0-9]{9}$/.test(phone_mob);
+				if(!isTel) {
+					easyDialog.open({
+						container : {
+							content : '您填写手机格式有误！</br>请重新输入'
+						},
+						autoClose : 2000
+					});
+					event.preventDefault();
+				}
+			}
+			if(address=='' || address=='undefined') {
+				//执行弹出层
+				easyDialog.open({
+					container : {
+						content : '请填写详细地址再进行<br>保存操作'
+					},
+					autoClose : 2000
+				});
+				event.preventDefault();
+			}
+			
+			//执行三级联动
+			var r = '';
+			$("#region select").each(function(){
+				r += r ? ","+ $(this).val() : $(this).val();
+			})
+			$("#region_list").val(r);
+		});
+	});
+</script>
+	<div class="tjdz bottom_50">
+		<form method="post" action="{link app=order act=$act}?addr_id={$address.addr_id}"  id="address_form" >
+            <h1>收件人</h1>
+			<p><input type="text" name="consignee" value="{$address.consignee|escape}" validate="required"/></p>
+            <h1>手机号码</h1>
+            <p><input type="text" name="phone_mob" value="{$address.phone_mob}" validate="required"/></p>
+            <h1>所在地区</h1>
+
+            <div class="sgxlk" >
+				<div class="szdq" id="region" >
+					<input type="hidden" name="region_id" value="{$address.region_id}" id="region_id" class="mls_id" />
+					<input type="hidden" name="region_name" value="{$address.region_name|escape}" class="mls_names" />
+					<input type="hidden" name="region_list" value="" id="region_list" />
+					<!-- {if $address.region_id} -->
+					<span>{$address.region_name|escape}</span>
+					<input type="button" value="{$lang.edit}" class="edit_region" />
+					<select style="display:none" onchange="hide_error();">
+						<option>{$lang.select_pls}</option>
+						{html_options options=$regions}
+					</select>
+					<!-- {else} -->
+					<select onchange="hide_error();">
+						<option>{$lang.select_pls}</option>
+						{html_options options=$regions}
+					</select>
+					<!-- {/if} -->
+				</div>
+			</div>
+            <h1>详细地址</h1>
+            <p><input type="text" name="address" value="{$address.address|escape}" validate="required"/></p>
+            <div class="dd_tit e5e5e5 dis20">
+				<a href="javascript:history.go(-1);" class="w48 left0" >返  回</a>
+				<span class="submit myForm"><input type="submit" value="保 存" class="w48 next_botton right0"></span>
+			</div> 
+		</form>
+	</div>  	
+</div>
+</body>
+</html>

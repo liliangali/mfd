@@ -1,0 +1,247 @@
+{include file="header.html"}
+<script  type="text/javascript" src="/static/expand/my97date/wdatepicker.js"></script>
+<script>
+/**
+*三级联动
+*/
+function getRegion()
+{
+	var parent_id = $("#region_parent_id").val();
+	$.ajax({
+		   type: "POST",
+		   url: "/auth-getRegion.html",
+		   data: "region_id="+parent_id+"&cur_id="+region_son_id,
+		   success: function(msg){
+			  	$("#region_son_id").html("");
+			  	$("#region_son_id").append('<option value="">--请选择城市--</option>');
+		    	$("#region_son_id").append(msg);
+		   }
+		});
+}
+</script>
+<div id="rightTop">
+      <ul class="subnav">
+	    <li><a class="btn1" href="index.php?app=authperson&amp;act=index">认证列表</a></li>
+	    <li><span>审核</span></li>
+	  </ul>
+</div>
+<div class="info" >
+    <form method="post" enctype="multipart/form-data" id="theForm" name="theForm"  onsubmit="return toVaild()">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">会员id :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$data.user_id|escape}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">会员名称 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$data.user_name|escape}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"> 企业名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input name="firm_name" type="text" value="{$data.firm_name}" /></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">营业执照注册号 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input name="licence_num" type="text" value="{$data.licence_num}" /></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">营业执照所在地 :</th>
+                <td class="paddingT15 wordSpacing5">
+                   		 <select validate="selecta" name="region_parent_id" id="region_parent_id" onchange="getRegion()">
+                          <option value="">--请选择省份--</option>
+                          {html_options options=$region_parent_list selected=$data.region_parent_id}
+                        </select>
+                        <select validate="selecta" name="region_son_id" id="region_son_id">
+                          <option value="">--请选择城市--</option>
+                          {html_options options=$data.region_son_list selected=$data.region_son_id}
+                        </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">常用地址 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input name="common_address" type="text" value="{$data.common_address}" /></span>
+                </td>
+            </tr>
+              <tr>
+                <th class="paddingT15">营业年限是否长期:</th>
+                <td class="paddingT15 wordSpacing5">
+                <select name="is_long" class="querySelect">
+		              {html_options options=$is_long  selected="$data.is_long"}
+		        </select>
+                </td>
+            </tr>
+             {if $data.is_long == 0}
+            <tr>
+                <th class="paddingT15">营业年限到期时间 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" name="business_life" onclick="WdatePicker({minDate:'%y-%M-%d'})" value="{$data.business_life|date}">
+                </td>
+            </tr>
+            {/if}
+            <tr>
+                <th class="paddingT15">经营范围 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input name="business_scope" type="text" value="{$data.business_scope}" /></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">组织机构代码证件:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input name="org_code" type="text" value="{$data.org_code}" /></span>
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">组织机构代码扫描件 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><a href="{$data.org_img}" target="_blank" title="点击查看大图"><img src="{$data.org_img}" width="100px" heigh="100px"></a></span>
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">联系方式:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input name="link_mob" type="text" value="{$data.link_mob}" />	</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">税务登记证号:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input name="tax_code" type="text" value="{$data.tax_code}" /> </span>
+                </td>
+            </tr> 
+             <tr>
+                <th class="paddingT15">营业执照副本扫描件 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><a href="{$data.business_img}" target="_blank" title="点击查看大图"><img src="{$data.business_img}" width="100px" heigh="100px"></a></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">加公章的营业执照副本扫描件 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><a href="{$data.business_seal_img}" target="_blank" title="点击查看大图"><img src="{$data.business_seal_img}" width="100px" heigh="100px"></a></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">法人真实姓名:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input name="legal_real_name" type="text" value="{$data.legal_real_name}" /></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">法人身份证号:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><input name="legal_card" type="text" value="{$data.legal_card}" /></span>
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">法人身份证是否长期:</th>
+                <td class="paddingT15 wordSpacing5">
+                <select name="legal_card_long" class="querySelect">
+		              {html_options options=$is_long  selected="$data.legal_card_long"}
+		        </select>
+                </td>
+            </tr>
+             {if $data.legal_card_long == 0}
+            <tr>
+                <th class="paddingT15">营业年限到期时间 :</th>
+                <td class="paddingT15 wordSpacing5">
+                <input type="text" name="legal_card_due" onclick="WdatePicker({minDate:'%y-%M-%d'})" value="{$data.legal_card_due|date}">
+                </td>
+            </tr>
+            {/if} 
+            
+            <tr>
+                <th class="paddingT15">身份证正面 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><a href="{$data.legal_card_face_img}" target="_blank" title="点击查看大图"><img src="{$data.legal_card_face_img}" width="100px" heigh="100px"></a></span>
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">身份证反面 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span><a href="{$data.legal_card_face_img}" target="_blank" title="点击查看大图"><img src="{$data.legal_card_face_img}" width="100px" heigh="100px"></a></span>
+                </td>
+            </tr>
+           
+            
+             <tr>
+                <th class="paddingT15">认证发起时间 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$data.create_time|date:Y-m-d H:i:s}</span>
+                </td>
+            </tr>
+            
+             <tr>
+                <th class="paddingT15">最后更新的时间 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$data.last_update_time|date:Y-m-d H:i:s}</span>
+                </td>
+            </tr>
+             
+                <th class="paddingT15">
+                     状态 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="status" name="status" onchange="changeStatus()">
+                     <option value="0" >请选择</option>
+		              {html_options options=$status  selected="$data.status"}
+		            </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">审核失败原因 :</th>
+                <td class="paddingT15 wordSpacing5">
+                <textarea {if $data.status != 2 } disabled="true" {/if}  name="fail_reason" id="fail_reason">{$data.fail_reason}</textarea>
+                </td>
+            </tr>
+            <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="id" value="{$data.id}" />
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+            </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+	function changeStatus()
+	{
+		var status = $("#status").val();
+		if(status == 2)
+		{
+			$("#fail_reason").attr("disabled",false)
+		}
+		else
+		{
+			$("#fail_reason").attr("disabled",true);
+		}	
+	}
+	
+	function toVaild()
+	{
+		var status = $('#status').val();
+		var fail_reason = $('#fail_reason').val();
+		if(status == 2 && !fail_reason)
+		{
+			alert('请填写审核失败原因')
+			return false;
+		}
+		return true;
+		
+	}
+	
+	
+	
+
+	
+	
+</script>
+{include file="footer.html"}

@@ -1,0 +1,259 @@
+<?php
+/**
+ * 订单操作类
+ *
+ * @author Ruesin <ruesin@163.com>
+ * @version $Id: order.app.php 13202 2015-12-31 01:13:15Z liugx $
+ * @copyright Copyright 2014 redcollar
+ */
+class OrderApp extends ShoppingbaseApp
+{
+	public $_mod_order;
+	function __construct()
+    {
+    	parent::__construct();
+    	$this->_mod_order = &m("order");
+    }
+    /**
+     * 创建订单
+     *
+     * @author Ruesin
+     */
+    function create(){
+        
+        $type = isset($_POST['type']) ? trim($_POST['type']) : 'news';
+        
+    	$order_type =& ot($type);
+    	$order = $order_type->verifyOrderData($_POST);
+    	
+    	if ($order == false){
+    	    $this->json_error($order_type->get_error());
+    	    return;
+    	}
+    	$transaction = $this->_mod_order->beginTransaction();
+    	$oInfo = $order_type->submit($order);
+    	if (!$oInfo){
+    		$this->_mod_order->rollback();
+    		$this->json_error($order_type->get_error());
+    		return;
+    	}
+    	$this->_mod_order->commit($transaction);
+
+    	$this->_clear();
+    	$this->json_result($oInfo);
+    	
+    }
+    
+    /**
+     * 清理购物车数据
+     *
+     * @author Ruesin
+     */
+    function _clear()
+    {
+        import('shopCommon');
+        $this->_mod_cart->drop(" user_id = '{$this->_user_id}' AND is_check=1" );
+        unset($_SESSION["_order"]);
+        unset($_SESSION["_cart"]);
+        ShopCommon::cartCookieSet('check', array());
+    }
+    
+    /**
+     * 订单支付
+     * 
+     * @date 2015-9-17 下午1:26:54
+     * @author Ruesin
+     */
+    public function paycenter(){
+		
+        $sn = isset($_GET['id']) ? trim($_GET['id']) : 0;
+		
+        if(!$sn){
+            $this->show_warning('参数错误！');
+            return;
+        }
+        $order = $this->_mod_order->get("order_sn = '{$sn}' AND user_id = '{$this->_user_id}'");
+
+		
+		
+		
+        if(!$order){
+            $this->show_warning('参数错误！');
+            return;
+        }
+        if ($order['shipping_id'] == 2){
+            $mServe = &m('serve');
+            $store = $mServe->get($order['ship_store']);
+            $this->assign('store',$store);
+        }
+        
+        $order['final_amount'] = ($order['final_amount']);
+        $order['order_amount'] = ($order['order_amount']);
+        $this->assign('order',$order);
+        
+        //已支付  待量体  生产中  //支付成功
+        if($order['status'] == ORDER_ACCEPTED || $order['status'] == ORDER_WAITFIGURE || $order['status'] == ORDER_PRODUCTION){
+            $this->display('order/paycenter/success.html');
+            return;
+        }
+        
+        if($order['status'] != ORDER_PENDING){
+            $this->show_warning('订单不是待支付状态！');
+            return;
+        }
+		
+		
+
+        
+    
+        
+        import('shopCommon');
+        
+        $this->assign('payments',ShopCommon::payments());
+        $this->assign('obj', "order");
+        $this->display('order/paycenter/index.html');
+    }
+    
+    /**
+     * 更改支付凡是
+     * 
+     * @date 2015-9-17 下午1:43:49
+     * @author Ruesin
+     */
+    function change_payment(){
+        $id = isset($_POST['id']) ? trim($_POST['id']) : '';
+        $sn = isset($_POST['sn']) ? trim($_POST['sn']) : '';
+        if(!$id || !$sn){
+            $this->json_error('params_error');
+            return ;
+        }
+        $mPay = &m("payment");
+        $payment = $mPay->get(" payment_code = '{$id}' AND enabled=1 AND ismobile = 0  AND payment_code <> 'wxpay' ");
+        if(empty($payment)){
+            $this->json_error('payment_error');
+            return ;
+        }
+    
+        if (!$mPay->in_white_list($payment['payment_code']))
+        {
+            $this->json_error('payment_disabled_by_system');
+            return;
+        }
+    
+        $eData = array(
+                'payment_id'   => $payment['payment_id'],
+                'payment_code' => $payment['payment_code'],
+                'payment_name' => $payment['payment_name']
+        );
+    
+        $edit = $this->_mod_order->edit("order_sn = '{$sn}' AND user_id = '{$this->_user_id}' AND status = '".ORDER_PENDING."'" ,$eData);
+    
+        if($edit >= 0){
+            $this->json_result(array('nm'=>$payment['payment_name']));
+            return ;
+        }else{
+            $this->json_error('change_payment_error');
+            return ;
+        }
+    }
+    
+    /**
+     * 去支付
+     *
+     * @author Ruesin
+     */
+    function goToPay(){
+        $obj      = isset($_POST['obj']) ? $_POST['obj'] : '';
+        $order_sn = isset($_POST['os']) ?  trim($_POST['os']) : '';
+        $pay      = isset($_POST['pay']) ?  trim($_POST['pay']) : '';
+    
+        if(!in_array($obj,array("order"))){
+            $this->show_warning('支付对象错误!');
+            return false;
+        }
+    
+        if (!$order_sn){
+            $this->show_warning('参数错误!');
+            return false;
+        }
+         
+        $order = $this->_mod_order->get("order_sn = '{$order_sn}' AND user_id = '{$this->_user_id}'");
+   
+        
+        
+        
+        
+        if(!$order) {
+            $this->show_warning('参数错误!');
+            return false;
+        }
+        
+        if($order['status'] != ORDER_PENDING){
+            $this->show_warning('订单不是待支付状态!');
+            return false;
+        }
+        $oPay = $order['payment_code'];
+
+        if (isset($pay) && $pay != ''){
+            $order['payment_code'] = $pay;
+        }
+        
+        $payment_model =& m('payment');
+         
+        //验证支付方式是否可用，若不在白名单中，则不允许使用
+        if (!$payment_model->in_white_list($order['payment_code'])){
+            $this->show_warning('支付方式不可用!');
+            return false;
+        }
+    
+        $order['payment_code'] = $order['payment_code'] == 'malipay' ? 'alipay' : $order['payment_code'];
+        $order['payment_code'] = $order['payment_code'] == 'wxpay' ? 'weixin' : $order['payment_code'];
+         
+        $payment_info  = $payment_model->get("payment_code = '{$order['payment_code']}' AND enabled=1 AND ismobile = 0  AND payment_code <> 'wxpay' ");
+    
+        /* 没有启用，则不允许使用 */
+        if (!$payment_info)
+        {
+            $this->show_warning('支付方式未开启!');
+            return false;
+        }
+    
+        if ($oPay != $order['payment_code']){
+            $eData = array(
+                    'payment_id'   => $payment_info['payment_id'],
+                    'payment_code' => $payment_info['payment_code'],
+                    'payment_name' => $payment_info['payment_name']
+            );
+            
+            $this->_mod_order->edit("order_sn = '{$order_sn}' AND user_id = '{$this->_user_id}' AND status = '".ORDER_PENDING."'" ,$eData);
+        }
+    
+        /* 生成支付URL或表单 */
+        $payment    = $this->_get_payment($order['payment_code'], $payment_info);
+
+        $res = $payment->createBill($order);
+
+        if(!$res){
+            $this->show_warning('意外错误无法支付，请联系客服！');
+            return false;
+        }
+        //调用春节放假短信（屏蔽）
+      //  jiaqi($order['order_id']);
+	
+    
+			
+        //加载 支付语言项
+        Lang::load(lang_file('paycenter'));
+//     print_exit($order);
+        $payment_form = $payment->get_payform($order);
+//        echo '<pre>';print_r($payment_form);exit;
+        
+// print_exit($payment_form);
+        $this->assign('payform', $payment_form);
+        $this->assign('payment', $payment_info);
+        header('Content-Type:text/html;charset=' . CHARSET);
+        $this->display('order/paycenter/dopay.html');
+    
+    }
+}
+

@@ -1,0 +1,55 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p style="display:none;"><strong>{$lang.area_manage}</strong></p>
+    <ul class="subnav">
+     <li><span>详情</span></li>
+  </ul>
+</div>
+<div class="tdare info">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $list}-->
+        <tr class="tatr1">
+            <td  width="10%">接受用户</td>
+            <td width="10%">红包金额</td>
+            <td width="10%">红包类型</td>
+            <td width="10%">发放时间</td>
+            <td width="10%">过期时间</td>
+            <td width="10%">是否拆开</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$list item=item}-->
+        <tr class="tatr2">
+            <td>{$item.user_name}</td>
+            <td>{$item.cash_money}</td>
+            <td>{$item.type}</td>
+            <td>{$item.add_time}</td>
+            <td>{$item.expire}</td>
+            <td>{if $item.is_open}是{else}否{/if}</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="5">无数据</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+</div>
+  <!--{if $list}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+<script>
+/*
+$(document).ready(function(){
+	$('*[ectype="dialog"]').click(function(){
+		var id = $(this).attr('dialog_id');
+		var title = $(this).attr('dialog_title') ? $(this).attr('dialog_title') : '';
+		var url = $(this).attr('uri');
+		var width = $(this).attr('dialog_width');
+		ajax_form(id, title, url, width);
+		return false;
+		}); 
+})*/
+</script>
+{include file="footer.html"}

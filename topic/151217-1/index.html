@@ -1,0 +1,80 @@
+<style>
+body{ display:none;}/*不许删*/
+
+body { font: 14px/1.5 arial, "Microsoft Yahei", "Hiragino Sans GB", sans-serif; color:#333; background:#fff;}
+body a{outline:none;blr:expression(this.onFocus=this.blur());}
+body, form, ul, ol, li, span, p, dl, dt, dd, img, h1, h2, h3, h4, h5, h6 ,input{ margin: 0; padding: 0; border:none;}
+img { border: 0;}
+input,textarea,button{ outline:0;}
+ul, ol, li { list-style: none }
+em { font-style: normal }
+a { text-decoration: none; color: #333; transition:color ease .3s;-webkit-transition:color ease .3s;}
+a:hover { color: #e66800;}
+.fl { float: left; } 
+.fr { float: right; }
+.clearfix:after { content: "."; height: 0px; line-height: 0px; overflow: hidden; clear: both; display: block; visibility: hidden; }
+.clearfix { zoom: 1; }
+
+.sdp_1 { background:url(images/banner_1.jpg) center top no-repeat; height:400px; max-width:1920px;}
+.sdp_2 { background:url(images/banner_2.jpg) center top no-repeat; height:1096px; max-width:1920px;}
+.zttu_qdxp { max-width:1200px; margin:0 auto;}
+</style>
+<div id="zhuanti">
+<div class="sdp_1"></div>
+<div class="sdp_2"></div>
+<div class="zttu_qdxp">
+<table id="__01" width="1160" height="5219" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td colspan="2"><a href="http://www.mfd.cn/goods-362.html" target="_blank"><img src="images/sdp_01.jpg" width="1160" height="842" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="2"><img src="images/sdp_02.jpg" width="1160" height="450" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="2"><img src="images/sdp_03.jpg" width="1160" height="371" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="3"><a href="http://www.mfd.cn/custom-diy-0001-bformal-974-share.html" target="_blank"><img src="images/sdp_04.jpg" width="892" height="1550" alt=""></a></td>
+		<td><a href="http://www.mfd.cn/custom-diy-0003-bformal-976-share.html" target="_blank"><img src="images/sdp_05.jpg" width="268" height="457" alt=""></a></td>
+	</tr>
+	<tr>
+		<td><a href="http://www.mfd.cn/custom-diy-0004-bformal-977-share.html" target="_blank"><img src="images/sdp_06.jpg" width="268" height="538" alt=""></a></td>
+	</tr>
+	<tr>
+		<td><a href="http://www.mfd.cn/custom-diy-0005-bformal-978-share.html" target="_blank"><img src="images/sdp_07.jpg" width="268" height="555" alt=""></a></td>
+	</tr>
+	<tr>
+		<td colspan="2"><img src="images/sdp_08.jpg" width="1160" height="736" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="2"><img src="images/sdp_09.jpg" width="1160" height="1270" alt=""></td>
+	</tr>
+</table>
+</div>
+
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script>
+document.domain='mfd.cn';
+$.ajax({
+	url:'/header.html',
+	success: function(d){
+		$('#zhuanti').before(d)
+		$.ajax({
+			url:'/footer.html',
+			success: function(d){
+				$('#zhuanti').after(d);
+				$('body').fadeIn('slow');
+			},
+			error:function(e){}	
+		});
+	},
+	error:function(e){}	
+});
+</script>
+<!--统计代码-->
+<div style="display:none;">
+<script type="text/javascript">
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1256310283'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256310283' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<!--统计代码-->

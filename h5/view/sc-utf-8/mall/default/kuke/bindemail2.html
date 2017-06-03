@@ -1,0 +1,29 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+
+
+    <script>
+
+
+        function check_email(){
+            location.href='http://{$a_email}';
+        }
+
+    </script>
+  
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">邮箱绑定</h1>
+    <p class="bdsj_tu_1"><img src="{$img_url}/images/yxbd_2.gif" /></p>
+  
+   <div class="bdyuxiadrk">
+     <h1>已发送验证邮件至<font>{$email}</font><span>请立即完成验证，邮箱验证不通过则修改邮箱失败。</span></h1>
+     <p class="p1">验证邮件24小时内有效，请尽快登录您的邮箱点击验证链接完成验证。</p>
+     <p class="p2"><input type="button" onclick="check_email();" value="查看验证邮件"/></p>
+   </div>
+
+  </div>
+  <p class="clear"></p>
+
+{include file="footer.html"}

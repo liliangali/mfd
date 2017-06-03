@@ -1,0 +1,56 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>{$lang.manage}</span></li>
+  </ul>
+</div>
+
+
+<div class="tdare">
+  <form method=get>
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $group_list}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td width="200">职称</td>
+      <td width="140"><span ectype="order_by" fieldname="email">所属小组</span></td>
+      <td width="210">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$group_list item=admin}-->
+    <!--{foreach from=$admin.son item=item key=key2}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$admin.user_id}" /></td>
+      <td>{$item|escape}</td>
+      <td>{$admin.name|escape}</td>
+
+
+      <td>
+      <!--{if $admin.privs eq all}-->{$lang.system_manager}
+      </td>
+      <!--{else}-->
+      <span>
+       <!--<a href="index.php?app=admin&amp;act=sub&amp;id={$admin.user_id}">{$lang.sub}</a>-->
+        <a href="index.php?app=admin&amp;act=edit&amp;id={$key2}">{$lang.edit}</a> |
+         <a href="index.php?app=admin&amp;act=groupindex&amp;id={$key2}">管理员列表</a>
+        <!--<a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=admin&amp;act=drop&amp;id={$admin.user_id}');">{$lang.drop_admin}</a>-->
+      </span>
+      </td>
+      <!--{/if}-->
+    </tr>
+    <!--{/foreach}-->
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  </form>
+  <!--{if $admins}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"} 

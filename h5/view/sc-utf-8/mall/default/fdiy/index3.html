@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <title>定制</title>
+  <link href="/diy/css/stylenew.css" rel="stylesheet" type="text/css">
+  <link href="/diy/css/animate.min.css" rel="stylesheet" type="text/css">
+  
+</head>
+
+<body style="background:url(/diy/images/dzbg_2.png) left top repeat;">
+<section class="main">
+  <section class="dzfa_1">
+    <p class="dzjs_1 animated fadeInRight"><img src="/diy/images/dzjs_1.png"></p>
+    <section class="xlrq animated fadeInDown">
+      <h1>雪纳瑞犬</h1>
+      <p>犬期:怀孕期<br/>功效:胎儿发育/增强免疫<br/>口味:未定制<br/>规格:未定制<br/>包装:未定制</p>
+      <img src="/diy/images/dzjs_2.png" class="zrtx">
+    </section>
+  </section>
+  
+  <section class="dzfa_2">
+  <!--  beg1-->
+   <!--  <div class="dzfabc xzfadyb animated fadeInDown">
+        <p class="p1"><img src="/diy/images/dzfa_1.png"></p>
+        <p class="p2">犬期</p>
+        <p class="p3"></p>
+<section class="main">
+<section class="mfdtc">
+  <h1 class="tcbt">犬期<a href="#"></a></h1>
+  <div class="bzxs">
+    <ul>
+     <li class="on">袋装</li>
+     <li>罐装</li>
+     <li>盒装</li>
+    </ul>
+  </div>
+  <input type="submit" value="确认" class="qrtj">
+</section>
+</section>
+    </div> -->
+     <!--  beg1-->
+    
+    
+     <!--  beg2-->
+    <!-- <div class="dzfabc xzfadyb xzfadrb animated lightSpeedIn">
+        <p class="p1"><img src="/diy/images/dzfa_2.png"></p>
+        <p class="p2">功效</p>
+        <p class="p3"></p>
+    </div>
+      beg2
+    
+    <div class="dzfabc xzfadyb xzfadsb animated fadeInRightBig">
+        <p class="p1"><img src="/diy/images/dzfa_3.png"></p>
+        <p class="p2">口味</p>
+        <p class="p3"></p>
+    </div>
+    
+    <div class="dzfabc xzfadyb xzfadsib animated fadeInUpBig">
+        <p class="p1"><img src="/diy/images/dzfa_4.png"></p>
+        <p class="p2">规格</p>
+        <p class="p3"></p>
+    </div> -->
+     {foreach from=$clist item=item name=test}
+      {if $smarty.foreach.test.iteration eq 1}
+    <div class="dzfabc xzfadyb animated fadeInDown">
+    {/if}
+      {if $smarty.foreach.test.iteration eq 2}
+   <div class="dzfabc xzfadyb xzfadrb animated lightSpeedIn">
+    {/if}
+      {if $smarty.foreach.test.iteration eq 3}
+    <div class="dzfabc xzfadyb xzfadsb animated fadeInRightBig">
+    {/if}
+      {if $smarty.foreach.test.iteration eq 4}
+    <div class="dzfabc xzfadyb xzfadsib animated fadeInUpBig">
+    {/if}
+      {if $smarty.foreach.test.iteration eq 5}
+    <div class="dzfabc xzfadyb xzfadwb animated zoomInUp">
+    {/if}
+        <p class="p1"><img src="/diy/images/dzfa_{$smarty.foreach.test.iteration}.png"></p>
+        <p class="p2">{$item.cate_name}</p>
+        <p class="p3"></p>
+        
+        
+        <!-- 二级分类Beg -->
+        <section class="main">
+<section class="mfdtc">
+  <h1 class="tcbt">犬期<a href="#"></a></h1>
+  <div class="bzxs">
+    <ul>
+     <li class="on">袋装</li>
+     <li>罐装</li>
+     <li>盒装</li>
+    </ul>
+  </div>
+  <input type="submit" value="确认" class="qrtj">
+</section>
+</section>
+<!-- 二级分End  -->
+
+    </div> 
+    {/foreach}
+    
+    <div class="qsdzmc animated zoomIn">亲手为您的爱宠做一顿美餐吧</div>
+  </section>
+  
+
+  <section class="zsykj_box dzj_qrgm">
+    <div class="zsykj_1 dzjg">
+     <div class="zsykj_box">
+      <a href="#" class="reduce"></a>
+      <input type="text" value="1" class="zsykj_1">
+      <a href="#" class="plus"></a>
+     </div>
+    </div>
+    <p class="zsykj_1 qrgm">确认购买<span>398<b>元</b></span></p>
+  </section>
+  
+</section>
+</body>
+</html>

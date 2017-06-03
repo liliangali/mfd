@@ -1,0 +1,30 @@
+{foreach from=$comment_list.list item=list}
+          <li>
+           <div class="div_1 fl"><p><a href="javascript:void(0)"><img src="{$list.face}" /></a></p><p>{$list.nickname}</p></div>
+           <div class="div_2 fr">
+               <h1>得分{$list.vote_score}分<span>{$list.addtime|date:complete}</span></h1>
+            <p>{$list.content}</p>
+           </div>
+          </li>
+{/foreach}
+
+
+<!--翻页开始-->
+<div class="cc_page">
+	<!--{if $comment_list.page_info.prev_link}-->
+
+    <a href="javascript:void(0);" title="上一页" class="zjt" onclick="_page('{$comment_list.page_info.prev_link}')">&lt;</a>
+	<!--{/if}-->
+	<!--{foreach from=$comment_list.page_info.page_links key=page item=link}-->
+	<!--{if $comment_list.page_info.curr_page == $page}-->
+	<span class="active">{$page}</span>
+	<!--{else}-->
+	<a href="javascript:void(0)" onclick="_page('{$link}')">{$page}</a>
+	<!--{/if}-->
+	<!--{/foreach}-->
+	<!--{if $comment_list.page_info.next_link}-->
+	<a href="javascript:void(0)" title="下一页" class="zjt"  onclick="_page('{$comment_list.page_info.next_link}')">&gt;</a>
+	<!--{/if}-->
+</div>
+<!--翻页结束-->
+

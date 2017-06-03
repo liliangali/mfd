@@ -1,0 +1,200 @@
+{include file="header.html"}
+<style>
+.ac_results { padding: 0px; border: 1px solid WindowFrame; background-color: Window; overflow: hidden; z-index: 19891020; /* 1000 */ }
+.ac_results ul { width: 100%; list-style-position: outside; list-style: none; padding: 0; margin: 0; }
+.ac_results iframe { display: none;/*sorry for IE5*/ display/**/: block;/*sorry for IE5*/ position: absolute; top: 0; left: 0; z-index: -1; filter: mask(); width: 3000px; height: 3000px; }
+.ac_results li { margin: 0px; padding: 2px 5px; cursor: pointer; display: block; font: menu; font-size: 12px; overflow: hidden; }
+.ac_over { background-color: Highlight; color: HighlightText; }
+</style>
+<script type="text/javascript">
+$(function(){
+    $('#brand_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+        },
+        messages : {
+        }
+    });
+});
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+   	<li><a class="btn1" href="index.php?app=dictM&amp;act=index">工艺管理</a></li>
+        <li><a class="btn1" href="index.php?app=dictM&amp;act=cindex">{$lang.manage}</a></li>
+        {if $data.id}
+        <li><a class="btn1" href="index.php?app=dictM&amp;act=cadd">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="brand_form">
+        <table class="infoTable">
+               <tr>
+                <th class="paddingT15">
+             选择定制品类:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="category" id="cat" {if $data.cid}disabled{/if}>
+                        <option value="0">请选择</option>
+                        {foreach from=$cat_list item=cat key=key}
+                            <option value="{$key}" {if $data.cid eq $key}selected{/if}>{$cat.name}</option>
+                        {/foreach}
+                    </select>
+                    {if $data.cid}
+                    <input type="hidden" name="category" value="{$data.cid}">
+                    {/if}
+                </td>
+            </tr>
+               <tr>
+                <th class="paddingT15 wordSpacing5" valign="top">选择指定工艺:</th>
+                <td>
+                    {if $items}
+                    <ul class="items" data-hname="items">
+                    {foreach from=$items item=dict}
+                    <li data-id="{$dict.item_id}" data-p="{$dict.menu_id}">
+                    <input type='hidden' name='assign[{$dict.ecode}]' value="{$dict.id}">
+                    <input type='text' value="{$dict.ecode}" autocomplete='off' readonly='readonly'>
+                    {$dict.name}{if $dict.assign} <input type='text' name="assign[{$dict.item_id}]" value="{$dict.assign}" autocomplete='off' readonly='readonly'>{/if}
+                    </li>
+                    {/foreach}
+                        {else}
+                    <li class="add"><input type="text" style="height: 20px;" class="diyItem"></li>
+                        {/if}
+                    </ul>
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">缩略图:</th>
+                <td class="paddingT15 wordSpacing5">
+                     {input_img name="small_img" value="$data.small_img" dir="dictcomm"}
+                </td>
+            </tr>
+                     <tr>
+                <th class="paddingT15">
+                    名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="tname" type="text" name="tname" value="{$data.name|escape}" />
+                    <label class="field_notice">指定工艺名称</label>              </td>
+            </tr>
+                     <tr>
+                <th class="paddingT15">
+                    编码:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="coding" type="text" name="coding" value="{$data.coding|escape}" />
+                    <label class="field_notice">指定工艺编码</label>              </td>
+            </tr>
+
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="id" value="{$data.id}">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript" src="/static/expand/jquery.autocomplete.js"></script>
+
+
+<script>
+var cat = "{$data.cid}";
+$(document).ready(function(){
+	loadItem(cat);
+	$(".add").show();
+    $("#cat").change(function(){
+        var val = $(this).val();
+        $(".items li").each(function(){
+            if(!$(this).hasClass("add")){
+                $(this).remove();
+            }
+        })
+        
+        loadItem(val);
+    });
+
+})
+
+function dropItem(obj){
+    var li = $(obj).parents("li");
+    var p = li.attr("data-p");
+    var check = $(obj).parents("li").find("input[type=radio]").attr("checked");
+    li.remove();
+    $(".add").show();
+    $(".items li").each(function(){
+    	if(check){
+            if($(this).attr("data-p") == p){
+               // $(this).find("input[type=radio]").attr("checked", "checked");
+                return;
+            }
+    	}
+    })
+
+}
+
+function loadItem(val){
+	if(val.length == 0){
+	    return;
+	}
+    $.get("index.php?app=dictC&act=loadItem&ty=comm",{cat:val}, function(res){
+    	var cData = eval("("+res+")");
+    	data = cData.retval;
+    		//alert(data.length);
+    		$(".diyItem").autocomplete(data,{
+                minChars: 0,//自动完成激活之前填入的最小字符
+                max:20,//列表条目数
+                width: 500,//提示的宽度
+                scrollHeight: 200,//提示的高度
+                matchContains: false,//是否只要包含文本框里的就可以
+                autoFill:false,//自动填充
+                //cacheLength:10000,
+                formatItem: function(data, i, max) {//格式化列表中的条目 row:条目对象,i:当前条目数,max:总条目数
+                   // alert(data.code);
+                	return data.code + ' ['+data.name+']';
+            	},
+        		formatResult: function(data) {//定义最终返回的数据，比如我们还是要返回原始数据，而不是formatItem过的数据
+        			return data.code; 
+        		}
+          }).result(function(event,data){
+        	  $(this).val('');
+        	  var e = true;
+        	  var checked = 'checked';
+        	  $(".items li").each(function(){
+        		  if($(this).attr("data-id") == data.id){
+          			    alert("已选了相同的工艺，请重新选择");
+          			    e = false;
+            	  }
+
+            	  if($(this).attr("data-p") == data.pid){
+          		       //checked = "";
+                  }
+              });
+         
+              var input = '';
+              if(data.sid == "10008"){
+          	      input = "  <input type='hidden' name='assign["+data.code+"]'>"
+              }
+
+              
+              var html = "<li data-id='"+data.id+"' data-p='"+data.pid+"'><input type='hidden' name='item["+data.id+"]' value='"+data.pid+"'><input type='text' value='"+data.code+"' autocomplete='off' readonly='readonly'> "+ data.name+input+"     <span onclick='dropItem(this)' style='cursor:pointer;'>x<span> </li>";
+              var li = $(this).parents("li");
+              if(e){
+            	  li.before(html);
+          		$(".add").hide();
+              }
+          });
+
+    })
+}
+</script>
+{include file="footer.html"}

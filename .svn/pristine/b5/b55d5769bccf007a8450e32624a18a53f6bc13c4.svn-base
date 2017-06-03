@@ -1,0 +1,412 @@
+{include file="header.html"}
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<style type="text/css">
+    .ac_results {
+        padding: 0px;
+        border: 1px solid WindowFrame;
+        background-color: Window;
+        overflow: hidden;
+        z-index:19891020; /* 1000 */
+    }
+
+    .ac_results ul {
+        width: 100%;
+        list-style-position: outside;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .ac_results iframe {
+        display:none;/*sorry for IE5*/
+        display/**/:block;/*sorry for IE5*/
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:-1;
+        filter:mask();
+        width:3000px;
+        height:3000px;
+    }
+
+    .ac_results li {
+        margin: 0px;
+        padding: 2px 5px;
+        cursor: pointer;
+        display: block;
+        font: menu;
+        font-size: 12px;
+        overflow: hidden;
+    }
+
+    .ac_loading {
+        background : Window url('./indicator.gif') right center no-repeat;
+    }
+
+    .ac_over {
+        background-color: Highlight;
+        color: HighlightText;
+    }
+
+
+
+    body { margin:0;padding:0;color:#333;font:14px/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;}
+    div, form, ul, ol, li, span, p, dl, dt, dd, img, i, em, input, textarea, h1, h2, h3, h4, h5, h6 {margin:0;padding:0;border:0;outline:0;}
+    h1, h2, h3, h4, h5, h6 {font-weight:normal;}
+    ul, ol, li { list-style:none;}
+    em, i {font-style:normal;}
+    table,tr,td{padding:0;margin:0;}
+    .fl{float:left;}
+    .fr{float:right;}
+    a{text-decoration:none;}
+    .container{margin-top:20px;}
+    .title{height:30px;line-height:30px;border-bottom:1px solid #999999;padding-left:27px;}
+
+
+    /*====返修订单-返修编辑页/S====*/
+    .service{margin:43px 0 0 64px;}
+    .service h4{font-weight:700;font-size:14px;color:#333;margin-bottom:20px;padding-left:20px;}
+    .client{height:25px;line-height:25px;margin-bottom:15px;}
+    .xingm{width:140px; text-align:right;}
+    .khinp{width:195px;height:23px;line-height:25px;border:1px solid #999;color:#000;padding-left:5px;}
+    .khinps{width:500px;}
+    .client select{width:202px;height:25px;line-height:25px;border:1px solid #999;color:#000;padding-left:5px;}
+    .tishic{padding-left:10px;color:#999999;}
+    .plany{width:1000px;border-bottom:1px solid #999999;padding-bottom:10px;}
+    .planys{border-bottom:none;}
+    .fapl{margin-right:20px; display:inline;}
+    .fapl input{vertical-align:middle;}
+    .clxg{padding:30px 0 0 50px;}
+    .cm{height:36px;padding-left:16px;}
+    .reduce, .jiahao{border: 1px solid #cccccc;display:block;height:16px;line-height:16px;margin:10px 0;text-align:center;width:16px;}
+    .cm span a{color:#444444;}
+    .numb{border: 1px solid #cccccc;display:block;height:18px;margin:8px 6px;text-align:center;width:39px;}
+    .numbs{border: 1px solid #cccccc;display:block;height:18px;margin:8px 47px;text-align:center;width:39px;}
+    .cyleib{margin:19px 0 0 77px; background:url(../images/dian.jpg) 0 5px no-repeat;padding-left:15px;}
+    .xiuzl{ overflow:hidden;}
+    .xiuzl li{float:left;width:332px;}
+    .xiuzl li .leib{float:left;height:32px;line-height:32px;text-align:right;width:135px;}
+    .xiuzl li select{border:1px solid #d0d0d0;display:block;height:23px;line-height: 20px;margin: 6px 0 0 14px;text-align:center;width:124px;}
+    .xiuzl li .xzput{background-color:#ffffff;border:1px solid #d0d0d0;color:#000000;height:22px;line-height:20px;margin-bottom:2px;margin-top:2px;width:80px;}
+    .xiuzl li .remove{display:block;height:26px;margin:auto;text-align:center;width:30px; background:url(../images/remove.png) no-repeat scroll 50% 50%;cursor:pointer;}
+    .list_result{color:#000000;height:32px;line-height:26px;margin-bottom:1px;margin-top:0;padding-left:3px;vertical-align:middle;}
+    .list_result select{width:120px;border:1px solid #626061;}
+    .list_result .neirwor{width:120px;background-color: #FFF; border: 1px solid #626061; color: #000;height: 20px;line-height:20px;}
+    .list_result .xzscbut{width:16px;height:16px; background:url(../images/remove.png) no-repeat;margin-left:10px; cursor:pointer;}
+    .plany .tsul{height:auto;margin:12px 0 50px;overflow:hidden;width:1000px;}
+    .plany .tsul li{border-right:1px solid #dddddd;float:left;height:285px;margin:0 0 0 50px;overflow:hidden;padding:12px 0;width:447px;}
+    .plany .tsul li .nleft{height:auto;overflow:hidden;width:24px;}
+    .plany .tsul li .nright{width:423px;}
+    .plany .tsul li .nright .nwordy{color:#000000;height:14px;line-height:14px;margin:0 0 10px;width:100%;}
+    .plany .tsul li .nright .nworde{color: #797979;text-indent: 22px;}
+    .plany .tsul li .nright .nwords{height:auto;overflow:hidden;width:272px;}
+    .plany .tsul li .nright .nwords p{height:auto;overflow:hidden;width:272px;}
+    .plany .tsul li .nright .nwords p .rady{display:block;height:auto;min-height:12px;text-align:right;width:16px;}
+    .plany .tsul li .nright .nwords p .faword{color:#797979;display:block;height:auto;line-height:20px;margin:0 0 0 6px;text-align:left;width:250px;}
+    .plany .tsul li .nright .yuany{height:auto;margin:0 36px 0 0;overflow:hidden;position:relative;width:100px;}
+    .plany .tsul li .nright .yuany .pos_img_word{background:#dddddd none repeat scroll 0 0;bottom:0;color:#000000;height:auto;line-height:16px;margin:0;opacity:0.6;padding:0 2px;position:absolute;right:0;width:96px;}
+    .tsbut{clear:both;margin:0 0 50px 100px;}
+    .tsbut span{display:inline-block;margin-left:50px;}
+    .tsbut span input{width:120px;height:38px;line-height:38px;text-align:center; background:#c69b6e;color:#fff; cursor:pointer;}
+    /*====返修订单-返修编辑页/E====*/
+
+</style>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=fx&act=index">返回{$lang.manage}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="edit">
+
+        <div class="container">
+            <div class="service">
+            <h4>业务信息</h4>
+            <div class="client">
+                <p class="xingm fl">返修用户：</p>
+                <input type="text"  disabled="disabled"  value="{$fx_info.nickname}" class="khinp fl" />
+
+            </div>
+
+            <div class="client">
+                <p class="xingm fl">订单号：</p>
+                <input type="text"  disabled="disabled" value="{$fx_info.rcmtm_id}" class="khinp fl" />
+            </div>
+            <div class="client">
+                <p class="xingm fl">当前状态：</p>
+                <p style="color:red;">{$status_goods_info.$fx_info.info_status}</p>
+                <input type="hidden" value="4" name="info_status">
+                <input type="hidden" value="{$fx_info.info_status}" name="old_info_status">
+            </div>
+            <div class="client">
+                <p class="xingm fl">承接量体师：</p>
+                <select name="lts">
+                    <option value="" >暂无</option>
+                    {html_options options=$lt_members selected=$fx_info.liangti_id}
+                </select>
+                <input type="hidden" value="{$fx_info.liangti_id}" name="old_lts">
+            </div>
+
+            <!--{if $fx_info['sign']==2}-->
+            <div class="client">
+                <p class="xingm fl">客户预约到店时间：</p>
+                <input class="queryInput2" type="text" value="{if $fx_info.to_time}{$fx_info.to_time}{/if}" style="width:200px" id="to_time" name="to_time" class="pick_date" />
+                <input type="hidden" value="{if $fx_info.to_time}{$fx_info.to_time}{/if}" name="old_to_time">
+            </div>
+            <!--{/if}-->
+
+
+            <div class="client">
+                <p class="xingm fl">商品交期：</p>
+                <input class="queryInput2" type="text" value="{if $fx_info.send_time}{$fx_info.send_time}{/if}" style="width:200px" id="send_time" name="send_time" class="pick_date" />
+                <input type="hidden" value="{if $fx_info.send_time}{$fx_info.send_time}{/if}" name="old_send_time">
+            </div>
+
+
+            <div class="client">
+                <p class="xingm fl">返修原因：</p>
+                <select class="querySelect" name='reason'>
+                    <option value="">暂无</option>
+                    {html_options options=$fx_reason selected=$fx_info.reason}
+                </select>
+                <input type="hidden" value="{if $fx_info.reason}{$fx_info.reason}{/if}" name="old_reason">
+            </div>
+
+                <!--{if $fx_info['sign']==1}-->
+            <div class="client">
+                <p class="xingm fl">商品寄回物流单号：</p>
+                <input type="text" class="khinp fl" name="wl_sn" value="{if $fx_info.wl_sn}{$fx_info.wl_sn}{/if}" />
+                <input type="hidden" value="{if $fx_info.wl_sn}{$fx_info.wl_sn}{/if}" name="old_wl_sn">
+                <p class="fl tishic">客户到店返修的由门店将商品寄回公司。</p>
+            </div>
+                <!--{/if}-->
+                <div class="client">
+                    <p class="xingm fl">返修价格：</p>
+                    <input type="text" style="border:1px solid #999;line-height:24px;margin-right:5px;padding-left:10px;" value="{if $fx_info.price}{$fx_info.price}{/if}" name="price">元
+                    <input type="hidden" value="{if $fx_info.price}{$fx_info.price}{/if}" name="old_price">
+                </div>
+
+                <div class="client">
+                    <p class="xingm fl">工艺返修方案：</p>
+                    <TEXTAREA name="gy_method"  style="border:1px solid #999;">{$fx_info.gy_method}</TEXTAREA>
+                    <input type="hidden" value="{if $fx_info.gy_method}{$fx_info.gy_method}{/if}" name="old_gy_method">
+                </div>
+
+            </div>
+
+            <br/><br/><br/>
+        <div class="service">
+            <h4>客户收货信息</h4>
+
+            <div style="margin: 0 0 20px 57px;">
+                <input type="radio" value="1" {if $fx_info.shipping_id==1}checked{/if} name="sign_user" id="sign_user" onclick="change(1)">物流
+                <input type="radio" value="2" {if $fx_info.shipping_id==2}checked{/if}  name="sign_user" id="sign_user" onclick="change(2)">门店自提
+
+
+                <input type="hidden" value="{$fx_info.shipping_id}" name="old_sign_user" >
+            </div>
+            <div class="client">
+                <p class="xingm fl">收货人姓名：</p>
+                <input type="text"   name="user_name" value="{$fx_info.user_name}" class="khinp fl" />
+                <input type="hidden"   name="old_user_name" value="{$fx_info.user_name}" class="khinp fl" />
+            </div>
+            <div class="client">
+                <p class="xingm fl">收货人手机：</p>
+                <input type="text"   name="phone_mob" value="{$fx_info.phone_mob}" class="khinp fl" />
+                <input type="hidden"   name="oldphone_mob" value="{$fx_info.phone_mob}" class="khinp fl" />
+            </div>
+            <div class="client">
+                <p class="xingm fl">收货人邮编：</p>
+                <input type="text"   name="zipcode" value="{$fx_info.zipcode}" class="khinp fl" />
+                <input type="hidden"   name="oldzipcode" value="{$fx_info.zipcode}" class="khinp fl" />
+            </div>
+
+
+
+
+            <div class="">
+                <p class="xingm fl">收货人地址：</p>
+
+                <div id="sign_1_user" {if $fx_info.shipping_id==2}style="display:none"{/if}>
+                        <select  name="p_region_id" onchange="get_region(this)">
+                            <option value="">全部</option>
+                            {html_options options=$region1 selected=$fx_info.s}
+                        </select>
+                        <select  name="s_region_id_user" id="s_region_id_user">
+                            <option value="">全部</option>
+                            {html_options options=$region2 selected=$fx_info.city}
+                        </select>
+                        <br/>
+                        <input type="text" value="{if $fx_info.shipping_id==1}{$fx_info.ship_addr}{/if}" name="xx_address_user" style="width:600px;border:1px solid #999; background:none;margin: 20px 0 0 141px;">
+
+                <input type="hidden" value="{if $fx_info.shipping_id==1}{$fx_info.ship_area}{/if}" name="xx_old_address_user1" >
+                <input type="hidden" value="{if $fx_info.shipping_id==1}{$fx_info.ship_addr}{/if}" name="xx_old_address_user2" >
+
+
+            </div>
+
+
+                <div {if $fx_info.shipping_id==1}style="display:none"{/if}  id="xx_user_address_1" >
+                    <input type="text" style="width:800px;border: 1px solid #999;background: none;" disabled  value="{if $fx_info.shipping_id==2}{$fx_info.ship_serve_name}&nbsp;&nbsp;&nbsp;{$fx_info.ship_addr}{/if}" name="">
+                   <input type="hidden"  value="{if $fx_info.shipping_id==2}【{$fx_info.ship_serve_name}】 {$fx_info.ship_addr},{$fx_info.ship_store}{/if}" name="old_address">
+                    <!--<div id="xx_ys_user">-->
+                        <!--{if !empty($address.xx)}-->
+                        <!--<input type="text" name="address_user"  value="{$address.xx}" style="width:800px">-->
+                        <!--{else}-->
+                        <!--系统没有检索到 该订单的相关门店！！-->
+                        <!--{/if}-->
+                        <!--<br/>-->
+                        <!--<br/>-->
+                        <!--<a href="javascript:void(0)" onclick="other_store('user')" id="change_store_user"><b><u> >> 指派其他门店</u></b></a>-->
+
+                    <!--</div>-->
+                    <br/>
+                    <a href="javascript:void(0)" onclick="other_store('user')" id="change_store_user"><b style="color:#00c;"><u> >> 重新编辑收货人地址</u></b></a>
+                </div>
+                <div  id="xx_other_user" style="display:none;margin: 20 0 0 137px;">
+
+                    <select class="querySelect" id="region_id_user" name="region_id_user" onchange="change_region('user')">
+                        <option value="">全部</option>
+                        {html_options options=$other_address }
+                    </select>
+                    <div id="xx_address_info_user">
+                    </div>
+
+                    <!--<br/>-->
+                    <!--<br/>-->
+                    <!--<a href="javascript:void(0)" onclick="ys_store('user')" id="ys_store_user"><b><u> >> 指派原始门店</u></b></a>-->
+
+                </div>
+
+            </div>
+        </div>
+
+        <br/>
+        <input type="hidden" value="{$fx_info.id}" name="id">
+        <input type="hidden" value="{$fx_info.s_id}" name="s_id">
+        <input type="hidden" value="{$fx_info.rec_id}" name="rec_id">
+        <input type="hidden" value="{$cloth_java}" name="cloth_java">
+        <div style="width:160px;margin:0 auto 20px auto;">
+            <input type="submit" value="提交" name="Submit" class="tijia">
+            <input type="reset" value="重置" name="Submit2" class="congzi">
+        </div>
+    </div>
+    </form>
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+
+    function change(obj){
+
+            if(obj == 1){
+                $("#sign_1_user").show();
+                $('#xx_user_address_1').hide();
+                $('#xx_other_user').hide();
+
+            }
+            if(obj == 2){
+                $("#xx_user_address_1").show();
+                $("#sign_1_user").hide();
+
+            }
+    }
+    function other_store(obj){
+       change_region(obj)
+
+       $('#xx_ys_user').hide();
+//       $('#xx_other_user').show();
+        $('#xx_other_user').attr({style:"display:block;margin: 20px 0 0 137px;"})
+
+    }
+    function ys_store(obj){
+        $('#xx_ys_user').show();
+        $('#xx_other_user').hide();
+    }
+
+    function change_region(obj){
+
+       var  region_id =$('#region_id_user').val();
+       var url = '/mfd/index.php?app=fx&act=store_address&region_id='+region_id;
+        $.get(url, function(res){
+            var res = eval("("+res+")");
+            if(res.done == true){
+                if(obj=='user'){
+                    $('#xx_address_info_user').html(res.retval);
+                }else{
+                    $('#xx_address_info').html(res.retval);
+                }
+
+            }
+        })
+    }
+
+
+    function get_region(obj)
+    {
+        var p_id = $(obj).val();
+        $.post("./index.php?app=serve&act=get_region",{pid:p_id}, function(res){
+            var res = eval("("+res+")");
+            $('#s_region_id_user').empty();
+            $('#s_region_id_user').append(res.retval)
+        });
+    }
+
+
+    $('#to_time').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#send_time').datepicker({dateFormat: 'yy-mm-dd'});
+
+    $('.reduce').click(function(){
+
+        var obj=$(this).parent().find('.numb'),cunt=(Number(obj.val())-.1).toFixed(1);
+        if(cunt>=Number($(this).attr('data-min'))){
+            obj.val(cunt);
+        }
+        return false
+    });
+    $('.jiahao').click(function(){
+        var obj=$(this).parent().find('.numb'),cunt=(Number(obj.val())+.1).toFixed(1);
+        if(cunt<=Number($(this).attr('data-max'))){
+            obj.val(cunt);
+        }
+        return false
+    });
+
+
+
+    $(function () {
+        var show_count = 100;   //要显示的条数
+        var count = 0;    //递增的开始值，这里是你的ID
+        $("#btn_addtr").click(function () {
+
+            var length = $("#dynamicTable tbody tr").length;
+            //alert(length);
+            if (length < show_count)    //点击时候，如果当前的数字小于递增结束的条件
+            {
+                $("#tab11 tbody tr").clone().appendTo("#dynamicTable tbody");   //在表格后面添加一行
+                changeIndex();//更新行号
+            }
+        });
+    });
+    function changeIndex() {
+        var i = 1;
+        $("#dynamicTable tbody tr").each(function () { //循环tab tbody下的tr
+            $(this).find("input[name='NO']").val(i++);//更新行号
+        });
+    }
+    function deltr(opp) {
+        var length = $("#dynamicTable tbody tr").length;
+        if (length <= 0) {
+            alert("至少保留一行");
+        } else {
+            $(opp).parent().parent().remove();//移除当前行
+            changeIndex();
+        }
+    }
+</script>
+{include file="footer.html"}

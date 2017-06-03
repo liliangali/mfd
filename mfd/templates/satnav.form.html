@@ -1,0 +1,217 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#satnav_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {  
+        	satnavname : {
+        		required : true,
+        		 remote   : {
+                     url :'index.php?app=satnav&act=check_sat_name',
+                     type:'get',
+                     data:{
+                    	 satnavname : function()
+                     	{
+                             return $('#satnavname').val();
+                         },
+                         id : '{$find_data.satnav_id}'
+                     }
+            }
+        	},
+            title : {
+                required : true
+            },
+            sort_order:{
+               number   : true
+            }
+        },
+        messages : {
+        	satnavname : {
+       		 required : '必填',
+                remote   : '名称已存在'
+            },
+            title : {
+                required : '{$lang.title_empty}'
+            },
+         
+            sort_order  : {
+                number   : '{$lang.number_only}'
+            }
+        }
+    });
+});
+
+
+</script>
+
+<!-- {$build_editor} -->
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=satnav">导航管理</a></li>
+        <li><span>导航新增</span></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="satnav_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                   	*导航名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id=satnavname type="text" name="satnavname" value="{$find_data.name|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                                                         导航titile值:</th>
+              <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id=title type="text" name="title" value="{$find_data.title|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">上级导航:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="parent_id" name="parent_id"><option value="0">一级分类</option>{html_options options=$parents selected=$find_data.parent_id}</select>
+                </td>
+            </tr>
+            
+             <tr>
+                <th class="paddingT15">
+                                                         导航链接:</th>
+              <td class="paddingT15 wordSpacing5">
+                    <select id="url_rule"  onchange="change_url(this)"><option value=''>请选择</option>{html_options  values=$url_rule_values output=$url_rule_names  selected=$find_data.link}</select><label class='field_notice'>固定url规则</label><br>
+                    <input class="infoTableInput" id=link type="text" name="link" value="{$find_data.link|escape}" /><label class='field_notice'>可选择固定url（需填写参数），也可以自定义url</label>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">图标 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="lcon" name="lcon">
+                        {html_options options=$type selected=$find_data.lcon}
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">
+                    {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="sort_order" type="text" name="sort_order" value="{$find_data.sort_order}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">是否新窗口打开:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="alone" value="1" {if $find_data.alone eq 1} checked="checked"{/if} />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="alone" value="0" {if $find_data.alone eq 0} checked="checked"{/if} />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">{$lang.if_show}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="if_show" value="1" {if $find_data.if_show eq 1} checked="checked"{/if} />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="if_show" value="0" {if $find_data.if_show eq 0} checked="checked"{/if} />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+    
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<!-- 配置文件 -->
+    <script type="text/javascript" src="{lib file=Ueditor/ueditor.config.js}"></script>
+<!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="{lib file=Ueditor/ueditor.all.js}"></script>
+
+<script>
+
+
+function loadChild(obj)
+{
+    var value = obj.value;
+    $.get("index.php?app=gcategory",{act:"loadAttr",type:value}, function(res){
+ 	     var res = eval("("+res+")");
+  	    $(obj).next("select").empty().append('<option value="0">{$lang.select_attr}</option>');
+  	    for(var i = 0 ; i<res.retval.length;i++){
+    	     $(obj).next("select").append("<option value='" + res.retval[i].id +"'>" + res.retval[i].name + "</option>");
+  	    }
+    })    
+}
+
+function searchGoods(obj)
+{
+    	var catid = $(obj).parents("td").children("select").val();
+    	var goods_name = $(obj).parents("td").children("input").val();
+    	
+    	if(!catid && goods_name.length ==0){
+ 		    alert('{$lang.alert_catandgoods}');
+ 		    return false;
+        }
+        
+    	$.get("index.php?app=gcategory",{act:"loadGoods", catid:catid, name:goods_name}, function(res){
+  		    var res = eval("("+ res +")");
+  		    if(res.retval.length > 0){
+    		      var opt = '';
+    		      for(var i=0;i<res.retval.length;i++){
+   		    	      opt += "<option value='"+res.retval[i].id+"'>"+res.retval[i].name+"</option>"
+        		  }
+    		      $("#goodsid").empty().append(opt);
+  	  		}else{
+  	  	  		$("#goodsid").empty().append("<option value=0>-={$lang.nogoods}=-</option>")
+  	  	  	}
+        })
+}
+
+function selectGoods()
+{
+	var ObjGoods = $("#goods_list");
+	var goodsId = $("#goodsid");
+	var msg = '';
+	ObjGoods.find("input").each(function(){
+	    if($(this).val() == goodsId.val()){
+	        msg = '{$lang.goods_exist}';
+		}
+	})
+	
+	if(msg)
+	{
+	    alert(msg);
+	    return false;
+	}	
+   ObjGoods.append("<li><input type='checkbox' checked='true' name='ids[]' value='"+goodsId.val()+"'> "+goodsId.find("option:selected").text()+"</li>");
+}
+
+function change_url(obj){
+    var url=$(obj).children(':selected').val();
+    if(url){
+        $(obj).siblings('input').val(url);
+    }
+    
+}
+
+</script>
+{include file="footer.html"}

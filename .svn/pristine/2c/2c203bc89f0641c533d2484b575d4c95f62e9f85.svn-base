@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>物流公司</title>
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link type="text/css" href="public/static/wap/css/productlist.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+<script type=text/javascript src="static/js/jquery-1.8.3.min.js"></script>
+<script type=text/javascript src="static/js/layer.m.js"></script>
+</head>
+<body>
+<script>window.onunload=function(){};</script>
+<div class="main"> 
+    <header class="hdtop">
+        <div class="edit fl">
+            <p class="p1"><a href="javascript:history.go(-1)"><img src="public/static/wap/images/tw_03.png" /></a></p>
+            <p class="p2">物流公司</p>
+        </div>
+    </header>
+
+    <form data-type="address">
+     <div class="shrxx">
+        <ul>
+          {foreach from=$list item=item}
+          <li id="list_{$item.shipping_id}" class="{if $item.shipping_id == $defShips.shipping_id} on {/if} addr_list" data-id="{$item.shipping_id}" >
+            <div class="check">
+            <h1 class="bgww">{$item.shipping_name}</h1>
+            <p class="bgww">首重价格：{$item.first_money|price} | 续重价格：{$item.step_money|price}</p>
+            <p class="bgww">首重重量：{$item.first_weight}克 | 续重重量：{$item.step_weight}克</p>
+            </div>
+            
+          </li>
+          {/foreach}
+        </ul>
+     </div>
+     </form>
+    </div>
+    
+
+</div>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+
+<script>
+
+$('#region_id').unbind().bind('change',function(){
+    getServers($(this).val())
+})
+function getServers(region_id,server_id){
+    $.post("{link app=cart act=getServer}",{region_id:region_id,server_id:server_id,type:'ship'}, function(res){
+        var res = $.parseJSON(res);
+        if(res.done == true){
+            $("#serverlist").html(res.retval.content);
+            $('.server_li').unbind().bind('click',function(){
+                $("#server_id").val($(this).data('id'));
+                $("#server_name").val($(this).data('name'));
+                $('.server_li').removeClass('on');
+                $(this).addClass('on');
+            })
+        }
+    })
+}
+
+
+
+$('.check').click(function(){
+	//if($(this).parents('li').hasClass('on')) return;
+	var _id = $(this).parents('li').data('id');
+	$.post("{link app=cart act=shipsSet}?token={$apptk}",{id:_id}, function(res){
+        var res = $.parseJSON(res);
+        if(res.done == true){
+        	$('.addr_list').removeClass('on');
+        	$('#list_'+_id).addClass('on');	
+        	// add by xiao5 checkout
+        	history.go(-1)
+        	return false
+        	//location.href="{link app=cart act=checkout}";
+        }
+    })
+})
+
+
+function _alert(msg){
+    layer.open({
+        content: '<p style="text-align:center">'+msg+'</p>',
+        btn: ['确定'],
+    }); 
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=userdemand">返回列表</a></li>
+  </ul>
+</div>
+<div class="info">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15">用户名:</th>
+        <td class="paddingT15 wordSpacing5">{$info.user_name|escape}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">发起时间:</th>
+        <td class="paddingT15 wordSpacing5">{$info.add_time|date:complete}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">状态:</th>
+        <td class="paddingT15 wordSpacing5">{if $info.status eq 0}未处理{elseif $info.status eq 1}已处理{else}已拒绝{/if}</td>
+      </tr>
+     {if $info.admin_name}
+      <tr>
+        <th class="paddingT15">管理员名称:</th>
+        <td class="paddingT15 wordSpacing5">{$info.admin_name|escape}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">介入时间:</th>
+        <td class="paddingT15 wordSpacing5">{$info.last_time|date:complete}</td>
+      </tr>
+     {/if}
+     {foreach from=$info.imgs item=img}
+      <tr>
+        <th class="paddingT15" valign="top"></th>
+        <td class="paddingT15 wordSpacing5">
+            {$img}
+        </td>
+      </tr>
+      {/foreach}
+      {if $info.status eq 0}
+      <tr>
+        <th></th>
+        <td><input class="formbtn" type="button" name="reject" value="响应" /></td>
+      </tr>
+      {/if}
+    </table>
+</div>
+{include file="footer.html"} 

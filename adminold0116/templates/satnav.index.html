@@ -1,0 +1,74 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ajax_tree4.js}" charset="utf-8"></script>
+<script type="text/javascript">
+$(function()
+{
+    var map = {$map};
+    if (map.length > 0)
+    {
+        var option = {openImg: "templates/style/images/treetable/tv-collapsable.gif", shutImg: "templates/style/images/treetable/tv-expandable.gif", leafImg: "templates/style/images/treetable/tv-item.gif", lastOpenImg: "templates/style/images/treetable/tv-collapsable-last.gif", lastShutImg: "templates/style/images/treetable/tv-expandable-last.gif", lastLeafImg: "templates/style/images/treetable/tv-item-last.gif", vertLineImg: "templates/style/images/treetable/vertline.gif", blankImg: "templates/style/images/treetable/blank.gif", collapse: false, column: 1, striped: false, highlight: true, state:false};
+        $("#treet1").jqTreeTable(map, option);
+    }
+});
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>导航管理</span></li>
+        <li><a class="btn1" href="index.php?app=satnav&amp;act=add">导航新增</a></li>
+    </ul>
+</div>
+
+<div class="info2">
+
+    <table  class="distinction">
+        <!--{if $acategories}-->
+        <thead>
+        <tr class="tatr1">
+            <td colspan="2" style="padding-left: 10px;">导航名称</td>
+            <td>排序</td>
+            <td>导航title</td>
+             <td >链接</td>
+            <td>图标</td>
+            <td>显示</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        </thead>
+        <!--{/if}-->
+       
+       
+             <tbody id="treet1">
+         
+            <!--{foreach from=$acategories item=dh}-->
+            <tr>
+                <td class="align_center w30"></td>
+                <td class="node" width="15%"><span ectype="inline_edit" fieldname="name" fieldid="{$dh.satnav_id}" required="1" class="node_name editable">{$dh.name|escape}</span></td>
+                <td class="align_center" width="10%"><span ectype="inline_edit" fieldname="sort_order" fieldid="{$dh.satnav_id}" datatype="pint" maxvalue="255" class="editable">{$dh.sort_order}</span></td>
+                <td class="align_center" width="10%"><span ectype="inline_edit" fieldname="title" fieldid="{$dh.satnav_id}"  maxvalue="255" class="editable">{$dh.title|escape}</span></td>
+                
+               <td class="align_center" width="15%"><span ectype="inline_edit" fieldname="link" fieldid="{$dh.satnav_id}"  maxvalue="255" class="editable">{$dh.link|escape}</span></td>
+               <td class="align_center" width="10%">{$dh.lcon}</td>
+               <td class="align_center" width="10%"><!--{if $dh.if_show}--><img src="templates/style/images/positive_enabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="{$dh.satnav_id}" fieldvalue="1" title="{$lang.editable}"/><!--{else}--><img src="templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="{$dh.satnav_id}" fieldvalue="0" title="{$lang.editable}"/><!--{/if}--></td>
+                
+             <td class="align_center">
+            <a href="index.php?app=satnav&amp;act=edit&amp;id={$dh.satnav_id}">{$lang.edit}</a>
+           | <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=satnav&amp;act=drop&amp;id={$dh.satnav_id}');">{$lang.drop}</a>
+           | <a href="index.php?app=satnav&amp;act=add_satnavcat&amp;id={$dh.satnav_id}">新增下级</a>
+           
+            </td> 	
+            </tr>
+            <!--{foreachelse}-->
+            <tr class="no_data">
+                <td colspan="6">{$lang.no_data}</td>
+            </tr>
+            <!--{/foreach}-->
+           
+        </tbody>
+       
+
+        <tfoot>
+        </tfoot>
+    </table>
+
+ 
+</div>
+{include file="footer.html"}

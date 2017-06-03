@@ -1,0 +1,84 @@
+{include file="header.html"}
+<div class="tdare">
+  <form method=post>
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $list}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"></td>
+      <td>基本款选择</td>
+       <td><input type="text" class="search_key" name="search" value="样衣名称搜索" />
+        <input type="submit" class="submit" value="搜索">
+        </td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$list item=val key=key}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="radio" name="id"  class="checkitem" value="{$val.id}" {if $val.checked}checked{/if}/></td>
+      <td class="idss" id="{$val.id}">{$val.name|escape}</td>
+      <td ><img src="{$val.small_img}" style="height:60px;width:70px;" ></td>
+    </tr>
+    <td id="vids"style="display:none;">{$val.id}</td>
+    <!--{foreachelse}-->
+    
+    <tr class="no_data">
+      <td colspan="2">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+    
+    <input type="hidden" id="idds" value="" />
+   
+  </table>
+  </form>
+  <!--{if $list}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"><input type="button" name="sel" value="确定" class="btn"></div>
+  </div>
+  <!--{/if}-->
+</div>
+<script>
+
+var id     = "{$val.id}";
+var vid = "{$vid}";
+$(document).ready(function(){
+	 $(".dataTable input[name=id]").each(function(){
+	        $(this).click(function(){
+	            var cids = $.cookie("shirts");
+	            var ids  = cids ? cids.split(",") : [];
+	            
+	           if($(this).attr("checked") == true){
+                     ids.push($(this).val());
+	       	 	         
+	           }else{
+	       	        for(var i=0;i<ids.length;i++){
+	          	         if(ids[i] == $(this).val()){
+	            	          ids.splice(i,1);
+	            	          
+	              	     }
+	           	    }
+	           }
+	           if(ids.length > 0){
+	        	    $.cookie("shirts",ids.join(","));
+	           }else{
+	        	   $.cookie("shirts",null);
+	           }
+	        })
+	    })
+	    $('.checkitem').click(function(){
+	    	if($(this).attr("checked")){
+	    		var b=$(this).val();
+	    		$('#idds').val(b);
+	    	}
+	    })
+	$(".btn").click(function(){
+		var _id = $('#idds').val();
+        var name=$("#"+_id).text();
+		$.cookie("suits",null);
+        window.close();
+       
+     	   window.opener.callBackFab(_id,name);
+    })
+})
+
+</script>
+{include file="footer.html"} 

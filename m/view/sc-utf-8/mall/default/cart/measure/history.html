@@ -1,0 +1,10 @@
+{if $list}
+<p class="qsrsj">请选择以下现有量体</p>
+<ul class="xyltsj">
+{foreach from=$list item=item key=key} {* $key *}
+<li data-id="{$item.figure_sn}" class="history_li jj_box {if $ckid == $item.figure_sn} on {/if}"><font class="jj_1">{$item.customer_name}</font><span class="jj_1">{if $item.customer_mobile}{$item.customer_mobile}{/if}</span><span class="jj_1">{if $item.lasttime}{$item.lasttime|date:Y-m-d}{else}{$item.firsttime|date:Y-m-d}{/if}</span><span class="jj_1">{if $item.liangti_name}{$item.liangti_name}{/if}</span></li>
+{/foreach}
+</ul>
+{else}
+<p class="mysj_ts">对不起，您没有历史量体数据，请<a href="javascript:window.history.go(-1)" style="color:#ff3300;">返回</a>重新选择其它量体方式</p>
+{/if}

@@ -1,0 +1,53 @@
+{literal}
+<style type="text/css">
+body,td { font-size:13px; height:28px;}
+.spxj td { text-align:center; height:32px;  padding:0 10px;}
+</style>
+{/literal}
+{foreach from=$orderArr item=order}
+<table width="100%" cellpadding="1">
+    <tr>
+        <td colspan="2" style="text-align:center; font-size:24px; padding:10px 0;">Mfd.麦富迪商城</td>
+    </tr>
+    <tr>
+        <td>订单编号：</td><td>{$order.tid}<!-- 订单号 --></td><td></td>
+    </tr>
+    <tr>
+        <td width="10%">下单时间：</td><td>{$order.oinfo.add_time|date:complete}</td>
+        <td width="10%">发货时间：</td><td>{$order.t_begin|date:complete}</td>
+    </tr>
+</table>
+<table width="100%" border="1" style="border-collapse:collapse;border-color:#000; margin:10px 0;" class="spxj">
+    <tr align="center">
+        <td bgcolor="#cccccc">商品名称  <!-- 商品名称 --></td>
+        <td bgcolor="#cccccc">购买数量<!-- 商品数量 --></td>
+        <td bgcolor="#cccccc">规格<!-- 商品数量 --></td>
+    </tr>
+    <!-- {foreach from=$order.oinfo.goods item=goods key=key} -->
+    <tr>
+        <td>&nbsp;{$goods.goods_name}<!-- 商品名称 --></td>
+        <td align="right">{$goods.quantity}&nbsp;<!-- 商品数量 --></td>
+        <td align="right">{$goods.pstr}&nbsp;<!-- 商品数量 --></td>
+    </tr>
+    <!-- {/foreach} -->
+</table>
+<table width="100%" cellpadding="1">
+    <tr>
+        <td width="10%">用户名：</td><td>{$order.oinfo.user_name}</td><td></td>
+    </tr>
+    <tr>
+        <td width="10%">收货人：</td><td>{$order.receiver_name}</td><td></td>
+    </tr>
+     
+     <tr>
+        <td width="10%">联系电话：</td><td>{$order.receiver_mobile}</td><td></td>
+    </tr>
+     <tr>
+        <td>收货地址：</td><td>[{$order.area_names}]&nbsp;{$order.receiver_address}&nbsp;<!-- 收货人地址 --></td>
+     </tr>
+
+    <tr>
+        <td></td><td align="right">谢谢惠顾，欢迎再次光临</td>
+     </tr>
+</table>
+{/foreach}

@@ -1,0 +1,31 @@
+        {foreach from=$comment_list item=list}
+        <li>
+			<p class="yxtx"><a href="#"><img src="{$list.face}"></a><span>{$list.nickname}</span></p>
+			<div class="div_1">
+				<div class="fwzl">
+                  <div class="fw fl"><p class="fl"></p><span class="xing_{$list.star}"></span></div>
+                  <p class="date">{$list.addtime|date:complete}</p>
+                </div>
+				<p class="p1">{$list.content}</p>
+			</div>
+		</li>
+		{/foreach}
+		{if $page_info.page_count > 1}
+			<!--翻页开始-->
+          <div class="cc_page">
+            <!--{if $page_info.prev_link}-->
+            <a href="javascript:;" onclick="goToPage(this)" data-url="{$page_info.prev_link}" title="上一页" class="zjt">&lt;</a>
+            <!--{/if}-->
+             <!--{foreach from=$page_info.page_links key=page item=link}-->
+             <!--{if $page_info.curr_page eq $page}-->
+             <span class="active">{$page}</span>
+              <!--{else}-->
+              <a href="javascript:;" onclick="goToPage(this)" data-url="{$link}">{$page}</a>
+                  <!--{/if}-->
+            <!--{/foreach}-->
+            <!--{if $page_info.next_link}-->
+            <a href="javascript:;" onclick="goToPage(this)" data-url="{$page_info.next_link}" title="下一页" class="zjt">&gt;</a>
+            <!--{/if}-->
+         </div>  
+        <!--翻页结束-->
+		{/if}

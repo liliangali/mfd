@@ -1,0 +1,94 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+    <!--用户中心左菜单部分 START-->
+    {include file = member.menu.html}
+    <!--用户中心左菜单部分 END-->
+    <div class="user_right user_rights fr">
+        <h4 class="collection">我的酷卡</h4>
+        <div class="voucher">
+        	<ul class="kjul fl">
+            	<li><a  href="{link app=kuka act=index arg0=1 arg1=wzs}" {if $status eq 'wzs'} class="jwsy"{/if}>未使用（{$unused}）</a></li>
+                <li><span></span></li>
+                <li><a href="{link app=kuka act=index arg0=1 arg1=yzs}" {if $status eq 'yzs'} class="jwsy"{/if}>已使用（{$hasused}）</a></li>
+                <li><span></span></li>
+                <li><a href="{link app=kuka act=index arg0=1 arg1=ygq}" {if $status eq 'ygq'} class="jwsy"{/if}>已过期（{$hasover}）</a></li>
+            </ul>
+            <p class="kjrhsy fr"><a href="kuka-buy_kuka.html">购买酷卡</a></p>
+        </div>
+        <div class="recently">
+        <table width="100%" frame="void" rules="none" cellspacing="0" class="cyzwdkk">
+            <!--{if $info}-->
+            <tr class="kktab">
+              <td width="160">酷卡</td>
+              <td>编号</td>
+              <td>过期时间</td>
+              <td>操作</td>
+            </tr>
+            <!--{foreach from=$info  name=kuka key=key item=item}-->
+            <tr class="kkbottom">
+              <td  {if $item.day eq '' }class="kkbj  kkbjs" {else} class="kkbj"  {/if}>
+                <p class="kkword">{$item.cate_name}</p>
+                <p class="kkqian">￥{$item.work_num}</p>
+              </td>
+              <td class="kktongy">{$item.sn}</td>
+              <td class="kktongy">{$item.expire_time}&nbsp;&nbsp;{if $item.day}(仅剩<span>{$item.day}</span>天）{/if}</td>
+              <td class="kktongy">
+               <!--{if $item.donation_mes}-->
+                   {$item.donation_mes}
+                <!--{else}--> 
+                    <!--{if $item.day eq ''}-->
+                      	已过期
+                      <!--{else}--> 
+               <a href="kuka-getInviteUser.html?sn={$item.sn}"><button>赠送</button></a>
+               <!--{/if}-->   
+               <!--{/if}-->    
+              </td>
+            </tr>
+           <!--{/foreach}-->
+          <!--{else}-->   
+        <tr>
+          <td>
+            <div class="empty">
+                <div>未匹配酷卡数据<br><p><a href="./" class="cc_btn s_btn">麦富迪首页</a></p></div>
+            </div>
+         </td>
+       </tr>
+      <!--{/if}-->    
+       </table>
+       </div>
+     {include file=member.page.bottom.html}
+    </div>
+</div>
+
+
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/global/jquery.swipe.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/user.js"></script>
+
+<script>
+
+    cotteFn.kuka()
+
+    //分享
+    window._bd_share_config = {
+        common : {
+            bdText : document.title,
+            bdDesc : '',
+            bdUrl : window.location.href,
+            bdPic : ''
+        },
+        share : [{
+            "bdSize" : 16
+        }]
+    }
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+{include file=../footer-new.html}
+
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+<!--sortlist end-->
+       <script>
+       
+       function getMonth(){
+    	   var month = $("#date").val();
+    	   location.href='/index.php/kuke-point.html?month='+month;
+       }
+       
+       </script>
+
+  
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">我的积分<a href="{link app=article act=view arg0=56}" class="sygz">积分规则</a></h1>
+     
+    <div class="m_wdktb">
+      <p class="p1"><font class="kyjf">可用积分：<span>{$visitor.point}</span></font></p>
+      <div class="p2">
+        <p class="m_djjf">冻结积分：{$visitor.freezes_point} (<span>何时冻结</span></p> <div class="ktbgz1" onMouseOver="this.className='ktbgz2'" onMouseOut="this.className='ktbgz1'"/><div><img src="{res file=images/djal.gif}" /><p>当您使用积分进行下订单支付时，订单未确认之前积分为冻结状态。</p></div></div>)</div>
+    </div>
+
+  <div class="m_ktbqh_box">
+   <UL class="ktb_ul">
+      <LI id="ti_1" class="now_hover" >积分获取</LI>
+    </UL>
+    <p class="clear"></p>
+
+
+    <div id="tj_1" class="ktbhq">
+       <div class="m_qbxgktb">
+         <a href="/index.php/kuke-point.html" {if !$cate} class="on"{/if}>全部 {if !$cate}<img src="{res file=images/wsy.png}" />{/if}</a>
+         <a href="/index.php/kuke-point.html?cate=order"  {if $cate == 'order' } class="on"{/if}>订单相关 {if $cate == 'order' }<img src="{res file=images/wsy.png}" />{/if}</a>
+         <a href="/index.php/kuke-point.html?cate=comment"  {if $cate == 'comment' } class="on"{/if}>商品评论 {if $cate == 'comment' }<img src="{res file=images/wsy.png}" />{/if}</a>
+		 <a href="/index.php/kuke-point.html?cate=hudong"  {if $cate == 'hudong' } class="on"{/if}>参与互动 {if $cate == 'hudong' }<img src="{res file=images/wsy.png}" />{/if}</a>
+         <p class="clear"></p>
+       </div>
+       
+       <p class="zjsgydjl">
+         <select name='date' id='date' onchange='getMonth()'>
+         	<option value='1' {if $month == 1}selected{/if}>最近一个月的获取记录</option>
+           	<option value='3' {if $month == 3}selected{/if}>最近三个月的获取记录</option>
+           	<option value='6' {if $month == 6}selected{/if}>最近六个月的获取记录</option>
+         </select>
+       </p>
+     
+    
+      <table cellpadding="0" cellspacing="0" border="0" width="100%" class="wdyhj" >
+        <tr>
+          <th width="90px" style="padding-left:15px;">获取积分</th>
+          <th width="80">消费积分</th>
+          <th width="166">积分类型</th>
+          <th width="320">积分详情</th>
+          <th width="128">日期</th>
+        </tr>
+        
+        
+        {foreach from=$coin key=k item=v }     
+        <tr>
+          <td style="padding-left:15px;">{if $v.opt =='add'}{$v.num}{else}0{/if}</td>
+          <td>{if $v.opt =='del'}{$v.num}{else}0{/if}</td>
+          <td>{$v.desc.desc}</td>
+          <td>{$v.msg}</td>
+          <td>{$v.date}</td>
+        </tr>  
+         {/foreach}
+         
+        
+<!--         <tr>
+          <td style="padding-left:15px;">300</td>
+          <td>0</td>
+          <td>订单相关</td>
+          <td><span class="gwxd">[购物下单]</span>订单号:140408RM488G</td>
+          <td>2014-04-08 16:08</td>
+        </tr>   --> 
+        
+                   
+      </table>  
+      <p style="height:2px; width:100%; background:#fff; position:relative; top:-2px;"></p> 
+    </div>
+
+    <div id="tj_2"></div>
+    
+  </div>
+
+    
+    <div class="lulals_fy">    
+ <p>共{if $total}{$total}{else}0{/if}条记录</p>  
+      <div>
+        {$page_show}
+        <p class="clear"></p>
+      </div>
+    </div>
+    
+  </div>
+  <p class="clear"></p>
+</div>
+
+{include file="footer.html"}

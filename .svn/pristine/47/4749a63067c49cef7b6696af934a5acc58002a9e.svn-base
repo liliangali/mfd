@@ -1,0 +1,96 @@
+{include file=../user/member.header.html}
+<div class="w">
+	<div class="AreaBox clearfix">
+    	{include file=../user/member.menu.html}
+        <div class="con">
+                <div class="orderInfo">
+                <h2 class="tit">订单详情</h2>
+                <div class="stateBox">
+                    <div class="state">订单状态&nbsp;:&nbsp;<span class="red">{$lang.ORDER_STATUS.$order.status}</span>{if $order.status==11} <a href="{link app=paycenter}?{$order.order_sn}">去付款</a> {/if}</div>
+                    <div class="num">{$lang.order_sn}&nbsp;:&nbsp;{$order.order_sn}</div>
+                    <div class="time">{$lang.add_time}&nbsp;:&nbsp;{$order.order_add_time|date:complete}</div>
+                </div>
+                <div class="box">
+                    <h3>订单信息</h3>
+                    <ul>
+                        <!--{if $order.user_id}-->
+                        <li>会员昵称 ：{$order.nickname|escape}</li>
+                        <!--{/if}-->
+                        <!--{if $order.payment_code}-->
+                        <li>{$lang.payment_name} ：{$order.payment_name|escape}</li>
+                        <!--{/if}-->
+                        <!--{if $order.pay_message}-->
+                        <li>{$lang.pay_message} ：{$order.pay_message|escape}</li>
+                        <!--{/if}-->
+                        <li>{$lang.add_time} ：{$order.add_time|date:complete}</li>
+                        <!--{if $order.pay_time}-->
+                        <li>{$lang.pay_time} ：{$order.pay_time|date:complete}</li>
+                        <!--{/if}-->
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>量体数据</h3>
+                    <ul class="goods">
+                    {if $data.figure}
+                     <li>领围 ：{$data.figure.lw}cm</li>
+                     <li>胸围 ：{$data.figure.xw}cm</li>
+                     <li>中腰围 ：{$data.figure.zyw}cm</li>
+                     <li>臀围 ：{$data.figure.tw}cm</li>
+                     <li>上臀围 ：{$data.figure.stw}cm</li>
+                     <li>总肩宽 ：{$data.figure.zjk}cm</li>
+                     <li>右袖长 ：{$data.figure.yxc}cm</li>
+                     <li>左袖长 ：{$data.figure.zxc}cm</li>  
+                     <li>前肩宽 ：{$data.figure.qjk}cm</li>
+                     <li>后衣长 ：{$data.figure.hyc}cm</li>
+                     <li>腰围 ：{$data.figure.yw}cm</li>
+                     <li>通裆 ：{$data.figure.td}cm</li>
+                     <li>后腰高 ：{$data.figure.hyg}cm</li>
+                     <li>前腰高 ：{$data.figure.qyg}cm</li>
+                     <li>裤口 ：{$data.figure.jk}cm</li>
+                     <li>后腰节长 ：{$data.figure.hyjc}cm</li>
+                     <li>前腰节 ：{$data.figure.qyj}cm</li>
+                     <li>腿根围 ：{$data.figure.tgw}cm</li>
+                     <li>左裤长 ：{$data.figure.zkc}cm</li>
+                     <li>右裤长 ：{$data.figure.ykc}cm</li>
+                     <li>膝围 ：{$data.figure.xiw}cm</li>
+                    {/if}    
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>客户信息</h3>
+                    <ul class="goods">
+                    <li>客户姓名 ：{$order.kh_name|escape}</li>
+                    <li>客户手机 ：{$order.kh_mobile|escape}</li>
+                    <li>客户性别 ：{if $order.kh_sex == 2}女{else}男{/if}</li>
+                    <li>客户地址 ：{$order.kh_addr|escape}</li>
+                    <li>客户身高 ：{$data.figure.height}cm</li>
+                    <li>客户体重 ：{$data.figure.weight}kg</li>
+                </ul>
+            	</div>
+                {if $data.embs}
+                <div class="box">
+                    <h3>刺绣信息</h3>
+                    <ul class="goods">
+                    {foreach from=$data.embs item=emb}
+                    {if $emb}
+                    <li>{$lang.$emb.e_tname} ：{$emb.e_name}</li>
+                    {/if}
+                    {/foreach}
+                    </ul>
+                </div>
+                {/if}
+                {if $data.craft}
+                <div class="box">
+                    <h3>工艺信息</h3>
+                    <ul class="goods">
+                    {foreach from=$data.craft item=cft}
+                    <li>{$cft.pname} ：{$cft.name}</li>
+                    {/foreach}
+                    </ul>
+                </div>
+                {/if}
+            </div>
+        </div>
+    </div>
+</div>
+{include file="../user/footer.html"}

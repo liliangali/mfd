@@ -1,0 +1,69 @@
+{include file=member.header.html}
+<div class="content"> 
+  
+{include file=member.menu.html}
+  <div id="right">
+     <div class="wrap">
+       <h1 class="syhtmdbt order-bor">我的订单</h1>
+       <h3 class="order-info">{$lang.order_info}</h3>
+       <div class="order-sn"><span>订单编号：</span><b>{$order_info.order_sn}</b><a href="{link app=buyer_order act=view arg=$order_info.order_id}">【查看订单详情】</a></div>
+       <div class="order-sn"><span>订单金额：</span> <font>{$order_info.order_amount|price}</font></div>
+       <div class="order-line"></div>
+       <h3 class="order-info">订单支付</h3>
+       <div class="order-sn">您选择了：{$order_info.payment_name} </div>
+       <div class="order-button"><a href="#">立即支付</a></div>
+     </div>
+  </div>
+   <p class="clear"></p>
+     <form action="{link app=paycenter act=gotopay}" id="payform" method="post" target="_blank">
+ 
+    <input type="hidden" name="obj" value="order" />
+	<input type="hidden" name="os" value="{$order_info.order_sn}" />
+  </form>
+</div>
+<script>
+$(document).ready(function(){
+	
+	$(".order-button a").click(function(){
+		dopay();
+	})
+	
+	$("#closeBtn").click(function(){
+			easyDialog.close();
+	})
+
+	$("#easyDialogYesBtn").click(function(){
+		easyDialog.close();
+		$(".order-button a").bind("click", dopay);
+	})
+})
+
+function dopay(){
+	easyDialog.open({
+		container : "easyDialogWrapper"
+		});
+	$(".order-button a").unbind('click');
+	$("#payform").submit();
+}
+</script>
+<div id="easyDialogWrapper" class="easyDialog_wrapper">
+		<div class="easyDialog_content">
+			<h4 id="easyDialogTitle" class="easyDialog_title">
+			<a id="closeBtn" class="close_btn" title="关闭窗口" href="javascript:void(0)">×</a>
+			温馨提示
+			</h4>
+		<div class="easyDialog_text">请您在新打开的网上银行页面完成支付！<br>支付完成前请不要关闭此窗口。	</div>
+			<div class="easyDialog_footer">
+				<p class="p1">
+					<b>完成支付</b>
+					<a href="{link app=kuke}">去酷客中心</a>
+					<a href="./">继续购物</a>
+				</p>
+				<p class="p2">
+					<b>支付失败</b>
+					<span id="easyDialogYesBtn">重新支付</span>或 联系客服人员解决您支付中遇到的问题
+				</p>
+			</div>
+		</div>
+</div>
+{include file=login_footer.html}

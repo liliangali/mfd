@@ -1,0 +1,285 @@
+{include file=../user/member.header.html}
+   <div class="w">
+    <div class="AreaBox clearfix">
+        {include file=../user/member.menu.html}
+       
+                <div class="con">
+            <h2 class="tit">我的订单<p>共<span>{$count}</span>个订单</p></h2>
+          {if $order_list}
+          <div class="my_order">  
+            <table cellpadding="1" cellspacing="1" width="100%" border="0">
+            
+             <tr>
+              <th width="8%">序号</th>
+              <th width="18%">订单编号</th>
+              <th width="8%">品类</th>
+              <th width="11%">面料</th>
+              <th width="11%">店铺名称</th>
+              <th width="11%">下单日期</th>
+              <th width="11%">定制周期</th>
+              <th width="8%">价格</th>
+              <th width="11%">状态</th>
+             </tr>
+             <!--{foreach from=$order_list item=order}-->
+              <tr>
+              <td>{$order.order_id }</td>
+              <td>{$order.order_sn}</td>
+              <td>{$lang.order_cloth.$order.cloth}</td>
+              <td>{$order.fabric}</td>
+              <td>{$order.store_name}</td>
+              <td>{$order.add_time|date:Y-m-d}</td>
+              <td>{$order.mk_time}天</td>
+              <td>{$order.order_amount}</td>
+              <td>
+              {$lang.ORDER_STATUS.$order.status}
+              {if $order.status eq 32}
+              
+	              {if $order.kh_ship_pay == 1} | <a href="#" onclick="upstatus({$order.order_sn},'确认收货？')">确认收货</a>
+	              {elseif $order.kh_ship_pay == 2} | <a href="{link app=paycenter}?{$order.order_sn}">去付款</a>
+	              {/if}
+              
+              {elseif $order.status == 19 && $order.kh_ship_pay == 1}  
+                   | <a href="{link app=paycenter}?{$order.order_sn}">去付款</a>
+              {elseif $order.status == 40 && $order.comment == 0 }
+                  | <a href="javascript:;" data-item='{$order.order_id}' class="orderComment">评价</a>
+              {/if}
+              </td>
+              </tr>
+             <!--{/foreach}-->
+             
+            </table>   
+          </div> 
+          {else}
+          <!--没有订单时提示-->
+          <div class="myddts">每个男人都应该有一套适合自己的西服，<a href="gallery.html">开始定制之旅></a></div> 
+          <!--没有订单时提示-->
+            
+          {/if}
+           <!--用户中心分页开始--> 
+           <div class="hyzx_fy clearfix">
+            {if $orders}{include file=../user/member.page.bottom.html}{/if}
+           </div>
+           <!--用户中心分页结束--> 
+      
+        </div>
+</div>
+</div>
+
+<!--评论弹出层开始-->
+<div class="comm_box" style="display:none;">
+          <form  method='post' id='myForm' enctype="multipart/form-data">
+      <!--代码开始-->
+      <div id="xzw_starSys">
+          <span class="span_ps"><i>*</i>心得：</span>
+          <div id="xzw_starBox" style="position:absolute; top:0; left:65px;">
+              <ul class="star clearfix" id="star">
+                  <li><a href="javascript:void(0)" title="1" class="one-star">1分</a></li>
+                  <li><a href="javascript:void(0)" title="2" class="two-stars">2分</a></li>
+                  <li><a href="javascript:void(0)" title="3" class="three-stars">3分</a></li>
+                  <li><a href="javascript:void(0)" title="4" class="four-stars">4分</a></li>
+                  <li><a href="javascript:void(0)" title="5" class="five-stars">5分</a></li>
+              </ul>
+              <div class="current-rating" id="showb"></div>
+          </div>
+          <!--评价文字-->
+          <div class="description"></div>
+      </div>
+      <!--代码结束-->
+      
+      <div class="comm_area clearfix">
+        <span><i>*</i>心得：</span>
+        <textarea name="content" onkeyup="this.value=this.value.substring(0, 200)"></textarea>
+      </div>
+      
+      <div class="sd_file clearfix">
+        <span>晒单：</span>
+        <ul id="imgs">
+           
+           <li class="add_file">添加图片
+           <input type="file" value="" id='up_file' name='up_file' />
+           </li>
+        </ul>
+      </div>
+      
+      <p class="file_sub">
+      <input type="hidden" name="oi" id="oi">
+      <input type="hidden" name="star" value="0">
+      <input name="" type="button" value="发布" id="submit"/></p>
+      <span id="notice"></span>
+	  <script>
+      //star
+      $(document).ready(function(){
+        var stepW = 24;
+        var description = new Array("1","2","3","4","5");
+        var stars = $("#star > li");
+        var descriptionTemp;
+        $("#showb").css("width",0);
+        stars.each(function(i){
+            $(stars[i]).click(function(e){
+                var n = i+1;
+                $("#showb").css({"width":stepW*n});
+                descriptionTemp = description[i];
+                $(this).find('a').blur();
+                return stopDefault(e);
+                return descriptionTemp;
+            });
+        });
+        stars.each(function(i){
+            $(stars[i]).hover(
+                function(){
+                    $(".description").text(description[i]+"分");
+                },
+                function(){
+                    if(descriptionTemp != null){
+                        $(".description").text(""+descriptionTemp+"分");
+                        $("#myForm input[name=star]").val(descriptionTemp);
+                    }else{ 
+                        $(".description").text(" ");
+
+                    $("#myForm input[name=star]").val(descriptionTemp);
+                    }
+                }
+            );
+        });
+      });
+      function stopDefault(e){
+        if(e && e.preventDefault)
+               e.preventDefault();
+        else
+               window.event.returnValue = false;
+        return false;
+      };
+      
+      </script>
+
+</form>
+</div>
+
+<!--评论弹出层结束-->
+<script type="text/javascript" src="static/expand/layer/layer.min.js"></script>
+<script  type="text/javascript" src="static/expand/jquery.form.js"></script>
+<script>
+function upstatus(sn,msg){
+	layer.confirm(msg,function(){
+		$.ajax({     
+		    url:'buyer_order-upstatus.html',     
+		    type:'post',   
+		    dataType: "json",
+		    data:{    
+	            sn : sn
+	   		},   
+		    async : false, //默认为true 异步     
+		    success:function(res){
+		    	if(!res.done){
+		    		msg(res.msg);
+				}else{
+					 location.reload();
+				}    
+		    }  
+		});
+	});
+}
+$(document).ready(function(){
+    $(".orderComment").click(function(){
+        var oi = $(this).data("item");
+        $("#oi").val(oi);
+        $('#notice').html('');
+        $.get("{link app=buyer_order act=loadForm}",{oi:oi}, function(res){
+            var data = eval( "(" + res + ")" );
+            if(data.done == false){
+                msg(data.msg);
+                return false;
+            }else{
+            	$("#imgs li").each(function(){
+            	    if(!$(this).hasClass("add_file")){
+            	        $(this).remove();
+                	}
+                 })
+            	applyComm();
+            }
+        })
+    })
+    
+    $('#up_file').change(function(){
+        $('#notice').html('上传中请等待...');
+        var r  = 10000*Math.random();
+        var options = {
+                url:'{link app=buyer_order act=upload}?r='+r,
+                success: function(data) {
+                    var data = eval( "(" + data + ")" );
+                    if(data.done == false){
+                    	msg(data.msg);
+                    	$('#notice').html('');
+                    	return false;
+                    }else{
+                        var html = '<li data-fn="'+data.retval.file+'"><img src="'+data.retval.src+'" /><i>X</i></li><input type=hidden name="img[]" value="'+data.retval.src+'">';
+                        $("#imgs").prepend(html);
+                        $('#notice').html('');
+                        var len = $("#imgs li").length;
+                        if(len == 5){
+                            $(".add_file").hide();
+                        }
+
+                        $("#imgs i").bind("click", drop);
+                        return true;
+                    }
+                }
+        };
+
+        $('#myForm').ajaxSubmit(options);
+    });
+
+
+    $("#submit").click(function(){
+        var r  = 10000*Math.random();
+        var content = $("#myForm textarea[name=content]").val();
+        var star = $("#myForm input[name=star]").val();
+        
+        if(content.length > 200 || content.length < 5){
+            msg('评论内容不能只能在5-200字符之间');
+            return false;
+        }
+
+        if(star == 0 || star > 5){
+            msg("请选择评分");
+            return false;
+        } 
+
+        var options = {
+                url:'{link app=buyer_order act=commit}?r='+r,
+                success: function(data) {
+                    var data = eval( "(" + data + ")" );
+                    if(data.done == false){
+                    	msg(data.msg);
+                        
+                    	return false;
+                    }else{
+                        location.reload();
+                    }
+                }
+        };
+
+        $('#myForm').ajaxSubmit(options);
+    })
+})
+
+function drop(){
+    var li = $(this).parents("li");
+    var fn = $(li).data('fn');
+    var oi = $("#oi").val();
+    $.get("{link app=buyer_order act=dropImg}", {fn:fn,oi:oi}, function(res){
+        var res = eval("("+res+")");
+        if(res.done == false){
+            msg(res.msg)
+            return false;
+        }else{
+            $(li).remove();
+            var len = $("#imgs li").length;
+            if(len < 5){
+                $(".add_file").show();
+            }
+        }
+    })
+}
+</script>
+{include file="../user/footer.html"}

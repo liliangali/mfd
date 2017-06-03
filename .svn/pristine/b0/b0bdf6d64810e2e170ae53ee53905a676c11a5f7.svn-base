@@ -1,0 +1,64 @@
+{include file=header.html}
+    <link type="text/css" href="../../static/css/neiye.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../static/js/kalendar.js"></script>
+
+	<div class="banner"><img src="../../static/img/ny_banner.png" width="1539" height="138" /></div>
+    <div class="container">
+        <div class="content">
+        	<div class="nrleft left">
+        		<h2>{$fashion_info.title}</h2>
+        		<p class="tada">{$fashion_info.pubdate}</p>
+        		<div>{$fashion_info.content}</div>
+        		<!-- {if $next} -->
+                <p class="next" onclick="addclicknum({$next.id})" style="cursor:pointer">下一篇</p>
+                <div class="supplement">
+                	<h4 onclick="addclicknum({$next.id})" style="cursor:pointer">{$next.title}</h4>
+                    <p class="wordtests" onclick="addclicknum({$next.id})" style="cursor:pointer">{$next.summary}</p>
+                </div>
+                <!-- {/if} -->
+                <!-- {if $links} -->
+                <div class="recommend">
+                	<h4>推荐搭配</h4>
+                	<ul>                	
+                		<!-- {foreach from=$links item=link} -->
+                			<li><p><a href="custom-{$link.cid}.html" target="_blank"><img src="{$link.cimg}" width="134" height="208" /></a></p><p class="wzword"><a href="custom-{$link.cid}.html" target="_blank">{$link.cname|escape}</a></p><p>${$link.cprice}</p></li>
+                		<!-- {/foreach} -->           	
+                	</ul>
+                </div>
+                <!-- {/if} -->
+            </div>
+            
+            <div class="nrright right">
+            	<h4 style="font-size:20px;">热门话题</h4>
+                <ul class="nrright_ul">
+                <!--{foreach from=$clicknum item=v}-->
+                	<li onclick="addclicknum({$v.id})" style="cursor:pointer">{$v.title}</li>
+                <!-- {/foreach} -->                 
+                </ul>
+                <p class="years">{$time}</p>
+				<div id='wrap'><!-- 因为日历初始显示的内容要根据js获得的日期-时间来确定，所以html中不写，在js中用另一种形式添加 --></div>
+            </div>
+        </div>
+    </div>
+    
+{include file=footer.html}
+<script type="text/javascript" src="../../static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+
+ function addclicknum(id){
+	 
+	 $.ajax({
+		type:"GET",
+		url:"/fashion-ajax_click-"+id+".html",
+		success:function(r){
+			var a=eval("("+r+")");
+			if(a.done){
+				window.location.href="/fashion-info-"+id+".html";
+			}
+		}
+	});
+ }
+
+</script>
+</body>
+</html>

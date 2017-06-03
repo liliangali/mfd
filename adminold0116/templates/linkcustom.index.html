@@ -1,0 +1,109 @@
+{include file="header.html"}
+<div class="tdare">
+	<div class="mrightTop">
+  	<div class="fontl">
+    <form method="get" name="selectv" id="selectv">
+      <input type="hidden" name="app" value="linkCustom" />
+      <input type="hidden" name="act" value="index" />
+       样衣名:
+      <input class="queryInput" type="text" id="name" name="name" value="{$smarty.get.name|escape}" />
+       基本款分类:
+          <div style="display:inline;">
+            <select class="querySelect" id="category" name="category">
+              <option value="">请选择</option>
+              {html_options options=$cat_list  selected="$smarty.get.category"}
+            </select>
+          </div>
+          风格:
+          <div style="display:inline;">
+            <select class="querySelect" id="style" name="style">
+              <option value="">请选择</option>
+              {html_options options=$style_list  selected="$smarty.get.style"}
+            </select>
+          </div>
+          
+           平台:
+          <div style="display:inline;">
+            <select class="querySelect" name="to_site">
+              <option value="">请选择</option>
+              {html_options options=$to_site  selected="$smarty.get.to_site"}
+            </select>
+          </div>
+      <input type="submit" class="formbtn" value="{$lang.query}" />
+    </form>
+  </div>
+</div>
+  <form method=get>
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $list}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"></td>
+      <td>基本款选择</td>
+      <td>图片</td>
+      <td>价格</td>
+      <td>库存</td>
+      <td>添加时间</td>
+      <td>是否上架</td>
+<!--        <td id="vids"style="display:none;">{$cat_list.$vid}</td> -->
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$list item=val key=key}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" name="id"  class="checkitem" value="{$val.id}" {if $val.checked}checked{/if}/></td>
+      <td id="{$val.id}">{$val.name|escape}</td>
+      <td align="center"><a href="{$val.small_img target="_blank"><img src="{$val.small_img}" height="60" /></a></td>
+      <td align="center">{$val.price}￥</td>
+      <td align="center">{$val.store|escape}</td>
+      <td align="center">{$val.add_time}</td>
+      <td align="center"><!-- {if $val.is_sale} -->上架<!-- {else} -->下架<!-- {/if} --></td>      
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="2">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  </form>
+  <!--{if $list}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"><input type="button" name="sel" value="确定" class="btn"></div>
+  </div>
+  <!--{/if}-->
+</div>
+<script>
+$(document).ready(function(){
+    $(".dataTable input[name=id]").each(function(){
+        $(this).click(function(){
+            var cids = $.cookie("ids");
+            var ids  = cids ? cids.split(",") : [];
+        	
+           if($(this).attr("checked") == true){
+       	         ids.push($(this).val());
+           }else{
+       	        for(var i=0;i<ids.length;i++){
+          	         if(ids[i] == $(this).val()){
+            	          ids.splice(i,1);
+              	     }
+           	    }
+           }
+           if(ids.length > 0){
+        	    $.cookie("ids",ids.join(","));
+           }else{
+        	   $.cookie("ids",null);
+           }
+        })
+    })
+	
+	$(".btn").click(function(){
+		var ids = $.cookie("ids").split(",");
+		
+	    if(ids.length > 0){
+	    	$.cookie("ids",null);
+	        window.close();
+	    	window.opener.customCallBack(ids.join(","));
+	    }
+    })
+})
+</script>
+{include file="footer.html"} 

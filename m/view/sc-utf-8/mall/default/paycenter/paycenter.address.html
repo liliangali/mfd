@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>coolette mobile</title>
+<link rel="stylesheet" type="text/css" href="/static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/static/css/layer.css" media="screen">
+</head>
+<body>
+<div class="main"> 
+  <!--头部开始-->
+  <div class="header clearfix">
+    <p class="p1"><a href="javascript:history.go(-1)"><img src="/static/img/hdtb.png" /></a></p>
+    <p class="p2">地址管理</p>
+  </div>
+  <!--头部结束-->
+  
+  <div class="shrxx">
+    <p class="tjxdz"><a href="{link app=paycenter act=address_add}">添加新地址</a></p>
+    <ul>
+
+    <!--{foreach from=$addresses item=address name=v}-->
+      <li <!--{if $address.addr_id == $def_addr}-->class="on"<!--{/if}-->>
+        <h1 class="bgww">{$address.consignee}<span>{$address.phone_mob}</span></h1>
+        <p class="bgww">{$address.region_name} {$address.address}</p>
+        <p class="p3 bgww"><a href="{link app=paycenter act=address_edit}?addr_id={$address.addr_id}">【编辑】</a><a href="{link app=paycenter act=address_drop}?addr_id={$address.addr_id}" class="del">【删除】</a></p>
+      </li>
+    <!--{if $address.addr_id == $def_addr}--><a class="on">已是默认</a><!--{else}--><a href="{link app=paycenter act=edit_def_addr arg=$address.addr_id}">设为默认</a><!--{/if}-->
+
+    <!--{/foreach}-->
+
+    </ul>
+  </div>
+</div>
+<script>
+$('.shrxx .del').click(function(){
+	var $this=$(this);
+	var msg=layer.open({
+		content: '确认删除？',
+		btn: ['确认', '取消'],
+		shadeClose: false,
+		yes: function(){
+			$this.parents('li').fadeOut('slow');
+			layer.close(msg);
+
+		}
+	});		
+})
+
+</script>
+</body>
+</html>

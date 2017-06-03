@@ -1,0 +1,10 @@
+<!--底部开始-->
+<div class="footer2">
+  <p><span><a href="#">集团简介</a></span><span><a href="#">法律声明</a></span><span><a href="#">潮流资讯</a></span><span><a href="#">招聘信息</a></span><span><a href="#">员工之家</a></span></p>
+  <p class="p1"><span>Copyright©alicaifeng.com&nbsp;&nbsp;2015&nbsp;&nbsp;版权所有</span><span>&nbsp;&nbsp;&nbsp;&nbsp;服务电话：0532-89068578</span><span>&nbsp;&nbsp;&nbsp;邮箱：info@alicaifeng.com</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;鲁ICP备10207738</p> 
+</div>
+<!--底部结束-->
+<script type="text/javascript" src="static/expand/jquery.swipe.js"></script> 
+<script  type="text/javascript" src="static/js/tailorpage.js"></script>
+</body>
+</html>

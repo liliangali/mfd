@@ -1,0 +1,188 @@
+@charset "utf-8";
+/* CSS Document */
+.jj_box {display:box;display:-webkit-box;display:-moz-box; orient: horizontal; width:100%;}
+.jj_1 { box-flex:1;-webkit-box-flex:1;-moz-box-flex:1; display:block;}
+input [typut="text"]{-webkit-appearance: none;}
+
+/*登录/S*/
+.login { width:93%; margin:30px auto;}
+.login p input { width:100%; height:48px; border:1px solid #ddd; padding:0 5px 0 10px;  color:#aaa; font-size:14px;}
+.login p .input_1 {background:#fff  20px 12px no-repeat; background-size:20px 278px;}
+.login p .input_2 { border-top:none; background:#fff url(/public/static/wapls/images/slx_icon.png) 20px -31px no-repeat; background-size:20px 278px;}
+.ljzc {margin-bottom:200px;}
+.ljzc a { display:block; background:#3f3b3a; color:#fff; height:40px; line-height:40px; text-align:center; font-size:16px; margin-top:24px;}
+
+/*底部*/
+.footer_box {width:100%; position:fixed; left:0; bottom:0;}
+.footer { max-width:640px; margin:0 auto; height:48px; padding-top:10px; overflow:hidden;}
+.yinyin { box-shadow:0 0 10px #eee;  background:#fefefe; width:100%; height:48px;}
+.footer p { padding:0 30px; line-height:48px; height:48px; overflow:hidden;}
+.footer .ljdl { text-align:center; color:#999}
+.footer .ljdl a { color:#000; padding-left:5px;}
+/*登录/E*/
+
+/*会员注册/S*/
+.sybox {width:93%; margin:0 auto;}
+
+
+
+/*头/S*/
+.header {width:100%; height:45px; position:relative; line-height:45px;}
+.header .p1 { position:absolute; left:3.5%; top:0px;}
+.header .p1 img { width:40%;}
+.header .p2 { font-size:15px; text-align:left; color:#222; padding-left:43px;}
+/*头/E*/
+
+.hyzc { border:1px solid #d5d5d5; background:#fff; margin-top:30px;}
+.hyzc p {border-bottom:1px solid #d5d5d5;}
+.hyzc p:last-of-type {border-bottom:none;}
+.hyzc input {border:none; width:100%; height:48px; box-sizing:border-box; background:#fff; padding:0 10px;}
+.zzhq .getCode {display:block; line-height:30px; background:#eee; width:110px; height:30px; text-align:center; margin-top:9px; font-size:12px; color:#000; float:right; margin-right:10px;}
+.zzhq .getCode.disabled{ color:#999;}
+.zcxy_off { width:150px; margin:16px auto auto auto; color:#717171;  height:24px; line-height:24px; overflow:hidden; background:url(/public/static/wapls/images/slx_icon.png) left -103px no-repeat; background-size:19px 264px; padding-left:30px;}
+.zcxy_on { width:150px; margin:16px auto auto auto; color:#717171;  height:24px; line-height:24px; overflow:hidden; background:url(/public/static/wapls/images/slx_icon.png) left -79px no-repeat; background-size:19px 264px; padding-left:30px;}
+.zcxy_off a, .zcxy_on a { color:#000;}
+/*会员注册/E*/
+
+/* 麦富迪币列表 */
+.ktblb {}
+.ktblb li {border-bottom:1px solid #e6e6e6; padding:15px;}
+.ktblb li h1 {font-size:12px; font-weight:normal; height:18px; line-height:18px; overflow:hidden; position:relative; padding-right:90px;}
+.ktblb li h1 font {font-size:12px; color:#717171; padding-left:5px;}
+.ktblb li h1 span { position:absolute; right:0; top:0; font-size:12px;}
+.ktblb li h1 .hd { color:#ff5500;}
+.ktblb li h1 .jq { color:#21d0fd;}
+.ktblb li p { height:18px; line-height:18px; overflow:hidden; color:#717171; font-size:10px;}
+
+/* 我的卡券_酷卡激活 */
+.sxfl { position:absolute; right:15px; top:0; height:45px; line-height:45px;}
+.sxfl p { float:left;}
+
+.kuka { margin:80px 0 200px 0;}
+.kuka p { margin:0 36px;}
+.kuka .p1 input {height:40px; width:100%; text-align:center; margin-bottom:28px; border:1px solid #ccc; font-size:12px;}
+.kuka .p2 input {height:42px; width:100%; background:#21d0fd; font-size:14px; color:#fff;}
+
+.sysm {margin:0 15px;}
+.sysm h1 {font-size:14px; color:#222; line-height:18px; font-weight:normal;}
+.sysm p {font-size:11px; color:#8c8c8c; line-height:24px; margin-top:4px;}
+
+/* 我的优惠券_未使用 */
+.szqh { border-bottom:1px solid #e2e2e2; overflow:hidden; margin-bottom:20px;}
+.szqh li { float:left; font-size:13px; color:#717171; text-align:center; height:40px; line-height:40px; width:26%; margin:0 3% 0 4%; position:relative;}
+.szqh li span { position:absolute; right:-15%; top:0; color:#eee; height:6px; display:block;} 
+.szqh .now_hover { color:#21d0fd; border-bottom:3px solid #21d0fd; margin:0 3% 0 4%;}
+
+.wdkj {margin:0 15px;}
+.kujiu_box { position:relative; margin-bottom:10px; height:112px;}
+.tu_left {width:12px; height:112px; background:url(/public/static/wapls/images/wdkj1.png) left top no-repeat; background-size:100% 100%; position:absolute; left:0; top:0;  z-index:100;}
+.tu_right {width:12px; height:112px; background:url(/public/static/wapls/images/wdkj2.png) left top no-repeat; background-size:100% 100%; position:absolute; right:0; top:0; z-index:100;}
+.kujiu {height:103px; color:#fff; background:#4bb4de; margin:0 11px; padding-top:9px;}
+.kujiu div { border:1px solid #fff; border-radius:5px; padding:10px 15px; margin:0 11px;}
+.kujiu h1 { font-weight:normal; font-size:15px; position:relative; height:22px; line-height:22px; overflow:hidden;}
+.kujiu h1 span { position:absolute; right:0; top:0; font-size:10px;}
+.kujiu .p1 {font-size:22px; line-height:32px; height:32px; overflow:hidden;}
+.kujiu .p2 {font-size:10px; line-height:18px; height:18px; overflow:hidden;}
+
+/* 我的卡券_酷卡记录 */
+.kukajl {height:120px; background:url(/public/static/wapls/images/wdkj3.png) left top no-repeat; background-size:100% 100%; padding:0 18px; margin-bottom:10px;}
+.kukajl h1 {font-size:16px; font-weight:normal; line-height:35px; line-height:35px; border-bottom:1px solid #6dc5e9; padding-top:5px; position:relative; color:#e6f5fc; overflow:hidden;}
+.kukajl h1 span { position:absolute; right:0; top:5px; font-size:10px;}
+.kukajl div {border-top:1px solid #3fa6c5;}
+.kukajl div .p1 {font-size:24px; color:#fff; line-height:40px; height:40px; overflow:hidden; margin-top:4px;}
+.kukajl div .p2 {font-size:10px; line-height:14px; height:14px; overflow:hidden; color:#e6f5fc; margin-top:6px;}
+
+/* 我的财富_消费者 */
+.wdcfye {background:url(/public/static/wapls/images/wdcf.jpg) left top no-repeat; background-size:100% 100%; height:250px; text-align:center;}
+.zfyelj { display:block; width:100%; height:100%; background:url(/public/static/wapls/images/zjt.png) 90% 130px no-repeat; background-size:7px 13px; color:#fff;}
+.wdcfye h1 {font-size:18px; font-weight:normal; height:24px; line-height:24px; padding-top:32px; overflow:hidden;}
+.wdcfye h2 {font-size:50px; font-weight:normal; height:60px line-height:60px; margin-bottom:30px; overflow:hidden;}
+.wdcfye h3 {font-size:13px; height:20px; line-height:20px; font-weight:normal; margin-bottom:8px; overflow:hidden;}
+.wdcfye h4 {font-size:20px; height:20px; line-height:20px; font-weight:normal; overflow:hidden;}
+
+.qxzapp {background:#f9f9f9; border-bottom:1px solid #e6e6e6; height:39px; line-height:39px; overflow:hidden; text-align:center; font-size:12px;}
+.qxzapp a { color:#717171;}
+.qxzapp span { font-family:宋体; padding-left:10px; font-size:13px;}
+
+
+.cflb { width:100%; margin:0 auto; overflow:hidden;}
+.cflb ul {width:105%; float:left; padding-bottom:80px;}
+.cflb ul li {width:48%; height:117px; float:left; border-right:1px solid #f4f4f4; border-bottom:1px solid #f4f4f4; background:url(/public/static/wapls/images/wdcf1.png) 35% 50px no-repeat; background-size:40px 300px;}
+.cflb ul li a { display:block;}
+.cflb ul li p {padding-left:50%; margin-top:40px; line-height:20px; font-size:12px;  color:#666;}
+.cflb ul li p span {color:#ff5500; font-size:15px;}
+.cflb ul .li_2 { background-position:36% -37px;}
+.cflb ul .li_3 { background-position:35% -130px;}
+.cflb ul .li_4 {background-position:33% -223px;}
+
+/* 用户中心 */
+.yfzx_top { height:170px; background:url(/public/static/wapls/images/yfzx.jpg) left top no-repeat; background-size:100% 100%; position:relative;}
+.yfzxtx {width:80px; height:80px; margin:0 auto; padding-top:45px;}
+.yfzxtx img {border-radius:50%; width:80px; height:80px; opacity:0.6;}
+.tjdl {width:50px; height:22px; line-height:22px; position:absolute; right:15px; top:22px; border:1px solid #bbb; color:#fff; text-align:center; border-radius:5px; font-size:11px; display:block;}
+.yfzx_top .p1 {font-size:12px; color:#fff; text-align:center; height:18px; line-height:18px; overflow:hidden; margin-top:10px;}
+.yfzx_top .p2 {font-size:10px; color:#fff; text-align:center; height:15px; line-height:15px; overflow:hidden;}
+
+.yfzx_list { overflow:hidden;}
+.yfzx_list ul { float:left; width:100%;  margin:5% 0 60px 0;}
+.yfzx_list ul li { float:left; width:50%; text-align:center; margin-bottom:5%; font-size:13px; overflow:hidden;}
+.yfzx_list ul li .p1 {width:67px; height:67px;  background:url(/public/static/wapls/images/yfzx_icon.png) left top no-repeat; background-size:66px 545px; margin:0 auto;}
+.yfzx_list ul li .p2 { height:20px; line-height:20px; overflow:hidden; margin-top:6px;}
+.yfzx_list ul .li_2 .p1 { background-position:0 -68px;}
+.yfzx_list ul .li_3 .p1 { background-position:0 -136px;}
+.yfzx_list ul .li_4 .p1 { background-position:0 -203px;}
+.yfzx_list ul .li_5 .p1 { background-position:0 -477px;}
+.yfzx_list ul .li_6 .p1 { background-position:0 -272px;}
+.yfzx_list ul .li_7 .p1 { background-position:0 -340px;}
+.yfzx_list ul .li_8 .p1 { background-position:0 -409px;}
+
+/* 意见反馈 */
+.yjjy { height:40px; line-height:40px; padding:0 15px; overflow:hidden; font-size:12px; color:#666;}
+.tywdyj { background:#fff; border-bottom:1px solid #dddddd; border-top:1px solid #dddddd; height:60px; line-height:20px; width:100%; outline:none;resize:none; padding:5px 10px;}
+.sctup { height:60px; background:#fff; border-bottom:1px solid #dddddd; border-top:1px solid #dddddd; margin-bottom:18px;}
+.tijiao { height:40px; color:#fff; font-size:14px; background:#3f3b3a; width:95%; margin:0 2.5%; margin-bottom:160px;}
+
+.scjt {padding:15px; overflow:hidden;  background:#fff; border-bottom:1px solid #dddddd; border-top:1px solid #dddddd; margin-bottom:35px;}
+.scjt ul {width:105%; float:left; text-align:center;}
+.scjt ul li {width:25%; float:left; height:58px; overflow:hidden;}
+.scjt ul li p {position:relative; width:58px; height:58px; margin:0 auto;}
+.scjt ul li p img {width:58px; height:58px;}
+.scjt ul li .a1 { position:absolute; top:2px; right:2px; display:block; width:16px; height:16px; background:url(/public/static/wapls/images/gbal.png) left top no-repeat; background-size:16px 16px;}
+.scjt ul .sctpal { border:none; height:60px;}
+.scjt ul .sctpal img {width:100%; height:100%;}
+.scjt ul .sctpal input{ position:absolute; left:0; top:0; width:100%; height:100%; opacity:0;}
+.scjt ul .null{ opacity:0.2;}
+
+.lxgf {position:fixed; bottom:0; max-width:640px; min-width:320px; width:100%; }
+.lxgf ul {background:#fff; border-top:1px solid #ddd; overflow:hidden;}
+.lxgf ul li { float:left; width:100%; height:50px; overflow:hidden; text-align:center; }
+.lxgf ul li a { display:block; width:100%; height:100%;}
+.lxgf ul li p {padding-left:15px; height:20px; line-height:20px; margin-top:16px; background:url(/public/static/wapls/images/slx_icon1.png) 40% 2px no-repeat; background-size:30px 250px;}
+.kfdh .p1 {width:19px; height:19px; background:url(/public/static/wapls/images/slx_icon1.png) left top no-repeat; background-size:30px 250px; margin:31px 0 0 20%;} 
+.zxkf .p1 {width:25px; height:19px; background:url(/public/static/wapls/images/slx_icon1.png) left -33px no-repeat; background-size:30px 250px; margin:30px 0 0 20%;}
+
+/* 客服与信息反馈 */
+.kfxxfk { margin:0 15px;}
+.kfxxfk ul {padding-bottom:180px;}
+.kfxxfk ul li { height:44px; border-bottom:1px solid #d9d9d9; line-height:44px; overflow:hidden; font-size:12px; color:#666; padding-right:40px; background:url(/public/static/wapls/images/yhzxjtpic.png) 98% 17px no-repeat;}
+.kfxxfk ul li a { color:#666;}
+
+/* 消息列表 */
+.wdxxlb { margin:0 10px; padding:10px 0 100px 0;}
+.wdxxlb ul li {padding-right:40px; margin:0 10px; border-bottom:1px solid #ddd; padding:10px 5px; -moz-user-select:none;}
+.wdxxlb ul li:last-of-type{ border:none;} 
+.wdxxlb ul li h1 {font-size:14px; font-weight:normal; color:#222; height:20px; line-height:20px; position:relative;}
+.wdxxlb ul li h1 b { display:block; width:8px; height:8px; background:#ff5500; position:absolute; left:-15px; top:7px; border-radius:50%;}
+.wdxxlb ul li h1 .yxz {width:20px; height:20px; overflow:hidden; background:url(/public/static/wapls/images/slx_icon1.png) left -106px no-repeat; background-size:30px 250px; position:absolute; right:0; top:0; visibility:hidden; opacity:0; transform:translate3d(20px,0,0);-webkit-transform:translate3d(20px,0,0); transition:all .2s;-webkit-transition:all .2s;}
+.wdxxlb ul.cur li h1 .yxz{visibility:visible; opacity:1; transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0);}
+
+.wdxxlb ul li.cur h1 .yxz { background-position:0 -73px;}
+.wdxxlb ul li p {font-size:12px; color:#717171; line-height:20px; height:20px; overflow:hidden;}
+
+.scfd { position:fixed; bottom:0; background:#fafafa; border-top:1px solid #f5f5f5; max-width:640px; min-width:320px; width:100%; margin:0 auto;transform:translate3d(0,45px,0);-webkit-transform:translate3d(0,45px,0); transition:all .2s;-webkit-transition:all .2s;}
+.scfd.cur{transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0);}
+.scfd ul li { float:left; width:50%; text-align:center; height:44px; line-height:44px; font-size:14px;}
+.scxz a { color:#21d0fd;}
+
+/* 消息详情 */
+.xiaxi {font-size:12px; color:#717171; line-height:18px; padding:0 5px; margin:10px 0 20px 0;}

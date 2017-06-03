@@ -1,0 +1,67 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>潮流管理</span></li>
+    <li><a class="btn1" href="index.php?app=fashion&amp;act=add">潮流添加</a></li>
+  </ul>
+</div>
+
+<style type="text/css">
+  	.ellipsis{ 
+  		overflow: hidden; /*自动隐藏文字*/ 
+  		text-overflow: ellipsis;/*文字隐藏后添加省略号*/  
+  		white-space: nowrap;/*强制不换行*/ 
+  		width: 20em;/*不允许出现半汉字截断*/  
+   		-o-text-overflow: ellipsis;/*opera浏览器兼容*/   
+ 	}  
+</style>	
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get" name="selectv" id="selectv">
+      <input type="hidden" name="app" value="fashion" />
+      <input type="hidden" name="act" value="index" />
+      标题:
+      <input class="queryInput" type="text" id="title" name="title" value="{$smarty.get.title|escape}" />
+      <input type="submit" class="formbtn" value="{$lang.query}" />
+    </form>
+  </div>
+</div>
+<div class="fontr">{include file=page.top.html}</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable" style="table-layout:fixed;positon:absolute">
+    <tr class="tatr1">
+      <td width="3%" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td width="3%" ><span width="100%" ectype="order_by" fieldname="id">ID</span></td>
+      <td width=""><span width="100%" ectype="order_by" fieldname="title">标题</span></td>
+      <td width="" ><span width="100%" ectype="order_by" fieldname="pubdate">发布日期</span></td>
+       <td width="" ><span width="100%" ectype="order_by" fieldname="pphoto">摘要图片</span></td>
+      <td width="300px"><span width="100%" ectype="order_by" fieldname="summary" >概要</span></td>
+      <td width="" ><span width="100%" ectype="order_by" fieldname="clicknum">点击数</span></td>
+      <td width="" ><span width="100%" ectype="order_by" fieldname="f_sort">潮流排序</span></td>
+      <td width="" >{$lang.handler}</td>
+    </tr>
+    <!--{foreach from=$fashion_list item=fashion}-->
+    <tr class="tatr2" align="center">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$fashion.id}"/></td>
+      <td align="center">{$fashion.id}</td>
+      <td class='ellipsis'>{$fashion.title|escape}</td>
+      <td align="center">{$fashion.pubdate}</td>
+      <td align="center"><a href="{$fashion.pphoto}" target="_blank"><img src="{$fashion.pphoto}" height="60" /></a></td>
+      <td align="center" class='ellipsis'>{$fashion.summary}</td>
+      <td align="center">{$fashion.clicknum}</td>
+      <td align="center">{$fashion.f_sort}</td>
+      <td>
+      <a href="index.php?app=fashion&amp;act=edit&amp;id={$fashion.id}&amp;ret_page={$page_info.curr_page}">{$lang.edit}</a>
+      <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=fashion&amp;act=drop&amp;id={$fashion.id}&amp;ret_page={$page_info.curr_page}');">{$lang.drop}</a>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15">
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=fashion&act=drop&ret_page={$page_info.curr_page}" presubmit="confirm('{$lang.drop_confirm}')" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+  </div>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}

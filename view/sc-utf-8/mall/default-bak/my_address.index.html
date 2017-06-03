@@ -1,0 +1,59 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+<!--sortlist end-->
+
+  
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">地址管理</h1>
+    <div class="xzshdz_box">
+      <p class="p1"><a class="thickbox" ectype="dialog" dialog_title="{$lang.add_address}" dialog_id="my_address_add" dialog_width="600" uri="{link app=my_address act=add}">{$lang.add_address}</a></p>
+      <p class="p2">您已创建<span>{$count_addresses}</span>个收货地址</p>
+      <p class="clear"></p>
+    </div>
+    
+
+
+
+    <!--{foreach from=$addresses item=address name=v}-->
+    <div class="dzxinxi_box">
+      <div class="gsdizi">{$address.al_name}
+        <p class="p1"><a href="javascript:void(0);" ectype="dialog" dialog_id="my_address_edit" dialog_title="{$lang.edit_address}" dialog_width="700" uri="{link app=my_address act=edit}?addr_id={$address.addr_id}" class="edit1 float_none">修改地址信息</a></p>
+        <p class="p2"><a href="javascript:drop_confirm('{$lang.drop_confirm}', '{link app=my_address act=drop}?addr_id={$address.addr_id}');" class="delete float_none">删除</a></p>
+      </div>
+    
+      <div class="dzxx_gsdz_left">
+        <p><span>收 货 人&nbsp;：</span>{$address.consignee|escape}</p>
+        <p><span>地　　址：</span>{$address.region_name|escape}</p>
+        <p><span>详细地址：</span>{$address.address|escape}</p>
+        <p><span>手机号码：</span>{$address.phone_mob}</p>
+        <p><span>固定电话：</span>{$address.phone_tel}</p>
+        <p><span>电子邮件：</span>{$address.email}</p>
+      </div>
+      
+      <div class="dzxx_gsdz_right">
+        <p><!--{if $address.addr_id == $def_addr}--><a class="on">已是默认收货地址</a><!--{else}--><a href="{link app=my_address act=edit_def_addr arg=$address.addr_id}">设为默认收货地址</a><!--{/if}--></p>
+      </div>
+      <p class="clear"></p>
+    </div>
+    <!--{/foreach}-->
+ 
+    
+
+
+
+  </div>
+  <p class="clear"></p>
+</div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+
+{include file="footer.html"}
+
+
+
+
+
+
+

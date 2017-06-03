@@ -1,0 +1,53 @@
+{include file=header2.html}
+ <link rel="stylesheet" type="text/css" href="static/css/findtailor.css">
+ <div class="w">
+    <p class="sycf">设计师品牌</p>
+    <div class="tailors_box clearfix">
+     <ul class="Screening">
+      <li <!--{if $smarty.get.sorting == ''}-->class="on"<!--{/if}-->><a href="{link app=tailor}">人气最旺</a></li>
+      <li><a href="#">好评率</a></li>
+      <li <!--{if $smarty.get.sorting == 'add_time'}-->class="on"<!--{/if}--> style="border:none;"><a href="{link app=tailor}?sorting=add_time">最新加入</a></li>
+     </ul>
+     
+     <div class="gzdds">
+      <p class="p1">共找到<b>325</b>品牌商</p>
+      <p class="p2"><a href="#" class="a1"></a><span><b>3</b> / 25</span><a href="#" class="a2"></a></p>
+     </div>
+    </div>
+    
+    
+    <ul class="picList clearfix">
+     <!--{foreach from=$tailor_list item=v}-->
+		<li>
+        	<div class="item">
+                <a href="{link app=tailor act=info arg0=$v.store_id}" target="_blank" class="pic"><img src="/{$v.store_logo}"/></a>
+                <div class="info">
+                    <p class="p1"><a href="{link app=tailor act=info arg0=$v.store_id}">青岛红太阳服饰设计</a></p>
+                    <p class="p2">好评率：<font>100%</font><span>|</span>人气：<font>{$v.popularity}</font></p>
+                    <p class="p3">{$v.personality}</p>
+                    
+                    <div class="btn">
+                        <a href="javascript:void(0)" class="btnInfo"><i></i>详情</a>
+                        <a href="javascript:void(0)" class="btnFavorite"><i></i>关注</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+      <!--{/foreach}-->
+     </ul>       
+    
+</div>
+
+<!--翻页开始-->
+<div class="page_box clearfix">
+{include file=tailor/tailor.page.bottom.html}
+</div>
+<!--翻页结束-->
+</div>  
+
+<!--底部开始-->
+{include file="footer.html"}
+<!--底部结束-->
+<script  type="text/javascript" src="../../static/js/material.js"></script>
+</body>
+</html>

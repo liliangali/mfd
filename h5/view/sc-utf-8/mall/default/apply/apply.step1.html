@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>申请成为创业者</title>
+<link rel="stylesheet" type="text/css" href="static/css/tailorenter.css">
+<script type="text/javascript" src="static/expand/jquery.js"></script>
+<script  type="text/javascript" src="/static/js/public.js"></script>
+<script>$(function(){twoMenu();})</script>
+</head>
+
+<body>
+<div class="head">
+  <div class="w">
+    <div class="fl"> <a href="index.php" class="logo fl"></a> <span class="logoTxt fl">加入我们</span> </div>
+    <div class="fr"> <span class="btn-angle" data-class="help"><a href="article-view-32.html" class="link">帮助中心</a><i class="angle"></i></span> </div>
+    <div class="bd-menu"> <i class="angle"></i>
+        <div class="help" style="display: none;"> 
+        <a href="article-view-32.html">新手指南</a>
+        <a href="article-view-59.html">关于我们</a>
+        <a href="article-view-66.html">产品保障</a>
+        <a href="article-view-61.html">量体说明</a>
+        <a href="article-view-70.html">支付及物流</a>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="main w">
+
+
+<div class="module_common">
+
+ <div class="m_xdyul">
+<!--{foreach from=$sgrades item=sgrade}-->
+  <div class="m_wykd_box">
+    <h3>{$sgrade.grade_name}</h3>
+    <div class="m_wykd_left">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+         <tr>
+          <th>{$lang.skin_limit}量 :</th>
+          <td>{$sgrade.skin_limit}</td>
+         </tr>
+         <tr>
+          <th>{$lang.charge} : </th>
+          <td><span class="fontColor2">{$sgrade.charge}</span></td>
+         </tr>
+         <tr>
+          <th>{$lang.need_confirm} : </th>
+          <td><!--{if $sgrade.need_confirm}-->{$lang.yes}<!--{else}-->{$lang.no}<!--{/if}--></td>
+         </tr>
+         <tr>
+          <th>{$lang.add_use} : </th>
+          <td><span>{$lang.domain}</span><br /><span>{$lang.$k}</span></td>
+         </tr> 
+      </table> 
+      <p class="sqsfz">{$sgrade.description}</p>
+      <p class="m_wykd"><a href="/index.php/apply-2-{$sgrade.grade_id}.html" class="shop_btn">申请入驻</a></p> 
+    </div>
+  </div>
+  <!--{/foreach}-->
+ <p class="clear"></p>
+ </div>
+
+</div>
+
+{include file=footer.html}

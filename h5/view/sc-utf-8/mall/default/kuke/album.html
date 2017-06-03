@@ -1,0 +1,69 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+
+<script>
+
+function sub(id){
+	location.href = "/index.php/kuke-albumedit.html?id="+id;
+}
+
+function del(id){
+	$.ajax({
+		"url":"/index.php/kuke-delAlbum.html",
+		"data": "id="+id ,
+		"type": "GET",
+		'dataType':'json',
+		"success": function(res) {
+			alert('删除成功');
+			location.reload();
+		}
+	});	
+	
+	
+}
+
+</script>
+
+<!--上传街拍开始-->  
+<div class="aqsc_box">
+  <ul class="m_tupsc_ul">
+    <li class="on">街拍相册<img src="{$img_url}/images/m_sjjpxb.png" /></li>
+    <li><a href="/index.php/kuke-camera.html">上传街拍</a></li>
+  </ul>
+  <p class="clear"></p>
+
+  <div class="tupsc_box">
+    <ul class="m_xcgl_ul">
+    {if $album}
+    {foreach from=$album key=k item=v }  
+      <li>
+        <p class="p1"><a href="/index.php/kuke-street.html?id={$v.id}"><img src="{$v.top_url}" /></a></p>
+        <p class="p2"><a href="/index.php/kuke-street.html?id={$v.id}">{$v.title}</a><span>({$v.pic_num})</span></p>
+        <p class="p3"><a href="javascript:void(0);" onclick='sub({$v.id});'></a></p>
+        <p class="p4"><a href="javascript:void(0);" onclick='del({$v.id});'></a></p>
+      </li>
+       {/foreach}
+       {else}
+       <li><a href="/index.php/kuke-camera.html">您还没有上传街拍，现在去上传</a></li>
+       {/if}
+    </ul>
+    <p class="clear"></p>
+  </div>
+  
+     <!--翻页开始--> 
+    <div class="lulals_fy">    
+      <p>共{if $total}{$total}{else}0{/if}条记录</p>  
+      <div>
+        {$page_show}
+        <p class="clear"></p>
+      </div>
+    </div>
+  <!--翻页结束--> 
+
+</div>
+<p class="clear"></p>
+</div>
+
+{include file="footer.html"}

@@ -1,0 +1,60 @@
+{include file="header.html"}
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="question" />
+                <input type="hidden" name="act" value="index" />
+                                                咨询内容:
+                <input class="queryInput" type="text" name="content" value="{$name|escape}" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $query}-->
+            <a class="left formbtn1" href="index.php?app=question">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $list}-->
+        <tr class="tatr1">
+        <td align="left">样衣或套装</td>
+            <td align="left">用户名</td>
+            <td>咨询内容</td>
+            <td align="left">是否显示</td>
+            <td>咨询时间</td>
+            <td>{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$list item=q}-->
+        <tr class="tatr2">
+        <td>{$q.object_name}</td>
+           
+            <td>{$q.user_name}</td>
+             <td>{$q.content|escape}</td>
+            <td>{if $q.status eq 0}否{else}是{/if}</td>
+            <td>{$q.dateline|date:complete}</td>
+            <td><a href="index.php?app=question&amp;act=view&amp;id={$q.id}">查看</a>
+            |
+            <a href="index.php?app=question&act=onshow&id={$q.id}&status={if $q.status eq 0}1{else}0{/if}">{if $q.status eq 0}允许显示{else}禁止显示{/if} </a>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="5">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $list}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

@@ -1,0 +1,84 @@
+{include file=/header-new.html}
+<link href="/public/static/pc/css/gwc.css" type="text/css" rel="stylesheet">
+
+<div class="ddtjcg">
+	<h1>您的订单已提交成功！</h1>
+	<p class="p1">
+		支付金额：<span>{$order.final_amount}元</span>
+	</p>
+	<p class="p2">支付方式：<span>{$order.payment_name}</span></p>
+	<p class="p3">订单编号：{$order.order_sn}</p>
+	{if $order.shipping_id == 2}
+	<p>门店自提：{$store.serve_name}（{$store.region_name}{$store.serve_address}&nbsp;&nbsp;手机：{$store.mobile}）</p>
+	{else}
+	<p class="p4">
+		配送地址：{$order.ship_name}<span>{if $order.ship_mobile}{$order.ship_mobile}{else}{$order.ship_tel}{/if}</span><span>{$order.ship_area}</span><span>{$order.ship_addr}</span>
+	</p>
+	{/if}
+
+	<div class="ljzfqt">
+		<a href="javascript:void(0)" id="goToPay" class="a1 fl">立即支付</a><a href="javascript:void(0)" id="changePmt" class="a2 fl">选择其他支付方式 <font>></font></a>
+	</div>
+
+	<form action="{link app=order act=goToPay}" id="payform" method="post" target="_blank">
+	    <input type="hidden" name="pay" value="{$order.payment_code}" />
+		<input type="hidden" name="obj" value="{$obj}" />
+		<input type="hidden" name='os' value="{$order.order_sn}" id="sn" />
+	</form>
+</div>
+<div id="changeBox" style="display: none">
+	<div class="tishi">
+		<div class="zfck zfcks payments">
+			{foreach from=$payments item=pitem}
+			<p class="zfcg {if $pitem.payment_id == $order.payment_id}on{/if} fl {$pitem.payment_code}_p" data-id="{$pitem.payment_code}" data-name="{$pitem.payment_name}">
+				<a href="javascript:void(0)">{$pitem.payment_name}</a>
+			</p>
+			{/foreach}
+		</div>
+        <p class="qdtj"><input type="button" value="确认支付"></p>
+	</div>
+</div>
+
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script type="text/javascript" src="static/js/layer/layer.m.js"></script>
+<script src="/public/static/pc/js/public.js"></script> 
+ 
+    <script>
+    $('#goToPay').bind('click',goToPay);
+    
+    function goToPay(){
+    	$(this).unbind();
+        layer.open({
+            title: [
+                '温馨提示',
+                'color:#000;'
+            ],
+            content: '<div class="tishi"><p style="padding-left:50px;">请在新开的支付平台页面进行付款，付款操作结束前请不要关闭页面，付款后选择：</p><div class="zfck"><p class="zfcg fl">支付成功：<a href="{link app=my_order act=detail arg0=$order.order_id}">查看订单</a></p><p class="zfcg fl">支付失败：<a href="javascript:location.reload()">重新支付</a></p></div></div>'
+        });
+        
+        $("#payform").submit();
+        
+    }
+    
+    $('#changePmt').unbind().bind('click',function(){
+    	layer.open({
+            title: [
+                '更改支付方式',
+                'color:#000;'
+            ],
+            content : $('#changeBox').html()
+        });
+    	$('.payments p').unbind().bind('click',function(){
+            var _id = $(this).data('id');
+            var _nm = $(this).data('name');
+            var _sn = $('#sn').val();
+            $('.ddtjcg .p2').find('span').html(_nm);
+            $('#payform').find("input[name='pay']").val(_id);
+            $(this).addClass('on').siblings().removeClass('on')
+        })
+        
+        $('.tishi').find('.qdtj').find('input:button').bind('click',goToPay);
+        
+    })
+    </script>
+{include file=cart/footer.html}

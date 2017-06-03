@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>工艺下单</title>
+<link rel="stylesheet" type="text/css" href="/static/css/public.css">
+<link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+<script type="text/javascript" src="/static/expand/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/order.css">
+</head>
+<body>
+<style>
+.source h2{float:none}
+</style>
+<h1 class="ddtit">工艺下单</h1>
+
+<input type="hidden" id="step" value="{$step}" />
+<input type="hidden" id="order_id" value="{$data.order_id}" />
+<input type="hidden" id="jp_id" value="{$data.jp_id}" />
+<input type="hidden" id="user_id" value="{$data.user_id}" />
+<input type="hidden" id="user_name" value="{$data.user_name}" />
+
+<div class="ddtijiao FormBox" id="FormBox_1">
+<form action="" method="post" id="orderForm">
+
+<div>
+即拍即做ID:{$data.jp_id}  ({$data.user_name})
+</div>
+
+<div class="source add_cate clearfix" style="border-top:1px solid #ddd; margin-top:8px;">
+  <h2>品类：</h2>
+  <ul>
+    {foreach from=$cloths item=citem}
+    <li {if $ckCloth == $citem.id} class="cur" {/if} ><label><input type="radio" value="{$citem.id}" name="clothingID"{if $ckCloth == $citem.id} checked="checked" {/if} />{$citem.name}</label></li>
+    {/foreach}
+  </ul>
+</div>
+<div class="source clearfix">
+  <h2>面料</h2>
+  <input type="text" name="fabric" id="fabric" value="{$data.fabric}" />
+</div>
+
+<div class="craft source clearfix"></div>
+
+<div class="embs source clearfix"></div>
+
+
+<div class="bnt_box">
+
+<input type="hidden" name="step" value="1" />
+<input type="button" class="order_save order_sub" data-type="save" value="保存" />
+<input type="button" class="order_save order_reset" value="下一步:客户信息" />
+</div>
+</form>
+</div>
+
+<!-- 22222222 -->
+<div class="ddtijiao FormBox" id="FormBox_2" style="display: block;">
+<form action="" method="post" id="orderForm_2">
+
+<div class="clearfix">
+    <h2>基本信息</h2>
+    客户姓名:<input type="text" name="figure[realname]" value="{$data.figure.realname}" >
+    性别:<select name="figure[gender]"><option value="10040" {if $data.figure.gender == 10040} selected {/if}>男</option><option value="10041" {if $data.figure.gender == 10041} selected {/if}>女</option></select>
+    身高:<input type="text" name="figure[height]" value="{$data.figure.height}">
+    体重:<input type="text" name="figure[weight]" value="{$data.figure.weight}">
+</div>
+<div class="clearfix">
+    <h2>收货信息</h2>
+    收货地址 <input type="text" name="ship[ship_addr]" value="{$data.ship_addr}" />
+    收货人   <input type="text" name="ship[ship_name]" value="{$data.ship_name}" />
+    联系电话 <input type="text" name="ship[ship_mobile]" value="{$data.ship_mobile}" />
+</div>
+
+
+<div id="figures">
+{include file=orderj/items/figure.html}
+</div>
+
+
+    
+<div class="bnt_box">
+<input type="hidden" name="step" value="2" />
+<input type="button" class="order_prev order_sub" value="上一步" />
+<input type="button" class="order_save order_reset" value="下一步:客户信息" />
+</div>
+</form>
+</div>
+
+<!-- 333333 -->
+<div class="ddtijiao FormBox" id="FormBox_3" style="display: block;">
+<form action="" method="post" id="orderForm_3">
+    <div id="Infos">
+    
+    </div>
+<div class="bnt_box">
+<input type="hidden" name="step" value="3" />
+<input type="button" class="order_prev order_sub" value="上一步" />
+<input type="button" class="order_save order_reset" value="确定" />
+</div>
+</form>
+</div>
+
+
+<script type="text/javascript" src="/static/expand/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="static/js/orderj.js"></script>
+<script type="text/javascript" src="/static/expand/jquery.form.js"></script>
+<script>
+$(function(){
+    $.order({
+    	orderStep      : $('#step').val(),
+    	ajaxSeeUrl   : 'index.php?app=orderj&act=ajax_see',
+    	ajaxLoadUrl   : 'index.php?app=orderj&act=ajax_load',
+        ajaxCraftUrl   : 'index.php?app=orderj&act=ajax_craft',
+        ajaxEmbUrl     : "index.php?app=orderj&act=ajax_emb",
+        ajaxFresult    : "index.php?app=orderj&act=ajax_Fresult",
+        checkFabricUrl : "index.php?app=orderj&act=ajax_fabric",
+        _clothVal      : $('input[name=clothingID]:checked').val(),
+        SaveUrl        : "index.php?app=orderj&act=orderSave",
+        prevUrl        : "index.php?app=orderj&act=orderPrev",
+    });
+});
+
+
+$(".add_cate li").click(function(){
+    $(this).addClass("cur").siblings().removeClass("cur");
+})
+
+</script>
+
+</body>
+</html>

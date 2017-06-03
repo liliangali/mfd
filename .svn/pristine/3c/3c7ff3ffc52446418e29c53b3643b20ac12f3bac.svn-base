@@ -1,0 +1,67 @@
+{include file=member.header.html}
+<!--头部结束-->
+<div class="w">
+  <div class="AreaBox clearfix">
+    {include file=member.menu.html}
+    <div class="con">
+        <h2 class="tit">安全设置</h2>
+        
+        <div class="aqsz">
+         <h6>你的安全服务</h6>
+         <ul>
+          <li>
+           <p class="dlch">登陆账号：<b>{if $user.phone_mob }{$user.phone_mob}{else}{$user.email}{/if}</b></p>
+           <div class="aqdj clearfix">
+            <p class="p1">安全等级：<span>
+            {if $safes < 50}
+            		低
+            		{elseif $safes <= 80 }
+            		 中
+            		{else}
+            		强
+            		{/if}
+            		</span></p>            
+            <div class="djy"><p style="width:{$safes}"></p></div>
+           </div>
+          </li>
+          
+          <li class="weirz clearfix">
+           <p class="p1">未认证<span>身份认证：</span></p>
+           <p class="p2">用于提升账号的安全性和信任级别。认证后的有裁缝记录的账号不能修改认证信息。</p>
+           <p class="p3"><a href="{link app=member act=tailor arg0 = auth}">认证</a></p>
+          </li>
+          
+          <li class="weirz clearfix">
+          <!--  <p class="p1">强度：<b>中</b><span style="padding-left:24px;">登录密码：</span></p>-->
+            <p class="p1">可修改<span style="padding-left:24px;">登录密码：</span></p>
+          
+           <p class="p2">安全性高的密码可以使账号更安全。建议您定期更换密码，且设置一个包含数字和字母，并长度超过6位以上的密码。</p>
+           <p class="p3"><a href="{link app=member act=tailor arg0 = password}">修改</a></p>
+          </li>
+          
+          <li class="weirz clearfix">
+           <p class="p1">{if $user.email}已绑定{else}未绑定{/if} <span>安全邮箱：</span></p>
+           <p class="p2">绑定后可以用邮箱登陆，当你忘记密码时可通过邮箱申请找回，验证通过后我们会将新密码发到您的安全邮箱。</p>
+           <p class="p3">{if $user.email}<a href="{link app=member act=tailor arg0=editEmail }">修改</a>{else}<a href="{link app=member act=tailor arg0=editEmail }">绑定</a>{/if}</p>
+          </li>
+          
+          <li class="weirz clearfix">
+           <p class="p1">{if $user.phone_mob}已绑定{else}未绑定{/if} <span>手机绑定：</span></p>
+           <p class="p2">绑定后可以用手机登陆，进行（支付/提现/服务商中标/需求收到报价）时，可及时收到短信提醒。</p>
+           <p class="p3">{if $user.phone_mob}<a href="{link app=member act=tailor arg0=editPhone }">修改</a>{else}<a href="{link app=member act=tailor arg0=bingPhone }">绑定</a>{/if}  </p>
+          </li>
+          
+          <li class="weirz clearfix">
+           <p class="p1">{if $user.pay_password}已设置{else}未设置{/if} <span>支付密码：</span></p>
+           <p class="p2">设置后可以进行（支付/提现）</p>
+           <p class="p3">{if $user.pay_password}<a href="{link app=member act=tailor arg0=editPassword }">修改</a>{else}<a href="{link app=member act=tailor arg0=editPassword }">设置</a>{/if}  </p>
+          </li>
+          
+         </ul>
+        </div>
+       
+    </div>
+  </div>
+</div>
+
+{include file=footer.html}

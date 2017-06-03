@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+			<form action = "http://api.alicaifeng.com/soap/club.php?act=jipai" method="post" enctype="multipart/form-data" >
+			token:<input type="text" name="token" value="tokentokenshao" /><br>
+			正面图: <input type="file" name="baseImg" /><br>
+			背面图: <input type="file" name="backImg"  /><br>
+			 里面图: <input type="file" name="inImg"  /><br>
+			  细节图: <input type="file" name="detailImg[]"  /><br>
+			   细节图: <input type="file" name="detailImg[]"  /><br>
+			<input type="submit" value="提交了啊" />
+			</form>
+</body>
+</html>

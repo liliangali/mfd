@@ -1,0 +1,42 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>销售纪录</span></li>
+        <li><a class="btn1" href="index.php?app=coinconfig">返回列表</a></li>
+    </ul>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $list}-->
+        <tr class="tatr1">
+            <td align="left">流水号</td>
+            <td align="left">金额</td>
+            <td align="left">用户名</td>
+            <td align="left">购买时间</td>     
+            <td>支付状态</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$list item=info}-->
+        <tr class="tatr2">
+            <td>{$info.order_sn|escape}</td>
+            <td>{$info.order_amount|price}</td>
+            <td>{$info.user_name|escape}</td>
+            <td>{$info.add_time|date:complete}</td>
+            <td>{$lang.ORDER_STATUS.$info.status|default:-}</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="5">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $list}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

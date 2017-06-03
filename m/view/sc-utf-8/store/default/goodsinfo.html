@@ -1,0 +1,40 @@
+<div class="gysxq_left">
+    <p class="mliaotu"><img src="{$goods.default_image}"/></p>
+    <div class="mlbtdiv">
+      <h1><a href="javascript:void(0);">编号：{$goods.fabric_number}</a></h1>
+      <ul>
+        <li class="widthli">价格：<span>￥{$part_info.price|escape}</span>/米</li>
+        <li class="widthli">名称：{$goods.goods_name|escape}</li>
+		  <!--{foreach from=$goods_attr_list item=goods_attr}-->
+		 {if $goods_attr.attr_value}
+    	  <li>
+			{$goods_attr.attr_name}：{$goods_attr.attr_value}
+		  </li>{/if}
+		 <!-- {/foreach} -->
+      </ul>
+      <p class="clear"></p>
+      <h2>基本介绍</h2>
+      <div class="sjll">{$goods.brief}</div>
+    </div>
+    <p class="clear"></p>
+</div>
+  
+
+<div class="gysxq_right">
+  <h1>供应商信息</h1>
+  <p class="pplogo"><a href="{url app=store&id=$store.store_id}"><img src="{$store.store_logo}" /></a></p>
+   <div>
+    <p>{$lang.store_name}：{$store.store_name}</p>
+    <p>{$lang.region}: {$store.region_name|escape}</p>
+    <p>{$lang.tel}：{$store.tel}</p>
+    <p>官方网站：<a href="{if $store.store_id eq 190 or $store.store_id eq 215}http://www.{/if}{$store.url}" target="_blank">{$store.url}</a></p>
+    <p>{$lang.store_add_time}: {$store.add_time|date}</p>
+  </div>
+  
+   <ul>
+   <!--{foreach from=$store.store_gcates item=gcategory key=key name=name}-->
+    <li><a href="index.php/store-search.html?id={$store.store_id}&cate_id={$gcategory.id}">{$gcategory.value|escape}</a></li>
+  <!--{/foreach}-->
+   </ul>
+</div>
+<p class="clear"></p>

@@ -1,0 +1,118 @@
+{include file="header.html"}
+
+
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=subscribe">{$lang.manage}</a></li>
+    <li>
+     
+      <span>{$acc}</span>
+      
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="subscribe_form">
+    <table class="infoTable">
+    
+    
+     
+   
+     
+     
+     
+     <tr>
+        <th class="paddingT15"> {$lang.username}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$subscribe.username|escape}
+         </td>
+      </tr>
+     <tr>
+        <th class="paddingT15"> {$lang.address}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$subscribe.address|escape}
+         </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.mobile}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$subscribe.mobile|escape}
+         </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.subscribe_type}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {if $subscribe.subscribe_type==0}
+      	{$lang.subscribe_type_0}
+      {elseif $subscribe.subscribe_type==1}
+      	{$lang.subscribe_type_1}
+      {/if}
+         </td>
+      </tr>    
+     <tr>
+        <th class="paddingT15"> 申请状态:</th>
+        
+        <td class="paddingT15 wordSpacing5">
+        
+        <select class="querySelect" name="state" id="state">{html_options options=$state selected=$subscribe.state}
+          </select>
+        
+		</td>
+          
+         
+         
+         
+      </tr>
+     
+     
+     <tr>
+        <th class="paddingT15"> {$lang.figure_mode}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$figure_mode[$subscribe.figure_mode]|escape}
+         </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.employee_name}:</th>
+        <td class="paddingT15 wordSpacing5">
+          
+          <input type="text" class="text width2" value="{$subscribe.employee_name|escape}" name="employee_name"/>
+         </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.remarks}:</th>
+        
+        <td class="paddingT15 wordSpacing5">
+          
+          <textarea readonly="readonly" rows="5" cols="3" name="remarks" id="remarks">{$subscribe.remarks|escape}</textarea>
+         </td>
+      </tr>
+     
+     
+     
+     <tr>
+        <th class="paddingT15"> {$lang.create_date}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$subscribe.create_date|escape}
+         </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> 服务时间:</th>
+        <td class="paddingT15 wordSpacing5">
+        {$subscribe.timeserve}
+          {$timeopt[$subscribe.timeopt]}
+         </td>
+      </tr>
+     
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="congzi" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

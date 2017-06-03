@@ -1,0 +1,35 @@
+/*====专家讲堂详情/S====*/
+.mbx {color: #999; font-size: 14px; line-height:18px; height:18px; overflow:hidden; padding:20px 0 10px 0;}
+.mbx a { color:#999;}
+.mbx a:hover { color:#e66800;}
+.jgf { color: #b0b0b0; margin: 0 0.5em;}
+
+.jtxqbg{background:#f5f5f5;}
+.jtxqmain{width:1080px;margin:0 auto; background:#f8f8f8;}
+.jtxqleft{width:750px;float:left; background:#fff; padding:0 30px 0 0; overflow: hidden; min-height:800px;}
+.jtxqcontent{padding-bottom:40px;color:#666; width:100%; overflow:hidden; position: relative;}
+
+.jtxqcontent h1{font-size:30px;color:#333;font-weight:normal; line-height:40px; margin-top:15px;}
+
+.jtxqcontent .jtxqdata{color:#999;font-size:14px;padding:3px 0 11px 0;}
+
+.jtxqcontent img{max-width:750px;}
+
+.art_con {width:750px; overflow: hidden; line-height:24px; font-size: 14px; position: relative; padding:10px 0;}
+
+.jtxqzjjy{margin:0 31px;color:#666;padding-bottom:40px;}
+.jtxqzjjy h2{color:#333;font-size:20px; background:url(../images/jtxqpic.png) 0 -67px no-repeat;margin-top:40px;font-weight:normal;padding-left:38px;border-bottom:1px dashed #c7c7c7;padding-bottom:12px;margin-bottom:21px;}
+.jtxqzjjy h2 span{ display:inline-block;float:right;font-size:12px;color:#999;}
+.jtxqzjjy .zjjyword{ text-indent:28px;color:#666;line-height:24px;}
+
+.jtxqright{width:260px; float:right; padding:20px; overflow: hidden;}
+
+.jtxqright h4{font-size:18px;height:30px;line-height:30px; padding:10px 0; font-weight:normal; color:#333;}
+.jtxqright ul{width:100%;}
+.jtxqright ul li{padding:10px 0; border-bottom: 1px solid #e8e8e8;}
+.jtxqright ul li:last-child {border:none;}
+.jtxqright ul li .jtxqlist span{color:#8a6145; margin-left:-8px;}
+.jtxqright ul li .jtxqlbtada{color:#aeaeae;}
+.jtxqmore{display:block; text-align:center;margin-bottom:20px;color:#999;}
+/*====专家讲堂详情/E====*/
+

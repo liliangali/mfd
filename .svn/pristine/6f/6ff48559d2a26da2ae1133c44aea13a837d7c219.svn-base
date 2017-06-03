@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>我的作品</title>
+<link type="text/css" href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link type="text/css" href="http://r.cotte.cn/cotte/wap/css/cpxq.css" rel="stylesheet" />
+</head>
+<body>
+<div class="main">
+  <!--头部开始-->
+  <div class="topBar">
+      <div class="wrap"> <span class="back" onClick="history.go(-1)"></span>
+          <h1>我的作品</h1>
+      </div>
+      <div class="sta"></div>
+  </div>
+  <!--头部结束-->
+
+  <div class="kdsz">
+    <ul class="zplist">
+      <li id="ti_1" {if $smarty.get.type == ''}class="now_hover"{else}class="old_hover"{/if}><a href="{link app=my_works}">全部</a><span>|</span></li>
+      <li id="ti_2" {if $smarty.get.type == 0003}class="now_hover"{else}class="old_hover"{/if}><a href="{link app=my_works}?type=0003">西服</a><span>|</span></li>
+      <li id="ti_3" {if $smarty.get.type == 0006}class="now_hover"{else}class="old_hover"{/if}><a href="{link app=my_works}?type=0006">衬衣</a><span>|</span></li>
+      <li id="ti_4" {if $smarty.get.type == 0004}class="now_hover"{else}class="old_hover"{/if}><a href="{link app=my_works}?type=0004">西裤</a><span>|</span></li>
+      <li id="ti_5" {if $smarty.get.type == 0005}class="now_hover"{else}class="old_hover"{/if}><a href="{link app=my_works}?type=0005">马甲</a><span>|</span></li>
+      <li id="ti_6" {if $smarty.get.type == 0007}class="now_hover"{else}class="old_hover"{/if}><a href="{link app=my_works}?type=0007">大衣</a><span>|</span></li>
+      <li id="ti_7" {if $smarty.get.type == 0001}class="now_hover"{else}class="old_hover"{/if}><a href="{link app=my_works}?type=0001">套装</a></li>
+    </ul>
+  </div>
+  <div id="tj_1" class="zplb">
+   <div id="brick" class="brick">
+
+   <!--{if $works}-->
+   <!--{foreach from=$works item=work}-->
+        <div class="item">
+     	 <ul>
+           <li> <a href="#">
+              <p class="p1"><a href="{link app=my_works act=info arg0=$work.id}"><img src="{$work.img_url}"></a></p>
+              <p class="p2"><a href="{link app=my_works act=info arg0=$work.id}">{$work.work_name}</a></p>
+              <p class="p2">¥{$work.pa.price}</p>
+              <p class="p3">{$work.description}</p>
+              </a>
+           </li>
+          </ul>
+        </div>
+        <!--{/foreach}-->
+    <!--{/if}-->
+
+
+    </div>
+  </div>
+  </div>
+
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script src="http://r.cotte.cn/global/luck/mobile/luck.js"></script>
+<script src="http://cdn.loveqiao.com/jquery.masonry.js"></script>
+<script src="http://r.cotte.cn/cotte/wap/js/public.js"></script>
+
+<script>
+(function(){
+  var $container = $('#brick'),num=21,mnum=20;
+  var html=''
+
+  //初始化
+  function masonry(){
+    $container.imagesLoaded( function(){
+      $container.masonry({
+      columnWidth:0,
+      itemSelector: '.item'
+      });
+    });
+  }
+  //$container.append(addHtml(num));
+  masonry()
+
+  //响应式
+  var wnum = parseInt($('.main').width()/160);
+  $container.css('width',wnum*160)
+  $(window).resize(function() {
+    var numbers = parseInt($('.main').width()/160);
+    $container.css('width',numbers*160);
+  });
+
+  //获取数据
+  function getData(){
+    var winh=$(window).height(),
+      bodyh=$container.height();
+    if(($(window).scrollTop()+winh)>=bodyh){
+      $(window).off('scroll resize',getData);
+      $.post("my_works-ajax_list.html?type={$smarty.get.type}",{list:num+','+(num+mnum)},function(res){
+                var res = eval("("+res+")");
+                if(!res.done){
+                  luck.open({content:res.msg,time:1500})
+                  return
+                }else{
+                  $.each(res.retval,function(index,value){
+                      html+='<div class="item"><ul><li><p class="p1"><a target="_blank" href="my_works-info-'+value.id+'.html"><img src="'+value.img_url+'"></a></p><p class="p2"><a target="_blank" href="my_works-info-'+value.id+'.html">'+value.work_name+'</a></p><p class="p2">¥'+value.price+'</p><p class="p3">'+value.description+'</p></li></ul></div>';
+                 });
+                  var $newElems=$(html);
+                 $container.append($newElems).masonry("appended",$newElems);
+                 num+=mnum;
+                 $(window).on('scroll resize',getData);
+                }
+        });
+
+    }
+  }
+  $(window).on('scroll resize',getData);
+})()
+</script>
+</body>
+</html>

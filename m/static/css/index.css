@@ -1,0 +1,122 @@
+@charset "utf-8";
+/*--标题/S--*/
+.title { text-align: center; padding:0 0 10px 0; max-width:1200px; margin:0 auto; overflow:hidden;}
+.title .line { width: 70px; height: 3px; margin: 0 auto; background: #000; }
+.title .tit { font-size: 22px; color: #292823; margin:65px 0 15px 0; }
+.title .depict { font-size: 14px; color: #666; }
+/*--标题/E--*/
+
+/*--幻灯/S--*/
+.banner { overflow: hidden; position: relative; height: 500px; width: 100%; z-index:0; }
+.banner .slide-pic { position: absolute; left: 0; top: 0; width: 100%; height: 500px; background-color:#000; }
+.banner .slide-pic li { position: absolute; left: 0; top: 0; height: 500px; width: 100%;background-position: center center; background-repeat:no-repeat; }
+.banner .slide-txt { height: 360px; margin: 135px 0 0 290px; position: relative; }
+.banner .slide-txt li { opacity: 0; filter: alpha(opacity=0);display:none;/* float: left; position: absolute; left: 0; top: 0; transform: scale(0, 0) translate(800px, -150px) rotate(360deg); -moz-transform: scale(0, 0) translate(800px, -150px) rotate(360deg); -ms-transform: scale(0, 0) translate(800px, -150px) rotate(360deg); -o-transform: scale(0, 0) translate(800px, -150px) rotate(360deg); -webkit-transform: scale(0, 0) translate(800px, -150px) rotate(360deg); transition: all ease 3s; -moz-transition: all ease 3s; -ms-transition: all ease 3s; -o-transition: all ease 3s; -webkit-transition: all ease 3s; */}
+.banner .slide-txt .show { /*display: block; opacity: 1; filter: alpha(opacity=100); transform: scale(1, 1) translate(0, 0) rotate(0deg); -moz-transform: scale(1, 1) translate(0, 0) rotate(0deg); -ms-transform: scale(1, 1) translate(0, 0) rotate(0deg); -o-transform: scale(1, 1) translate(0, 0) rotate(0deg); -webkit-transform: scale(1, 1) translate(0, 0) rotate(0deg); */}
+.banner .div1 { font-size: 52px; color: #fff; }
+.banner .div2 { font-size: 30px; color: #000; padding: 35px 0 60px; }
+.banner .alink { width: 175px; height: 45px; text-decoration: none; display: block; border-radius: 45px; background: #000; line-height: 45px; text-align: center; color: #fff; font-size: 16px; opacity: 0.6; filter: alpha(opacity=60); }
+.banner .btn { width: 17px; position: absolute; right: 0; bottom: 30px; }
+.banner .w { overflow: hidden; position: relative; height: 500px; z-index: 0; }
+.banner .btn span { display: block; width: 16px; height: 16px; margin-top: 10px; background: url(../img/bg.png) no-repeat -184px -132px; cursor: pointer; }
+.banner .btn .cur { background-position: -184px -106px; }
+.banner .alink:hover { animation: elastic ease .6s }
+@keyframes elastic {  0%, 50%, 100% {
+transform:scale(1, 1);
+}
+ 25%, 75% {
+transform:scale(1.1, 1.1)
+}
+}
+/*--幻灯/E--*/
+
+/*--分类/S--*/
+.category { width:200px; height: 420px; padding:14px; background:url(../img/png_bg.png) no-repeat; margin-top: 26px; position: absolute; z-index: 1;}
+.category h4 { border-bottom: solid 1px #ccc; margin: 0; padding: 8px 0; font-size: 18px; }
+.category dl { line-height: 24px; border-bottom: solid 1px #ddd; padding: 10px; }
+.category dt { font-size: 14px; margin-bottom: 10px; }
+.category dd a { margin-right: 30px; white-space: nowrap; }
+.category .last { border: 0; }
+/*--分类/E--*/
+
+/*--滚动效果公共样式/S--*/
+.tab { width: 430px; height: 45px; margin: 0 auto; line-height: 45px; background: #fff; border: solid 1px #ddd; font-size: 16px; text-align: center; color: #ccc; border-radius: 45px; -moz-border-radius: 45px; -ms-border-radius: 45px; -o-border-radius: 45px; -webkit-border-radius: 45px; }
+.tab span { padding: 0 20px; color: #999; cursor: pointer; }
+.tab .cur { color: #000; }
+.swipe-btn { position: absolute; left: 0; bottom: 10px; width: 100%; text-align: center; }
+.swipe-btn span { display: inline-block; width: 8px; height: 8px; border: solid 3px #ccc; border-radius: 50%; background: #fff; margin: 0 2px; cursor: pointer; }
+.swipe-btn .cur { background: #000; border: 0; width: 14px; height: 14px; }
+.tabSlide { position: relative; }
+.swipe-wrap { position: relative; width: 100%; }
+.tabSlide .prev, .tabSlide .next { width: 70px; height: 70px; position: absolute; top: 50%; margin-top: -60px; background: url(../img/bg.png) no-repeat -102px 0; opacity: 0; filter: alpha(opacity=0); cursor: pointer; transition: all ease .5s; -moz-transition: all ease .5s; -ms-transition: all ease .5s; -o-transition: all ease .5s; -webkit-transition: all ease .5s; }
+.tabSlide .prev { left: 0; }
+.tabSlide .next { right: 0; background-position: -172px 0; }
+.tabSlide:hover .prev { opacity: 1; filter: alpha(opacity=100); left: -47px; }
+.tabSlide:hover .next { opacity: 1; filter: alpha(opacity=100); right: -47px; }
+/*--滚动效果公共样式/E--*/
+
+/*--模块1/S--*/
+.box1 { background: #fcfcfc;}
+.box1 .swipe { height: 445px; overflow: hidden; visibility: hidden; position: relative; margin-top: 25px; }
+.box1 .swipe-wrap .item { float: left; position: relative; }
+.box1 .swipe ul { width: 1208px; }
+.box1 .swipe li { float: left; width: 236px; height: 400px; background: #000; overflow: hidden; margin-right: 5px; position: relative; }
+.box1 .m_tmbg {opacity:0.5; filter: alpha(opacity=5); background:#000; position:absolute; bottom:0; left:0; width:100%; height:40px;}
+.box1 li:hover .m_tmbg { bottom:0px; opacity:0.5; filter: alpha(opacity=5); height:112px;}
+.box1 .info { position: absolute; bottom:0px; left: 0; width: 100%; height:40px; color: #fff; }
+.box1 .info .m_bt { margin:0 15px; font-size:14px; line-height:40px; height:40px; font-weight:normal; position:relative; padding-right:120px; overflow:hidden;}
+.box1 .info .m_bt span { display:block; position:absolute; right:0; top:0; background:url(../img/icon_2.png) 0 -416px no-repeat; padding-left:18px;}
+.box1 .info .m_btjj { line-height:18px; height:54px; overflow:hidden; margin:0 15px;}
+.box1 li img, .box1 .info,.box1 .m_tmbg { transition: all ease .5s; -moz-transition: all ease .5s; -ms-transition: all ease .5s; -o-transition: all ease .5s; -webkit-transition: all ease .5s; }
+.box1 li:hover img { opacity: 0.6; }
+.box1 li:hover .info { bottom:0px; opacity: 1; filter: alpha(opacity=100); height:112px;}
+.box1 .info .p2 { font-size: 24px; margin: 10px 0 15px; font-family: '楷体'; }
+.box1 .info .shopIn { width: 105px; height: 30px; line-height: 30px; margin: 0 auto; color: #fff; text-decoration: none; display: block; border: solid 1px #fff; border-radius: 20px; transition: background ease .5s; }
+.box1 .info .shopIn:hover { background: #fff; color: #000; }
+/*--模块1/E--*/
+
+/*--模块2/S--*/
+.box2 { padding-top:26px;}
+.box2 .swipe { height: 645px; overflow: hidden; visibility: hidden; position: relative; }
+.box2 .swipe-wrap .item { float: left; position: relative; }
+.box2 .swipe li { float: left; width: 300px; height: 300px; overflow: hidden; position: relative; }
+.box2 .info { width: 150px; height: 135px; position: absolute; top: 75px; left: 75px; text-align: center; color: #fff; background: rgba(0,0,0,0.6); border-radius: 50%; overflow: hidden; padding: 15px 0 0; line-height: 20px; background-color:#000\9; opacity: 0; filter: alpha(opacity=0); transform: scale(0, 0); -moz-transform: scale(0, 0); -ms-transform: scale(0, 0); -o-transform: scale(0, 0); -webkit-transform: scale(0, 0); transition: all ease .5s; -moz-transition: all ease .5s; -ms-transition: all ease .5s; -o-transition: all ease .5s; -webkit-transition: all ease .5s; }
+.box2 li .shadow { position: absolute; left: 0; top: 0; width: 300px; height: 300px; background: url(../img/alpha50.png) no-repeat; transition: all ease .5s; -moz-transition: all ease .5s; -ms-transition: all ease .5s; -o-transition: all ease .5s; -webkit-transition: all ease .5s; }
+.box2 li:hover .info { opacity: 1; filter: alpha(opacity=100);opacity: 0.7\9; filter: alpha(opacity=70)\9; transform: scale(1, 1); -moz-transform: scale(1, 1); -ms-transform: scale(1, 1); -o-transform: scale(1, 1); -webkit-transform: scale(1, 1); }
+.box2 li:hover .shadow { opacity: 0; filter: alpha(opacity=0); }
+.box2 .info img { border-radius: 50%; width:70px; height:70px; }
+.box2 .info .a1 { display: block; color: #ccc; }
+.box2 .info .a2 { color: #fff; }
+/*--模块2/E--*/
+
+/*--模块3/S--*/
+.box3 { background: #f9f9f9; min-height: 200px; margin-top: 45px; padding-bottom: 40px; overflow: hidden; }
+.box3 .title { padding-top: 30px; }
+.box3 .item { float: left; width: 205px; margin: 0 47px; line-height: 20px; text-align: center; padding-top:26px;}
+.box3 .item h4 { margin: 10px 0; color: #292823; font-size: 16px; }
+.box3 .item p { color: #757575; }
+.box3 .item span { display: block; width: 90px; height: 90px; margin: 0 auto; background: url(../img/indexbg.png) no-repeat; transition: transform ease .5s; }
+.box3 .item span:hover { transform: scale(1.1, 1.1); }
+.box3 .item .ico1:hover { background-position: 0 -96px; }
+.box3 .item .ico2 { background-position: -100px 0; }
+.box3 .item .ico2:hover { background-position: -100px -96px; }
+.box3 .item .ico3 { background-position: -200px 0; }
+.box3 .item .ico3:hover { background-position: -200px -96px; }
+.box3 .item .ico4 { background-position: -300px 0; }
+.box3 .item .ico4:hover { background-position: -300px -96px; }
+/*--模块3/E--*/
+
+/*--模块4/S--*/
+.box4 { min-height: 200px; margin-top: 60px; }
+.box4 .tab { width: 300px; }
+.box4 ul { padding-top:30px; overflow: hidden; clear: both; }
+.box4 li { position: relative; background:#000;}
+.box4 li img{transition: all ease 1s; -moz-transition: all ease 1s; -ms-transition: all ease 1s; -o-transition: all ease 1s; -webkit-transition: all ease 1s;}
+.box4 li:hover img{ opacity:0.6; filter: alpha(opacity=60);}
+.box4 li .info { position: absolute; left: 0; top: 0; width: 100%; height: 100%; text-align: center; }
+.box4 .info h4 { font-size: 52px; margin: 92px 0 35px }
+.box4 .info p { font-size: 24px; margin-bottom: 75px; }
+.box4 .info em { font-size: 18px; color: #000; }
+.box4 .info a{ display:block; width:100%; height:100%; position:absolute; left:0; top:0;}
+/*--模块4/E--*/
+

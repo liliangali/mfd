@@ -1,0 +1,38 @@
+{include file=header2.html}
+<style>
+.help_left {width:200px; float:left;}
+.help_menu {border:1px solid #e2e2e2; margin-bottom:12px; font-size:14px;}
+.help_menu h2 {font-size:16px; height:42px; line-height:42px; border-bottom:1px solid #eee; background:#f8f8f8; padding:0 12px;}
+.menu_detail {padding:12px 0;}
+.menu_detail a {display:block; padding:0 15px 0 20px; height:32px; line-height:32px; overflow:hidden; color:#717171;}
+.menu_detail a.on {color:#ff4a00;}
+.help_right {width:970px; float:right; overflow:hidden; line-height:24px; font-size:14px;}
+.art_tit {height:24px; font-weight:normal; height:46px; line-height:46px; overflow:hidden; font-weight:normal; color:#333; border-bottom:2px solid #9a9a9a; margin-bottom:20px; padding-bottom:5px;}
+</style>
+<div class="w" style="padding:30px 0; clear:both; overflow:hidden;">
+  <div class="help_left"> 
+    <!-- {foreach from=$acategories item=acategory} -->
+    <div class="help_menu">
+      <h2>{$acategory.cate_name|escape}</h2>
+      <div class="menu_detail"> 
+        <!--{foreach from=$acategory.article item=art}--> 
+        <a href="{link app=article act=view arg=$art.article_id}" {if $act_article_id == $art.article_id}class="on"{/if}>{$art.title}</a> 
+        <!-- {/foreach} --> 
+      </div>
+    </div>
+    <!-- {/foreach} --> 
+  </div>
+  <div class="help_right">
+    <h1 class="art_tit">{$article.title}</h1>
+    <!-- {if $article.store_id} --> 
+    {$article.content|escape:editor} 
+    <!-- {else} --> 
+    {$article.content} 
+    <!-- {/if} --> 
+  </div>
+</div>
+<script type="text/javascript">
+twoMenu();
+anav();
+</script>
+{include file="footer.html"} 

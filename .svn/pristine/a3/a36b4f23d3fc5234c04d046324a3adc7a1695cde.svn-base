@@ -1,0 +1,107 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=fashion">潮流管理</a></li>
+    <li><span>潮流添加</span></li>
+  </ul>
+</div>
+{$build_editor}
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="dis_form">
+        <table class="infoTable">
+        	<tr>
+        		<th class="paddingT15"><label for="article">标题:</label></th>
+        		<td class="paddingT15 wordSpacing5"><input type="text" name="title" id="title" required="required"/></td>
+        	</tr>
+            <tr>
+        		<th class="paddingT15"><label for="article">潮流排序:</label></th>
+        		<td class="paddingT15 wordSpacing5"><input type="text" name="f_sort" id="f_sort" required="required"/></td>
+        	</tr>
+        	<tr>
+        		<th class="paddingT15"><label for="article">概要图片:</label></th>
+        		<td class="paddingT15 wordSpacing5"> {input_img name="pphoto" value=""}</td>
+        	</tr>
+           <tr>
+	            <th class="paddingT15">
+	          	<a href="javascript:;" class="recommend" style="color:red;">推荐搭配:</a></th>
+	            <td class="paddingT15 wordSpacing5" id="recommend">
+	                <ul>
+	                {foreach from=$links item=link}
+	                    <li>{$link.name}<input type='hidden' name='oldRecommend[]' value="{$link.cid}"> <a href='javascript:;' style='color:red;' onclick='removeRec(this)' data-ret='{$link.linkid}'>x</a> </li>
+	                {/foreach}
+	                </ul>
+	             </td>
+            </tr>
+        	 <tr>
+                <th class="paddingT15">
+                    <label for="article">摘要:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="sumary" name="summary" style="width:650px;height:400px;" ></textarea>
+                </td>
+            </tr>   
+            <!-- 要在内容中添加图片先上传图片再调整 -->
+        	 <tr>
+                <th class="paddingT15">
+                    <label for="article">文本内容:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="content" name="content" style="width:650px;height:400px;"></textarea>
+                </td>
+            </tr>   
+        <tr>
+        	<th></th>
+            <td class="ptb20">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	    $(".recommend").click(function(){
+        var ids='';
+        $("#recommend input").each(function(){
+            ids += ids ? ","+$(this).val() : $(this).val();
+        })
+        $.cookie("suits",null);
+    	var url = "index.php?app=linkCustom";
+    	if(ids){
+    	    url += "&ids="+ids;
+         }
+        window.open(url,'请选择样衣','height=800,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+    })
+})
+function customCallBack(ids){
+    $.get('index.php?app=fashion&act=loadCustom&ids='+ids,function(result){
+        var result = eval("("+result+")");
+        if(result.done == true){
+            var html='<ul>';
+            for(var i=0;i<result.retval.length;i++){
+                html += "<li>"+result.retval[i].name+"<input type='hidden' name='newRecommend["+result.retval[i].id+"]' value='"+result.retval[i].id+"'> <a href='javascript:;' style='color:red;' onclick='removeRec(this)' data-ret='0'>x</a> </li>";
+            }
+            html += "</ul>";
+            $("#recommend").html(html);
+        }else{
+            alert(result.msg);
+            return false;    
+        }
+    });
+}
+function removeRec(obj){
+    var id = $(obj).attr("data-ret");
+
+    if(id == 0){
+        $(obj).parents("li").remove();
+    }else{
+        $.get("index.php?app=fashion&act=removeLink",{id:id}, function(res){
+            var res = eval("("+res+")");
+           // if(res.done==true){
+            	$(obj).parents("li").remove();
+           // }
+        })
+    }
+}
+</script>
+{include file="footer.html"}

@@ -1,0 +1,78 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#onegift_form').validate({
+		rules: {
+			/* cpn_money: {
+			    min: 0
+			},
+			cpn_prefix:{
+			    maxlength :4
+			} */
+	    },
+		messages: {
+			/* cpn_money: {
+				min: "正确的金额数"
+			},
+			cpn_prefix:{
+			    maxlength :'最多四位'
+			} */
+		 },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+    });
+});
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>活动列表</span></li>
+    <li><span>新增活动</span></li>
+  </ul>
+</div>
+<div class="info">
+    <form method="post" action="" enctype="multipart/form-data" id="onegift_form">
+    
+        <input id="coupon_id" type="hidden" name="one_id" value="{$data.one_id|escape}" />
+        
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">开始时间:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                        <input class="infoTableInput2 pick_date" id="start_time" type="text" name="start_time" />
+                </td>
+            </tr>
+            
+           <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">结束时间:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2 pick_date" id="end_time" type="text" name="end_time" />
+                    <span>注意：这里的时间是当日的零点。比如要做22日、23日两天活动，开始结束时间就要分别选择22、24。</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">追加员工号 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="file" name="employee" />
+                </td>
+            </tr>
+            
+	        <tr>
+	            <th></th>
+	            <td class="ptb20">
+	                <input class="tijia" type="submit" name="Submit" id="Submit" value="提交" />
+	                <input class="congzi" type="reset" name="Submit2" value="重置" />
+	            </td>
+	        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+$('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+$('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+
+</script>
+{include file="footer.html"}

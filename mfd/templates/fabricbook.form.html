@@ -1,0 +1,205 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#book_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {    
+            name : {
+                required : true
+            },
+            category :{
+                required : true
+            }
+        },
+        messages : {
+            name : {
+                required : '请填写名称'
+            },
+            category : {
+                required : '请选择分类'
+            }
+        }
+    });
+});
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=fabricbook">{$lang.manage}</a></li>
+        {if $data.id}
+        <li><a class="btn1" href="index.php?app=fabricbook&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="book_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="name" type="text" name="name" value="{$data.name|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">分类:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="category" name="category"><option value="">{$lang.select_pls}</option>{html_options options=$category selected=$data.category}</select>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">是否上架:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="is_sale" value="1" {if $data.is_sale eq 1} checked="checked"{/if} />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="is_sale" value="0" {if $data.is_sale eq 0} checked="checked"{/if} />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                   价格:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="price" type="text" name="price" value="{$data.price}" />
+                </td>
+            </tr>
+            <tr>
+                            <th class="paddingT15">
+                   库存:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="store" type="text" name="store" value="{$data.store}" />
+                </td>
+            </tr>
+            <tr>
+                            <th class="paddingT15">
+                   单位:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="unit" type="text" name="unit" value="{$data.unit}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">售后方式:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="aftersale" value="0" {if $data.aftersale eq 0} checked="checked"{/if} checked/>
+                    <label for="yes">换货</label>
+                    <input id="no" type="radio" name="aftersale" value="1" {if $data.aftersale eq 1} checked="checked"{/if} />
+                    <label for="no">退货</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="article">描述:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="brief" name="brief" style="width:350px;height:100px;">{$data.brief|escape}</textarea>
+                </td>
+            </tr>
+                        <tr>
+                <th class="paddingT15">
+                  列表图片:</th>
+                <td class="paddingT15 wordSpacing5">
+                     {input_img name="small_img" value="$data.small_img" dir="cst"}
+                </td>
+            </tr>
+       
+                  <tr>
+                <th>相册图片 :</th>
+                <td id="gallery">
+                {$build_upload}
+        <table class="infoTable qdhqx_tab">
+        <tr>
+                <td class="paddingT15 wordSpacing5">
+					 <div id="divSwfuploadContainer">
+                <div id="divButtonContainer" style="float:left;">
+                    <span id="spanButtonPlaceholder"></span>
+                </div>
+                
+                <div id="divFileProgressContainer"></div>
+            </div>
+                </td>
+            </tr>
+
+            <tr>
+            	<td>
+            	文件列表(双击图片进行删除)
+					<ul id="thumbnails">
+						{foreach from=$gallery_list item=gallery}
+						  <li id="gallery_{$gallery.id}"  data_id ="{$gallery.id}"  onclick="selectImg(this)">
+						  <img ondblclick="drop_gallery({$gallery.id})" src="{$gallery.image}" width="80" height="80"></li>
+						{/foreach}
+					</ul>
+				</td>
+            </tr>
+            </table>
+                </td>
+            </tr>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<script>
+function add_uploadedfile(file_data)
+{
+    var newImg = '<li id="' + file_data.file_id + '" onclick="selectImg(this)">'+
+    '<input type=hidden name=gallery[] value='+SITE_URL + '/' + file_data.file_path+'>'+
+    '<img width="80px" height="80px" src="' + SITE_URL + '/' + file_data.file_path + '" ondblclick="drop_uploadedfile(' + file_data.file_id + ');"/></li>';
+    $('#thumbnails').prepend(newImg);
+}
+
+function drop_uploadedfile(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+
+    $('#' + file_id).remove();
+    
+    $.getJSON('index.php?app=article&act=drop_uploadedfile&file_id=' + file_id, function(result){
+        if(result.done){
+            
+        }else{
+            alert('drop_error');
+        }
+    });
+}
+
+function drop_gallery(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+
+    $('#gallery_' + file_id).remove();
+    
+    $.getJSON('index.php?app=fabricbook&act=drop_gallery&id=' + file_id, function(result){
+        if(result.done == false){
+            alert('drop_error');
+        }
+    });
+}
+
+function selectImg(obj){
+	$(obj).parents("ul").find("li").each(function(){
+		$(this).removeClass("on");
+	})
+	
+	$(obj).addClass("on");
+}
+</script>
+{include file="footer.html"}

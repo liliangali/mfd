@@ -1,0 +1,35 @@
+<h2>工艺信息</h2>
+
+{foreach from=$order.goods item=citem}
+<b>{$citem.cloth.name}</b> <br>
+    {foreach from=$citem.crafts item=cc}
+        {$cc.data.parentName}  :  {$cc.data.name}({$cc.data.code}) {if $cc.data.statusID == 10008}{$cc.data.value}{/if} <br>
+    {/foreach}
+<hr>
+{/foreach}
+
+
+<h2>刺绣信息</h2>
+
+{foreach from=$order.goods item=eitem}
+<b>{$eitem.cloth.name}</b><br>
+    {foreach from=$eitem.embs item=ee key=eekey}
+        {$embs.$eekey}  : {$ee}
+    {/foreach}
+<hr>
+{/foreach}
+
+
+<h2>尺寸信息：</h2>
+
+{foreach from=$figureList item=ifg key=__kfg}
+<span>{$ifg.zname}:</span>{$order.figure.$__kfg}<br>
+{/foreach}
+
+
+<div class="body_type">
+  <h2>身体特征</h2>
+  {foreach from=$body_type item=bt}
+      {$bt.cname} : {$bt.name} <br />
+  {/foreach}
+</div>

@@ -1,0 +1,537 @@
+{include file="header.html"}
+<style>
+.ac_results { padding: 0px; border: 1px solid WindowFrame; background-color: Window; overflow: hidden; z-index: 19891020; /* 1000 */ }
+.ac_results ul { width: 100%; list-style-position: outside; list-style: none; padding: 0; margin: 0; }
+.ac_results iframe { display: none;/*sorry for IE5*/ display/**/: block;/*sorry for IE5*/ position: absolute; top: 0; left: 0; z-index: -1; filter: mask(); width: 3000px; height: 3000px; }
+.ac_results li { margin: 0px; padding: 2px 5px; cursor: pointer; display: block; font: menu; font-size: 12px; overflow: hidden; }
+.ac_over { background-color: Highlight; color: HighlightText; }
+#thumbnails li{
+	    border: 1px solid #eee;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    height: 100px;
+    margin: 0 10px 10px 0;
+    text-align: center;
+    width: 100px;
+}
+.dives{border:1px solid #000; padding:10px 0; width:96%; margin:0px 2% 20px 2%;} 
+.infs{width:96%; margin:0 2%; line-height: 40px;}
+</style>
+<script type="text/javascript" src="/includes/libraries/baidu/ueditor.config.js"></script>
+<script type="text/javascript" src="/includes/libraries/baidu/ueditor.all.min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+    $('#brand_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            name : {
+                required : true,
+            },
+            bn : {
+        		required : true,
+        		 remote   : {
+                     url :'index.php?app=goods&act=check_bn',
+                     type:'get',
+                     data:{
+                    	 bn : function()
+                     	{
+                             return $('#bn').val();
+                         },
+                         id : '{$data.goods_id}'
+                     }
+                     }
+        	    },
+        	    cat_id : {
+        	    	min:1
+                    
+                },
+                price : {
+                    required : true,
+                },
+        },
+       
+        messages : {
+            name : {
+                required : '请填写产品名称',
+            },
+            bn : {
+                required : '请填写货号',
+                remote   : '货号已存在',
+            },
+            cat_id : {
+                min:'请选择分类id'
+            },
+            price : {
+                required : '请填写销售价',
+            },
+            
+        }
+    });
+});
+
+</script>
+
+<!--{$build_editor}-->
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=goods&amp;act=index">{$lang.manage}</a></li>
+        {if $data.id}
+        <li><a class="btn1" href="index.php?app=goods&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="brand_form">
+         <div class="infs"> 基本信息</div>
+         <table class="dives">
+            <tr>
+                <th class="paddingT15">
+                   产品名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="name" type="text" name="name" value="{$data.name|escape}" />
+                </td>
+            </tr>
+            
+                    <tr >
+                <th class="paddingT15">
+                  产品分类:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="cat_id" id="cat_id"  onchange="cats(this)" >
+                                <option value="0">请选择</option>
+                                {foreach from=$options item=op key=key}
+                                    <option value="{$key}"  {if $data.cat_id eq $key}selected{/if}>{$op}</option>
+                                {/foreach}
+                             </select>
+                </td>
+            </tr>
+          
+            
+             <tr>
+                <th class="paddingT15" valign="top">
+                                                                           扩展分类 :</th>
+                <td class="paddingT15 wordSpacing5">
+                     <table width="100%" align="center" class="attrlist">
+                     {if $categorys}
+                     {foreach from=$categorys item=attr name=loop}
+                     <tr class="fitem"><td>
+                     {if $smarty.foreach.loop.iteration eq 1}
+                     <a href="javascript:;" class="addattr">[+]</a>
+                     {else}
+                     <a href="javascript:;" onclick="drop_attr(this)">[-]</a>
+                     {/if}
+                    <select name="type[]" class="parent" onchange="loadChild(this)">
+                                        <option value="0">--请选择--</option>
+                                        {html_options options=$options selected=$attr.cate_id}
+                                    </select>
+                                   
+                                    </td></tr>
+                     {/foreach}
+                    {else}
+                    <tr><td><a href="javascript:;" class="addattr">[+]</a>
+                    <select name="type[]" class="parent" onchange="loadChild(this)">
+                                        <option value="0">--请选择--</option>
+                                        {html_options options=$options selected=$gcategory.theme}
+                                    </select>
+                                    
+                                    </td></tr>
+                    {/if}
+                  </table>
+                  </td>
+            </tr>
+            
+             <tr>
+                <th class="paddingT15">
+                                            产品类型:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="type_id" id="type_id" onchange="change(this)">
+                        <option value="0">请选择</option>
+                        {foreach from=$list item=style key=key}
+                            <option value="{$key}" {if $data.type_id eq $key}selected{/if}>{$style}</option>
+                        {/foreach}
+                    </select>
+                </td>
+            </tr>
+             <tr>
+                <th class="paddingT15">
+                  产品图片:</th>
+                <td class="paddingT15 wordSpacing5">
+                     {input_img name="big_pic" value="$data.thumbnail_pic" dir="cst"}
+                </td>
+            </tr>
+             <tr >
+                <th>产品相册图(APP) :</th>
+                <td id="gallery">
+                {$build_upload}
+        <table class="infoTable qdhqx_tab">
+        <tr>
+                <td class="paddingT15 wordSpacing5">
+					 <div id="divSwfuploadContainer">
+                <div id="divButtonContainer" style="float:left;">
+                    <span id="spanButtonPlaceholder"></span>
+                </div>
+                
+                <div id="divFileProgressContainer"></div>
+            </div>
+                </td>
+            </tr>
+
+            <tr>
+            	<td>
+            	文件列表(双击图片进行删除，可移动排序)
+            	
+					<ul id="thumbnails">
+						{foreach from=$gallery_list item=gallery}
+						  <li id="gallery_{$gallery.img_id}"  data_id ="{$gallery.img_id}"  onclick="selectImg(this)">
+						  <img ondblclick="drop_gallery({$gallery.img_id})" src="{$gallery.thumb_url}" width="80" height="80"></li>
+						{/foreach}
+					</ul>
+				</td>
+            </tr>
+            </table>
+                </td>
+            </tr>
+            
+            </table>
+            
+      <!--  <div class="infs"> 产品规格</div> -->
+         <table class="dives">     
+
+            <tr>
+                <th class="paddingT15">
+                   货号:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="bn" type="text" name="bn" value="{$data.bn|escape}" />
+                </td>
+            </tr>
+           <!--  <tr>
+                <th class="paddingT15">
+                   重量:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="weight" type="text" name="weight" value="{$data.weight|escape}" />克（g）
+                </td>
+            </tr> 
+            <tr>
+                <th class="paddingT15">
+                   库存:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="store" type="text" name="store" value="{$data.store|escape}" />
+                </td>
+            </tr>  -->
+           {if $data.goods_id}
+            <tr class="displayno">
+                <th class="paddingT15">
+                   规格:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input  id="spec_desc"  onclick="onspec(this)" type="button" name="spec_desc" value="开启规格" />
+                </td>
+            </tr>
+            {/if}
+          </table>  
+            
+        <div class="infs"> 产品属性</div>
+         <table class="dives" id="recommend">
+           <!-- {if $attrbutes} -->
+           {foreach from=$attrbutes item=attrbu key=key1}
+           <!-- {if $attrbu.attr_input_type eq 1} -->
+             <tr >
+                <th class="paddingT15">
+                  {$attrbu.attr_name}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="attr_name[{$key1}]">
+                                <option value="0">请选择</option>
+                                {foreach from=$attrbu.attr_values item=op key=key}
+                                    <option value="{$op}"  {if $op eq $goodsattrs.$key1}selected{/if}>{$op}</option>
+                                {/foreach}
+                             </select>
+                </td>
+            </tr>
+           <!-- {else} -->
+           <tr >
+                <th class="paddingT15">
+                  {$attrbu.attr_name}:</th>
+                <td class="paddingT15 wordSpacing5">
+                  <input class="infoTableInput2"  type="text" name="attr_name[{$key1}]" value="{$goodsattrs.$key1}" />
+                </td>
+            </tr>
+            
+            <!-- {/if} -->
+            {/foreach}
+           <!-- {/if} -->
+         </table>   
+            
+           <div class="infs"> 业务信息</div>
+         <table class="dives">
+            <tr >
+            <th class="paddingT15">
+               发往平台:</th>
+            <td class="paddingT15 wordSpacing5">
+                <input type="checkbox" name="is_pc" value="1" <!-- {if $data.is_pc} -->checked="checked"<!-- {/if} -->> pc
+                <input type="checkbox" name="is_app" value="1" <!-- {if $data.is_app} -->checked="checked"<!-- {/if} -->> app
+                <input type="checkbox" name="is_wap" value="1" <!-- {if $data.is_wap} -->checked="checked"<!-- {/if} -->> wap
+            </td>
+        </tr>
+           <tr>
+                <th class="paddingT15">
+                   排序:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="p_order" type="text" name="p_order" value="{$data.p_order|escape}" />（值越大排序越靠前）
+                </td>
+            </tr> 
+
+             <tr>
+                <th class="paddingT15">
+                   是否允许使用优惠券:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="radio" name="is_debit" value="1" {if $data.is_debit}checked{/if}/>是
+                   <input type="radio" name="is_debit" value="0" {if !$data.is_debit}checked{/if}/>否
+                </td>
+            </tr> 
+            <tr>
+                <th class="paddingT15">
+                   是否上架:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="radio" name="marketable" value="1" {if $data.marketable}checked{/if}/>是
+                   <input type="radio" name="marketable" value="0" {if !$data.marketable}checked{/if}/>否
+                </td>
+            </tr> 
+         </table> 
+        <!--  <div class="infs">产品简介</div>
+         <table style="padding:10px 0; width:96%; margin:0px 2% 20px 2%;">
+          <tr>
+                
+                <td class="paddingT15 wordSpacing5">
+                <textarea  name="brief" id="brief" style="width:650px;height:100px;">{$data.brief|escape}</textarea>
+                </td>
+            </tr>
+         </table>  -->
+         
+     <div class="infs"> 详细介绍</div>
+            <table style="padding:10px 0; width:96%; margin:0px 2% 20px 2%;">
+           <tr >
+               
+                <td class="paddingT15 wordSpacing5">
+                <!--<textarea  name="intro" id="intro" style="width:650px;height:400px;">{$data.intro|escape}</textarea>-->
+                </td>
+            </tr>
+
+                <script id="editor" type="text/plain" style="width:1024px;height:500px;">{$data.intro}</script>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="id" value="{$data.id}">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        
+         
+        </table>
+        
+        
+        
+       
+        
+        
+    </form>
+</div>
+<script type="text/javascript" src="/static/expand/jquery.autocomplete.js"></script>
+<script src="{res file=js/jquery.dragsort-0.5.1.js}"></script>
+<script>
+    var ue = UE.getEditor('editor');
+    var goods_id = "{$data.goods_id}";
+    function cats(obj){
+	var cat_id = $("#cat_id").val();
+	 $.get('index.php?app=goods&act=gettype&cat_id='+cat_id,function(result){
+		 var result = eval("("+result+")");
+		  if(result.done == true){
+	        $("#type_id").val(result.retval);
+	        var type_id = $("#type_id").val();
+	        if(type_id != 0){
+            	$(".displayno").removeAttr("style");
+            	
+            	  $.get('index.php?app=goods&act=attrbutes&type_id='+type_id,function(result){
+            	        var result = eval("("+result+")");
+            	        if(result.done == true){
+            	        	var html='';
+            	        	
+                                 for(var i=0;i<result.retval.length;i++){
+                                	 if(result.retval[i].attr_input_type == 1)
+                       	       	  {
+                                 	  html+='<tr><th class="paddingT15">';
+                                 	html +=result.retval[i].attr_name+'</th> <td class="paddingT15 wordSpacing5">  <select name="attr_name['+result.retval[i].attr_id+']"><option value="0">请选择</option>';
+                                  for(var y=0;y<result.retval[i].attr_values.length;y++){
+                                 	html +='<option value="'+result.retval[i].attr_values[y]+'">'+result.retval[i].attr_values[y]+'</option>';
+                                 } 
+                                  html +='</select> </td> </tr>';
+                       	       }else{
+                 	       		  html+='<tr><th class="paddingT15">';
+                 	       		  html +=result.retval[i].attr_name+'</th> <td class="paddingT15 wordSpacing5"><input class="infoTableInput2"  type="text" name="attr_name['+result.retval[i].attr_id+']" value="" />';	
+                 	       		 html +='</select> </td> </tr>';
+                 	       	  }
+                                 }
+            $("#recommend").html(html)
+            	        }else{
+            	            alert(result.msg);
+            	            return false;    
+            	        }
+            	    });
+            }
+	        
+	        }else{
+	            alert(result.msg);
+	            return false;    
+	        }
+	 })
+}
+
+
+
+$("#thumbnails").dragsort({ dragSelector: "li", dragBetween: false,placeHolderTemplate: "<li style='background-color:white; border:dashed 1px gray'></li>",dragEnd:stor});
+function stor(){
+	var data=[],li=$("#thumbnails li");
+	for(var i=0;i<li.length;i++){
+		data.push(li[i].getAttribute('data_id')+':'+i)	
+	}
+ 
+	$.ajax({
+		url:"index.php?app=goods&act=gallarysort",
+        type: "POST",
+		data:{
+			photo_id:data.join()	
+		},
+		success: function(){}
+	})
+}
+function onspec(v1){
+	var ids=$("#type_id  option:selected").val();
+	var url = "index.php?app=products&act=setspec&goods_id="+goods_id;
+	 window.open(url,'选择规格','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+}
+ function change(obj) {
+            var type_id = $("#type_id").val();
+            
+            if(type_id != 0){
+            	$(".displayno").removeAttr("style");
+            	
+            	  $.get('index.php?app=goods&act=attrbutes&type_id='+type_id,function(result){
+            	        var result = eval("("+result+")");
+            	        if(result.done == true){
+            	        	var html='';
+                for(var i=0;i<result.retval.length;i++){
+                	  html+='<tr><th class="paddingT15">';
+                	html +=result.retval[i].attr_name+'</th> <td class="paddingT15 wordSpacing5">  <select name="attr_name['+result.retval[i].attr_id+']"><option value="0">请选择</option>';
+                 for(var y=0;y<result.retval[i].attr_values.length;y++){
+                	html +='<option value="'+result.retval[i].attr_values[y]+'">'+result.retval[i].attr_values[y]+'</option>';
+                } 
+                 html +='</select> </td> </tr>';
+                }
+            $("#recommend").html(html)
+            	        }else{
+            	            alert(result.msg);
+            	            return false;    
+            	        }
+            	    });
+            }
+        }
+function add_uploadedfile(file_data)
+{
+    var newImg = '<li id="' + file_data.file_id + '" onclick="selectImg(this)">'+
+    '<input type=hidden name=gallery[] value='+SITE_URL + '/' + file_data.file_path+'>'+
+    '<img width="80px" height="80px" src="' + SITE_URL + '/' + file_data.file_path + '" ondblclick="drop_uploadedfile(' + file_data.file_id + ');"/></li>';
+    $('#thumbnails').prepend(newImg);
+}
+function selectImg(obj){
+	$(obj).parents("ul").find("li").each(function(){
+		$(this).removeClass("on");
+	});
+	
+	$(obj).addClass("on");
+}
+function drop_uploadedfile(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+
+    $('#' + file_id).remove();
+
+    $.getJSON('index.php?app=article&act=drop_uploadedfile&file_id=' + file_id, function(result){
+        if(result.done){
+
+        }else{
+            alert('drop_error');
+        }
+    });
+}
+function drop_gallery(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+
+    $('#gallery_' + file_id).remove();
+    
+    $.getJSON('index.php?app=goods&act=drop_gallery&id=' + file_id, function(result){
+        if(result.done == false){
+            alert('drop_error');
+        }
+    });
+}
+
+$('.addattr').click(function(){
+    var selType = [];
+    var selAttr = [];
+    var msg = '';
+	$(".attrlist tr").each(function(){
+		 var selObj = $(this).find("select");
+		 if(selObj[0].selectedIndex == 0){
+			  msg += '- {$lang.select_type}\n';
+		 }
+
+	
+	     
+    });
+	
+	if(msg){
+		alert(msg);
+	    return false;
+	}
+	
+    $(this).parents(".attrlist").append('<tr class="fitem"><td> <a href="javascript:;" onclick="drop_attr(this)">[-]</a>&nbsp;'+
+        '<select name="type[]" class="parent" onchange="loadChild(this)">'+
+    '<option value="0">--请选择--</option>'+
+    '{html_options options=$options selected=$gcategory.theme}'+
+    '</select>'+
+    '</td></tr>'
+    );
+});
+function drop_attr(obj)
+{
+    $(obj).parents('.fitem').remove();
+}
+
+function loadChild(obj)
+{
+    var value = obj.value;
+    $.get("index.php?app=gcategory",{act:"loadAttr",type:value}, function(res){
+ 	     var res = eval("("+res+")");
+  	    $(obj).next("select").empty().append('<option value="0">{$lang.select_attr}</option>');
+  	    for(var i = 0 ; i<res.retval.length;i++){
+    	     $(obj).next("select").append("<option value='" + res.retval[i].id +"'>" + res.retval[i].name + "</option>");
+  	    }
+    })    
+}
+</script>
+{include file="footer.html"}

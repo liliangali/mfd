@@ -1,0 +1,70 @@
+{include file="header.html"}
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get" class="form">
+       <div class="left">
+          <input type="hidden" name="app" value="apply" />
+          <input type="hidden" name="act" value="index" />
+         
+          名称：<input class="queryInput" type="text" name="name" value="" />
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=user">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare content">
+	
+</div>
+<div class="m_qiudin"><a href="javascript:;" class="save">确定</a></div>
+<script>
+
+$(document).ready(function(){
+
+	var $arg = window.dialogArguments;
+	var container = $arg.ids;
+	
+
+	
+	
+	$(".save").click(function(){
+		var str = ids.join(",");
+		window.returnValue=str;
+		window.close();  
+	})
+	
+	$(".form").submit(function(){
+		$(this).find("input[name='name']").val();
+		params = {};
+		params.cst_name = $(this).find("input[name='name']").val();
+/* 		params.def_ids = $arg.ids; */
+		$.post("index.php?app=common&act=getData",params, function(res){
+			$('.content').html(res);
+			
+			if(container){
+				 //container = container.replace(/^,/, '').replace(/,$/, '');
+				    
+				 var sArray = container.split(',');
+				
+				  $(".dataTable input[type=checkbox]").each(function(){
+					  var val = $(this).val();
+					  for (var i = 0; i< sArray.length; i ++){
+						  if(val == sArray[i]){
+							  $(this).attr("checked", true);
+						  }
+					  }
+				  })
+				
+				 
+				 //$("#3").attr("checked");
+			}
+			
+		})
+		return false;
+	}).submit();
+})
+</script>
+{include file="footer.html"}

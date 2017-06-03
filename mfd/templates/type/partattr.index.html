@@ -1,0 +1,121 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#selectattr').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            //label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            
+        	id: {
+            	required : true,
+            },
+        },
+        messages : {
+        	id : {
+                required : '请先选择类型',
+            },
+        }
+    });
+});
+
+</script>
+<script>
+$().ready(function() {
+	$("#id").change(function() {
+		$("#selectattr").submit();
+	})
+})
+</script>
+<div id="rightTop">
+
+    <ul class="subnav">
+    	<li><a class="btn1" href="index.php?app=parttype&amp;act=listtype&amp;type_id={$type_id}&amp;cate_id={$cate_id}">类型列表</a></li>
+        <li><span>属性{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=parttype&amp;act=addattr&amp;type_id={$type_id}&amp;cate_id={$cate_id}">{$lang.add}</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get" id="selectattr">
+            <div class="left">
+                <input type="hidden" name="app" value="parttype" />
+                <input type="hidden" name="act" value="listattr" />
+                {$lang.zujian_type_name}:
+               <select id="id" name="id">
+                    <option value="">{$lang.select_pls}</option>
+                    <!-- {foreach from=$zujiantype key=key item=zt} -->
+                    <option value="{$key}" <!-- {if $key == $type_id} -->selected=selected<!-- {/if} --> >{$zt}</option>
+                    <!-- {/foreach} -->
+               </select> 
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=brand&wait_verify={$wait_verify}">{$lang.cancel_query}</a>
+            <!--{/if}-->
+      		  <span>
+              </span>
+              </form>
+    </div>
+    <div class="fontr">
+        {if $brands}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $attr_lists}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left"><span ectype="order_by" fieldname="brand_name">{$lang.attr_name}</span></td>
+            <td align="left"><span ectype="order_by" fieldname="tag">{$lang.type_name}</span></td>
+            <td align="left" class="table-center">{$lang.attr_input_type}</td>
+             <td class="table-center"><span ectype="order_by" fieldname="sort_order">{$lang.sort_order}</span></td>
+            <td class="table-center"><span ectype="order_by" fieldname="recommended">{$lang.attr_values}</span></td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$attr_lists item=brand}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input value="{$brand.attr_id}" class='checkitem' type="checkbox" /></td>
+            <td align="left"><span ectype="inline_edit" fieldname="brand_name" fieldid="{$brand.attr_id}" required="1" class="" title="{$lang.editable}">{$brand.attr_name|escape}</span></td>
+            <td align="left"><span ectype="inline_edit" fieldname="tag" fieldid="{$brand.attr_id}" required="1" class="" title="{$lang.editable}">{$brand.type_name|escape}<span></td>
+            <td align="left" class="table-center">
+            <!--{if $brand.attr_input_type == 0}-->
+            		{$lang.hander_input}
+            <!--{elseif $brand.attr_input_type == 1}-->
+            		{$lang.list_input}
+            <!--{/if}-->
+            </td>
+            <td class="table-center"><span ectype="inline_edit" fieldname="sort_order" fieldid="{$brand.attr_id}" datatype="pint" maxvalue="255" class="" title="{$lang.editable}">{$brand.sort_order}</span></td>  
+            <td class="table-center">{$brand.attr_values}</td>
+            <td class="handler">
+            <a href="index.php?app=parttype&amp;act=editattr&amp;attr_id={$brand.attr_id}&amp;type_id={$type_id}">{$lang.edit}</a>  |  
+       <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=parttype&amp;act=drop&amp;attr_id={$brand.attr_id}&amp;type_id={$type_id}');">{$lang.drop}</a>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $attr_lists}-->
+    <div id="dataFuncs">
+    <!-- 
+        <div id="batchAction" class="left paddingT15">
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="attr_id" uri="index.php?app=parttype&act=drop&type_id={$type_id}" presubmit="confirm('{$lang.drop_confirm}');" />
+        </div>
+    -->
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <!--{/if}-->
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

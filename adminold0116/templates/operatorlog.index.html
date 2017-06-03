@@ -1,0 +1,146 @@
+{include file="header.html"}
+
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="operation" />
+          <input type="hidden" name="act" value="index" />
+          {$lang.username} : <input class="queryInput" type="text" name="field_value" value="{$smarty.get.field_value|escape}" />
+          {$lang.module} :<select class="querySelect" name="field_module" onchange="get_submodule(this)">{html_options options=$module selected=$smarty.get.field_module}
+          </select>
+          {$lang.submodule} :<select class="querySelect" name="field_submodule" id="submodule" onchange="get_feature(this)">{html_options options=$submodule selected=$smarty.get.field_submodule}
+          </select>
+          {$lang.feature} :<select class="querySelect" name="field_feature" id="feature">{html_options options=$feature selected=$smarty.get.field_feature}
+          </select>
+          {$lang.operate} :<select class="querySelect" name="operate_type">{html_options options=$operate_type selected=$smarty.get.operate_type}
+          </select>
+        	{$lang.add_time_from}:<input class="queryInput2" type="text" value="{$query.add_time_from}" style="width:80px" id="add_time_from" name="add_time_from" class="pick_date" />
+                {$lang.add_time_to}:<input class="queryInput2" type="text" value="{$query.add_time_to}" style="width:80px" id="add_time_to" name="add_time_to" class="pick_date" />
+          
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      {if $filtered}
+      <a class="left formbtn1" href="index.php?app=operation&act=view">{$lang.cancel_query}</a>
+      {/if}
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $users}-->
+    <tr class="tatr1">
+   <!--    <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td> -->
+      <td>{$lang.username}</td>
+      <td><span ectype="order_by" fieldname="ip">{$lang.ip}</span></td>
+      <td><span ectype="order_by" fieldname="dateline">{$lang.dateline}</span></td>
+      <td>{$lang.operate_key}</td>
+<!--       <td>{$lang.submodule}</td> -->
+      <td>{$lang.operate}</td>
+      <td>{$lang.memo}</td>
+<!-- 	  <td width="16%">{$lang.handler}</td> -->
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$users item=user}-->
+    <tr class="tatr2">
+   <!--    <td class="firstCell"><input type="checkbox" class="checkitem" value="{$user.id}" /></td> -->
+      <td>{$user.username|escape}</td>
+      <td>{$user.ip|escape}</td>
+      <td>{$user.dateline}</td>
+      <td>{$user.operate_key}</td>
+<!--       <td>{$user.submodule}</td> -->
+     <td>{$user.operate_type}</td>
+     <td>{$user.memo}</td>
+<!--      <td><a href="index.php?app=operation&act=info&id={$user.id}">查看</a></td> -->
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $users}-->
+  <div id="dataFuncs">
+    <!-- <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=lv&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+    </div> -->
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+<script>
+//日期
+/* jquery 通过url获取get参数  */
+/* $(function(){
+	var aQuery = window.location.href.split("?");  //取得Get参数
+	var aGET = new Array();
+    if(aQuery.length > 1)
+    {
+        var aBuf = aQuery[1].split("&");
+        for(var i=0, iLoop = aBuf.length; i<iLoop; i++)
+        {
+            var aTmp = aBuf[i].split("=");  //分离key与Value
+            aGET[aTmp[0]] = aTmp[1];
+        }
+     }
+	console.log(aGET);
+}); */
+$('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+$('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+function get_submodule(obj)
+{
+	var module = $(obj).val();
+	$.ajax({
+		   type: "POST",
+		   url: "index.php?app=operation&act=get_submodule",
+		   data: "module="+module,
+		   success: function(msg)
+		   {
+			   msg=eval("("+msg+")");
+			   //msg = jQuery.parseJSON(msg)
+			     if(msg.done == true)
+		    	 {
+			    	 $('#submodule').empty();
+			    	 $('#submodule').append(msg.retval)
+		    	 }
+		   },
+			error:function(){
+				console.log('获取子模块失败');
+			}
+		});
+}
+function get_feature(obj)
+{
+	var module=$("[name='field_module']").val();
+	var submodule = $(obj).val();
+	$.post('index.php?app=operation&act=get_feature',{module:module,submodule:submodule},function(res){
+		if(res.done){
+			$('#feature').empty();
+	    	 $('#feature').append(res.retval);
+		}else{
+			console.log('获取子模块失败');
+		}
+	},'json');
+/* 	$.ajax({
+		   type: "POST",
+		   url: "index.php?app=operation&act=get_feature",
+		   data: "module="+module,
+		   success: function(msg)
+		   {
+			   msg=eval("("+msg+")");
+			   //msg = jQuery.parseJSON(msg)
+			     if(msg.done == true)
+		    	 {
+			    	 $('#submodule').empty();
+			    	 $('#submodule').append(msg.retval)
+		    	 }
+		   },
+			error:function(){
+				console.log('获取子模块失败');
+			}
+		}); */
+}
+</script>
+{include file="footer.html"}

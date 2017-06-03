@@ -1,0 +1,89 @@
+{include file=header.html}
+<link href="{res file=css/motif.css}" rel="stylesheet" type="text/css" />
+
+<!--[if IE 6]>
+<![endif]-->
+{$_head_tags}
+<!--<editmode></editmode>-->
+</head>
+<!--轮播开始-->
+{if $cat_info}
+ <div class="motif_focus">
+     <a href="{$cat_info.link}" target="_blank"><img src="{$cat_info.img}"></a>
+ </div>
+{/if}
+
+<!--轮播结束-->
+<p class="blank10"></p>
+<!--中间开始-->
+<div class="m_box">
+    <!--婚礼系列主题开始-->
+    <div class="motif_l">
+        <div class="motif_bt"><span>{$cat_info.name}主题</span>共<font>{$page_info.item_count}</font>个系列推荐</div>
+        <ul class="motif_ul">
+        {foreach from=$items item=dis}
+           <li>
+           {if $dis.is_hot}
+               <i class="hot_i">热门</i>
+           {/if}
+               <div class="m_hl_img"><a href="{link app=dissertation act=info arg=$dis.id}">
+               <img src="{$dis.small_img}" width="400" height="200" />
+               </a></div>
+               <div class="m_hl_info">
+                   <h1><a href="{link app=dissertation act=info arg=$dis.id}">{$dis.title|truncate:18}</a></h1>
+                   <p class="jianj">{$dis.brief}</p>
+                   <p class="m_hl_info_f"><a href="#">{$dis.praise_num}</a><span>结束日期：{$dis.end_time|date:Y-m-d}</span></p>
+               </div>
+           </li>
+		{/foreach}
+        </ul>
+    </div>
+    <!--婚礼系列主题结束-->
+    <!--往期主题回顾开始-->
+    {if $history_list}
+    <div class="motif_r">
+       <div class="motif_bt"><span>往期主题回顾</span></div>
+       <div class="past_hg">
+           <ul>
+           {foreach from=$history_list item=list}
+              <li>
+                 <a href="{link app=dissertation act=info arg=$list.id}"><img src="{$list.small_img}" width="213" height="106" /></a>
+                 <p><a href="{link app=dissertation act=info arg=$list.id}">{$list.title}</a></p>
+              </li>
+          {/foreach}
+           </ul>
+       </div>
+    </div>
+    {/if}
+    <!--往期主题回顾结束-->
+    <p class="blank40"></p>
+</div>
+<!--中间结束-->
+
+<SCRIPT>
+/*左侧菜单点击*/
+$(".menu_wrap_1").delegate("h4","click",function(){
+	var _thisMeneDetail = $(this).next(".menu_detail")
+		,_menuList = $(this).parents(".menu_list");
+	_menuList.addClass("cur").siblings(".menu_list").removeClass("cur");
+	if(_thisMeneDetail.is( ":visible")){
+		_menuList.removeClass("cur");
+		_thisMeneDetail.slideUp();
+		return false;
+	}else{
+		$(".menu_detail",".menu_list").slideUp();
+		_thisMeneDetail.slideDown();
+		return false;
+	}
+});
+/*左侧菜单*/
+function menuListShow(idx,idx2){
+	$(".menu_list",".menu_wrap_1").removeClass("cur");
+	$(".menu_list",".menu_wrap_1").eq(idx).addClass("cur");
+	$(".menu_list",".menu_wrap_1").eq(idx).find(".menu_detail").show();
+	$(".menu_list",".menu_wrap_1").eq(idx).find("a",".menu_detail").removeClass("cur");
+	$(".menu_list",".menu_wrap_1").eq(idx).find("a",".menu_detail").eq(idx2).addClass("cur");
+}
+</SCRIPT>
+
+{include file=footer.html}

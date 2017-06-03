@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LUCK弹层精简版</title>
+</head>
+
+<body>
+<button id="open">弹层</button>
+<script src="luck.js"></script>
+
+<script>
+document.getElementById('open').onclick=function(){
+	luck.open({
+		content:'LUCK弹层精简版',
+//		callback:function(){
+//			alert('回调')	
+//		},
+//		width:"300px",
+//		height:'150px',
+		closeBtn:true
+	})
+}
+</script>
+</body>
+</html>

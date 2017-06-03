@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+    <title>麦富迪尚品</title>
+    <link href="/public/static/photo/css/style.css" rel="stylesheet" />
+</head>
+<body style="background:#f9dad8;">
+<div class="main">
+    <!--头部开始-->
+    <div class="header">
+        <p class="p1"><a href="javascript:history.go(-1)"><img src="/public/static/photo/images/tw_03.png" /></a></p>
+        <p class="p2">{$series.series_name}</p>
+    </div>
+    <!--头部结束-->
+
+    <div class="cpjs">
+        <h1 class="cpbt">工艺特点：</h1>
+        <div class="gytd">{$good.good_process}</div>
+        <h1 class="cpbt">面料介绍：</h1>
+        <div class="zh">{$good.fabric}</div>
+
+    </div>
+</body>
+</html>

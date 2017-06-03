@@ -1,0 +1,147 @@
+{include file=tailor/tailor.header.html}
+<div class="w">
+  <div class="clearfix" id="fixedBox">
+{include file=tailor/tailor.menu.html}
+    <div class="AreaR fr">
+      <div class="title">
+        <div class="line"></div>
+        <h2 class="tit"><!--{if $visitor.user_id != $tailor.store_id}-->TA<!--{else}-->我<!--{/if}-->的故事</h2>
+        <p class="depict">在这里有最优秀的裁缝，最丰富的面料，最好的工艺，最高的性价比，让定制不再奢侈！</p>
+      </div>
+      <div class="baseInfo"> <img src="{$tailor.store_logo}" width="300" height="400" class="photo">
+        <dl>
+          <dt>基本信息</dt>
+          <dd>
+            <ul>
+              <li><span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span>
+                <p>{$tailor.owner_name}</p>
+              </li>
+              <li><span>服务地区：</span>
+                <p>{$tailor.region_name}</p>
+              </li>
+              <li><span>服务风格：</span>
+                <p>{$tailor.attr.style}</p>
+              </li>
+              <li><span>服务方式：</span>
+                <p>{$tailor.attr.service}</p>
+              </li>
+              <!--<li><span>专业经历：</span>
+                <p>{$tailor.experience}</p>
+              </li> -->
+            </ul>
+          </dd>
+        </dl>
+        <dl>
+          <dt>从业经历</dt>
+          <dd>{$tailor.description}</dd>
+        </dl>
+      </div>
+      <div class="works">
+        <div class="title">
+          <div class="line"></div>
+          <h2 class="tit">案例欣赏          
+            </h2>
+          <p class="depict">在这里有最优秀的裁缝，最丰富的面料，最好的工艺，最高的性价比，让定制不再奢侈！</p>
+        </div>
+        <div class="slideBox">
+          <div id='swipe1' class='swipe'>
+            <div class='swipe-wrap'>
+
+             <!--{foreach from=$tree item=t}-->
+                  <div class="item">
+                  <ul>
+                  <!--{foreach from=$t.children item=c}-->
+                  <li>
+                  <a href="{link app=tailor act=service}?store_id={$tailor.store_id}" class="pic"><img src="{$c.url}"></a>
+                  </li>
+                  <!--{/foreach}-->
+                   </ul>
+                  </div>
+             <!--{/foreach}-->
+            </div>
+          </div>
+          <span class="prev"></span> <span class="next"></span> </div>
+        <a href="{link app=tailor act=service}?store_id={$tailor.store_id}" class="seeMore">查看更多</a>
+      </div>
+      <div class="serve">
+        <a id="1" name="1"></a>
+        <div class="title">
+          <div class="line"></div>
+          <h2 class="tit">服务说明</h2>
+          <p class="depict">在这里有最优秀的裁缝，最丰富的面料，最好的工艺，最高的性价比，让定制不再奢侈！</p>
+        </div>
+        <div class="serveInfo">
+          <dl>
+          <dt>服务准则</dt>
+          <dd>{$tailor.fw_description}</dd>
+        </dl>
+          <img src="{$tailor.fw_logo}" width="440" height="300">
+        </div>
+      </div>
+      <div class="comment">
+      <a id="2" name="2"></a>
+        <div class="title">
+          <div class="line"></div>
+          <h2 class="tit">消费者对<!--{if $visitor.user_id != $tailor.store_id}-->TA<!--{else}-->我<!--{/if}-->的评价</h2>
+        </div>
+        <div class="com_count">
+          <div class="box1 fl">
+                <div class="round fl" style="background-position:0 -{$public.val}px">
+                    <span class="s1 red">{$public.avg}<em>%</em></span>
+                    <span class="s2">好评率</span>
+                </div>
+                <p class="num fl">共有 <font class="red">{$public.count}</font> 人评价</p>
+            </div>
+            <div class="box2 fl">
+              <ul>
+                    <li><p class="fl"><em style="width:{$public.sarr.s3}%"></em></p>好评<font class="grey">（{$public.sarr.s3}%）</font></li>
+                    <li><p class="fl"><em style="width:{$public.sarr.s2}%"></em></p>中评<font class="grey">（{$public.sarr.s2}%）</font></li>
+                    <li><p class="fl"><em style="width:{$public.sarr.s1}%"></em></p>差评<font class="grey">（{$public.sarr.s1}%）</font></li>
+                </ul>
+            </div>
+            <div class="box3 fl">
+            {if $allowCM eq 1}
+              <a href="{link app=buyer_order}"  class="wypj">我要评价</a>
+            {else}
+                <a href="javascript:;">我要评价</a>
+            {/if}
+                <p>成为他的消费者才能评价</p>
+            </div>
+        </div>
+        <div class="comList">
+              <div id="list"></div>
+              <div id="more"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+var opt ={};
+opt.max =0;
+opt.count = 0;
+$(document).ready(function(){
+	loadComment();
+})
+function loadComment(){
+	$("#more").html('<a href="javascript:void(0);" class="seeMore">查看更多</a>');
+	$.get("{link app=tailor act=loadComment arg=$tailor.store_id}?max="+opt.max, function(res){
+		var $res = eval("("+res+")");
+		if(!opt.count){
+			opt.count = $res.retval.count;
+		}
+		$("#list").append($res.retval.content);
+		if($res.retval.next > 0){
+			$("#more").html('<a href="javascript:void(0);" class="seeMore">查看更多</a>');
+			$(".seeMore").unbind().bind('click', function(){
+				opt.max = $res.retval.max;
+				loadComment();
+			})
+		}else{
+			$("#more").empty();
+		}
+	})
+}
+</script>
+<script type="text/javascript" src="static/expand/jquery.swipe.js"></script> 
+<script  type="text/javascript" src="static/js/tailorpage.js"></script>

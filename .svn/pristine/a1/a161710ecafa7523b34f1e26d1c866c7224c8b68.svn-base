@@ -1,0 +1,45 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>面料管理</span></li>
+        <li><a class="btn1" href="index.php?app=fabric&amp;act=add">添加面料</a></li>
+    </ul>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $items}-->
+    <tr class="tatr1">
+      <td>面料名称</td>
+      <td>品牌</td>
+      <td>编号</td>
+      <td>排序</td>
+      <td>图片</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$items item=list}-->
+    <tr class="tatr2">
+      <td width="200">{$list.name}</td>
+      <td>{$list.brand}</td>
+      <td>{$list.sn}</td>
+      <td>{$list.sort_order}</td>
+      <td><img src="{$list.small_img}" height="60" /></td>
+      <td class="handler">
+      <a href="index.php?app=fabric&amp;act=edit&amp;id={$list.id}">编辑</a>
+      <a href="javascript:;" onclick="if(confirm('确定删除吗？')) location.href='index.php?app=fabric&amp;act=drop&amp;id={$list.id}'">删除</a>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="6">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $items}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

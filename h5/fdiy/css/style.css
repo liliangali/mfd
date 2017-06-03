@@ -1,0 +1,89 @@
+@charset "utf-8";
+/* CSS Document */
+body { padding:0; margin:0; font-size:14px; background:#fafafa; color:#010101; font-family:"微软雅黑", "Arial"; min-width:320px;}
+h1,h2,h3,h4,h5,h6,p,form,div,dl,dd,dt,ul,li,img { padding:0; margin:0; list-style-type:none; border:0; font-weight:normal;}
+input,textarea,select { outline:none; list-style-type:none; border:none; padding:0; margin:0;}
+
+a { text-decoration:none; color:#010101; outline:none;}
+a:hover { text-decoration:none; color:#010101;}
+body a{outline:none;blr:expression(this.onFocus=this.blur());}
+.clearfix:after {content:"."; height:0px; line-height:0px; overflow:hidden; clear:both; display:block; visibility:hidden;}
+.clearfix{zoom:1;}
+.clear { margin:0;padding:0; border: none; clear:both; width:100%;}
+input[type="button"], input[type="submit"], input[type="reset"], input[type="text"], input[type="password"] {-webkit-appearance: none; border-radius: 0;}
+
+.main {margin: 0 auto; max-width: 640px; min-width: 320px; width: 100%; overflow: hidden;}
+.w {margin: 0 auto; max-width: 640px; min-width: 320px; width: 100%;}
+/*============================gonggong============================*/
+.jj_box {display:box;display:-webkit-box;display:-moz-box; orient: horizontal; width:100%;}
+.jj_1 { box-flex:1;-webkit-box-flex:1;-moz-box-flex:1; display:block;}
+
+
+/*index/S*/
+.header {height: 34px; margin-bottom: 20px;}
+.header a {display: block; width: 20px; height: 20px; background: url(../images/diy_icon.png) left top no-repeat; margin: 12px 15px 0 15px;}
+.header .fh {background-position: 0px -100px; float: left;  background-size: 20px 140px;}
+.header .fx {background-position: 0px -130px; float: right;  background-size: 20px 150px;}
+
+.diy_datu {text-align: center; margin:0 auto;}
+.diy_datu img {height: 100%; width:100%}
+.gzgnhx {background: #fff; box-shadow: 0 -5px 10px #cfcfcf; padding-bottom: 30px;}
+
+.dzxx {padding:15px; float: left; width: 103%; box-sizing: border-box;}
+.dzxx dd {float: left; width: 30%; margin: 0 3% 3% 0; text-align: center; position: relative;}
+.dzxx dd.on:after {position: absolute !important; left: 50%; top: 50%; width: 30px !important; height: 30px; background: url(../images/xz.png) left top no-repeat; background-size: 30px 30px; content: ''; margin: -30px 0 0 -15px !important;}
+.dzxx dd.on .p2 {color: #e66800;}
+.dzxx dd .p1 {width: 100%; border: 1px solid #eee;}
+.dzxx dd .p1 img {width: 100%;}
+.dzxx dd .p2 {line-height: 24px; color: #666;}
+
+.packing {padding:15px 15px 0 15px; width: 104%; box-sizing: border-box;}
+.packing dd {float: left; width: 30%; height: 40px; line-height: 40px; border-radius: 5px; border: 1px solid #e8e8e8; margin: 0 3% 3% 0; text-align: center; box-sizing: border-box; color: #666;}
+.packing .on {color: #e66800; line-height: 36px; border: 2px solid #e66800;}
+
+.gxhbqsj {font-size: 14px; color: #222; height: 24px; line-height: 24px; margin: 5px 15px 0 15px;}
+.design {width: 100%; overflow: hidden; padding: 15px; box-sizing: border-box;}
+.design dd {float: left; width: 46%; text-align: center; margin-right: 2%; position: relative; border: 1px solid #dfdfdf; border-radius: 15px}
+.design dd img {max-width: 100%; max-height: 100%; border-radius: 15px; display: block;}
+.design .scsj {border:1px dashed #dfdfdf;}
+.design .scsj input {position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0;}
+
+.gwc_box {border-top: 1px solid #eee; background:#fbfbfb; height: 40px; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 9999;}
+.gwc_box p {float: left; height: 40px; line-height: 40px; overflow:hidden; color: #686868; padding-left: 15px; position:relative;}
+.gwc_box p span {color: #e66800; font-size: 20px;}
+.gwc_box p font {font-size: 14px;}
+.gwc_box input {width: 120px; height: 45px; background: #e66800; color: #fff; float: right; font-size: 14px; position:relative; margin-top:-1px;}
+
+.wrap{margin:0 auto; background: #fff; box-shadow: 0 -5px 10px #cfcfcf; margin-bottom:41px;}
+.tabs{height: 48px; border-bottom: 1px solid #eee; position:relative;}
+.tabs a{width: 16.6666%; font-size: 12px; text-align: center; height: 48px; overflow: hidden; float: left; cursor: pointer;}
+.tabs a.active{color:#fff; background:#e66800; height:49px; position:relative;}
+
+.tabs a p {width:18px; height:18px;  margin:7px auto auto auto;}
+.tabs a .p1 {background: url(../images/diy_1.png) 0 0 no-repeat; background-size:18px 18px;}
+.tabs a .p2 {background: url(../images/diy_2.png) 0 0 no-repeat; background-size:18px 18px;}
+.tabs a .p3 {background: url(../images/diy_3.png) 0 0 no-repeat; background-size:18px 18px;}
+.tabs a .p4 {background: url(../images/diy_4.png) 0 0 no-repeat; background-size:18px 18px;}
+.tabs a .p5 {background: url(../images/diy_5.png) 0 0 no-repeat; background-size:18px 18px;}
+.tabs a .p6 {background: url(../images/diy_6.png) 0 0 no-repeat; background-size:18px 18px;}
+
+.tabs a.active .p1 {background: url(../images/diy_01.png) 0 0 no-repeat; background-size:18px 18px;}
+.tabs a.active .p2 {background: url(../images/diy_02.png) 0 0 no-repeat; background-size:18px 18px;}
+.tabs a.active .p3 {background: url(../images/diy_03.png) 0 0 no-repeat; background-size:18px 18px;}
+.tabs a.active .p4 {background: url(../images/diy_04.png) 0 0 no-repeat; background-size:18px 18px;}
+.tabs a.active .p5 {background: url(../images/diy_05.png) 0 0 no-repeat; background-size:18px 18px;}
+.tabs a.active .p6 {background: url(../images/diy_06.png) 0 0 no-repeat; background-size:18px 18px;}
+
+.swiper-container{height:220px; width:100%; position:relative; overflow-y:auto;}
+.swiper-wrapper {position:relative; width:100%;}
+.swiper-slide{height:280px;width:100%;background:#fff;color:#333; float:left; overflow:auto;}
+
+/*index/E*/
+
+
+
+
+
+
+
+

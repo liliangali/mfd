@@ -1,0 +1,18 @@
+
+<!--{if !$widget_data}-->
+    <div style="padding:10px; text-align:center;">请配置轮播Banner</div>
+    <!--{else}-->
+    <div id="banner" class="swipe">
+	<div class="swipe-wrap">
+	 <!-- {foreach from=$widget_data item=image name=fe_image} -->
+		<div><a href="{$image.ad_link_url}"><img src="/{$image.ad_image_url}" width="1680" height="540"></a></div>
+       <!-- {/foreach} -->
+	</div>
+	<div class="swipe-btn">
+	<!-- {foreach from=$widget_data item=image name=fe_image} -->
+	<span {if $smarty.foreach.fe_image.iteration eq 1}class="cur"{/if}></span> 
+	<!-- {/foreach} -->
+	</div>
+	<span class="swipe-prev"></span> <span class="swipe-next"></span> 
+	</div>
+    <!--{/if}-->

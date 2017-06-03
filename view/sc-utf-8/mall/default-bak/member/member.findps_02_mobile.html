@@ -1,0 +1,144 @@
+{include file="findps_header.html"}
+
+<link href="{res file=css/zhmm.css}" rel="stylesheet" type="text/css" />
+
+
+
+<script>
+var getSMSCode = "";
+$(function(){
+	$('#mf').validate({
+		errorElement: "span",
+	    rules : {
+	    	authcode : {
+	            required : true
+	        }
+	    },
+	    messages : {
+	    	authcode : {
+	            required : '验证码不能为空',
+	            remote:'验证码错误',
+	        }
+	    }
+	    //submitHandler:function(form){
+	    //		alert(2);
+	    //		return false;
+	   // }
+	});  
+	
+	getSMSCode = function (){
+		$.ajax({
+			"url":"/index.php/kuke-findpsSMSCode.html",
+			"data": "phone={$account}" ,
+			"type": "GET",
+			'dataType':'json',
+			"success": function(res) {
+				//var res = eval( "(" + res + ")" );
+				if(res.err){
+					alert('出错:'+res.msg);
+				}else{
+					$("#getSMS").html(res.msg);
+					$("#getSMS").unbind('click');
+				}
+			}
+		});	
+	}
+
+	
+	resetSMSCode = function (){
+		$.ajax({
+			"url":"/index.php/kuke-findpsRestSMSCode.html",
+			"data": "phone={$account}" ,
+			"type": "GET",
+			'dataType':'json',
+			"success": function(res) {
+				//var res = eval( "(" + res + ")" );
+				if(res.err){
+					alert('出错:'+res.msg);
+				}else{
+					$("#getSMS").html(res.msg);
+					$("#getSMS").unbind('click');
+				}
+			}
+		});	
+	}
+	
+	$("#getSMS").bind('click',getSMSCode);
+	
+});
+
+
+</script>
+
+
+
+    <div class="find_box">
+    
+        <ul class="findps_step">
+            <li>填写帐号信息<span>1</span></li>
+            <li class="on">身份验证<span>2</span></li>
+            <li>重置密码<span>3</span></li>
+            <li>完成<span>4</span></li>
+        </ul>
+        <p class="clear"></p>
+        
+
+          <div class="fp_content2">
+              <form method="post" name="form_find_password_step2" id="mf" action="member-find_password.html?opt=3"
+              class="form_border">
+                  
+                  <input type='hidden' name='account_type' value='mobile' />
+                   <input type='hidden' name='account' value='{$account}' />
+                  
+                  <h1>身份验证方式：手机</h1>
+                  
+                  <div class="findps_2">
+                    
+                    <table cellpadding="0" cellspacing="0" border="0" class="find_table1">
+                      <tr>
+                        <th>你绑定的手机：</th>
+                        <td colspan="2">
+                          <div class="send_div">
+                            {$account}
+                            <a e_click="true" class="c_send_button" name="send_sms" id="send_sms">
+                                <span class="b_number"></span>
+                                <span class="btext" id='getSMS'>
+                                    发送验证码
+                                </span>
+                            </a>                            
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                         <th>验证码：</th>
+                         <td>
+                           <input type="text" name="authcode" id="authcode" class="find_ipt w139">
+                         </td>
+                         <td><span id="tip_verifycode"></span></td>
+                      </tr>
+                      <tr>
+                         <th></th>
+                         <td>
+                           <input type="submit" id="submit_verifycode" value="下一步" class="sub_btn" onmouseOver="this.className='sub_btn btnbg'" onmouseOut="this.className='sub_btn'"> 
+                         </td>
+                         <td></td>
+                      </tr>
+                    </table>
+
+                    <div class="findps_text">
+                      <h3>没收到验证码短信？</h3>
+                      <p>由于短信服务商原因，可能会有延迟，请耐心等待。</p>
+                      <p>如果您10分钟还没收到，可以再次发送验证码。</p>
+                      <p>如果以上不能解决，请联系<a target="_blank" href="#">客服</a></p>
+                    </div>                     
+                  
+                 </div>
+
+              </form>
+          </div>    
+    </div>
+
+      
+<!--底部信息-->
+
+{include file="login_footer.html"}

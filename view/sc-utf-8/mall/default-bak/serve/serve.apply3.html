@@ -1,0 +1,46 @@
+{include file=header.html}
+<link href="{res file=css/z_style.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{res file=js/jquery.SuperSlide.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+var REGION_URL="{link app=mlselection act=index arg=region}";
+reginUrl=REAL_SITE_URL+REGION_URL;
+//]]>
+</script>
+{$_head_tags}
+
+<!--头部结束-->
+<div class="dqwz">当前位置：<a href="index.php/">首页</a><span>></span>{$serve_type_name}申请入驻</div>
+<!--中间开始-->
+<div class="center_box">
+  <!--申请步骤 start-->
+     <div class="apply_step">
+         <ul class="step_3">
+            <li class="step_sqrz">申请{$serve_type_name}入驻</li>
+            <li class="step_tjzz">提交资质</li>
+            <li class="step_ddsh step_cur">等待审核</li>
+            <li class="step_shjg">入驻成功</li>
+         </ul>
+         <p class="clear"></p>
+     </div>
+  <!--申请步骤 end-->
+  <!--基本信息 start-->
+     <div class="basic_box">
+         <h3><i></i><span>{$serve_type_name}入驻审核状态</span></h3>
+         <div class="shenh_box">
+               <div class="shenhz">
+                    <div class="p1">您的申请正在审核中...</div>
+                    <div class="p2">请您耐心等候，我们会进快审核您的信息，敬请随时关注！</div>
+               </div>
+         </div>
+         <div class="h_100"></div>
+     </div>
+  <!--基本信息 end-->
+     
+</div>
+<!--中间结束-->
+<!--底部开始-->
+{include file=footer.html}

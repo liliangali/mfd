@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+.screen { padding-top: 45px; background: #fff; color: #333333; position: relative; text-align: center; }
+@media (max-width: 800px) {
+.screen { padding-top: 25px; }
+}
+.screen:nth-of-type(even) { background: #0ae; color: #ffffff; }
+.screen h2 { font-weight: normal; margin: 0; }
+.screen h2 p { font-size:30px; margin-bottom: 15px; }
+@media (max-width: 800px) {
+.screen h2 p { font-size: 20px; margin-bottom: 5px; }
+}
+.screen h2 div { font-size: 14px; }
+@media (max-width: 800px) {
+.screen h2 div { font-size: 12px; padding: 0 20px; }
+}
+.screen .screenshot {
+ *zoom: 1; position: relative; left: 50%; -webkit-transform: translate(-50%, 0); -ms-transform: translate(-50%, 0); transform: translate(-50%, 0); }
+.screen .screenshot:after { content: ''; display: block; clear: both; height: 0; }
+.screen.screen1 { padding-top:60px; background: #f6f6f6; }
+@media (max-width: 800px) {
+.screen.screen1 { padding-top: 25px; }
+}
+.screen.screen1 .logo { width: 90px; margin: 0 auto 15px; }
+@media (max-width: 800px) {
+.screen.screen1 .logo { margin: 0 auto 5px; }
+}
+.screen.screen1 h1 { font-size: 30px; font-weight: normal; margin: 0 auto 55px; }
+.screen.screen1 h1 div{ font-size:20px; color:#717171;}
+@media (max-width: 800px) {
+.screen.screen1 h1 { margin: 0 auto 20px; }
+}
+@media (max-width: 800px) {
+.screen.screen1 h1 { font-size: 20px; }
+}
+.screen.screen1 .btn-group { margin-bottom: 50px; }
+@media (max-width: 800px) {
+.screen.screen1 .btn-group { margin-bottom: 40px; }
+}
+.download{ width:215px; padding-left:115px; margin:0 auto;}
+.download .qrcode{ float:left; margin-left:-115px;}
+.screen.screen1 .btn-group > a { width: 210px; height:48px; display: block; text-align:left; color: #fff; background: #0ae;line-height:48px; -webkit-transition: all 0.4s; transition: all 0.4s; font-size: 16px; border-radius:5px; margin-bottom:8px; }
+@media (max-width: 800px) {
+.screen.screen1 .btn-group > a { width: auto; padding: 0 20px; margin-right: 2%; font-size: 13px; }
+}
+.screen.screen1 .btn-group > a:hover { opacity:.8;}
+.screen.screen1 .btn-group > a:last-of-type { background: #85c226; margin-right: 0; }
+.screen.screen1 .screenshot { width:796px; position: relative; padding-bottom: 50px; }
+@media (max-width: 800px) {
+.screen.screen1 .screenshot { width: 95%; padding-bottom: 30px; }
+}
+.screen.screen1 .screenshot img { position: absolute; top: 0; left: 0; width: 100%; }
+.screen.screen1 .screenshot img:first-of-type { position: relative; z-index: 100; -webkit-transition: all 0.8s ease 2s; transition: all 0.8s ease 2s; }
+.screen.screen1 .screenshot img:nth-of-type(2) { z-index: 50; top:10%; -webkit-transition: all 0.8s ease 1.2s; transition: all 0.8s ease 1.2s; }
+.screen.screen1 .screenshot img:nth-of-type(3) { z-index: 20; top: 20%; -webkit-transition: all 0.8s ease 0s; transition: all 0.8s ease 0s; }
+.screen.screen1.before-show .screenshot img:first-of-type { opacity: 0; -webkit-transform: rotateX(40deg); transform: rotateX(40deg); -webkit-transform: translate(0, 20px); -ms-transform: translate(0, 20px); transform: translate(0, 20px); }
+.screen.screen1.before-show .screenshot img:nth-of-type(2) { opacity: 0; -webkit-transform: translate(0, 20px); -ms-transform: translate(0, 20px); transform: translate(0, 20px); }
+.screen.screen1.before-show .screenshot img:nth-of-type(3) { opacity: 0; -webkit-transform: rotateX(40deg); transform: rotateX(40deg); }
+.screen.screen2 { border-bottom: solid 1px #eee; }
+.screen.screen2 .screenshot { margin-top: 60px; width: 700px; overflow: hidden; word-spacing: 0; position: relative; }
+.screen.screen2 .screenshot img { z-index: 100; position: relative; margin-bottom: -2%; -webkit-transition: all 0.8s ease 0s; transition: all 0.8s ease 0s; }
+
+@media (max-width: 800px) {
+.screen.screen2 .screenshot { width: 95%; margin-top: 30px; }
+.screen.screen2 .screenshot img{ width:40%;}
+}
+.screen.screen2 .screenshot img.left { margin-right: -12%; z-index: 10; margin-bottom: -4%; -webkit-transition: all 0.8s ease 0.8s; transition: all 0.8s ease 0.8s; }
+.screen.screen2 .screenshot img.right { margin-left: -12%; z-index: 10; margin-bottom: -4%; -webkit-transition: all 0.8s ease 0.8s; transition: all 0.8s ease 0.8s; }
+.screen.screen2.before-show .screenshot img { opacity: 0; -webkit-transform: translate(0, 40px); -ms-transform: translate(0, 40px); transform: translate(0, 40px); }
+.screen.screen2.before-show .screenshot img.left { -webkit-transform: translate(50%, 0); -ms-transform: translate(50%, 0); transform: translate(50%, 0); }
+.screen.screen2.before-show .screenshot img:nth-of-type(3) { -webkit-transform: translate(-50%, 0); -ms-transform: translate(-50%, 0); transform: translate(-50%, 0); }
+.screen.screen3 .screenshot { margin-top: 50px; padding-bottom: 20px; width: 580px; position: relative; }
+@media (max-width: 800px) {
+.screen.screen3 .screenshot { width: 95%; margin-top: 30px; }
+}
+.screen.screen3 .screenshot img { position: relative; z-index: 50; display: block; width: 100%; -webkit-transition: all 0.8s ease 0s; transition: all 0.8s ease 0s; }
+.screen.screen3 .screenshot img:last-of-type { position: absolute; top:0; left: 0; z-index: 20; -webkit-transition: all 0.8s ease 0.6s; transition: all 0.8s ease 0.6s; }
+.screen.screen3.before-show .screenshot img { opacity: 0; -webkit-transform: translate(0, -20px); -ms-transform: translate(0, -20px); transform: translate(0, -20px); }
+.screen.screen4 .screenshot { margin-top: 60px; width:893px; overflow: hidden; word-spacing: 0; position: relative; padding-top:100px;}
+@media (max-width: 893px) {
+.screen.screen4 .screenshot { width:100%; margin-top: 30px; padding-top:100px; border:1px solid red;}
+}
+.screen.screen4 .screenshot img { width:100%; position: relative; }
+.screen.screen4 .screenshot img.left { z-index:10; -webkit-transition: all 0.8s ease 0s; transition: all 0.8s ease 0s;}
+.screen.screen4 .screenshot img.center {z-index:30; position:absolute; left:61%; top:34%; width:340px; height:230px; -webkit-transition: all 0.8s ease 0.5s; transition: all 0.8s ease 0.5s;}
+.screen.screen4 .screenshot img.right {  z-index:60; position:absolute; left:35%; top:4%;-webkit-transition: all 0.8s ease 0.8s; transition: all 0.8s ease 0.8s;  width:413px; height:272px;}
+@media (max-width: 800px) {
+.screen.screen4 .screenshot img.right { margin-bottom: -23.33333333%; }
+}
+.screen.screen4.before-show .screenshot img { opacity: 0; -webkit-transform: translate(0, 20px); -ms-transform: translate(0, 20px); transform: translate(0, 20px); }
+
+.icon-apple,.icon-android{ display:inline-block; width:28px; height:28px; background:url(/public/static/pc/images/app_ico.png) no-repeat; vertical-align:middle; margin:0 10px 0 25px; position:relative; top:-2px;}
+.icon-android{ background-position:0 -36px;}

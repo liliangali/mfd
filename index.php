@@ -1,0 +1,50 @@
+<?php
+    // ini_set("display_errors","On");
+    // error_reporting(E_ALL);
+// $_GET = stripslashes_array($_GET);
+// $_POST = stripslashes_array($_POST);
+//phpinfo();exit;
+
+define('ROOT_PATH', dirname(__FILE__));
+include(ROOT_PATH . '/eccore/router.php');
+include(ROOT_PATH . '/eccore/rctailor.php');
+
+/* 定义配置信息 */
+ecm_define(ROOT_PATH . '/data/config.inc.php');
+
+/* START ： PHP Debug Bar http://phpdebugbar.com/docs/base-collectors.html */
+
+require 'vendor/autoload.php';
+
+// use DebugBar\StandardDebugBar;
+
+// $debugbar = new StandardDebugBar();
+
+// $debugbarRenderer = $debugbar->getJavascriptRenderer();
+
+// $pdo = new DebugBar\DataCollector\PDO\TraceablePDO(new PDO(PDO_DSN,PDO_USERNAME,PDO_PASSWD));
+
+/* END ： PHP Debug Bar  */
+
+
+RCTailor::startup(array(
+    'default_app'   =>  'default',
+    'default_act'   =>  'index',
+    'app_root'      =>  ROOT_PATH . '/app',
+    'external_libs' =>  array(
+        ROOT_PATH . '/includes/constants.base.php',
+        ROOT_PATH . '/includes/global.lib.php',
+        ROOT_PATH . '/includes/global.fun.php',
+        ROOT_PATH . '/includes/libraries/time.lib.php',
+        ROOT_PATH . '/includes/libraries/request.lib.php',
+        ROOT_PATH . '/includes/ecapp.base.php',
+        ROOT_PATH . '/includes/plugin.base.php',
+        ROOT_PATH . '/app/frontend.base.php',
+        ROOT_PATH . '/includes/subdomain.inc.php',
+        ROOT_PATH . '/includes/functions.lib.php',      //公用函数
+        ROOT_PATH . '/includes/check.class.php',        //验证类
+    ),
+));
+
+//$debugbar->addCollector(new DebugBar\DataCollector\PDO\PDOCollector($pdo));
+?>

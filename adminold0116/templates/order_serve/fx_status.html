@@ -1,0 +1,177 @@
+{include file="header.html"}
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<style type="text/css">
+    .ac_results {
+        padding: 0px;
+        border: 1px solid WindowFrame;
+        background-color: Window;
+        overflow: hidden;
+        z-index:19891020; /* 1000 */
+    }
+
+    .ac_results ul {
+        width: 100%;
+        list-style-position: outside;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .ac_results iframe {
+        display:none;/*sorry for IE5*/
+        display/**/:block;/*sorry for IE5*/
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:-1;
+        filter:mask();
+        width:3000px;
+        height:3000px;
+    }
+
+    .ac_results li {
+        margin: 0px;
+        padding: 2px 5px;
+        cursor: pointer;
+        display: block;
+        font: menu;
+        font-size: 12px;
+        overflow: hidden;
+    }
+
+    .ac_loading {
+        background : Window url('./indicator.gif') right center no-repeat;
+    }
+
+    .ac_over {
+        background-color: Highlight;
+        color: HighlightText;
+    }
+
+
+
+    body { margin:0;padding:0;color:#333;font:14px/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;}
+    div, form, ul, ol, li, span, p, dl, dt, dd, img, i, em, input, textarea, h1, h2, h3, h4, h5, h6 {margin:0;padding:0;border:0;outline:0;}
+    h1, h2, h3, h4, h5, h6 {font-weight:normal;}
+    ul, ol, li { list-style:none;}
+    em, i {font-style:normal;}
+    table,tr,td{padding:0;margin:0;}
+    .fl{float:left;}
+    .fr{float:right;}
+    a{text-decoration:none;}
+    .container{margin-top:20px;}
+    .title{height:30px;line-height:30px;border-bottom:1px solid #999999;padding-left:27px;}
+
+
+    /*====返修订单-返修编辑页/S====*/
+    .service{margin:43px 0 0 64px;}
+    .service h4{font-weight:700;font-size:14px;color:#333;margin-bottom:20px;padding-left:20px;}
+    .client{height:25px;line-height:25px;margin-bottom:15px;}
+    .xingm{width:140px; text-align:right;}
+    .khinp{width:195px;height:23px;line-height:25px;border:1px solid #999;color:#000;padding-left:5px;}
+    .khinps{width:500px;}
+    .client select{width:202px;height:25px;line-height:25px;border:1px solid #999;color:#000;padding-left:5px;}
+    .tishic{padding-left:10px;color:#999999;}
+    .plany{width:1000px;border-bottom:1px solid #999999;padding-bottom:10px;}
+    .planys{border-bottom:none;}
+    .fapl{margin-right:20px; display:inline;}
+    .fapl input{vertical-align:middle;}
+    .clxg{padding:30px 0 0 50px;}
+    .cm{height:36px;padding-left:16px;}
+    .reduce, .jiahao{border: 1px solid #cccccc;display:block;height:16px;line-height:16px;margin:10px 0;text-align:center;width:16px;}
+    .cm span a{color:#444444;}
+    .numb{border: 1px solid #cccccc;display:block;height:18px;margin:8px 6px;text-align:center;width:39px;}
+    .numbs{border: 1px solid #cccccc;display:block;height:18px;margin:8px 47px;text-align:center;width:39px;}
+    .cyleib{margin:19px 0 0 77px; background:url(../images/dian.jpg) 0 5px no-repeat;padding-left:15px;}
+    .xiuzl{ overflow:hidden;}
+    .xiuzl li{float:left;width:332px;}
+    .xiuzl li .leib{float:left;height:32px;line-height:32px;text-align:right;width:135px;}
+    .xiuzl li select{border:1px solid #d0d0d0;display:block;height:23px;line-height: 20px;margin: 6px 0 0 14px;text-align:center;width:124px;}
+    .xiuzl li .xzput{background-color:#ffffff;border:1px solid #d0d0d0;color:#000000;height:22px;line-height:20px;margin-bottom:2px;margin-top:2px;width:80px;}
+    .xiuzl li .remove{display:block;height:26px;margin:auto;text-align:center;width:30px; background:url(../images/remove.png) no-repeat scroll 50% 50%;cursor:pointer;}
+    .list_result{color:#000000;height:32px;line-height:26px;margin-bottom:1px;margin-top:0;padding-left:3px;vertical-align:middle;}
+    .list_result select{width:120px;border:1px solid #626061;}
+    .list_result .neirwor{width:120px;background-color: #FFF; border: 1px solid #626061; color: #000;height: 20px;line-height:20px;}
+    .list_result .xzscbut{width:16px;height:16px; background:url(../images/remove.png) no-repeat;margin-left:10px; cursor:pointer;}
+    .plany .tsul{height:auto;margin:12px 0 50px;overflow:hidden;width:1000px;}
+    .plany .tsul li{border-right:1px solid #dddddd;float:left;height:285px;margin:0 0 0 50px;overflow:hidden;padding:12px 0;width:447px;}
+    .plany .tsul li .nleft{height:auto;overflow:hidden;width:24px;}
+    .plany .tsul li .nright{width:423px;}
+    .plany .tsul li .nright .nwordy{color:#000000;height:14px;line-height:14px;margin:0 0 10px;width:100%;}
+    .plany .tsul li .nright .nworde{color: #797979;text-indent: 22px;}
+    .plany .tsul li .nright .nwords{height:auto;overflow:hidden;width:272px;}
+    .plany .tsul li .nright .nwords p{height:auto;overflow:hidden;width:272px;}
+    .plany .tsul li .nright .nwords p .rady{display:block;height:auto;min-height:12px;text-align:right;width:16px;}
+    .plany .tsul li .nright .nwords p .faword{color:#797979;display:block;height:auto;line-height:20px;margin:0 0 0 6px;text-align:left;width:250px;}
+    .plany .tsul li .nright .yuany{height:auto;margin:0 36px 0 0;overflow:hidden;position:relative;width:100px;}
+    .plany .tsul li .nright .yuany .pos_img_word{background:#dddddd none repeat scroll 0 0;bottom:0;color:#000000;height:auto;line-height:16px;margin:0;opacity:0.6;padding:0 2px;position:absolute;right:0;width:96px;}
+    .tsbut{clear:both;margin:0 0 50px 100px;}
+    .tsbut span{display:inline-block;margin-left:50px;}
+    .tsbut span input{width:120px;height:38px;line-height:38px;text-align:center; background:#c69b6e;color:#fff; cursor:pointer;}
+    /*====返修订单-返修编辑页/E====*/
+
+</style>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=fx&act=index">返回{$lang.manage}</a></li>
+    </ul>
+</div>
+<script>
+    function change(){
+        var status = $('#status').attr('value')
+        var free = $('#free').attr('value')
+
+        if(status == 11 && free==="0"){
+            $("#send_wl_sn").show();
+        }else{
+            $("#send_wl_sn").hide();
+        }
+    }
+</script>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="edit">
+
+        <div class="container">
+
+            <div class="client">
+                <p class="xingm fl">当前状态：</p>
+				<select class="querySelect" name="info_status"  id="status" onchange="change()">
+				{html_options options=$status_info selected=$info_status}
+                </select>
+            </div>
+
+            <div class="client" {if $info_status==11&&$free==0}{else}style="display:none"{/if} id="send_wl_sn">
+                <p class="xingm fl">物流单号：</p>
+                <input type="text" value="{$waybillno}" name="waybillno" >
+            </div>
+
+
+        </div>
+            <input type="hidden" value="{$id}" name="id">
+			<input type="hidden" value="{$info_status}" name="old_info_status">
+			<input type="hidden" value="{$s_id}" name="s_id">
+			<input type="hidden" value="{$free}" id="free">
+
+        <div style="margin:30px 0 30px 140px">
+        <input type="submit" value="提交" name="Submit" class="tijia">
+        <input type="reset" value="重置" name="Submit2" class="congzi">
+         </div>
+    </div>
+    </form>
+
+		{if $logs}
+  <div class="rate rates">
+		<h4>操作记录：</h4>
+		<div class="basic basics">
+
+			<!--{foreach from=$logs item=item key=k}-->
+			<p>{$item.admin}&nbsp;&nbsp;于&nbsp;&nbsp;&nbsp;&nbsp;{$item.add_time}&nbsp;&nbsp;{$item.content}</p>
+			<!--{/foreach}-->
+	
+		</div>
+	</div>
+	{/if}
+</div>
+
+{include file="footer.html"}

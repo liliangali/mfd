@@ -1,0 +1,413 @@
+ {include file=member.header.html}
+  <script type="text/javascript">
+ 
+ 	
+ </script>
+ 
+
+ 
+
+<script  type="text/javascript" src="../../static/expand/my97date/wdatepicker.js"></script>
+<div class="w">
+  <div class="AreaBox clearfix">
+  	{include file=member.menu.html}
+    <div class="con">
+        <h2 class="tit">个人认证</h2>
+        <form id="myform" action="" method="post">
+        <fieldset class="certify_form">
+          <p class="tipBar">目前本站只接受中国大陆用户认证</p>
+          <div class="ui-form-item">
+            <label class="ui-label"><span class="ui-form-required">*</span>真实姓名：</label>
+            <input type="text" class="ui-input"  placeholder="真实姓名" value="{$auth.card_name}" name="card_name" id="card_name"  validate="required"/>
+            <div class="ui-form-explain"></div>
+            <p class="ui-form-explain-sub">为保障您的资金安全，实名认证姓名和身份证号须和您提现的银行卡的户名保持一致 </p>
+          </div>
+          <div class="ui-form-item">
+            <label class="ui-label"><span class="ui-form-required">*</span>身份证号码：</label>
+            <input type="text" class="ui-input" placeholder="身份证号码" name="card" value="{$auth.card}" id="card"  validate="idcard|required" maxlength="18"/>
+            <div class="ui-form-explain"></div>
+          </div>
+          <div class="ui-form-item">
+            <label class="ui-label">性别：</label>
+            <label class="ui-label ui-label-inline">男
+              <input type="radio" name="sex" {if $auth.sex == 1}checked="checked"{/if} value="1">
+            </label>
+            <label class="ui-label ui-label-inline">女
+              <input type="radio" name="sex" {if $auth.sex == 2}checked="checked"{/if} value="2">
+            </label>
+          </div>
+          <div class="ui-form-item">
+            <label class="ui-label"><span class="ui-form-required">*</span>身份证图片：</label>
+            <div validate="idcardA" class="upload-id" id="uploadPicIdFront">
+            
+              <div class="upload-pic-btn"> 
+              <img src="{if $auth.card_face_img}{$auth.card_face_img}{else}../../static/img/idfront.png{/if}"
+                                     style="width:100px;height:97px;" alt=""
+                                     data-img="{if $auth.card_face_img}{$auth.card_face_img}{else}../../static/img/idfront.png{/if}" class="def_face_img">
+                
+                <!-- 取消上传操作需要修改的val值 -->
+                 <input type="hidden" name="hid_face_cancel" id="hid_face_cancel" value="{$auth.card_face_img_data}">
+                  
+                <!-- 上传图片完成要展示的 -->                   
+                <div class="upload-wrap up_face_hid" {if $auth.card_face_img} style="display:block"{/if} > <a href="{$auth.card_face_img}" target="_blank" class="upload-link see_face_img" title="点击查看大图">查看</a> 
+                <a href="javascript:;" class="deletefile delete" action-type="deletefile" onclick="delfile('card_face_img','personauth','card_face_img',{$auth.id})">×</a> 
+               </div>
+               
+                <input type="file" {if $auth.card_face_img} style="display:none"{/if}   onchange="selfile('card_face_img')" name="card_face_img" id="card_face_img" data-progressid="2842923581773.134" name="file" size="100" class="ui-upload-btn">
+              </div>
+              
+             	<!-- 这里隐藏的是图片路径 form提交的时候会用到 -->
+                <input type="hidden" name="hid_face_img" id="hid_face_img" value="{$auth.card_face_img_data}">
+              <div class="error error_face_img"></div>
+              <!-- 正在上传中的时候需要调用的 -->
+              <ul class="uploadfile-indicator clearfix face_img" >
+                  <li data-pid="2842924317781.58" class="clearfix" style="display: block;">
+                  <p class="file clearfix"><span class="fl">ico1_1024_1024.png</span>
+                  </p>
+                  <div class="adding clearfix">
+                  <p class="adifile"><span style="width:0%"></span></p>
+                  <p class="fl">正在上传中....</p>
+                  <a action-type="cancel" onclick="cancelFaceImg(1)" class="fr" href="javascript:;">取消</a>
+                  </div>
+                  </li>
+              </ul>
+              
+            </div>
+          </div>
+          <div class="ui-form-item">
+            <label class="ui-label"></label>
+            <div validate="idcardB" class="upload-id" id="uploadPicIdBack" style="margin-bottom: 20px;">
+              <div class="upload-pic-btn">
+              <img src="{if $auth.card_back_img}{$auth.card_back_img}{else}../../static/img/idback.png{/if}" style="width:100px;height:97px;" alt="" data-img="{if $auth.card_back_img}{$auth.card_back_img}{else}../../static/img/idback.png{/if}" class="def_back_img">
+              <!-- 取消上传操作需要修改的val值 -->
+               <input type="hidden" name="hid_back_cancel" id="hid_back_cancel" value="">;
+              	<!-- 上传图片完成要展示的 -->
+                <div class="upload-wrap up_back_hid" {if $auth.card_back_img} style="display:block"{/if}> <a href="{$auth.card_back_img}" target="_blank" class="upload-link see_back_img" title="点击查看大图">查看</a> 
+                <a href="javascript:;" onclick="delfile('card_back_img','personauth','card_back_img',{$auth.id})" class="deletefile delete" action-type="deletefile">×</a> 
+                </div>
+                
+                <input type="file" {if $auth.card_back_img} style="display:none"{/if}  onchange="selfile('card_back_img')" name="card_back_img" id="card_back_img" data-progressid="2842923581773.134" name="file" size="100" class="ui-upload-btn">
+              </div>
+              
+              <!-- 这里隐藏的是图片路径 form提交的时候会用到 -->
+              <input type="hidden" name="hid_back_img" id="hid_back_img" value="{$auth.card_back_img_data}"> 
+              <div class="error error_back_img"></div>
+               <!-- 正在上传中的时候需要调用的 -->
+              <ul class="uploadfile-indicator clearfix back_img">
+                  <li data-pid="2842924317781.58" class="clearfix" style="display: block;"><p class="file clearfix"><span class="fl">ico1_1024_1024.png</span></p>
+                 <div class="adding clearfix"><p class="adifile"><span style="width:0%"></span></p><p class="fl">正在上传中....</p>
+                 <a action-type="cancel" class="fr" onclick="cancelFaceImg(2)" href="javascript:;">取消</a>
+                 </div>
+                </li>
+              </ul>
+              
+            </div>
+            
+            <p class="ui-form-explain-sub">
+              <span>请上传有效的身份证图片，非证件图片不予受理,证件要求：</span><br/>
+                1、证件必须包含身份证正面和背面两面信息<br />
+                2、必须为清晰彩色原件扫描件或数码照，仅支持.jpg.bmp.png.gif的图片格式，图片大小不超过2M<br />
+                3、身份证必须在有效期内。<br />
+              </p>
+          </div>
+          <div class="ui-form-item">
+            <label class="ui-label"><span class="ui-form-required">*</span>身份证到期时间：</label>
+            <input type="text" class="ui-input" id="idcard" name="card_due_time" value="{if $auth.is_long == 0}{$auth.card_due_time}{/if}" placeholder="身份证到期时间" {if $auth.is_long == 0} validate="required" {/if} onClick="WdatePicker({minDate:'%y-%M-%d'})" {if $auth.is_long == 1}disabled="disabled"{/if} />
+            <label class="ui-label ui-label-inline ui-label-longtime">
+            	<input type="checkbox"  name="is_long" value="1" class="fl" id="cardValidity" {if $auth.is_long == 1}checked{/if}>长期
+            </label>
+            <div class="ui-form-explain"></div>
+            <p class="ui-form-explain-sub">若证件有效期为长期，请勾选长期。</p>
+          </div>
+          <div class="ui-form-item">
+            <label for="job" class="ui-label" ><span class="ui-form-required">*</span>职业：</label>
+            <select name="job_id" id="job_id" validate="selecta">
+              <option value="">请选择您的职业</option>
+              {html_options options=$job selected=$auth.job_id}
+            </select>
+            <div class="ui-form-explain"></div>
+          </div>
+          <div class="ui-form-item">
+            <label for="contact" class="ui-label"><span class="ui-form-required">*</span>联系方式：</label>
+            <input class="ui-input" type="text" value="{$auth.mobile}" name="mobile" validate="phone|required" id="mobile" placeholder="联系方式"/>
+            <div class="ui-form-explain"></div>
+          </div>
+          <div class="ui-form-item">
+            <label for="address" class="ui-label"><span class="ui-form-required">*</span>家庭或工作单位地址：</label>
+            <input id="address" name="address" validate="required" value="{$auth.address}" class="ui-input ui-address-input" type="text" placeholder="家庭或工作单位地址" />
+          </div>
+          <div class="ui-form-item ui-form-item-submit">
+            <input class="btn-1" value="提交审核" type="submit" id="submit-btn">
+          </div>
+          <input type="hidden" id="formCertType" name="certtype" value="personal">
+          <input type="hidden" id="formCertType2" name="type" value="1">
+        </fieldset>
+		</form>
+      
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="/static/expand/jquery.form.js"></script>
+<script type="text/javascript">
+
+	/**
+	*上传图片
+	*/
+	function selfile(type)
+	{
+		var r  = 10000*Math.random();
+		if(type == 'card_face_img')
+		{
+			$(".face_img").css("display",'block')
+			
+			//input file隐藏
+			$("#card_face_img").css("display",'none');
+		}
+		else
+		{
+			$(".back_img").css("display",'block')
+			
+			//input file隐藏
+			$("#card_back_img").css("display",'none')
+		}
+		
+		//fd.append('pic',pic);
+		 $('#myform').ajaxSubmit({
+		        url:'{link app=auth act=upload}?&type='+type+'&r='+r,
+		        type:"post",
+		        success: function(res) {
+		            var res = $.parseJSON(res);
+		            if(res.done==true)
+		            {
+		            	if(res.retval.type == 'card_face_img')
+		            	{
+		            		//如果$("#hid_face_cancel").val（）值为1 说明 在上传之前执行了 取消操作;
+		            		if($("#hid_face_cancel").val())
+	            			{
+		            			$("#hid_face_cancel").val('');
+	            				return;
+	            			}
+		            		
+		            		$(".face_img").css("display",'none') 
+		            		
+		            		//更换缩罗图的地址
+							$(".def_face_img").attr('src',res.retval.src);
+							$(".def_face_img").attr('data-img',res.retval.src);
+							
+							//input file隐藏
+							$("#card_face_img").css("display",'none');
+							
+							//修改隐藏域的值
+							$("#hid_face_img").val(res.retval.name);
+							
+							//缩罗图展开 查看按钮
+							$(".up_face_hid").css("display",'block');
+							$(".see_face_img").attr("href",res.retval.src);
+							
+							//清除error错误提示
+							$(".error_face_img").html('');
+							
+		            	}
+		            	else if(res.retval.type == 'card_back_img')
+		            	{
+		            		//如果$("#hid_face_cancel").val（）值为1 说明 在上传之前执行了 取消操作;
+		            		if($("#hid_back_cancel").val())
+	            			{
+		            			$("#hid_back_cancel").val('');
+	            				return;
+	            			}
+		            		
+		            		
+							$(".back_img").css("display",'none') 
+		            		
+		            		//更换缩罗图的地址
+							$(".def_back_img").attr('src',res.retval.src);
+							$(".def_back_img").attr('data-img',res.retval.src);
+							
+
+
+							
+							//修改隐藏域的值
+							$("#hid_back_img").val(res.retval.name)
+							
+							//缩罗图展开 查看按钮
+							$(".up_back_hid").css("display",'block');
+							$(".see_back_img").attr("href",res.retval.src);
+							
+							//清除error错误提示
+							$(".error_back_img").html('');
+		            	}
+		                return;
+		            }
+		            else
+		            {
+		            	//上传失败
+		            	
+		            	if(res.retval.type == 'card_face_img')
+	            		{
+		            		//进度条
+		            		$(".face_img").css("display",'none');
+		            		
+		            		//input file隐藏
+		        			$("#card_face_img").css("display",'block');
+	            		}
+		            	else
+		            	{
+		            		//进度条
+		            		$(".back_img").css("display",'none');
+		            		
+		            		//input file隐藏
+		        			$("#card_back_img").css("display",'block');
+		            	}
+		                alert(res.msg)
+		            }
+		        }
+		    });
+	}
+
+
+	/**
+	*点击删除图片事件
+	*1 是删除正面图   2是删除反面图
+	*/
+	function delfile(type,model,field,auth_id)
+	{
+		
+		if(type == 'card_face_img')
+		{
+			var img = $("#hid_face_img").val();
+			//=====ajax删除session或者auth表中存在的图片=====
+			$.ajax({
+				   type: "POST",
+				   url: "{link app=auth act=del_file}",
+				   data: "img="+img+"&model="+model+"&field="+field+"&id="+auth_id,
+				   success: function(msg){
+					   var res = $.parseJSON(msg);
+			            if(res.done==true)
+		            	{
+		            		//alert('suceess')
+		            	}
+			            else
+		            	{
+		            		return;
+		            	}
+				   }
+				});
+			
+			$(".up_face_hid").css("display",'none'); 
+			$("#card_face_img").css("display",'block');
+			$(".def_face_img").attr('src',"../../static/img/idfront.png");
+			$(".def_face_img").attr('data-img',"../../static/img/idfront.png");
+			//修改隐藏域的值
+			$("#hid_face_img").val('')
+		}
+		else
+		{
+			var img = $("#hid_back_img").val();
+			//=====ajax删除session或者auth表中存在的图片=====
+			$.ajax({
+				   type: "POST",
+				   url: "{link app=auth act=del_file}",
+				   data: "img="+img+"&model="+model+"&field="+field+"&id="+auth_id,
+				   success: function(msg){
+					   var res = $.parseJSON(msg);
+			            if(res.done==true)
+		            	{
+		            		//alert('suceess')
+		            	}
+			            else
+			            {
+			            	return ;	
+			            }
+				   }
+				});
+			
+			$(".up_back_hid").css("display",'none'); 
+			$("#card_back_img").css("display",'block');
+			$(".def_back_img").attr('src',"../../static/img/idfront.png");
+			$(".def_back_img").attr('data-img',"../../static/img/idfront.png");
+			//修改隐藏域的值
+			$("#hid_back_img").val('');
+		}
+	}
+
+
+
+
+
+	
+	/**
+	*取消上传的操作
+	*这部操作不仅要隐藏html代码 还要去服务器删除对应的图片
+	*/
+	function cancelFaceImg(type)
+	{
+		if(type == 1)
+		{
+			//隐藏
+			$(".face_img").css("display",'none');
+			
+			//给隐藏的input赋
+			$("#hid_face_cancel").val(1);
+			
+		}
+		else
+		{
+			//隐藏
+			$(".back_img").css("display",'none');
+			//给隐藏的input赋
+			$("#hid_back_cancel").val(1);
+			
+		}
+		
+	}
+	
+	  $('#myform').verify({
+			validate:{
+					idcardA:function(e){
+						if(e.find('.upload-wrap').is(':hidden')){
+							e.find('.error').text('请上传您的身份证正面图').show()
+							return false;
+						}	
+					},
+					idcardB:function(e){
+						if(e.find('.upload-wrap').is(':hidden')){
+							e.find('.error').text('请上传您的身份证背面图').show()
+							return false
+						}	
+					},
+					selecta:function(e){
+						if(e.val()==''){
+							e.addClass('error-css');
+							return false
+						}
+					}
+				},
+			submitBtn:{
+				flag:true,
+				id:$('#submit-btn'),
+				txt:'提交中...'
+			}
+		});
+	
+	
+	/**
+	*长期有效的点击事件
+	*/
+	$('#cardValidity').click(function(){
+		if(this.checked){
+			$('#idcard').val('长期有效').attr('disabled',true).parents('.ui-form-item').find('.error').text('');
+		}else{
+			
+			var business_life = "{$auth.card_due_time}";
+			if(!business_life)
+			{
+				business_life = '';
+			}
+			$('#idcard').val(business_life).attr('disabled',false)	
+		}
+	})
+</script>
+
+
+{include file="footer.html"}

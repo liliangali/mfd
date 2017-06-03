@@ -1,0 +1,93 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <!--{if $smarty.get.wait_verify}-->
+    <li><a class="btn1" href="index.php?app=store&act=store_dispatching">{$lang.manage}</a></li>
+    <!--{else}-->
+    <li><span>{$lang.manage}</span></li>
+    <!--{/if}-->
+    <!-- <li><a class="btn1" href="index.php?app=store&amp;act=test">{$lang.add}</a></li> -->
+    <!--{if $smarty.get.wait_verify}-->
+    <li><span>未处理</span></li>
+    <!--{else}-->
+    <li><a class="btn1" href="index.php?app=store&act=store_dispatching&amp;wait_verify=1">未处理</a></li>
+    <!--{/if}-->
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="store" />
+          <input type="hidden" name="act" value="store_dispatching" />
+          <input type="hidden" name="wait_verify" value="{$smarty.get.wait_verify}" />
+          店铺名称:
+          <input class="queryInput" type="text" name="store_name" value="{$smarty.get.store_name|escape}" />
+          状态:
+          <select name="status" id="status" class="querySelect">
+          <option value="">请选择...</option>
+          <option <!--{if $smarty.get.status == 1}-->selected=""<!--{/if}--> value="1">&nbsp;完成</option>
+          <option <!--{if $smarty.get.status == 2}-->selected=""<!--{/if}--> value="2">&nbsp;处理中</option> 
+          <option <!--{if $smarty.get.status == 3}-->selected=""<!--{/if}--> value="3">&nbsp;拒绝</option>                
+          </select>
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=store&amp;act=store_dispatching<!--{if $smarty.get.wait_verify}-->&amp;wait_verify={$smarty.get.wait_verify}<!--{/if}-->">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html} </div>
+</div>
+
+
+
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $store_dispatching}-->
+    <tr class="tatr1">
+      <td><span ectype="order_by" fieldname="store_name">店铺名称</span></td>
+      <td><span ectype="order_by" fieldname="owner_name">消费者姓名</span></td>
+      <td><span ectype="order_by" fieldname="tel">消费者电话</span></td>
+      <td><span ectype="order_by" fieldname="region_name">所在地区</span></td>
+      <td><span ectype="order_by" fieldname="address">详细地址</span></td>
+      <td><span ectype="order_by" fieldname="date">申请时间</span></td>
+      <td><span ectype="order_by" fieldname="status">当前状态</span></td>
+      <td><span ectype="order_by" fieldname="description">备注</span></td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$store_dispatching item=sd}-->
+    <tr class="tatr2">
+      <td>{$sd.store_name}</td>
+      <td>{$sd.owner_name}</td>
+      <td>{$sd.tel}</td>
+      <td>{$sd.region_name}</td>
+      <td>{$sd.address}</td>
+      <td>{$sd.date} {$sd.apply_date}</td>
+      <td>{$sd.status_name}</td>
+      <td title="{$sd.description}">{$sd.description|truncate:20}</td>
+      <td class="handler">
+      <!--{if $sd.status != 1}-->
+      <a href="index.php?app=store&act=edit_store_dispatching&id={$sd.id}&status=2">处理</a> | <a href="index.php?app=store&act=edit_store_dispatching&id={$sd.id}&status=1">完成</a> | <a href="index.php?app=store&act=edit_store_dispatching&id={$sd.id}&status=3">拒绝</a>
+      <!--{else}-->
+      无操作
+      <!--{/if}-->
+       </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="12">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $store_dispatching}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+  </div>
+  <div class="clear"></div>
+  <!--{/if}-->
+
+</div>
+{include file="footer.html"}

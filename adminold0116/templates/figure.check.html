@@ -1,0 +1,266 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=figure">{$lang.manage}</a></li>
+    <li> <span>查看</span> </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="figure_form">
+    <table class="infoTable">
+    <!-- {if $acc eq "添加" } -->
+      <tr>
+        <th class="paddingT15">* 顾客姓名:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="customer_name" type="text" id="customer_name" value="{$figure.customer_name|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15">* 所属电话:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="customer_mobile" type="text" id="customer_mobile" value="{$figure.customer_mobile|escape}" /></td>
+      </tr>
+      <tr>
+        <th class="paddingT15">* 性别:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input type="radio" name="gender" {if $figure.gender eq 10040}checked="true" {/if} value="10040">男</input>
+        <input type="radio" name="gender" {if $figure.gender eq 10041}checked="true" {/if} value="10041">女</input>
+        </td>
+      </tr>
+      <!-- {else} -->
+      <h3 style="padding:20px 20px 5px;">基本信息</h3>
+      <tr>
+      <td>* 顾客姓名:<span>{$figure.customer_name}</span></td>
+      <td>* 顾客电话:<span>{$figure.customer_mobile}</span></td>
+      
+      </tr>
+      <tr>
+      <td>* 量体师:<span>{$figure.liangti_name}</span></td>
+      <td>* 量体师电话:<span>{$mobile}</span></td>
+      </tr>
+       <tr>
+      <td>* 订单号:<span>{$figure.order_sn}</span></td>
+      <td>* 服务费:<span>￥{$figure.single_fee}元</span></td>
+      </tr>
+       <tr>
+      <td>* 订单状态:<span>{$figure.order_zt}</span></td>
+      <td>* 结算状态:<span>{if $figure.liangti_state eq 3}已结算{else}待结算{/if}</span></td>
+      </tr>
+        <tr>
+      <td>* 服务方式:
+      <span>
+      <!-- {if $figure.service_mode==4} -->
+                              后台录入
+      <!-- {elseif $figure.service_mode==1} -->
+                             预约上门
+      <!-- {elseif $figure.service_mode==2} -->
+                            预约到店
+      <!-- {elseif $figure.service_mode==3} -->
+                            线下采集
+      <!-- {/if} -->
+       </span></td>
+      <td>* 数据归属: 
+      <span>
+      <!-- {if $figure.id_serve==1} -->
+                         后台录入
+      <!-- {else} -->
+        {$serve.$figure.id_serve}
+      <!-- {/if} -->
+      </span></td>
+      </tr>
+       <tr>
+      <td>* 性别:<span>
+      <!-- {if $figure.gender eq 10040} -->
+                        男
+      <!-- {elseif $figure.gender eq 10041} -->
+                       女
+      <!-- {else} -->
+                      未填写
+      <!-- {/if} -->
+    </span></td>
+      <td>* 提交时间:<span>{$figure.lasttime}</span></td>
+      </tr>
+      <!-- {/if} -->
+      <tr>
+      	<td colspan="2">
+        	<table width="800" border="0" cellspacing="0" cellpadding="0">
+            	
+                	<td>
+       <h3 style="padding:20px 20px 5px;">净体尺寸<span style="font-size:12px; font-weight:normal; padding-left:5px; color:#999">单位(cm\kg)</span></h3>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tr>
+        <th class="paddingT15">* {$lang.lw}(范围:30-62):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.lw|escape}</td>
+         <th class="paddingT15">* {$lang.xw}(范围:72-175):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.xw|escape}</td>
+      </tr>
+    <tr>
+        <th class="paddingT15">* 中腰围(范围:55-185):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.zyw|escape}</td>
+        <th class="paddingT15">* 臀围(范围:60-190):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.tw}</td>
+     </tr>
+   <tr>
+        <th class="paddingT15">* 左腕围(范围:33-103):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.zww|escape}</td>
+       <th class="paddingT15">* 右腕围(范围:33-103):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.yww|escape}</td>
+        </tr>
+     <tr>
+        <th class="paddingT15">* 上臂围(范围:33-103):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.sbw|escape}</td>
+        <th class="paddingT15">* {$lang.zjk}(范围:31-70):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.zjk|escape}</td>
+      </tr>
+   
+   
+      <tr>
+         <th class="paddingT15">* {$lang.zxc}(范围:30-85):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.zxc|escape}</td>
+         <th class="paddingT15">* {$lang.yxc}(范围:30-85):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.yxc|escape}</td>
+      </tr>
+      <tr>
+       <th class="paddingT15">* {$lang.qjk}(范围:36-68):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.qjk|escape}</td>
+          <th class="paddingT15">* {$lang.hyjc}(范围:35-60):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.hyjc|escape}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">* {$lang.hyc}(范围:47-105):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.hyc|escape}</td>
+        <th class="paddingT15">* {$lang.qyj}(范围:37-60):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.qyj|escape}</td>
+      </tr>
+      <tr>
+         <th class="paddingT15">* {$lang.yw}(范围:60-190):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.yw|escape}</td>
+       <th class="paddingT15">* {$lang.tgw}(范围:45-113):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.tgw|escape}</td>
+      </tr>
+        <tr>
+       <th class="paddingT15">* {$lang.td}(范围:55-120):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.td|escape}</td>
+        <th class="paddingT15">* {$lang.hyg}(范围:0-17):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.hyg|escape}</td>
+      </tr>
+      <tr>
+      <th class="paddingT15">* {$lang.qyg}(范围:0-20):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.qyg|escape}</td>
+         <th class="paddingT15">* {$lang.zkc}(范围:70-135):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.zkc|escape}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">* {$lang.ykc}(范围:70-135):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.ykc|escape}</td>
+          <th class="paddingT15"> {$lang.xiw}(范围:33-103):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.xiw|escape}</td>
+     </tr>
+      <tr>
+         <th class="paddingT15">脚口(范围:33-103):</th>
+        <td class="paddingT15 wordSpacing5">{$figure.jk|escape}</td>
+        <th class="paddingT15">短裤左裤长:</th>
+        <td class="paddingT15 wordSpacing5">{$figure.dkzkc|escape}</td>
+      </tr>
+     <tr>
+          <th class="paddingT15">短裤右裤长:</th>
+        <td class="paddingT15 wordSpacing5">{$figure.dkykc|escape}</td>
+        <th class="paddingT15">* 身高:</th>
+        <td class="paddingT15 wordSpacing5">{$figure.height|escape}</td>
+       </tr>
+    <tr>
+       <th class="paddingT15">* 体重:</th>
+        <td class="paddingT15 wordSpacing5">{$figure.weight|escape}</td>
+      </tr>
+     </table>
+    </td>
+            </table>
+        </td>
+      </tr>
+      
+     <tr>
+    <th><h3 style="padding:20px 20px 5px;" >特殊体型:</h3></th>
+      <tr>
+        <th>左肩</th>
+        <td> {$cst_type.$figure.body_type_19} </td>
+      </tr>
+      <tr>
+        <th>右肩</th>
+        <td> {$cst_type.$figure.body_type_20}</td>
+      </tr>
+      <tr>
+        <th>肚</th>
+        <td>{$cst_type.$figure.body_type_24}</td>
+      </tr>
+      <tr>
+         <th>手臂</th>
+         <td>{$cst_type.$figure.body_type_25}</td>
+      </tr>
+      <tr>
+         <th>臀</th>
+         <td>{$cst_type.$figure.body_type_26} </td>
+      </tr>
+      
+           <tr>
+         <th>背</th>
+         <td> {$cst_type.$figure.body_type_23}</td>
+      </tr>
+      
+      </tr>
+      
+       <tr>
+         <th>着装风格&nbsp;上衣</th>
+         <td>{$cst_type.$figure.body_type_3}</td>
+       </tr>
+        <tr>
+         <th>着装风格&nbsp;西裤</th>
+         <td>{$cst_type.$figure.body_type_2000}</td>
+       </tr>
+          <tr>
+         <th>着装风格&nbsp;衬衣</th>
+         <td>{$cst_type.$figure.body_type_3000}</td>
+       </tr>
+          <tr>
+         <th>着装风格&nbsp;大衣</th>
+         <td>{$cst_type.$figure.body_type_6000}</td>
+       </tr>
+        <tr>
+         <th>着装风格&nbsp;马夹</th>
+         <td>{$cst_type.$figure.body_type_4000}</td>
+       </tr>
+          <tr>
+         <th>着装风格&nbsp;女衬衣</th>
+         <td>{$cst_type.$figure.body_type_11000}</td>
+       </tr> 
+      <tr>
+         <th>着装风格&nbsp;女西服</th>
+         <td>{$cst_type.$figure.body_type_95000}</td>
+       </tr> 
+       <tr>
+         <th>着装风格&nbsp;女西裤</th>
+         <td>{$cst_type.$figure.body_type_98000}</td>
+       </tr> 
+         <tr>
+         <th>着装风格&nbsp;男短裤</th>
+         <td>{$cst_type.$figure.body_type_15000}</td>
+       </tr> 
+       
+      <tr>
+        <th></th>
+        <td class="ptb20">
+         <a href="index.php?app=figure&amp;act=edit&id={$figure.figure_sn};">编辑</a></td>
+      </tr>
+    </table>
+  </form>
+   <tr>
+  <h3 style="padding:20px 20px 5px;">修改记录：</h3>
+  
+  {foreach from=$figure_edits item=edit key=key name=loop}
+  <p>{$smarty.foreach.loop.iteration}、{$edit.time|date:y-m-d h:i} {$edit.liangti_name}修改了
+  {foreach from=$edit.edit_content item=ed key=key1}
+  {$styles.$ed}
+  {/foreach}。
+  </p>
+  
+  {/foreach}
+  </tr>
+  
+</div>
+{include file="footer.html"}

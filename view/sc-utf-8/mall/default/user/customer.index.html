@@ -1,0 +1,65 @@
+{include file=../header-new.html}
+<title>我的顾客信息</title>
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<style>
+</style>
+<div class="user_box">
+	{include file=member.menu.html}
+    <div class="user_right user_rights fr">
+		<div class="lntegral">
+        	<p class="mlntegral fl">我的顾客</p>
+            <p class="gkadd fr"><a href="javascript:;" id="add">添加顾客</a></p>
+        </div>
+        <div class="recently">
+            <table width="900" frame="void" rules="none" cellspacing="0" class="megkxx" >
+              <tr class="first">
+                <td>顾客信息</td>
+                <td>电话</td>
+                <td>订单</td>
+                <td>量体数据</td>
+              </tr>
+              {foreach from=$figure item=fig key=key}
+              <tr>
+           <td ><img src="{$fig.avatar}" width="70px";height="70px"; style="border-radius:50%;"/> &nbsp{$fig.customer_name}</td> 
+             <!--  <td class="gkxxtx">{$fig.customer_name}</td> -->
+                <td>{$fig.customer_mobile}</td>
+                <td>{$fig.order_num}</td>
+               <!--{if $fig.figure_state == 1 } -->
+                <td class="xsyc"><a href="{link app=customer act=check}?&customer_mobile={$fig.customer_mobile}&customer_name={$fig.customer_name}">查看</a></td>
+                <!-- {else} -->
+                <td >无</td>
+                <!-- {/if} -->
+                </td>
+              </tr>
+             {/foreach}
+            </table>
+            <div class="flip fr">
+            {include file=page.bottom.html}
+            </div>
+        </div>
+    </div>
+</div>
+{include file=../footer-new.html}
+<form method="get">
+   <div id="window" style="display:none;">
+   <span id="window" style="display:none;"></span>
+	<p class="gkname">姓名：<input id="names" name="customer_name" type="text"/><span style="color:red;" class="tzzssy1"></span></p>
+    <p class="gkphone">手机：<input id="mobiles" name="customer_mobile"  type="text"/><span style="color:red;" class="tzzssy2"></span></p>
+    <input type="button" value="添加顾客" class="gkinp">
+ </div>
+</form>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/usercenter.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script> 
+<script>
+
+cotteFn.customer()
+cotteFn.customer1()
+cotteFn.customer2()
+cotteFn.customer3()
+
+</script>
+</body>
+</html>

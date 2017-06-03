@@ -1,0 +1,56 @@
+{include file=header.html}
+<title>关于我们</title>
+<script type="text/javascript" src="../../static/expand/jquery.js"></script>
+<link type="text/css" href="../../static/css/about.css" rel="stylesheet" />
+<div class="banner"><a href="#"><img src="../../static/img/about_us.png" width="1600"></a></div>
+<div class="content">
+	<div class="zdaohang left" id="current">
+	<ul>
+      {foreach from=$cate item=cat key=key}
+         <li value="{$key}"><a href="javascript:;"  id="cates_{$key}"   >{$cat.cate_name}</a></li>
+       {/foreach}
+      </ul>
+    </div>
+    <div class="ydaohang right">
+    	<h2 id="title"></h2>
+        <div class="words" id="content"></div>
+    </div>
+</div>
+<!--底部/S-->
+{include file=footer.html}
+<!--底部/E-->
+
+<script>
+$(document).ready(function(){
+	$("#current li").eq(0).addClass('current');
+		var cur=$(".current").val();
+    	$.post("{link app=about act=jsion}",{cur:cur},function(res){
+	        var res = eval("("+res+")");
+	        if(res.retval.title){
+	        	 $("#title").html(res.retval.title);
+	  	       $("#content").html(res.retval.content);
+	        }else{
+	        	 $("#title").html("");
+		  	       $("#content").html("");
+	        }
+	        });
+    $("#current").on('click','li',function(){
+    	$(this).siblings('li').removeClass('current').end().addClass('current');
+    	var cur=$(".current").val();
+    	$.post("{link app=about act=jsion}",{cur:cur},function(res){
+	        var res = eval("("+res+")");
+	        if(res.retval.title){
+	        	 $("#title").html(res.retval.title);
+	  	       $("#content").html(res.retval.content);
+	        }else{
+	        	 $("#title").html("");
+		  	       $("#content").html("");
+	        }
+	        });
+    	
+    })
+    
+})
+    
+
+</script>

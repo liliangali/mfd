@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>发布定制需求</title>
+<link rel="stylesheet" type="text/css" href="/static/css/senddemand.css">
+<script type="text/javascript" src="/static/expand/jquery.js"></script>
+<script type="text/javascript" src="/static/js/public.js"></script>
+</head>
+<body>
+<div class="head">
+  <div class="w">
+    <div class="fl"> <a href="index.php" class="logo fl"></a> <span class="logoTxt fl">发布定制需求</span> </div>    <div class="fr"> <span class="btn-angle" data-class="help"><a href="article-view-32.html" class="link">帮助中心</a><i class="angle"></i></span> </div>
+    <div class="bd-menu">
+        <i class="angle"></i>
+        <div class="help" style="display: none;">
+        <a href="article-view-32.html">新手指南</a>
+        <a href="article-view-59.html">关于我们</a>
+        <a href="article-view-66.html">产品保障</a>
+        <a href="article-view-61.html">量体说明</a>
+        <a href="article-view-70.html">支付及物流</a>
+    </div>
+
+    </div>
+</div>
+</div>
+<!-- ---- main ---- -->
+<div class="main w">
+  <div class="title">
+    <span class="fl tit">需求详情</span>
+    <span class="fl tip">以下 <b class="cRed">*</b> 号为必填项</span>
+  </div>
+  <div class="myForm">
+  <form action="" id="FormDemand" enctype="multipart/form-data" >
+    <div class="item">
+        <div class="tit"><em>*</em>定制标题</div>
+        <input type="text"  name="title" id="title" class="txt" style="width:480px;" maxlength="30" data-type="required" data-tip="定制标题" data-placeholder="给您的需求起一个标题吧，好的标题能够吸引品牌商的关注哦(5~30字)">
+    </div>
+    {if $type=='shop'}
+	<a href="{link app=goods arg=$check.goods_id}">{$check.goods_name}</a><br />
+	<input type="hidden" name="type_id" value="{$check.goods_id}" />
+	{/if}
+	{if $type=='lin'}
+	<input type="hidden" name="type_id" value="{$check.part_id}" />
+	{/if}
+	{if $type=='diy'}
+        <input type="hidden" name="type_id" value="{$check.cst_id}" />
+        <input type="hidden" name="fabric" value="{$check.diyCode.fabric}" />
+    {/if}
+	{foreach from=$data item=item key=__itKey}
+	    <div class="item vradio">
+        <div class="tit"><em>*</em>{$cates.$__itKey}</div>
+	    {foreach from=$item.list item=itm name=itm}
+	        <label><input {if $smarty.foreach.itm.first}checked="checked"{/if} type="radio" name="item[{$itm.cate}]" value="{$itm.id}" /> {$itm.name}</label>
+	    {/foreach}
+	    </div>
+	{/foreach}
+    
+    <div class="item">
+        <div class="tit"><em>*</em>真实姓名</div>
+        <input name="name" type="text" class="txt" data-type="required" data-tip="真实姓名">
+    </div>
+
+    <div class="item">
+        <div class="tit"><em>*</em>所在地区</div>
+		 <div id="s_1" class="areaSelect" data-input-id="guo">
+            <a href="#" value="">请选择...</a>
+            <a href="#" value="2">中国</a>
+            <a href="#" value="478">英国</a>
+            <a href="#" value="479">意大利</a>
+            <a href="#" value="480">法国</a>
+            <a href="#" value="482">瑞士</a>
+      </div>
+      <input type="hidden" name="region[name]" value="">
+      <input type="hidden" name="region[id]" value="">
+      <input type="hidden" name="regions" id="regions" value="{$regions}">
+    </div>
+    <div class="item">
+        <div class="tit"><em>*</em>手机号码</div>
+        <input name="contact[mobile]" type="text" class="txt" id="phone"  data-type="phone">
+    </div>
+    <div class="item">
+      <div class="tit"><em>*</em> 验证码</div>
+      <input name="code" type="text" class="txt fl" data-type="required" data-tip="验证码" style="width:225px; margin-right:10px;">
+      <input data-time="0" class="fl sendValidate" value="获取验证码"></div>
+    <div class="item">
+        <div class="tit"><em></em>电子邮箱</div>
+        <input name="contact[email]" type="text" class="txt">
+    </div>
+    <div class="item">
+        <div class="tit"><em></em>QQ</div>
+        <input name="contact[qq]"  type="text" class="txt">
+    </div>
+    <div class="item" style="height:auto">
+      <div class="tit"><em></em>备注</div>
+      <textarea name="remark" class="depict">{$check.diyCode.craft}</textarea>
+      <p class="tip"><em class="cRed">小提示：</em> 提交需求后，所有品牌商会看到您的需求并参与报价，你可以选择中意的品牌商 为你定制，期间我们会以系统消息及手机短信方式通知到您，请及时关注您的需求信息，让您真正享受到全新的定制服务，打造高端个性化定制体验。</p>
+    </div>
+    <div class="item">
+      <div class="tit">附件：</div>
+        <div class="piclist clearfix">
+        <p>您还可以上传照片作为辅助定制参考</p>
+        <ul id="ul_li"></ul>
+        </div>
+        <div class="updata">
+            <input type="file" value="" id='up_file' name='up_file' />
+            <span id="wait_up"></span>
+        </div>
+    </div>
+
+    <div id="error"></div>
+    <input type="hidden" name="type" value="{$type}" />
+    <input type="hidden" name="subtype" value=""/>
+    <a href="javascript:void(0)" class="sub_demand submit" data-type="2" ><span>提交需求</span></a>
+    <!-- <a href="javascript:void(0)" class="sub_demand submit" data-type="1" ><span>保存需求</span></a> -->
+    </form>
+  </div>
+</div>
+
+<!--    //  main   -->
+<script>
+
+</script>
+<script type="text/javascript" src="/static/js/senddemand.js"></script>
+<script type="text/javascript" src="/static/expand/jquery.form.js"></script>
+<script>
+$('.sub_demand').unbind().bind("click", subSue);
+function subSue(){
+    if($.trim($('#title').val()).length<5||$('#title').val()==$('#title').attr('data-placeholder')){
+        $('#error').html('<i class="ico fl"></i><span class="fl">定制标题不能为空且不能少于五位</span>');
+        $('#title').addClass('error-css');
+        return
+    }
+    if(!validate())return;
+	if(!addressverify())return;
+    $('.sub_demand').unbind();
+    $('#FormDemand').find("input[name='subtype']").val($(this).data('type'));
+    $('#FormDemand').ajaxSubmit({
+        type:"post",
+        url : "{link app=demand act=subsue}",
+        success:function(res){
+            var res = $.parseJSON(res);
+            if(res.done==true){
+                //location.href='demand-lists.html'
+                location.href='demand-'+res.retval.id+'.html'
+            }else{
+                msg(res.msg);
+                $('.sub_demand').unbind().bind("click", subSue);
+            }
+        }
+    });
+}
+
+
+$('#up_file').change(function(){
+    if($('#up_file').val()=="") return;
+    $('#wait_up').html('上传中请等待...');
+    var _has_ = $('.demand_ajunct').size();
+    if(_has_ >= 5) return;
+
+    var r  = 10000*Math.random();
+    
+    $('#FormDemand').ajaxSubmit({
+        url:'{link app=demand act=upload}?&r='+r,
+        type:"post",
+        success: function(res) {
+            var res = $.parseJSON(res);
+            if(res.done==true){
+                var _html = '<li><!-- <input type="text" readonly="readonly" disabled="disabled" value="'+res.retval.name+'"/> -->\
+                <img src="'+res.retval.src+'" width="80" height="80" />\
+                <input class="demand_ajunct" type="hidden" name="adjunct[]" value="'+res.retval.src+'">\
+                <a href="javascript:void(0)" class="remove_ajunct" onclick="remove_ajunct($(this))">X</a>\
+                </li>';
+                $("#ul_li").append(_html);
+                $('#wait_up').html('');
+                $('#up_file').val('');
+                if($('.demand_ajunct').size() >= 5){
+                    $("#up_file").attr('disabled','disabled');
+                }
+                return;
+            }else{
+                alert(res.msg)
+            }
+        }
+    });
+});
+
+function remove_ajunct ($this) {
+    $this.parent('li').remove();
+    if($('.demand_ajunct').size() < 5){
+        $("#up_file").attr('disabled',false);
+    }
+}
+
+
+</script>
+
+<div class="w">
+  <div class="footer">
+    <p>&copy;alicaifeng.com 版权所有&nbsp;&nbsp;&nbsp;客服中心：service@alicaifeng.com</p>
+    <p>鲁ICP备10207738    京公网安备110106010015号</p>
+  </div>
+</div>
+
+
+</body>
+</html>

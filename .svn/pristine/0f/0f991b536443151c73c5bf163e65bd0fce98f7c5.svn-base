@@ -1,0 +1,79 @@
+{include file=../header-new.html}
+<title>我的顾客信息</title>
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+	{include file=member.menu.html}
+     <div class="user_right user_rights fr">
+     
+		<div class="lntegral">
+        	<p class="mlntegral fl">{$customer_name}的量体数据</p>
+        </div>
+        <div class="recently">
+            <table width="900" frame="void" rules="none" cellspacing="0" class="megkxx">
+              <tr class="first">
+                <td width="280">门店</td>
+                <td width="150">量体师</td>
+                <td>量体日期</td>
+                <td>操作</td>
+              </tr>
+           {foreach from=$figure item=fig}   
+              <tr>
+                <td>{$fig.serve_name}</td>
+                <td>{$fig.liangti_name}</td>
+                <td>{$fig.lasttime}</td>
+                <td class="xsyc xsycs"><p class="see">查看</p></td>
+              </tr>
+              <tr class="info hide">
+                <td colspan="4" style="border:none;">
+                  	<div class="mygkltsj">
+                  		<ul>
+                  		{foreach from=$fig.figure_info item=figu}
+                          <li>{$figu.name}：{$figu.val}</li>
+                       	{/foreach}
+                  		</ul>
+                  		<ul>
+                       	<li>着装风格</li>
+                       	{foreach from=$fig.style item=sty}
+                          <li>{$sty.name}：{$sty.val}</li>
+                        {/foreach}
+                  		</ul>
+                  		<ul>
+                        <li>特殊体型</li>
+                       	{foreach from=$fig.feature item=feat}
+                          <li>{$feat.name}：{$feat.val}</li>
+                        {/foreach}
+                  		</ul>
+                  		<ul>
+                       	<li>大衣着装习惯</li>
+                       	<!-- {if $fig.styleDY eq '0A01'} -->
+                          <li>穿西服不套大衣</li>
+                      <!-- {else} -->
+                          <li>穿西服套大衣</li>
+                      <!-- {/if} -->
+                  		</ul>
+                  	</div> 
+                </td>
+              </tr>
+              {/foreach}
+            </table>
+        </div>
+    </div>
+</div>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/usercenter.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>
+
+
+<script type="text/javascript">
+$(".see").click(function(){
+	var info=$(this).parents('tr').next('.info');
+	if(info.is(':visible')){
+		info.hide();
+	}else{
+		info.show().siblings('.info').hide();	
+	}
+});
+</script> 
+</body>
+</html>

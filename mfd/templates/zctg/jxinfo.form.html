@@ -1,0 +1,67 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+  
+    <li><a class="btn1" href="index.php?app=jx&amp;page={$page}&amp;field_name={$field_name}&amp;field_value={$field_value}&amp;member_lv_id={$member_lv_id}&amp;gender={$gender}&amp;add_time_to={$add_time_to}&amp;add_time_from={$add_time_from}">返回{$lang.manage}</a></li>
+  </ul>
+</div>
+
+
+<div class="tdare">
+ <form method="post" action="index.php?app=bookrefund&act=process" method="POST">
+  <table width="100%" cellspacing="0" border="1">
+    
+    <tr class="tatr2">
+      <td width="100" class="firstCell" align="right">ID：</td>
+      <td align="left">{$list.user_id}</td>
+    </tr>
+    
+        <tr class="tatr2">
+      <td width="100" class="firstCell" align="right">会员账号：</td>
+      <td align="left">{$list.user_name}</td>
+    </tr>
+    
+        <tr class="tatr2">
+      <td width="50" align="right">当前等级：</td>
+      <td align="left">{$list.member_lv_id}</td>
+    </tr>
+            <tr class="tatr2">
+      <td width="100" class="firstCell" align="right">真实姓名：</td>
+      <td align="left">{$list.real_name}</td>
+    </tr>
+    
+     <tr class="tatr2">
+      <td width="100" class="firstCell" align="right">所在地区：</td>
+      <td align="left">{$list.region_name}</td>
+    </tr>
+    
+     <tr class="tatr2">
+      <td width="100" class="firstCell" align="right">注册时间：</td>
+      <td align="left">{$list.reg_time}</td>
+    </tr>
+      <tr class="tatr2">
+      <td width="100" class="firstCell" align="right">性别：</td>
+      <td align="left">{$list.gender}</td>
+    </tr>
+    
+    <tr class="tatr2">
+      <td width="100" class="firstCell" align="right">QQ：</td>
+      <td align="left">{$list.im_qq}</td>
+    </tr>
+    <tr class="tatr2">
+      <td width="100" class="firstCell" align="right">生日：</td>
+      <td align="left">{$list.birthday}</td>
+    </tr>
+    <tr class="tatr2">
+      <td width="100" class="firstCell" align="right">Email：</td>
+      <td align="left">{$list.email}</td>
+    </tr>
+    <tr class="tatr2">
+      <td width="100" class="firstCell" align="right"><b>受邀人：</b></td>
+      <td align="left">{$list.inviter}</td>
+    </tr>
+
+  </table>
+</form>
+</div>
+{include file="footer.html"}

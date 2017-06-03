@@ -1,0 +1,151 @@
+{include file=header2.html}
+<link rel="stylesheet" type="text/css" href="/static/css/market_demand.css">
+<div class="w">
+ <h1 class="xqlb">TA们的定制需求：</h1>
+ 
+ <div class="zhpx_box clearfix">
+  <ul>
+   <li><a href="{link app=demand act=lists arg0=1 arg1=1}{$sckey}" class="{if $sort == '1'}on{/if} list-sort" data-by="all" data-sort="1">综合</a></li>
+   <li><a href="{link app=demand act=lists arg0=1 arg1=4}{$sckey}" class="{if $sort == '4'}on{/if} list-sort" data-by="price" data-sort="1">价格</a></li>
+   <li><a href="{link app=demand act=lists arg0=1 arg1=2}{$sckey}" class="{if $sort=='2'}on{/if} list-sort" data-by="time" data-sort="1">时间</a></li>
+   <li style="background:none;"><a href="{link app=demand act=lists arg0=1 arg1=3}{$sckey}" class="{if $sort == '3'}on{/if} list-sort" data-by="take" data-sort="1">参与人数</a></li>
+  </ul>
+  <div>
+  
+   <input type="text" id="search_demand_key" value="{if $smarty.get.sc}{$smarty.get.sc}{else}请输入你想找的...{/if}" onfocus="if(value=='请输入你想找的...'){value=''}" onblur="if(value==''){value='请输入你想找的...'}"  class="input_1"/>
+   <input type="submit" value="" id="search_demand" class="input_2"/>
+   <script>
+   $('#search_demand').click(function(){
+       var _value = $('#search_demand_key').val();
+       //if(_value=='请输入你想找的...')return;
+       if(_value=='请输入你想找的...'){
+           location.href='{link app=demand act=lists $arg0=1}'
+       }else{
+           location.href='{link app=demand act=lists $arg0=1}?sc='+_value
+       }
+       
+   })
+   </script>
+  </div>
+ </div>
+ 
+<ul class="xqlb_ul">
+{foreach from=$list item=lst}
+  <li class="clearfix">
+      <a href="{link app=demand arg=$lst.md_id}">
+           <p class="p1"><img src="{$lst.avatar}" /></p>
+           <div class="div_1"{if !$lst.remark} style="padding-top:16px"{/if}>
+             <h1 class="clearfix">
+              <font>¥{$lst.params.4.val}</font>
+              <span class="fl">{$lst.md_title}</span>
+              {if $lst.md_type =='diy'}
+                  <div class="tip">成衣
+                   <p>来自挑款式的需求<img src="../../static/img/jt.png" /></p>
+                  </div>
+              {/if}
+              {if $lst.md_type =='suit'}
+                  <div class="tip">成衣
+                   <p>来自挑款式的需求<img src="../../static/img/jt.png" /></p>
+                  </div>
+              {/if}
+              {if $lst.md_type =='lin'}
+                  <div class="tip">面
+                   <p>来自面料定制的需求<img src="../../static/img/jt.png" /></p>
+                  </div>
+              {/if}
+             </h1>
+             {if $lst.remark}<p>备注： {$lst.remark}....</p>{/if}
+           </div>
+           <p class="p2"><font>{$lst.take_in}</font>人参与</p>
+           <p class="p3">{$lst.add_time|date:Y-m-d}<span>{$lst.add_time|date:H:i}</span></p>
+       </a>
+  </li>
+ {foreachelse}
+  <li class="errorTip">
+  	<p>很抱歉，没有找到您需要的内容！</p>
+  	<a href="{link app=demand act=lists}">&lt;&lt; 返回需求中心</a>
+  </li>
+{/foreach}
+
+ </ul>
+</div>
+
+
+
+
+<!-- // Main -->
+{if $list}
+<!--翻页开始-->
+
+
+<div class="page_box clearfix">
+  <div class="page">
+  <a href="{$pageList.prepage}">上一页</a>
+  {if $pageList.count > 10}
+    {foreach from=$pageList.list item=pi name=__pi}
+    {if $smarty.foreach.__pi.iteration < 9}
+        <a href="{$pi.url}" {if $page==$pi.id} class="on"{/if} >{$pi.id}</a>
+    {/if}
+    {/foreach}
+    <span>...</span>
+    <a href="{$pageList.epage}">{$pageList.count}</a>
+  {else}
+	  {foreach from=$pageList.list item=pi name=__pi}
+	  <a href="{$pi.url}" {if $page==$pi.id} class="on"{/if} >{$pi.id}</a>
+	  {/foreach}
+  {/if}
+  <a href="{$pageList.nextpage}">下一页</a>
+  <span>{$page}/{$pageList.count}</span>
+  <span>去<input id="jump-page-num" type="text" value="">页</span><a href="javascript:void(0)" id="jump-page">确定</a>
+  </div>
+</div>
+<!--翻页结束-->  
+{/if}
+<script>
+twoMenu()// 顶部二级菜单
+anav()//地区导航
+$('.xqlb_ul .tip').hover(function(){
+    $(this).find('p').fadeIn(400);  
+},function(){
+    $(this).find('p').hide()    
+})
+{if $list}
+  $('#jump-page').click(function(){
+      var _page = $('#jump-page-num').val();
+      if(_page>{$pageList.count}){
+          location.href='{$pageList.epage}'
+      }else{
+          location.href = 'demand-lists-'+_page+'-{$sort}.html';
+      }
+      
+      
+  })
+{/if}
+/*
+  $('.list-sort').click(function(){
+      var _this = $(this);
+      var _by   = _this.data('by');
+      var _sort = _this.data('sort');
+      $.ajax({
+          url : window.location.href,
+          data : "&by="+_by+"&sort="+_sort,
+          type :'post',
+          success : function(res){
+             var res =  $.parseJSON(res);
+             if(res.done == true){
+                 $('.list-sort').each(function(){
+                     $(this).removeClass('on');
+                 })
+                 _this.addClass('on');
+                 $('.xqlb_ul').html(res.retval.content)
+             }
+
+          }
+      })
+  })
+  */
+  </script>
+
+
+
+{include file=footer.html}

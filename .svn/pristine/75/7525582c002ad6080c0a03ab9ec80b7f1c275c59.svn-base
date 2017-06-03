@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>阿里裁缝登录</title>
+<link rel="stylesheet" type="text/css" href="/static/css/login.css">
+<script type="text/javascript" src="/static/expand/jquery.js"></script>
+<script  type="text/javascript" src="/static/js/public.js"></script>
+</head>
+
+<body>
+<div class="myForm">
+    <div id="error"></div>
+    <div class="item">
+        <div class="tit"> 帐号： </div>
+        <input type="text" class="txt" data-type="phone|emall" data-placeholder="手机/邮箱" id="name">
+    </div>
+    <div class="item">
+        <div class="tit"> 密码： </div>
+        <input type="password" class="txt" id="pwd"  data-type="pwd" id="pwd" onkeyup="enter(event,_login)">
+    </div>
+    <p class="p">
+          <label class="fl">
+            <input type="checkbox" id="memory">
+            记住密码（两星期内有效） </label>
+          <a class="fr" target="_blank" href="#">忘记密码？</a>
+    </p>
+    <div class="btnBox">
+        <a href="javascript:void(0)" class="login fl" onclick="_login()"><span>登录</span></a>
+        <a href="/member-register.html" target="_blank" class="reg fr"><span>注册新帐号</span></a>
+    </div>
+</div>
+<script>
+function _login(){
+    if($('#name').val()==''||$('#name').val()==$('#name').attr('data-placeholder')){
+        $('#error').html('<i class="ico fl"></i><span class="fl">用户名不能为空</span>');
+        $('#name').addClass('error-css').focus(function(){
+            $(this).removeClass('error-css');
+            $('#error').html('');   
+        });
+        return
+    }else if($('#pwd').val()==''||$('#pwd').val()==$('#pwd').attr('data-placeholder')){
+        $('#error').html('<i class="ico fl"></i><span class="fl">密码不能为空</span>');
+        $('#pwd').addClass('error-css').focus(function(){
+            $(this).removeClass('error-css');
+            $('#error').html('');   
+        });
+        return  
+    }
+    var isMemory=document.getElementById('memory').checked;
+    $.ajax({
+        url:'/ajax-ajaxLogin.html',
+        type: "POST",
+        dataType: "json",
+        data:{
+        	username:$('#name').val(),
+            pwd:$('#pwd').val(),
+            remember:isMemory 
+        },
+        success: function(res){
+        	if(res.status == 1)
+        	{
+        		//console.log(res.data.ret_url);
+        		//关闭弹层
+        		window.parent.layer.close(window.parent.loginPop);
+        		
+        		//window.parent.location.href = res.data.ret_url;
+        	}else{
+        		 $('#error').html("<i class='ico fl'></i><span class='fl'>"+res.msg+"</span>");  
+        	}
+        },
+        error:function(){}  
+    })
+}
+</script>
+</body>
+</html>

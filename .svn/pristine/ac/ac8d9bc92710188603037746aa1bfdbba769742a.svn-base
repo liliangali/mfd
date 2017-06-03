@@ -1,0 +1,212 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#user_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            user_name : {
+                required : true,
+                byteRange: [3,15,'{$charset}'],
+                remote   : {
+                    url :'index.php?app=user&act=check_user',
+                    type:'get',
+                    data:{
+                        user_name : function(){
+                            return $('#user_name').val();
+                        },
+                        id : '{$user.user_id}'
+                    }
+                }
+            },
+            password: {
+                <!--{if $smarty.get.act eq 'add'}-->
+                required : true,
+                <!--{/if}-->
+                maxlength: 20,
+                minlength: 6
+            },
+            email   : {
+//                required : true,
+                email : true
+            }
+            {if !$set_avatar}
+            ,
+            portrait : {
+                accept : 'png|gif|jpe?g'
+            }
+            {/if}
+        },
+        messages : {
+            user_name : {
+                required : '{$lang.user_not_empty}',
+                byteRange: '{$lang.user_length_limit}',
+                remote   : '{$lang.name_exist}'
+            },
+            password : {
+                <!--{if $smarty.get.act eq 'add'}-->
+                required : '{$lang.password_empty}',
+                <!--{/if}-->
+                maxlength: '{$lang.password_limit}',
+                minlength: '{$lang.password_limit}'
+            },
+            email  : {
+//                required : '{$lang.email_not_empty}',
+                email   : '{$lang.currect_email}'
+            }
+            {if !$set_avatar}
+            ,
+            portrait : {
+                accept : '{$lang.note_portrait}'
+            }
+            {/if}
+        }
+    });
+});
+
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=user">{$lang.manage}</a></li>
+    <li>
+      <!-- {if $user.user_id} -->
+<!--       <a class="btn1" href="index.php?app=user&amp;act=add">{$lang.add}</a> -->
+      <!-- {else} -->
+      <span>{$lang.add}</span>
+      <!-- {/if} -->
+    </li>
+        <li><a class="btn1" href="index.php?app=user&amp;act=admin_userlog">日志查询</a></li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="user_form">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> {$lang.user_name}:</th>
+        <td class="paddingT15 wordSpacing5"><!-- {if $user.user_id} -->
+          {$user.user_name|escape}
+          <!-- {else} -->
+          <input class="infoTableInput2" id="user_name" type="text" name="user_name" value="{$user.user_name|escape}" />
+          <label class="field_notice">{$lang.user_name}</label>
+          <!-- {/if} -->        </td>
+      </tr>
+      
+
+      <!--<tr>
+        <th class="paddingT15"> 会员类型:</th>
+        <td class="paddingT15 wordSpacing5">  
+            <select id="lv_type" name="lv_type">
+            {html_options options=$tname selected=1}
+            </select>    
+         </td>
+      </tr>
+          <tr>
+        <th class="paddingT15"> 会员等级:</th>
+        <td class="paddingT15 wordSpacing5" id="member_lv_id">  
+            <select name="member_lv_id">
+            {foreach from=$lvs item=l}
+            <option value="{$l.member_lv_id}" {if $l.member_lv_id eq $user.member_lv_id}selected=""{/if}>{$l.name}</option>
+            {/foreach} 
+            </select>    
+         </td>
+      </tr> -->
+      <tr>
+        <th class="paddingT15"> {$lang.password}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="password" type="text" id="password" />
+          <!--{if $user.user_id} -->
+          <span class="grey">{$lang.note_password}</span>
+          <!-- {/if} -->        </td>
+      </tr>
+
+
+      <tr>
+        <th class="paddingT15"> {$lang.email}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="email" type="text" id="email" value="{$user.email|escape}" />
+            <label class="field_notice">{$lang.email}</label>        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.real_name}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="real_name" type="text" id="real_name" value="{$user.real_name|escape}" />        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.gender}:</th>
+        <td class="paddingT15 wordSpacing5"><p>
+            <label>
+            <input name="gender" type="radio" value="0" {if $user.gender eq 0}checked="checked"{/if} />
+            {$lang.unknown}</label>
+            <label>
+            <input type="radio" name="gender" value="1" {if $user.gender eq 1}checked="checked"{/if} />
+            {$lang.male}</label>
+            <label>
+            <input type="radio" name="gender" value="2" {if $user.gender eq 2}checked="checked"{/if} />
+            {$lang.female}</label>
+          </p></td>
+      </tr>
+      
+      {if $invitation}
+      <tr>
+        <th class="paddingT15">绑定时间:</th>
+        <td class="paddingT15 wordSpacing5">{$invitation.add_time|date:complete}</td>
+      </tr>
+      
+      <tr>
+        <th class="paddingT15">绑定信息:</th>
+        <td class="paddingT15 wordSpacing5">{$invitation.name}</td>
+      </tr>
+      {/if}
+      
+
+     {if !$set_avatar}
+<!--       <tr>
+        <th class="paddingT15">{$lang.portrait}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableFile2" type="file" name="portrait" id="portrait" />
+          <label class="field_notice">{$lang.note_portrait}</label>
+          {if $user.portrait}<br /><img src="../{$user.portrait}" alt="" width="100" height="100" />{/if}           </td>
+      </tr> -->
+     {else}
+        <!--{if $smarty.get.act eq 'edit'}-->
+      <tr>
+        <th class="paddingT15">{$lang.portrait}:</th>
+        <td class="paddingT15 wordSpacing5">{$set_avatar}</td>
+      </tr>
+        <!--{/if}-->
+     {/if}
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+        <input type="hidden" value="{$user.user_name}" name="log_user_name">
+        <input type="hidden" value="{$tid}" name="log_lv_type">
+        <input type="hidden" value="{$user.member_lv_id}" name="log_member_lv_id">
+        <input type="hidden" value="{$user.password}" name="log_password">
+        <input type="hidden" value="{$user.email}" name="log_email">
+        <input type="hidden" value="{$user.real_name}" name="log_real_name">
+        <input type="hidden" value="{$user.gender}" name="log_gender">
+        <input type="hidden" value="{$user.im_qq}" name="log_im_qq">
+        <input type="hidden" value="{$user.im_msn}" name="log_im_msn">
+        <input class="congzi" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<script>
+//$('#lv_type').change(function(){
+//
+//	$.post("/admin/index.php?app=user&act=getLvs",{mty:$(this).children('option:selected').val()}, function(res){
+//	   var res = eval("("+res+")");
+//	   console.log(res.retval.content);
+//	   if(res.done == true){
+//	        $("#member_lv_id").html(res.retval.content);
+//	    }
+//	});
+//
+//	});
+	
+
+</script>
+{include file="footer.html"}

@@ -1,0 +1,383 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="pragma" content="no-cache">
+<title>mfd</title>
+<style>
+*{ margin:0; padding:0;}
+body{ font-size:14px; background:#f8f8f8; min-width:320px;}
+a{ color:#21d0fd; text-decoration:none;}
+.orange{ color:#f50;}
+.switch { border: 1px solid #d9d9d9; border-radius: 11px; height: 22px; width: 50px; transition: all ease .2s; -webkit-transition: all ease .2s; }
+.switch .point { background: #eee none repeat scroll 0 0; border-radius: 50%; height: 20px; margin: 1px 0 0 1px; width: 20px; transition: all ease .2s; -webkit-transition: all ease .2s; display:block; }
+.switch.cur { background: #21d0fd; border-color: #21d0fd; }
+.switch.cur .point { margin: 1px 0 0 29px; background: #fff; }
+.kuka dt{ height:30px; line-height:30px; border-bottom:solid 1px #dfdfdf; border-top:solid 1px #dfdfdf; padding:5px 15px 0; color:#999;}
+.kuka dd{ background:#fff; overflow:hidden;}
+.kuka .payWay .item{ height:50px; line-height:50px; padding-left:75px; position:relative;}
+.kuka .payWay .item.cur:after{ content:''; width:20px; height:20px; background:url(http://m.mfd.cn/static/img/m_icon.png) left -20px no-repeat; background-size:16px 200px; position:absolute; right:15px; top:16px; z-index:10;}
+.kuka .payWay .item p{ border-bottom:solid 1px #dfdfdf; padding:0 5px;}
+.kuka .payWay img{ width:50px; float:left; margin:10px 0 0 -60px;}
+.kuka .yue .balance span{ color:#999; margin-left:5px;}
+.kuka .yue .balance{ line-height:50px; padding-left:15px;}
+.kuka .yue .useBalance{ clear:both; border-top:solid 1px #dfdfdf; line-height:50px; margin:0 15px; color:#666; display:none;}
+.kuka .yue .useBalance input{ width:50px; text-align:center; height:25px; box-sizing:border-box; margin:0 5px; border:solid 1px #ddd;}
+.kuka .yue .useBalance .num{ margin-left:10px; color:#f50;}
+.kuka .yue .switch{ float:right; margin-top:12px; margin-right:15px;}
+.kuka .price { line-height:50px; margin:0 15px; border-bottom:solid 1px #ddd; margin-bottom:-1px;}
+.kuka .price span{ float:right;}
+.addCart{ height:45px;}
+.addCart .fixed{ position:fixed; width:100%; height:45px; line-height:45px; background:#fff; bottom:0; left:0;}
+.addCart button{ float:right; height:100%; padding:0 25px; background:#21d0fd; color:#fff; border:0; font-size:16px;}
+.addCart p{ padding-left:15px; font-size:16px; color:#999;}
+.payPwd { padding:0 30px;}
+.payPwd .tit{ font-size:16px;}
+.payPwd .price{ margin-bottom:10px;}
+.payPwd input{ border:solid 1px #dfdfdf; width:180px; height:25px; text-align:center; display:block; margin:0 auto;}
+.luck-con{ color:#333;}
+.luck-btn-box .no{ color:#21d0fd}
+.luck-btn-box .yes{ color:#666}
+
+.kuka .ktb .balance span{ color:#999; margin-left:5px;}
+.kuka .ktb .balance{ line-height:50px; padding-left:15px;}
+.kuka .ktb .useBalance1{ clear:both; border-top:solid 1px #dfdfdf; line-height:50px; margin:0 15px; color:#666; display:none;}
+.kuka .ktb .useBalance1 input{ width:50px; text-align:center; height:25px; box-sizing:border-box; margin:0 5px; border:solid 1px #ddd;}
+.kuka .ktb .useBalance1 .num{ margin-left:10px; color:#f50;}
+.kuka .ktb .switch{ float:right; margin-top:12px; margin-right:15px;}
+
+.shdz { height:auto !important; line-height:20px !important; padding:0 15px 10px 0 !important; margin:10px 0 10px 15px; border-bottom:1px solid #ddd;}
+.kuka .shdz.cur:after{position:absolute; left:0px !important; top:0px !important; z-index:10;}
+.shrxx { border-bottom:none !important; padding-left:25px !important;}
+.shrxx span {padding-left:15px;}
+.shdz:last-of-type{ border:none; padding-bottom:0 !important;}
+.cpxx { overflow:hidden; padding:20px 15px;}
+.ml { float:left; width:60px; height:60px;}
+.ml img {width:60px; height:60px;}
+.jg { float:left; height:60px; line-height:60px; overflow:hidden; padding-left:10px;}
+.jg span { padding:0 10px;}
+.jg input {width:80px;  background:none; border:none;}
+</style>
+
+</head>
+
+<body>
+<div class="main">
+	<dl class="kuka">
+       <dt>收货人信息</dt>
+       <dd class="payWay address">
+         {if $address}
+        {foreach from=$address item=addr name=loop}
+        <div class="item shdz {if $addr.addr_id eq $defAddr}cur{/if} {if !$defAddr && $smarty.foreach.loop.iteration eq 1}cur{/if}" data-address="{$addr.addr_id}">
+          <p class="shrxx">{$addr.consignee}<span>{if $addr.phone_mob}{$addr.phone_mob}{else}{$addr.phone_tel}{/if}</span></p>
+          <p class="shrxx">{$addr.region_name}<span>{$addr.address}</span></p>
+	    </div>
+        {/foreach}
+        {else}请到用户中心管理自己的收货地址
+        {/if}
+       </dd>
+       
+       <dt>产品信息</dt>
+       <dd class="cpxx">        
+         <p class="ml"><img src="{$book.img}"></p>
+         <p class="jg">价格：{$book.price|price}<span>x</span>{$book.number}</p>
+       </dd>
+    
+		<dt>支付方式</dt>
+		<dd class="payWay payment">
+		{foreach from=$payments item=pmt name=lpmt}
+			<div class="item alipay {if $smarty.foreach.lpmt.first} cur {/if}" data-payment="{$pmt.payment_id}">
+				<img src="http://r.cotte.cn/cotte/wap/images/alipay.gif">
+				<p>移动支付宝</p>
+			</div>
+		{/foreach}
+		</dd>
+        
+        <dt>配送方式</dt>
+		<dd class="payWay shipping">
+		{foreach from=$shippings item=ship name=loop key=key}
+          <div class="item alipay  {if $smarty.foreach.loop.first} cur {/if}"  style="padding-left:15px" data-shipping="{$key}">
+              <p>{$ship}</p>
+          </div>
+        {/foreach}
+		</dd>
+        
+        <dt>麦富迪币支付</dt>
+		<dd class="ktb">
+			<div class="switch" id="ktb"><p class="point"></p></div>
+			<p class="balance">麦富迪币<span>{$mInfo.coin|default:0} 个可用</span></p>
+			<div class="useBalance1">
+				使用<input type="text" name="useCoin">麦富迪币,<span class="num orange">-{$total.useCoin} 个</span>
+			</div>
+		</dd>
+        
+		<dt>余额支付</dt>
+		<dd class="yue">
+			<div class="switch" id="yue"><p class="point"></p></div>
+			<p class="balance">余额<span>{$mInfo.money|price} 元可用</span></p>
+			<div class="useBalance">
+				使用<input type="text" name="useSurplus">余额,<span class="num orange">-{$total.useSurplus|price} 元</span>
+			</div>
+		</dd>
+        
+		<dt>支付金额</dt>
+		<dd>
+        <p class="price"><span class="orange">{$total.goods_amount|price}</span>面料册金额</p>
+        <p class="price total_surplus" style="display:none;"><span class="orange">{$total.useSurplus|price}</span>使用余额</p>
+        <p class="price total_coin" style="display:none;"><span class="orange">{$total.useCoin|price}</span>使用麦富迪币</p>
+		</dd>
+	</dl>
+	
+	 <div class="addCart">
+	 	<div class="fixed">
+		   <button id="addCart">立即支付</button>
+		   <p class="price">实付款：<span class="orange total_amount">{$total.order_amount|price}</span></p>
+	    </div>
+	 </div>
+</div>
+<form action="{link app=order act=goToPay}" id="payform" method="post">
+<input type="hidden" name="obj" value="order" />
+<input type="hidden" name="os" value="" />
+</form>
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script src="http://r.cotte.cn/global/luck/mobile/luck.js"></script>
+<script>
+var ispay = {if $mInfo.pay_password} true {else} false{/if};
+var amount = {$total.order_amount};
+var storage = window.localStorage;
+storage.clear();
+storage.setItem("_surplus", {$mInfo.money|default:0});
+storage.setItem("_coin", {$mInfo.coin|default:0});
+storage.setItem("useSurplus", 0);
+storage.setItem("useCoin",    0);
+
+//公用切换
+function _switch(fn){
+	var $this=$(this),flag=false;
+	if($this.hasClass('cur')){
+		$this.removeClass('cur');
+		flag=false;	
+	}else{
+		$this.addClass('cur');
+		flag=true;		
+	}
+	if(typeof fn =='function'){
+		fn(flag)	
+	}
+	return flag	
+}
+
+$(document).ready(function(){
+	//余额
+	$('#yue').click(function(){
+		var _self=this;
+		_switch.call(this,function(obj){
+			if(obj){
+				if(ispay == false){
+	    			luck.open({
+	    				content:'为了您的账户资金安全，余额支付时需要启用支付密码。',	
+	    				btn:['取消','确定'],
+	    				yes:function(){
+	    					luck.close();	
+	    				},
+	    				no:function(){
+	    					luck.close();
+	    					try{
+	    						app.toSetPayPassword()
+	    				    }catch(e){}
+	    				    
+	    					location.href="http://www.gosetpassword.com";
+	    				}
+	    			});
+				}
+				$(".yue input[name=useSurplus]").val(parseFloat(storage.getItem("_surplus"))).keyup();
+				$('.useBalance').slideDown();
+			}else{
+				storage.setItem("useSurplus",0);
+				$(".total_surplus").hide();
+				finalAmount();
+				$('.useBalance').slideUp();
+			}
+		})
+	});
+
+	//麦富迪币
+	$('#ktb').click(function(){
+		_switch.call(this,function(obj){
+			if(obj){
+				if(ispay == false){
+	    			luck.open({
+	    				content:'为了您的账户资金安全，麦富迪币支付时需要启用支付密码。',	
+	    				btn:['取消','确定'],
+	    				yes:function(){
+	    					luck.close();
+	    				},
+	    				no:function(){
+	    					luck.close();
+	    					try{
+	    						app.toSetPayPassword()
+	    				    }catch(e){}
+	    				    
+	    					location.href="http://www.gosetpassword.com";
+	    				}
+	    			});
+				}
+				$(".ktb input[name=useCoin]").val(parseFloat(storage.getItem("_coin"))).keyup();
+				$('.useBalance1').slideDown();
+			}else{
+				storage.setItem("useCoin",0);
+				$(".total_coin").hide();
+				finalAmount();
+				$('.useBalance1').slideUp();
+			}
+		})
+	});
+
+	$('.payWay .item').click(function(){
+		$(this).addClass('cur').siblings().removeClass('cur');	
+	});
+   $(".ktb input[name=useCoin]").keyup(function(){
+	   var useCoin = $(this).val();
+	   
+	   if(!useCoin) useCoin = 0;
+   	   if(!/^\d+$/.test(useCoin)){
+   	   	  useCoin = parseInt(useCoin);
+   	   	  $(this).val(useCoin);
+   	   }
+   	 
+       var _coin = parseFloat(storage.getItem("_coin"));
+         //当前余额大于使用余额
+         if(useCoin > _coin){
+           $(this).val(coin);
+           useCoin = _coin;
+       }
+
+      var balance = Math.floor(amount-parseFloat(storage.getItem("useSurplus")));
+      
+      if(useCoin > balance){
+          $(this).val(balance);
+          useCoin = balance;
+      }
+
+      storage.removeItem("useCoin");
+      storage.setItem("useCoin", useCoin);
+
+      $(".ktb .orange").html(useCoin+" 个");
+
+      finalAmount();
+   })
+   
+   $(".yue input[name=useSurplus]").keyup(function(){
+		 var useSurplus = parseFloat($(this).val());
+		 if(!useSurplus) useSurplus = 0;
+	   	 if(!/^\d+$/.test(useSurplus) && !/^\d+\.\d{1,2}/.test(useSurplus)){
+	       	 _alert("请输入正确的金额");
+	       	 return false;
+	   	 }
+	   	 
+	   	 var _surplus = parseFloat(storage.getItem("_surplus"));
+	     //当前余额大于使用余额
+	     if(useSurplus > _surplus){
+	         $(this).val(_surplus);
+	         useSurplus = _surplus;
+	     }
+
+	     var balance = amount-parseFloat(storage.getItem("useCoin"));
+
+	     if(useSurplus > balance){
+	         $(this).val(balance);
+	         useSurplus = balance;
+	     }
+
+	     storage.removeItem("useSurplus");
+	     storage.setItem("useSurplus", useSurplus);
+
+	     $(".yue .orange").html("¥ "+useSurplus+" 元");
+
+	     finalAmount();
+   })
+
+    $('#addCart').click(function(){
+    	var useSurplus = parseFloat(storage.getItem("useSurplus"));
+    	var useCoin   = parseFloat(storage.getItem("useCoin"));
+    	
+    	var data = {};
+    	data.surplus = useSurplus;
+    	data.coin    = useCoin;
+    	data.payment = $(".payment .cur").data("payment");
+    	data.address = $(".address .cur").data("address");
+    	data.shipping = $(".shipping .cur").data("shipping");
+    	data.pwd = '';
+    	if(useSurplus || useCoin){
+        	luck.open({
+        		content:'<div class="payPwd"><p class="tit">请输入支付密码</p><input type="password">',
+        		btn:['取消','确定'],
+        		yes:function(){
+        			luck.close();
+        		},
+        		no:function(){
+        			var pwd = $(".payPwd input[type=password]").val();
+        			if(pwd.length < 8){
+        				_alert('支付密码错误！');
+        			    return false;
+            	    }
+            	    data.pwd = pwd;
+        			addToCart(data);
+        		}
+        	})
+    	}else{
+    		addToCart(data);
+    	}	
+    })
+})
+
+function addToCart(data){
+	$.post("buy-create.html", data, function(res){
+	    var res = eval("("+res+")");
+	    if(res.done == false){
+	        _alert(res.msg);
+	        return false;
+	    }else{
+		    if(res.retval.result){
+			    //alert(res.retval.result);
+			    location.href="buy-paycenter.html?id="+res.retval.ordersn;
+			    return false;
+		    }else{
+    	    	$("#payform input[name=os]").val(res.retval.ordersn);
+    	    	$("#payform").submit();
+		    }
+		}
+    })
+}
+
+function finalAmount(){
+	var useSurplus = parseFloat(storage.getItem("useSurplus"));
+	var useCoin   = parseFloat(storage.getItem("useCoin"));
+	if(useSurplus > 0){
+	    $(".total_surplus").show().find(".orange").html("- ¥"+useSurplus+" 元");
+    }
+	if(useCoin > 0){
+		$(".total_coin").show().find(".orange").html("- ¥"+useCoin+" 元");
+    }
+    var total = parseFloat((amount - useSurplus - useCoin).toFixed(2));
+    $(".total_amount").html("¥"+total+" 元");
+}
+
+function _alert(msg){
+	luck.open({
+		content:msg,	
+		btn:['取消','确定'],
+		yes:function(){
+			luck.close();	
+		},
+		no:function(){
+		
+			luck.close();
+			
+		}
+	});
+}
+</script>
+</body>
+</html>

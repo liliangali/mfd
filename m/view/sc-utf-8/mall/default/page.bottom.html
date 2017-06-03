@@ -1,0 +1,33 @@
+<div class="wap_fy">
+  <div class="fy_box">
+    <!--{if $page_info.prev_link}-->
+    <a class="sayiye" href="{$page_info.prev_link}{if $smarty.get.id}?id={$smarty.get.id}{/if}"><span>上一页</span></a>
+    <!--{else}-->
+    <a href="#" class="sayiye"><span>上一页</span></a>
+    <!--{/if}-->
+  </div>
+    <div class="fy_box xly">
+     <div class="fy_ys">
+     <span class="dsfye">{$page_info.curr_page} / {$page_info.page_count}</span></div>
+     <select class="syfy" onChange="window.location.href=this.value;">
+    <!--{if $page_info.first_link}-->
+    <option value="{$page_info.first_link}{if $smarty.get.id}?id={$smarty.get.id}{/if}">1&nbsp;<!--{$page_info.first_suspen}--></option>
+    <!--{/if}-->
+    <option value="#" style="display:none;">-----请您选择----</option>
+    <!--{foreach from=$page_info.page_links key=page item=link}-->
+    <option value="{$link}{if $smarty.get.id}?id={$smarty.get.id}{/if}">{$page}</option>
+    <!--{/foreach}-->
+    <!--{if $page_info.last_link}-->
+    <option value="{$page_info.last_link}{if $smarty.get.id}?id={$smarty.get.id}{/if}"><!--{$page_info.last_suspen}-->&nbsp;<!--{$page_info.page_count}--></option>
+    <!--{/if}-->           
+       </select>
+   </div>
+  <div class="fy_box">
+    <!--{if $page_info.next_link}-->
+    <a class="xiyiye" href="{$page_info.next_link}{if $smarty.get.id}?id={$smarty.get.id}{/if}">下一页</a>
+    <!--{else}-->
+    <a href="#" class="xiyiye"><span>下一页</span></a>
+    <!--{/if}-->
+
+  </div>
+</div>

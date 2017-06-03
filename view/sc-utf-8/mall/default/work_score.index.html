@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>评选</title>
+<link href="/static/css/selection.css" rel="stylesheet" type="text/css" />
+<script type="Text/Javascript" src="/static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.masonry.js"></script>
+
+<script  type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+
+
+
+<script  type="text/javascript" src="/static/expand/layer/layer.min.js"></script>
+
+    <script  type="text/javascript" src="/static/js/work_score.js"></script>
+
+
+    <script  type="text/javascript" src="/static/js/change.city.js"></script>
+
+
+
+
+<script type="text/javascript">
+function item_masonry(){
+	$('.item img').load(function(){
+		$('.infinite_scroll').masonry({
+			itemSelector: '.masonry_brick',
+			columnWidth:365,
+			gutterWidth:52
+		});
+	});
+		 //columnWidth 函数递增控制div左边距
+	$('.infinite_scroll').masonry({
+		itemSelector: '.masonry_brick',
+		columnWidth:365,
+		gutterWidth:52
+	});
+}
+$(function(){
+    var cur_i=0;
+    var _type ="{$type}";
+    if( _type== '西服')cur_i = 1
+    if( _type== '衬衫')cur_i = 2
+    if( _type== '西裤')cur_i = 3
+    if( _type== '马甲')cur_i = 4
+    $('.tabTit span').eq(cur_i).attr("class","cur")
+
+//滚动条下拉事件
+	function item_callback(){
+		item_masonry();
+	}
+	item_callback();
+	$('.item').fadeIn();
+	var sp = 1
+	$(".infinite_scroll").infinitescroll({
+		navSelector  	: "#more",
+		nextSelector 	: "#more a",
+		itemSelector 	: ".item",
+		loading:{
+			img: "images/masonry_loading_1.gif",
+			msgText: '正在加载中....',
+			finishedMsg: '木有了,看看下一页',
+			finished: function(){
+				sp++;
+				if(sp>=10){ //到第10页结束事件
+					$("#more").remove();
+					$("#infscr-loading").hide();
+					$("#pagebox").show();
+					$(window).unbind('.infscr');
+				}
+			}
+		},errorCallback:function(){
+			$("#pagebox").show();
+		}
+	},function(newElements){
+		var $newElems = $(newElements);
+		$('.infinite_scroll').masonry('appended', $newElems, false);
+		$newElems.fadeIn();
+		item_callback();
+		return;
+	});
+});
+</script>
+</head>
+
+<body>
+	<div class="head">
+    	<div class="nav">
+            <a href="#" class="logo fl"></a>
+            <div class="navBox fr">
+                <ul class="fl">
+                    <li><a href="#" target="_blank">男士</a></li>
+                    <li><a href="#" target="_blank">活动</a></li>
+                    <li><a href="#" target="_blank">评选</a></li>
+                    <li><a href="#" target="_blank">潮流</a></li>
+                    <li><a href="#" target="_blank">体验店</a></li>
+                </ul>
+                <div class="car fl">
+                    <a href="#" target="_blank"></a>
+                </div>
+                <div class="uCenter fl">
+                    <a href="#" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+    	<div class="works">SELECTED WORKS<br /><span>作品评选</span></div>
+        <div class="workspic">
+        	<div class="tabTit">
+                <span   onclick="work_score('套装')">套装</span>
+                <span onclick="work_score('西服')">西服</span>
+                <span onclick="work_score('衬衫')">衬衫</span>
+                <span onclick="work_score('西裤')">西裤</span>
+                <span onclick="work_score('马甲')">马甲</span>
+                <a href="http://www.local.mfd.cn/work_score.html?type={$type}&sort=vote_num" class="rpic"><img src="/static/img/rpic.png" width="64" height="54" /></a></div>
+            <div class="demo ">
+              <div class="item_list infinite_scroll">
+
+                  <!--{if $work_list}-->
+                  <!--{foreach from=$work_list item=list  key=key1}-->
+                  <!--item end-->
+                  <div class="item masonry_brick">
+                      <div class="kzmdz">
+                          <a href="/work_score-info.html?id={$list.id}&type={$type}"><img src="{$list.imgurl}" /></a>
+                          <div class="fxtp">
+                              <p class="{$list.vote_sign.class}" onclick="setVote('{$list.id}','userwork');" id="work_vote_{$list.id}">{$list.vote_sign.text}</p>
+                              <p class="fenxiang fl">分享</p>
+                          </div>
+                          <div class="lyms">
+                              <h5>来源：{$list.source_from}</h5>
+                              <p class="wzmiaos">{$list.description}</p>
+                          </div>
+
+                          <!--{if $sort == 'vote_num'}-->
+                              <!--{if $key1 == 0 }-->
+                              <img src="/static/img/szypic.png" width="14" height="35" class="szypic" />
+                              <!--{/if}-->
+                              <!--{if $key1 == 1 }-->
+                              <img src="/static/img/szepic.png" width="27" height="35" class="szypic"/>
+                              <!--{/if}-->
+                              <!--{if $key1 == 2 }-->
+                              <img src="/static/img/szspci.png" width="27" height="36" class="szypic"/>
+                              <!--{/if}-->
+                          <!--{/if}-->
+                      </div>
+                  </div>
+                  <!--item end-->
+
+                  <!--{/foreach}-->
+                  <!--{else}-->
+                  空
+                  <!--{/if}-->
+
+
+              </div>
+    		</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        /*投票*/
+        function setVote(like_id,cate){
+            if(hasLogin()== 0){
+
+                login(function(){
+
+                    $.cookie("hasLogin",1);
+
+                    setVote(like_id,cate)
+                })
+                return
+            }
+//            alert(cate);
+//            return
+
+            $.ajax({
+                "url":"/index.php/ajax-setTop.html",
+                "data":  "cate="+cate+"&like_id="+like_id ,
+                "type": "GET",
+                "success": function(data) {
+                    var data = eval( "(" + data + ")" );
+                    if( data.done == false){//data.err ||
+                        msg(data.msg);
+                    }else{
+                        //投票改成 已投票   和前端沟通   可能只是需要改个class
+                        $("#work_vote_"+like_id).attr('class',"toupiao toupiaos fl");
+                        $("#work_vote_"+like_id).text("已投票");
+
+                        msg('投票成功');
+                    }
+                }
+            });
+        }
+
+
+    </script>
+                <div class="clear"></div>
+
+    <!--翻页开始-->
+    <div class="cc_page">
+        <!--{if $page_info.prev_link}-->
+        <a href="{$page_info.prev_link}?type={$type}" title="上一页" class="zjt">&lt;</a>
+        <!--{/if}-->
+        <!--{foreach from=$page_info.page_links key=page item=link}-->
+        <!--{if $page_info.curr_page eq $page}-->
+        <span class="active">{$page}</span>
+        <!--{else}-->
+        <a href="{$link}?type={$type}">{$page}</a>
+        <!--{/if}-->
+        <!--{/foreach}-->
+        <!--{if $page_info.next_link}-->
+        <a href="{$page_info.next_link}?type={$type}" title="下一页" class="zjt">&gt;</a>
+        <!--{/if}-->
+    </div>
+    <!--翻页结束-->
+
+
+
+    <div class="footer">
+    	<div class="footers">
+            <div class="contact fl">mfd联系方式<br /><br />TEL:4009-899-899<br />Email：mfd@mfd.cn</div>
+            <div class="time fl">mfdmfd体验店营业时间<br /><br />周一 至 周五 : 11:00am - 08:30pm<br />周末、节假日 : 11：00am - 09:00pm</div>
+            <div class="scanning fl">@2015 mfd.cn<br />All&nbsp;rights&nbsp;reserved<br /><br /><img src="../../static/img/hd_icon6.png" width="367" height="47" /></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+body {background:url(/public/static/pc/images/bgsc.png) left top repeat;}
+.container{margin:0 auto; max-width:1200px;}
+
+/*创业故事*/
+.banner {width:100%;}
+.banner img {width:100%; display:block;}
+
+.cygs_bt {height:196px; background:#fff; padding-top:100px;}
+.cygs_bt h1 {font-size:32px; line-height:60px; color:#333; text-align:center; font-weight:normal;}
+.cygs_bt h1 span {border-bottom:1px solid #000; padding-bottom:5px;}
+.cygs_bt p {font-size:14px; color:#717171; line-height:30px; text-align:center; margin-top:25px;}
+
+.menu{ width:100%; margin:0 auto; margin-top:50px; overflow:hidden;}
+.menu .brick{margin-top:30px;overflow:hidden; width:105%; position:relative;}
+.menu .brick .item {width:285px; margin:0 20px 20px 0; border-bottom:3px solid #dadedf; background:#fff; text-align:center;}
+.menu .brick .item:hover { border-bottom:3px solid #000;}
+.menu .brick .item img{width:285px; display:block;}
+.menu .brick .item .cygs_lr {padding:20px 20px 28px 20px; text-align:left;}
+.menu .brick .item .cygs_lr h1 {font-size:18px; color:#333; line-height:28px; font-weight:normal;}
+.menu .brick .item .cygs_lr h1 span {border-bottom:1px solid #000; padding-bottom:6px;}
+.menu .brick .item .cygs_lr .p1 {font-size:14px; color:#8c8c8c; margin:15px 0 20px 0; line-height:18px; overflow:hidden;}
+.menu .brick .item .cygs_lr .p2 {font-size:14px; color:#717171; line-height:24px;}
+
+.zzjz_box {width:100%; height:85px; background:#fff; margin-top:30px; padding-top:25px;}
+.jzz {font-size:18px; color:#717171; width:110px; margin:0 auto; background:url(/public/static/pc/images/jzz.png) left 3px no-repeat; height:20px; line-height:20px; padding-left:26px;}
+
+
+@media (min-width:1px) and (max-width:979px){
+.container { width:768px; }
+
+}
+
+@media (min-width: 980px) and (max-width:1023px){
+.container { width: 980px; }
+
+
+}
+
+@media (min-width: 1024px) and (max-width:1439px) {
+.container { width:1024px;}
+
+
+}
+
+
+@media (min-width: 1440px) and (max-width:1540px) {
+.container { width:1440px; }
+
+}
+
+

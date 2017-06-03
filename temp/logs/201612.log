@@ -1,0 +1,95 @@
+Thu, 01 Dec 2016 11:24:03 +0800	[2]Missing argument 2 for Cyteam\Comment\Comment::cut_str(), called in /Applications/MAMP/htdocs/mfd2/vendors/Cyteam/Comment/Comment.php on line 76 and defined	vendors/Cyteam/Comment/Comment.php	87
+Thu, 08 Dec 2016 14:58:44 +0800	[256]MySQL Error[1305]: FUNCTION project_mfdplatform.cate_id does not exist
+MySQL Query:SELECT *,fbc.cate_id FROM cf_fbcategory fbc WHERE cate_id (3,4,104) 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Sat, 10 Dec 2016 13:44:19 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '123456'' at line 1
+MySQL Query:SELECT *,member.user_id FROM cf_member member WHERE user_name='13969769630'' AND password='123456' 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Sat, 10 Dec 2016 13:44:23 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '123456'' at line 1
+MySQL Query:SELECT *,member.user_id FROM cf_member member WHERE user_name='13969769630'' AND password='123456' 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Sat, 10 Dec 2016 13:46:21 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '123456'' at line 1
+MySQL Query:SELECT *,member.user_id FROM cf_member member WHERE user_name='13969769630'' AND password='123456' 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Sat, 10 Dec 2016 13:46:43 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '123456'' at line 1
+MySQL Query:SELECT *,member.user_id FROM cf_member member WHERE user_name='13969769630'' AND password='123456' 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Sat, 10 Dec 2016 13:46:53 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '123456'' at line 1
+MySQL Query:SELECT *,member.user_id FROM cf_member member WHERE user_name='13969769630'' AND password='123456' 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Sat, 10 Dec 2016 13:47:48 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '96e79218965eb72c92a549dd5a330112'' at line 1
+MySQL Query:SELECT *,member.user_id FROM cf_member member WHERE user_name='13969769630'' AND password='96e79218965eb72c92a549dd5a330112' 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Sat, 10 Dec 2016 13:48:01 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '6d4a1a7899cac535dedf27c8e9241c86'' at line 1
+MySQL Query:SELECT *,member.user_id FROM cf_member member WHERE user_name='13969769630'' AND password='6d4a1a7899cac535dedf27c8e9241c86' 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Sat, 10 Dec 2016 13:48:13 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '6d4a1a7899cac535dedf27c8e9241c86'' at line 1
+MySQL Query:SELECT *,member.user_id FROM cf_member member WHERE user_name='13969769630'' AND password='6d4a1a7899cac535dedf27c8e9241c86' 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Sat, 10 Dec 2016 13:48:24 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '6d4a1a7899cac535dedf27c8e9241c86'' at line 1
+MySQL Query:SELECT *,member.user_id FROM cf_member member WHERE user_name='13969769630'' AND password='6d4a1a7899cac535dedf27c8e9241c86' 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Sat, 10 Dec 2016 13:50:02 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '6d4a1a7899cac535dedf27c8e9241c86'' at line 1
+MySQL Query:SELECT *,member.user_id FROM cf_member member WHERE user_name='13969769630'' AND password='6d4a1a7899cac535dedf27c8e9241c86' 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Mon, 12 Dec 2016 09:23:43 +0800	[2]fsockopen(): unable to connect to smtp.163.com:25 (Operation timed out)	/includes/libraries/class.smtp.php	89
+Mon, 12 Dec 2016 09:24:18 +0800	[2]fsockopen(): unable to connect to smtp.163.com:25 (Operation timed out)	/includes/libraries/class.smtp.php	89
+Mon, 12 Dec 2016 09:24:53 +0800	[2]fsockopen(): unable to connect to smtp.163.com:25 (Operation timed out)	/includes/libraries/class.smtp.php	89
+Mon, 12 Dec 2016 09:24:58 +0800	[2]fsockopen(): unable to connect to smtp.163.com:25 (No route to host)	/includes/libraries/class.smtp.php	89
+Mon, 12 Dec 2016 09:25:04 +0800	[2]fsockopen(): unable to connect to smtp.163.com:25 (No route to host)	/includes/libraries/class.smtp.php	89
+Thu, 22 Dec 2016 10:03:22 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\305\' at line 1
+MySQL Query:SELECT *,product.product_id FROM cf_products product WHERE goods_id = \305\
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Thu, 22 Dec 2016 10:08:52 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\305\' at line 1
+MySQL Query:SELECT *,product.product_id FROM cf_products product WHERE goods_id = \305\
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Thu, 22 Dec 2016 10:10:04 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '305''' at line 1
+MySQL Query:SELECT *,g.goods_id FROM cf_goods g WHERE cat_id='' AND goods_id != ''305''
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Mon, 26 Dec 2016 10:13:28 +0800	[256]MySQL Error[1054]: Unknown column 'user_id' in 'where clause'
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  user_id = '3' AND is_used = '0' AND is_invalid = '0' AND expire_time >'1482718408' AND (debit_t_id =128555 or cate in (128555))
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Mon, 26 Dec 2016 10:14:28 +0800	[256]MySQL Error[1054]: Unknown column 'is_used' in 'where clause'
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  binding_user_id = '3' AND is_used = '0' AND is_invalid = '0' AND expire_time >'1482718468' AND (debit_t_id =128555 or cate in (128555))
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Mon, 26 Dec 2016 10:14:30 +0800	[256]MySQL Error[1054]: Unknown column 'is_used' in 'where clause'
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  binding_user_id = '3' AND is_used = '0' AND is_invalid = '0' AND expire_time >'1482718470' AND (debit_t_id =128555 or cate in (128555))
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Mon, 26 Dec 2016 14:33:10 +0800	[2]implode(): Invalid arguments passed	/includes/ordertypes/news.otype.php	576
+Mon, 26 Dec 2016 14:33:26 +0800	[2]implode(): Invalid arguments passed	/includes/ordertypes/news.otype.php	576
+Mon, 26 Dec 2016 14:33:42 +0800	[2]implode(): Invalid arguments passed	/includes/ordertypes/news.otype.php	576
+Mon, 26 Dec 2016 14:34:36 +0800	[2]implode(): Invalid arguments passed	/includes/ordertypes/news.otype.php	576
+Mon, 26 Dec 2016 14:35:08 +0800	[2]implode(): Invalid arguments passed	/includes/ordertypes/news.otype.php	576
+Mon, 26 Dec 2016 14:35:35 +0800	[2]implode(): Invalid arguments passed	/includes/ordertypes/news.otype.php	576
+Mon, 26 Dec 2016 18:10:24 +0800	[256]MySQL Error[1054]: Unknown column 'binding_user_id' in 'where clause'
+MySQL Query:SELECT *,debit.id FROM cf_debit debit WHERE  binding_user_id = '3' AND use_status = 1  AND end_time >'1482747024' AND (category = '1,2' OR category in (1))
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Tue, 27 Dec 2016 10:31:29 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '))' at line 1
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  binding_user_id = '3' AND use_status = 1  AND end_time >'1482805889' AND (category = '1,2' OR category in ())
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Tue, 27 Dec 2016 10:31:38 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '))' at line 1
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  binding_user_id = '3' AND use_status = 1  AND end_time >'1482805898' AND (category = '1,2' OR category in ())
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Tue, 27 Dec 2016 10:32:58 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '))' at line 1
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  binding_user_id = '3' AND use_status = 1  AND end_time >'1482805978' AND (category = '1,2' OR category in ())
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Tue, 27 Dec 2016 10:33:00 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '))' at line 1
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  binding_user_id = '3' AND use_status = 1  AND end_time >'1482805980' AND (category = '1,2' OR category in ())
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Tue, 27 Dec 2016 10:33:21 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '))' at line 1
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  binding_user_id = '3' AND use_status = 1  AND end_time >'1482806001' AND (category = '1,2' OR category in ())
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Tue, 27 Dec 2016 10:52:49 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',))' at line 1
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  binding_user_id = '3' AND use_status = 1  AND end_time >'1482807169' AND (category = '1,2' OR category in (,,))
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Tue, 27 Dec 2016 11:18:55 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '))' at line 1
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  binding_user_id = '3' AND use_status = 1  AND end_time >'1482808735' AND (category = '1,2' OR category in ())
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Tue, 27 Dec 2016 14:10:14 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:SELECT *,order_goods.rec_id FROM cf_order_goods order_goods WHERE order_id=
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Tue, 27 Dec 2016 14:31:48 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '))' at line 1
+MySQL Query:SELECT *,voucher.id FROM cf_voucher voucher WHERE  binding_user_id = '3' AND use_status = 1  AND end_time >'1482820308' AND (category = '1,2' OR category in ())
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Thu, 29 Dec 2016 15:54:55 +0800	[2]Illegal string offset 'money'	/includes/ordertypes/news.otype.php	410
+Thu, 29 Dec 2016 15:55:30 +0800	[2]Illegal string offset 'money'	/includes/ordertypes/news.otype.php	410

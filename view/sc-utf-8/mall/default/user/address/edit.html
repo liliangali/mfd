@@ -1,0 +1,41 @@
+<script type="text/javascript" src="/static/js/address/catmlselection.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/expand/layer/layer.min.js"></script>
+<script type="text/javascript">
+//<!CDATA[
+var reginUrl = "{link app=mlselection}";
+$(function(){
+    regionInit("region");
+});
+</script>  
+ <form method="post"  id="address_form" target="iframe_post">
+            <div class='addto' >
+                    <input type="hidden" name="addr_id" value="{$data.addr_id}" id="addr_id" />
+                    <input type="hidden" name="region_id" value="{$data.region_id}" id="region_id" class="mls_id" />
+                    <input type="hidden" name="region_name" value="{$data.region_name|escape}" class="mls_names" />
+                    <input type="hidden" name="region_list" value="{$data.region_id}" id="region_list" />
+                    <input type='text' name='consignee' value="{$data.consignee}" placeholder='收货人姓名' class='tyinput' validate='required' >
+                    <input type='text' name ='phone_mob' value="{$data.phone_mob}" placeholder='11位手机号' class='tyinput' validate='required|phone' />
+                    <div id="region">
+                        <select name='text' class='tccxl' validate='required'>
+                        {if $defdata.0}
+                           {html_options options=$regionsA selected=$defdata.0}
+                        {else}
+                         {html_options options=$regionsA}
+                        {/if}
+                        </select>
+                       {if $defdata.1}
+                        <select name='text' class='tccxl tccxls' validate='required'>
+                            {html_options options=$regionsB selected=$defdata.1}
+                        </select>
+                        {/if}
+                         {if $defdata.2}
+                         <select name='text' class='fstccxl' validate='required'>
+                          {html_options options=$regionsC selected=$defdata.2}
+                        </select>
+                          {/if}
+                    </div>
+                    <p><textarea class='textwby' name='address' placeholder='路名街道或者门牌号' validate='required'>{$data.address}</textarea></p>
+                    <input type='text' value="{$data.zipcode}" name='zipcode' placeholder='邮政编码' class='tyinput' />
+                    <div class='ddbutt'><input type='button' value='取消' id='quxiao' class='ddquxiao' /><input type='button' value='保存' id='save' class='ddquxiao ddbaocun' /></div></div>
+</form>

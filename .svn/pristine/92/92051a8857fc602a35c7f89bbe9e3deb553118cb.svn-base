@@ -1,0 +1,75 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=custom&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="custom" />
+                <input type="hidden" name="act" value="index" />
+                                                 单品名称:<input type="text" value="{$query.name}" name="name" class="pick_date" />
+<!--                <select name="to_site"> -->
+<!--                 <option value="0">请选择发布的平台</option>{html_options options=$to_site selected=$query.to_site} -->
+<!--                </select> -->
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+
+            </div>
+                        <!--{if $query.name || $query.to_site}-->
+            <a class="left formbtn1" href="index.php?app=custom">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $custom_list}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left">名称</td>
+            <td>零售价格</td>
+            <td align="left">上架</td>
+            <td align="left">平台</td>
+            <td>添加时间</td>
+            <td>修改时间</td>
+            <td>{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$custom_list item=custom}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input type="checkbox" class="checkitem" value="{$custom.id}"/></td>
+            <td>{$custom.name|escape}</td>
+            <td>{$custom.price|price}</td>
+            <td>{if $custom.is_sale eq 1}是{else}否{/if}</td>
+            <td>{$to_site.$custom.to_site}</td>
+            <td>{$custom.add_time|date:complete}</td>
+            <td>{$custom.last_time|date:complete}</td>
+            <td>
+                <a href="../../custom-{$custom.id}.html" target="_blank" style="display:none;">查看</a>
+                <a href="index.php?app=custom&amp;act=edit&amp;id={$custom.id}">{$lang.edit}</a>
+                <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=custom&amp;act=drop&amp;id={$custom.id}');">{$lang.drop}</a>
+			</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $custom_list}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=custom&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

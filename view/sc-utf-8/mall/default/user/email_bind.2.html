@@ -1,0 +1,91 @@
+
+<div class="user_box">
+  {include file=member.menu.html}
+ 
+    <div class="user_right user_rights fr" >
+		<h4>修改绑定邮箱</h4>
+        <div class="verification verificationyx">
+        	<ul>
+            	<li>1.验证身份</li>
+                <li class="current">2.修改绑定邮箱</li>
+                <li>3.完成</li>
+            </ul>
+        </div>  
+        <div class="binding">
+         <form method="post" action="member-email_bind_3.html" id="email_bind2">
+            <div class="card">
+            	<p class="sjyzm fl">邮箱：</p>
+                <input type="text" class="bdinp fl" id="email" name="email" value=""/>
+                <p class="tssryz fl"></p>
+            </div>
+            <input type="submit" value="下一步"  class="bdxyb "> 
+          </form>
+        </div>
+        <div class="why">
+        	<h5>邮箱绑定有何作用</h5>
+            <p class="bdsm">1. 可将邮箱同时作为登录账号，并可用邮箱找回密码。</p>
+            <p class="bdsm">2. 用于接收订单、账户余额变动等信息。</p>
+        </div>
+    </div>
+   
+</div>
+<script>
+    var check = function () {
+    var patten = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+    var email = $('#email').val(); 
+    if(!patten.test(email)){
+
+      $(".tssryz").css({color:"red"});
+      $('.tssryz').text('邮箱格式不对');
+     
+    }
+}; 
+</script>
+<script>
+    $(function(){
+
+        $('#email_bind2').ajaxForm({
+            beforeSubmit:function(){
+                var b=$('#email_bind2').validate({
+                    submitBtn:{
+                        flag:true,
+                    },
+                    acticle:true,
+                    error:function(obj,error){cotteFn.error(obj,error)}
+                });
+                var patten = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+                var email = $('#email').val();
+                if(!email){
+
+                   alert('邮箱不能为空')
+                   return false;
+                }  
+                if(!patten.test(email)){
+                  $(".tssryz").css({color:"red"});
+                  $('.tssryz').text('邮箱格式不对');
+                   return false;
+                }
+                if(!b){
+                    return false
+                }
+            },
+            success:function(res){
+                var res = eval("("+res+")");
+                if(!res.done){
+                    alert(res.msg)
+                    $('.bdxyb').val('下一步')
+
+                }else{
+                    $('.user_box').replaceWith(res.retval.content);
+                }
+
+            },
+            error:function(){
+                alert('error')
+                $('.bdxyb').val('下一步')
+            }
+        })
+
+
+    });
+</script> 

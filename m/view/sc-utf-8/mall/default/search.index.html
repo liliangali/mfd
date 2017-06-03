@@ -1,0 +1,29 @@
+{include file="header2.html"}
+<link rel="stylesheet" type="text/css" href="../../static/css/search.css">
+<div class="w">
+{include file="search.title.html"}
+ <div id="tj_1" class="w">
+    <div class="tailor_list clearfix">
+      <ul>
+      {foreach from=$list item=v}
+        <li>
+          <div class="div_1">
+           <img src="{$v.store_logo}">
+           <a href="{link app=tailor act=info arg0=$v.store_id}" target="_blank" class="detailed">查看详细</a>
+          </div>
+          
+          <div class="div_2">
+           <a href="{link app=tailor act=info arg0=$v.store_id}"><img src="{$v.member_logo}"></a>
+           <h1><a href="{link app=tailor act=info arg0=$v.store_id}">{$v.owner_name}</a><span>人气<a href="{link app=tailor act=service arg0=$v.store_id}">{$v.popularity}</a></span></h1>
+           <p>{$v.personality}</p>
+          </div>
+        </li>
+      {/foreach}                        
+      </ul>
+    </div>
+    <!--翻页开始-->
+{include file="page.normal.html"}
+<!--翻页结束-->  
+ </div>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+body { padding:0; margin:0; background:#fff; color:#333; font:12px / 1.5 arial, "Microsoft Yahei", "Hiragino Sans GB", sans-serif!important;}
+h1,h2,h3,h4,h5,h6,p,form,div,dl,dd,dt,ul,li,img { padding:0; margin:0; list-style-type:none; border:0; font-weight:normal;}
+
+input,textarea,select { outline:none; list-style-type:none; border:none; padding:0; margin:0; background:none; font-family:arial, "Microsoft Yahei", "Hiragino Sans GB", sans-serif!important;}
+.clearfix:after {content:"."; height:0px; line-height:0px; overflow:hidden; clear:both; display:block;}
+.clearfix {zoom:1;}
+.clear { clear:both; display:block;}
+.fl { float: left; } 
+.fr { float: right; }
+a { text-decoration:none; color:#333; transition: color 0.5s ease 0s;}
+a:hover {text-decoration:none; color: #e66800;}
+a:focus {outline: none;}
+
+.w {width: 1200px; margin: 0 auto;}
+
+
+

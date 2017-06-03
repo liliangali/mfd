@@ -1,0 +1,343 @@
+{include file=header.html}
+<link href="{res file=css/z_style.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{res file=js/jquery.SuperSlide.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/jscrollpane.js}"></script>
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+var REGION_URL="{link app=mlselection act=index arg=region}";
+reginUrl=REAL_SITE_URL+REGION_URL;
+//]]>
+</script>
+{$_head_tags}
+
+<script type="text/javascript">
+$(function(){
+	$.ajaxSetup({async : false});
+	regionInit("region");
+	var value="<!--{$value}-->";
+	var r2="<!--{$r2}-->";
+	var r1="<!--{$r1}-->";
+	//alert(value);
+	if (r1.length>0){
+		$("#region select:eq(0)").val(r1).trigger("change");
+	}
+	if (r2.length>0){
+		$("#region select:eq(1)").val(r2).trigger("change");
+	}
+	if (value.length>0){
+		$("#region select:eq(2)").val(value).trigger("change");
+	}
+	/*
+	if (typeof($_GET['r1']) != "undefined"){
+			$("#region select:eq(0)").val($_GET['r1']).trigger("change");
+	}
+	if (typeof($_GET['r2']) != "undefined"){
+		$("#region select:eq(1)").val($_GET['r2']).trigger("change");
+	}
+	if (typeof($_GET['value']) != "undefined"){
+		$("#region select:eq(2)").val($_GET['value']).trigger("change");
+	}
+	*/
+/*
+	$('.page a').click(function(){
+		alert($(this).attr('href').replace('index','ajax_index'));
+		return false;
+	});
+	*/
+});
+
+
+function getsearchurl(index)
+{
+	var url="{link app=service act="+index+" arg1=1}";
+	var urlpr="/index.php/service-"+index+"-1";
+	var urlex=".html";
+
+	var r1=$("#region select:eq(0)").val();
+	
+	//var value=$("#region_id").val();
+	var r2=$("#region select:eq(1)").length>0?$("#region select:eq(1)").val():"";
+	
+	var value=$("#region select:eq(2)").length>0?$("#region select:eq(2)").val():"";
+	
+	
+	
+	//alert(value);
+	
+	if(r1.length==0||r1=="请选择..."||r1=="请选择")r1='0';
+	if(r2.length==0||r2=="请选择..."||r2=="请选择")r2='0';
+	if(value.length==0||value=="请选择..."||value=="请选择")value='0';
+
+	url=urlpr+"-"+r1+"-"+r2+"-"+value+urlex;
+	return url;
+}
+function ajax_regionsearch()
+{
+	url=getsearchurl('ajax_index')+'?l=100';
+	//alert(url);
+	$.get(url,function(data){
+			//alert(data);
+		$('#servicelist').html(data);
+			
+		});
+	//alert(url);
+}
+function regionsearch(){
+	url=getsearchurl('index');
+	
+	//alert(url);
+	location.href=url;
+	return true;
+
+	/*
+	if($("#region select:last").find("option:selected").val()=="请选择...")
+	{
+		alert("请选择地区!");
+		return false;
+	}else{
+		var r1=$("#region select:eq(0)").val();
+		var r2=$("#region select:eq(1)").val();
+		var value=$("#region_id").val();
+
+		if(r1.length==0)r1='0';
+		if(r2.length==0)r2='0';
+		if(value.length==0)value='0';
+
+		url=urlpr+"-"+r1+"-"+r2+"-"+value+urlex;
+
+		//alert(url);
+		location.href=url;
+		return true;
+		}
+	*/
+	
+	
+}
+var $_GET = (function(){
+	var url = window.document.location.href.toString();
+	var u = url.split("?");
+	if(typeof(u[1]) == "string"){
+		u = u[1].split("&");
+		var get = {};
+		for(var i in u){
+			var j = u[i].split("=");
+			get[j[0]] = j[1];
+		}
+		return get;
+	} else {
+		return {};
+	}
+})();
+</script>
+
+<script type="text/javascript">
+$(function(){
+
+
+	$("input[name='radioidserve']").click(function(){
+		
+
+		$("#hiddenidserve").val($(this).val());
+		$("#serve_form").attr('action','/index.php/subscribe-index-'+$(this).val()+'.html');
+		});
+	
+	
+	$('#serve_form').validate({
+
+
+		
+		errorPlacement: function(error, element){
+	        $(element).nextAll('.apply_label').removeClass("error_on").addClass("error_off").html(error);
+	    },
+	    success       : function(label){
+	        label.parent().removeClass("error_off").addClass("error_on");
+	    },
+    rules : {
+    	username : {
+            required : true
+        },mobile : {
+            required : true
+        },subscribe_type : {
+            required : true
+        },address : {
+            required : true
+        },figure_mode : {
+            required : true
+        },hiddenidserve : {
+        	required : true
+        }
+
+
+        
+    },
+    messages : {
+    	username : {
+            required : '{$lang.username_not_empty}'
+        },mobile : {
+            required : '{$lang.mobile_not_empty}'
+        },subscribe_type : {
+            required : '{$lang.subscribe_type_not_empty}'
+        },address : {
+            required : '{$lang.address_not_empty}'
+        },figure_mode : {
+            required : '{$lang.figure_mode_not_empty}'
+        },hiddenidserve : {
+        	required : '{$lang.radioidserve_not_empty}'
+        }
+        
+
+
+        
+    }
+
+
+    
+	});
+});
+
+</script>
+
+<!--头部结束-->
+<!--中间开始-->
+<div class="center_box">
+<form method="post" id="serve_form" name="serve_form">
+<input name="subscribe_type" id="subscribe_type_1" type="hidden" value="1" class="f_l" style="margin:5px;">
+       <ul class="lianzonlt">
+			<li style="padding-left:6px;">
+			    <input type="radio" value="1" id="figure_mode_1" name="figure_mode" class="sm">
+			    <p>上门量体</p>
+			</li>
+			<li>
+			    <input type="radio" value="2" checked="checked" id="figure_mode_2" name="figure_mode" class="jjlt">
+			    <p>到就近服务点量体</p>
+			</li>
+		</ul>
+		<p class="clear"></p>
+        
+    <div id="reservation">
+    <div class="smlt_box" style="overflow:hidden;">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%" class="sameliti">
+        <tr>
+          <th><b>*</b>真实姓名</th>
+          <td>
+             <input type="text" name="username" id="username" value="" class="smltsydinput" maxlength="10"/>
+             
+             <label class="apply_label"></label>
+          </td>
+        </tr>
+        
+        <tr>
+            <th><b>*</b>手机号码</th>
+            <td>
+               <input type="text" value="" name="mobile" id="mobile" class="smltsydinput" maxlength="11""/>
+               
+               <label class="apply_label"></label>
+            </td>
+        </tr>
+
+        <tr>
+            <th><b>*</b>服务地区</th>
+            <td class="fuwudiqu">
+           <div id="region">
+                        
+                        <select>
+                          <option>请选择</option>
+                          {html_options options=$regions}
+                        </select>
+            			<select>
+                          <option>请选择</option>
+			
+                        </select>
+                        <select>
+                          
+                          <option>请选择</option>
+							
+                        </select>
+                       <input type="hidden" name="region_id" value="{$figuredata.region_id}" id="region_id" class="mls_id" />
+                        <input type="hidden" name="region_name" value="{$figuredata.region_name|escape}" class="mls_names" id="region_name"/>
+                       
+                       <label class="apply_label"></label>
+                       
+                       <a href="javascript:;" onclick="ajax_regionsearch();">搜 索</a>
+                      </div>
+                        </td>
+        </tr> 
+        
+        <tr>
+          <th><b>*</b>详细地址</th>
+          <td>
+             <input type="text" name="address" id="address" value="" class="sxdzinput" maxlength="150"/>
+             
+             <label class="apply_label"></label>
+          </td>
+        </tr>        
+               
+        <tr style="display:none;">
+          <th><b>*</b>预约时间</th>
+          <td>
+            <input type="text" name="retime" value="{$figuredata.retime}" class="smltsydinput" id="retime" readonly="true"/>
+            <label class="apply_label"></label>
+          </td>
+        </tr>
+        <tr>
+          <th>简单说明</th>
+          <td>
+            <textarea id="remarks" class="serve_texta" cols="28" rows="6" name="remarks"></textarea>
+            
+          </td>
+        </tr>        
+      </table>
+    </div>
+    <div class="_figurenotice ltfy" style="display:block;" id="smsf"></div>
+    <div class="smlt_box" style="height:auto; overflow:hidden;">   
+   <p class="yuyiult">就近服务点 <span class="serviceError" style="display:none;">请选择服务点！</span></p>   
+    <!--滚动条开始-->
+       <div class="his_list">
+       	<div id="servicelist">
+           
+            {include file=serve/serve.search_page.html}
+           
+           </div>
+       </div>  
+    <!--滚动条结束--> 
+    </div>
+    <div><input class="serve-tjyy f_l" type="submit" value=""></div>
+    
+    <span id="radioidserveerror" colspan='5' style="color:red; float:left; padding-top:-15px;">
+					 {if !$visitor.user_id}<div style="padding-left:15px; padding-top:9px;">请您先登录后再提交预约量体服务！</div>{/if}
+					 <input type="hidden" name="hiddenidserve" id="hiddenidserve" value="" />
+					 <label class="apply_label"></label>
+					 </span>
+    
+    </div>
+    </form>
+
+        <!--基本信息 start-->
+   <p class="clear"></p>
+</div>
+<!--中间结束-->
+<!--底部开始-->
+{include file=footer.html}
+<script>
+$(function(){
+	$('.his_list').height(125).jScrollPane({
+		showArrows: true,
+		animateScroll: true
+	});
+
+	$('.sm').click(function(){
+		$('#smsf').text('预约上门量体会收取80元服务费');
+	});
+	$('.jjlt').click(function(){
+		$('#smsf').text('');
+	});
+
+	
+	
+});
+
+
+</script>

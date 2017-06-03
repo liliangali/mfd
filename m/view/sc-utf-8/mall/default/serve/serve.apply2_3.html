@@ -1,0 +1,136 @@
+{include file=header.html}
+<link href="{res file=css/z_style.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{res file=js/jquery.SuperSlide.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+var REGION_URL="{link app=mlselection act=index arg=region}";
+reginUrl=REAL_SITE_URL+REGION_URL;
+//]]>
+</script>
+{$_head_tags}
+<script type="text/javascript">
+$(function(){
+
+	$('#serve_form').validate({
+	errorPlacement: function(error, element){
+        $(element).next('.errord').html(error);
+    },
+    rules : {
+        business_license : {
+            accept : 'png|jpe?g'
+        },
+        tax_card : {
+            accept : 'png|jpe?g'
+        },
+        organization_card : {
+            accept : 'png|jpe?g'
+        }
+    },
+    messages : {
+        business_license : {
+            accept : '{$lang.note_portrait}'
+        },
+        tax_card : {
+            accept : '{$lang.note_portrait}'
+        },
+        organization_card : {
+            accept : '{$lang.note_portrait}'
+        }
+    }
+	});
+});
+
+</script>
+<!--头部结束-->
+
+<div class="dqwz">当前位置：<a href="index.php/">首页</a><span>></span>{$serve_type_name}申请入驻</div>
+<!--中间开始-->
+<div class="center_box">
+  <!--申请步骤 start-->
+     <div class="apply_step">
+         <ul class="step_2">
+            <li class="step_sqrz">申请{$serve_type_name}入驻</li>
+            <li class="step_tjzz step_cur">提交资质</li>
+            <li class="step_ddsh">等待审核</li>
+            <li class="step_shjg">入驻成功</li>
+         </ul>
+         <p class="clear"></p>
+     </div>
+  <!--申请步骤 end-->
+  <!--基本信息 start-->
+     <div class="basic_box">
+         <h3><i></i><span>设计师信息</span></h3>
+         <div class="basic_tab_box">
+         <form method="post" enctype="multipart/form-data" action="{link app=serve act=apply3}" id="serve_form" name="serve_form">
+             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="basic_table gsqtxx_table">
+              <tr>
+                <th valign="top"><div>个人作品：</div></th>
+                <td valign="top">
+                <div id="file_add">
+                <input id="company_name" name="company_name" type="hidden" value="{$smarty.post.company_name}" />
+                <input id="email" name="email" type="hidden" value="{$smarty.post.email}" />
+                <input id="establish_date" name="establish_date" type="hidden" value="{$smarty.post.establish_date}" />
+                <input id="enterprise_url" name="enterprise_url" type="hidden" value="{$smarty.post.enterprise_url}" />
+                <input id="linkman" name="linkman" type="hidden" value="{$smarty.post.linkman}" />
+                <input id="mobile" name="mobile" type="hidden" value="{$smarty.post.mobile}" />
+                <input id="post" name="post" type="hidden" value="{$smarty.post.post}" />
+                
+                <input id="region_id" name="region_id" type="hidden" value="{$smarty.post.region_id}" />
+                <input id="serve_name" name="serve_name" type="hidden" value="{$smarty.post.serve_name}" />
+                <input id="serve_address" name="serve_address" type="hidden" value="{$smarty.post.serve_address}" />
+                <input id="region_name" name="region_name" type="hidden" value="{$smarty.post.region_name}" />
+                
+                <input id="serve_type" name="serve_type" type="hidden" value="{$smarty.post.serve_type}" />
+                
+                       <p class="tab_p">个人作品一</p>
+                       <p class="up_browse_h up_borwse_bo">
+                                               
+                           <input type="file" name="business_license" id="business_license" />
+                           <label class="errord" style="color:red;"></label>
+                       </p>
+                       
+                       <p class="tab_p">个人作品二</p>
+                       <p class="up_browse_h up_borwse_bo">
+                                
+                          <input type="file" name="tax_card" id="tax_card" />
+                          <label class="errord" style="color:red;"></label>
+                       </p>
+                       <p class="tab_p">个人作品三</p>
+                       <p class="up_browse_h">
+                          
+                          <input type="file" name="organization_card" id="organization_card" />
+                          <label class="errord" style="color:red;"></label>
+                       </p>
+                </div>
+                </td>
+              </tr>
+              <tr>
+                <th valign="top"><div>设计师简介：</div></th>
+                <td valign="top">
+                   <textarea id="company_synopsis" name="company_synopsis" class="text_area"></textarea>
+                   <p class="yyzz_txt errord" style="color:red;"></p>
+                </td>
+              </tr>
+              <tr>
+                <th></th>
+                <td>
+                   <div class="appaly_but_div f_l">
+                      <input type="submit" name="button" value="下一步" class="apply_but_sub f_l" />
+                      <input type="reset" name="reset" value="取消" class="apply_but_res f_l" />
+                    </div>
+                </td>
+              </tr>
+            </table>
+            </form>
+         </div>
+         <div class="h_100"></div>
+     </div>
+  <!--基本信息 end-->
+     
+</div>
+<!--中间结束-->
+<!--底部开始-->
+{include file=footer.html}

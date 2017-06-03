@@ -1,0 +1,94 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=Material&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form name='import' action="./index.php?app=Material&act=import" method="post" enctype="multipart/form-data">
+             <div class="left">
+                 <input type="file" id='file' name="inputExcel" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/><input type="button" onclick="doSubmit()" value="导入物料">
+
+            </div>
+        </form><br/>
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="Material" />
+                <input type="hidden" name="act" value="index" /> 
+                物料编码:<input type="text" value="{$smarty.get.material_code}" name="material_code" class="pick_date" />
+                基料编码:<input type="text" value="{$smarty.get.bm_code}" name="bm_code" class="pick_date" />
+                功效编码:<input type="text" value="{$smarty.get.ea_code}" name="ea_code" class="pick_date" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+
+            </div>
+                        <!--{if $query.name || $query.to_site}-->
+            <a class="left formbtn1" href="index.php?app=BaseMaterial">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $material_list}-->
+        <tr class="tatr1">
+            <!-- <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td> -->
+            <td align="left">物料ID</td>
+            <td align="left">物料编码</td>
+            <td align="center">基料编码</td>
+            <td>功效编码❶</td>
+            <td align="left">功效编码❷</td>
+            <td>功效编码❸</td>
+            <td>口味</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$material_list item=material}-->
+        <tr class="tatr2">
+            <td>{$material.material_id|escape}</td>
+            <td>{$material.material_code|escape}</td>
+            <td >{$material.bm_code|escape}</td>
+            <td>{$material.ea_code_first}</td>
+            
+            <td >{$material.ea_code_second}</td>
+            <td >{$material.ea_code_third}</td>
+            <td >{$material.taste}</td>
+            <td>
+                <a href="index.php?app=Material&amp;act=edit&amp;id={$material.material_id}">{$lang.edit}</a>
+                <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=Material&amp;act=drop&amp;id={$material.material_id}');">{$lang.drop}</a>
+			</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $material_list}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=Material&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+
+<script type="text/javascript"> 
+       function doSubmit(){ 
+            var file = document.getElementById('file'); 
+            if (file.value == "") { 
+                alert("请选择您需要上传的文件！"); 
+                return false;
+            }else{ 
+                document.import.submit(); 
+            } 
+        } 
+</script> 
+{include file="footer.html"}

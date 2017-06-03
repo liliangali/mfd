@@ -1,0 +1,121 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>{$lang.manage}</span></li>
+    <li><a class="btn1" href="index.php?app=figure&amp;act=add">{$lang.add}</a></li>
+    <li><a class="btn1" href="index.php?app=figure&amp;act=export">导出</a></li>
+
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="figure" />
+          <input type="hidden" name="act" value="index" />
+          <select class="querySelect" name="field_name">
+          {html_options options=$query_fields selected=$smarty.get.field_name}
+          </select>
+          <input class="queryInput" type="text" name="field_value" value="{$smarty.get.field_value|escape}" />
+          
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+         数据归属： <select class="querySelect" name="serve_name">
+         <option value="all">全部</option>
+         {html_options options=$serve selected=$smarty.get.serve_name}
+          </select>
+        录入方式 ： <select class="querySelect" name="order_name" id="functy">{html_options options=$query_order selected=$smarty.get.order_name}
+          </select>
+     结算状态： <select class="querySelect" name="cash_name" id="cash">{html_options options=$query_cash selected=$smarty.get.cash_name}
+          </select>
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=figure">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $figures}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"></td>
+      <td>顾客姓名</td>
+      <td>量体师姓名</td>
+      <td>性别</td>
+      <td>联系电话</td>
+      <td>提交时间</td>
+      <td>数据归属</td>
+      <td>服务方式</td>
+      <td>服务费（元）</td>
+      <td>结算状态</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$figures item=figure}-->
+    <tr class="tatr2">
+      <td class="firstCell"></td>
+      <td>{$figure.customer_name|escape} </td>
+       <td>{$figure.liangti_name}</td>
+      <!--{if $figure.gender==10040}  -->
+      <td>男 </td>
+      <!-- {elseif $figure.gender==10041} -->
+      <td>女 </td>
+      <!--{else}  -->
+      <td>未填写</td>
+      <!-- {/if} -->
+      <td>{$figure.customer_mobile}</td>
+      <td>{$figure.lasttime|date:y-m-d}</td>
+     
+      <!-- {if $figure.id_serve==1} -->
+      <td>后台录入</td>
+      <!-- {else} -->
+      <td>{$serve.$figure.id_serve}</td>
+      <!-- {/if} -->
+      <!-- {if $figure.service_mode==4} -->
+      <td>后台录入</td>
+      <!-- {elseif $figure.service_mode==1} -->
+      <td>预约上门</td>
+      <!-- {elseif $figure.service_mode==2} -->
+      <td>预约到店</td>
+      <!-- {elseif $figure.service_mode==3} -->
+      <td>线下采集</td>
+        <!-- {elseif $figure.service_mode==6} -->
+      <td>指派量体师</td>
+      <!-- {/if} -->
+      <td>￥{$figure.single_fee}</td>
+      <td>{if $figure.liangti_state eq '3'}<font color="#00cc00">已结算</font>{else}<font color="#FF0000">待结算</font>{/if}</td>
+ 
+      <td class="handler">
+      <span style="width: 100px">
+      <a href="index.php?app=figure&amp;act=edit&id={$figure.figure_sn};">{$lang.edit}</a> | <a href="index.php?app=figure&amp;act=check&amp&id={$figure.figure_sn};">查看</a>
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $figures}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+<script>
+$(document).ready(function(){
+$('#functy').change(function(){
+	$(this).parents("form").submit();
+})
+
+$('#cash').change(function(){
+	$(this).parents("form").submit();
+})
+})
+
+</script>
+{include file="footer.html"}

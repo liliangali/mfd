@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>订单详情</title>
+<link type="text/css" href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link type="text/css" href="http://r.cotte.cn/cotte/wap/css/productlist.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="container">
+    	<header class="hdtop">
+            <div class="edit fl">
+            	<p class="p1"><a href="javascript:history.go(-1)"><img src="http://r.cotte.cn/cotte/wap/images/tw_03.png" /></a></p>
+   				<p class="p2">订单信息</p>
+            </div>
+        </header>
+        <div class="ddxqdata">
+        	<h4>签名信息</h4>
+            <ul class="ddxqtstx">
+							{if $embs}
+						{foreach from=$embs item=emb name=loop}
+						<p><h4>{$emb.name}</h4></p>
+							{foreach from=$emb.out item=out}
+							<li style=" height:auto;">{$out.name}：</li>
+							<li style=" height:auto;">{if $out._v}{$out.value}{else}<img src="{$out.image}">{/if}</li>
+							{/foreach}
+						{/foreach}
+						{else}
+						 <li>暂无信息</li>
+						{/if}
+            </ul>
+        </div>
+        <div class="ddxqdata">
+        	<h4>工艺信息</h4>
+					{if $result}
+					{foreach from=$result item=res name=loop}
+					<ul class="ddxqtstx" style="float:left;width:100%">
+		        	<p><h4>{$res.name}</h4></p>
+		        	 {foreach from=$res.items item=chi}
+		              <li style="float:left;width:100%">{$chi.fname}</li>
+		            {/foreach}
+					</ul>
+		      {/foreach}
+					{else}
+					<ul class="ddxqtstx" style="float:left;width:100%">
+					<li>暂无信息</li>
+					</ul>
+					{/if}
+    </div>
+</body>
+</html>

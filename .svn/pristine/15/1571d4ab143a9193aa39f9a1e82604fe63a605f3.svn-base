@@ -1,0 +1,33 @@
+<div class="footer_box">
+	<div class="x_footer">
+        <ul>
+            <li {if $app eq 'default'}class="on"{/if}>
+                <a href="/" class="navone"></a>
+                <a href="/">首页</a>
+            </li>
+            <li {if $app eq 'custom'}class="on"{/if}>
+                <a href="{link app=custom act=dindex}" class="navtwo"></a>
+                <a href="{link app=custom act=dindex}">尚品</a>
+            </li>
+            <li>
+							<!--ns add 判断是否登陆，传入diy里-->
+							{if $smarty.session.user_info.tokens}
+							<a href="http://m.mfd.cn/custom-diy2-0001-bformal-{$smarty.session.user_info.tokens}.html" class="navthree"></a>
+							<a href="http://m.mfd.cn/custom-diy2-0001-bformal-{$smarty.session.user_info.tokens}.html">定制</a>
+							{else}
+							<a href="http://m.mfd.cn/custom-diy2-0001-bformal-mfd.html" class="navthree"></a>
+							<a href="http://m.mfd.cn/custom-diy2-0001-bformal-mfd.html">定制</a>
+							{/if}
+            </li>
+            <li>
+                <a href="/cart-index.html" class="navfour"></a>
+                <a href="/cart-index.html">购物车</a>
+            </li>
+            <li {if $app eq 'member'}class="on"{/if}>
+                <a href="{link app=member act=index}" class="navfive"></a>
+                <a href="{link app=member act=index}">我的</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<?php require_once 'cs.php';echo '<img src="'._cnzzTrackPageView(1256310326).'" width="0" height="0"/>';?>

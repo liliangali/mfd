@@ -1,0 +1,116 @@
+{include file=header_goods.html}
+<script type="text/javascript" src="{lib file=rctailor.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=goodsinfo.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+/* buy */
+function buy()
+{
+    if (goodsspec.getSpec() == null)
+    {
+        alert(lang.select_specs);
+        return;
+    }
+    var spec_id = goodsspec.getSpec().id;
+
+    var quantity = $("#quantity").val();
+    if (quantity == '')
+    {
+        alert(lang.input_quantity);
+        return;
+    }
+    if (parseInt(quantity) < 1)
+    {
+        alert(lang.invalid_quantity);
+        return;
+    }
+    add_to_cart(spec_id, quantity);
+}
+
+/* add cart */
+function add_to_cart(spec_id, quantity)
+{
+    var url = '/index.php?app=cart&act=add';
+    $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
+        if (data.done)
+        {
+            $('.bold_num').text(data.retval.cart.kinds);
+            $('.bold_mly').html(price_format(data.retval.cart.amount));
+            $('.ware_cen').slideDown('slow');
+            setTimeout(slideUp_fn, 5000);
+        }
+        else
+        {
+            alert(data.msg);
+        }
+    });
+}
+
+var specs = new Array();
+<!--{foreach from=$goods._specs item=spec}-->
+specs.push(new spec({$spec.spec_id}, '{$spec.spec_1|escape}', '{$spec.spec_2|escape}', {$spec.price}, {$spec.stock}));
+<!--{/foreach}-->
+var specQty = {$goods.spec_qty};
+var defSpec = {$goods.default_spec|escape};
+var goodsspec = new goodsspec(specs, specQty, defSpec);
+//]]>
+</script>
+{include file=goodsinfo.html}
+<div class="spflhspxq_box">
+   <a name="module"></a>
+   {include file=goods_left.html}
+  <div class="spxq">
+     <div class="gycs">
+        <UL>
+          <LI class="old_hover"><a href="{url app=goods&id=$goods.goods_id}#module">商品详情</a></LI>
+          <LI class="now_hover"><a href="{url app=goods&act=comments&id=$goods.goods_id}#module">用户评论</a></LI>
+          <LI class="old_hover" style="background-image:none;"><a href="{url app=goods&act=saleslog&id=$goods.goods_id}#module">成交记录</a></LI>
+        </UL>
+        <p class="clear"></p>
+     </div>
+        
+       <div class="hljly" id="tj_1">
+         <!--    <ul>
+             <li>商品名称：张君雅休闲小丸子</li>
+             <li>商品编号：785490</li>
+             <li>品牌：张君雅</li>
+             <li>上架时间：2012-12-17<span>13:38:57</span></li>
+             <li>商品毛重：100.00g</li>
+             <li>商品产地：中国台湾</li>
+             <li>类别：其它</li>
+             <li>包装：袋装</li>
+           </ul>-->
+           <p class="clear"></p>
+           
+           <div class="xiaxirr">
+            {include file=comments.html}
+           </div>
+       </div>
+
+  </div>
+  <p class="clear"></p>
+</div>
+
+<div class="zgtj_box">
+ <h1>掌柜推荐</h1>
+  <div class="productshow">
+    <div class="scrollcontainer" id="moveid">
+       <ul>
+           {foreach from=$intro_list item=list}
+          <li>
+              <div><a href="index.php?app=goods&id={$list.goods_id}"><img src="{$list.default_image}" alt="" /></a></div>
+              <p class="lmtc"><a href="index.php?app=goods&id={$list.goods_id}">{$list.goods_name}</a></p>
+              <p class="pvjg">批发价：<span>¥{$list.price}.00</span></P>
+          </li>
+		{/foreach}                                                  
+      </ul>
+      <p class="clear"></p> 
+    </div>
+    <a class="abtn aleft" href="#left">左移</a>
+    <a class="abtn aright" href="#right">右移</a>
+  </div>
+  
+</div>
+  
+
+{include file=footer.html}

@@ -1,0 +1,9 @@
+            <ul>
+                {foreach from=$data item=item key=key}
+                <li data-id="{$key}">
+                    <p class="p1">姓名：{$item.name}</p>
+                    <p class="p2">电话：{$item.phone}</p>
+                    <p class="p3">门店：{$item.region}</p>
+                </li>
+                {/foreach}
+            </ul>

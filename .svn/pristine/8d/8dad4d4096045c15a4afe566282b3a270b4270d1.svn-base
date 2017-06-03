@@ -1,0 +1,55 @@
+{include file=header2.html}
+<link rel="stylesheet" type="text/css" href="static/css/custom.css">
+<script  type="text/javascript" src="static/js/mlselection.js"></script>
+<div class="w">
+  <div class="title">
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <span class="tit">所有套装</span>
+    <p class="p">以定制为主题的多品牌集合店，聘请专业设计师团队，商品以男士个性化西装定制为主，但种类并不限定某个类别，也涵盖配饰等其他多个品种，各个年龄段的男士，无论商务、休闲、聚会......都可以选择到适合自己的着装。</p>
+  </div>
+  <div class="product clearfix">
+  {foreach from=$dislist item=dis}
+    <div class="item taozhuang" data-name="{$dis.title}" data-id="{$dis.id}" data-pic="[{foreach from=$append.$dis.id item=cst name=loop}'{$cst.cst_image}'{if !$smarty.foreach.loop.last},{/if}{/foreach}]">
+      <div class="bigPic"><img src="{$dis.middle_img}" width="290" height="387" /> <a href="#" class="dingzhi">立即定制</a> </div>
+      <ul class="smallPic">
+      {foreach from=$append.$dis.id item=cst name=loop}
+        {if $smarty.foreach.loop.iteration lt 5}
+           <li><img src="{$cst.cst_dis_image}" width="75" height="93" /></li>
+        {/if}
+      {/foreach}
+      </ul>
+      <table width="100%" border="0">
+        <caption>
+          {$dis.title}
+        </caption>
+        <tr>
+          <th>卖点</th>
+          <td colspan="3"><p class="lhdg">{$dis.brief}</p></td>
+        </tr>
+      </table>
+    </div>
+    {/foreach}
+  </div>
+  <ul class="fixedNav">
+  {foreach from=$cats item=cat key=key}
+    <li{if $key eq $curCat} class="cur"{/if}><a href="{link app=gallery act=goods arg0=1 arg1=$key}">{$cat}</a><i></i></li>
+ {/foreach}
+    <li class="cur"><a href="{link app=gallery}">套装</a><i></i></li>
+  </ul>
+</div>
+<!--翻页开始-->
+{include file="page.normal.html"}
+<!--翻页结束--> 
+<script>
+var reginUrl = "{link app=mlselection}";
+var sendUrl = "{link app=ajax act=resetSMSCode}";
+var cityOption = '{html_options options=$regions}';
+var opts = '{html_options options=$opts}';
+var checkCode = "{link app=gallery act=checkCode}";
+</script>
+<script  type="text/javascript" src="static/js/custom.js"></script>
+<script type="text/javascript" src="static/expand/jquery.form.js"></script>
+
+
+{include file="footer.html"}

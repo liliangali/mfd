@@ -1,0 +1,31 @@
+<div class="size source clearfix">
+  <h2>尺寸信息：</h2>
+  <ul class="ul_list">
+    {foreach from=$figureList item=ifg key=__kfg}
+    <li><span>{$ifg.zname}:</span><input type="text" name="figure[{$__kfg}]" value="{$data.figure.$__kfg}"/></li>
+    {/foreach}
+  </ul>
+</div>
+
+
+<div class="body_type">
+  <h2>身体特征</h2>
+  {foreach from=$body_type item=bt}
+      <dl id="{$bt.info.id}" class="hline clearfix">
+        <dt class="hline-left">{$bt.info.name}</dt>
+      {foreach from=$bt.list item=lst}
+      {if $data.figure.$bt.info.nm}
+          <dd {if $lst.id eq $data.figure.$bt.info.nm} class="cur" {/if}><label><input type="radio" class="radio" name="body_type[{$bt.info.nm}]" id="body_type_{$bt.info.id}_{$lst.id}" value="{$lst.id}" {if $lst.id eq $data.figure.$bt.info.nm} checked="checked" {/if}>{$lst.name}</label></dd>
+      {else}
+          <dd {if $lst.deft} class="cur" {/if}><label><input type="radio" class="radio" name="body_type[{$bt.info.nm}]" id="body_type_{$bt.info.id}_{$lst.id}" value="{$lst.id}" {if $lst.deft} checked="checked" {/if}>{$lst.name}</label></dd>
+      {/if}
+      {/foreach}
+      </dl>
+  {/foreach}
+</div>
+
+<script>
+	$(".hline dd").click(function(){
+		$(this).addClass("cur").siblings().removeClass("cur");
+	})
+</script>

@@ -1,0 +1,79 @@
+Tue, 01 Nov 2016 09:27:06 +0800	[2]intval() expects parameter 2 to be long, string given	vendors/Cyteam/Goods/Orders.php	166
+Tue, 01 Nov 2016 13:29:45 +0800	[2]file_get_contents(E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\certs\700000000000001_acp.pfx): failed to open stream: No such file or directory	/includes/payments/upop/func/secureUtil.php	140
+Tue, 01 Nov 2016 13:31:44 +0800	[2]file_get_contents(E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\certs\700000000000001_acp.pfx): failed to open stream: No such file or directory	/includes/payments/upop/func/secureUtil.php	140
+Tue, 01 Nov 2016 13:35:29 +0800	[2]file_get_contents(E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\certs\700000000000001_acp.pfx): failed to open stream: No such file or directory	/includes/payments/upop/func/secureUtil.php	140
+Tue, 01 Nov 2016 13:36:33 +0800	[2]file_get_contents(E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\certs\700000000000001_acp.pfx): failed to open stream: No such file or directory	/includes/payments/upop/func/secureUtil.php	140
+Tue, 01 Nov 2016 13:36:49 +0800	[2]file_get_contents(E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\certs\700000000000001_acp.pfx): failed to open stream: No such file or directory	/includes/payments/upop/func/secureUtil.php	140
+Wed, 16 Nov 2016 17:13:37 +0800	[256]MySQL Error[1054]: Unknown column 'if_show' in 'where clause'
+MySQL Query:SELECT COUNT(*) as c FROM cf_feed_amount feed_amount WHERE 1=1 AND if_show = 1
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[490]	/eccore/model/mysql.php	319
+Wed, 16 Nov 2016 17:13:52 +0800	[256]MySQL Error[1054]: Unknown column 'brand_id' in 'order clause'
+MySQL Query:SELECT *,feed_amount.id FROM cf_feed_amount feed_amount WHERE 1=1 ORDER BY brand_id desc LIMIT 0,10
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Thu, 17 Nov 2016 13:52:09 +0800	[2]SoapClient::SoapClient(http://192.168.2.122:8060/Services/GambolSalesOrderService.asmx?WSDL): failed to open stream: Operation timed out	/app/mes.app.php	8
+Thu, 17 Nov 2016 14:37:38 +0800	[256]MySQL Error[1054]: Unknown column 'id' in 'order clause'
+MySQL Query:SELECT *,g.goods_id FROM cf_goods g WHERE 1=1   ORDER BY id DESC LIMIT 0,30
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Thu, 17 Nov 2016 14:37:40 +0800	[256]MySQL Error[1054]: Unknown column 'id' in 'order clause'
+MySQL Query:SELECT *,g.goods_id FROM cf_goods g WHERE 1=1   ORDER BY id DESC LIMIT 0,30
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Fri, 18 Nov 2016 13:51:08 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cate_id IN ('128517','128518','128525','128527','128528','128529','128530','1285' at line 1
+MySQL Query:SELECT COUNT(*) as c FROM cf_goods g WHERE  goods_id IN ('112','115','165','166','167','147','150','137','149','139','140','148','141','142','136','135','152','131','153','128','132','133','151','134','143','146','159','160','161','162','163','164','158','157','144','145','154','155','156','204','200','201','202','206','203','205','213','207','210')  cate_id IN ('128517','128518','128525','128527','128528','128529','128530','128545','128546','128547','128516') 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[490]	/eccore/model/mysql.php	319
+Fri, 18 Nov 2016 13:51:28 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cate_id IN ('128517','128518','128525','128527','128528','128529','128530','1285' at line 1
+MySQL Query:SELECT COUNT(*) as c FROM cf_goods g WHERE  goods_id IN ('112','115','165','166','167','147','150','137','149','139','140','148','141','142','136','135','152','131','153','128','132','133','151','134','143','146','159','160','161','162','163','164','158','157','144','145','154','155','156','204','200','201','202','206','203','205','213','207','210')  cate_id IN ('128517','128518','128525','128527','128528','128529','128530','128545','128546','128547','128516') 
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[490]	/eccore/model/mysql.php	319
+Sat, 19 Nov 2016 13:43:24 +0800	[256]MySQL Error[1054]: Unknown column 'undefined' in 'where clause'
+MySQL Query:SELECT *,feed_amount.id FROM cf_feed_amount feed_amount WHERE fbtype = 3 AND age_id = 38 AND body_condition = 3 AND run_time = 3 AND time_id = undefined
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Sat, 19 Nov 2016 13:47:29 +0800	[2]filemtime(): stat failed for /Applications/MAMP/htdocs/mfd2/data/crond.lock	/includes/libraries/cron.lib.php	135
+Sat, 19 Nov 2016 14:25:55 +0800	[256]MySQL Error[1054]: Unknown column 'undefined' in 'where clause'
+MySQL Query:SELECT *,feed_amount.id FROM cf_feed_amount feed_amount WHERE fbtype = 3 AND age_id = 38 AND body_condition = undefined AND time_id = 3
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Sat, 19 Nov 2016 14:34:36 +0800	[256]MySQL Error[1054]: Unknown column 'NaN' in 'where clause'
+MySQL Query:SELECT *,feed_amount.id FROM cf_feed_amount feed_amount WHERE fbtype = 3 AND age_id = 38 AND body_condition = NaN AND run_time = 1 AND time_id = 3
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Sat, 19 Nov 2016 14:38:07 +0800	[256]MySQL Error[1054]: Unknown column 'NaN' in 'where clause'
+MySQL Query:SELECT *,feed_amount.id FROM cf_feed_amount feed_amount WHERE fbtype = 3 AND age_id = 38 AND body_condition = NaN AND time_id = 3
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Sat, 19 Nov 2016 14:38:38 +0800	[256]MySQL Error[1054]: Unknown column 'NaN' in 'where clause'
+MySQL Query:SELECT *,feed_amount.id FROM cf_feed_amount feed_amount WHERE fbtype = 3 AND age_id = 38 AND body_condition = NaN AND time_id = 3
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Thu, 24 Nov 2016 11:50:28 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+MySQL Query:SELECT * FROM cf_fbcategory fbc WHERE cate_id IN ()
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Thu, 24 Nov 2016 13:49:17 +0800	[2]Illegal offset type in isset or empty	/vendors/Cyteam/Goods/Orders.php	120
+Thu, 24 Nov 2016 13:51:05 +0800	[2]Illegal offset type in isset or empty	/vendors/Cyteam/Goods/Orders.php	122
+Thu, 24 Nov 2016 18:17:05 +0800	[256]MySQL Error[1054]: Unknown column 'mes_data' in 'field list'
+MySQL Query:UPDATE cf_order SET mes_status='2',mes_res='The remote server returned an error: (403) Forbidden.',mes_data='{"soId":"5271","clientName":"3","soDate":"2016-11-24 18:07:39","clientAddress":"\u662f\u7b54\u590d\u5927\u5e08\u5085","saleOrg":"\u9ea6\u5bcc\u8fea","remark":"","soItems":[{"matId":"C046CH","soiType":"D","pckMode":"\u888b\u88c5","unitQty":2,"quantity":"1","petName":"\u534e\u4ed4","petAge":"\u6210\u72ac\u671f","petBirthday":"2016-11-11","petWeight":"10.00","petImageURL":"http:\/\/dev.mfd.com\/\/upload\/images\/diy\/c4cb212b4cf6050f3897ae8ee87ef14d.jpg","petBreed":"\u5df4\u8f9b\u5409\u72ac","petExercise":"\uff1e3h","petFeedQty":272,"petFeedFrq":"1-2","masterQuote":"\u5bc4\u8bed"}]}' WHERE order_id = 5271
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/model.base.php[560]	/eccore/model/mysql.php	319
+Thu, 24 Nov 2016 18:44:56 +0800	[2]iconv() expects parameter 3 to be string, array given	/vendors/Cyteam/Shop/Type/FdiyBase.php	851
+Fri, 25 Nov 2016 09:21:38 +0800	[256]MySQL Error[1054]: Unknown column 'page' in 'field list'
+MySQL Query:UPDATE cf_feed_amount SET fbtype='2',age_id='43',time_id='13',body_condition='4',run_time='3',wt_min='8.00',wt_max='30.00',enesum='113.4',kcal='3474',redkcal='0',nums='1-2',page='7' WHERE id = 83
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/model.base.php[560]	/eccore/model/mysql.php	319
+Fri, 25 Nov 2016 17:10:57 +0800	[256]MySQL Error[1054]: Unknown column 'goods_name' in 'where clause'
+MySQL Query:SELECT COUNT(*) as c FROM cf_goods g WHERE goods_name like '%'  AND marketable = 1 AND is_pc = 1
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[490]	/eccore/model/mysql.php	319
+Sat, 26 Nov 2016 11:50:11 +0800	[2]mkdir(): Permission denied	/includes/payments/upop/func/log.class.php	91
+Tue, 29 Nov 2016 15:36:38 +0800	[256]MySQL Error[1054]: Unknown column 'goods_id' in 'field list'
+MySQL Query:SELECT goods_id,name,small_pic,price,suit_list.id FROM cf_suit_list suit_list WHERE marketable=1 ORDER BY rand() LIMIT 4
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Tue, 29 Nov 2016 15:36:38 +0800	[256]MySQL Error[1054]: Unknown column 'goods_id' in 'field list'
+MySQL Query:SELECT goods_id,name,small_pic,price,suit_list.id FROM cf_suit_list suit_list WHERE marketable=1 ORDER BY rand() LIMIT 4
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Tue, 29 Nov 2016 15:36:45 +0800	[256]MySQL Error[1054]: Unknown column 'goods_id' in 'field list'
+MySQL Query:SELECT goods_id,name,small_pic,price,suit_list.id FROM cf_suit_list suit_list WHERE marketable=1 ORDER BY rand() LIMIT 4
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Tue, 29 Nov 2016 15:40:02 +0800	[256]MySQL Error[1054]: Unknown column 'goods_id' in 'field list'
+MySQL Query:SELECT goods_id,name,small_pic,price,suit_list.id FROM cf_suit_list suit_list WHERE marketable=1 ORDER BY rand() LIMIT 4
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Tue, 29 Nov 2016 15:41:29 +0800	[256]MySQL Error[1054]: Unknown column 'goods_id' in 'field list'
+MySQL Query:SELECT goods_id,name,small_pic,price,suit_list.id FROM cf_suit_list suit_list WHERE marketable=1 ORDER BY rand() LIMIT 4
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Tue, 29 Nov 2016 15:41:51 +0800	[256]MySQL Error[1054]: Unknown column 'goods_id' in 'field list'
+MySQL Query:SELECT goods_id,name,small_pic,price,suit_list.id FROM cf_suit_list suit_list WHERE marketable=1 ORDER BY rand() LIMIT 4
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Tue, 29 Nov 2016 15:41:57 +0800	[256]MySQL Error[1054]: Unknown column 'goods_id' in 'field list'
+MySQL Query:SELECT goods_id,name,small_pic,price,suit_list.id FROM cf_suit_list suit_list WHERE marketable=1 ORDER BY rand() LIMIT 4
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	/eccore/model/mysql.php	319
+Tue, 29 Nov 2016 18:30:20 +0800	[2]Illegal string offset 'user_name'	/admin/app/user.app.php	3284

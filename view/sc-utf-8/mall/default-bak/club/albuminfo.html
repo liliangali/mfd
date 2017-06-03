@@ -1,0 +1,108 @@
+{include file="header.html"}
+
+<link type="text/css" rel="stylesheet" href="{res file=css/coolke.css}" />
+<link type="text/css" rel="stylesheet" href="{res file=css/coolke_pubuliu.css}" />
+<script type="Text/Javascript" src="{res file=js/jquery.min.js}"></script> 
+
+<!-- 中间 开始 -->
+  <div class="coolke_box" style="margin-top:25px;">
+      <div class="coolke_kbname">
+         <h1>{$info.title}</h1>
+         <div class="coolke_picname">
+           <span class="coolke-look"><a href="javascript:;">查看 <font>5368</font></a></span>
+            <span><a href="javascript:;">图片 <font>{$info.pic_num}</font></a></span>
+         </div>
+      </div>
+      <!-- 瀑布流开始 -->
+      <div class="pubuliu_box">
+		<div class="wall_wrap clearfix">
+			<div id="J_waterfall" class="wall_container clearfix" data-uri="/index.php/club-albuminfo_waterfal-{$id}-{$uid}.html">
+ <!-- 这个是酷客个人信息 -->
+    <div class="J_item wall_item coool_space" id="TAde_bottom">
+           <div class="kkzp_user_info">
+          <p class="kkzp_user_tou"><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$uid}"><img src="{avatar uid=$uid size=48}" width="150" height="150"></a></p>
+          <h1>
+			<a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$uid}">{uname uid=$uinfo.uid sub=20}</a>
+			<img class="m_daren" src="{$uinfo.level_logo}">
+	     </h1>
+	     <div class="kkzp_jpxhfs">
+	        <a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$uid}">街拍<br/><font>{$uinfo.pic_num}</font></a>
+	        <a href="{link app=club act=like arg0=$uid}">喜欢<br/><font>{$uinfo.like_num}</font></a>
+	        <a href="{link app=club act=cooler arg0=$uid}" style="border:0;">粉丝<br/><font>{$uinfo.fans}</font></a>
+	     </div>
+	     
+
+	     <!--{if $user.user_id eq $uid }-->
+	     <a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$uid}" class="kkzp_gerkj">我的空间</a>
+         <!--{else}-->
+        <div class="J_follow_bar" data-uid="{$uid}">
+            <!--{if $user.ship eq 0}-->
+            <a href="javascript:;" class="J_fo_u kkzp_jgz" data-uid="{$uid}" >加关注</a>
+            <!--{elseif $user.ship eq 1}-->
+            <a href="javascript:;" class="J_unfo_u kkzp_quxgz" data-uid="{$uid}" >取消关注</a>
+            <!--{elseif $user.ship eq 2}-->
+            <span class="fo_u_all">互相关注</span><a href="javascript:;" class="J_unfo_u green" data-uid="{$uid}">取消</a>
+            <!--{/if}-->
+        </div>
+        <!--{/if}-->
+	     
+<!--<a href="#" class="kkzp_jgz"><font>+</font>加关注</a> -->
+	     <h3 class="TAdkb"><span> <!--{if $user.user_id eq $uid }-->我<!--{else} -->TA<!--{/if} -->的酷吧</span><a href="{link app=club act=album arg0=$uid}">查看更多</a></h3>
+	     <ul class="TAde_menu">
+	      {foreach from=$alist item=list}
+	        <li><a href="{link app=club act=albuminfo arg0=$list.id arg1=$uid}">{$list.title|truncate:25}</a><span>{$list.pic_num}</span></li>
+	        {foreachelse}
+		    		酷吧还没有数据....
+		    {/foreach}
+	     </ul>
+       </div>
+       
+    </div>
+
+
+ {include file="club/album_waterfall.html"}
+			    
+			</div>
+			        
+			<present name="show_load">
+			   <div id="J_wall_loading" class="wall_loading tc gray"><span>加载中...</span></div>
+			</present>
+		</div>
+      </div>
+      <!-- 瀑布流结束 -->
+	
+</div>
+<!-- 中间结束 -->
+<div id="J_returntop" class="return_top"></div>
+<!--底部开始-->
+{include file="footer.html"}		
+<script>
+var PINER = {
+  //  root: "/PinPHP_v3.0_release_20121127/PinPHPv3_release_20121127/upload",
+    uid: "<?php echo $_SESSION['user_info']['user_id'] ?>", 
+    async_sendmail: "",
+    config: {
+        wall_distance: "500",
+        wall_spage_max: "5"
+    },
+    //URL
+    url: {}
+};
+//语言项目
+var lang = {};
+lang.please_input = "请输入";lang.username = "用户名";lang.password = "密码";lang.login_title = "用户登录";lang.share_title = "我要分享";lang.correct_itemurl = "正确的商品地址";lang.join_album = "加入专辑";lang.create_album = "创建新专辑";lang.edit_album = "修改专辑";lang.confirm_del_album = "删除专辑，专辑里所有的图片都会被删除哦！你确定要删除此专辑吗？";lang.title = "标题";lang.card_loading = "正在获取用户信息";lang.confirm_unfollow = "确定要取消关注么？";lang.wait = "请稍后......";
+
+</script>
+
+
+
+<script type="Text/Javascript" src="{res file=js/jquery.min.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/jquery.tools.min.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/jquery.masonry.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/formvalidator.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+<script type="Text/Javascript" src="{res file=js/wall.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/user.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/item.js}"></script>
+

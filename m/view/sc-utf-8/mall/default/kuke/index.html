@@ -1,0 +1,228 @@
+{include file=member.header.html}
+<div class="kkzx_box" style="background: url({$img_url}/images/kukezxbg1.gif) repeat-y">  
+  
+{include file=member.menu.html}
+<script type="text/javascript" src="{$img_url}/js/Xslider.js"></script>
+<!--sortlist end-->
+
+  <div class="kkzx_center">
+    <div class="kkzx_center_dyk">
+       <div class="yftx_left">
+         <div class="yfzxtxbg" style="padding:0;">
+              <div class="xgtx_tcc_2 {if $visitor}xgtx_tcc_hove{/if}" style="padding:0;">
+                <div><a href="/index.php/kuke-avatar.html">修改头像</a></div>
+             </div>
+         
+         </div>
+         <p class="kkzxtx">
+             {if $visitor}
+                 <a href="#"><img src="{$visitor.avatar}" /></a>
+             {else}
+                 <a href="/index.php/kuke-avatar.html"><img src="{$img_url}/images/avatar_def.png" width="100" height="100" /></a>
+             {/if}
+         </p>
+         <div>
+           <p class="p1">{$visitor.user_name}</p>
+           <p class="p2"><img src="/{$visitor.level.lv_logo}" /><a href="#">{$visitor.level.name}</a></p>
+           <p class="p3">账户安全：<img src="{$img_url}/images/{$safe_img}" /><span>{$safe_level}</span>
+           <a href="/index.php/kuke-safeset.html">提升</a></p>
+         </div>
+       </div>
+       
+       <div class="yftx_right">
+         <p>麦富迪币：<span><a href="/index.php/kuke-coin.html">{$visitor.coin}</a></span></p>
+         <p>优惠券：<span><a href="/index.php/kuke-coupon.html">{$visitor.coupon}</a></span></p>
+         <p>积分：<span><a href="/index.php/kuke-point.html">{$visitor.point}</a></span></p>   
+       </div>
+       <p class="clear"></p>
+    </div>
+    
+    <div class="kkzx_center_wddd">
+      <div class="wddid_gd">
+        <h1>我的订单</h1>
+        <p class="p1" style="display:none;">
+          <span><a href="#">待确认：<b>0</b></a></span>
+          <span><a href="#">待付款：<b>0</b></a></span>
+          <span><a href="#">待发收货：<b>0</b></a></span>
+          <span><a href="#">待评价：<b>0</b></a></span>
+        </p>
+        <p class="gd"><a href="/index.php/buyer_order.html">更多</a></p>
+      </div>
+      <p class="clear"></p>
+      
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <th width="105" style="display:none;">订单信息</th>
+          <th width="100">订单号</th>
+          <th width="100">订单金额</th>
+          <th width="105">支付方式</th>
+          <th width="105">时间</th>
+          <th width="73">状态</th>
+          <th width="83" style="text-align:center;">操作</th>
+        </tr>
+        <!--{foreach from=$orders item=order}-->
+        <tr>
+          <td class="kkzxmj" style="display:none;"><a href="{link app=custom act=info arg=$order.order_goods.goods_id}" target="_blank"><img src="{res file=images/dizi_tu.gif}" width="50" height="70" /></a></td>
+          <td>{$order.order_sn}</td>
+          <td class="dsqzxzf"><span>{$order.order_amount|price}</span></td>
+          <td class="dsqzxzf">{$order.payment_name|escape}</td>
+          <td>{$order.add_time|date:Y-m-d H:i:s}</td>
+          <td class="dedaich"><span>{$order.status|modifier:order_status}</span></td>          
+		  <td><a href="{link app=buyer_order act=view arg=$order.order_id}">查看</a> {if $order.status eq 11}<a href="{link app=buyer_order act=pay arg0=$order.order_id}" style="color:#bb422e;">我要付款</a>{/if}</td>
+        </tr>
+		<!--{foreachelse}-->
+		<tr>
+		    <td height="100" align="center" colspan="6">您还没有订单哦，<a href="/index.php/dissertation.html" target="_blank" />赶快去定制吧！</a></td>
+		</tr>
+		
+		<!--{/foreach}-->
+        
+      </table>
+    </div>
+    <div class="kkzx_center_wdsc" style="height:auto;">
+      <h1>为您推荐<a href="/index.php/dissertation.html">更多</a></h1>
+      <ul>
+       {foreach from=$cus_list item=list name=list}
+         {if $smarty.foreach.list.iteration < 9}
+          <li class="picimglink">
+            <p><a href="{link app=custom act=info arg0=$list.cst_id}"><img src="{$list.cst_image}" alt="{$list.cst_name}" /></a></p>
+            <div class="pic-txt">
+             <p class="p1"><a href="{link app=custom act=info arg0=$list.cst_id}">{$list.cst_name}</a></p>
+            </div>
+          </li>
+          {/if}
+        {/foreach}  
+      </ul>
+      <p class="clear"></p>
+    </div>
+    
+    <div class="kkzx_center_wdsc" style="height:auto;">
+      <h1>我的街拍<a href="/index.php/kuke-album.html">更多</a></h1>
+      <ul>
+        {if $des}
+	      	{foreach from=$des key=k item=v }
+	        	<li class="kuke-jiepai"><a href="{$v.link}"><img src="{$v.url}" /></a></li>
+	        {/foreach}
+        {else}
+        	<li>暂无街拍</li>
+        {/if}
+      </ul>
+      <p class="clear"></p>
+    </div>
+
+  </div>
+
+
+  <div class="kkzx_right">
+    <div class="xtggao">
+      <h1>系统公告<!-- <a href="/index.php/article-view-15.html">更多</a> --></h1>
+      
+      <ul class="xtgg_ul">
+      {if $article}
+      {foreach from=$article key=k item=v }
+        <li><a href="/index.php/article-view-{$v.article_id}.html">{$v.title}</a></li>
+        {/foreach}
+        {else}
+        <li>暂无公告</li>
+        {/if}
+      </ul>
+    </div>
+    
+  <!--滚动代码开始-->    
+<!--       <div class="productshow">
+      <h1>积分兑换</h1>
+      <div class="scrollcontainer">
+           <ul>
+              <li>
+                <div class="mlysmdtu"><a href="###"><img src="../images/jfdhtu.gif" alt="" /></a></div>
+                <p class="jfdhbt"><a href="#">高端原生窄领带 藏青香槟条纹商务休闲时尚典雅领带男韩版</a></p>
+                <p class="kbdsal"><span>2680</span>酷币<a href="#"></a></p>
+              </li>
+              <li>
+                <div class="mlysmdtu"><a href="###"><img src="../images/jfdhtu.gif" alt="" /></a></div>
+                <p class="jfdhbt"><a href="#">高端原生窄领带 藏青香槟条纹商务休闲时尚典雅领带男韩版</a></p>
+                <p class="kbdsal"><span>2680</span>酷币<a href="#"></a></p>
+              </li> 
+              <li>
+                <div class="mlysmdtu"><a href="###"><img src="../images/jfdhtu.gif" alt="" /></a></div>
+                <p class="jfdhbt"><a href="#">高端原生窄领带 藏青香槟条纹商务休闲时尚典雅领带男韩版</a></p>
+                <p class="kbdsal"><span>2680</span>酷币<a href="#"></a></p>
+              </li>   
+              <li>
+                <div class="mlysmdtu"><a href="###"><img src="../images/jfdhtu.gif" alt="" /></a></div>
+                <p class="jfdhbt"><a href="#">高端原生窄领带 藏青香槟条纹商务休闲时尚典雅领带男韩版</a></p>
+                <p class="kbdsal"><span>2680</span>酷币<a href="#"></a></p>
+              </li> 
+              <li>
+                <div class="mlysmdtu"><a href="###"><img src="../images/jfdhtu.gif" alt="" /></a></div>
+                <p class="jfdhbt"><a href="#">高端原生窄领带 藏青香槟条纹商务休闲时尚典雅领带男韩版</a></p>
+                <p class="kbdsal"><span>2680</span>酷币<a href="#"></a></p>
+              </li>               
+          </ul>
+          <p class="clear"></p> 
+        </div>
+        <a class="abtn aleft" href="#left">左移</a>
+        <a class="abtn aright" href="#right">右移</a>
+      </div> -->
+      
+	  <script type="text/javascript">
+      $(function(){
+      
+          //二、左右切换：最后一个显示在最右侧;
+          $(".productshow:eq(0)").Xslider({
+              unitdisplayed:1,
+              numtoMove:1
+          });
+          
+          $("a").focus(function(){this.blur();});
+      })
+        </script>          
+   <!--滚动代码结束-->  
+   
+  <!--滚动代码开始-->    
+      <div class="productshow_2">
+      <h1>猜您喜欢</h1>
+      <div class="scrollcontainer">
+           <ul>
+
+               {if $history}
+               {foreach from=$history key=k item=v }
+        
+ 				<li>
+                <div class="mlysmdtu"><a href="{link app=custom act=info arg0=$v.cst_id}"><img src="{$v.cst_image}" width="160" height="180" alt="" /></a></div>
+                <p class="jfdhbt"><a href="#">{$v.cst_name}</a></p>
+                <p class="kbdsal">¥{$v.cst_price}</p>
+              </li>
+
+        {/foreach}
+        {else}
+        <li style="line-height:190px; height:190px;">暂无记录</li>
+        {/if}
+        
+        
+             
+          </ul>
+          <p class="clear"></p> 
+        </div>
+        <a class="abtn aleft" href="#left">左移</a>
+        <a class="abtn aright" href="#right">右移</a>
+      </div>
+      
+	  <script type="text/javascript">
+      $(function(){
+      
+          //二、左右切换：最后一个显示在最右侧;
+          $(".productshow_2:eq(0)").Xslider({
+              unitdisplayed:1,
+              numtoMove:1
+          });
+          
+          $("a").focus(function(){this.blur();});
+      })
+        </script>          
+   <!--滚动代码结束-->    
+
+  </div>
+  <p class="clear"></p>
+  </div>
+{include file="footer.html"}

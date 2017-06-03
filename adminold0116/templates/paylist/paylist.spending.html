@@ -1,0 +1,54 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ajax_tree.js}" charset="utf-8"></script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=paylist&amp;act=index">全部</a></li>
+        <li><a class="btn1" href="index.php?app=paylist&amp;act=income">收入</a></li>
+        <li><a class="btn1" href="index.php?app=paylist&amp;act=spending">支出</a></li>
+        <li><a class="btn1" href="index.php?app=paylist&amp;act=cash">提现记录</a></li>
+    </ul>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable" >
+        <tr class="tatr1" style="text-align: left">
+            <th >{$lang.username}</th>
+            <th >{$lang.nickname}</th>
+            <th >{$lang.change_money}</th>
+            <th >{$lang.type_name}</th>
+            <th >{$lang.status_name}</th>
+            <th >{$lang.addtime}</th>
+        </tr>
+        <form method="get" name="selectcat" id="selectcat">
+            <input type="hidden" name="app" value="paylist" />
+            <input type="hidden" name="act" value="index" />
+            {$lang.username}:<div  style="display:inline;">
+            <input type="text" name="username"/>
+            {$lang.type_name}:<div id="cate" style="display:inline;">
+            <select class="querySelect" id="type_name" name="type_name">
+                <option value="-1" {if $smarty.get.status === -1}selected{/if}>{$lang.select}</option>
+                {html_options options=$spending  selected="$smarty.get.status"}
+            </select>
+        </div>
+            <input type="submit" class="formbtn" value="{$lang.query}" />
+        </form>
+        <!--{foreach from=$money_list item=t name='imgs'}-->
+        <tr  border="1">
+            <td>{$t.user_name}</td>
+            <td>{$t.nickname}</td>
+            <td>{$t.change_money}</td>
+            <td>{$t.type_name}</td>
+            <td>{$t.status_name}</td>
+            <td>{$t.addtime|date:Y-m-d H:i:s}</td>
+        </tr>
+        <!-- {/foreach} -->
+    </table>
+    <!--{if $money_list}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+
+{include file="footer.html"}

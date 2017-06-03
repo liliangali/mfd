@@ -1,0 +1,240 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=generalize_member">返回{$lang.manage}</a></li>
+    </ul>
+</div>
+
+
+
+<script>
+    $(function () {
+        $('#user_form').validate({
+            errorPlacement: function (error, element) {
+                $(element).next('.field_notice').hide();
+                $(element).after(error);
+            },
+            success: function (label) {
+                label.addClass('right').text('OK!');
+            },
+            onkeyup: false,
+            rules: {
+                phone: {
+                    required: true,
+                    byteRange: [11, 11, 'utf-8'],
+                    remote: {
+                        url: 'index.php?app=generalize_member&act=check_user',
+                        type: 'get',
+                        data: {
+                            phone: function () {
+                                return $('#phone').val();
+                            },
+                            id: '{$list.id}'
+                        }
+                    }
+                },
+                name: {
+                    required: true,
+                    maxlength: 10,
+                    minlength: 1,
+                    remote: {
+                        url: 'index.php?app=generalize_member&act=check_user',
+                        type: 'get',
+                        data: {
+                            name: function () {
+                                return $('#name').val();
+                            },
+                            id: '{$list.id}'
+                        }
+                    }
+                },
+                invite:{
+                    required: true,
+                    byteRange: [12, 12, 'utf-8'],
+                    remote: {
+                        url: 'index.php?app=generalize_member&act=check_user',
+                        type: 'get',
+                        data: {
+                            invite: function () {
+                                return $('#invite').val();
+                            },
+                            id: '{$list.id}'
+                        }
+                    }
+                },
+                im_qq  : {
+                    required: false,
+                    number : true,
+                    maxlength   : 15,
+                    minlength   : 5
+                },
+                wechat  : {
+                    required: false,
+                    maxlength: 15,
+                    minlength: 1,
+                    nochinese:true
+                },
+                email: {
+                    email: true
+                }
+            },
+            messages : {
+                phone : {
+                    required : '推广员手机不能为空',
+                    byteRange: '限定为11位手机号码',
+                    remote    : '该手机号已经存在了，请您换一个'
+                },
+                name : {
+                    required : '姓名不能为空',
+                    maxlength: '最大长度10个',
+                    minlength: '最小长度1个',
+                    remote    : '该用户名已经存在了，请您换一个'
+                },
+                invite : {
+                    required : 'BD码不能为空',
+                    byteRange: 'BD码自己性别大写+11位手机号',
+                    remote  : '该BD码已经存在了，请您换一个'
+                },
+                im_qq  : {
+                    number:'仅限输入数字，5-15位',
+                    maxlength: '仅限输入数字，5-15位',
+                    minlength: '仅限输入数字，5-15位'
+                },
+                wechat  : {
+                    maxlength:'不能输入汉字，限输入数字最大15位',
+                    minlength: '不能输入汉字，限输入数字最大15位',
+                    nochinese:'不能输入汉字，限输入数字最大15位'
+                },
+                email  : {
+                    email   : '请您填写有效的电子邮箱'
+                }
+            }
+        })
+    });
+</script>
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="user_form">
+        <table class="infoTable">
+            <tbody>
+            <tr>
+                <th class="paddingT15">真实姓名 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" value="" name="name" id="name" class="infoTableInput2">
+                    <b style="color:red">* (必填)</b>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">手机号码 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" value="" name="phone" id="phone" class="infoTableInput2">
+                    <b style="color:red">* (必填)</b>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">BD码 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" value="{$list.invite}" name="invite" id="invite" class="infoTableInput2" style="width:400px;">
+                    （字母+自己手机号）
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">所属组织 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="generalize" name="generalize">
+                        {html_options options=$generalize selected=$generalize[0]}
+                    </select>
+                    <b style="color:red">* (必填)</b>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">角色 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="type" name="type">
+                        {html_options options=$type selected=$type[0]}
+                    </select>
+                    <b style="color:red">* (必填)</b>
+
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">性别 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="gender" name="gender">
+                        {html_options options=$gender selected=$gender[0]}
+                    </select>
+                    <b style="color:red">* (必填)</b>
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <th class="paddingT15">
+                    状态 :
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="status" name="status">
+                        {html_options options=$status selected=1}
+                    </select>
+                    <b style="color:red">* (必填)</b>
+
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">生日 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" class="infoTableInput Wdate" onclick="WdatePicker()" id="birthday" name="birthday">
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">地区 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" value="" name="address" id="address" class="infoTableInput2" style="width:400px;">
+                </td>
+            </tr>
+
+
+            <tr>
+                <th class="paddingT15">qq :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" value="" name="im_qq" id="im_qq" class="infoTableInput2">
+                </td>
+            </tr>
+
+
+            <tr>
+                <th class="paddingT15">微信 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" value="" name="wechat" id="wechat" class="infoTableInput2">
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">email :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text" value="" name="email" id="email" class="infoTableInput2">
+                </td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input type="hidden" value="" name="id">
+                    <input type="submit" value="提交" name="Submit" class="tijia">
+                    <input type="reset" value="重置" name="Submit2" class="congzi">
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </form>
+</div>
+
+
+</div>
+
+{include file="footer.html"}

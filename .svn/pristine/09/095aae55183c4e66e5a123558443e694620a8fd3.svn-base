@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+.tailors_box {padding:30px 0 20px 0; color:#333;}
+.sycf { float:left; font-size:24px; height:25px; line-height:25px;}
+.Screening { float:left; border:1px solid #ddd; height:28px; line-height:28px; border-radius:20px; padding:0 10px; margin-left:20px; display:inline;}
+.Screening li { float:left; padding:0 12px; border-right:1px solid #ddd;}
+.Screening .on a { color:#a40001;}
+
+.select_ul {float:right;position:relative;}
+.select_ul li {float:left; line-height:16px; cursor:pointer;}
+.select_ul li ul {display:none;}
+.select_ul li {position:relative;}
+.select_ul li ul {position:absolute; top:30px; left:0px; z-index:10; border:1px solid #000; border-top:none; background:#fff; width:168px; padding:10px 0;}
+.select_ul li li {display:block; float:none; height:32px; line-height:32px; overflow:hidden; cursor:pointer; font-size:13px;}
+.select_ul ul a{padding-left:18px; display:block;}
+.select_ul li li:hover { background:#f8f8f8;}
+.style_img {width:150px; height:28px; line-height:28px; border:1px solid #000; padding-left:18px; background:url(../img/icon_1.png) 148px 11px no-repeat;}
+
+.tailor_list {overflow:hidden;}
+.tailor_list ul { float:left; width:106%;}
+.tailor_list li { float:left; width:279px; height:455px; margin-right:28px; padding-bottom:30px; display:inline;}
+.tailor_list li .div_1 { background:#000; width:279px; height:372px; position:relative; overflow:hidden; text-align:center;}
+.tailor_list li .div_1 img { width:279px; transition: all ease 1s; -moz-transition: all ease 1s; -ms-transition: all ease 1s; -o-transition: all ease 1s; -webkit-transition: all ease 1s;}
+.tailor_list li .div_1:hover img {opacity: 0.6;}
+
+.tailor_list li .div_1 .detailed { position:absolute; bottom:135px; left:90px; width:100px; height:100px; line-height:100px; border-radius:50%; text-align:center; background:#000; color:#fff; font-size:14px; transition:all ease .3s; opacity:0; filter:alpha(opacity=0); transform:scale(0,0);}
+.tailor_list li .div_1:hover a.detailed {opacity:0.7; filter:alpha(opacity=70); transform:scale(1,1);}
+
+.tailor_list li .div_2 { background:#f6f6f6; width:100%; height:82px; position:relative; overflow:hidden;}
+.tailor_list li .div_2 img {position:absolute; left:10px; top:10px; border-radius:30px; width:60px; height:60px;}
+.tailor_list li .div_2 p { padding-left:80px; font-size:12px; color:#666; line-height:18px; height:36px; overflow:hidden;}
+.tailor_list li .div_2 h1 {padding:0 80px 0 80px; font-weight:normal; font-size:14px; line-height:30px; height:30px; margin-top:5px; overflow:hidden; position:relative;}
+.tailor_list li .div_2 h1 span { position:absolute; right:10px; top:0;}
+.tailor_list li .div_2 h1 span a { font-size:15px; color:#bb442e; font-family:arial; padding-left:2px;}

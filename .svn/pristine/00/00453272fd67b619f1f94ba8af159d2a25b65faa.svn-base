@@ -1,0 +1,139 @@
+
+{include file="header.html"}
+<script type="text/javascript" src="static/js/e-smart-zoom-jquery.min.js"></script>
+
+<div id="rightTop">
+    <ul class="subnav">
+    
+        <li><a class="btn1" href="index.php?app=serve&amp;act=quantity">管理</a></li>
+        <li><a class="btn1" href="#">查看</a></li>
+    
+   </ul>
+</div>
+
+    <form action="">
+   
+    <div class="order_form">
+        <h1>基本信息</h1>
+        <ul>
+           <li>量体师姓名：{$liang.real_name}</li>
+            <li>登录帐号(手机)：{$liang.user_name}</li>
+            <li>性别 ：{$liang.gender}</li>
+            <li>所属门店 ：{$liang.manager_name}</li>
+            <li>单独承接业务 ：{$liang.alone}</li>
+            <li>总收入 ：{if $liang.sum}<font style="font-size:20px;">￥{$liang.sum}</font>{else}<font style="font-size:20px;">￥0.00</font>{/if}</li>
+            <li>当前余额 ：<font style="font-size:20px;color:#00CC00;">￥{$liang.money}</font></li>
+     
+        </ul>  
+  
+         <div class="clear"></div>
+   </div> 
+
+  <div class="order_form">
+        <h1>业务记录:</h1>
+        <div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+
+        <tr class="tatr1">
+          <td><span ectype="order_by" fieldname="name">顾客姓名</span></td>
+          <td><span ectype="order_by" fieldname="name">性别</span></td>
+          <td><span ectype="order_by" fieldname="city">顾客电话</span></td>
+          <td><span ectype="order_by" fieldname="id">服务方式</span></td>
+          <td><span >量体时间</span></td>
+          <td><span>单次服务费</span></td>
+          <td><span>结算状态</span></td>
+          <td><span>品类</span></td>
+          <td><span>订单号</span></td>
+        </tr>
+       <!--{if !empty($res)}-->
+        <!--{foreach from=$res item=item}-->
+        <tr>
+            <td >{$item.customer_name}</td>
+            <td>{$item.gender}</td>
+            <td>{$item.customer_mobile}</td>
+            <td>{$item.service_mode}</td>
+            <td>{$item.lasttime}</td>
+            <td><font color="#FF0000">￥{$item.single_fee}元</font></td>
+            <td>{if $item.liangti_state eq '3'}<font color="#00cc00">已结算</font>{else}<font color="#FF0000">未结算</font>{/if}</td>
+            <td>
+             <!--{if !empty($item.pl)}-->
+             <!--{foreach from=$item.pl item=p}-->
+            {$p.cate_name}
+             <!--{/foreach}-->
+              <!--{else}-->
+              	暂无
+              <!--{/if}-->
+            </td>
+            <td>{$item.order_sn}</td>
+         
+          </tr>
+          <!--{/foreach}-->
+        <!--{else}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+           
+    </table>
+    <!--{if !empty($res)}-->
+    <div id="dataFuncs">
+     
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+     
+  
+        <div class="clear"></div>
+</div>
+  
+  <div class="order_form">
+        <h1>提现记录:</h1>
+         <!--{if !empty($cash_log)}-->
+        <!--{foreach from=$cash_log item=item}-->
+        <tr>
+         
+          {$item.audit_time} 提现 {$item.cash_money} , 状态:{$item.status} 
+        
+          </tr>
+         <!--{/foreach}-->
+          
+        <!--{else}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+
+    
+        <div class="clear"></div>
+  </div>
+
+    </form>
+
+
+<script type="text/javascript">
+$("div#biuuu_button").click(function(){ 
+$("div#myPrintArea").printArea(); 
+}); 
+</script>
+<script type="text/javascript">
+function changeSize(id){   
+
+       var img = $("#"+id);  
+       var oWidth=img.width(); //取得图片的实际宽度  
+       var oHeight=img.height(); //取得图片的实际高度  
+        
+      $("#"+id).live("click",function(){  
+          $(this).toggle(function(){   
+              img.width(oWidth + 600);  
+                img.height(oHeight + 600/oWidth*oHeight);   
+             }, function(){   
+                 img.width(oWidth);  
+                 img.height(oHeight);   
+            }).trigger('click');    
+      });  
+    }  
+</script>
+
+{include file="footer.html"}

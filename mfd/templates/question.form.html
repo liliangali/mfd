@@ -1,0 +1,99 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#reply_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {    
+            content : {
+                required : true
+            }
+        },
+        messages : {
+            content : {
+                required : '请填写回复的内容'
+            }
+        }
+    });
+});
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=question">返回咨询列表</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="reply_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                                                 会员名:</th>
+                <td class="paddingT15 wordSpacing5">
+                   {$data.ask.user_name}
+                </td>
+            </tr>
+                     <tr>
+                <th class="paddingT15">
+                                                 样衣或套装:</th>
+                <td class="paddingT15 wordSpacing5">
+                   {$data.ask.object_name}
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">咨询内容:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    {$data.ask.content|escape}
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">状态:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                   {if $data.ask.status eq 0}否{else}是{/if} [ <a href="index.php?app=question&act=onshow&id={$data.ask.id}&status={if $data.ask.status eq 0}1{else}0{/if}">{if $data.ask.status eq 0}允许显示{else}禁止显示{/if} </a>]
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                                                     发布时间:</th>
+                <td class="paddingT15 wordSpacing5">
+                    {$data.ask.dateline|date:complete}
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">
+                    <label for="article">回复:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea name="content" style="width:350px;height:200px;">{$data.reply.content|escape}</textarea>
+                    <input type="hidden" name="reply_id" value="{$data.reply.id}">
+                </td>
+            </tr>
+             {if !$data.reply}
+              <tr>
+                <th class="paddingT15">
+                                                   前台显示:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="radio" name="status" value="1">是
+                   <input type="radio" name="status" value="0" checked>否
+                </td>
+              </tr>
+            {/if}
+           <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="id" value="{$data.ask.id}">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

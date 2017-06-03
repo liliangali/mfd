@@ -1,0 +1,42 @@
+<table>
+<tr>
+<td class="paddingT15 wordSpacing5"><b>款式设计</b></td>
+<td></td><td></td><td></td>
+</tr>
+<tr>
+{foreach from=$menus.design item=menu name=loop}
+
+<td class="paddingT15 wordSpacing5"><span style="cursor: pointer;float:left;">x {$smarty.foreach.loop.iteration}</span>
+<a href="javascript:;" data-type="design" data-id="{$menu.id}" style="color:red;">&nbsp;&nbsp;{$menu.name}</a>
+</td>
+<td class="layer{$menu.id}"></td>
+</td>
+                    {if $smarty.foreach.loop.iteration % 2 eq 0}
+                                </tr><tr>
+                             {/if}
+{/foreach}
+</tr>
+
+<tr>
+    <td class="paddingT15 wordSpacing5"><b>深度设计</b></td>
+    <td></td>
+    <td></td>
+    <td></td>
+      
+</tr>
+
+<tr>
+{foreach from=$menus.deep item=menu name=loop}
+
+<td class="paddingT15 wordSpacing5"><span style="cursor: pointer;float:left;">x {$smarty.foreach.loop.iteration}</span>
+<a href="javascript:;" data-type="design" data-id="{$menu.id}" style="color:red;">&nbsp;&nbsp;{$menu.name}</a>
+</td>
+<td class="layer{$menu.id}"></td>
+</td>
+                    {if $smarty.foreach.loop.iteration % 2 eq 0}
+                                </tr><tr>
+                             {/if}
+{/foreach}
+</tr>
+
+</table>

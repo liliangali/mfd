@@ -1,0 +1,93 @@
+{include file="header.html"}
+<script>
+function add_uploadedfile(file_data)
+{
+    var newImg = '<li id="' + file_data.file_id + '" onclick="selectImg(this)"><img width="80px" height="80px" src="' + SITE_URL + '/' + file_data.file_path + '" ondblclick="drop_uploadedfile(' + file_data.file_id + ');"/></li>';
+    $('#thumbnails').prepend(newImg);
+}
+
+function drop_uploadedfile(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+    $.getJSON('index.php?app=article&act=drop_uploadedfile&file_id=' + file_id, function(result){
+        if(result.done){
+            $('#' + file_id).remove();
+        }else{
+            alert('drop_error');
+        }
+    });
+}
+
+function selectImg(obj){
+	$(obj).parents("ul").find("li").each(function(){
+		$(this).removeClass("on");
+	})
+	
+	$(obj).addClass("on");
+}
+
+</script>
+{$build_upload}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>本地上传图片</span></li>
+        <li><a class="btn1" href="index.php?app=images&act=fromdb&w={$water}&d={$dir}&callback={$callback}">图库选择图片</a></li>
+        <li><a class="btn1" href="index.php?app=images&act=fromweb&w={$water}&d={$dir}&callback={$callback}">网络上的图片</a></li>
+    </ul>
+</div>
+<div class="info">
+        <table class="infoTable qdhqx_tab">
+        <tr>
+                <td class="paddingT15 wordSpacing5">
+					 <div id="divSwfuploadContainer">
+                <div id="divButtonContainer" style="float:left;">
+                    <span id="spanButtonPlaceholder"></span>
+                </div>
+                <p class="gthts">最多上传<span>1</span>个附件，单文件最大<span>2MB</span></p>
+                <p style="clear:both;"></p>
+                <p class="zcgzgs">支持 jpg、jpeg、gif、bmp、png 格式。</p>
+                <div id="divFileProgressContainer"></div>
+            </div>
+                </td>
+            </tr>
+            <tr>
+            	<td>
+            	文件列表(双击图片进行删除)
+					<ul id="thumbnails">
+						
+					</ul>
+				</td>
+            </tr>
+            
+            <tr>
+            	<td class="qdhqx">
+                  <input type="button" value="确定"  class="tijia save"/>
+                  <input type="button" value="关闭"  class="congzi"/>
+                </td>
+            </tr>
+            </table>
+</div>
+<script>
+$(document).ready(function(){
+	$selected = '';
+	
+	$(".save").click(function(){
+		var src  = $("li.on").children("img").attr("src");
+		
+		if(!src){
+			alert('请选择图片！');
+			return false;
+		}
+
+		window.opener.{$callback}(src);
+		window.close();  
+	})
+	
+	$(".congzi").click(function(){
+		window.close();  
+	})
+})
+</script>
+{include file="footer.html"}

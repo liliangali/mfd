@@ -1,0 +1,89 @@
+{include file="header3.html"}
+<script type="text/javascript" src="{lib file=cart.js}" charset="utf-8"></script>
+
+<div class="cart_top">
+   <a href="./"><img src="{res file=images}/logo3.gif" class="cart_logo" /></a>
+   <div class="cart_lc">
+     <div class="div3"></div>
+     <ul>
+       <li>我的购物车</li>
+       <li>填写订单信息</li>
+       <li><span>支付、订单完成</span></li>
+     </ul>
+     <p class="clear"></p>
+   </div>
+</div>
+
+
+
+<div class="order_box">
+    <form action="index.php?app=cashier&act=goto_pay&order_id={$order_id}" method="POST" id="goto_pay">
+       
+       <div class="order_info">
+            <span class="order_img"></span>
+            <h1>{$lang.order_created}</h1>
+            <p>{$lang.order_created_desc}</p>
+
+            <h2>
+              共计生成 <span>{$order.order_num}</span> 个订单
+              总金额：<span>{$order.order_amount|price}</span>
+            </h2>
+        
+            <p>您可以在用户中心中的我的订单<a href="{url app=buyer_order}" target="_blank">查看该订单</a></p>
+            
+       </div>
+
+        <div class="order_buy">
+        
+            <h1>{$lang.select_payment}</h1>
+            
+            <!--{if $payments.online}-->
+            <dl>
+                <!--{foreach from=$payments.online item=payment}-->
+                <dd>
+                   <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                     <tr>
+                       <td width="25">
+                         <input id="payment_{$payment.payment_code}" type="radio" name="payment_id" value="{$payment.payment_id}" />
+                       </td>
+                       <td width="135">
+                        <label for="payment_{$payment.payment_code}"><img src="{$site_url}/includes/payments/{$payment.payment_code}/logo.gif" alt="{$payment.payment_name|escape}-{$payment.payment_desc|escape}" title="{$payment.payment_name|escape}-{$payment.payment_desc|escape}" width="120" height="40" /></label>
+                       </td>
+                       <td>{$payment.payment_desc|escape}</td>
+                     </tr>
+                   </table>                
+                </dd>
+                <!--{/foreach}-->
+            </dl>
+            <!--{/if}-->
+            
+            <!--{if $payments.offline}-->
+            <dl>
+                <!--{foreach from=$payments.offline item=payment}-->
+                <dd>
+                   <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                     <tr>
+                       <td width="25">
+                         <input type="radio" id="payment_{$payment.payment_code}" name="payment_id" value="{$payment.payment_id}" /></td>
+                       <td width="135">
+                        <label for="payment_{$payment.payment_code}"><img alt="{$payment.payment_name|escape}-{$payment.payment_desc|escape}" title="{$payment.payment_name|escape}-{$payment.payment_desc|escape}" src="{$site_url}/includes/payments/{$payment.payment_code}/logo.gif" width="120" height="40" /></label>
+                       </td>
+                       <td>{$payment.payment_desc|escape}</td>
+                     </tr>
+                   </table>
+                </dd>
+                <!--{/foreach}-->
+            </dl>
+            <!--{/if}-->
+  
+        </div>
+        
+        
+        
+        <div class="ok_buy">
+            <a href="javascript:$('#goto_pay').submit();" class="bnt"></a>
+        </div>
+    </form>
+</div>
+
+{include file="login_footer.html"}

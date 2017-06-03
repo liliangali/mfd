@@ -1,0 +1,18 @@
+<html>
+
+<form action='index.php?app=customes&act=upload'></form>
+
+<select name='uid'>
+
+{foreach from=$member key=k item=v }
+
+<otion value='{$v.user_id}'>{$v.user_name}</otion>
+
+{/foreach}
+
+</select>
+
+
+<input type='file' name='up_file' />
+
+</html>

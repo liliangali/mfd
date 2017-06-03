@@ -1,0 +1,219 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=dosysmsg">推送记录</a></li>
+    <li><span>发送系统推送 </span></li>
+  </ul>
+</div>
+<script type="text/javascript" src="{res file=js/luck/luck.js}" charset="utf-8"></script>
+<div class="info">
+    <form method="post" id="shipping_form" onsubmit="return toVaild()">
+		<table class="infoTable">
+		<tr id="money_d">
+			<th class="paddingT15"> <label for="site_name">通知标题:</label></th>
+			<td class="paddingT15 wordSpacing5">
+				<label id="money_type1"><input type="text" class="text width2"  name="title" id="title"/>通知标题</label>
+			</td>
+		</tr>
+<!-- 		<tr>
+			<th class="paddingT15"> <label for="site_name">发放设备:</label></th>
+			<td class="paddingT15 wordSpacing5">
+				<select name='send_type' >
+							  {html_options options=$send_type}
+				</select>
+			</td>
+		</tr> -->
+		<tr id="member_t">
+			<th class="paddingT15"> <label for="site_name">发放对象:</label></th>
+			<td class="paddingT15 wordSpacing5 obj">
+				<select name='obj_type' >
+							  {html_options options=$obj_type}
+				</select>
+				<span style="color:blue;cursor:pointer" id="ponintUser">指定会员</span>
+			</td>
+		</tr>
+      
+		<tr id="member_p" style="display:none">
+			<th class="paddingT15"> <label for="site_name">发放对象:</label></th>
+			<td class="paddingT15 wordSpacing5 obj">
+				<input type='text' name='member' placeholder='输入用户ID敲回车键添加' id='member'/> <input type='button' value='确定' id='addok'/>
+				<span style="color:blue;cursor:pointer" id="ponintUserT">指定会员类型</span>
+				<br><div style='border:1px dashed #BBBBBB;width:500px;height:auto;min-height:200px;padding-left:5px' id='member_text'></div>
+			</td>
+		</tr>
+      
+		<tr>
+			<th class="paddingT15"> <label for="site_name">通知内容:</label></th>
+			<td class="paddingT15 wordSpacing5">
+				<textarea onkeyup="checkLength(this);" rows="3" cols="20" name='content' id="send_content"></textarea>
+				 <label class="field_notice">剩余字数：<span id="sy" style="color:Red;">60</span></label>
+			</td>
+		</tr>
+		<tr>
+			<th></th>
+			<td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+				<input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />        
+			</td>
+		</tr>
+		</table>
+	</form>
+</div>
+    
+     <script>
+     function changeCate(obj)
+     {
+   	  var val = $(obj).val();
+   	  var li_length = parseInt($('#member_t select option').length);
+   	  for(var i=0;i<li_length;i++)
+   	  {
+             var info = $('#member_t select option:eq('+i+')').val();
+             if(val == 1)
+          	  {
+           	  if(info == 1)
+              	  {
+           		  $('#member_t select option:eq('+i+')').remove();
+              	  }
+          	  }
+             else
+             {
+           	 
+             }  
+           	
+             
+         }
+   	  
+   	  if(val == 0)
+  		  {
+  		  	if(li_length < 5)
+  		    {
+  		  	  var str = "<option value='1' >消费者</option>";
+          	  $('#member_t select').append(str);
+  		    }
+  		  }
+     }
+     
+      $("#ponintUser").click(function(){
+    	  $("#member_t").css("display","none")
+    	  $("#member_p").css("display","")
+    	  var str = '<input type="hidden" class="text width2" value="0" name="obj_type" id="obj_type"/>';
+    	  $("#member_p").append(str);
+      })
+      
+       $("#ponintUserT").click(function(){
+    	  $("#member_p").css("display","none")
+    	  $("#member_t").css("display","")
+    	  $("#obj_type").remove();
+      })
+      
+      /*  $("#money_d_m").click(function(){
+    	  $("#money_d").css("display","none")
+    	  $("#money_t").css("display","")
+    	  var str ='<input type="text" class="text width2" name="money"/>元/币<input type="hidden" class="text width2" value="1" name="money_type"/>';
+    	  $("#money_type1").empty();
+    	  $("#money_type2").append(str);
+    	  
+      })
+      
+       $("#money_t_m").click(function(){
+    	  $("#money_t").css("display","none")
+    	  $("#money_d").css("display","")
+    	  var str ='<input type="text" class="text width2" name="money"/>元/币<input type="hidden" class="text width2" value="0" name="money_type"/>';
+    	  $("#money_type2").empty();
+    	  $("#money_type1").append(str);
+      }) */
+      
+      $("#addok").click(function(){
+    	  
+    	  var member = $("#member").val();
+    	  var cate = $('input[name="cate"]:checked ').val();
+    	  
+    	  //检查是否已经在添加文件中存在
+    	  var input_length = parseInt($("#member_text input").length);
+    	  if(input_length > 0)
+   		  {
+    		  for(var i=0;i<input_length;i++)
+        	  {
+        		  var info = $('#member_text input:eq('+i+')').val();
+        		  if(info == member)
+        		  {
+        			  luck.alert('系统提示','此会员已添加成功!请勿重复添加',6);
+        			  return false;
+        		  }	   
+        	  }
+   		  }
+    	  
+    	  //alert(input_length);
+    	  
+    	  $.post("index.php?app=debit&act=checkm",{phone:member,cate:cate},function(res){
+    		 var ress = eval('('+res+')');
+    		  if(ress.done == true)
+   			  {
+    			  var sp = "<label onclick= 'del(this)'><input  name='' type='text'  value="+member+" readonly='readonly' style='width:80px;height:16px;border:2px solid #EEEEEE; border-right:20px solid #EEEEEE;margin:5px 5px 5px 5px;' /><input type='hidden' name='obj_val[]' value="+ress.retval+" /></label>";
+    	    	  $("#member_text").append(sp);
+   			  }
+    		  else
+   			  {
+    			  luck.alert('系统提示','会员不存在',6);
+   			  }
+    	  })
+    	  
+    	  
+      })
+      
+      function del(objs)
+      {
+    	  luck.confirm('系统提示','确认删除',function(obj){
+    					if(obj)
+   						{
+    						//luck.alert('系统提示',t);
+    	    				$(objs).remove();
+   						}
+    		},['确定','取消']);
+      }
+	  
+	  function checkLength(which) {
+			var maxChars = 60; //
+			if(which.value.length > maxChars){
+				alert("您出入的字数超多限制!");
+				// 超过限制的字数了就将 文本框中的内容按规定的字数 截取
+				which.value = which.value.substring(0,maxChars);
+				return false;
+			}else{
+				var curr = maxChars - which.value.length; //250 减去 当前输入的
+				document.getElementById("sy").innerHTML = curr.toString();
+				return true;
+			}
+		}
+		
+		function toVaild()
+		{
+			
+			var status = $('#status').val();
+			
+			/* if(status == 0)
+			{
+				alert('请选择审核状态')
+				return false;		
+			} */
+			
+			var title = $('#title').val();
+			var content = $('#send_content').val();
+			if(!title)
+			{
+				alert('请填写发送标题')
+				return false;
+			}
+			if(!content)
+			{
+				alert('请填写内容')
+				return false;
+			}
+			return true;
+			
+		}
+	  
+      </script>
+      
+
+</script>
+{include file="footer.html"}

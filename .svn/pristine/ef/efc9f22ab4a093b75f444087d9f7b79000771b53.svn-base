@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+			<form action = "http://api.alicaifeng.com/soap/club.php?act=subComment" method="post" enctype="multipart/form-data" >
+			id:<input type="text" name="id" value="" /><br>
+			token:<input type="text" name="token" value="tokentokenshao" /><br>
+			cotent:<input type="text" name="content" value="这里是留言内容" /><br>
+			  评论附带: <input type="file" name="commentImg[]"  /><br>
+			   评论附带: <input type="file" name="commentImg[]"  /><br>
+			<input type="submit" value="提交了啊" />
+			</form>
+</body>
+</html>

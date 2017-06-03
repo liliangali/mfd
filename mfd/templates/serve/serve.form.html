@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+<meta http-equiv="cache-control" content="max-age">
+<title> alicaifeng管理中心 - alicaifeng.com </title>
+<link href="templates/style/admin.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+//]]>
+</script>
+<script type="text/javascript" src="../../../static/expand/my97date/wdatepicker.js" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=jquery.plugins/jquery.validate.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=rctailor.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/admin.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/jquery.cookie.js}" charset="utf-8"></script>
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<style type="text/css">
+<!--
+body {background: #fff}
+-->
+
+
+
+/* 头部缓存http://blog.sina.com.cn/s/blog_9c7ba64d01012vn2.html  */
+</style>
+{$_head_tags}
+</head>
+<body>
+
+<script type="text/javascript">
+$(function(){
+    $('#user_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+        	serve_name : {
+        		required : true,
+        		 remote   : {
+                     url :'index.php?app=serve&act=check_serve_name',
+                     type:'get',
+                     data:{
+                     	serve_name : function()
+                     	{
+                             return $('#serve_name').val();
+                         },
+                         id : '{$serve.idserve}'
+                     }
+            }
+        	},
+            serve_address : {
+                required : true,
+            },
+            login_name : {
+                required : true,
+                isPhone: true,
+                remote   : {
+                    url :'index.php?app=serve&act=login_name',
+                    type:'get',
+                    data:{
+                    	login_name : function()
+                    	{
+                            return $('#login_name').val();
+                        },
+                        id : function()
+                        {
+                        	return $("#servess").val();
+                        }
+                    }
+                }
+            },
+            post_code : {
+           	    required : true,
+           },
+           mobile : {
+        	   isPhone: true,
+        	   remote   : {
+                   url :'index.php?app=serve&act=check_mobile',
+                   type:'get',
+                   data:{
+                   	mobile : function()
+                   	{
+                           return $('#mobile').val();
+                       },
+                       user_id : function()
+                       {
+                       	return $("#servess").attr("data-user");
+                       }
+                       
+                   }
+               }
+           },
+           
+        },
+        messages : {
+        
+        	serve_name : {
+                required : '必填',
+                remote   : '名称已存在'
+            },
+            serve_address : {
+                required : '必填',
+            },
+            login_name : {
+                required : '必填',
+                isPhone  : '请填写正确的手机号码',
+                remote   : '登录账号已存在',
+            },
+            post_code: {
+            	required : '必填',
+               
+            },
+            mobile : {
+            	 isPhone  : '请填写正确的手机号码',
+            	 remote   : '店长账号已存在',
+            },
+            
+        }
+    });
+}); 
+
+
+
+
+
+
+
+jQuery.validator.addMethod("isPhone", function(value, element) {   
+
+var tel = /^0?(13[0-9]|15[012356789]|18[02356789]|14[57])[0-9]{8}$/;
+//var tel1 = /^\d{3,4}-?\d{7,9}$/;
+var model = /^(\d{3,4}\-)?\d{7,8}$/i;
+
+return this.optional(element) || (tel.test(value) || model.test(value));
+
+}, "请填写正确的号码");
+
+
+</script>
+
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=serve&act=indexManager">{$lang.manage}</a></li>
+    <li>
+     
+      <span>新增</span>
+      
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="user_form">
+    <table class="infoTable">
+    <tr><th class="paddingT15"><h1>店铺信息</h1></th></tr>
+    <tr>
+        <th class="paddingT15"> 地区:</th>
+        <td class="paddingT15 wordSpacing5">
+        <select  name="p_region_id" onchange="get_region(this)">
+            {html_options options=$region1 selected=$p_region_id}
+     </select>
+     
+     <select  name="region_id" id="region_id">
+            {html_options options=$region2 selected=$serve.region_id}
+     </select>
+         </td>
+   </tr>
+
+      <tr>
+        <th class="paddingT15"> 服务店名称:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input class="infoTableInput2" id="serve_name" type="text" name="serve_name" value="{$serve.serve_name|escape}" />
+        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> 服务店地址:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input class="infoTableInput2" id="serve_address" type="text" name="serve_address" value="{$serve.serve_address|escape}" />
+         </td>
+      </tr>
+
+
+   <tr>
+        <th class="paddingT15"> 店铺联系电话:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input class="infoTableInput2" id="login_name" type="text" name="login_name" value="{$serve.store_mobile|escape}" />
+        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> 邮编:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input class="infoTableInput2" id="post_code" type="text" name="post_code" value="{$serve.post_code|escape}" />
+        </td>
+      </tr>
+     <tr>
+       <th class="paddingT15">门店性质:</th>
+                <td class="paddingT15 wordSpacing5" id="types">
+                   <input type="radio"  name="storetype" value="1" {if $serve.storetype== 1 or !$serve.storetype}checked{/if}/>麦富迪门店
+                   <input type="radio"  name="storetype" value="2" {if $serve.storetype== 2}checked{/if}/>自营门店
+                </td>
+            </tr>
+      <!--  <tr>
+       <th class="paddingT15">业务承接:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="radio" name="shop_type" value="0" {if $serve.shop_type== 0}checked{/if}/>C2M
+                   <input type="radio" name="shop_type" value="1" {if $serve.shop_type== 1 or !$serve.shop_type}checked{/if}/>C2C
+                   <input type="radio" name="shop_type" value="2" {if $serve.shop_type== 2}checked{/if}/>通用
+                </td>
+            </tr>  -->  
+              <tr>
+             <th class="paddingT15"></th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="checkbox" name="virtual" value="1" {if $serve.virtual== 1}checked{/if}/>设为虚拟门店
+                </td>
+            </tr>   
+      <tr> 
+    <tr><th class="paddingT15"><h1>店长信息</h1></th></tr>
+      <tr>
+        <th class="paddingT15">店长姓名:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input class="infoTableInput2" name="linkman" type="text" id="linkman" value="{$serve.linkman|escape}" />        </td>
+      </tr>
+      
+      <tr>
+        <th class="paddingT15">店长证件号:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input class="infoTableInput2" name="card_number" type="text" id="card_number" value="{$serve.card_number|escape}" />
+       <!--  <label class="field_notice">请输入9位数</label> -->
+      </tr>
+    
+    
+        <th class="paddingT15">登陆账号:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input class="infoTableInput2" name="mobile" type="text" id="mobile" value="{$serve.mobile|escape}" maxlength='16' />        </td>
+      </tr>
+
+      <tr>
+        <th class="paddingT15">登录密码:</th>
+        <td class="paddingT15 wordSpacing5"><input name="password" type="text" id="password"/>
+        <label class="field_notice">留空表示不修改密码</label>
+      </tr>
+
+
+      <tr>
+      <th class="paddingT15">绑定手机号:</th>
+        <td class="paddingT15 wordSpacing5">{$serve.phone_mob}</td>
+      </tr>
+
+
+
+      <tr>
+        <th class="paddingT15"> 营业时间:</th>
+        <td class="paddingT15 wordSpacing5">
+        <input type="text" name="business_time" id="business_time"  value="{$serve.business_time}" class="" />(周一至周日 8:00-20:00) 
+      </td>
+      </tr>
+
+     
+      <tr>
+        <th></th>
+        <input class="infoTableInput2" name="id" id="servess" type="hidden" data-user="{$serve.userid}" value="{$serve.idserve|escape}" />      
+        <td class="ptb20"><input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+              </td>
+      </tr>
+      
+      
+    </table>
+  </form>
+</div>
+
+<script>
+function get_region(obj)
+{
+	var p_id = $(obj).val();
+	$.post("./index.php?app=serve&act=get_region",{pid:p_id}, function(res){
+		   var res = eval("("+res+")");
+		   $('#region_id').empty();
+	    	 $('#region_id').append(res.retval)
+	});
+}
+</script>
+
+
+{include file="footer.html"}

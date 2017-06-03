@@ -1,0 +1,155 @@
+{include file="header.html"}
+
+<div id="rightTop">
+	<ul class="subnav">
+		<li><span>{$lang.add}</span></li>
+	</ul>
+</div>
+<div class="info">
+	<form method="post" enctype="multipart/form-data" id="user_form">
+		<table class="infoTable">
+
+
+			<tr>
+				<th class="paddingT15">分类:</th>
+				<td class="paddingT15 wordSpacing5"><select id="clothingtypes"
+					name="clothingtypes">
+					{html_options options=$clothingtypes selected=$data.clothingtypes}
+						
+				</select></td>
+			</tr>
+
+
+			<tr>
+				<th class="paddingT15">款式:</th>
+				<td class="paddingT15 wordSpacing5"><select id="clothingstyles"
+					name="clothingstyles">
+						{html_options options=$clothingstyles selected=$data.clothingstyles}
+				</select></td>
+			</tr>
+
+
+
+			
+
+
+
+			<tr>
+				<th  class="paddingT15">图片1</th>
+				<td class="paddingT15 wordSpacing5">
+<input class="infoTableFile2" type="file" name="url" id="url" />
+          <label class="field_notice">{$lang.note_portrait}</label>
+					</td>
+
+
+
+			</tr>
+
+<tr>
+				<th  class="paddingT15">图片2</th>
+				<td class="paddingT15 wordSpacing5">
+<input class="infoTableFile2" type="file" name="url2" id="url2" />
+          <label class="field_notice">{$lang.note_portrait}</label>
+					</td>
+
+
+
+			</tr>
+<tr>
+				<th  class="paddingT15">图片3</th>
+				<td class="paddingT15 wordSpacing5">
+<input class="infoTableFile2" type="file" name="url3" id="url3" />
+          <label class="field_notice">{$lang.note_portrait}</label>
+					</td>
+
+
+
+			</tr>
+			<tr>
+				<th  class="paddingT15">图片4</th>
+				<td class="paddingT15 wordSpacing5">
+<input class="infoTableFile2" type="file" name="url4" id="url4" />
+          <label class="field_notice">{$lang.note_portrait}</label>
+					</td>
+
+
+
+			</tr>
+			<tr>
+				<th  class="paddingT15">图片5</th>
+				<td class="paddingT15 wordSpacing5">
+<input class="infoTableFile2" type="file" name="url5" id="url5" />
+          <label class="field_notice">{$lang.note_portrait}</label>
+					</td>
+
+
+
+			</tr>
+			
+			
+			<tr>
+				<th  class="paddingT15">图片6</th>
+				<td class="paddingT15 wordSpacing5">
+<input class="infoTableFile2" type="file" name="url6" id="url6" />
+          <label class="field_notice">{$lang.note_portrait}</label>
+					</td>
+			</tr>
+			
+			
+			<tr>
+				<th  class="paddingT15">图片7</th>
+				<td class="paddingT15 wordSpacing5">
+<input class="infoTableFile2" type="file" name="url7" id="url7" />
+          <label class="field_notice">{$lang.note_portrait}</label>
+					</td>
+			</tr>
+			
+			
+			<tr>
+				<th  class="paddingT15">图片8</th>
+				<td class="paddingT15 wordSpacing5">
+<input class="infoTableFile2" type="file" name="url8" id="url8" />
+          <label class="field_notice">{$lang.note_portrait}</label>
+					</td>
+			</tr>
+			
+			
+			<tr>
+				<th  class="paddingT15">图片9</th>
+				<td class="paddingT15 wordSpacing5">
+<input class="infoTableFile2" type="file" name="url9" id="url9" />
+          <label class="field_notice">{$lang.note_portrait}</label>
+					</td>
+			</tr>
+			
+
+			<tr>
+				<th></th>
+				<td class="ptb20"><input class="tijia" type="submit"
+					name="Submit" value="{$lang.submit}" /> <input class="congzi"
+					type="reset" name="Reset" value="{$lang.reset}" /></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script>
+function replym()
+{
+	//alert($("#reply").val());
+	
+	var url='/mfd/index.php?app=user&act=upload_comment&id={$data.id}&content='+$("#reply").val();
+	//alert(url);
+	if($("#reply").val().length>0)
+	{
+		$.get(url,function(data){
+			alert("回复成功!");
+			location.reload();
+		});
+	}else
+	{
+		alert('请输入内容!');	
+	}
+	
+}
+</script>
+{include file="footer.html"}

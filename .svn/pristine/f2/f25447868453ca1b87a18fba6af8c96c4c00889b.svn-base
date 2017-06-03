@@ -1,0 +1,77 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=user">管理</a></li>
+        <li><a class="btn1" href="index.php?app=user&act=admin_userlog">日志查询</a></li>
+        <li><span>登录记录</span></li>
+    </ul>
+
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="user" />
+                <input type="hidden" name="act" value="user_log" />
+                用户名：
+                <input type="text" class="zzinput"  name="user_name" value="{$smarty.get.user_name}"/>
+
+                &nbsp;&nbsp;
+                登录平台：<select class="querySelect" name='source'>
+                <option value="">全部</option>
+                {html_options options=$source_conf selected=$smarty.get.source}
+            </select>
+
+                操作时间：<input class="queryInput2" type="text" value="{$query.add_time_from}" style="width:80px" id="add_time_from" name="add_time_from" class="pick_date" />
+                至：<input class="queryInput2" type="text" value="{$query.add_time_to}" style="width:80px" id="add_time_to" name="add_time_to" class="pick_date" />
+
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+        </form>
+    </div>
+
+    <div class="fontr">{include file=page.top.html}</div>
+</div>
+<br/>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <tr class="tatr1">
+            <td width="3%"><span ectype="order_by" fieldname="id">ID</span></td>
+            <td width="12%"><span  ectype="order_by" fieldname="user_id">用户名</span></td>
+            <!--<td width="6%"><span  ectype="order_by" fieldname="source">登录平台</span></td>-->
+            <td width="11%"><span  ectype="order_by" fieldname="client">登陆客户端</span></td>
+			<td width="11%"><span  ectype="order_by" fieldname="add_time">登陆时间</span></td>
+
+        </tr>
+
+        <!--{if !empty($list)}-->
+        <!--{foreach from=$list item=item key=k}-->
+        <tr class="tatr2">
+            <td class="firstCell">{$item.id}</td>
+            <td><a href="index.php?app=user&act=member_info&id={$item.user_id}">{$item.user_name}</a></td>
+            <!--<td>{$source_conf.$item.source}</td>-->
+            <td>{$item.client}</td>
+			<td>{$item.add_time}</td>
+
+        </tr>
+        <!--{/foreach}-->
+        <!--{else}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+    </table>
+    <!--{if !empty($list)}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+
+<script type="text/javascript">
+    //日期
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
+{include file="footer.html"}

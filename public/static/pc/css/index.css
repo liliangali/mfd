@@ -1,0 +1,110 @@
+@charset "utf-8";
+/* CSS Document */
+/*滚动插件*/
+.swipe { overflow: hidden; visibility: hidden; position: relative;width:100%;max-width:1920px; margin:0 auto}
+.swipe-wrap { overflow: hidden; position: relative; }
+.swipe-wrap>div { float: left; width: 100%; position: relative;text-align:center;}
+.swipe-wrap img{ width:100%; height:auto;}
+.swipe-btn{ text-align:center; position:absolute; bottom:20px; width:100%; text-align:center;}
+.swipe-btn span{ display:inline-block; width:8px; height:8px; border-radius:50%; border:solid 1px #fff; margin:0 2px;}
+.swipe-btn .cur{border:solid 1px #e66800; background: #e66800;}
+.swipe-prev,.swipe-next{ width:30px; height:66px; background:url(/public/static/pc/images/arrow.png) no-repeat; position:absolute; top:50%; margin-top:-33px; cursor:pointer; visibility:hidden;}
+.swipe:hover .swipe-prev,.swipe:hover .swipe-next{ visibility:visible;}
+.swipe-prev{left:3%;}
+.swipe-next{ background-position:-30px 0; right:3%;}
+.btnList{ margin-top:60px;}
+.btnList li{ float:left; width:20%; margin:0 2.5%; text-align:center;}
+.btnList .svgbox{ width:80px; height:90px; margin:0 auto;}
+.btnList svg{ background:#fff;}
+.btnList strong{ display:block; font-size:20px; font-weight:normal; color:#333; margin-bottom: 3px;}
+.btnList li:hover strong {color: #e66800;}
+.btnList span{ font-size:12px; color: #8c8c8c;}
+
+/*热卖定制犬种/S*/
+.sysdbt {text-align: center;  margin: 64px 0 25px 0;}
+.sysdbt p {width: 50px; height: 2px; background: #e66800; margin: 0 auto;}
+.sysdbt h1 {font-size: 24px; color: #333; line-height: 30px; height: 30px; margin:6px 0;}
+.sysdbt h2 {font-size: 13px; color: #8c8c8c; line-height: 20px;}
+
+.rmdzqz {border: 1px solid #eee; width: 1198px; height: 550px; position: relative;}
+.rmdzqz img {z-index: -1;}
+.rmdzqz div { border-right: 1px solid #eee; border-bottom: 1px solid #eee; position: absolute; overflow: hidden;}
+.rmdzqz div a {display: block; width: 100%; height: 100%;}
+.rmdzqz div h1 {font-size: 20px; height: 30px; line-height: 30px; overflow: hidden; width: 150px; margin: 24px 0 2px 25px; color: #333;}
+.rmdzqz div h2 {font-size: 13px; color: #8c8c8c; line-height: 20px; overflow: hidden; width: 250px; margin-left: 25px;}
+.rmdzqz div:hover h1,.rmdzqz div:hover h3 {color: #e66800;}
+.rmdzqz div h3 {font-size: 20px; color: #333; height: 40px; line-height: 40px; overflow: hidden; width: 250px; margin: 55px 0 0 25px; background: url(/public/static/pc/images/icon_1.png) right top no-repeat;}
+.rmdzqz div img {transition: right 0.3s ease 0s;}
+
+.rmdzqz .div_1 {width: 599px; height: 275px; left: 0; top: 0;}
+.rmdzqz .div_1 h2 { height: 80px; width: 280px;}
+.rmdzqz .div_1 .dog_1 {width: 290px; height: 200px; position: absolute; right:0px; bottom: 0;}
+.rmdzqz .div_1:hover .dog_1 {right: 5px;}
+
+.rmdzqz .div_2 {width: 298px; height: 275px; left: 600px; top: 0;}
+.rmdzqz .div_2 .dog_1 {width: 215px; height: 185px; position: absolute; right:20px; bottom: 0;}
+.rmdzqz .div_2:hover .dog_1 {right: 25px;}
+
+.rmdzqz .div_3 {width: 299px; height: 399px; left: 900px; top: 0; border-right: none;}
+.rmdzqz .div_3 .dog_1 {width: 250px; height: 300px; position: absolute; right:20px; bottom: 0;}
+.rmdzqz .div_3:hover .dog_1 {right: 25px;}
+
+.rmdzqz .div_4 {width: 298px; height: 274px; left: 0; bottom: 0; border-bottom: none;}
+.rmdzqz .div_4 .dog_1 {width: 215px; height: 185px; position: absolute; right:20px; bottom: 0;}
+.rmdzqz .div_4:hover .dog_1 {right: 25px;}
+
+.rmdzqz .div_5 {width: 300px; height: 274px; left: 299px; bottom: 0; border-bottom: none;}
+.rmdzqz .div_5 .dog_1 {width: 215px; height: 185px; position: absolute; right:38px; bottom: 0;}
+.rmdzqz .div_5:hover .dog_1 {right: 43px;}
+
+.rmdzqz .div_6 {width: 298px; height: 274px; left: 600px; bottom: 0; border-bottom: none;}
+.rmdzqz .div_6 .dog_1 {width: 215px; height: 185px; position: absolute; right:18px; bottom: 0;}
+.rmdzqz .div_6:hover .dog_1 {right: 23px;}
+
+.rmdzqz .div_7 {width: 299px; height: 150px; right: 0; bottom: 0; border: none;}
+/*热卖定制犬种/E*/
+
+.appTit{ text-align:center; margin-top:70px;}
+.appTit dt{ font-size:20px;}
+.appTit dd{ color:#717171; line-height:35px;}
+.appTit dd span{ padding:0 10px;}
+.appShow{ height:411px; padding-top:20px; position:relative; overflow:hidden; width:1146px; margin:0 auto;}
+.appShow .pic1{ position:absolute; left:0; bottom:-45px; z-index:2; transform:translate3d(-200px,0,0); opacity:.6; transition:all ease 1s .2s;}
+.appShow .pic2{ position:absolute; left:3%; bottom:-100px; z-index:1; transform:translate3d(-100px,0,0); opacity:.6; transition:all ease 1s;}
+.appShow .pic3{ position:absolute; left:43.5%; margin-left:-270px; bottom:0; z-index:0; transition:all .5s;}
+.appShow .pic4{ position:absolute; right:15%; bottom:-65px; z-index:1;transform:translate3d(100px,0,0); opacity:.6; transition:all ease 1s;}
+.appShow .pic5{ position:absolute; right:3%; bottom:-30px; z-index:2;transform:translate3d(200px,0,0); opacity:.6; transition:all ease 1s .2s;}
+.appShow.active .pic1,.appShow.active .pic2,.appShow.active .pic4,.appShow.active .pic5{ transform:translate3d(0,0,0); opacity:1;}
+.appShow img:hover{ transition:all .5s; transform:translateY(-10px) !important;}
+.appshadow{ height:19px; background:url(/public/static/pc/images/appshadow.png) repeat-x; position:relative; z-index:2;margin-top:-19px;}
+
+@media screen and (max-width:1200px) {
+.btnList{ margin-top:20px;}
+.win{ width:990px; margin:50px auto 0;}
+.win .man{ width:486px;}
+.win .recomm{ width:189px; margin-left:17px;}
+.win .woman{ width:280px;}
+.win .tit{ height:30px;font-size:16px;line-height:30px;}
+.win .man .small{ width:231px; height:193px;}
+.win .man .big{ width:247px; height:396px;}
+.win .recomm .small{ width:189px; height:193px;}
+.win .woman .big{ width:280px; height:396px;}
+.win .mt{ margin-top:10px;}
+.appShow{ width:990px; margin:0 auto;}
+}
+@media screen and (max-width:990px) {
+.win{ width:760px; margin:50px auto 0;}
+.win .man{ width:374px;}
+.win .recomm{ width:145px; margin-left:13px;}
+.win .woman{ width:215px;}
+.win .tit{ height:25px;font-size:14px;line-height:25px;}
+.win .man .small{ width:177px; height:148px;}
+.win .man .big{ width:190px; height:304px;}
+.win .recomm .small{ width:145px; height:148px;}
+.win .woman .big{ width:215px; height:304px;}
+.win .mt{ margin-top:10px;}
+.appShow{ width:760px; margin:0 auto;}
+.appShow .pic1,.appShow .pic5{ display:none;}
+.appShow .pic2{ left:0%}
+.appShow .pic4{ right:0%}
+}

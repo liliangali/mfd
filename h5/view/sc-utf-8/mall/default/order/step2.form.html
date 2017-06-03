@@ -1,0 +1,292 @@
+{include file=order/member.header.html}
+<script type="text/javascript">
+$(function(){
+	$("select").selectCss();//select下拉菜单美化
+	//在线下单020304tab切换
+	$(".ccc001>li:eq(0)").show();
+	$(".ccc>li:eq(0)>a").css({"color":"#ac4524","border":"1px solid #ac4524"});
+	$(".ccc>li").each(function(i){	
+	    $(".ccc>li:eq("+i+")").click(function(){
+			$(".ccc>li:eq("+i+")>a").css({"color":"#ac4524","border":"1px solid #ac4524"}).parent().siblings().children().css({"color":"#333333","border":"1px solid #d5d5d5"});
+            $(".ccc001>li:eq("+i+")").show().siblings().hide();
+			})
+	})
+	//在线下单020304中04部分的radio按钮美化
+	$('input').customInput();
+	$(".radio_ul>li").each(function(j){
+		$(".radio_ul_children>li:eq(0)").show().siblings().hide();
+		$(".radio_ul>li:eq("+j+")").click(function(){
+			$(".radio_ul_children>li:eq("+j+")").show().siblings().hide();
+			})
+		})
+		
+	//数字加减
+	var zhi =$(".jiajian01>input").val ()
+	$('.jia').click(function(){
+		var input=$(this).parent().children('input');
+		input.val(Number(input.val())+1)	
+	})
+	$('.jian').click(function(){
+		var input=$(this).parent().children('input');
+		if(input.val()==1)return;
+		input.val(Number(input.val())-1)	
+	})
+});
+</script>
+	<form method="post" action='order-addApp.html?opt=3' name="form_order_addapp_step2"  id="orderForm">
+		<div class="dd_tit01">
+			<ul class="ccc">
+				<li><a href="javascript:void();">产品工艺</a></li>
+				<li><a href="javascript:void();">刺绣信息</a></li>
+				<li><a href="javascript:void();">尺寸信息</a></li>
+			</ul>
+		</div>
+		<ul class="ccc001">
+			<!--产品工艺 START-->
+			<li>    
+				<div class="dd_tit">
+					<ul class="ccc_content">
+						{foreach from=$crafts item=cft}
+						<li>
+							<span class="h02">{$cft.name}:</span>
+							<div class="sel"> 
+								<select class="select01"  id="select1" name="crafts[{$cft.id}]" data-cloth="{$cft.clothingID}">
+									<option value="">请选择..</option>
+									{foreach from=$cft.list item=cft_item}
+									<option {if $sess_data.crafts }{if in_array($cft_item.code, $sess_data.crafts)} selected="selected" {/if}{/if}  value="{$cft_item.code}">{$cft_item.code}-{$cft_item.name}</option>
+									{/foreach}
+									{* html_options options=$cft.list  selected="" *}
+								</select>
+							</div>
+						</li>
+						{/foreach}
+					</ul>
+				</div>   
+			</li>
+			<!--产品工艺 END-->
+			
+			<!--刺绣信息 START-->
+			<li>
+				<div class="dd_tit">
+					<ul class="ccc_content">
+						{foreach from=$embs item=emb key=__embKey}
+						<li>
+							<span class="h03">{$emb.tname}:</span>
+							<div class="sel03">
+								<select class="select01" id="select1" name="embs[{$__embKey}]" data-cloth="{$emb.clothingID}">
+									<option value="">请选择..</option>
+									{foreach from=$emb.list item=emb_item}
+									<option {if $sess_data.crafts }{if in_array($emb_item.e_id, $sess_data.embs)} selected="selected" {/if}{/if} value="{$emb_item.e_id}">{$emb_item.e_name}</option>
+									{/foreach}
+									{* html_options options=$cft.list  selected="" *}
+								</select>
+							</div>
+						</li>
+						{/foreach}
+						<li>
+							<span class="h03">内容:</span>
+							<div class="sel03">
+								<input type="text" name="embs[emb_con]" value="{$sess_data.embs.emb_con|escape}" placeholder="某某工艺名称" /> 
+							</div>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<!--刺绣信息 END-->
+			
+			<!--尺寸信息tabs START-->
+			<li>
+				<!--尺寸信息tabs START-->
+				<div class="dd_tit01">
+					<ul class="radio_ul">
+						<li>
+							<input type="radio" checked="checked" name="opinions" id="totally" value="10052"/>
+							<label for="totally">净体量体</label>
+						</li>
+						<li>
+							<input type="radio" name="opinions" id="whats-caddyshack" value="10054" />
+							<label for="whats-caddyshack">标准号加减</label>
+						</li>
+					</ul>  
+				</div>		  
+				<!--尺寸信息tabs END-->
+				<div class="dd_tit">
+					<ul class="radio_ul_children">
+						<!--净体量体 START-->
+						<li>
+							<h3>{$cateName}<font>单位(CM)</font></h3>
+							<ul class="c1 totally_ul">
+								{foreach from=$positions.totally item=bt key=__kfg}
+									{foreach from=$bt.list item=lst}
+										<li>
+											<span>{$lst.zname}:</span>
+											<input dataname="{$lst.zname}" type="text" value="{$data.figure.$lst.name}" name="figures[{$lst.name}]" />
+										</li>
+									{/foreach}
+								{/foreach}
+							</ul>
+							
+							{if $body_type.feature}
+							<h3>特殊体型</h3>
+							<ul class="ccc_content01">
+								{foreach from=$body_type.feature item=bt}
+								<li>
+									<span class="h03">{$bt.info.name}</span>
+									<div class="sel03">
+										<select class="select01" name="body_type[{$bt.info.nm}]" id="select1"> 
+											{foreach from=$bt.list item=lst}
+												<option value="{$lst.id}" {if $lst.id eq $data.figure.$bt.info.nm} selected="selected" {/if} title="" >{$lst.name}</option> 
+											{/foreach}
+										</select> 
+									</div>	
+								</li>
+								{/foreach}
+							</ul>
+							{/if}
+							
+							{if $body_type.style}
+							<h3>着装风格</h3>
+							<ul class="ccc_content01">
+								{foreach from=$body_type.style item=bt}
+								<li>
+									<span class="h03">{$bt.info.name}</span>
+									<div class="sel03">
+										<select name="body_type[{$bt.info.nm}]" id="select1"> 
+											{foreach from=$bt.list item=lst}
+												<option value="{$lst.id}" title="" {if $lst.deft} selected="selected" {/if} >{$lst.name}</option> 
+											{/foreach}
+										</select> 
+									</div>	
+								</li>
+								{/foreach}
+							</ul>
+							{/if}
+						</li>
+						<!--净体量体 END-->
+					  
+						<!--标准号加减 START-->
+						<li>
+							<h3>上衣</h3>
+							<ul class="ul_num_16">
+								<li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">122/158</a></li><li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">160/84</a></li>
+								<li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">122/158</a></li><li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">160/84</a></li>
+								<li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">122/158</a></li><li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">160/84</a></li>
+								<li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">122/158</a></li><li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">160/84</a></li>
+							</ul>
+
+							<h3>西裤</h3>
+							<ul class="ul_num_16 ul_num_17">
+								<li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">122/158</a></li><li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">160/84</a></li>
+								<li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">122/158</a></li><li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">160/84</a></li>
+								<li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">122/158</a></li><li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">160/84</a></li>
+								<li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">122/158</a></li><li><a href="javascript:void()">160/84</a></li><li><a href="javascript:void()">160/84</a></li>
+							</ul>
+						</li>
+						<!--标准号加减 END-->
+					</ul> 
+				</div> 
+			</li>    
+		</ul>
+		<div class="dd_tit e5e5e5 dis20"><a href="{$back_url}" class="w48 left0" >上一步</a><button type="submit" class="w48 next_botton right0">下一步</button></div>  
+	</form>
+</div>
+
+<!--遮罩层-->
+<div class="mask"></div> 
+<div class="width_72">
+    <div class="rela">
+		<h2>标准号加减 <a class="close1_1" href="javascript:void()"><img src="{res file=images/dele001.jpg}"></a></h2>
+		<p>当前尺码:<span class="fujia"></span></p>
+		<ul>
+			<li><span>腿根围</span>
+				<div class="jiajian01"><p class="jian">-</p><input type="text" value="12" style="border:none;" /><p class="jia">+</p></div>
+			</li>
+			<li><span>腿根围</span>
+				<div class="jiajian01"><p class="jian">-</p><input type="text" value="1204" style="border:none;" /><p class="jia">+</p></div>
+			</li>
+			<li><span>腿根围</span>
+				<div class="jiajian01"><p class="jian">-</p><input type="text" value="94.5" style="border:none;" /><p class="jia">+</p></div>
+			</li>
+			<li><span>腿根围</span>
+				<div class="jiajian01"><p class="jian">-</p><input type="text" value="94.5" style="border:none;" /><p class="jia">+</p></div>
+			</li>
+		</ul>
+		<button class="w100 btn1_1">保存</button>
+	   
+</div> 
+<script type="text/javascript">
+$(function(){
+	$(".ul_num_16>li,ul_num_17>li").each(function(e) {
+		    $(".ul_num_16>li:eq("+e+"),ul_num_17>li:eq("+e+")").click(function(){
+			   $(".ul_num_16>li:eq("+e+")>input").css({"border":"1px solid #ac4524","color":"#ac4524"}).parent().siblings().children("input").css({"border":"1px solid #d5d5d5","color":"#333333"});
+			   var value01 = $(this).children("a").html();
+			   scrolltop = $(document).scrollTop(); 
+			   $(".rela>p>span").html(value01);
+			   $('.mask').css({'display': 'block'}); 
+			   $('.width_72').css({top:scrolltop+"px","display":"block"}).animate({right:"0px"}); 
+			   check($(this).parent());
+			   
+		    })
+			//浏览器有滚动条时的操作、浏览器窗口大小改变时
+		    $(window).on("scroll resize",function(){
+			    screenHeight = $(window).height(); 
+			    scrolltop = $(document).scrollTop(); 
+			    objheight = screenHeight + scrolltop;
+                $('.width_72').css({height:objheight + "px",top:scrolltop+"px"});
+			})
+		});
+	//确定取消的操作 
+	$(".mask,.btn1_1,.close1_1").click(function() { 
+		$('.width_72').animate({right:"-72%"})
+		$('.width_72').fadeOut(200);
+		$(".mask").fadeOut(200);
+	})
+
+	
+}); 
+
+	//按钮提交前判断
+	$(document).ready(function(){
+		$(":submit").click(function(event) {
+			var opinions  = $('input[name=opinions]:checked').val();//量体数据
+			if(opinions==10052) {//净体量体
+				$('.totally_ul>li').each(function(data) {
+					var in_data = $('.totally_ul>li:eq('+data+')').find("input").val();
+					var dataname = $('.totally_ul>li:eq('+data+')').find("input").attr("dataname");
+					if(in_data == 0 || in_data == '') {
+						//执行弹出层
+						easyDialogEmpty('请填写尺寸信息后再进行<br>下一步操作', 2000);
+						event.preventDefault();
+					} else {
+						var isNum = /^[0-9]*[1-9][0-9]*$/.test(in_data);
+						if(!isNum) {
+							easyDialogEmpty('您填写尺寸信息格式有误！</br>请重新输入', 2000);
+							event.preventDefault();
+						}
+					}
+				});
+			}else if(opinions==10054) {//标准号加减
+				//待完善
+				easyDialogEmpty('标准号加减尚未开启<br>只可查看效果', 2000);
+				event.preventDefault();
+			}
+
+
+		});
+	});
+	
+	//空处理弹出框
+	function easyDialogEmpty(content, time) {
+
+		//执行弹出层
+		easyDialog.open({
+			container : {
+				content : content
+			},
+			autoClose : time
+		});
+	}
+</script>	
+
+</body>
+</html>

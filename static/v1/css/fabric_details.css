@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*面料简介*/
+.ml_left { float:left; width:500px; margin-top:74px;}
+.ml_left p { width:380px; height:500px; margin:0 auto;}
+.ml_left p img { width:380px; height:500px;}
+
+.ml_right { float:right; width:700px; margin-top:74px;}
+.ml_right h1 { font-size:24px; color:#333; font-weight:normal; height:30px; line-height:30px; overflow:hidden; position:relative;}
+.ml_right h1 span { position:absolute; right:20px; top:0; font-size:14px; color:#666;}
+.ml_right h1 span b { font-family:arial; font-size:15px; color:#a40001; font-weight:normal;}
+
+.mlbh { border-top:1px solid #ddd; margin:20px 0 30px 0; height:183px; overflow:hidden;}
+.mlbh th { border-bottom:1px solid #ddd; border-right:1px solid #ddd; height:60px; text-align:right; padding-right:20px; background:#fcfcfc; font-size:14px; color:#000; font-weight:normal;}
+.mlbh td { border-bottom:1px solid #ddd; border-right:1px solid #ddd; height:60px; padding-left:20px; font-size:14px;}
+
+.mljj { font-size:14px; line-height:24px; padding-left:24px; margin-top:14px;}
+
+.dz_sc { margin-top:54px;}
+.dz_sc a { float:left; display:block; font-size:18px; color:#fff; margin-right:20px; display:inline;}
+.dz_sc .a_1 { width:240px; height:50px; line-height:50px; overflow:hidden; background:#a40001; text-align:center;}
+.dz_sc .a_2 { width:137px; height:50px; line-height:50px; background:#bbb url(../img/icon_1.png) 43px -48px no-repeat; text-align:center; padding-left:20px;}
+
+/*--标题/S--*/
+.title { text-align: center; border-top:1px solid #ddd; margin-top:70px; padding:0 140px;}
+.title .line { width: 70px; height: 3px; margin: 0 auto; background: #000; position:relative; top:-2px;}
+.title .tit { font-size: 22px; color: #292823; margin:26px 0 20px; }
+.title .depict { font-size: 14px; color: #666; margin-bottom:34px;}
+/*--标题/E--*/
+
+/*--你可能喜欢/S-*/
+.slideBox { height: 305px; position: relative;}
+.slideBox .swipe-wrap { position: relative; width: 100%; }
+.slideBox .prev, .slideBox .next { width: 33px; height: 62px; position: absolute; top: 50%; margin-top: -53px; background: url(../img/bg4.png) no-repeat 0 -34px; opacity: 0.8; filter: alpha(opacity=80); cursor: pointer; transition: all ease .2s; -moz-transition: all ease .2s; -ms-transition: all ease .2s; -o-transition: all ease .2s; -webkit-transition: all ease .2s;-moz-user-select:none;user-select:none; }
+.slideBox .prev { left: 0; }
+.slideBox .next { right: 0; background-position: -35px -34px; }
+.slideBox:hover .prev { opacity: 1; filter: alpha(opacity=100); left: -10px; transform: scaleY(0.8) }
+.slideBox:hover .next { opacity: 1; filter: alpha(opacity=100); right: -10px; transform: scaleY(0.8) }
+.slideBox .swipe { width:1075px; height: 310px; overflow:hidden; visibility: hidden; position: relative; margin: 0 auto;}
+.slideBox .swipe-wrap .item { float: left; position: relative; }
+.slideBox .swipe ul { width:105%;}
+.slideBox .swipe li { float: left; width: 190px; margin-right:31px; }
+.slideBox .swipe .pic { display: block; height: 248px; overflow: hidden; }
+.slideBox .swipe img { width: 100%; height: auto; }
+.slideBox .swipe .info { height: 40px; padding-top: 10px; line-height: 20px; overflow: hidden; }
+/*--你可能喜欢/E--*/
+

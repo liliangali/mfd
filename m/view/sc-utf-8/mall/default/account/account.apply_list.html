@@ -1,0 +1,69 @@
+{include file=member.header.html}
+<style type="text/css">
+.user_name { position: relative; bottom: 18px; margin-left:5px; }
+
+</style>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public table">
+                <table class="table_head_line">
+                    <!--{if $apply_list}-->
+                    <tr class="line tr_color">
+                        <th class="align1"><b>操作时间</b></th>
+                        <th><b>类型</b></th>
+                        <th><b>状态</b></th>
+                        <th><b>金额</b></th>
+                        <th><b>备注</b></th>
+                        <th><b>管理员备注</b></th>
+                        <th><b>操作</b></th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$apply_list item=list name=v}-->
+                    <tr <!--{if $smarty.foreach.v.last}-->class="line_bold"<!--{else}-->class="line"<!--{/if}-->>
+                        <td class="width13">{$list.add_time|date:Y-m-d H:i:s}</td>
+                        <td class="width15 align2">{if $list.type eq 1}提现{else}充值{/if}</td>
+                        <td class="width15 align2">{if $list.status eq 0}未处理{elseif $list.status eq 2}已取消{elseif $list.status eq 3}未通过审核{else}已完成{/if}</td>
+                        <td class="width13 align2" style="color:{if $list.money < 0}red{else}green{/if}"><b>{$list.money}</b></td>
+                        <td class="width8" >{$list.remark}</td>
+                        <td class="width8">{$list.admin_remark}</td>
+                        <td class="width15 align2">
+								{if $list.type eq 2 && $list.is_paid neq 1 && $list.status eq 0}
+									<a href="/index.php?app=cashier&act=deposit&id={$list.id}" target="_blank">付款</a>
+								{/if}
+								
+								{if $list.is_paid eq 0 && $list.status eq 0 && $list.type eq 1}
+									<a href="/index.php?app=account&act=cancel&id={$list.id}">取消</a>
+								{/if}
+						</td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="4" class="member_no_records padding6">{$lang.no_records}{$lang.$smarty.get.act}</td>
+                    </tr>
+
+                    <!--{/foreach}-->
+                    <!--{if $apply_list}-->
+                    <tr>
+                        <td colspan="4">
+                           <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </td>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=login_footer.html}

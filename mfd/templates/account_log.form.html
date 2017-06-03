@@ -1,0 +1,296 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#user_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            money   : {
+              number:true,
+              min:0
+            },
+            point :{
+              number:true,
+              min:0
+            },
+            coin : {
+              number:true,
+              min:0
+            },
+             brief : {
+               required:true,
+             },
+             img_url:{
+                accept: 'gif|jpg|jpeg|png',
+             },
+             
+           	status : {
+        		required : true,
+        		 remote   : {
+                     url :'index.php?app=account_log&act=check_account',
+                     type:'post',
+                     data:{
+                     	userid : function()
+                     	{
+                             return $('#userid').val();
+                         },
+                     }
+            }
+        	},
+        },
+        messages : {
+            money : {
+                number : '必须输入是数字',
+                min : '输入不能小于0',
+            },
+            point : {
+                number : '必须输入是数字',
+                min : '输入不能小于0',
+            },
+            coin : {
+                number : '必须输入是数字',
+                min : '输入不能小于0',
+            },
+             brief : {
+                 required : '备注为必填,建议详细描述经过和结果',
+             },
+             img_url: {
+                accept:'文件仅支持格式gif,jpg,jpeg,png',
+             },
+             
+             status : {
+                 required : '必填',
+                 remote   : '当前账户调整正处于审核中,请审核结束后再操作!'
+             },
+             
+        }
+    });
+});
+
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+     <li><a class="btn1" href="index.php?app=user">返回用户列表</a></li>
+     <li><a class="btn1" href="index.php?app=account_log&amp;id={$user.user_id}">返回账户列表</a></li>
+   </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="user_form">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> 会员名称:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$user.user_name|escape}
+        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> 更改积分:</th>
+        <td class="paddingT15 wordSpacing5">
+        <select name="point_type">
+          <option value="1">添加</option>
+          <option value="2">减除</option>
+        </select>
+        <input class="infoTableInput2" name="point" type="text" id="point" value="" />
+            <label class="field_notice">用户当前积分：{$user.point}&nbsp;</label>
+            </td>
+      </tr>
+
+      <tr>
+        <th class="paddingT15"> 会员等级:</th>
+        <td class="paddingT15 wordSpacing5" id="member_lv_id">  
+            <select name="member_lv_id">
+            {foreach from=$lv_list item=l}
+            <option value="{$l.member_lv_id}" {if $l.member_lv_id eq $user.member_lv_id}selected=""{/if}>{$l.name}</option>
+            {/foreach} 
+            </select>    
+         </td>
+      </tr>
+
+      <tr>
+        <th class="paddingT15">备注 :</th>
+        <td class="paddingT15 wordSpacing5">
+        <textarea id="brief" name="brief"></textarea>
+        </td>
+      </tr>
+      
+     <tr>
+       <th class="paddingT15">凭证上传:</th>
+       <td id="gallery">
+       {$build_upload}
+        <table class="infoTable qdhqx_tab">
+        <tr>
+            <td class="paddingT15 wordSpacing5">
+				<div id="divSwfuploadContainer">
+	                <div id="divButtonContainer" style="float:left;">
+	                    <span id="spanButtonPlaceholder"></span>
+	                </div>
+                	<div id="divFileProgressContainer"></div>
+            	</div>
+             </td>
+        </tr>
+
+        <tr>
+           	<td>
+           	文件列表(双击图片进行删除)
+				<ul id="thumbnails">
+					{foreach from=$gallery_list item=gallery}
+					  <li id="gallery_{$gallery.id}"  data_id ="{$gallery.id}"  onclick="selectImg(this)">
+					  <img ondblclick="drop_gallery({$gallery.id})" src="{$gallery.source_img}" width="80" height="80"></li>
+					{/foreach}
+				</ul>
+			</td>
+       </tr>
+       </table>
+      </td>
+    </tr>
+      
+<!-- 	<tr>
+		<th class="paddingT15">验证码({$safe_phone|phone_format}) :</th>
+		<td class="paddingT15 wordSpacing5">
+		    <input type="text" value="" name="safe_code" id="name" class="infoTableInput2">
+		    <input type="button" id="btn" value="免费获取验证码" />
+		</td>
+	</tr> -->
+	
+	{if $account}
+	  <tr>
+        <th class="paddingT15">当前状态:</th>
+        <td class="paddingT15 wordSpacing5">
+          {if $account.status==0}审核中{elseif $account.status==1}审核通过{elseif $account.status==2}已驳回{/if}
+        </td>
+      </tr>
+      {if $account.status==2}
+       <tr>
+        <th class="paddingT15">原因:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$account.fail_reason}
+        </td>
+      </tr>
+      {/if}
+   {/if}
+   
+      <tr>
+        <th class="paddingT15"></th>
+        <td class="paddingT15 wordSpacing5">
+        <input  name="status" type="hidden" id="userid" value="{$user.user_id}" />
+        <label class="field_notice"></label>
+      </tr>
+
+      <tr>
+        <th></th>
+     
+        
+        <td class="ptb20"><input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+        <input class="congzi" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<script type="text/javascript"> 
+var wait=60;
+function time(o) {
+        if (wait == 0) {
+            o.removeAttribute("disabled");            
+            o.value="免费获取验证码";
+            wait = 60;
+        } else { // www.jbxue.com
+            o.setAttribute("disabled", true);
+            o.value="重新发送(" + wait + ")";
+            wait--;
+            setTimeout(function() {
+                time(o)
+            },
+            1000)
+        }
+    }
+document.getElementById("btn").onclick=function()
+{
+	var _this = this;
+	var re = 1;
+	ress = $.post("index.php?app={$app}&act=sendSafeCode",{router:"{$app}-{$act}"},function(res){
+		if(!res.done)
+	    {
+			alert(res.msg);
+	    }
+		else
+		{
+			time(_this);
+		}	aaa
+	},'json')
+}
+</script> 
+
+
+<script>
+$('#upInvite').click(function(){
+  var n = $('#z_invite').val().split('CY000');
+  var num = parseInt(n[1])+1;
+  if($('#invite').val()){
+      alert('有值不能进行自动生成');
+      return;
+  }else{
+    $('#invite').val('CY000'+num)
+  }
+  
+}) 
+</script>
+<script>
+function add_uploadedfile(file_data)
+    {
+        var newImg = '<li id="' + file_data.file_id + '" onclick="selectImg(this)">'+
+                '<input type=hidden name=gallery[] value='+SITE_URL + '/' + file_data.file_path+'>'+
+                '<img width="80px" height="80px" src="' + SITE_URL + '/' + file_data.file_path + '" ondblclick="drop_uploadedfile(' + file_data.file_id + ');"/></li>';
+        $('#thumbnails').prepend(newImg);
+    }
+
+
+    function drop_uploadedfile(file_id)
+    {
+        if(!window.confirm('确定要移除该图片吗？')){
+            return;
+        }
+
+        $('#' + file_id).remove();
+
+        $.getJSON('index.php?app=article&act=drop_uploadedfile&file_id=' + file_id, function(result){
+            if(result.done){
+
+            }else{
+                alert('drop_error');
+            }
+        });
+    }
+
+    function drop_gallery(file_id)
+    {
+        if(!window.confirm('确定要移除该图片吗？')){
+            return;
+        }
+
+        $('#gallery_' + file_id).remove();
+
+        $.getJSON('index.php?app=custom&act=drop_gallery&id=' + file_id, function(result){
+            if(result.done == false){
+                alert('drop_error');
+            }
+        });
+    }
+
+
+    function selectImg(obj){
+        $(obj).parents("ul").find("li").each(function(){
+            $(this).removeClass("on");
+        })
+
+        $(obj).addClass("on");
+    }
+  </script>
+
+{include file="footer.html"}

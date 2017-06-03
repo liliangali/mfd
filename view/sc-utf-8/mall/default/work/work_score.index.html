@@ -1,0 +1,127 @@
+    {include file=header.html}
+    <link href="/static/css/selections.css" rel="stylesheet" type="text/css" />
+    <div class="container">
+    	<div class="works">SELECTED WORKS<br /><span>作品评选</span></div>
+        <p class="pxhx"><img src="/static/img/pxhxpic.png" width="1280" height="3" /></p>
+        <div id="tab">
+            <ul class="tab_menu">
+                <li  onclick="set_sort(1)">最热</li>
+                <li onclick="set_sort(0)">最新</li>
+            </ul>
+            <div class="tab_box">
+                <div id="brick" class="brick">
+
+        
+
+                </div>
+            </div>
+        </div>
+    </div>
+	<input  type="hidden" value="0" id="page">
+    <div class="clear"></div>
+
+<script src="/static/js/jquery-1.7.2.min.js"></script>
+<script src="/static/js/jquery.masonry.js"></script>
+
+<script>
+function go_info(id){
+	self.location.href="/work_score-info.html?id="+id;
+}
+
+function set_sort(_sort){
+    self.location.href="/work_score-index.html?sort="+_sort;
+}
+var $container = $('#brick');
+var sort;
+if(window.location.href.split('=')[1]==0){
+    sort =0 ;
+    $(".tab_menu li").eq(1).attr('class','selected');
+}else{
+    sort =1 ;
+    $(".tab_menu li").eq(0).attr('class','selected');
+}
+
+
+var $container = $('#brick'),num=0,delay=null,flag=null;
+
+//获取数据
+function getData(){
+
+	var winh=$(window).height(),bodyh=$container.height();
+
+	if(($(window).scrollTop()+winh)>=bodyh-350)
+	{
+
+		$(window).off('scroll',getData);
+		if(delay){clearTimeout(delay)}
+		delay=setTimeout(function(){
+		   var page = parseInt($("#page").val())+1,_html='';
+		   $.post("/work_score-loadpage.html",{page_now:page,sort:sort},  function(data){
+					var data = $.parseJSON(data);
+					if(data.done == true){
+					   $("#page").val(page);
+                        var _i=0;
+					   for (var o in data.retval) {
+                           _i++;
+							   _html +='<div class="list" onclick="go_info(\''+data.retval[o].id+'\')">'+
+											'<div class="zspic"><img src="'+data.retval[o].imgurl+'" width="364" height="256" />';
+                               if(window.location.href.split('=')[1] !=0){
+                                   if(page == 1){
+
+                                        _html += '<p class="szypics"><img src="/static/img/top_'+_i+'.png" width="41" height="41" /></p>';
+                                   }
+                                   if(page == 2 && _i<=4){
+                                       _html += '<p class="szypics"><img src="/static/img/top_'+(_i+6)+'.png" width="41" height="41" /></p>';
+                                   }
+                               }
+
+                               _html += '</div>'+
+											'<div class="txbtcs">'+
+												'<p class="txpic fl"><img src="'+data.retval[o].member.avatar+'" width="60" height="60" /></p>'+
+												'<div class="mzcd fl">'+
+													'<h4>'+data.retval[o].member.nickname+'</h4>'+
+													'<div class="cydf">'+
+														'<p class="fl">参与 (&nbsp;<span>'+data.retval[o].n_count+'</span>&nbsp;)</p>'+
+														'<p class="wordcy fl">得分 (&nbsp;<span>'+data.retval[o].n_score+'</span>&nbsp;)</p>'+
+													'</div>'+
+												'</div>'+
+											'</div>';
+											if(data.retval[o].description !=''){						
+											_html +='<p class="wzword">'+data.retval[o].description+'</p>';
+											}
+									
+							   _html +='</div>';
+
+					   }
+						if(flag){
+							var $newElems = $(_html);
+							$container.append($newElems).masonry("appended",$newElems);
+						}else{
+							$container.append(_html);
+							$container.imagesLoaded( function(){
+							  $container.masonry({
+								columnWidth:0,
+								itemSelector: '.list'
+							  });
+							});
+							flag=true;
+						}
+						$(window).on('scroll',getData);
+					}
+				}
+				)
+				
+			
+			
+			
+		},500)
+	}	
+}
+$(window).on('scroll',getData);
+
+//初始化
+getData();
+
+</script>
+
+    {include file=footer.html}

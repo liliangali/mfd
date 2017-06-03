@@ -1,0 +1,252 @@
+{include file="header.html"}
+<div id="rightTop">
+
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=order">返回订单列表</a></li>
+        <li><a class="btn1" href="index.php?app=fx&act=index">返回返修</a></li>
+    </ul>
+</div>
+
+
+<script>
+    function validate(){
+        if($('.rec_id:checked').length<=0){
+            alert('请选择要返修的商品')
+            return false
+        }
+ 
+    }
+
+
+
+
+    function change(obj){
+
+        if(obj=='user'){
+            var sign = $('#sign_user').attr('value')
+            if(sign == 1){
+                $("#sign_1_user").show();
+                $("#sign_2_user").hide();
+            }
+            if(sign == 2){
+                $("#sign_2_user").show();
+                $("#sign_1_user").hide();
+            }
+        }else{
+            var sign = $('#sign').attr('value')
+            if(sign == 1){
+                $("#sign_1").show();
+                $("#sign_2").hide();
+            }
+            if(sign == 2){
+                $("#sign_2").show();
+                $("#sign_1").hide();
+            }
+        }
+
+    }
+    function other_store(obj){
+        change_region(obj)
+
+        if(obj=='user'){
+            $('#xx_ys_user').hide();
+            $('#xx_other_user').show();
+        }else{
+            $('#xx_ys').hide();
+            $('#xx_other').show();
+        }
+
+    }
+    function ys_store(obj){
+        if(obj=='user'){
+            $('#xx_ys_user').show();
+            $('#xx_other_user').hide();
+        }else{
+            $('#xx_ys').show();
+            $('#xx_other').hide();
+        }
+
+    }
+
+    function change_region(obj){
+
+        if(obj=='user'){
+            var  region_id =$('#region_id_user').val();
+//            var url = '/mfd/index.php?app=fx&act=store_address&source=1&region_id='+region_id;
+
+        }else{
+            var  region_id =$('#region_id').val();
+
+        }
+        var url = '/mfd/index.php?app=fx&act=store_address&source=1&region_id='+region_id;
+
+//        alert(region_id)
+        $.get(url, function(res){
+            var res = eval("("+res+")");
+            if(res.done == true){
+                if(obj=='user'){
+                    $('#xx_address_info_user').html(res.retval);
+                }else{
+                    $('#xx_address_info').html(res.retval);
+                }
+
+            }
+        })
+    }
+
+
+    function get_region(obj)
+    {
+        var p_id = $(obj).val();
+        $.post("./index.php?app=serve&act=get_region",{pid:p_id}, function(res){
+            var res = eval("("+res+")");
+            $('#s_region_id_user').empty();
+            $('#s_region_id_user').append(res.retval)
+        });
+    }
+
+    function if_free(obj){
+
+        if(obj===1){
+            $("#free_m").hide();
+            $("#free_p").hide();
+        }
+        if(obj==0){
+            $("#free_m").show();
+            $("#free_p").show();
+        }
+
+    }
+
+</script>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="info" onsubmit="return validate()">
+        <table class="infoTable">
+            <tbody>
+            <tr>
+                <th class="paddingT15">订单号 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    {$order_sn}
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">返修品类 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <!--{foreach from=$pl item=pl_bm key=key }-->
+                    <input type="checkbox" value="{$pl_bm.cate_name}({$pl_bm.fabric}),{$key},{$pl_bm.rcmtm_id}" class="rec_id" name="rec_id[]">&nbsp;{$pl_bm.cate_name}({$pl_bm.fabric})&nbsp;&nbsp;
+                    <!--{/foreach}-->
+                    注意：每个单品生产一个返修订单
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <th class="paddingT15">是否免费 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="radio" value="1" name="free" checked onclick="if_free(1)">是
+                    <input type="radio" value="0" name="free"  onclick="if_free(0)" >否
+                </td>
+            </tr>
+
+
+
+
+                <tr id="free_m" style="display:none">
+                    <th class="paddingT15">返修方案 :</th>
+                    <td class="paddingT15 wordSpacing5">
+                        <TEXTAREA name="gy_method"></TEXTAREA>
+                        该内容展示于APP端用户付款时
+                    </td>
+                </tr>
+
+
+                <tr id="free_p" style="display:none">
+                    <th class="paddingT15">返修费用 :</th>
+                    <td class="paddingT15 wordSpacing5">
+                        <input type="text" value="" name="price">元
+                    </td>
+                </tr>
+
+
+
+
+
+
+            <tr>
+                <th class="paddingT15">承接方式 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="sign" name="sign" onchange="change()">
+                        {html_options options=$sign_info selected=2}
+                    </select>
+                </td>
+            </tr>
+
+            <tr id="sign_2">
+                <th class="paddingT15"></th>
+
+                <td class="paddingT15 wordSpacing5" id="xx_ys">
+                    {if !empty($address.xx)}
+                    {$address.xx.address_info}
+                    <input type="hidden" name="address" id="address" value="{$address.xx.address_info},{$address.xx.server_id}" style="width:900px">
+                    <input type="hidden" name="liangti_id"  value="{$address.xx.liangti_id}" style="width:900px">
+                    <input type="hidden" name="liangti_name"  value="{$address.xx.liangti_name}" style="width:900px">
+                    {else}
+                    系统没有检索到 该订单的相关门店！！
+                    {/if}
+                    <br/>
+                    <br/>
+                    <a href="javascript:void(0)" onclick="other_store()" id="change_store"><b style="color:#00c;"><u> >> 指派其他门店</u></b></a>
+
+                </td>
+
+
+
+                <td class="paddingT15 wordSpacing5" style="display:none" id="xx_other">
+                    <select class="querySelect" id="region_id" name="region_id" onchange="change_region()">
+                        <option value="">全部</option>
+                        {html_options options=$other_address }
+                    </select>
+                    <div id="xx_address_info">
+                    </div>
+
+                    <br/>
+                    <br/>
+                    <a href="javascript:void(0)" onclick="ys_store()" id="ys_store"><b style="color:#00c;"><u> >> 指派原始门店</u></b></a>
+
+                </td>
+            </tr>
+
+            <tr id="sign_1" style="display:none">
+                <th class="paddingT15"></th>
+                <td class="paddingT15 wordSpacing5">
+                    客户将商品寄回：<input type="text" value="{$address.xs}" name="xx_address" id="xx_address" style="width:900px">
+         
+
+                </td>
+            </tr>
+
+
+
+            <input type="hidden" value="{$order_id}" id="order_id" name="order_id">
+
+
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input type="submit" value="提交" name="Submit" class="tijia">
+                    <input type="reset" value="重置" name="Submit2" class="congzi">
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </form>
+</div>
+
+
+</div>
+
+{include file="footer.html"}

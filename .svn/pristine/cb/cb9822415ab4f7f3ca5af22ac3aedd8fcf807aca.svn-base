@@ -1,0 +1,49 @@
+<form data-id="4">
+<div class="main"> 
+ <div class="bzcmsg">
+  <p class="qsrsj">请输入精确的身高、体重、胸围、腰围、臀围来获取您的体型数据。</p>
+  <div class="m_cmxx">
+   <p><font><b>*</b>身高：</font><input type="text" name="data[height]" value="{$data.height}"><span>CM</span></p>
+   <p><font><b>*</b>体重：</font><input type="text" name="data[weight]" value="{$data.weight}"><span>CM</span></p>
+   <p><font><b>*</b>胸围：</font><input type="text" name="data[xiongwei]" value="{$data.xiongwei}"><span>CM</span></p>
+   <p><font><b>*</b>腰围：</font><input type="text" name="data[yaowei]" value="{$data.yaowei}"><span>CM</span></p>
+   <p style="border:none;"><font><b>*</b>臀围：</font><input type="text" name="data[tunwei]" value="{$data.tunwei}"><span>CM</span></p>
+  </div>
+  <input type="button" value="下一步" class="xiayb nextTx">
+ </div>
+</div>
+<div class="main" style="display:none;"> 
+ <div class="bzcm_xztx bzcmsg">
+  <p class="qxzcmsj">请选择以下适合您的一种体型数据</p>
+  <ul id="tixing">
+   <li data-name="xs"><p class="p1"></p>修身</li>
+   <li class="on" data-name="zc"><p class="p2"></p>正常</li>
+   <li style="margin-right:0;" data-name="ks"><p class="p3"></p>宽松</li>
+  </ul>
+  <input type="hidden" name="data[tx_id]" value="{$data.tx_id}" id="tx_id" />
+ </div>
+</div>
+</form>
+<script>
+$('.nextTx').unbind().bind('click',function(){
+	$(this).parents('.main').hide();
+	$(this).parents('.main').next('.main').show();
+})
+$('#tixing').find('li').removeClass('on');
+$('#tixing').find('li').each(function(){
+	if($(this).data('name') == $('#tx_id').val()){
+		$(this).addClass('on')
+	}
+})
+$('#tixing').find('li').unbind().bind('click',function(){
+	$('#tixing').find('li').removeClass('on');
+	$(this).addClass('on')
+	$('#tx_id').val($(this).data('name'));
+	
+	var _oj = $(this).parents('form');
+    meaSave(_oj)
+	
+})
+
+</script>
+

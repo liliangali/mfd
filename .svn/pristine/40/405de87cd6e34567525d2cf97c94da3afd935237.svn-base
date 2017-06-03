@@ -1,0 +1,9 @@
+ {foreach from=$customs item=ctm}
+    <div class="item">
+        <p><a href="{link app=custom arg=$ctm.id}"><img src="{$ctm.small_img}"/></a></p>
+        <p class="hymc"><a href="{link app=designer arg0=1 arg1=0 arg2=$ctm.design_id}"><img src="{$ctm.photo_url}"></a></p>
+        <p class="cpjsmc"><a href="{link app=custom arg=$ctm.id}">{$ctm.name}</a></p>
+        <p class="jine">{$ctm.price|price}</p>
+    </div>
+    
+     {/foreach}

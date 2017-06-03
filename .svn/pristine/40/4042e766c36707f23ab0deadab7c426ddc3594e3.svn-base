@@ -1,0 +1,26 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>{$lang.goods_batch}</p>
+  <ul class="subnav">
+  </ul>
+</div>
+<div class="info">
+  <form method="post">
+    <table class="infoTable">
+      <!-- {if $smarty.get.act eq "drop"} -->
+      <tr>
+        <th class="paddingT15"> <label for="drop_reason">{$lang.drop_reason}:</label></th>
+        <td class="paddingT15 wordSpacing5"><textarea id="drop_reason" name="drop_reason" cols="60" rows="3" /></textarea></td>
+      </tr>
+      <!-- {/if} -->
+      <tr>
+        <th></th>
+        <td class="ptb20"><input type="hidden" name="id" value="{$smarty.get.id}" />
+          <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="button" value="{$lang.back}" onclick="history.go(-1)" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

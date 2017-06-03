@@ -1,0 +1,257 @@
+{include file="header.html"}
+<style>
+.btn{position: relative;overflow: hidden;margin-right: 4px;display:inline-block;
+*display:inline;padding:4px 10px 4px;font-size:14px;line-height:18px; 
+*line-height:20px;color:#fff; 
+text-align:center;vertical-align:middle;cursor:pointer;background:#5bb75b; 
+border:1px solid #cccccc;border-color:#e6e6e6 #e6e6e6 #bfbfbf; 
+border-bottom-color:#b3b3b3;-webkit-border-radius:4px; 
+-moz-border-radius:4px;border-radius:4px;} 
+.btn input{position: absolute;top: 0; right: 0;margin: 0;border:solid transparent; 
+opacity: 0;filter:alpha(opacity=0); cursor: pointer;} 
+.progress{position:relative; margin-left:248px; margin-top:8px;  
+width:35px;padding: 1px; border-radius:3px; display:none} 
+.bar {background-color: orange; display:block; width:0%; height:20px;  
+border-radius:3px; } 
+.percent{position:absolute; height:18px; display:inline-block;  
+top:-9px; left:2%; color:#fff } 
+/* .files{height:22px; line-height:22px; margin:10px 0}  */
+.delimg{margin-left:20px; color:#090; cursor:pointer} 
+#thumbnails li{
+	    border: 1px solid #eee;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    height: 100px;
+    margin: 0 10px 10px 0;
+    text-align: center;
+    width: 100px;
+}
+</style>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+    </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="dfabric" />
+          <input type="hidden" name="act" value="index" />
+           <select class="querySelect" name="field_CATEGORYID">{html_options options=$tname selected=$smarty.get.field_CATEGORYID}
+          </select>
+          
+    
+          <input class="queryInput" type="text" name="field_CODE" value="{$smarty.get.field_CODE|escape}" />
+    
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=cfabric&CATEGORYID={$smarty.get.field_CATEGORYID}">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $f_list}-->
+        <tr class="tatr1">
+             <td align="left">CODE</td>
+            <td>标签名</td>
+            <td>成分</td>
+            <td>颜色</td>
+            <td>砂纸</td>
+            <td>面料相册</td>
+            <!-- <td>操作</td> -->
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$f_list item=cfabric}-->
+        <tr class="tatr2">
+            <td>{$cfabric.CODE|escape}</td>
+            <td><span ectype="inline_edit" fieldname="tname" fieldid="{$cfabric.CODE}"   title="{$lang.editable}" class="editable" >{$cfabric.tname|escape}</span></td>
+            <td><span ectype="inline_edit" fieldname="chengfen" fieldid="{$cfabric.CODE}"   title="{$lang.editable}" class="editable" >{$cfabric.chengfen|escape}</span></td>
+            <td><span ectype="inline_edit" fieldname="color" fieldid="{$cfabric.CODE}"   title="{$lang.editable}" class="editable" >{$cfabric.color|escape}</span></td>
+            <td><span ectype="inline_edit" fieldname="SHAZHI" fieldid="{$cfabric.CODE}"   title="{$lang.editable}" class="editable" >{$cfabric.SHAZHI|escape}</span></td>
+<!--         	{$build_upload} -->
+        	<td id="{$cfabric.ID}">
+        			<div style="overflow: hidden;line-height:40px;">
+	        			<P style="float:left;">文件列表(双击图片进行删除)</P>
+	        			<div class="btn" style="float:left;margin-left:10px;"> 
+						 	<span>添加附件</span> 
+						     <input id="fileupload" data-id="{$cfabric.ID}" data-code="{$cfabric.CODE}" onchange="change_img(this)" class="fileupload" type="file" name="mypic" > 
+						</div> 
+						<div class="progress"> 
+					    	<span class="bar"></span><span class="percent">0%</span > 
+						</div>
+						<div class="files"></div> 
+<!-- 						<div id="showimg"></div>  -->
+					</div>
+					<ul id="thumbnails">
+						{foreach from=$cfabric.gallery item=gallery_info}
+						  <li style="float:left" id="gallery_{$gallery_info.id}"  data_id ="{$gallery_info.id}"  onclick="selectImg(this)">
+						  <img ondblclick="drop_gallery({$gallery_info.id})" src="{$gallery_info.source_img}" width="80" height="80"></li>
+						{/foreach}					     
+					</ul>
+					
+        	</td>
+
+    <!--        <td style="float:left">
+             	<div class="btn"> 
+				     <span>添加附件</span> 
+				     <input id="fileupload" type="file" name="mypic"> 
+				</div> 
+				<div class="progress"> 
+				    <span class="bar"></span><span class="percent">0%</span > 
+				</div> 
+				<div class="files"></div> 
+				<div id="showimg"></div>	  
+            </td>-->
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $f_list}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+<script type="text/javascript" src="{lib file=jquery.min.js}"></script>
+<script type="text/javascript" src="{lib file=jquery.form.js}"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#mySelect').change(function() {
+			var sval = $(this).children('option:selected').val();//这就是selected的值 
+			 var fid = $(this).attr("data-fid");
+		    var url = '/index.php?app=dfabric&act=ajax_col';
+		    $.getJSON(url, {'value':sval, 'column':'VCOMPOSITIONID','id':fid}, function(data){
+		    });
+		});
+/* 		var bar = $('.bar'); //进度条父元素
+	    var percent = $('.percent'); //进度条
+	    
+	    var progress = $(".progress");  //进度条父元素的父元素
+	    var files = $(".files"); //上传文件名
+	    var btn = $(".btn span");  */
+	    $(".tdare").each(function(){
+	    	$(this).find(".fileupload").wrap("<form id='myupload' action='index.php?app=dfabric&act=ajax_upload_gallery' method='post' enctype='multipart/form-data'></form>");
+	    }) 
+/* 	    $("#fileupload").click(function(){
+	    	alert(123);
+	    }) */
+/* 	    $(".filename").change(function(){
+	    	alert(123);
+	    })
+	     */
+/* 	    $(".dataTable").each(function(){
+	    	$(this).find("#fileupload").change(function(){ //选择文件   
+		    	
+	    	}); 
+	    }); */
+	})
+	function change_img(obj){
+// 		alert($(obj).attr("date-id"));
+		var bar = $(obj).parent().parent().next().children('.bar'); //进度条父元素
+	    var percent = $(obj).parent().parent().next().children('.percent'); //进度条
+	    var id=$(obj).attr("data-id");
+	    var code=$(obj).attr("data-code");
+	    var progress = $(obj).parent().parent().next(".progress");  //进度条父元素的父元素
+	    var files = $(obj).parent().parent().siblings(".files"); //上传文件名
+	    var btn =$(obj).parent().prev("span"); 
+    	var showimg = $(obj).parent().parent().parent().next("#thumbnails"); //展示上传图片
+        $(obj).parent().ajaxSubmit({ 
+            dataType:"json", //数据格式为json 
+            data: {id:id,code:code},
+            beforeSend: function() { //开始上传 
+                //showimg.empty(); //清空显示的图片 
+                progress.show(); //显示进度条 
+                var percentVal = '0%'; //开始进度为0% 
+                bar.width(percentVal); //进度条的宽度 
+                percent.html(percentVal); //显示进度为0% 
+                btn.html("上传中..."); //上传按钮显示上传中 
+            }, 
+            uploadProgress: function(event, position, total, percentComplete) { 
+                var percentVal = percentComplete + '%'; //获得进度 
+                bar.width(percentVal); //上传进度条宽度变宽 
+                percent.html(percentVal); //显示上传进度百分比 
+            }, 
+            success: function(data) { //成功 
+            	if(!data.done){
+            		alert(data.msg);
+            		progress.hide();
+            		btn.html("添加附件"); //上传按钮还原 
+            		return;
+            	}
+            	//var picture=eval("("+data+")");
+            	var picture=data;
+                //获得后台返回的json数据，显示文件名，大小，以及删除按钮 
+                files.html("<b>"+picture.retval.name+"("+picture.retval.size+"k)</b>"); 
+                //显示上传后的图片 
+/* 	                var img = "http://demo.helloweba.com/upload/files/"+data.pic; 
+                showimg.html("<img src='"+img+"'>");  */
+                var newImg = '<li id="' + picture.retval.file_id + '" onclick="selectImg(this)">'+
+        	    '<input type=hidden name=gallery[] value='+SITE_URL + picture.retval.pic_path+'>'+
+        	    '<img width="80px" height="80px" src="' + SITE_URL + picture.retval.pic_path + '" ondblclick="drop_uploadedfile(' + picture.retval.file_id + ');"/></li>';
+        	    progress.hide(2000);
+        	    showimg.prepend(newImg);
+                btn.html("添加附件"); //上传按钮还原 
+            }, 
+            error:function(xhr){ //上传失败 
+                btn.html("上传失败"); 
+                bar.width('0'); 
+                files.html(xhr.responseText); //返回失败信息 
+            } 
+        }); 
+	}
+/* 	function upload_gallery(){
+		
+	} */
+	function selectImg(obj){
+		$(obj).parents("ul").find("li").each(function(){
+			$(this).removeClass("on");
+		})
+		
+		$(obj).addClass("on");
+	}
+	function drop_gallery(file_id)
+	{
+	    if(!window.confirm('确定要移除该图片吗？')){
+	        return;
+	    }
+
+	    $('#gallery_' + file_id).remove();
+	    
+	    $.getJSON('index.php?app=dfabric&act=drop_gallery&id=' + file_id, function(result){
+	        if(result.done == false){
+	            alert('drop_error');
+	        }
+	    });
+	}
+
+	function drop_uploadedfile(file_id)
+	{
+	    if(!window.confirm('确定要移除该图片吗？')){
+	        return;
+	    }
+
+	    $('#' + file_id).remove();
+	    
+	    $.getJSON('index.php?app=article&act=drop_uploadedfile&file_id=' + file_id, function(result){
+	        if(result.done){
+	            
+	        }else{
+	            alert('drop_error');
+	        }
+	    });
+	}
+</script>
+{include file="footer.html"}

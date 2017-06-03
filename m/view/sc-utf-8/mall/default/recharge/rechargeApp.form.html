@@ -1,0 +1,93 @@
+{include file=recharge/member.headerapp.html}
+    </br>
+	<form action="{link app=recharge act=goToPay}" method="POST" id="payform"  target="_blank"> 
+		<div class="dd_tit rechar">
+			<ul class="ccc_content ccc_content_title">
+				<!--<li class="bborder" >
+				  	<span class="hc05 h03"> 当前余额:</span>
+					<div class="sel04">
+						￥{$user_info.money}
+					</div>
+				</li>-->  
+				<li>
+					<span class="h03">充值金额:</span>
+					<div class="sel03" >
+						<input type="tel" min="1"  name="je" id="money" placeholder="充值金额" />
+						<span style="float: right;color:#666666;" >元</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="dd_tit ccc_content_title rechar">
+			<ul class="ccc_content ccc_content_title">
+				<li>
+					<span class="h03">支付平台:</span>
+					<div class="sel03"  style="text-indent:2%" >
+						<input type="hidden" name="cd" checked="checked"   id="no-way" value="malipay" />
+						<label  for="no-way" >移动支付宝</label>
+					</div>
+				</li>
+			</ul>
+			<!--
+			<span class="h03">支付平台:</span>
+			<ul class="a1">
+				<li class="left0">
+					<div class="sel03" >
+					<input type="radio" name="cd" checked="checked"   id="no-way" value="malipay" />
+					<label class="moren" for="no-way">移动支付宝</label>
+					</div>
+					
+					<input type="radio" name="cd" checked="checked"   id="no-way" value="malipay" />
+					<label class="moren" for="no-way">移动支付宝</label>
+				</li>
+				<li class="right0">
+					<input type="radio" name="cd" id="totally" value="totally"/>
+					<label for="totally">银联在线支付</label>
+				</li>-->
+
+			</ul>
+		</div>
+		<div class="dd_tit 7dddb8 dis40"><button type="submit" id="submit" class="w90 next_botton">提交</button></div>  
+	</form>
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#submit").click(function(){
+   	    var reg=/^\d+$/
+
+   	    if(!reg.test($('#money').val())){
+			easyDialogEmpty('必须输入正整数</br>请重新输入', 2000);
+			event.preventDefault();
+   	    }
+		
+		var opinions2    = $('input[name=cd]:checked').val();//付款方式
+		if(opinions2 == '') {
+			//执行弹出层
+			easyDialogEmpty('请填选择支付方式后再进行<br>下一步操作', 2000);
+			return false;
+		}else if(opinions2 == 'totally'){
+			easyDialogEmpty('银联在线支付暂未开启请选择<br>其他支付方式', 2000);
+			return false;
+		}
+		
+   	   $("#payform").submit();
+    });
+	
+
+    
+})
+//空处理弹出框
+function easyDialogEmpty(content, time) {
+
+	//执行弹出层
+	easyDialog.open({
+		container : {
+			content : content
+		},
+		autoClose : time
+	});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+{include file=member.menu.html}
+    <div class="user_right fr">
+    	<div class="coolcard">
+            <h4>账户收益</h4>
+            <div class="profit">
+                <p class="zhsyze fl">收益总额：<i>￥{$user.profit|default:0.00}</i></p>
+                <!-- <p class="zhsdsy fl">锁定收益：<i>￥8.100.00</i></p>
+                <div class="zhsybc fl">
+                    <img src="/public/static/pc/images/zhsypic.png" width="14" height="17">
+                    <p class="zhbcsm">补充说明补充说明补充说明补充说明补充说明补充说明</p>
+                </div> -->
+                <p class="zhsyzr fr"><a href="javascript:;" class="balance" data-id=0>一键转入</a></p>
+            </div>
+        </div>
+        <div id="point" class="recently record">
+        	<div class="zhsysj">
+                <ul>
+                	<li><a href="{link app=member act=profit}?search=1#point" ><i {if $search_id == 1} class="sycur"{/if}>近三个月收益</i></a></li>
+                    <li><span></span></li>
+                    <li><a href="{link app=member act=profit}?search=2#point" ><i {if $search_id == 2} class="sycur" {/if}>三个月前收益</i></a></li>
+                    <li><span></span></li>
+                    <li><a href="{link app=member act=profit}?search=3#point" ><i {if $search_id == 3} class="sycur" {/if}>全部</i></a></li>
+                </ul>
+            </div>
+            <table width="100%" frame="void" rules="none" cellspacing="0">
+              <tr class="first">
+                  <td class="fisty">顾客信息</td>
+                  <td class="fisty">订单号</td>
+                  <td class="fisty">日期</td>
+                  <td class="fisty">金额</td>
+                  <td class="fisty">操作</td>
+              </tr>
+              {foreach from=$list item=item}
+              <tr>
+                  <td class="zhsytx">{$item.user_name}</td>
+                  <td>{$item.order_sn}</td>
+                  <td>{$item.add_time}</td>
+                  <td>￥{$item.cash_money}</td>
+                  <td>
+                  {if $item.change_into}
+                  	已转入
+                  {else}
+                  <a href="javascript:;" class="balance balance_item change_into{$item.id}"  data-id={$item.id} data-money={$item.cash_money}>转入余额</a>
+                  {/if}
+                  </td>
+              </tr>
+              {/foreach}
+            </table>
+            <div class="flip fr">
+            {include file=page.bottom.html}
+            </div>
+        </div>
+    </div>
+</div>
+{include file=footer.html}
+
+<div id="window07" style="display:none;">
+	<div class="zhsytc">
+    	<h4>转入余额</h4>
+        <p class="zhzrye">转入余额：<span>￥200.00</span></p>
+        <input type="hidden" name="cash_id" id="cash_id" value="0" />
+        <div class="zhzrput">
+        	<p class="ktput fl"><input type="radio" name="into_type" value="1">&nbsp;转入余额账户</p>
+            <!-- <p class="ktput fl"><input type="radio" name="into_type" value="2">&nbsp;转入麦富迪币账户</p> -->
+        </div>
+        <div class="zhzrxz">
+            <strong>转账须知</strong><br>
+            1、转麦富迪币可以直接消费，不扣税。<br>
+            2、转余额后可以直接体现，但须扣税，因消费者下单所生产的订单收益属于劳务报酬所得。根据《个人所得税法》第三条规定，劳务报酬所得，适用比利率，税率为百分之二十。所以，当收益账户的金额转账至余额账户时，平台会自动扣除国家法律规定的税负，同时扣除的税负平台将以等值麦富迪币的形式补贴给创业者。
+        </div>
+        <input type="button" value="确认转入" class="zhzrbut">
+    </div>
+</div>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/usercenter.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>
+<script>
+$('.balance').click(function(){
+	var id = $(this).attr('data-id');
+	if(id != 0)
+	{
+		var money = "￥"+$(this).attr('data-money');
+	}	
+	else
+	{
+		var money =  $(".zhsyze i").text();
+	}
+	
+	$('#window07 .zhzrye span').html(money)
+	$("#cash_id").val(id);
+	var obj=luck.open({
+		width:'660px',
+		height:'475px',
+		class:'mfd-luck',
+		content:$('#window07').html()
+	});
+	var change_class = "change_into"+id;
+	var into_type = 0;
+	//var into_type = $(obj).find('input[name=into_type]:eq(0)').attr("checked","checked").val();
+	//获取选中的into_type的值 
+	$("input[name=into_type]").click(function(){
+		into_type = $(this).val();
+	});
+	$(obj).find('.zhzrbut').click(function(){
+		if(into_type != 1 && into_type != 2)
+		{
+			alert('请选择转入余额或者麦富迪币');
+			return;
+		}
+		$.ajax({
+			type:"GET",
+			url:"/member-profit_into.html",
+			data:"is_ajax=1&id="+id+"&into_type="+into_type,
+			async:false,
+			dataType:"json",
+			success:function(res){
+				//alert(res.msg);
+				if(res.done)
+				{
+					if(id != 0)
+					{
+						$("."+change_class).text('已转入');
+						var xx=$("."+change_class).html();  
+				        $("."+change_class).replaceWith(xx); 
+					}
+					else
+					{
+					   $(".balance_item").each(function(){ 
+				        	$(this).text('已转入');
+				            var xx=$(this).html();  
+				            $(this).replaceWith(xx);  
+				        }) 
+					}	
+			        $(".zhsyze i").text("￥"+res.retval);
+			        luck.close()
+				}
+				else
+				{
+					alert(res.msg);
+				}
+				
+			},
+		});
+	});
+});	
+
+
+
+</script>
+<script> 
+//cotteFn.customer7()
+</script>
+</body>
+</html>

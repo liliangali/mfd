@@ -1,0 +1,117 @@
+<p class="bcltsj">量体数据<a href="javascript:;" class="saveFigrue">【保存量体数据】</a></p>
+    {foreach from=$figurelist item=list}
+    <div class="biaozm">
+      <div class="lihonwei ms_over {if $list.idfigure eq $figuredata.figure}dfbg{/if}"><input name="figure" type="radio" value="{$list.idfigure}" {if $list.idfigure eq $figuredata.figure}checked{/if}/><span>{$list.figure_name}</span></div>
+      <p class="clear"></p>
+      <div class="suoyousj">
+       <ul>
+         <li>领围：{$list.lw}cm</li>
+         <li>胸围：{$list.xw}cm</li>
+         <li>中腰围：{$list.zyw}cm</li>
+         <li>臀围：{$list.tw}cm</li>
+         <li>上臀围：{$list.stw}cm</li>
+         <li>总肩宽：{$list.zjk}cm</li>
+         <li>右袖长：{$list.yxc}cm</li>
+         <li>左袖长：{$list.zxc}cm</li>  
+         <li>前肩宽：{$list.qjk}cm</li>
+         <li>后衣长：{$list.hyc}cm</li>
+         <li>腰围：{$list.yw}cm</li>
+         <li>通裆：{$list.td}cm</li>
+         <li>后腰高：{$list.hyg}cm</li>
+         <li>前腰高：{$list.qyg}cm</li>
+         <li>裤口：{$list.kk}cm</li>
+         
+          <li>后腰节长：{$list.hyjc}cm</li>
+           <li>前腰节：{$list.qyj}cm</li>
+            <li>腿根围：{$list.tgw}cm</li>
+             <li>左裤长：{$list.zkc}cm</li>
+              <li>右裤长：{$list.ykc}cm</li>
+               <li>膝围：{$list.xiw}cm</li>
+         
+       </ul>
+       <p class="clear"></p>
+      </div>      
+    </div>
+    {/foreach}
+    
+    <p class="yuyiult">预约量体</p>
+    
+    <UL class="lianzonlt">
+      <li style="padding-left:6px;"><input name="figure" type="radio" value="-1" {if !$figurelist && !$figuredata}checked{/if}{if $figuredata.figure eq "-1"}checked{/if}/><p>上门量体</p></li>
+      <li><input name="figure" type="radio" value="-2" {if $figuredata.figure eq "-2"}checked{/if}/><p>到就近服务点量体</p></li>
+    </UL>
+    <p class="clear"></p>
+    <form id="_figureForm">
+    <div style="display:none" id="reservation">
+    <div class="smlt_box" style="overflow:hidden;">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%" class="sameliti">
+        <tr>
+          <th><b>*</b>真实姓名</th>
+          <td><input type="text" name="realname" value="{$figuredata.realname}" class="smltsydinput" maxlength="10"/></td>
+        </tr>
+        
+        <tr>
+            <th><b>*</b>手机号码</th>
+            <td><input type="text" value="{$figuredata.mobile}" name="mobile" class="smltsydinput" maxlength=11/></td>
+        </tr>
+
+        <tr>
+            <th><b>*</b>服务地区</th>
+            <td class="fuwudiqu">
+           <div id="region">
+                        
+                        <select>
+                          <option>请选择</option>
+                          {html_options options=$regions}
+                        </select>
+            			<select>
+                          <option>请选择</option>
+			
+                        </select>
+                        <select>
+                          
+                          <option>请选择</option>
+							
+                        </select>
+                       <input type="hidden" name="region_id" value="{$figuredata.region_id}" id="region_id" class="mls_id" />
+                        <input type="hidden" name="region_name" value="{$figuredata.region_name|escape}" class="mls_names" id="region_name"/>
+                      </div>
+                      
+                        </td>
+        </tr> 
+        
+        <tr>
+          <th><b>*</b>详细地址</th>
+          <td><input type="text" name="address" value="{$figuredata.address}" class="sxdzinput" maxlength="150"/></td>
+        </tr>        
+               
+        <tr>
+          <th><b>*</b>预约时间</th>
+          <td><input type="text" name="retime" value="{$figuredata.retime}" class="smltsydinput" id="retime" readonly="true"/></td>
+        </tr>       
+      </table>
+    </div>
+    <div class="_figurenotice ltfy" style="display:none">预约上门量体会收取<b>80</b>元量体费</div>
+    <div class="smlt_box" style="height:auto; overflow:hidden;">   
+   <p class="yuyiult">就近服务点 <span class="serviceError" style="display:none;">请选择服务点！</span></p>   
+    <!--滚动条开始-->
+       <div class="his_list">
+       	<div id="servicelist">
+           <div class="m_sgp"><p>请选择服务地区</p></div>
+           <p class="clear"></p>
+           </div>
+       </div>  
+    <!--滚动条结束--> 
+    </div>
+    </div>
+    </form>
+    <input type="hidden" id="serID" value="{$figuredata.service}">
+    
+    <p class="clear"></p>
+    
+    
+    <div class="but_pos"><input type="button" value="" class="tjyiuyoexx saveFigrue"/></div>
+     
+
+
+     

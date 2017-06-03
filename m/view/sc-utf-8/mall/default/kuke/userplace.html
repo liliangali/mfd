@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>酷吧空间</title>
+<link href="http://local.rc.com/themes/mall/default/styles/default/css/z_kkjd.css" rel="stylesheet" type="text/css" />
+<link href="http://local.rc.com/themes/mall/default/styles/default/css/head_footr.css" rel="stylesheet" type="text/css" />
+<script type="Text/Javascript" src="js/jquery-1.7.1.min.js"></script>
+</head>
+<body class="kuke_body">
+<!--头部开始-->
+
+<div class="dz_head_top_box">
+  <div class="head_top">
+    <div class="dz_head_top_left">
+       <p class="dz_gjdt"></p>
+       <div class="dz_menu2" onMouseOver="this.className='dz_menu1'" onMouseOut="this.className='dz_menu2'">
+         <p class="wdzf"><a href="#">中国</a></p>
+         <DIV class="list">
+          <P><A href="#">美国</A></P>
+          <P><A href="#">英国</A></P>
+          <P><A href="#">日本</A></P>
+         </DIV>
+       </div> 
+     
+       <p class="dz_zxgf"><a href="#">在线客服</a></p>      
+    </div>
+    
+    <div class="dz_head_top_right">
+      <p class="dz_qdlzc">Hi, 请<a href="#">登录</a><b>/</b><a href="#">注册</a><span>|</span></p>
+      <p class="dz_qdlzc"><a href="#">我的订单</a><span>|</span></p>
+      <p class="dz_wdyc"><font></font><a href="#">我的衣橱<span>(2)</span>件</a></p>    
+    </div>
+    <p class="clear"></p>
+  </div>
+</div>
+
+
+<div class="dz_logo_box">
+  <p class="dz_logo"><a href="#"><img src="images/logo.png" /></a></p>
+  
+
+
+ <!--移动端下载入口开始-->
+    <!--鼠标经过显示下拉层js-->
+	<script type="text/javascript">
+    $(function(){
+        var $menu = $('.sgapptu');
+        $menu.children('li').each(function(){
+            var $this = $(this);
+            var $h1 = $this.children('h1');
+        
+            $this.bind('mouseenter',function(){
+                $menu.find('.down_tcc').stop(true,true).hide();
+                $h1.addClass("on");
+                $h1.stop().animate(200,function(){
+                $this.find('.down_tcc').slideDown(200);
+                });
+            }).bind('mouseleave',function(){
+                $h1.removeClass("on");
+                $this.find('.down_tcc').stop(true,true).hide();
+                $h1.stop().animate(200);
+            });
+        });
+        
+    });
+    </script>	  
+  
+  <div class="sgxlk">
+     <ul class="sgapptu">
+     
+       <li class="li1">
+         <h1><b>安卓</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3><span>Android</span>客户端</h3>
+
+             <p class="smrwm">1.扫描二维码下载</p>
+             <p class="rwmtupa"><img src="images/rwm.gif" /></p>
+             <p class="smrwm">2.App Store免费下载</p>
+             <p class="ljmfxz"><a href="#"></a></p>
+           </div>
+         </div>
+       </li>
+
+       <li class="li2">
+         <h1><b>苹果</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3><span>iPhone</span>客户端</h3>
+             <p class="smrwm">1.扫描二维码下载</p>
+             <p class="rwmtupa"><img src="images/rwm.gif" /></p>
+             <p class="smrwm">2.App Store免费下载</p>
+             <p class="ljmfxz"><a href="#"></a></p>
+           </div>
+         </div>
+       </li>  
+       
+       <li class="li3">
+         <h1><b>微信</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3><span>iPhone</span>客户端</h3>
+             <p class="smrwm">1.扫描二维码下载</p>
+             <p class="rwmtupa"><img src="images/rwm.gif" /></p>
+             <p class="smrwm">2.App Store免费下载</p>
+             <p class="ljmfxz"><a href="#"></a></p>
+           </div>
+         </div>
+       </li>         
+       
+
+     </ul>
+     <p class="clear"></p>
+  </div>
+  <!--移动端下载入口结束-->
+  <p class="clear"></p>
+</div>
+
+<div class="dz_nav_box">
+  <div class="dz_nav">
+    <div class="dzfl_1" onMouseOver="this.className='dzfl_2'" onMouseOut="this.className='dzfl_1'">
+       <p class="dinzidh">订制分类</p>
+       <div>
+       
+       </div>
+    </div>
+    
+    <ul class="dz_nav_right">
+      <li><a href="#">首页</a></li>
+      <li class="on"><a href="#">定制中心</a></li>
+      <li><a href="#">面料工坊</a></li>
+      <li><a href="#">酷客基地</a></li>
+    </ul>
+    <p class="clear"></p>
+  </div>
+</div>
+
+<!--头部结束-->
+<!--中间开始-->
+<p class="blank20"></p>
+<div class="center_box">
+    <div class="kuba">
+        <!--左边 start-->
+        <div class="kuba_t_left">
+            <div class="kuba_user">
+                 <div class="kuba_portrait"></div>
+                 <img src="images/touxiang.gif" width="154" height="154" style="position:relative; z-index:1;" />
+            </div>
+            <div class="kuba_name">ZOMIOZOMIO</div>
+            <div class="kuba_attention"><a href="#">+ 关注</a></div>
+            <div class="kuba_gzfs">
+                 <p class="p1"><span>99</span><span>999</span></p>
+                 <p class="p1"><span>关注</span><i>|</i><span>粉丝</span></p>
+            </div>
+            <p class="blank40"></p>
+            <ul class="kuba_menu">
+               <li class="cur"><i></i>TA的资料</li>
+               <li><a href="#">TA的酷吧</a></li>
+               <li><a href="#">TA的作品</a></li>
+            </ul>
+        </div>
+        <!--左边 end-->
+        <!--中间 start-->
+        <div class="kuba_cent">
+             <h1><span class="span1">基本信息</span><span class="span2"><img src="images/shimingrz.gif" width="46" height="23" /></span></h1>
+             <dl>
+                 <dt>姓 　　名：</dt>
+                 <dd>雨潇潇</dd>
+             </dl>
+              <dl>
+                 <dt>生　 　日：</dt>
+                 <dd>03月16日</dd>
+             </dl>
+              <dl>
+                 <dt>职　 　业：</dt>
+                 <dd>平面模特</dd>
+             </dl>
+              <dl>
+                 <dt>所在城市 ：</dt>
+                 <dd>杭州市</dd>
+             </dl>
+             <dl>
+                 <dt>血　　型：</dt>
+                 <dd>O型</dd>
+             </dl>
+             <dl>
+                 <dt>学校/专业：</dt>
+                 <dd>南通纺织职业技术学院<span class="span_w"></span>服装设计</dd>
+             </dl>
+             <dl>
+                 <dt>风　　 格：</dt>
+                 <dd>日系</dd>
+             </dl>
+             <p class="blank20"></p>
+             <h1><span class="span1">TA的经历</span></h1>
+             <ul>
+                 <li>时尚起义模特</li>
+                 <li>韩都衣舍合作模特</li>
+                 <li>淘宝网官方拍摄模特。</li>
+                 <li>代言网店的拍摄。</li>
+                 <li>各大影楼样片代言模特。</li>
+                 <li>江苏卫视《幸福晚点名》嘉宾</li>
+                 <li>化妆秀模特，发型秀模特。</li>
+                 <li>2010CCTV购物宝贝扬州站决赛胜出的购物宝贝三强。</li>
+                 <li>拍摄过很多淘宝片以及杂志片。</li>
+             </ul>
+        </div>
+        <!--中间 end-->
+        <!--右边 start-->
+        <div class="kuba_right">
+           <div class="kuba_cover">
+              <img src="images/fengmian.gif" width="260" height="394" />
+              <p class="cover_bg"></p>
+              <span><a href="#">TA的封面</a></span>
+           </div>
+        </div>
+        <!--右边 end-->
+    </div>
+    <p class="blank20"></p>
+    <!--他的推荐 start-->
+     <div class="recommend">
+        <h1>他的作品推荐</h1>
+        <ul>
+           <li>
+             <a href="#"><img src="images/fengmian.gif" width="290" height="290" /></a>
+             <p><a href="#">他的作品名称</a></p>
+           </li>
+           <li>
+             <a href="#"><img src="images/fengmian.gif" width="290" height="290" /></a>
+             <p><a href="#">他的作品名称</a></p>
+           </li>
+           <li>
+             <a href="#"><img src="images/fengmian.gif" width="290" height="290" /></a>
+             <p><a href="#">他的作品名称</a></p>
+           </li>
+           <li>
+             <a href="#"><img src="images/fengmian.gif" width="290" height="290" /></a>
+             <p><a href="#">他的作品名称</a></p>
+           </li>
+           <li>
+             <a href="#"><img src="images/fengmian.gif" width="290" height="290" /></a>
+             <p><a href="#">他的作品名称</a></p>
+           </li>
+           <li>
+             <a href="#"><img src="images/fengmian.gif" width="290" height="290" /></a>
+             <p><a href="#">他的作品名称</a></p>
+           </li>
+        </ul>
+        <p class="clear"></p>
+     </div>
+    <!--他的推荐 end-->
+</div>
+<!--中间结束-->
+<!--底部开始-->
+<div class="dzzx_footr_box">
+  <div class="dzzx_footr">
+    <div class="dzzx_footr_left">
+     <div class="bfzyblr">
+      <dl>
+        <dt>关于我们</dt>
+        <dd><a href="#">集团简介</a></dd>
+        <dd><a href="#">法律声明</a></dd>
+        <dd><a href="#">人才招聘</a></dd>
+        <dd><a href="#">联系方式</a></dd>
+      </dl>
+      
+      <dl>
+        <dt>订购指南</dt>
+        <dd><a href="#">平台常见问题</a></dd>
+        <dd><a href="#">法律声明</a></dd>
+        <dd><a href="#">定制流程</a></dd>
+        <dd><a href="#">联系方式</a></dd>
+      </dl>      
+           
+      <dl>
+        <dt>支付与配送</dt>
+        <dd><a href="#">物流查</a>询</dd>
+        <dd><a href="#">订单查询</a></dd>
+        <dd><a href="#">配送方式</a></dd>
+        <dd><a href="#">支付方式及流程</a></dd>
+      </dl>      
+      
+      <dl>
+        <dt>售后服务</dt>
+        <dd><a href="#">如何退换货</a></dd>
+        <dd><a href="#">法律声明</a></dd>
+        <dd><a href="#">售后服务政策</a></dd>
+        <dd><a href="#">量体服务</a></dd>
+      </dl> 
+      
+      </div>     
+          
+    </div>
+    
+    <div class="dzzx_footr_right">
+      <p class="yjdy">邮件订阅</p>
+      <div class="sryxcx"><input type="text" value="输入邮箱,订阅促销信息" onfocus="if(value=='输入邮箱,订阅促销信息'){value=''}" onblur="if(value==''){value='输入邮箱,订阅促销信息'}" class="input_1"/><input type="submit" value="" class="input_2"/></div>
+      <p class="clear"></p>
+      
+      <p class="gzwm">关注我们</p>
+      <div class="gzwmliajie">
+        <a href=""><img src="images/wen_02.png" onmouseover="this.src='images/wen_01.png'" onmouseout="this.src='images/wen_02.png'" /></a>
+        <a href="#"><img src="images/wen_04.png" onmouseover="this.src='images/wen_03.png'" onmouseout="this.src='images/wen_04.png'" /></a>
+        <a href="#"><img src="images/wen_06.png" onmouseover="this.src='images/wen_05.png'" onmouseout="this.src='images/wen_06.png'"/></a>
+      </div>
+    </div>
+    <p class="clear"></p>
+    
+    <div class="bzdbtu">
+      <img src="images/bzdbtu.jpg" />
+      <a href="#" class="gxdz"></a>
+      <a href="#" class="qtsdfh"></a>
+      <a href="#" class="mfgy"></a>
+    </div>
+    
+  </div>
+</div>
+
+<div class="w">
+  <div class="footer">
+    <p>&copy;alicaifeng.com 版权所有&nbsp;&nbsp;&nbsp;客服中心：service@alicaifeng.com</p>
+    <p>鲁ICP备10207738    京公网安备110106010015号</p>
+  </div>
+</div>
+<!--底部结束-->
+</body>
+</html>

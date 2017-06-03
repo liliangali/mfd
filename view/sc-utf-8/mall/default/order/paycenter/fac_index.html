@@ -1,0 +1,75 @@
+{include file=header-new.html}
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/gwc.css" type="text/css" rel="stylesheet">
+
+<body style="background:#f8f8f8;">
+<div class="main">  
+	<div class="ddtjcg">
+		<h1>您的订单已提交成功！</h1>
+		<p class="p1">支付金额：<span>{$order.final_amount|price}</span></p>
+		<p class="p2"  >支付方式：<span class="payment_name" >{$order.payment_name}</span></p>
+		<p class="p3">订单编号：{$order.order_sn}</p>
+		<p class="p4">配送地址：{$order.ship_name}<span>{$order.ship_tel}</span><span>{$order.ship_area}</span><span>{$order.ship_addr}</span></p>
+		<div class="ljzfqt">
+			<input type="button" value="立即支付" class="ljzf lijijiesan">
+			<p><a class="checkPaymen" href="javascript:void(0)"><b>更换支付方式</b></a></p>
+			<div id="changePayment" style="display:none">
+				<ul>
+				{foreach from=$payments item=pmt}
+				<li>
+				<input type="radio" value="{$pmt.payment_code}" name="pay" {if $order.payment_id == $pmt.payment_id} checked="checked" {/if} />
+				<span class="psname">{$pmt.payment_name}</span>
+				{$pmt.payment_desc}
+				</li>
+				{/foreach}
+				</ul>
+				<a class="subPay" href="javascript:void(0)">更改</a>
+			</div>
+		</div>
+		<form action="{link app=order act=goToPay}" id="payform" method="post">
+			<input type="hidden" name="obj" value="{$obj}" />
+			<input type="hidden" name="os" value="{$order.order_sn}" />
+		</form>
+	</div>
+</div>
+{include file=cart/footer.html}
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/static/pc/js/public.js"></script> 
+
+<script>
+$(document).ready(function(){
+    $(".checkPaymen").click(function(){
+        $("#changePayment").show();
+    });
+    $(".subPay").click(function(){
+
+        var _id = $("input[name=pay]:checked").val();
+        var _sn = $("input[name=os]").val();
+		
+        $.post("{link app=order act=change_payment}",{id:_id,sn:_sn},function(res){
+            var res = $.parseJSON(res);
+
+            if(res != null && res.done == true){
+                $('.payment_name').html(res.retval.nm)
+                $("#changePayment").hide();
+            }else{
+                $("#changePayment").hide();
+            }
+        });
+    });
+    
+    $(".lijijiesan").click(function(){
+        dopay();
+    })
+})
+
+function dopay(){  
+    $(".lijijiesan").unbind('click');
+    $("#payform").submit();
+}
+</script>
+</body>
+</html>
+
+
+

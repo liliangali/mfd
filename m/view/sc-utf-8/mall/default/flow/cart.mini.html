@@ -1,0 +1,23 @@
+ 		{if !$goods_list}
+ 			<p class="m_kgwcgjxg">衣橱中还没有衣服，赶紧去定制吧！</p>
+ 		{else}
+ 		 <ul id="itemlist">
+ 			{foreach from=$goods_list item=goods}
+ 			   <li>
+	            <p class="p1"><a href="{link app=custom act=info arg0=$goods.goods_id}"><img src="{$goods.goods_image}" /></a></p>
+	            <p class="p2"><a href="{link app=custom act=info arg0=$goods.goods_id}">{$goods.goods_name}</a></p>
+	            <p class="p3"><span>{$goods.price|price}</span>×{$goods.quantity}<br /><a href="javascript:;" data-id="{$goods.rec_id}" data-type={$goods.type}>删除</a></p>
+	            <p class="clear"></p>
+	          </li>
+ 			{/foreach}
+ 		   </ul>
+ 		{/if}
+
+        
+        {if $goods_list}
+        <div class="m_zgdsq">
+          <p class="p1">共<b>{$goods_num}</b>件衣服<span>共计<font>{$amount|price}</font></span></p>
+          <p class="p2"><a href="{link app=cart act=index}"></a></p>
+          <p class="clear"></p>
+        </div>
+        {/if}

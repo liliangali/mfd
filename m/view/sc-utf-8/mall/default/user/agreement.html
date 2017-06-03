@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>麦富迪服务协议</title>
+<link rel="stylesheet" type="text/css" href="/static/css/mobile_style.css" media="screen">
+<link type="text/css" href="public/static/wap/css/productlist.css" rel="stylesheet" />
+<link href="public/static/wap/css/slx_style.css" rel="stylesheet" type="text/css">
+<style>
+body { padding: 0; margin: 0; font-size: 14px; background: #fff; color: #333; font-family: "微软雅黑", "Arial"; min-width: 320px; -webkit-text-size-adjust: none; }
+h1, h2, h3, h4, h5, h6, p, form, div, dl, dd, dt, ul, li, img { padding: 0; margin: 0; list-style-type: none; border: 0; font-weight: normal; -webkit-tap-highlight-color: rgba(0,0,0,0) }
+input, textarea, select { outline: none; list-style-type: none; border: none; padding: 0; margin: 0; }
+img, fieldset { border: 0; }
+input, img { vertical-align: middle; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif; }
+ul, ol { list-style: none; }
+em, address { font-style: normal; }
+a { color: #000; text-decoration: none; }
+table { border-collapse: collapse; }
+.clearfix:after { content: "."; height: 0px; line-height: 0px; overflow: hidden; clear: both; display: block; visibility: hidden; }
+.clearfix { zoom: 1; }
+.jj_box { display: box; display: -webkit-box; display: -moz-box; orient: horizontal; width: 100%; }
+.jj_1 { box-flex: 1; -webkit-box-flex: 1; -moz-box-flex: 1; display: block; }
+.main { margin: 0 auto; max-width: 640px; min-width: 320px; width: 100%; }
+.overhide { height: 100%; overflow: hidden; }
+.fl { float: left; }
+.fr { float: right; }
+.sjsfxy { width: 90%; margin: 20px auto;}
+.sjsfxy h1 { text-align: center; font-size: 20px; font-weight: normal; height: 60px; line-height: 60px; }
+.sjsfxy h2 { font-size: 16px; font-weight: normal; line-height: 22px; margin-top: 22px; }
+.sjsfxy h2 span { padding-left: 15px; }
+.sjsapp { line-height: 20px; margin-bottom: 14px; color: #626264; }
+.fwxyrr { line-height: 20px; margin: 10px 0 5px 0; color: #626264; }
+.hdtop { height: 45px; line-height: 45px; background: url(http://r.cotte.cn/cotte/wap/images/toppic.png) repeat-x; overflow: hidden; }
+.edit { font-size: 18px; padding-left: 15px; }
+</style>
+</head>
+
+<body>
+<div class="main">
+	<!--头部开始-->
+    <header class="hdtop topBar">
+        <div class="edit fl">
+                <p class="p1"><a href="{link app=member act=index}"><img src="public/static/wap/images/tw_03.png"></a></p>
+                <p class="p2">麦富迪服务协议</p>
+        </div>
+    </header>
+  <!--头部结束-->
+	<div class="sjsfxy">{$art_info.content}</div><br/><br/><br/>
+	<div style='text-align:right'><b>{$art_info.add_time|date}</b></div>
+</div>
+
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script>
+//检测是否是微信浏览器
+function is_weixin(){
+	var ua = navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroMessenger/i)=="micromessenger") {
+		return true;
+ 	} else {
+		return false;
+	}
+}
+if(is_weixin()){
+	$('.topBar').hide();
+}
+</script>
+</body>
+</html>

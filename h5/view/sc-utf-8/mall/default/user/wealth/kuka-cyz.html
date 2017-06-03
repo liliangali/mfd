@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>我的酷卡创业者</title>
+<link href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link href="http://r.cotte.cn/cotte/wap/css/slx_style.css" rel="stylesheet" />
+</head>
+
+<body style=" background:#e8e8e8;">
+<div class="main">
+	<!--头部开始-->
+	<div class="topBar">
+		<div class="wrap"> <span class="back" onClick="history.go(-1)"></span>
+			<h1>我的酷卡</h1>
+			<div class="sxfl filter"><p><a href="#"></a></p> </div>
+		</div>
+        <div class="sta"></div>
+	</div>
+	<!--头部结束-->
+    
+    <ul class="szqh">
+      <li id="ti_1"  {if $type == 1}class="now_hover"{else}class="old_hover"{/if} onClick="ceck_pic(1);">未使用({$num_list.notUse|default:0})</li>
+      <li id="ti_2"  {if $type == 2}class="now_hover"{else}class="old_hover"{/if} onClick="ceck_pic(2);">已使用({$num_list.haveUsed|default:0})</li>
+      <li id="ti_3"  {if $type == 3}class="now_hover"{else}class="old_hover"{/if} onClick="ceck_pic(3);">已过期({$num_list.haveInvalid|default:0})</li>
+    </ul>
+    
+    
+    <div id="tj_1">
+        <!--{if $info}-->
+        <!--{foreach from=$info  name=kuka key=key item=item}-->
+       <div class="wdkj">
+       		<p class="picbj {if $type == 3}picbjs{/if}"></p> 
+            <div class="kkcyword">
+                <div class="kknumber">
+                    <p class="kkbianh fl">编号：{$item.sn}</p>
+                    {if $item.donation_mes}
+                    <p class="kkbianh fr">{$item.donation_mes}</p>
+                    {else}
+                    <p class="fr"></p>
+                    {/if}
+                </div>
+            
+                <div class="kkclip {if $type == 3}kkclips{/if}">¥<strong>{$item.work_num}</strong>{$item.cate_name}</div>
+                <div class="ddbjpic"></div>
+                <div class="kkprice">
+                    <p class="kkshouj fl">售价:￥{$item.price}</p>
+                    <p class="kktada fr">{$item.expire_time|date:Y-m-d}&nbsp;&nbsp;到期{if $item.day}(仅剩{$item.day}天){/if}</p>
+                </div>
+            </div>
+       </div>
+         <!--{/foreach}-->
+          <!--{else}-->   
+          <td>
+            <div class="empty">
+                <div>未匹配到酷卡数据</div>
+            </div>
+         </td>
+      <!--{/if}-->    
+
+    </div>
+    <div style="padding-top:20px;">
+       {include file=member.page.bottom.html}
+    </div>
+
+
+</div>
+
+
+<SCRIPT language="javascript" type="text/javascript">
+		  function ceck_pic(ix)
+		  {								
+		  							    
+			  window.location.href = "/wealth-kuka-1-"+ix+".html";
+			  return;
+		  	for (i=1;i<4;i++)
+			{
+				if (i==ix)
+				{
+					document.getElementById('ti_'+i).className = 'now_hover';
+					document.getElementById('tj_'+i).style.display = 'block';
+				}
+				else
+				{
+					document.getElementById('ti_'+i).className = 'old_hover'; 
+					document.getElementById('tj_'+i).style.display = 'none'; 
+				}
+			}
+		  
+		  }
+</SCRIPT>
+</body>
+</html>

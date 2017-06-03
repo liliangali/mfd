@@ -1,0 +1,94 @@
+<!DOCTYPEhtml>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<meta http-equiv="pragma"content="no-cache" />
+<title>coolettemobile</title>
+<link rel="stylesheet" type="text/css" href="static/css/amount.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+</head>
+<body>
+<script>window.onunload=function(){};</script>
+
+<div class="main">
+<div class="ltsBox">
+    <div class="search"><input type="text" class="txt" placeholder="输入量体师姓名或手机号" /></div>
+    <h3>已选择服务地区:{$regions.region_name}</h3>
+<div class="ltShiList">
+	{foreach from=$liangtis item=ltItem name=ltItm key=ltKey}
+		{if $datas.liangti}{else}
+		{if $smarty.foreach.ltItm.first}<input type="hidden" name="liangti" value="{$ltKey}" id="liangti"/>{/if}
+		{/if}
+		<div data-id="{$ltKey}" class="item {if $datas.liangti}{if $ltKey==$datas.liangti} cur {/if}{else}{if $smarty.foreach.ltItm.first} cur {/if}{/if}" data-phone="{$ltItem.info.phone_mob}" data-name="{$ltItem.info.real_name}">
+		<span class="headPic"><img src="{$ltItem.info.avatar|default:-}" width="50" height="50"></span>
+		<p class="name"><span>{$ltItem.info.real_name}</span>{$ltItem.info.phone_mob}</p><p class="shop">{$ltItem.seve.serve_name}</p>
+		</div>
+	{/foreach}
+	<p style="display:none" id="noneLiangti">没有搜索到相关量体师，请重新搜索！</p>
+</div>
+{if $datas.liangti}
+<input type="hidden" name="liangti" value="{$datas.liangti}" id="liangti" />
+{/if}
+</div>
+<div style = "height:80px;">
+<div class="bottomBtn">
+<div class="dBox">
+<a href="javascript:void(0)" class="a2">确认提交</a>
+
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="static/js/jquery-1.8.3.min.js"></script><!--static/js/jquery-1.7.2.min.js-->
+<script type="text/javascript"src="static/js/layer.m.js"></script>
+<script type="text/javascript">
+function _alert(msg){
+    layer.open({
+        content:'<pstyle="text-align:center">'+msg+'</p>',
+        btn:['确定'],
+    });
+}
+
+$('.search').on('keydown','.txt',function(e){
+    var _val=this.value
+    var _hs=0 
+    if(e.keyCode==13){
+        $('.ltShiList').find('div.item').each(function(){
+            if(_val==null || _val==''){
+                $(this).show();_hs=1
+            }else{
+                $(this).hide();
+                if($(this).data('phone')==_val || $(this).data('name')==_val){
+                    $(this).show();_hs=1
+                }
+            }
+        })
+        $('#noneLiangti').hide();
+        if(_hs==0)
+            $('#noneLiangti').show();
+    }
+});
+
+$('.ltShiList').on('click','.item',function(){
+    $(this).addClass('cur').siblings('.item').removeClass('cur');
+    $('.bottomBtn').addClass('show');
+    $('#liangti').val($(this).data('id'))
+})
+
+$('.bottomBtn').on('click','a',function(){
+    var _val=$('#liangti').val();
+    $.post('{link app=cart act=liangtiSave}',{val:_val},function(res){
+        if(res.done==true){
+        	history.go(-3)
+        	return false;
+            location.href='{link app=cart act=checkout}'
+        }else{
+            _alert('指定量体师失败!')
+        }
+        },'json')
+})
+
+    </script>
+</body>
+</html>

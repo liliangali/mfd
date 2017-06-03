@@ -1,0 +1,43 @@
+{include file=member.register.header.html}
+<div class="main w">
+  <div class="reg-step reg-1"></div>
+  <div class="AreaL fl">
+    <div class="myForm regForm">
+      <div id="error"></div>
+        <div class="item">
+          <div class="tit"> 帐号： </div>
+          <input type="text" class="txt" data-type="phone|emall" data-placeholder="手机/邮箱" id="userName">
+        </div>
+        <div class="item">
+          <div class="tit"> 密码： </div>
+          <input type="password" data-type="pwd" class="txt" id="userPwd">
+        </div>
+        <div class="item">
+          <div class="tit"> 确认密码： </div>
+          <input type="password" data-type="pwd" class="txt">
+        </div>
+        <div class="item">
+          <div class="tit"> 验证码： </div>
+          <input type="text" data-type="vcode" data-placeholder="请输入右侧验证码" class="txt validateCode" id="vCode" onKeyUp="enter(event,reg,4,this)" maxlength="4">
+          <img src="ajax-getAuthCode-regcode.html" width="65" height="25" class="validateImg" onClick="upCode('regcode')"> <span class="refreshCode" onClick="upCode('regcode')"></span> </div>
+        <p class="p">
+          <label class="fl">
+            <input type="checkbox" id="protocol">
+            我已阅读并同意 <a href="#" id="protocolmg">《Alicaifeng用户注册协议》</a></label>
+          </p>
+          <input type="hidden" value="1" name="step1" id="step1">
+        <input type="button" value="下一步" class="next" onClick="reg()">
+    </div>
+  </div>
+  <div class="AreaR fr">
+    <div class="RegR"> <a href="member-login.html" class="btn"><font color="#333">已有帐号？</font><font class="cRed">立即登录</font></a> </div>
+  </div>
+</div>
+
+  <div class="footer">
+    <p>Copyright © mfd.麦富迪　All Rights Reseved.　鲁ICP备14021964号</p>
+  </div>
+
+<script type="text/javascript" src="static/js/findpw.js"></script>
+</body>
+</html>

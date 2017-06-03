@@ -1,0 +1,50 @@
+{include file=member.header.html}
+<div class="kkzx_box">
+
+{include file=member.menu.html}
+
+
+  <script type="text/javascript">
+  var de = "/themes/mall/default/styles/default/images/avatar_def.png";
+   function uploadevent(status){
+	//alert(status);
+        status += '';
+     switch(status){
+     case '1':
+		//var time = new Date().getTime();
+		//document.getElementById('avatar_priview').innerHTML =
+		//	"头像1 : <img src='1.png?" + time + "'/> <br/> 头像2: <img src='2.png?" + time + "'/><br/> 头像3: <img src='3.png?" + time + "'/>" ;
+
+	break;
+     break;
+     case '-1':
+	  window.location.reload();
+     break;
+     default:
+     window.location.reload();
+    }
+   }
+  </script>
+  <div id="altContent" class="m_xgsctx">
+
+<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"
+WIDTH="840" HEIGHT="450" id="myMovieName">
+<PARAM NAME=movie VALUE="/avatar.swf">
+<PARAM NAME=quality VALUE=high>
+<PARAM NAME=bgcolor VALUE=#FFFFFF>
+<param name="flashvars" value="imgUrl=/themes/mall/default/styles/default/images/avatar_def.png&uploadUrl=/index.php/kuke-avatarupload.html&uploadSrc=true" />
+<EMBED src="/avatar.swf" quality=high bgcolor=#FFFFFF WIDTH="840" HEIGHT="450" wmode="transparent"
+flashVars="imgUrl=/themes/mall/default/styles/default/images/avatar_def.png&uploadUrl=/index.php/kuke-avatarupload.html&uploadSrc=true"
+NAME="myMovieName" ALIGN="" TYPE="application/x-shockwave-flash" allowScriptAccess="always"
+PLUGINSPAGE="">
+</EMBED>
+</OBJECT>
+
+  </div>
+  <p class="clear"></p>
+</div>
+  <div id="avatar_priview"></div>
+
+
+{include file="footer.html"}

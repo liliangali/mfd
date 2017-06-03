@@ -1,0 +1,108 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=jx&amp;act=export">导出</a></li>
+    </ul>
+
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="jx" />
+                <input type="hidden" name="act" value="index" />
+                <select class="querySelect" name=field_name>{html_options options=$query_fields selected=$smarty.get.field_name}
+                </select>
+          		<input type="text" class="zzinput"  name="field_value" value="{$smarty.get.field_value|escape}"/>
+          		
+          	创业者等级：<select class="querySelect" name=member_lv_id>
+          			   	<option value="">全部</option>
+          		 	 {html_options options=$lang.MEMBER_LV_ID  selected=$smarty.get.member_lv_id}
+                </select>
+                创业者性别：
+                <select class="querySelect" name=gender>
+          			 <option value="">全部</option>
+                	 {html_options options=$sex_option  selected=$smarty.get.gender}
+                </select>
+
+                 激活BD码时间从：<input class="queryInput2" type="text" value="{$query.add_time_from}" style="width:80px" id="add_time_from" name="add_time_from" class="pick_date" />
+                 至：<input class="queryInput2" type="text" value="{$query.add_time_to}" style="width:80px" id="add_time_to" name="add_time_to" class="pick_date" />
+
+
+      <!--           注册时间从：<input class="queryInput2" type="text" value="{$query.add_time_from}" style="width:80px" id="add_time_from" name="add_time_from" class="pick_date" />
+              至：<input class="queryInput2" type="text" value="{$query.add_time_to}" style="width:80px" id="add_time_to" name="add_time_to" class="pick_date" />
+-->
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+        </form>
+    </div>
+    <div class="fontr">
+       {include file=page.top.html}
+    </div>
+</div>
+<br/>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+
+        <tr class="tatr1">
+        	  <td width="3%" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td width="5%"><span ectype="order_by" fieldname="user_id">ID</span></td>
+          	<td width="21%"><span  ectype="order_by" fieldname="user_name">创业者昵称&nbsp;|&nbsp;用户名</span></td>
+
+            <td width="10%"><span>下单数</span></td>
+            <!--<td width="10%"><span  ectype="order_by" fieldname="gender">性别</span></td>-->
+        	  <!--<td width="10%"><span  ectype="order_by" fieldname="region_id">所在地区</span></td>-->
+           	<td width="15%"><span  ectype="order_by" fieldname="reg_time">注册时间</span></td>
+            <td width="15%"><span  ectype="order_by" fieldname="add_time">激活BD码时间</span></td>
+            <!--<td width="15%"><span  ectype="order_by" fieldname="to_time">使用特权码时间</span></td>-->
+
+            <td width="10%"><span  ectype="order_by" fieldname="member_lv_id">当前等级</span></td>
+       		  <td><span>推广员|手机</span></td>
+            <td><span>操作</span></td>
+        </tr>
+
+        <!--{if !empty($list)}-->
+        <!--{foreach from=$list item=item key=k}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input type="checkbox" class="checkitem" value="{$item.id}" /></td>
+          	<td>{$item.user_id}</td>
+            <td>{$item.nickname}&nbsp;|&nbsp;{$item.user_name}</td>
+            <td>{$item.order_num}</td>
+            <!--<td>{$item.gender}</td>-->
+            <!--<td>{$item.region_id}</td>-->
+            <td>{$item.reg_time}</td>
+            <td>{$item.add_time}</td>
+            <!--<td>{$item.to_time}&lt;!&ndash;({$c_arr.$item.cate})&ndash;&gt;</td>-->
+
+            <td>{$item.member_lv_id}</td>
+            <td>{$item.inviter}&nbsp;|&nbsp;{$item.name}</td>
+            <td class="indexlabel">
+            <a href="index.php?app=jx&act=view&id={$item.id}&amp;page={$pageye}&amp;field_name={$fn}&amp;field_value={$fv}&amp;member_lv_id={$ml}&amp;gender={$g}&amp;add_time_to={$t}&amp;add_time_from={$f}">查看详情 </a>
+                |
+                <a href="javascript:void(0)" onclick="if(confirm('确认解绑该用户吗？！（请慎重操作！！）'))location.href='index.php?app=jx&act=drop&id={$item.id}&amp;page={$pageye}&amp;field_name={$fn}&amp;field_value={$fv}&amp;member_lv_id={$ml}&amp;gender={$g}&amp;add_time_to={$t}&amp;add_time_from={$f}'"> 解绑</a>
+            </td>
+        </tr>
+        <!--{/foreach}-->
+        <!--{else}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+    </table>
+    <!--{if !empty($list)}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+
+<script type="text/javascript">
+
+
+//日期
+$('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+$('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
+{include file="footer.html"}

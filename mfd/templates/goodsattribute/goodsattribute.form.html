@@ -1,0 +1,126 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            attr_name : {
+                required : true,
+            },
+            type_id: {
+            	required : true,
+            },
+            sort_order : {
+                number   : true,
+            },
+            alias:{
+            	required: true,
+            },
+        },
+        messages : {
+            attr_name : {
+                required : '{$lang.attr_empty}',
+            },
+            sort_order  : {
+                number   : '{$lang.sort_num}'
+            },
+            type_id     : {
+            	required : '{$lang.type_req}'
+            },
+            alias:{
+            	required: '别外不能为空!',
+            },
+        }
+    });
+});
+
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=goodsattribute&amp;type_id={$data.type_id}">属性列表</a></li>
+        {if $data.attr_id}
+        <li><a class="btn1" href="index.php?app=goodsattribute&amp;act=add&type_id={$data.type_id}">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="form" name="theForm">
+        <table class="infoTable">
+
+            
+                        <tr>
+                <th class="paddingT15">
+                                                属性名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="attr_name" type="text" name="attr_name" value="{$attr.attr_name|escape}" required/>
+                </td>
+            </tr>
+                       <!--  <tr>
+                <th class="paddingT15">
+                                               属性 别名（|分割）:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" type="text" name="alias" value="{$data.alias|escape}" />
+                </td>
+            </tr> -->
+          
+           <tr>
+                <th class="paddingT15">
+                                               属性录入方式:</th>
+                <td class="paddingT15 wordSpacing5">
+              <input type="radio" name="attr_input_type" value="0" {if $attr.attr_input_type eq 0} checked="true" {/if} onclick="radioClicked(0)"/>
+          手工录
+          <input type="radio" name="attr_input_type" value="1" {if $attr.attr_input_type eq 1} checked="true" {/if} onclick="radioClicked(1)"/>
+        从下面的列表中选择（一行代表一个可选值
+                     
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                                               所属类型:</th>
+                <td class="paddingT15 wordSpacing5">
+                     <select name="type_id">{html_options options=$types selected=$attr.type_id}</select>
+                </td>
+            </tr>
+            
+             <tr>
+                <th class="paddingT15">
+                                               属性值（一行代表一个值）:</th>
+                <td class="paddingT15 wordSpacing5">
+                <textarea name="attr_values" cols="30" rows="5">{$attr.attr_values}</textarea>
+                </td>
+            </tr>
+            
+            <script>
+            radioClicked({$attr.attr_input_type});
+            /**
+             * 点击类型按钮时切换选项的禁用状态
+             */
+            function radioClicked(n)
+            {
+            	
+              document.forms['theForm'].elements["attr_values"].disabled = n > 0 ? false : true;
+            }
+            </script>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="attr_id" value="{$attr.attr_id}">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

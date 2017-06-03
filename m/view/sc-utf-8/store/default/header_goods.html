@@ -1,0 +1,189 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$site_url}/" />
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+{$page_seo}
+<meta name="author" content="www.ydpf.com" />
+<meta name="copyright" content="ydpf.com Inc. All Rights Reserved" />
+<link href="{res file=head_footr.css}" rel="stylesheet" type="text/css" />
+<link href="{$site_url}/themes/store/default/styles/default/shop.css" rel="stylesheet" type="text/css" />
+<link href="{$site_url}/themes/store/default/styles/default/ydxq_style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{link app=default act=jslang}"></script>
+<script type="text/javascript" src="{res file=jquery-1.7.2.min.js}"></script>
+<script type="text/javascript" src="{res file=Xslider.js}"></script>
+<script type="text/javascript" src="{lib file=json.js}"></script>
+<script type="text/javascript" src="{lib file=minicart.js}"></script>
+<script type="text/javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="text/javascript">
+$(function(){
+
+	//二、左右切换：最后一个显示在最右侧;
+	$(".productshow:eq(0)").Xslider({
+		unitdisplayed:3,
+		numtoMove:3
+	});
+	
+	$("a").focus(function(){this.blur();});
+})
+</script>
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+</script>
+
+{$_head_tags}
+<!--<editmode></editmode>-->
+</head>
+
+<body>
+<!--顶部栏目开始-->
+<div class="head_top_box">
+  <div class="head_top_center">
+  
+       <div class="dz_head_top_left">
+       <p class="dz_gjdt"></p>
+       <div class="dz_menu2" onMouseOver="this.className='dz_menu1'" onMouseOut="this.className='dz_menu2'">
+         <p class="wdzf"><a href="#">中国</a></p>
+         <DIV class="list">
+          <P><A href="#">美国</A></P>
+          <P><A href="#">英国</A></P>
+          <P><A href="#">日本</A></P>
+         </DIV>
+       </div> 
+     
+       <p class="dz_zxgf"><a href="#">在线客服</a></p>      
+    </div>
+    
+    <div class="head_top_right">
+      <p style="float:left;" class="qdlzc">Hi,  <!--{if !$visitor.user_id}-->请<a href="{link app=member act=login}">登录</a><b>/</b><a href="{link app=member act=register}">注册</a><!--{else}-->{$visitor.user_name|escape} <a href="index.php/member-logout.html">{$lang.logout}</a> <!--{/if}--><span>|</span></p>
+      <p style="float:left;" class="qdlzc"><a href="{link app=buyer_order act=index}">我的订单</a><span>|</span></p>
+      <p style="float:left;" class="wdyc"><font></font><a href="{link app=cart act=index}">我的衣橱<span>(2)</span>件</a></p>    
+    </div>
+
+    
+    <p class="clear"></p>  
+  </div>
+</div>
+<!--顶部栏目结束-->
+
+
+<div class="ydpfxq_headbox">
+
+  <div class="logo_box">
+    <p class="logo"><a href="./"><img src="{res file=images/logo.png}" /></a></p>
+    <p class="bbxq">{$store.store_name}</p>
+    <p class="clear"></p>
+  </div>
+  <!--移动端下载入口开始-->
+    <!--鼠标经过显示下拉层js-->
+	<script type="text/javascript">
+    $(function(){
+        var $menu = $('.sgapptu');
+        $menu.children('li').each(function(){
+            var $this = $(this);
+            var $h1 = $this.children('h1');
+        
+            $this.bind('mouseenter',function(){
+                $menu.find('.down_tcc').stop(true,true).hide();
+                $h1.addClass("on");
+                $h1.stop().animate(200,function(){
+                $this.find('.down_tcc').slideDown(200);
+                });
+            }).bind('mouseleave',function(){
+                $h1.removeClass("on");
+                $this.find('.down_tcc').stop(true,true).hide();
+                $h1.stop().animate(200);
+            });
+        });
+        
+    });
+    </script>	  
+  
+  <div class="sgxlk">
+     <ul class="sgapptu">
+     
+       <li class="li1">
+         <h1><b>安卓</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3><span>Android</span>客户端</h3>
+
+             <p class="smrwm">1.扫描二维码下载</p>
+             <p class="rwmtupa"><img src="{res file=images/rwm.gif}" /></p>
+             <p class="smrwm">2.安智市场免费下载</p>
+             <p class="ljmfxz"><a href="../index.php/client.html"></a></p>
+           </div>
+         </div>
+       </li>
+
+       <li class="li2">
+         <h1><b>苹果</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3><span>iPhone</span>客户端</h3>
+             <p class="smrwm">1.扫描二维码下载</p>
+             <p class="rwmtupa"><img src="{res file=images/rwm.gif}" /></p>
+             <p class="smrwm">2.App Store免费下载</p>
+             <p class="ljmfxz"><a href="../index.php/client.html"></a></p>
+           </div>
+         </div>
+       </li>  
+       
+       <li class="li3">
+         <h1><b>微信</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div style="height:260px;">
+            <h3>微信移动端</h3>
+             <p class="smrwm">1.扫描二维码关注</p>
+             <p class="rwmtupa"><img src="{res file=images/weixin_ewm.png}" width="83" height="83" /></p>
+             <p class="smrwm">关注、绑定有惊喜哦！</p>
+           </div>
+         </div>
+       </li>         
+       
+
+     </ul>
+     <p class="clear"></p>
+  </div>
+  <!--移动端下载入口结束-->
+  <p class="clear"></p>
+
+
+</div>
+
+<div class="xqydh_box">
+ <div class="dhrr">
+    <ul>
+    <li><a href="./">首页</a></li>
+      <!--{if $smarty.get.cate_id && !$story}--><li><!--{else}--><li><!--{/if}--><a href="index.php/store.html?id={$store.store_id}">品牌主页</a></li>
+       <!--{if $story}--><li><!--{else}--><li class="on"><!--{/if}--><a  href="index.php/store-story.html?id={$store.store_id}">品牌故事</a></li>
+       <!--{foreach from=$store.store_gcates item=gcategory key=key name=name}-->
+          <!--{if $smarty.foreach.name.last}-->
+                <!--{if $smarty.get.cate_id == $gcategory.id}-->
+                  <li class="on">
+                <!--{else}-->
+                  <li style="background:none;">
+                <!--{/if}-->
+          <!--{else}-->
+                 <!--{if $smarty.get.cate_id == $gcategory.id}-->
+                  <li class="on">
+                <!--{else}-->
+                  <li>
+                <!--{/if}-->
+          <!--{/if}-->
+              <a href="index.php/store-search.html?id={$store.store_id}&cate_id={$gcategory.id}">{$gcategory.value|escape}</a>
+          </li>
+       <!--{/foreach}-->
+    </ul>
+    <p class="clear"></p>
+    
+    <p class="scgdp"><a class="collection" href="javascript:collect_store({$store.store_id})">{$lang.collect_the_store}</a></p>
+ </div>
+</div>

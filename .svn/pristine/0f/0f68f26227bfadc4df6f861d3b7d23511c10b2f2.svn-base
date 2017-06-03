@@ -1,0 +1,1 @@
+ALTER TABLE `cf_goods_gallery` ADD `sort` INT(10) NOT NULL COMMENT '图片排序' AFTER `img_original`;

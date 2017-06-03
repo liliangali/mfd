@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="pragma" content="no-cache">
+		<title>{$goods.goods.name}</title>
+		<link rel="stylesheet" type="text/css" href="static/css/mobile_style.css" media="screen">
+		<script type="text/javascript" src="{lib file=jquery-1.8.3.min.js}"></script>
+		<script type="text/javascript" src="{lib file=jquery.swipe.js}"></script>
+		<script type="text/javascript" src="/diy/js/layer_mobile/layer.js"></script>
+	</head>
+
+	<body>
+
+
+	<!--<div href="#" class="spxq_fg">
+		{foreach from=$banner item=item}
+		{foreach from=$item.rc item=item2}
+		<a href="{$item2.link_url}"><img src="{$item2.img}" width="100" height="100"/></a>
+		{/foreach}
+		<div class="close">
+			<span class="icon_close">x</span>
+		</div>
+		{/foreach}
+	</div>-->
+
+		<div class="main xq_section">
+			<div class="xiangc">
+				<div id="slider" class="swipe">
+					<div class="swipe-wrap">
+						{foreach from=$goods.goods.gallery_list item=gallery}
+						<div>
+							<a href="###"><img src="{$gallery.img_url}" /></a>
+						</div>
+						{/foreach}
+					</div>
+					<div class="swipe-btn"> <span class="cur"></span> <span></span> <span></span> <span></span><span></span> </div>
+				</div>
+			</div>
+
+			<div class="spxq_bt" data-id="{$goods.goods.goods_id}">
+				<h4><a href="#">{$goods.goods.name}</a></h4>
+
+				<h5><i id="singprice">{$goods.goods.price}</i> <b>元</b></h5>
+
+				<div class="scj"><span>市场价 <del id="mktprice">{$goods.goods.mktprice}元</del></span><span>已售{$goods.goods.buy_count}件</span></div>
+				{if $is_pro}
+				<div class="cx"><span>促销</span>{$goods_con.content}</div>
+				{/if}
+				<div class="yx cx addCarts">
+					<a href="#" style="display:block;" id="clects"><span>已选</span> {foreach from=$goods_con.spec_value item=specvalue}
+						<font>{$specvalue}</font>
+						{/foreach}
+						<font id="ffnum">1个</font>
+					</a>
+				</div>
+			</div>
+
+			<h1 class="xgcp">商品详情</h1>
+			<div class="spxqtu" style="text-align: center;">{$goods.goods.intro}</div>
+			{if $goods.goods.attr_list}
+			<h1 class="xgcp">产品参数</h1>
+			<ul class="cpcs">
+				{foreach from=$goods.goods.attr_list item=goodsattr}
+				<li>
+					<h1>{$goodsattr.p_name}</h1>
+					<p>{$goodsattr.s_name}</p>
+				</li>
+				{/foreach}
+			</ul>
+			{/if}
+
+			<h1 class="xgcp">相关产品</h1>
+			<div class="lb_list" style="margin: 0;">
+				<ul>
+					{foreach from=$goods_con.cat_goods item=cat_goods}
+					<li>
+						<a href="{link app=product act=content}?id={$cat_goods.goods_id}" style="display:block">
+							<p class="p1"><img src="{$cat_goods.thumbnail_pic}"></p>
+							<p class="p2">{$cat_goods.name}</p>
+							<p class="p3">{$cat_goods.price}元</p>
+						</a>
+					</li>
+					{/foreach}
+				</ul>
+			</div>
+
+			<!--添加购物车弹出层/S-->
+			<div class="tjltdz" id="customSize">
+				<div class="jrgwc_xx">
+					<div class="gwcjzc">
+						<h1>{$goods.goods.name}<span class="gb">x</span></h1> {foreach from=$goods.products.spe item=spe key=key}
+						<h2>{$spe.name}</h2>
+						<ul class="spec2_{$key}" data-id="111">
+							{foreach from=$spe.value item=spv key=key1}
+							<li {if $spv.is_default eq 1}class="on" {/if} data-id={$key} value="{$key1}">{$spv.value_name}</li>
+							{/foreach}
+						</ul>
+						{/foreach}
+
+						<h2>数量</h2>
+						<div class="gwcsl clearfix">
+							<div class="gwcjj">
+								<p class="p1" onclick="cartNum(1)"></p>
+								<input type="text" class="nums" name="nums" <!-- onchange="number(this)" --> value="1" disabled>
+								<p class="p2" onclick="cartNum(2)"></p>
+							</div>
+							<p class="kc">库存<span id="numbers">{$goods.goods.store}</span>件</p>
+						</div>
+
+					</div>
+					
+					<p class="xq_tc_qr gb">确认</p>
+					<!--<div class="sc_jrgwc">
+						{if $goods_con.is_collect ==1}
+						<p class="ysc">已收藏</p>
+						{else}
+						<p class="sc">收藏</p>
+						{/if}
+						<p class="jrgwc">加入购物车<span id="prices">{$goods.goods.price}元</span></p>
+						
+					</div>-->
+
+				</div>
+			</div>
+			<!--添加购物车弹出层/E-->
+
+			<p style="height: 70px;"></p>
+			<div class="zyjr_box sc_jrgwc">
+				<!--{if $goods_con.is_collect ==1}
+				<p class="ysc">已收藏</p>
+				{else}
+				<p class="sc">收藏</p>
+				{/if}
+				<p {if $goods_con.spec_value}class="jrgwc" {else}class="jrgwc addCart" {/if}>加入购物车<span id="addcarts">{$goods.goods.price}元</span></p>-->
+				<div class="zyjr_box_left">
+					<a href="{$kefu_url}&visitTitle=商品详情">
+						<span>
+							<img src="public/static/wap/images/xq_huihua_1.jpg"/>
+						</span>
+						<span>客服</span>
+					</a>
+					<a href="{link app=cart}">
+						<span>
+							<i class="cart_num">{$cart_goods_num}</i>
+							<img src="public/static/wap/images/xq_huihua_2.jpg"/>
+						</span>
+						<span>购物车</span>
+					</a>
+					<div class="shouc">
+					{if $goods_con.is_collect ==1}
+					<a onclick="yscs()">
+						<span>
+							<img src="public/static/wap/images/xq_huihua_3.jpg"/>
+						</span>
+						<span >已收藏</span>
+					</a>
+					{else}
+					<a onclick="scs()">
+						<span>
+							<img src="public/static/wap/images/xq_huihua_3.jpg"/>
+						</span>
+						<span >收藏</span>
+					</a>
+					{/if}
+					 </div>
+				</div>
+				<!--<p {if $goods_con.spec_value}class="jrgwc" {else}class="jrgwc addCart" {/if}>加入购物车<span id="addcarts">{$goods.goods.price}元</span></p>-->
+				<div class="zyjr_box_right">
+					<a href="###" {if $goods_con.spec_value}class="jrgwcs" {else}class="jrgwcs addCarts" {/if}>加入购物车</a>
+					<a href="###" {if $goods_con.spec_value}class="jrgwcss" {else}class="jrgwcs addCarts" {/if}>立即购买</a>
+				</div>
+
+			</div>
+
+			<style type="text/css">
+
+			</style>
+
+		</div>
+		<div id="product_id" style="display:none;">{$goods.products.default_product_id}</div>
+		<script>
+			//页面滚动效果
+			Swipe(document.getElementById('slider'), {
+				continuous: false,
+				//auto:1000,
+				callback: function(index, element) {
+					$('.swipe-btn span').eq(index).addClass('cur').siblings().removeClass();
+				}
+			});
+			//收藏
+			//$('.scs').click(function() {
+				function scs(){
+				var name = "hasLogin";
+				var goods_id = $('.spxq_bt').attr("data-id");
+				var haslogin = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+				if(haslogin) {
+					if(unescape(haslogin[2]) == 0) {
+						location.href = "/member-login.html";
+						return
+					}
+				}
+				$.ajax({
+					url: '/my_favorite-add.html',
+					type: 'POST',
+					timeout: 5000,
+					dataType: "json",
+					data: {
+						type: 'goods',
+						gid: goods_id,
+					},
+					success: function(data) {
+					
+						layer.open({
+								content: "收藏成功"
+								,skin: 'msg'
+								,time: 2 //2秒后自动关闭
+						});
+						//window.location.reload();
+						$('.shouc a').remove();
+						$('.shouc').append("<a onclick='yscs()'><span><img src='public/static/wap/images/xq_huihua_3.jpg'/></span><span >已收藏</span></a>")
+					},
+					error: function() {
+						layer.open({
+								content: "收藏失败"
+								,skin: 'msg'
+								,time: 2 //2秒后自动关闭
+						});
+					
+					}
+				});
+			};
+			//取消收藏
+		//	$('.yscs').click(function() {
+        function yscs(){
+				var name = "hasLogin";
+				var goods_id = $('.spxq_bt').attr("data-id");
+				var haslogin = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+				if(haslogin) {
+					if(unescape(haslogin[2]) == 0) {
+						location.href = "/member-login.html";
+						return
+					}
+				}
+				$.ajax({
+					url: '/product-dropCollect.html',
+					type: 'POST',
+					timeout: 5000,
+					dataType: "json",
+					data: {
+						type: 'goods',
+						gid: goods_id,
+					},
+					success: function(data) {
+						layer.open({
+								content: "取消收藏成功"
+								,skin: 'msg'
+								,time: 2 //2秒后自动关闭
+						});
+						//window.location.reload();
+						$('.shouc a').remove();
+						$('.shouc').append("<a onclick='scs()'><span><img src='public/static/wap/images/xq_huihua_3.jpg'/></span><span >收藏</span></a>")
+					},
+					error: function() {
+							layer.open({
+								content: "取消收藏失败"
+								,skin: 'msg'
+								,time: 2 //2秒后自动关闭
+						});
+					}
+				});
+			};
+
+			function cartNum(type) {
+				var num = parseInt($("input[name=nums]").val());
+				if(type == 1) //减
+				{
+					if(num <= 1) {
+						return false;
+					}
+					num = num - 1;
+				} else {
+					num = num + 1;
+				}
+
+				$("input[name=nums]").val(num);
+				fprice();
+			}
+
+			//加入购物车
+			$('.gb').click(function() {
+				$('#customSize').fadeOut(500);
+			});
+			$('.addCarts').click(function() {
+				$('#customSize').fadeIn(500);
+				return false
+			});
+			$(".gwcjzc li").click(function() {
+				var spec_id = $(this).attr("data-id");
+				var goods_id = $('.spxq_bt').attr("data-id");
+				var num = $('.nums').val();
+				$(".spec2_" + spec_id + " li").removeClass("on");
+				$(this).addClass("on");
+				var spec_value_ids = '';
+				$('.gwcjzc li.on').each(function() {
+					spec_value_ids += $(this).data("id") + "-" + $(this).val() + ",";
+				});
+				$.post("{link app=product act=checkp}", {
+					hid: spec_value_ids,
+					goodsId: goods_id,
+					num: num
+				}, function(res) {
+					var res = $.parseJSON(res);
+					if(res.done == true) {
+						$("#prices").html(res.retval.productLists.price * num);
+						$("#singprice").html(res.retval.productLists.price);
+						$("#mktprice").html(res.retval.productLists.mktprice);
+						$("#numbers").html(res.retval.productLists.store);
+						$("#addcarts").html(res.retval.productLists.price * num);
+						$("#product_id").html(res.retval.productLists.product_id);
+						var html = '<span>已选</span>';
+						for(var i = 0; i < res.retval.productLists.spec_value_count; i++) {
+							html += " <font>" + res.retval.productLists.spec_value[i] + "</font>";
+						}
+						html += "<font>" + res.retval.productLists.numbers + "个</font>";
+						$('#clects').html('');
+						$('#clects').append(html);
+					}
+				})
+			});
+			$(".nums").keyup(function() {
+
+				fprice();
+			});
+
+			//处理价格
+			function fprice() {
+				var goods_id = $('.spxq_bt').attr("data-id");
+				var num = $('.nums').val();
+				if(num <= 0) {
+					$('.nums').val(1);
+					return;
+				}
+				$("#ffnum").text(num + "个");
+				var spec_value_ids = '';
+				$('.gwcjzc li.on').each(function() {
+					spec_value_ids += $(this).data("id") + "-" + $(this).val() + ",";
+				});
+				$.post("{link app=product act=checkp}", {
+					hid: spec_value_ids,
+					goodsId: goods_id,
+					num: num
+				}, function(res) {
+					var res = $.parseJSON(res);
+					if(res.done == true) {
+						$("#prices").html(res.retval.productLists.price * num);
+						$("#singprice").html(res.retval.productLists.price);
+						$("#mktprice").html(res.retval.productLists.mktprice);
+						$("#numbers").html(res.retval.productLists.store);
+						$("#addcarts").html(res.retval.productLists.price * num);
+						$("#product_id").html(res.retval.productLists.product_id)
+					}
+				})
+			}
+
+			$(".jrgwcs").click(function() {
+				var goods_id = $('.spxq_bt').attr("data-id");
+				var num = $('.nums').val();
+				var product_id = $("#product_id").html();
+				var name = "hasLogin";
+				var haslogin = "{$visitor.user_id}";
+				//var haslogin=document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+				//    alert(haslogin)
+//				if(haslogin == 0) {
+//					location.href = "/member-login.html";
+//					return
+//				}
+				$.ajax({
+					url: '/cart-add.html?ajax',
+					type: 'POST',
+					timeout: 5000,
+					dataType: "json",
+					data: {
+						pid: product_id,
+						gid: goods_id,
+						num: num,
+						mfd_reload_mid:"{$smarty.session.user_info.user_id}"
+					},
+					success: function(data) {
+						if(data.done) {
+							layer.open({
+								content: "购物车加入成功"
+								,skin: 'msg'
+								,time: 2 //2秒后自动关闭
+							});
+							//cart_num
+							$(".cart_num").text(data.retval.goods_num);
+
+
+
+						} else {
+							alert(data.msg);
+						}
+
+					},
+					error: function() {
+						alert('加入购物车请求出错')
+					}
+				});
+
+				/*  $.post("/cart-add.html",{pid: product_id,gid:goods_id,num:num}, function(res){
+					 var res = $.parseJSON(res);
+				        if(res.done==true){
+				        	
+				        }
+				    }) */
+			})
+
+
+			$(".jrgwcss").click(function() {
+				var goods_id = $('.spxq_bt').attr("data-id");
+				var num = $('.nums').val();
+				var product_id = $("#product_id").html();
+				var name = "hasLogin";
+				var haslogin = "{$visitor.user_id}";
+				//var haslogin=document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+				//    alert(haslogin)
+				if(haslogin == 0) {
+					location.href = "/member-login.html";
+					return
+				}
+				$.ajax({
+					url: '/cart-add.html?ajax',
+					type: 'POST',
+					timeout: 5000,
+					dataType: "json",
+					data: {
+						pid: product_id,
+						gid: goods_id,
+						num: num,
+						mfd_cart_is_check:1,
+						mfd_reload_mid:"{$smarty.session.user_info.user_id}"
+					},
+					success: function(data) {
+						if(data.done) {
+							window.location.href = '/cart-checkout.html?mfd_cart_is_check=1'
+						} else {
+							alert(data.msg);
+						}
+
+					},
+					error: function() {
+						alert('加入购物车请求出错')
+					}
+				});
+
+				/*  $.post("/cart-add.html",{pid: product_id,gid:goods_id,num:num}, function(res){
+				 var res = $.parseJSON(res);
+				 if(res.done==true){
+
+				 }
+				 }) */
+			})
+
+//			$(".xq_section").css("top", "90px");
+//			//悬浮广告关闭
+//			$(".close").click(function() {
+//				$(this).parent().next().css("top", "0");
+//				$(this).parent().remove();
+//			})
+		</script>
+		<script>
+			//检测是否是微信浏览器
+			function is_weixin() {
+				var ua = navigator.userAgent.toLowerCase();
+				if(ua.match(/MicroMessenger/i) == "micromessenger") {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			if(is_weixin()) {
+				document.getElementById("header").style.display = 'none';
+			}
+		</script>
+		{include file=footer.html}
+		{include file=fudong1.html}
+	</body>
+
+</html>

@@ -1,0 +1,78 @@
+{include file="header.html"}
+<script src="templates/js/jquery.imagePreview.1.0.js"></script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>栏目列表</span></li>
+        <li><a class="btn1" href="index.php?app=motif&amp;act=add">添加栏目</a></li>
+        <li><a class="btn1" href="index.php?app=motif&amp;act=group_list">栏目位置列表</a></li>
+        <li><a class="btn1" href="index.php?app=motif&amp;act=add_group">添加栏目位置</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+          <form method="get">
+             <div class="left">
+            发布平台:<select class="querySelect mySelect" name="sites"><option value="">全部</option>{html_options options=$sites selected=$smarty.get.site}</select>
+            发布位置:<select class="querySelect mySelect" name="locations"><option value="">全部</option>{html_options options=$locations selected=$smarty.get.location}</select>
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=motif">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+	<table width="100%" cellspacing="0" class="dataTable">
+		<!--{if $items}-->
+		<tr class="tatr1">
+		    <td>栏目ID</td>
+			<td>栏目标题</td>
+            <td>发布平台</td>
+            <td>发布位置</td>
+            <td>栏目排序</td>
+            <td>显示</td>
+            <td>修改时间</td>
+			
+			<td class="handler">{$lang.handler}</td>
+		</tr>
+		<!--{/if}-->
+		<!--{foreach from=$items item=list}-->
+		<tr class="tatr2">
+			<td>{$list.id}</td>
+            <td>{$list.title}</td>
+            <td>{$list.site}</td>
+            <td>{$list.location}</td>
+            <td>{$list.sort_order}</td>
+            {if $list.is_show==0}<td>否</td>{else}<td>是</td>{/if}
+            <td><!-- {if $list.edit_time} -->{$list.edit_time|date:complete}<!-- {else} -->{$list.add_time|date:complete}<!-- {/if} --></td>
+			<td class="handler" >
+				<a href="index.php?app=motif&amp;act=edit&amp;id={$list.id}">编辑</a>|
+				<a href="javascript:;" onclick="if(confirm('确定删除吗？')) location.href='index.php?app=motif&amp;act=drop&amp;id={$list.id}'">删除</a>
+<!-- 				|{if $list.top}<a style="color:red">已置顶</a>{else}<a  href="javascript:;" onclick="if(confirm('确定置顶吗？')) location.href='index.php?app=motif&amp;act=local_top&amp;id={$list.id}'">置顶</a>{/if} -->
+			</td>
+		</tr>
+		<!--{foreachelse}-->
+		<tr class="no_data">
+			<td colspan="6">{$lang.no_data}</td>
+		</tr>
+		<!--{/foreach}-->
+	</table>
+	<!--{if $items}-->
+	<div id="dataFuncs">
+		<div class="pageLinks">{include file=page.bottom.html}</div>
+		<div class="clear"></div>
+	</div>
+  <!--{/if}-->
+</div>
+<script type="text/javascript">
+
+    
+	$('.mySelect').change(function() {
+        var site=$("select[name='sites']").val();
+        var location=$("select[name='locations']").val();
+        window.location.href="index.php?app=motif&act=index&site="+site+"&location="+location;
+    }) 
+
+</script>
+{include file="footer.html"}

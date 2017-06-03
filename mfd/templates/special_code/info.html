@@ -1,0 +1,88 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>日志详情</span></li>
+        <li><a class="btn1" href="index.php?app=special_code&amp;act=log&amp;cate={$cate}">返回</a></li>
+
+
+    </ul>
+
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+
+                <input type="hidden" name="app" value="special_code" />
+                <input type="hidden" name="act" value="info" />
+
+                {if $cate>19}麦富迪E卡：{else}特权码：{/if}<input type="text" name="sn" id="sn" style="width:150px" value="{$sn}" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                发放用户：<input type="text" name="user_name"  id="user_name" style="width:150px" value="{$user_name}" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                激活状态：
+                <select name="isused" id="isused">
+                    {html_options options=$_is_used selected=$is_used}
+                </select>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                激活时间 从：  <input type="text" name="start_time" id="start_time"  value="{$start_time}" onclick="WdatePicker()" class="infoTableInput Wdate"  style="width:150px">
+                到 <input type="text" name="end_time" id="end_time" value="{$end_time}" onclick="WdatePicker()" class="infoTableInput Wdate"  style="width:150px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="hidden" value="{$log_id}" id="id" name="id">
+                <input type="hidden" value="{$cate}" id="cate" name="cate">
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=special_code">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <!--<div class="fontr">{include file=page.top.html}</div>-->
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <tr class="tatr1">
+            <td><span ectype="order_by" fieldname="id">ID</span></td>
+            <td><span ectype="order_by" fieldname="sn">{if $cate>19}酷卡{else}越级码{/if}</span></td>
+            {if  $cate>19}
+            <td><span ectype="order_by" fieldname="from_id">赠卡人ID</span></td>
+            <td><span ectype="order_by" fieldname="from_name">赠卡人</span></td>
+            {/if}
+            <td><span ectype="order_by" fieldname="user_name">激活用户</span></td>
+            <td><span ectype="order_by" fieldname="to_time">激活时间</span></td>
+            <td><span ectype="order_by" fieldname="expire_time">过期时间</span></td>
+            <td><span ectype="order_by" fieldname="is_used">是否激活</span></td>
+        </tr>
+
+        <!--{if !empty($list)}-->
+        <!--{foreach from=$list item=v key=k}-->
+        <tr class="tatr2">
+            <td>{$v.id}</td>
+            <td>{$v.sn}</td>
+
+            {if  $cate>19}
+            <td>{$v.from_id}</td>
+            <td>{$v.from_name}</td>
+            {/if}
+
+            <td>{$v.user_name}</td>
+            <td>{$v.to_time}</td>
+            <td>{$v.expire_time}</td>
+            <td>{$_is_used[$v.is_used]}</td>
+        </tr>
+        <!--{/foreach}-->
+        <!--{else}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+    </table>
+    <!--{if !empty($list)}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+
+{include file="footer.html"}

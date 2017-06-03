@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>尚品</title>
+<link rel="stylesheet" type="text/css" href="/static/css/mobile_style.css" media="screen">
+<script type="text/javascript" src="{lib file=jquery-1.8.3.min.js}"></script>
+<script type="text/javascript" src="{lib file=public.js}"></script>
+</head>
+<body>
+<div class="main"> 
+ <div class="wbfd_fix">
+  <!--头部开始-->
+  <div class="header clearfix">
+    <p class="p1"><a href="javascript:history.go(-1)"><img src="/static/images/tw_03.png" /></a></p>
+    <p class="p2">麦富迪尚品</p>
+  </div>
+  <!--头部结束-->
+  
+    <ul class="splbsx">
+     <li><a href="{link app=product}?sort=p_order&order=desc&p_id={$smarty.get.p_id}&son_id={$smarty.get.son_id}">综合</a></li>
+     <li><a href="{link app=product}?sort=buy_count&order=desc&p_id={$smarty.get.p_id}&son_id={$smarty.get.son_id}">销量</a></li>
+     <li><a href="{link app=product}?sort=price&order={if $smarty.get.order && $smarty.get.sort eq 'price'}asc{else}desc{/if}&p_id={$smarty.get.p_id}&son_id={$smarty.get.son_id}">价格</a><span></span></li>
+     <li class="on cp-header"><a class="cp-menu" href="javascript:;">筛选<span></span></a></li>
+    </ul>
+  </div>
+  
+      <div id="headerMenu">
+        <div class="sxplxz main">
+          <h1>品类</h1>
+          <ul class="ul_1" id="ul_1">
+            <li value="0" class="on">全部</li>
+            {foreach from=$list item=lis}
+            <li value="{$lis.cate_id}">{$lis.cate_name}</li>
+            {/foreach}
+          </ul>
+          <h1>选择</h1>
+          <ul class="ul_1 ul_2" id="listsss">
+            <li value="0" class="on">全部</li>
+          </ul> 
+          <div class="czqr"><div><input type="button" value="重置" class="cz"><input type="submit" value="确认" class="qr"></div></div>         
+        </div>
+      </div>
+
+  
+  <div class="lb_list">
+    <ul> 
+    {foreach from="$goodlists" item="goods"}   
+     <li><a href="{link app=product act=content}?id={$goods.goods_id}" style="display:block">
+       <p class="p1"><img src="{$goods.thumbnail_pic}"></p>
+       <p class="p2">{$goods.name}</p>
+       {if $goods.yhcase}
+        <p class="p3">{$goods.yhcase}元</p>
+       {else}
+        <p class="p3">{$goods.price}元</p>
+       {/if}
+      
+     </a></li>    
+    {/foreach} 
+      
+    </ul>
+  </div>
+  
+</div>
+
+<script>
+
+function selep(obj)
+{
+	    var c_id=$(obj).val();
+		 $("#listsss li").removeClass("on");
+		 $(obj).addClass("on");
+}
+$(function(){
+	//检测是否是微信浏览器
+	function is_weixin() {
+		var ua = navigator.userAgent.toLowerCase();
+		if (ua.match(/MicroMessenger/i) == "micromessenger") {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	if (is_weixin()) {
+		document.getElementById("header").style.display = 'none';
+	}
+	  $("#ul_1 li").click(function(){
+		 var pid=$(this).val();
+		 $("#ul_1 li").removeClass("on");
+		 $(this).addClass("on");
+		
+		 $.post("{link app=product act=ajax_get}",{pid: pid}, function(res){
+			 var res = $.parseJSON(res);
+		        if(res.done==true){
+		        	
+		        	 var html = '';
+		        	 html+="<li value='0' onclick='selep(this)' class='on'>全部</li>";
+		             for(var i = 0; i<res.retval.count;i++)
+		               {
+		            	 html+="<li onclick='selep(this)' value="+res.retval.list[i].cate_id+">"+res.retval.list[i].cate_name+"</li>";
+		               }
+		             $('#listsss li').remove();
+		             $('#listsss').append(html);
+		             
+		            
+		        }else{
+		       	 var html = '';
+	        	 html+="<li value='0' onclick='selep(this)' class='on' >全部</li>";
+	        	 $('#listsss li').remove();
+	             $('#listsss').append(html);
+	             
+		        }
+		    })
+		  
+	})  
+	$(".qr").click(function(){
+		var p_id=$("#ul_1 li[class='on']").val();
+		var son_id=$("#listsss li[class='on']").val();
+		location.href = "{link app=product}?p_id="+p_id+"&son_id="+son_id+"";
+	})
+	
+	
+		
+	})
+	 
+	
+</script>
+</body>
+</html>

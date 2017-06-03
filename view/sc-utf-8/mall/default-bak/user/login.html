@@ -1,0 +1,39 @@
+{include file=member.register.header.html}
+<div class="main w">
+  <div class="AreaL fl">
+    <div class="myForm">
+      <div id="error"></div>
+        <div class="item">
+          <div class="tit"> 帐号： </div>
+          <input type="text" class="txt" data-type="phone|emall"  data-placeholder="手机/邮箱" id="userName">
+        </div>
+        <div class="item">
+          <div class="tit"> 密码： </div>
+          <input type="password"  data-type="pwd"  class="txt" id="userPwd">
+        </div>
+       <!--  <div class="item">
+          <div class="tit"> 验证码： </div>
+          <input type="text" data-type="vcode" data-placeholder="请输入右侧验证码" class="txt validateCode" id="vCode" onKeyUp="enter(event,login,4,this)" maxlength="4">
+          <img src="ajax-getAuthCode-logincode.html" width="65" height="25" class="validateImg"> <span class="refreshCode" onClick="upCode('logincode');"></span> </div> -->
+        <p class="p">
+          <label class="fl">
+            <input type="checkbox" id="recall">
+            记住密码（两星期内有效） </label>
+          <a href="member-find_password.html" target="_blank" class="fr">忘记密码？</a> </p>
+          <input type="hidden" name="ret_url" id="ret_url" value="{$ret_url}" />
+        <input type="submit" value="登录" onClick="login()" class="next">
+    </div>
+  </div>
+  
+  <div class="AreaR fr">
+    <div class="RegR" style="margin-top:50px;"> <a href="member-register.html" class="btn"><font color="#333">没有帐号？</font><font class="cRed">立即注册</font></a> </div>
+  </div>
+  
+</div>
+
+  <div class="footer">
+    <p>Copyright © mfd.麦富迪　All Rights Reseved.　鲁ICP备14021964号</p>
+  </div>
+<script type="text/javascript" src="static/js/findpw.js"></script>
+</body>
+</html>

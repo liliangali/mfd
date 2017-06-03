@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* CSS Document */
+body { margin: 0; padding: 0; background:#fff; color:#000; font:14px/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif; min-width:768px;}
+div,form,ul,ol,li,span,p,dl,dt,dd,img{margin:0;padding:0;border:0;}
+h1,h2,h3,h4,h5,h6,input{margin:0;padding:0;font-size:12px;font-weight:normal; border:none;}
+ul,ol,li{list-style:none}
+em{font-style:normal}
+table,textarea{font-size:12px}
+body a{outline:none;blr:expression(this.onFocus=this.blur());}
+a,a:visited{ color:#212121; text-decoration:none; transition:color .1s;}
+a:hover{ color:#5fc7ae;}
+.fl{ float:left;}
+.fr{ float:right;}
+.clearfix:after {content:"."; height:0px; line-height:0px; overflow:hidden; clear:both; display:block; visibility:hidden;}
+.clearfix{zoom:1;}
+.area{overflow:hidden;}
+.clear{clear:both;}
+/*头部*/
+.head{height:84px;overflow:hidden;}
+.nav{width:1540px;height:84px;margin:0 auto;}
+.head .logo{ width:193px; height:38px; background:url(../../static/img/tyd_logo.png) no-repeat; margin-top:26px;}
+.head .navBox{ margin-top:27px;}
+.head li{ float:left; padding:0 13px; font-size:20px;}
+.head .car a{ display:block; width:20px; height:18px; background:url(../../static/img/hd_icon01.png) no-repeat; margin:6px 0 0 10px;}
+.head .uCenter a{ display:block; width:20px; height:18px; background:url(../../static/img/hd_icon02.png) no-repeat; margin:6px 0 0 10px;}
+
+/*内容*/
+.container{max-width:1540px;width:100%; margin:0 auto;}
+.banner{max-width:1540px;width:100%;margin:0 auto;}
+.banner img{width:100%;height:100%;}
+.wzword{max-width:960px;width:100%;margin:0 auto; text-align:center;}
+.wzword .tyd_mfd{width:140px;height:139px;margin:0 auto;margin-top:66px;}
+.wzword .ess{font-size:26px;padding-top:55px;}
+.wzword .dmzs{font-size:18px;padding-top:5px;}
+.wzword .border{width:30px;height:3px;border-bottom:3px solid #000;margin:0 auto;margin-top:17px;}
+.wzword .originality{font-size:17px;padding-top:53px;}
+.pic{max-width:1540px;width:100%;margin:0 auto;margin-top:89px;}
+.pic img{width:100%;height:100%;}
+.position{max-width:1255px;width:100%;margin:0 auto;margin-top:88px;}
+.position h2{ text-align:center;font-size:26px;}
+.position h2 span{font-size:18px;}
+.wapnr{margin-top:100px;overflow:hidden;height:563px;}
+.wapnr .wappic{max-width:809px;width:100%;}
+.wapnr .wappic img{width:100%;height:100%;}
+.wapnr .address{width:385px;margin-left:50px;display:inline;}
+.wapnr .address h4{font-size:22px;font-weight:bold;margin-bottom:22px;}
+.wapnr .address h4 span{font-size:26px;}
+.wapnr .address dl dd{width:385px;height:15px;line-height:17px;overflow:hidden;font-size:11px;}
+.wapnr .address dl dd .shopdz{width:61px;height:15px; background:url(../img/tyd_bj.png) no-repeat;color:#fff; text-align:center;}
+.wapnr .address dl dd .bor{border-top:1px dashed #4f4441;width:322px;margin:7px 0 0 2px;display:inline;}
+.wapnr .address dl dt{width:385px;height:28px;line-height:28px;color:#888888;font-size:12px;overflow:hidden;clear:both;}
+/*底部*/
+.footer{overflow:hidden;padding:65px 0; background:#2f3035;margin-top:50px;color:#cbcbcc; font-size:14px; text-align:center;}
+.footers{max-width:1200px;width:100%;margin:0 auto; overflow:hidden;}
+.footer .contact{padding-top:21px;padding-left:18%;}
+.footer .time{padding-left:10%;padding-top:21px;}
+.footer .scanning{ width:110px;text-align:center;padding-left:20%;font-size:12px;}
+.footer .scanning img{width:110px;height:110px;overflow:hidden;}
+
+
+@media (min-width:1px) and (max-width:1024px){
+.container { width: 768px; }
+
+}
+
+@media (min-width: 1024px) and (max-width:1440px) {
+.container { width:1024px; }
+
+}
+
+@media (min-width: 1440px) and (max-width:1540px) {
+.container { width:1440px; }
+}
+

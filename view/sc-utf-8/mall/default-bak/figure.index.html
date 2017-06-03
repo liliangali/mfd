@@ -1,0 +1,91 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        <div class="wrap">
+		<h1 class="syhtmdbt">量体数据<a href="javascript:viod" class="qkqb" onclick="go('{link app=figure act=add}');">{$lang.add_figure}</a></h1>
+
+            <div class="public table">
+            
+            <div class="user_search">
+                <form method="get">
+                    
+                    
+                    <span>用户名:</span>
+                    <input type="text" class="text1 width_normal" name="user_name" value="{$smarty.get.user_name|escape}">
+                    
+                    
+                    <input type="submit" class="btn" value="搜索" />
+                </form>
+                </div>
+            
+                <table class="table_head_line">
+                    <!--{if $figures}-->
+                    <tr class="line_bold">
+                        <th colspan="6"></th>
+                    </tr>
+                    <tr class="line tr_color">
+                    
+                    
+
+
+      <th width="150">用户名</th>
+      <th>量体名称 </th>
+      <th>所属员工</th>
+      <th>服务方式</th>
+      <th><span ectype="order_by" fieldname="create_date">{$lang.create_date}</span></th>
+      
+      
+      <th class="handler">{$lang.handler}</th>
+
+
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$figures item=figure name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold tr_align"><!--{else}--><tr class="line tr_align"><!--{/if}-->
+                        
+      <td style="padding-left:10px;">{$figure.user_name|escape} </td>
+      <td>{$figure.figure_name|escape}</td>
+      <td>{$figure.employee_name|escape}</td>
+      <td>
+      
+      
+      {$figure_mode_arr[$figure.figure_mode]}
+      
+      </td>
+      <td>{$figure.create_date}</td>
+      
+      
+      
+      
+      <td class="handler">
+      <span style="width: 100px">
+      <a href="{link app=figure act=edit arg=$figure.idfigure}">{$lang.edit}</a> | <a href="javascript:drop_confirm('{$lang.drop_confirm}', '{link app=figure act=drop arg=$figure.idfigure}');">{$lang.drop}</a>
+        
+        
+        
+      </span>
+      </td>
+
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="6" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                </table>
+                <!--{if $figures}-->
+                     <div style="padding-top:20px;">
+                        {include file=member.page.bottom.html}
+                     </div>
+                    <!--{/if}-->
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+<iframe id='iframe_post' name="iframe_post" src="about:blank" frameborder="0" width="0" height="0"></iframe>
+{include file=login_footer.html}

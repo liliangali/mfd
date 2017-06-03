@@ -1,0 +1,45 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=yh_template&amp;act=index">印花管理</a></li>
+        <li><span>用户上传印花</span></li>
+        <li><a class="btn1" href="index.php?app=yh_template&amp;act=add">添加印花模板</a></li>
+		<li><a class="btn1" href="index.php?app=yh_category&amp;act=index">印花分类</a></li>
+		<li><a class="btn1" href="index.php?app=yh_category&amp;act=add">添加印花分类</a></li>
+		<li><a class="btn1" href="index.php?app=shirt">所有衬衫</a></li>
+        <li><a class="btn1" href="index.php?app=shirt&amp;act=add">添加衬衫</a></li>
+    </ul>
+</div>
+
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $items}-->
+    <tr class="tatr1">
+      <td>印花图案</td>
+      <td>样衣ID</td>
+	  <td>上传时间</td>
+      <td>用户名</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$items item=list}-->
+    <tr class="tatr2">
+      <td ><a href="{$list.images}" target="_blank"><img src="{$list.images}" height="60" width="60" /></a></td>
+	  <td >{$list.goods_id}</td>
+	  <td >{$list.add_time}</td>
+	  <td width="1000">{$list.username}</td>
+
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="6">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $items}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

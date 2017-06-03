@@ -1,0 +1,154 @@
+{include file=../user/member.header.html}
+   <div class="w">
+    <div class="AreaBox clearfix">
+        {include file=../user/member.menu.html}
+       
+                <div class="con">
+            <h2 class="tit">我的需求</h2>
+            
+            <div class="query_add">
+              <div id="demand" data-input-id="guo">
+              {if $type}
+                <a href="#" id="hie">{$type_name}</a> 
+              <!--   <a href="my_demand-{$p}-all.html">全部状态</a>  -->
+              {else}
+              <a href="my_demandi-index-all.html">全部状态</a> 
+              {/if}
+                
+                  <!--{foreach from=$status key=k item=s}-->
+                  <a href="my_demand-index-{$k}.html">{$s|escape}</a> 
+                  <!--{/foreach}-->
+             </div>
+             <p class="fpxq"><a href="demand-sue.html">发布需求</a></p>
+            </div>
+            
+           <ul class="xqlb_ul"> 
+           <!--{foreach from=$demands item=demand}-->
+           <li class="clearfix">
+             <div class="div_1">
+                <a href="/demand-{$demand.md_id}.html">
+                   <h1 class="clearfix">
+                     <font>{if $demand.params.4.val}¥{$demand.params.4.val}{/if}</font>{$demand.md_title|escape}
+                     {if $demand.md_type =='diy' || $demand.md_type =='suit'}
+                     <div class="tip">成衣
+                         <p>来自挑款式的需求<img src="../../static/img/jt.png" /></p>
+                     </div>
+                     {/if}
+                     {if $demand.md_type =='lin'}
+                     <div class="tip">面
+                         <p>来自面料定制的需求<img src="../../static/img/jt.png" /></p>
+                     </div>
+                     {/if}
+                   </h1>
+                   <p>{$demand.add_time|date:Y/m/d}<span>{$demand.add_time|date:H:i}</span>{$demand.views}个浏览者</p>
+                 </a> 
+             </div>
+             <p class="p2"><font>{$demand.take_in}</font>人参与</p>
+             <p class="p3">{$status[$demand.status]}</p>
+             <p class="p4">
+             {if $demand.status eq 0}
+                <a href="#" onclick="upstatus({$demand.md_id},2,'确认开启需求？')">开启需求</a>
+             {elseif $demand.status eq 2}
+                <a href="#"  onclick="upstatus({$demand.md_id},0,'确认关闭需求？')">关闭需求</a>
+                 {elseif $demand.status eq 3}
+                <a href="#"  onclick="upstatus({$demand.md_id},2,'确认取消选择？')">取消选择</a>
+             {/if}</p>
+            </li> 
+            <!--{foreachelse}-->
+           <li>
+                                                             暂时还没有数据...
+            </li> 
+            <!--{/foreach}-->
+                  
+           </ul>
+           
+           <div class="hyzx_fy clearfix">
+            {if $demands}{include file=../user/member.page.bottom.html}{/if}
+           </div>
+      
+        </div>
+        <style>.hyzx_fy .page {left:auto;} .page a, .page span {position: relative;right:auto;}</style>
+</div>
+</div>
+<script type="text/javascript" src="static/expand/layer/layer.min.js"></script>
+
+
+<script type="text/javascript">
+//模拟下拉菜单
+(function($){
+    $.fn.selectsDemand=function(options){
+        defaults={
+            speed:150,
+            width:"90px",
+                        fn:function (){}
+        };
+        var $set=$.extend(defaults,options),$this=$(this),$html=$this.html(),$defaultTxt=$this.children("a:eq(0)").text();
+
+        var $content="<dl class='s_select' style='width:"+$set.width+"'><dt><span class='s_tit'>"+$defaultTxt+"</span><i></i></dt><dd>"+$html+"</dd></dl><input type='hidden' name='"+$this.attr('data-input-id')+"' value='"+$defaultTxt+"' />";
+        $this.html($content);
+                
+        //事件
+        $("dt",$this).click(function(){
+        	
+            var obj=$(this).next("dd");
+            if(obj.is(':visible')){
+                obj.slideUp($set.speed);
+                $this.removeClass('s_select_cur');
+                
+            }else{
+            	
+                obj.slideDown($set.speed);
+                $this.addClass('s_select_cur');
+            }
+            return false;
+        });
+        $(document).click(function(){
+            $('.s_select>dd').hide();   
+            $('.s_select_cur').removeClass('s_select_cur');
+        });
+
+        var t = '{$type}';
+        if(t) $("#hie").remove();
+    } 
+})(jQuery);
+$("#demand").selectsDemand({width:"120px",speed:120});
+
+//更改状态
+function upstatus(id,t,msg){
+	layer.confirm(msg,function(){
+		$.ajax({     
+		    url:'my_demand-upstatus.html',     
+		    type:'post',   
+		    dataType: "json",
+		    data:{    
+	            id : id,    
+	            t : t
+	   		},   
+		    async : false, //默认为true 异步     
+		    success:function(res){
+		    	if(!res.done){
+		    		msg(res.msg);
+				}else{
+					 location.reload();
+				}    
+		    }  
+		});
+	});
+  
+	
+}
+
+
+
+
+</script>
+<script>
+twoMenu();
+anav();
+$('.xqlb_ul .tip').hover(function(){
+	$(this).find('p').fadeIn(400);	
+},function(){
+	$(this).find('p').hide()	
+})
+</script>
+{include file="../user/footer.html"}

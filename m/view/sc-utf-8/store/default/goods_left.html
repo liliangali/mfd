@@ -1,0 +1,15 @@
+<div class="canpinf">
+   <h1>产品分类</h1>
+   <div class="hdrxia">
+     <!--{foreach from=$store.store_gcates item=gcategory name=gcategory}-->
+     <div {if $smarty.foreach.gcategory.last}style=" border:0;"{/if}>
+     <h2><a href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}" target="_blank">{$gcategory.value|escape}</a></h2>
+       <ul>
+       <!--{foreach from=$gcategory.children item=child_gcategory}-->
+         <li><a href="{url app=store&id=$store.store_id&act=search&cate_id=$child_gcategory.id}">{$child_gcategory.value|escape}</a></li>
+       <!-- {/foreach} -->
+       </ul>
+     </div> 
+      <!-- {/foreach} -->
+   </div>
+ </div>

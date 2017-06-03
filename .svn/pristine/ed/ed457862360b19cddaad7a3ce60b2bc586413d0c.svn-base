@@ -1,0 +1,1 @@
+ <select name="member_lv_id">            {foreach from=$lvs item=l}            <option value="{$l.member_lv_id}" {if $l.member_lv_id eq $user.member_lv_id}selected=""{/if}>{$l.name}</option>            {/foreach}             </select>    

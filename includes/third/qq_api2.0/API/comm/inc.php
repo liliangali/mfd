@@ -1,0 +1,1 @@
+{"appid":"101208340","appkey":"6e690911a2297ea9bc376221c0885813","callback":"http://www.kuteid.com/qq_login-qq_callback.html","scope":"get_user_info,add_t","errorReport":true,"storageType":"file"}

@@ -1,0 +1,57 @@
+   <div class="gmwpxx">
+     <table cellpadding="0" cellspacing="0" border="0" width="100%">
+       <tr>
+         <th width="220" colspan="2" style="padding-left:20px;">产品名称</th>
+         <th width="108">产品编号</th>
+         <th width="218">定制内容</th>
+         <th width="94">数量</th>
+         <th width="100" style="padding-left:8px;">定制价</th>
+         <th width="100" style="padding-left:8px;">小计</th>
+         <th width="80" style="text-align:center;">操作</th>
+       </tr>
+       {foreach from=$goods_list item=goods}
+       <tr>
+         <td class="ydlvbcxz"><a href="{link app=custom act=info arg0=$goods.goods_id}"><img src="{$goods.goods_image}" /></a></td>
+         <td class="m_rlyshlzt"><a href="{link app=custom act=info arg0=$goods.goods_id}">{$goods.goods_name}</a><br />
+         {if $goods.source_title}
+         <span>来自<a href="{link app=dissertation act=info arg0=$goods.source_id}">［{$goods.source_title}］</a></span>
+         {/if}
+         </td>
+         <td>{$goods.goods_sn}</td>
+         <td class="dzxx">
+         {if $goods.is_diy}
+           <span>面料：{$goods.fabric}</span>
+           <span>类型：{$goods.type_name}</span>
+        {else}
+        	尺码：{$goods.specification}
+        {/if}
+         </td>
+         <td data-item="{$goods.rec_id}" data-type="{$goods.type}" data-goodsid="{$goods.goods_id}" class="_action">
+           <div class="sulian"> 
+             <div class="sllg"><input type="text" name="change" value="{$goods.quantity}" data-num="{$goods.quantity}" style="font-size:13px; font-family:Arial, Helvetica, sans-serif;"/></div>
+             <div class="sxtub">
+               <input type="button" value="" class="input_1" name="up" style="overflow:hidden; float:left;"/>
+               <input type="button" value="" class="input_2" name="down" style="overflow:hidden; float:left;"/>
+             </div>
+             <p class="clear"></p>
+           </div>
+         </td>
+         <td>{$goods.price|price}</td>
+         <td>{$goods.subtotal|price}</td>
+         <td class="m_qsjhsc"><a href="{link app=custom act=info arg0=$goods.goods_id arg1=$goods.rec_id}" class="a_1">设计</a><span style="font-family:宋体; font-size:12px; color:#888;">|</span><a href="javascript:;" class="item-drop" data-type="{$goods.type}" data-item="{$goods.rec_id}">删除</a></td>
+       </tr>
+      {/foreach}    
+     </table>
+   </div>
+   
+   <div class="qkgwc"><a href="javascript:;" class="clear_cart">清空购物车</a></div>
+   <div class="nindzl">您定制了<span class="goods_num">{$goods_num}</span>件产品，总计（不含运费）：<b class="goods_amount">{$amount|price}</b></div>
+   <script>
+   /**
+	$.cart({
+		dropUrl:"{link app=cart act=drop}",
+		cartUrl:"{link app=cart}",
+		
+	});
+   */
+   </script>

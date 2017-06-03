@@ -1,0 +1,227 @@
+{include file=header-new.html}
+<!--头部/E-->
+<link href="/public/static/pc/css/gywm.css" rel="stylesheet">
+<!-- content -->
+<div class="w">
+  <h1 class="cjwt">常见问题<span>共236个问题</span></h1>
+  <ul class="rmzx clearfix">
+    <li id="ti_1" class="now_hover" onClick="ceck_pic(1);" style="border-right:1px solid #d5d5d5;">内科 17</li>
+    <li id="ti_2" class="old_hover" onClick="ceck_pic(2);">外科 8</li>
+  </ul>
+  
+  <div id="tj_1" class="rwk_box">
+    <ul>
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>        
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>        
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【内科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>          
+    </ul>  
+  </div>
+  <div id="tj_2" class="rwk_box" style="display:none;">
+    <ul>
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>        
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>        
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>      
+      <li>
+        <p class="p1"><a href="#"><span>【外科】</span>10个月的小母狗已经来例假两个多月了！急</a></p>
+        <p class="p2">2016-12-24<span>15:36</span></p>
+      </li>          
+    </ul>    
+  </div>
+  
+  <h1 class="cjwt">专家在线<span>共12个专家</span></h1>
+  
+   <ul class="zjzxlist">
+     <li>
+       <p class="p1"><img src="/public/static/pc/images/hehuo/s1_pic1.png" /></p>
+       <div>
+        <h1>王静怡<span>主人医师</span><img src="/public/static/pc/images/rztb.png" /></h1>
+        <p>擅长宠物内科，宠物产科，给狗狗接生，剖腹产等手术。擅长处理各种疑难杂症是我国做早的宠物医生有着高超的医术...</p>
+       </div>
+       <p class="zxzx"><a href="#">在线咨询</a></p>
+     </li>
+     <li>
+       <p class="p1"><img src="/public/static/pc/images/hehuo/s1_pic1.png" /></p>
+       <div>
+        <h1>王静怡<span>主人医师</span><img src="/public/static/pc/images/rztb.png" /></h1>
+        <p>擅长宠物内科，宠物产科，给狗狗接生，剖腹产等手术。擅长处理各种疑难杂症是我国做早的宠物医生有着高超的医术...</p>
+       </div>
+       <p class="zxzx"><a href="#">在线咨询</a></p>
+     </li>     
+     <li>
+       <p class="p1"><img src="/public/static/pc/images/hehuo/s1_pic1.png" /></p>
+       <div>
+        <h1>王静怡<span>主人医师</span><img src="/public/static/pc/images/rztb.png" /></h1>
+        <p>擅长宠物内科，宠物产科，给狗狗接生，剖腹产等手术。擅长处理各种疑难杂症是我国做早的宠物医生有着高超的医术...</p>
+       </div>
+       <p class="zxzx"><a href="#">在线咨询</a></p>
+     </li>     
+     <li>
+       <p class="p1"><img src="/public/static/pc/images/hehuo/s1_pic1.png" /></p>
+       <div>
+        <h1>王静怡<span>主人医师</span><img src="/public/static/pc/images/rztb.png" /></h1>
+        <p>擅长宠物内科，宠物产科，给狗狗接生，剖腹产等手术。擅长处理各种疑难杂症是我国做早的宠物医生有着高超的医术...</p>
+       </div>
+       <p class="zxzx"><a href="#">在线咨询</a></p>
+     </li>
+     <li>
+       <p class="p1"><img src="/public/static/pc/images/hehuo/s1_pic1.png" /></p>
+       <div>
+        <h1>王静怡<span>主人医师</span><img src="/public/static/pc/images/rztb.png" /></h1>
+        <p>擅长宠物内科，宠物产科，给狗狗接生，剖腹产等手术。擅长处理各种疑难杂症是我国做早的宠物医生有着高超的医术...</p>
+       </div>
+       <p class="zxzx"><a href="#">在线咨询</a></p>
+     </li>     
+     <li>
+       <p class="p1"><img src="/public/static/pc/images/hehuo/s1_pic1.png" /></p>
+       <div>
+        <h1>王静怡<span>主人医师</span><img src="/public/static/pc/images/rztb.png" /></h1>
+        <p>擅长宠物内科，宠物产科，给狗狗接生，剖腹产等手术。擅长处理各种疑难杂症是我国做早的宠物医生有着高超的医术...</p>
+       </div>
+       <p class="zxzx"><a href="#">在线咨询</a></p>
+     </li>             
+   </ul>
+</div>
+<!-- content/E -->
+{include file=footer-new.html}
+<!--底部/E-->
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/static/pc/js/public.js"></script> 
+<script>
+  //意见反馈弹层
+  $('#feedback').click(function(){
+	  $.getScript('/public/global/luck/pc/luck.js',function(){
+		  luck.open({
+			  title:'意见反馈',
+			  width:'660px',
+			  height:'475px',
+			  content:'<iframe width="660" height="475" style="display:block" src="view/sc-utf-8/mall/default/feedback/ajax_feedback.html" frameborder="0"></iframe>',
+			  addclass:'mfd-luck'
+		  });
+	  })
+  });
+</script>
+
+<script>
+   //切换
+	function ceck_pic(ix)
+	{
+	  for (i=1;i<3;i++)
+	  {
+		  if (i==ix)
+		  {
+			  document.getElementById('ti_'+i).className = 'now_hover';
+			  document.getElementById('tj_'+i).style.display = 'block';
+		  }
+		  else
+		  {
+			  document.getElementById('ti_'+i).className = 'old_hover'; 
+			  document.getElementById('tj_'+i).style.display = 'none'; 
+		  }
+	  }
+	
+	}
+</script>
+</body>
+</html>

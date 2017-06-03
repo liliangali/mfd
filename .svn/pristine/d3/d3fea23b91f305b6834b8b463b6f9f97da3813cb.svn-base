@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>选择定制品类</title>
+<link href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link href="http://r.cotte.cn/cotte/wap/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="main">
+	<div class="topBar">
+		<div class="wrap">
+			<span onclick="history.go(-1)" class="back"></span>
+			<h1>选择品类</h1>
+		</div>
+		<div class="sta"></div>
+	</div>
+	<div class="catpage">
+		
+		<ul>
+			<!--{foreach from=$cuscate item=cate key=k}-->			
+			<li onclick="cate({$k})"><img src="{$cate.img}"><span>{$cate.cate_name}</span></li>	
+			<!-- {/foreach} -->
+<!-- 			<li><img src="http://r.cotte.cn/cotte/wap/images/other/pic1.png"><span>套装</span></li>
+			<li><img src="http://r.cotte.cn/cotte/wap/images/other/pic1.png"><span>套装</span></li>
+			<li><img src="http://r.cotte.cn/cotte/wap/images/other/pic1.png"><span>套装</span></li>
+			<li><img src="http://r.cotte.cn/cotte/wap/images/other/pic1.png"><span>套装</span></li>
+			<li><img src="http://r.cotte.cn/cotte/wap/images/other/pic1.png"><span>套装</span></li> -->		
+		</ul>
+		
+		<div class="catLayer">
+			<div class="tit">请选择服装风格</div>
+			<!--{foreach from=$cuscate item=cate key=k}-->		
+			<div class="cat" style="display:none">
+				<!-- {foreach from=$cate.diy_url item=items} -->
+					<span><a href="{$items.url}">{$items.style}</a></span>
+				<!-- {/foreach} -->
+			</div>
+			<!-- {/foreach} -->
+		</div>
+		
+	</div>
+	{include file="footer.html"}
+</div>
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script src="http://r.cotte.cn/global/jquery.swipe.js"></script>
+<script src="http://r.cotte.cn/cotte/wap/js/public.js"></script>
+<script>
+function cate(e){
+	mfdwap.pageCat(e);
+}
+
+</script>
+
+</body>
+</html>

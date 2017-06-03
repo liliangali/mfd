@@ -1,0 +1,53 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+    	<li><a class="btn1" href="index.php?app=customtype">类型列表</a></li>
+        <li><span>属性管理</span></li>
+        <li><a class="btn1" href="index.php?app=customattribute&amp;act=add&type_id={$type_id}">{$lang.add}</a></li>
+    </ul>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $list}-->
+        <tr class="tatr1">
+            <td align="left">属性名称</td>
+            <td align="left">别名</td>
+            <td align="left">属性类型</span></td>
+            <td class="table-center">{$lang.sort_order}</td>
+            <td class="table-center">属性值</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$list item=attr}-->
+        <tr class="tatr2">
+            <td align="left">{$attr.attr_name|escape}</td>
+            <td align="left">{$attr.alias|escape}</td>
+            <td align="left">{$attr.type_name|escape}</td>
+            <td align="left" class="table-center">{$attr.sort_order}</td>
+            <td class="table-center">{$attr.attr_values}</td>
+            <td class="handler">
+            <a href="index.php?app=customattribute&amp;act=edit&amp;attr_id={$attr.attr_id}">{$lang.edit}</a>  |  
+             <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=customattribute&amp;act=drop&amp;attr_id={$attr.attr_id}');">{$lang.drop}</a>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $attr_lists}-->
+    <div id="dataFuncs">
+    <!-- 
+        <div id="batchAction" class="left paddingT15">
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="attr_id" uri="index.php?app=parttype&act=drop&type_id={$type_id}" presubmit="confirm('{$lang.drop_confirm}');" />
+        </div>
+    -->
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <!--{/if}-->
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

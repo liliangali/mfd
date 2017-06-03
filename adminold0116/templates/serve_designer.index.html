@@ -1,0 +1,109 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    {if $smarty.get.wait_verify eq '1'}
+    <li><a class="btn1" href="index.php?app=user&serve_type=4">{$lang.manage}</a></li>
+    <li><span>待申核</span></li>
+    {else}
+    <li><span>{$lang.manage}</span></li>
+    <li><a class="btn1" href="index.php?app=serve&wait_verify=1&t=4">待申核</a></li>
+    {/if}
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="serve" />
+          <input type="hidden" name="act" value="index" />
+          <input type="hidden" name="t" value="{$smarty.get.t}" />
+          <select class="querySelect" name="field_name">{html_options options=$query_fields selected=$smarty.get.field_name}
+          </select>
+          <input class="queryInput" type="text" name="field_value" value="{$smarty.get.field_value|escape}" />
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=serve&t={$smarty.get.t}">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $serves}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>{$lang.idserve}</td>
+      <td><span ectype="order_by" fieldname="user_name">{$lang.user_name}</span></td>
+      <td>{$lang.linkman}</td>
+      <td><span ectype="order_by" fieldname="email">{$lang.email}</span></td>
+      <td><span ectype="order_by" fieldname="create_date">{$lang.create_date}</span></td>
+      <td><span ectype="order_by" fieldname="serve_type">{$lang.serve_type}</span></td>
+      <td><span ectype="order_by" fieldname="mobile">{$lang.mobile}</span></td>
+      
+      <td><span ectype="order_by" fieldname="state">{$lang.state}</span></td>
+      
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$serves item=serve}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$serve.idserve}" /></td>
+      <td>{$serve.idserve|escape} </td>
+      <td>{$serve.user_name|escape} </td>
+      <td>{$serve.linkman|escape}</td>
+      <td>{$serve.email|escape}</td>
+      <td>{$serve.create_date}</td>
+      <td>
+
+      {if $smarty.get.t eq '2'}
+      	{$lang.serve_type_3}
+      {elseif $smarty.get.t eq '4'}
+        设计师
+      {else}
+      	服务点
+      {/if}
+      </td>
+      <td>{$serve.mobile}</td>
+      
+      <td>
+      {if $serve.state==0}
+      	{$lang.state_0}
+      {elseif $serve.state==1}
+      	{$lang.state_1}
+      {elseif $serve.state==2}
+      	{$lang.state_2}
+      {/if}
+      
+      
+      </td>
+      
+      <td class="handler">
+      
+      
+      <span style="width: 100px">
+      {if $smarty.get.t neq '2' && $smarty.get.t neq '4'}
+      <a href="index.php?app=service&amp;act=edit&amp;id={$serve.idserve}">详情</a> |
+      {/if}      
+      <a href="index.php?app=serve&amp;act=edit&amp;id={$serve.idserve}&t={$smarty.get.t}">{$lang.edit}</a> {if $smarty.get.t neq '2' && $smarty.get.t neq '4'} | <a target="_blank" href="{$site_url}/index.php/service-info-{$serve.idserve}.html">查看主页</a>{/if} 
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $serves}-->
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

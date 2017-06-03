@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>在线反馈</title>
+<style type="text/css">
+body { font: 14px/1.5 arial, "Microsoft Yahei", "Hiragino Sans GB", sans-serif;}
+body, form, ul, ol, li, span, p, dl, dt, dd, img, h1, h2, h3, h4, h5, h6 ,input{ margin: 0; padding: 0; border:none;}
+img { border: 0; }
+ul, ol, li { list-style: none }
+em { font-style: normal }
+a { text-decoration: none; color: #333; transition:color ease .3s;-webkit-transition:color ease .3s;}
+a:hover { color: #e66800;}
+.fl { float: left; } 
+.fr { float: right; }
+.container{width:660px;margin:0 auto; background:#fff;}
+.stuff{width:590px;margin:0 auto;}
+.message{margin-top:45px;}
+.message .mesword{color:#0000;font-weight:bold;}
+.message textarea{width:574px;height:66px;border:1px solid #e9e9e9;margin-top:11px;font-size:12px;color:#717171;padding:7px;line-height:21px;}
+.message .shur{ text-align:right;color:#666666;font-size:12px;}
+.sub{width:120px;height:38px;margin-top:5px;background:#0ae;color:#fff;border:none; cursor:pointer;}
+.tail{height:66px;margin:0 auto;background:#f8f8f8;margin-top:125px;color:#666666;font-size:13px;line-height:66px;font-weight:bold;}
+.tail .sjdhkf{margin-left:32px; display:inline;}
+.tail .sjdhkf a{width:100px;height:66px;line-height:66px;display:block;color:#666666; background:url(../images/zxpics.png) 65px 21px no-repeat;}
+.tail .sjdhkf a:hover{color:#e66800;}
+</style>
+</head>
+<body>
+	<div class="container">
+    	<div class="stuff">
+            <div class="message">
+            	<p class="mesword">您有什么问题和建议想对我们说吗？</p>
+                <textarea placeholder="您在使用麦富迪首页时，有什么好或不好的地方，请大声说出来！我们会关注您的反馈，不断优化产品,为您提供更好的服务！" id="textcontent"></textarea>
+                <p class="shur" id="show">您还可以输入<label id="sid"></label>字</p>
+            </div>
+            <a href="javascript:void(0)"><input type="submit" value="提交" class="sub"></a>
+            <div class="tail">
+            	<p class="sjdhkf fl">服务时间：&nbsp;&nbsp;周一至周五 08:00 - 17:00</p>
+                <p class="sjdhkf fl">详情咨询：&nbsp;&nbsp;400-169-8836</p>
+                <p class="sjdhkf fl"><a  href="javascript:void(0)" class="zhichi">在线客服</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+{include file=zhichikefu.html}
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+
+<script type="text/javascript" src="/public/global/luck/pc/luck.js"></script>
+<script type="text/javascript" src="/public/static/pc/js/manhuaInputLetter.1.0.js"></script>
+<script type="text/javascript">
+
+$(function (){
+	$("#textcontent").manhuaInputLetter({					       
+		len : 200,//限制输入的字符个数				       
+		showId : "sid"//显示剩余字符文本标签的ID
+	});
+	
+});
+$(".sub").click(function(){
+	var content=$("#textcontent").val();
+	$.post('/feedback-index.html',{content:content},function(res){		
+			window.parent.luck.alert('友情提示','感谢您的反馈，我们会继续加油，为您提供更完善的服务！','6','250',function(){
+				window.parent.luck.close();
+				});
+	},'json');
+});
+</script>
+</html>

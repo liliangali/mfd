@@ -1,0 +1,69 @@
+{include file=header.html}
+
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $("select[ectype='order_by']").change(function(){
+        var params = location.search.substr(1).split('&');
+        var key    = 'order';
+        var value  = this.value;
+        var found  = false;
+        for (var i = 0; i < params.length; i++)
+        {
+            param = params[i];
+            arr   = param.split('=');
+            pKey  = arr[0];
+            if (pKey == 'page')
+            {
+                params[i] = 'page=1';
+            }
+            if (pKey == key)
+            {
+                params[i] = key + '=' + value;
+                found = true;
+            }
+        }
+        if (!found)
+        {
+            params.push(key + '=' + value);
+        }
+        location.assign(SITE_URL + '/index.php?' + params.join('&'));
+    });
+});
+//]]>
+</script>
+
+
+<div class="bsbg_box">
+<div class="sydtu"><img src="{if $store.store_banner}{$store.store_banner}{else}/themes/mall/default/styles/default/images/mlzy_banner.jpg{/if}"/></div>
+{include file=top_j.html}
+    
+      <div class="jklle_box">
+        <!--{if $searched_goods}-->
+        <div class="module_special">
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="major" style="width:1000px;">
+                        <ul class="list"  style="width:110%;">
+                            <!--{foreach from=$searched_goods item=rgoods}-->
+                            <li class="on" onMouseOver="this.className='off'" onMouseOut="this.className='on'">
+                                <div class="pic"><a href="index.php/goods-{$rgoods.goods_id}.html"><img src="{$rgoods.default_image}" width="221" height="295" /></a><span class="gystp_10">{$lang.fabric_number}：{$rgoods.fabric_number}</span></div>
+                                <h3><a href="index.php/goods-{$rgoods.goods_id}.html">{$rgoods.goods_name|escape}</a></h3>
+                                <p class="jiage"><span>{$lang.price}：</span>{$rgoods.part_price.price}<span>/{$lang.mi}</span></p>
+                            </li>
+                            <!-- {/foreach} -->
+                        </ul>
+                        <p class="clear"></p>
+                        {include file=page.bottom.html}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--{/if}-->
+        
+    </div>
+    
+</div>
+{include file=footer.html}

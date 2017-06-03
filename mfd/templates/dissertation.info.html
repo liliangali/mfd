@@ -1,0 +1,187 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=dissertation">主题管理</a></li>
+        {if $data.id}
+        <li><a class="btn1" href="index.php?app=dissertation&amp;act=add">主题添加</a></li>
+        {else}
+        <li><span>新增主题</span></li>
+        {/if}
+        <li><a class="btn1" href="index.php?app=discat">主题分类管理</a></li>
+    </ul>
+</div>
+{$build_editor}
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="dis_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    标题:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="title" type="text" name="title" value="{$data.title|escape}" />
+                </td>
+            </tr>
+            
+                <tr>
+                <th class="paddingT15">
+         价格:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="title" type="text" name="price" value="{$data.price|escape}" />
+                </td>
+            </tr>
+
+	            <tr>
+                <th class="paddingT15">
+                    所属系列:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="cat">
+                    	<option value="">-=请选择=-</option>
+                    	{foreach from=$cats item=cat key=key}
+                    		<option value="{$key}" {if $data.cat eq $key}selected{/if}>{$cat}</option>
+                    	{/foreach}
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">主题开始时间:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    	<input class="infoTableInput2 pick_date" id="start_time" type="text" name="start_time" value="{if $data.start_time}{$data.start_time|date:Y-m-d}{/if}" />
+                </td>
+            </tr>
+            
+           <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">主题结束时间:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2 pick_date" id="end_time" type="text" name="end_time" value="{if $data.end_time}{$data.end_time|date:Y-m-d}{/if}" />
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <th class="paddingT15">
+                   简单描述:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <textarea rows="5" cols="50" name="brief">{$data.brief}</textarea>
+                </td>
+            </tr>
+            
+            
+           
+                       <tr>
+                <th class="paddingT15">
+                   设计理念:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <textarea rows="5" cols="60" name="design">{$data.design}</textarea>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="sort_order" type="text" name="sort_order" value="{$data.sort_order}" />
+                </td>
+            </tr>
+			
+			<tr>
+                <th class="paddingT15">
+                    推荐:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="radio" name="is_rec" value=0 checked>否
+                    <input type="radio" name="is_rec" value=1 {if $data.is_rec eq 1}checked{/if}>是
+                </td>
+            </tr>
+			
+            <tr>
+                <th class="paddingT15">
+                    是否标记为热门:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="radio" name="is_hot" value=0 checked>否
+                    <input type="radio" name="is_hot" value=1 {if $data.is_hot eq 1}checked{/if}>是
+                </td>
+            </tr>
+            
+            <tr>
+            
+                <th class="paddingT15">
+                  关联基本款:</th>
+                <td class="paddingT15 wordSpacing5" id="link">
+                   {input_obj callback="cst_callback"  name="linkid" value="$linkid" id="linkid" model="customs" text="关联基本款"}
+                   <div class="panel"></div>
+                </td>
+                	
+                
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="dis">详细描述:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="content" name="content" style="width:650px;height:400px;">{$data.content|escape}</textarea>
+                </td>
+            </tr>
+            <tr>
+            <th>封面图片:</th>
+            <td height="100" valign="top">
+            	 {input_img name="small_img" value="$data.small_img" dir="dis"}
+            </td>
+            </tr>
+            <tr>
+            <th>详情页图片:</th>
+            <td> 
+            	{input_img name="middle_img" value="$data.middle_img" dir="dis"}
+            </td>
+            </tr>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+                <input type="hidden" name="id" value="{$data.id}">
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+_did = "{$data.id}";
+$(function(){
+
+    <!-- {if $linkid} -->
+    ajax_cst('{$linkid}');
+    <!-- {/if} -->
+    
+});
+function cst_callback(_ids){
+    ajax_cst(_ids.ids);
+}
+function ajax_cst(ids){
+    $.ajax({
+        url    :"index.php?app=dissertation&act=ajax_customs_info",
+        data   :"ids="+ids+"&did="+_did,
+        success:function(res){
+            $(".panel").html(res);
+        }
+    });
+}
+/*
+$(function(){
+	$("#start_time").ymdateplugin({
+		changeMonth: true,
+		changeYear: true,
+		showTimePanel: true
+	});
+    
+	$("#end_time").ymdateplugin({
+		changeMonth: true,
+		changeYear: true,
+		showTimePanel: true
+	});
+});
+*/
+$('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+$('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
+{include file="footer.html"}

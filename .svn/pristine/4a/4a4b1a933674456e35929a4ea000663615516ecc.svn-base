@@ -1,0 +1,5 @@
+<!-- {if $zc_userid} -->
+<script src="http://www.sobot.com/chat/pc/index.html?sysNum=2b17cdee375a475e963aeed478c37fbf&partnerId={$zc_userid}&uname={$zc_uname}&tel={$zc_tel}&email={$zc_email}" id="zhichiload" class="zhichi"></script>
+<!-- {else} -->
+<script src="http://www.sobot.com/chat/pc/index.html?sysNum=2b17cdee375a475e963aeed478c37fbf" id="zhichiload" class="zhichi"></script>
+<!-- {/if} -->

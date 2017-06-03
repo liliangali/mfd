@@ -1,0 +1,82 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+
+<div class="user_box">
+	<!--用户中心左菜单部分 START-->
+	{include file = member.menu.html}
+	<!--用户中心左菜单部分 END-->
+	
+	<!--申请记录 START-->
+    <div class="user_right user_rights fr">
+		<h4 class="collection">料册管理</h4>
+        <table width="900" border="0" class="mltab" cellspacing="0" rules="none" frame="void">
+			<tr class="mlhfirst">
+				<td class="lccom">商品信息</td>
+				<td>押金</td>
+				<td>当前状态</td>
+			</tr>
+			<!--{foreach from=$orders key=key item=order}-->
+			<tr>
+				<td class="lcspxx">
+					<p class="spxxpic fl"><a href="/fabricbook-info.html?id={$order.goods.goods_id}" ><img src="{$order.goods.goods_image}" width="65" height="95"></a></p>
+					<p class="lcxxword fl"><a href="/fabricbook-info.html?id={$order.goods.goods_id}" >{$order.goods.goods_name|escape}</a></p>
+			</td>
+				<td class="lcyj">{$order.goods.price|price}</td>
+				<td class="lcborder">
+					<p class="lcwzf">{$lang.ORDER_STATUS.$order.status}</p>
+					
+					{if $order.actions.pay}
+					 <p class="lcljzf"><a href="javascript:;" data-id="{$order.order_sn}" class="pay">立即支付</a></p>
+					{/if}
+					
+<!-- 					{if $order.actions.refund} -->
+<!-- 					    <p class="lcljzf"><a href="javascript:;" data-id="{$order.order_sn}" class="pay">申请换货</a></p> -->
+<!-- 					{/if} -->
+					
+<!-- 					{if $order.actions.return} -->
+<!-- 					    <p class="lcljzf"><a href="javascript:;" data-id="{$order.order_sn}" class="pay">申请退货</a></p> -->
+<!-- 					{/if} -->
+					
+<!-- 					{if $order.actions.cancelrefund} -->
+<!-- 					    <p class="lcljzf"><a href="javascript:;" data-id="{$order.order_sn}" class="pay">取消退换</a></p> -->
+<!-- 					{/if} -->
+				
+					{if $order.actions.finished}
+						<p class="lcljzf"><a href="javascript:;" onclick="if(confirm('确定要收货确认吗？')) location.href='{link app=fabricbook act=operation arg0=$order.order_id arg1=finished}'">确认收货</a></p>
+					{/if}
+				</td>
+			</tr>
+			<!--{foreachelse}-->
+			<tr class="no_data">
+				<td colspan="3">{$lang.no_data}</td>
+			</tr>
+			<!--{/foreach}-->
+        </table>
+		 {include file=page.bottom.html}
+    </div>
+	<!--申请记录 END-->
+</div>
+<form action="{link app=order act=goToPay}" method="POST" id="payForm">
+<input type="hidden" name="os" value="">
+<input type="hidden" name="obj" value="order">
+</form>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/orderinfo.js"></script>
+<script src="/public/static/pc/js/usercenter.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>
+<script>
+$(document).ready(function(){
+    $(".pay").click(function(){
+        var sn = $(this).data("id");
+        if(sn){
+            $("#payForm input[name=os]").val(sn);
+            $("#payForm").submit();
+        }
+    })
+})
+</script>
+{include file=../footer-new.html}
+</body>
+</html>

@@ -1,0 +1,50 @@
+<div class="menu">
+  <div class="headPic"> <img src="{$avatar}" width="150" height="150" /> <a href="member-{$ac}-user_set.html"><span class="edit" >修改个人资料</span></a> </div>
+  
+  <p class="userName"> {if $ac eq 'tailor'} {$user.nickname} {else} {$user.nickname}{/if}</p>
+  <p class="rank">{if $ac eq 'tailor'}{$user.supplierlv[name]}<img src="{$user.supplierlv[lv_logo]}" />{else}{$user.memberlv[name]}<img src="{$user.memberlv[lv_logo]}" />{/if}</p>
+ 
+  {if $ac eq 'tailor'}
+
+  <p class="tailorHome"><a href="tailor-info-{$visitor.user_id}.html" target="_blank">主页预览</a></p>
+  <!-- 账户设置要把这些都屏蔽掉 -->
+  {if $type eq 'user' || $type eq 'tailor'}
+  <!-- 收支相关 -->
+     <ul class="ui-account">
+          <li class="item-income">
+          	<a target="_blank" href="#" class="fr zbj-tooltip" title="详细">详细</a>
+          	<a target="_blank" href="#">收入：<span class="red">¥0.00</span></a>
+          </li>
+          <li>
+          	<a target="_blank" href="#" class="fr zbj-tooltip" title="详细">详细</a>
+            <a target="_blank" href="#">支出：<span class="red">¥0.00</span></a>
+          </li>
+          <li>
+          	<a target="_blank" href="#" class="fr zbj-tooltip" title="详细">详细</a>
+            <a target="_blank" href="#">冻结：<span class="red">¥{$user.frozen}</span></a>
+          </li>
+          <li>
+            余额：<span class="red">¥{$user.money}</span>
+          </li>
+          <li class="lastLi"><a href="#" class="a1">充值</a>
+          <a href="{link app=member act=tailor arg0=cash}" class="a2" id="tixian">提现</a>
+          <a class="a3" href="{link app=member act=tailor arg0=cash_list}">查看收支明细</a>
+          </li>
+      </ul>
+      {/if}
+  
+  {/if}
+  
+   <dl>
+    {foreach from=$_member_menu item=item} 
+    {if $item.submenu}
+      <dt>{$item.text}</dt>
+      {foreach from=$item.submenu item=subitem k=k}
+      <dd> {if $subitem.name eq $_curitem} <a href="{$subitem.url}" class="cur"><span class="{$subitem.icon}">{$subitem.text}</span></a> {else} <a href="{$subitem.url}" class=""><span class="{$subitem.icon}">{$subitem.text}</span></a> {/if} </dd>
+      {/foreach}
+    {/if} 
+    {/foreach}
+  </dl>
+  <!-- 屏蔽结束 -->
+  
+</div>

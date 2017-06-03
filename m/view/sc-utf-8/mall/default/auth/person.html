@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>阿里品牌商</title>
+<link rel="stylesheet" type="text/css" href="../../static/css/public.css">
+<link rel="stylesheet" type="text/css" href="../../static/css/usercenter.css">
+<script type="text/javascript" src="../../static/expand/jquery.js"></script>
+<script  type="text/javascript" src="../../static/js/public.js"></script>
+<script  type="text/javascript" src="../../static/expand/my97date/wdatepicker.js"></script>
+
+</head>
+
+<body>
+<!--头部开始-->
+<div class="head2">
+  <div class="w">
+    <div class="fl left"> <a href="#">账户概览<i></i><em></em></a> <a href="#" class="cur">账户设置<i></i><em></em></a> <a href="#">我的消息<i></i><em></em></a> <a href="#">我的收藏<i></i></a> </div>
+    <div class="fr right">
+      <div class="topMenu fl"> <i></i><i></i><i></i><em></em>
+        <div class="menuList"> <a href="#">首页</a> <a href="#">找品牌商</a> <a href="#">选款式</a> <a href="#">选面料</a> <a href="#">品晒单</a> <a href="#">需求中心</a> </div>
+      </div>
+      <a href="#" class="alink">我是品牌商 &gt;</a> </div>
+  </div>
+</div>
+<!--头部结束-->
+<div class="w">
+  <div class="AreaBox clearfix">
+    <div class="menu">
+      <div class="headPic"> <img width="150" height="150" src="http://test.alicaifeng.com/upload/avatar/000/00/00/35_avatar_big.jpg"> <a href="member-tailor-user_set.html"><span class="edit">修改个人资料</span></a> </div>
+      <p class="userName"> 徐小喬1 </p>
+      <p class="rank">普通品牌商<img src="http://test.alicaifeng.com/data/files/mall/lv_logo/1/2.png"></p>
+      <p class="tailorHome"><a target="_blank" href="tailor-info-35.html">主页预览</a></p>
+      <dl>
+        <dt>账户设置</dt>
+        <dd> <a href="member-tailor-profile.html">个人资料</a> </dd>
+        <dd> <a class="" href="member-tailor-password.html">修改密码</a> </dd>
+        <dd> <a class="cur" href="#">身份认证</a> </dd>
+      </dl>
+    </div>
+    
+    <div class="con">
+        <h2 class="tit">个人认证</h2>
+        <form id="myform">
+        <fieldset class="certify_form">
+          <p class="tipBar">目前本站只接受中国大陆用户认证</p>
+          <div class="ui-form-item">
+            <label class="ui-label"><span class="ui-form-required">*</span>真实姓名：</label>
+            <input type="text" class="ui-input"  placeholder="真实姓名" validate="required" />
+            <div class="ui-form-explain"></div>
+            <p class="ui-form-explain-sub">为保障您的资金安全，实名认证姓名和身份证号须和您提现的银行卡的户名保持一致 </p>
+          </div>
+          <div class="ui-form-item">
+            <label class="ui-label"><span class="ui-form-required">*</span>身份证号码：</label>
+            <input type="text" class="ui-input" placeholder="身份证号码" validate="required|number|minlength|maxlength" minlength="18" maxlength="18" />
+            <div class="ui-form-explain"></div>
+          </div>
+          <div class="ui-form-item">
+            <label class="ui-label">性别：</label>
+            <label class="ui-label ui-label-inline">男
+              <input type="radio" name="sex" checked="checked"
+                                                                        value="1">
+            </label>
+            <label class="ui-label ui-label-inline">女a
+              <input type="radio" name="sex" value="2">
+            </label>
+          </div>
+          <div class="ui-form-item">
+            <label class="ui-label"><span class="ui-form-required">*</span>身份证图片：</label>
+            <div validate="idcardA" class="upload-id" id="uploadPicIdFront">
+              <div class="upload-pic-btn"> <img src="../../static/img/idfront.png"
+                                     style="width:100px;height:97px;" alt=""
+                                     data-img="../../static/img/idfront.png">
+                <div class="upload-wrap"> <a href="###" target="_blank" class="upload-link" title="点击查看大图">查看</a> <a href="javascript:;" class="deletefile delete" action-type="deletefile">×</a> </div>
+                <input type="file" data-progressid="2842923581773.134" name="file" size="100" class="ui-upload-btn">
+              </div>
+              <div class="error"></div>
+              <ul class="uploadfile-indicator clearfix">
+                  <li data-pid="2842924317781.58" class="clearfix" style="display: block;">
+                  <p class="file clearfix"><span class="fl">ico1_1024_1024.png</span></p>
+                  <div class="adding clearfix">
+                  <p class="adifile"><span style="width:0%"></span></p><p class="fl">正在上传中....</p>
+                  <a action-type="cancel" class="fr" href="javascript:;">取消</a>
+                 </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="ui-form-item">
+            <label class="ui-label"></label>
+            <div validate="idcardB" class="upload-id" id="uploadPicIdBack" style="margin-bottom: 20px;">
+              <div class="upload-pic-btn">
+              <img src="../../static/img/idback.png" style="width:100px;height:97px;" alt="" data-img="../../static/img/idback.png">
+                <div class="upload-wrap"> <a href="###" target="_blank" class="upload-link" title="点击查看大图">查看</a> <a href="javascript:;" class="deletefile delete" action-type="deletefile">×</a> </div>
+                <input type="file" data-progressid="2842923581773.134" name="file" size="100" class="ui-upload-btn">
+              </div>
+              
+              <div class="error"></div>
+              <ul class="uploadfile-indicator clearfix">
+                  <li data-pid="2842924317781.58" class="clearfix" style="display: block;"><p class="file clearfix"><span class="fl">ico1_1024_1024.png</span></p><div class="adding clearfix"><p class="adifile"><span style="width:0%"></span></p><p class="fl">正在上传中....</p><a action-type="cancel" class="fr" href="javascript:;">取消</a></div></li>
+              </ul>
+            </div>
+            <p class="ui-form-explain-sub">
+              <span>请上传有效的身份证图片，非证件图片不予受理,证件要求：</span><br/>
+                1、证件必须包含身份证正面和背面两面信息<br />
+                2、必须为清晰彩色原件扫描件或数码照，仅支持.jpg.bmp.png.gif的图片格式，图片大小不超过2M<br />
+                3、身份证必须在有效期内。<br />
+              </p>
+          </div>
+          <div class="ui-form-item">
+            <label class="ui-label"><span class="ui-form-required">*</span>身份证到期时间：</label>
+            <input type="text" class="ui-input" id="idcard" placeholder="身份证到期时间" validate="required" onClick="WdatePicker({minDate:'%y-%M-%d'})" / >
+            <label class="ui-label ui-label-inline ui-label-longtime">
+            	<input type="checkbox" class="fl" id="cardValidity">长期
+            </label>
+            <div class="ui-form-explain"></div>
+            <p class="ui-form-explain-sub">若证件有效期为长期，请勾选长期。</p>
+          </div>
+          <div class="ui-form-item">
+            <label for="job" class="ui-label"><span class="ui-form-required">*</span>职业：</label>
+            <select validate="selecta">
+              <option value="">请选择您的职业</option>
+              <option value="计算机/互联网/通信/电子">计算机/互联网/通信/电子</option>
+              <option value="销售/客服/技术支持">销售/客服/技术支持</option>
+              <option value="会计/金融/银行/保险">会计/金融/银行/保险</option>
+              <option value="生产/运营/采购/物流">生产/运营/采购/物流</option>
+              <option value="广告/市场/媒体/艺术">广告/市场/媒体/艺术</option>
+              <option value="生物/制药/医疗/护理">生物/制药/医疗/护理</option>
+              <option value="建筑/房地产">建筑/房地产</option>
+              <option value="人事/行政/高级管理">人事/行政/高级管理</option>
+              <option value="咨询/法律/教育/科研">咨询/法律/教育/科研</option>
+              <option value="服务业">服务业</option>
+              <option value="公务员/翻译/其他">公务员/翻译/其他</option>
+              <option value="职员">职员</option>
+            </select>
+            <div class="ui-form-explain"></div>
+          </div>
+          <div class="ui-form-item">
+            <label for="contact" class="ui-label"><span class="ui-form-required">*</span>联系方式：</label>
+            <input class="ui-input" type="text" placeholder="联系方式" validate="required" />
+            <div class="ui-form-explain"></div>
+          </div>
+          <div class="ui-form-item">
+            <label for="address" class="ui-label"><span class="ui-form-required">*</span>家庭或工作单位地址：</label>
+            <input id="address" name="address" class="ui-input ui-address-input" type="text" placeholder="家庭或工作单位地址" validate="required"/>
+          </div>
+          <div class="ui-form-item ui-form-item-submit">
+            <input class="btn-1" value="提交审核" type="submit" id="submit-btn">
+          </div>
+          <input type="hidden" id="formCertType" name="certtype" value="personal">
+          <input type="hidden" id="formCertType2" name="type" value="1">
+        </fieldset>
+		</form>
+        <script>
+        $('#myform').verify({
+			validate:{
+					idcardA:function(e){
+						if(e.find('.upload-wrap').is(':hidden')){
+							e.find('.error').text('请上传您的身份证正面图').show()
+						}	
+					},
+					idcardB:function(e){
+						if(e.find('.upload-wrap').is(':hidden')){
+							e.find('.error').text('请上传您的身份证背面图').show()
+						}	
+					},
+					selecta:function(e){
+						if(e.val()==''){
+							e.addClass('error-css');
+						}
+					}
+				},
+			submitBtn:{
+				flag:true,
+				id:$('#submit-btn'),
+				txt:'提交中...'
+			}
+		});
+		$('#cardValidity').click(function(){
+			if(this.checked){
+				$('#idcard').val('长期有效').attr('disabled',true).parents('.ui-form-item').find('.error').text('');
+			}else{
+				$('#idcard').val('').attr('disabled',false)	
+			}
+		})
+        </script>
+    </div>
+  </div>
+</div>
+
+<!--底部开始-->
+<div class="footer2">
+  <p><span><a href="#">集团简介</a></span><span><a href="#">法律声明</a></span><span><a href="#">潮流资讯</a></span><span><a href="#">招聘信息</a></span><span><a href="#">员工之家</a></span></p>
+  <p><span>© RCTAILOR 版权所有</span><span>地址：山东省青岛即墨红领大街17号</span><span>鲁ICP备10207738</span><span>鲁公网安备234234号</span></p>
+</div>
+<!--底部结束--> 
+<script  type="text/javascript" src="../../static/js/usercenter.js"></script>
+</body>
+</html>

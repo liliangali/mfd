@@ -1,0 +1,64 @@
+  {foreach from=$item_list item=item}
+    <div class="J_item wall_item" itemId='{$item.cst_id}' id="J_item_{$item.cst_id}">
+        <!--图片-->
+        <ul class="pic">
+            <li>
+                {if $item.cst_tag == 'rcmnd'}
+                <img src="{res file=images/xinpintu_1.png}" class="xinpintu" />
+                {elseif $item.cst_tag == 'news'}
+                <img src="{res file=images/xinpintu_2.png}" class="xinpintu" />
+                {elseif $item.cst_tag == 'sales'}
+                <img src="{res file=images/xinpintu_3.png}" class="xinpintu" />
+                {/if}
+                <a href="{link app=custom act=info arg0=$item.cst_id}" title="{$item.cst_name}" target="_blank"><img alt="{$item.cst_name}" class="J_img J_decode_img" src="{$item.cst_image}"></a>
+                <a href="javascript:;" class="J_joinalbum addalbum_btn" data-id="{$item.id}"></a>
+                <div class="limited-box">
+                   <span class="limited">限量：{$item.cst_store}件</span>
+                </div>               
+            </li>
+        </ul>
+        <!--作者-->
+        <notempty name="item['uname']">
+        <div class="author clearfix">
+            <div class="author_name">
+            <a class="clr6 bold cus-title" href="{link app=custom act=info arg0=$item.cst_id}" title="{$item.cst_name}" data-uid="{$item.uid}" target="_blank">{$item.cst_name}</a><font style="font-size:12px; color:#8888;">{$item.cst_description}</font>
+            </div>
+            <div class="jbkjg">{$item.cst_price|price}</div>
+        </div>
+        </notempty> 
+        <!-- 喜欢评论 -->
+        
+        <div class="hot_bt">
+        {if $item.is_like}
+        <a href="javascript:;" class="yxih" data-id="{$item.cst_id}" data-ty="dingzhi_like">已喜欢</a>
+        {else}
+         <a href="javascript:;" class="xih J_likeitem" id="like_{$item.cst_id}" data-id="{$item.cst_id}" data-ty="dingzhi_like">喜欢</a>
+        {/if}
+           
+            <span class="J_like_n xih_cout"><a style="background:none;">{$item.cst_likes}</a></span>
+            <a href="javascript:void(0);" class="comts_cout">{$item.cst_sales}</a>
+            <span class="comts">销量：</span>
+        </div>
+
+        <!--评论-->
+        <!-- {if $item.comment_list} -->
+        <notempty name="item['comment_list']">
+        <ul class="rep_list">
+        {foreach key=key item=comment from=$item.comment_list'}
+          
+            <notempty name="item['comment_list'][$i]">
+            <li class="rep_f">
+            
+            <a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$comment.uid}" class="n" target="_blank" data-uid="{$comment.buyer_id}">{uname uid=$comment.uid sub=20}</a>
+                <a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$comment.uid}" target="_blank" class="mall_toux" >
+                    <img src="{avatar uid=$comment.uid size=b}" class="avt fl r3" alt="{$comment.buyer_name}" data-uid="{$comment.buyer_id}">
+                </a>
+                <p class="rep_content">  {$comment.content}</p>
+            </li>
+            </notempty>
+             {/foreach}
+        </ul>
+        </notempty>
+        <!-- {/if} -->
+    </div>
+     {/foreach}

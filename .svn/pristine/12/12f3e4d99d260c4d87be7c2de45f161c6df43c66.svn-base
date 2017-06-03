@@ -1,0 +1,78 @@
+
+{include file="header.html"}
+
+<div class="info" >
+    <div class="demand">
+    </div>
+    <form action="">
+     <input type="hidden" name="id" id="auth_id" value="{$auth_id}" />
+    <div class="order_form">
+        <h1>基本信息</h1>
+        <ul>
+        	<li>会员ID：{$auth_info.user_name}({$auth_info.member_lv_id})</li>
+            <li>真实姓名 ：{$auth_info.realname}</li>
+            <li>认证状态 ：{$auth_info.status}</li>
+            <li>手机号码 ：{$auth_info.mobile}</li>
+            <li>认证次数 ：{$auth_info.num}</li>
+            <li>联系地址 ：{$auth_info.address}</li>
+            <li>首单体验 ：{$auth_info.order_sn}</li>
+            <li>身份证号码 ：{$auth_info.card}</li>
+            <li>信息表核实 ：{if $auth_info.askid}<a href="/ask-index.html?id={$auth_info.askid}" target="_blank">查看详情>></a>{else}无{/if}</li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+	  {if $auth_info.status eq '认证失败' }
+    <div class="order_form">
+        <h1>失败原因</h1>
+           {foreach from=$auth_info.fail_reason key=key name=test item=item}
+        <tr>
+            <div>{$smarty.foreach.test.iteration}、{$item}</div>
+        </tr>
+           {/foreach}  
+        <div class="clear"></div>
+    </div>
+     {/if}
+  	<div class="order_form">
+        <h1>身份证照片:</h1>
+        <ul>
+            <li>
+             <tr>
+                <th class="paddingT15">身份证正面 :</th>
+                <td class="paddingT15 wordSpacing5">
+                <span><a href="{$auth_info.card_face_img}" target="_blank" title="点击查看大图"><img src="{$auth_info.card_face_img}" width="100px" heigh="100px"></a></span>
+                </td>
+            </tr>
+            </li>
+             </ul>
+  
+        <div class="clear"></div>
+    </div>
+
+      <div class="order_form">
+        <h1>银行卡信息</h1>
+        <ul>
+            <li>开卡行 ：{$auth_info.bank}{$auth_info.bankcard_address}</li>
+            <li>卡号 ：{$auth_info.bankcard}</li>
+          
+        </ul>
+        <div class="clear"></div>
+    </div>
+      <div class="order_form">
+        <h1>其他</h1>
+        <ul>
+              <li>创业顾问 ：{if $auth_info.cygwname}{$auth_info.cygwname}(BD码:{$auth_info.cygwbd}){else}无{/if}</li>
+            <li>提交时间 ：{$auth_info.last_update_time}</li>
+            
+        </ul>
+          {if $auth_info.status eq '认证失败' || $auth_info.status eq '认证成功'}
+           <ul>
+            <li>审核人 ：{$auth_info.auther}</li>
+            <li>审核时间 ：{$auth_info.create_time}</li>
+        </ul>
+        {/if}
+        <div class="clear"></div>
+    </div>
+    </form>
+
+</div>
+{include file="footer.html"}

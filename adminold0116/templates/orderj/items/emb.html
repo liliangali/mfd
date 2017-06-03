@@ -1,0 +1,20 @@
+<h2>刺绣信息：</h2>
+{foreach from=$embs item=emba key=__cKey}
+
+	<ul class="ul_list">
+	{$emba.name}:
+	{foreach from=$emba.data item=emb key=__embKey}
+	<li>
+	<span>{$emb.tname}:</span>
+	<select name="embs[{$__cKey}][{$__embKey}]" data-cloth="{$emb.clothingID}">
+	    <option value="">请选择..</option>
+	    {foreach from=$emb.list item=emb_item}
+	    <option value="{$emb_item.e_id}" {if $emba.checked.$__embKey == $emb_item.e_id} selected {/if}>{$emb_item.e_name}</option>
+	    {/foreach}
+	    {* html_options options=$cft.list  selected="" *}
+	</select>
+	</li>
+	{/foreach}
+	<li style="width:100%;"><span>内容:</span><input type="text" name="embs[{$__cKey}][emb_con]" style="width:357px;" value="{$emba.checked.emb_con}" /></li>
+	</ul>
+{/foreach}

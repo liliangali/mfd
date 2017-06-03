@@ -1,0 +1,17 @@
+ {foreach from=$list item=suit}
+ <li class="item"> 
+   <p class="p1">
+     <a href="{link app=goods arg=$suit.id}" title='{$suit.suit_name}'>
+       <img src="{$suit.side_images}" class="img1">
+       <img src="{$suit.image}" class="img2">
+     </a>
+   </p>
+   <p class="p2"><a href="{link app=goods arg=$suit.id}" title='{$suit.suit_name}'>{$suit.suit_name}</a></p>
+   {if $suit.woman_price}
+     <p class="p3"><del>¥{$suit.price}</del><span>¥{$suit.woman_price}</span></p>
+   {else}
+     <p class="p3">¥{$suit.price}</p>
+   {/if}
+   
+  </li>
+  {/foreach}

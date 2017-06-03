@@ -1,0 +1,91 @@
+{include file=../user/member.header.html}
+<div class="w">
+    <div class="AreaBox clearfix">
+        {include file=../user/member.menu.html}
+
+
+
+        <div class="con">
+            <h2 class="tit">我发起的投诉<a href="javascript:jubao()">我要投诉</a></h2>
+            <div class="jubao">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>状态</th>
+                        <th>举报内容</th>
+                        <th>被举报人</th>
+                        <th>举报时间</th>
+                    </tr>
+
+                    <!--{foreach from=$complaints item=complaint}-->
+
+                    <tr>
+                        <td><span class="grey">客服审核阶段</span></td>
+                        <td><!--{$complaint.content}--></td>
+                        <td><!--{$complaint.to_nickname}--></td>
+                        <td><!--{$complaint.c_time|date:Y-m-d H:i:s}--></td>
+                    </tr>
+                    {if $complaint.manage == 0 && $complaint.status == 0}
+                    <tr>
+                        <td><span class="green">客服处理阶段</span></td>
+                        <td><!--{$complaint.content}--></td>
+                        <td><!--{$complaint.to_nickname}--></td>
+                        <td><!--{$complaint.c_time|date:Y-m-d H:i:s}--></td>
+                    </tr>
+                    {/if}
+                    {if $complaint.status != 0}
+                    <tr>
+                        <td><span class="grey">客服处理阶段</span></td>
+                        <td><!--{$complaint.content}--></td>
+                        <td><!--{$complaint.to_nickname}--></td>
+                        <td><!--{$complaint.c_time|date:Y-m-d H:i:s}--></td>
+                    </tr>
+                    <tr>
+                        <td><span class="green">已处理</span> <a href='javascript:void(0)' onclick='jieguo("{$complaint.result}")' class="orange">查看处理结果</a></td>
+                        <td><!--{$complaint.content}--></td>
+                        <td><!--{$complaint.to_id}--></td>
+                        <td><!--{$complaint.c_time|date:Y-m-d H:i}--></td>
+                    </tr>
+                    {/if}
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="4" align="center"><span class="grey" >暂无内容</span></td>
+
+                    </tr>
+                    <!--{/foreach}-->
+
+                </table>
+                <script type="text/html" id="JUBAOLAYER">
+                    <form id="myForm" method="post">
+                        <div class="jubaoLayer">
+                            <div class="tipInfo">为维护阿里裁缝网公平、和谐的商业氛围，请您如实举报，切勿恶意举报</div>
+                            <div class="item"><span class="tit"><i class="red">*</i>你要举报的店铺：</span><input type="text" placeholder="店铺名称" id="shopName" class="txt" name="shopName"><label class="error"></label>
+                            </div>
+                            <div class="item"><span class="tit"><i class="red">*</i>举报内容：</span><textarea name="description" class="editor" placeholder="请输入10~300字"  maxlength="300"></textarea><br>
+                                <p style="padding-right:32px;"><span class="numLen fl">还可以输入300字</span>  <label class="error fr"></label></p>
+                            </div>
+                            <div class="item">
+                                <span class="tit">相关证据：</span>
+                                <div class="updata">
+                                    <ul class="fl" id="ul_li"></ul>
+                                    <div class="btn">上传图片<input type="file" value="" name="up_file" id="up_file"  onchange="jbUpDataPic.upData()" ></div>
+                                </div>
+                            </div>
+                            <div class="btnBox">
+                                <input type="button" class="ok" id="submitJb" value="提交">
+                                <input type="button" onclick="layer.closeAll()" class="no" value="关闭">
+                            </div>
+                        </div>
+                    </form>
+                </script>
+            </div>
+            <!--用户中心分页开始-->
+            <div class="hyzx_fy clearfix">
+                <div>
+                    {include file="../user/member.page.bottom.html"}
+                </div>
+            </div>
+            <!--用户中心分页结束-->
+        </div>
+    </div>
+</div>
+{include file="../user/footer.html"}

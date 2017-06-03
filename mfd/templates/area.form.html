@@ -1,0 +1,154 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a href="index.php?app=shipping&shipping_id={$shipping.shipping_id}">返回配送地区列表</a></li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+var reginUrl = "/index.php/mlselection.html";
+$(function(){
+
+	regionInit("region");
+	
+	$.validator.addMethod("checkAreas",function(value,element,params){
+
+		var checked = false;
+		$("#areas").find("input").each(function(){
+			if($(this).attr("checked")){
+				checked= true;
+			}
+		});
+		
+		return checked;
+	});
+	
+    $('#shipping_form').validate({
+        errorPlacement: function(error, element){
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {    
+        	area_name : {
+                required : true
+            },
+            first_price    :{
+                required     : true,
+                number       : true,
+            },
+            step_price:{
+            	required     : true,
+               	number   : true
+            },
+            region_name:{
+            	checkAreas   : true,
+            }
+            
+        },
+        messages : {
+        	area_name : {
+                required : '配送区域名称不能为空'
+            },
+            first_price    : {
+            	required    : '首重价格不能为空',
+            	number      : '首重必须是数字'
+            },
+            step_price  : {
+            	required    : '续重价格不能为空',
+                number   : '续重必须是数字'
+            },
+            region_name  :{
+            	checkAreas : '没有添加所辖地区',
+            }
+            
+        }
+    });
+});
+function hide_error(){
+    $('#region').find('.error').hide();
+}
+</script>
+<div class="info">
+     <form method="post" id="shipping_form">
+      <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> <label for="site_name">配送地区:</label></th>
+        <td class="paddingT15 wordSpacing5"><input type="text" name="area_name" value="{$area.area_name}"></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="site_name">首重费用({$shipping.first_weight}克):</label></th>
+        <td class="paddingT15 wordSpacing5"><input type="text" class="text width2" value="{$area.first_price}" name="first_price"/></td>
+      </tr>
+     <tr>
+        <th class="paddingT15"> <label for="site_name">续重费用({$shipping.step_weight}克):</label></th>
+        <td class="paddingT15 wordSpacing5"><input type="text" class="text width2" value="{$area.step_price}" name="step_price"/></td>
+      </tr>
+
+      <tr>
+      	<th class="paddingT15">所辖地区：</th>
+      	<td class="paddingT15 wordSpacing5">
+      		<div id="areas">
+      		{foreach from=$_regions item=reg}
+      			<input type="checkbox" name="regions[]" value="{$reg.region_id}" checked> {$reg.region_name}&nbsp;&nbsp;
+      		{/foreach}
+      		</div>
+      		<div id="region">
+                        <input type="hidden" name="region_id" value="{$address.region_id}" id="region_id" class="mls_id" />
+                        <input type="hidden" name="region_name" value="{$address.region_name|escape}" class="mls_names" id="region_name"/>
+                        <select onchange="hide_error();">
+                          <option>{$lang.select_pls}</option>
+                          {html_options options=$regions}
+                        </select>
+            			<select onchange="hide_error();">
+                          <option>{$lang.select_pls}</option>
+
+                        </select>
+                                    <select onchange="hide_error();">
+                          <option>{$lang.select_pls}</option>
+
+                        </select>
+                        <b class="field_message" style="font-weight:normal;"><label class="field_notice"></label></b>
+                      	 <input class="formbtn" type="button" name="addArea" value="+" id="addArea"/>
+                      </div>
+      	</td>
+      </tr>
+        	  <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />        </td>
+      </tr>
+      </table>
+       <input type="hidden" name="shipping_id" value="{$shipping.shipping_id}" />
+        <input type="hidden" name="area_id" value="{$area.area_id}" />
+        </form>
+    </div>
+    
+<script>
+$(document).ready(function(){
+	$("#addArea").click(function(){
+		var regionId    = $("#region_id").val();
+		var regionName  = $("#region_name").val();
+		var _name = regionName.split("	");
+		var _regionName = _name[_name.length-1];
+		var exist = false;
+		if(!_regionName || !regionId || _regionName == ''){
+			alert("-请选择地区");
+			return false;
+		}
+		
+		$("#areas").find("input").each(function(){
+			if($(this).val() == regionId){
+				exist = true;
+				alert("-选择的地区已经存在");
+			}
+		})
+		if(exist) return false;
+		
+		var input = "<input type='checkbox' name='regions[]' value='" + regionId + "' checked='true' /> " + _regionName + "&nbsp;&nbsp;";
+		$("#areas").append(input);		
+	})
+})
+</script>
+{include file="footer.html"}

@@ -1,0 +1,31 @@
+<div class="user_nav fl">
+<div class="yhcolumn">
+<h4>我的账户</h4> 
+<ul>
+<li {if $app == 'member' && $ac == 'index'}class="default"{/if}><a href="{link app=member}">账户预览</a>
+<li {if $app == 'my_order' || $app == 'fx'}class="default"{/if}><a href="{link app=my_order}">我的订单</a></li>
+<li {if $app == 'my_comment'} class="default"{/if}><a href="{link app=my_comment}">我的评论</a></li>
+<li {if $app == 'my_favorite'}class="default"{/if}><a href="{link app=my_favorite}">我的收藏</a></li>
+<li {if $app == 'my_messages'}class="default"{/if}><a href="{link app=my_messages}">我的消息</a></li>
+</ul>
+<h4>我的财富</h4>
+<ul>
+<!-- <li {if $ac == 'money'}class="default"{/if}><a href="{link app=member act=money arg0=0}">账户余额</a></li> -->
+<!--<li {if $ac == 'point'}class="default"{/if}><a href="{link app=member act=point}">我的积分</a></li>-->
+<!-- <li {if $ac == 'coin'}class="default"{/if}><a href="{link app=member act=coin}">酷&nbsp;&nbsp;特&nbsp;&nbsp;币</a></li> -->
+<li {if $ac == 'debit'}class="default"{/if}><a href="{link app=member act=debit}">我的麦券</a></li>
+<li {if $ac == 'activation'}class="default"{/if}><a href="{link app=member act=activation}">激活优惠券</a></li>
+<!-- <li {if $app == 'kuka'}class="default"{/if}><a href="{link app=kuka act=customer_kuka}">我的酷卡</a></li> -->
+</ul>
+<h4>资料管理</h4>
+<ul>
+<li {if $act == 'profile' || $act =='detailed' || $act == 'figure'}class="default"{/if}><a href="{link app=member act=profile}">个人资料</a></li>
+
+<li {if $app == 'my_pet'}class="default"{/if}><a href="{link app=my_pet}">宠物管理</a></li>
+<li {if $app == 'my_address'}class="default"{/if}><a href="{link app=my_address}">地址管理</a></li>
+<li {if $act == 'safe'}class="default"{/if}><a href="{link app=member act=safe}">安全设置</a></li>
+
+<!--#先隐藏掉.lirp<li {if $act == 'special_code'}class="default"{/if}><a href="{link app=special_code}">我的特权码</a></li>-->
+</ul>
+</div>
+</div>

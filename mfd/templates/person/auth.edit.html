@@ -1,0 +1,167 @@
+{include file="header.html"}
+<script type="text/javascript" src="static/js/e-smart-zoom-jquery.min.js"></script>
+<div id="rightTop">
+     <ul class="subnav">
+     
+        <li><a class="btn1" href="index.php?app=authcyz&amp;act=index">返回认证列表</a></li>
+   </ul>
+</div>
+  
+
+<div class="info">
+   <form method="post" enctype="multipart/form-data" id="theForm" name="theForm" onSubmit="return submitForm()">
+    <div class="order_form">
+        <h1>基本信息</h1>
+        <ul>
+        	<li>会员ID：{$auth_info.user_name}({$auth_info.member_lv_id})</li>
+            <li>真实姓名 ：{$auth_info.realname}</li>
+            <li>认证状态 ：{$auth_info.status}</li>
+            {if $auth_info.status eq '认证失败' }
+            <li>失败原因 ：{$auth_info.fail_reason}</li>
+            {/if}
+            <li>手机号码 ：{$auth_info.mobile}</li>
+            <li>认证次数 ：{$auth_info.num}</li>
+            <li>联系地址 ：{$auth_info.province} {$auth_info.city} {$auth_info.address}</li>
+            <li>首单体验 ：{$auth_info.order_sn}</li>
+            <li>身份证号码 ：{$auth_info.card}</li>
+           
+        </ul>
+  
+        <div class="clear"></div>
+    </div>
+
+    <div class="order_form">
+        <h1>身份证照片:</h1>
+        <ul>
+            <li>
+             <tr>
+                <th class="paddingT15">身份证正面 :</th>
+                <td class="paddingT15 wordSpacing5">
+                <span><a href="{$auth_info.card_face_img}" target="_blank" title="点击查看大图"><img src="{$auth_info.card_face_img}" width="100px" heigh="100px" id="beforeTreat3" onclick="changeSize(this.id)"></a></span>
+                </td>
+            </tr>
+            </li>
+             </ul>
+  
+        <div class="clear"></div>
+    </div>
+
+      <div class="order_form">
+        <h1>银行卡信息</h1>
+        <ul>
+            <li>开卡行 ：{$auth_info.bank}</li>
+            <li>开卡行地址 ：{$auth_info.bankcard_address}</li>
+            <li>卡号 ：{$auth_info.bankcard}</li>
+          
+        </ul>
+        <div class="clear"></div>
+    </div>
+      <div class="order_form">
+        <h1>其他</h1>
+        <ul>
+             <li>推荐人 ：{if $auth_info.tjrname}{$auth_info.tjrname}({$auth_info.tjrbs}:{$auth_info.tjrcode}){else}无{/if}</li>
+             <li>提交时间 ：{$auth_info.last_update_time}</li>
+            
+        </ul>
+        {if $auth_info.status eq '认证失败' || $auth_info.status eq '认证成功'}
+           <ul>
+            <li>审核人 ：{$auth_info.auther}</li>
+            <li>审核时间 ：{$auth_info.create_time}</li>
+           </ul>
+        {/if}
+        <div class="clear"></div>
+    </div>
+
+  <div class="order_form  faile " id="tr1" style="display: none;">
+    <h1>请选择原因(可多选)</h1>
+
+	<label><input type="checkbox" id="area[]" name="area[]" value="联系地址不详细">联系地址不详细</label>
+ <br/>
+	<label><input type="checkbox" id="area[]" name="area[]" value="身份证号码有误">身份证号码有误</label>
+   <br/>
+
+   <label><input type="checkbox" id="area[]" name="area[]" value="身份证照片上的姓名与真实姓名不一致">身份证照片上的姓名与真实姓名不一致</label> <br/>
+ 
+
+ 	<label><input type="checkbox" id="area[]" name="area[]"  value="身份证照片不清晰">身份证照片不清晰</label>
+
+
+  <h1>其他</h1>
+   <td class="paddingT15 wordSpacing5" >
+    <textarea  style="width:220px ;height:130px" name="fail_reason" id="fail_reason"></textarea>
+  </td>
+  <br/><br/>
+  <td class="paddingT15 wordSpacing5" >
+   <input class="tijia"  type="submit" name="Submit" value="确认提交"  />
+    <input class="congzi" type="button" name="tj" id="cz" value="返回" />
+  </td>
+
+    </div>
+
+ <div class="order_form" id="tr2">
+    <input class="tijia" type="submit"name="Submit"  value="通过审核" />
+    <input class="congzi" type="button" name="bt" id="bt" value="不通过审核" />
+</div>
+ 
+    </form>
+</div>
+
+  <script>
+  $(function() {
+            $("#bt").click(function() { //无参数方法
+               $("#tr1").toggle();
+               $("div#tr2").hide();
+
+            });
+
+            $("#cz").click(function(){
+
+               $("div#tr2").show();
+               $("#tr1").toggle();
+            });
+
+ 
+        })
+
+  </script>
+  
+ <script>
+
+ function submitForm()  
+ {  
+   var src=document.activeElement;  
+   var  a = $("input[type='checkbox']").is(':checked');
+   var  b = $("#fail_reason").val();
+ 
+   if(src.value=='确认提交')  
+    {  
+      if(a == false && b==false )
+       {
+		 alert('认证失败原因不能为空');
+		 return false;
+       }
+     
+    }  
+  
+ }  
+</script>
+<script type="text/javascript">
+function changeSize(id){   
+
+	   var img = $("#"+id);  
+	   var oWidth=img.width(); //取得图片的实际宽度  
+	   var oHeight=img.height(); //取得图片的实际高度  
+	    
+	  $("#"+id).live("click",function(){  
+	      $(this).toggle(function(){   
+	          img.width(oWidth + 600);  
+	            img.height(oHeight + 600/oWidth*oHeight);   
+	         }, function(){   
+	             img.width(oWidth);  
+	             img.height(oHeight);   
+	        }).trigger('click');    
+	  });  
+	}  
+</script>
+
+{include file="footer.html"}

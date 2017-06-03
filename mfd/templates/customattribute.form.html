@@ -1,0 +1,108 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            attr_name : {
+                required : true,
+            },
+            type_id: {
+            	required : true,
+            },
+            sort_order : {
+                number   : true,
+            },
+            alias:{
+            	required: true,
+            },
+        },
+        messages : {
+            attr_name : {
+                required : '{$lang.attr_empty}',
+            },
+            sort_order  : {
+                number   : '{$lang.sort_num}'
+            },
+            type_id     : {
+            	required : '{$lang.type_req}'
+            },
+            alias:{
+            	required: '别外不能为空!',
+            },
+        }
+    });
+});
+
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=customattribute&amp;type_id={$data.type_id}">属性列表</a></li>
+        {if $data.attr_id}
+        <li><a class="btn1" href="index.php?app=customattribute&amp;act=add&type_id={$data.type_id}">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="form">
+        <table class="infoTable">
+
+            
+                        <tr>
+                <th class="paddingT15">
+                                                属性名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="attr_name" type="text" name="attr_name" value="{$data.attr_name|escape}" />
+                </td>
+            </tr>
+                        <tr>
+                <th class="paddingT15">
+                                               属性 别名（|分割）:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" type="text" name="alias" value="{$data.alias|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                                               所属类型:</th>
+                <td class="paddingT15 wordSpacing5">
+                     <select name="type_id"><option value="0">{$lang.select_pls}</option>{html_options options=$types selected=$data.type_id}</select>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                                       选择项可选值:</th>
+                <td class="paddingT15">
+                   <input type="text" name="attr_values" value="{$data.attr_values}" style="width:300px;">
+                   <span class="grey">请用逗号分隔[值1,值2,值3]</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="sort_order" type="text" name="sort_order" value="{$data.sort_order|default:100}" />
+                </td>
+            </tr>
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="attr_id" value="{$data.attr_id}">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

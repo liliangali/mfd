@@ -1,0 +1,134 @@
+{include file="header.html"}
+<link href="{res file=css/custom_pubuliu.css}" rel="stylesheet" type="text/css" />
+<style>
+/* 搜索切换 */
+.search_box{width:1000px; margin:0 auto;}
+.search_h1{height:29px; line-height:29px; width:1000px; overflow:hidden; font-size:18px; font-weight:normal; color:#717171;
+padding:24px 0 16px 0;}
+.search_h1 font{font-size:18px; color:#333333;}
+.search_qh{width:1000px; margin:0 auto; position:relative; border:#dddddd 1px solid; background:#eeeeee;  border-bottom:#999999 1px solid; height:39px;}
+.search_qh .search_qh_ul{ height:40px; position:absolute; left:-1px; top:-1px; z-index:1; line-height:40px; width:1000px; }
+.search_qh .search_qh_ul li{ padding:0 41px; height:40px; line-height:40px; float:left; font-size:16px; text-align:center; cursor:pointer;}
+.search_qh .search_qh_ul .cur_li{ padding:0 41px; background:none #f9f9f9; color:#fff; position:relative; border:#999999 1px solid; border-bottom:none; }
+.search_qh .search_qh_ul .cur_li a{color:#bb422e; font-size:16px;}
+#bg-none{background:none;}
+</style>
+<!--定制中心开始-->
+  <div class="coolke_box">
+     <div class="search_box">
+      
+{include file="search/header.html"}
+
+		</div>
+      <div class="pubuliu_box" style="padding:30px 0 0 0;">
+<div class="wall_wrap clearfix">
+	<div id="J_waterfall" class="wall_container clearfix">
+	   
+	   {foreach from=$data item=item}
+	   <div class="J_item wall_item" itemId='{$item.cst_id}' id="J_item_{$item.cst_id}">
+        <!--图片-->
+        <ul class="pic">
+            <li>
+                {if $item.cst_tag == 'rcmnd'}
+                <img src="{res file=images/xinpintu_1.png}" class="xinpintu" />
+                {elseif $item.cst_tag == 'news'}
+                <img src="{res file=images/xinpintu_2.png}" class="xinpintu" />
+                {elseif $item.cst_tag == 'sales'}
+                <img src="{res file=images/xinpintu_3.png}" class="xinpintu" />
+                {/if}
+                <a href="{link app=custom act=info arg0=$item.cst_id}" title="{$item.cst_name}" target="_blank"><img alt="{$item.cst_name}" class="J_img J_decode_img" src="{$item.cst_image}"></a>
+                <a href="javascript:;" class="J_joinalbum addalbum_btn" data-id="{$item.id}"></a>
+                <div class="limited-box">
+                   <span class="limited">限量：{$item.cst_store}件</span>
+                </div>
+                
+            </li>
+        </ul>
+        <!--作者-->
+        <notempty name="item['uname']">
+        <div class="author clearfix">
+            <div class="author_name">
+            <a class="clr6 bold cus-title" href="{link app=custom act=info arg0=$item.cst_id}" title="{$item.cst_name}" data-uid="{$item.uid}" target="_blank">{$item.cst_name}</a><font style="font-size:12px; color:#8888;">{$item.cst_description}</font>
+            </div>
+        </div>
+        </notempty> 
+        <!-- 喜欢评论 -->
+        
+        <div class="hot_bt">
+        {if $item.is_like}
+        <a href="javascript:;" class="yxih" data-id="{$item.cst_id}" data-ty="dingzhi_like">已喜欢</a>
+        {else}
+         <a href="javascript:;" class="xih J_likeitem" id="like_{$item.cst_id}" data-id="{$item.cst_id}" data-ty="dingzhi_like">喜欢</a>
+        {/if}
+           
+            <span class="J_like_n xih_cout">{$item.cst_likes}</span>
+            <a href="#" class="comts_cout">{$item.cst_sales}</a>
+            <span class="comts">销量：</span>
+        </div>
+
+        <!--评论-->
+        <!-- {if $item.comment_list} -->
+        <notempty name="item['comment_list']">
+        <ul class="rep_list">
+        {foreach key=key item=comment from=$item.comment_list'}          
+            <notempty name="item['comment_list'][$i]">
+            <li class="rep_f">            
+            <a href="{link app=club act=cooler arg0=$comment.uid}" class="n" target="_blank" data-uid="{$comment.buyer_id}">{uname uid=$comment.uid sub=20}</a>
+                <a href="{link app=club act=cooler arg0=$comment.uid}" target="_blank" class="mall_toux" >
+                    <img src="{avatar uid=$comment.uid size=b}" class="avt fl r3" alt="{$comment.buyer_name}" data-uid="{$comment.buyer_id}">
+                </a>
+                <p class="rep_content">  {$comment.content}</p>
+            </li>
+            </notempty>
+         {/foreach}
+        </ul>
+        </notempty>
+        <!-- {/if} -->
+    </div>
+	   {/foreach}
+	</div>
+</div>
+</div>
+<div id="J_returntop" class="return_top"></div>
+
+<script>
+var PINER = {
+    uid: "<?php echo $_SESSION['user_info']['user_id'] ?>", 
+    async_sendmail: "",
+    config: {
+        wall_distance: "",
+        wall_spage_max: ""
+    },
+    //URL
+    url: {}
+};
+//语言项目
+var lang = {};
+lang.please_input = "请输入";
+lang.username = "用户名";
+lang.password = "密码";
+lang.login_title = "用户登录";
+lang.share_title = "我要分享";
+lang.correct_itemurl = "正确的商品地址";
+lang.join_album = "加入专辑";
+lang.create_album = "创建新专辑";
+lang.edit_album = "修改专辑";
+lang.confirm_del_album = "删除专辑，专辑里所有的图片都会被删除哦！你确定要删除此专辑吗？";
+lang.title = "标题";
+lang.card_loading = "正在获取用户信息";
+lang.confirm_unfollow = "确定要取消关注么？";
+lang.wait = "请稍后......";
+
+</script>
+
+<script type="Text/Javascript" src="{res file=js/jquery.min.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/jquery.tools.min.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/jquery.masonry.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/formvalidator.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+<script type="Text/Javascript" src="{res file=js/wall.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/user.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/item.js}"></script>
+
+{include file="footer.html"}

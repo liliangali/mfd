@@ -1,0 +1,62 @@
+<div class="comment_list">
+	{foreach from=$list item=com}
+    <dl class="ser-comts">
+                      <dt><a href="{link app=club act=cooler arg0=$com.uid}"><img class="J_card avt fl r3" width="36" height="36" src="{avatar uid=$com.uid size=48}" data-uid="{$com.uid}" />
+                      </a>
+                       <span><a href="{link app=club act=cooler arg0=$com.uid}">{uname uid=$com.uid sub=20}</a></span>
+                      </dt>
+                      <dd>
+                      <s></s>
+                         
+                         <p class="ser-c-top">
+                <span class="ser-c-pf"><STRONG>评分：</STRONG><img src="/themes/mall/default/styles/default/images/comments_p{$com.point}.png"></span>
+                <span class="ser-c-time">{$com.ftime}</span>
+              </p>
+                         
+                         <p class="cer-c-cont">
+                 {$com.content}
+              </p>
+                      </dd>
+                      
+                      
+           
+                      
+                      
+                  </dl>
+	{/foreach}
+	
+	
+		
+	<!--{if $page_info.page_count gt 1}-->
+	<div class="page-box" style="margin-left:93px; width:619px;">
+		    <div id="page" class="faye_box">
+		    <!-- <span>{sprintf lang=total_item var1=page_info.item_count}</span> -->
+		    <!--{if $page_info.prev_link}-->
+		    <a class="sanyy" href="javascript:;" data-url="{$page_info.prev_link}"></a>
+		    <!--{else}-->
+		    <span class="sanyy"></span>
+		    <!--{/if}-->
+		    <!--{if $page_info.first_link}-->
+		    <a class="page_link" href="javascript:;" data-url="{$page_info.first_link}">1&nbsp;<!--{$page_info.first_suspen}--></a>
+		    <!--{/if}-->
+		    <!--{foreach from=$page_info.page_links key=page item=link}-->
+		    <!--{if $page_info.curr_page eq $page}-->
+		    <span class="page_hover" style="background:#a40000; border:1px solid #a40000; color:#fff;border-radius: 5px;padding: 0 12px;margin-right: 5px;" >{$page}</span>
+		    <!--{else}-->
+		    <a class="page_link" href="javascript:;" data-url="{$link}">{$page}</a>
+		    <!--{/if}-->
+		    <!--{/foreach}-->
+		    <!--{if $page_info.last_link}-->
+		    <a class="page_link" href="javascript:;" data-url="{$page_info.last_link}"><!--{$page_info.last_suspen}-->&nbsp;<!--{$page_info.page_count}--></a>
+		    <!--{/if}-->
+		    <!-- <a class="nonce">{$page_info.curr_page} / {$page_info.page_count}</a> -->
+		    <!--{if $page_info.next_link}-->
+		    <a class="xiayy" href="javascript:;" data-url="{$page_info.next_link}"></a>
+		    <!--{else}-->
+		    <span class="xiayy"></span>
+		    <!--{/if}-->
+		</div>
+		<p class="clear"></p>
+	</div>
+	<!--{/if}-->
+</div>

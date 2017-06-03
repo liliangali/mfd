@@ -1,0 +1,60 @@
+{include file="header.html"}
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="userdemand" />
+                <input type="hidden" name="act" value="demand" />
+                用户名:
+                <input class="queryInput" type="text" name="user_name" value="{$query.user_name|escape}" />
+               状态:
+                <select class="querySelect" name="status">
+                <option value="-1">{$lang.select_pls}</option>
+                {html_options options=$statusArr selected=$query.status}
+                </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+                <input type="button" value="返回即拍即做列表" onclick="location.href='index.php?app=userdemand'"/>
+            </div>
+        </form>
+        
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $dmdlist}-->
+        <tr class="tatr1">
+            <td align="left">用户名称</td>
+            <td>图片</td>
+            <td>状态</td>
+            <td>发起时间</td>
+            <td>响应时间</td>
+            <td>操作</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$dmdlist item=dmd}-->
+        <tr class="tatr2">
+            <td>{$dmd.user_name|escape}</td>
+            <td><img src="{$dmd.imgs[0]}" width="100" height="100"></td>
+            <td>{if $dmd.status eq 0}未处理{elseif $dmd.status eq 1}已处理{else}已拒绝{/if}
+            </td>
+            <td>{$dmd.add_time|date:complete}</td>
+            <td>{if $dmd.last_time}{$dmd.last_time|date:complete}{else}未介入{/if}</td>
+            <td><a href="javascript:;" onclick="parent.photo(0,[{foreach from=$dmd.imgs item=img name=loop}{src:'{$img}'}{if !$smarty.foreach.loop.last},{/if}{/foreach}])">详细</a></td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="6">没有匹配到咨询信息</td>
+        </tr>
+        <!--{/foreach}-->
+        {if $dmdlist}
+        <tr>
+            <td colspan="6">{include file=page.bottom.html}</td>
+        </tr>
+        {/if}
+    </table>
+</div>
+{include file="footer.html"}

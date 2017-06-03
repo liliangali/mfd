@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>我的麦券</title>
+<script type="text/javascript" src="/static/css/layer_mobile/layer.js"></script>
+<script type="text/javascript" src="/static/js/jquery-1.10.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+<script type="text/javascript" src="/static/js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+function activ(){
+	layer.open({
+		width:'660px',
+		height:'490px',
+		addclass:'cotte-luck',
+		content:$('#window004').html()
+	})
+}
+
+/*$(document).ready(function(){
+	var $tab_li = $('#tab ul li');
+	$tab_li.click(function(){
+		$(this).addClass('selected').siblings().removeClass('selected');
+		var index = $tab_li.index(this);
+		$('div.tab_box > div').eq(index).show().siblings().hide();
+	});	
+});*/
+</script>
+</head>
+<body>
+	<div class="mian">
+    	<div class="header">
+			<div class="p1"><a href="javascript:history.go(-1)"></a></div>
+			<div class="p2">我的麦券</div>
+            <div class="p3"><a href="javascript:;" onclick="activ()">使用说明</a></div>
+		</div>
+        <div id="tab">
+            <ul class="tab_menu c_db">
+                <li {if !$status}class="selected"{/if} ><a href="{link app=member act=quan arg0=1}">未使用</a>（{$num_list.notUse}）</li>
+                <li {if $status eq 'hu'}class="selected"{/if}><a href="{link app=member act=quan arg0=2 arg1=hu}">已使用（{$num_list.haveUsed}）</a></li>
+                <li {if $status eq 'hi'}class="selected"{/if}><a href="{link app=member act=quan arg0=3 arg1=hi}">已过期（{$num_list.haveInvalid}）</a></li>
+            </ul>
+            <div class="tab_box">
+            	<div class="onediv">
+            	{foreach from=$list item=li}
+                    <div class="not" style="position:relative;">
+                        <p class="kzwpic">{if !$status}<img src="/static/img/bjpic.png">{else}<img src="/static/img/hbjpic.png">{/if}</p>
+                        <div class="notquan">
+                            <div {if !$status}class="c_db give"{else} class="c_db give gives"{/if}>
+                                <p {if !$status}class="c_bf1 ybword"{else} class="c_bf1"{/if}>{if $li.source ==1}激活码激活{/if}</p>
+                                <p class="c_bf1 c_txr">{$li.code}</p>
+                            </div>
+                            <div {if !$status}class="money"{else} class="money gives"{/if} style=padding:6px 0 10px 0;>¥<span>{$li.money}</span>
+                      {if $xianshi=='1'}  <span style="border:1px solid #dfdfdf; height:28px; line-height:28px; padding:0 18px; display:inline-block; border-radius:16px; font-size:12px; float:right; vertical-align: middle; margin-top:5px;"><a href="{if $li.category eq '限普通商品使用'}product.html{else}fdiy-1-3.html{/if}">立即使用</a></span>{/if}
+                    </div>
+
+
+
+                            <div {if !$status}class="c_db limit"{else} class="c_db limit gives"{/if}>
+                                <p class="c_bf1">{$li.category}</p>
+
+
+                   {if $xianshi=='2'}<p style="width:54px; height:54px; position:absolute; right:11px; bottom:11px; z-index:10;"><img src="/static/img/yisy.png" style="width:100%; height:100%;"></p>{else} <p class="c_bf1 c_txr"{if $xianshi=='3'}style="padding-right:62px;"{/if}>{$li.end_time} 到期<span>{if $xianshi=='1'}{if $li.datetime}(仅剩{$li.datetime}天){/if}{/if}</span></p>{/if}
+                    {if $xianshi=='3'}<p style="width:54px; height:54px; position:absolute; right:11px; bottom:11px; z-index:10;"><img src="/static/img/yigq.png" style="width:100%; height:100%;"></p>{/if}
+                            </div>
+                        </div>
+                    </div>
+               {/foreach}
+              
+                </div>
+<div id="window004" style="display:none;">
+	<div class="wdktbword">
+	{$article_info}
+	</div>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

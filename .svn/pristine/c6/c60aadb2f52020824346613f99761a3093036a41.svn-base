@@ -1,0 +1,24 @@
+{include file="header2.html"}
+<script  type="text/javascript" src="static/js/custom.js"></script>
+<link rel="stylesheet" type="text/css" href="../../static/css/search.css">
+<div class="search_tips w">
+ <div class="tips_jz">
+   <h1>很抱歉，没有找到符合您要求的商品</h1>
+   <p class="p1">非常抱歉给你这样的结果，我们会努力扩展商品和改善搜索服务!</p>
+   <div class="cxsoso clearfix">
+    <h4>重新搜索：</h4>
+     <form action="{link app=search}" method="get" onsubmit="if(document.forms['search'].keyword.value.length == 0) return false" name="search">
+    <input type="text" value="" class="input_1" name="keyword"/>
+    <input type="submit" value="搜索" class="input_2"/>
+    </form>
+   </div>
+   
+   <ul class="tslb">
+    <li>1.看看你输入的文字是否有误</li>
+    <li>2.调整你输入的关键字</li>
+    <li>3.或<span>【<a href="./">反回首页</a>】</span>继续看看你感兴趣的栏目</li>
+    <li>4.也可致电 400-169-8836 咨询专业客服为你查找所需商品</li>
+   </ul>
+ </div>
+</div>
+{include file="footer.html"}

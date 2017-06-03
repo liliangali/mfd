@@ -1,0 +1,25 @@
+@charset "utf-8";
+/*杨梦琳*/
+.head_app { width:100%; height:50px; background:url(../images/dhtiao_app.gif) left top repeat;}
+.head { width:1000px; height:50px; margin:0 auto;}
+.logo_app { width:177px; height:24px; padding-top:13px; float:left;}
+.head ul { float:right;}
+.head ul li { float:left; height:50px; line-height:50px; font-size:15px; padding:0 24px; background:url(../images/appdhbg.png) right 14px no-repeat;}
+.head ul li a { color:#fff;}
+.head ul li a:hover { color:#bb422e;}
+.panel { width:100%;}
+.panel h2 { width:1000px; margin:0 auto; }
+.panel h2 img { width:1000px; height:600px;}
+
+
+
+
+
+
+
+
+
+
+
+
+

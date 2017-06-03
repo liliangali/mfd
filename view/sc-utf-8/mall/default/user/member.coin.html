@@ -1,0 +1,101 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+{include file=member.menu.html}
+     <div class="cardright fr">
+		<div class="coolcard">
+        	<h4>麦富迪币</h4>
+			<div class="ktmoney">
+            	<div class="ktble fl">
+                	<p class="blep fl">可用麦富迪币：<span>{$user.coin}</span></p>
+                    <!-- <p class="blep fl">锁定麦富迪币：<span>200</span></p> -->
+                </div>
+                <ul>
+                	<li><a href="javascript:;" id="provision">关于麦富迪币</a></li>
+                	<li><a href="{link app=my_coin}">购买麦富迪币</a></li>
+                	<!-- <li><a href="javascript:;" id="money">什么是麦富迪币？</a></li>
+                    <li><a href="javascript:;" id="brhhq">如何获取？</a></li>
+                    <li><a href="javascript:;" id="brhsy">如何使用？</a></li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="history">
+        	<div class="ktbrecord">
+        		<h4>麦富迪币历史记录</h4>
+                <div class="xm-select ktb-select fr">
+                    <div class="dropdown">
+                    <form method="get" id="fsearch">
+                        <label for="J_province" class="iconfont"></label>
+                        <select id="J_province" name="search" onchange="searchs(this)">
+                        {html_options options=$search selected=$smarty.get.search}
+                        </select>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <table width="100%" frame="void" rules="none" cellspacing="0">
+              <tr class="kktab">
+                <td width="30%">获取/消费</td>
+                <td width="48%">详细说明</td>
+                <td width="22%">日期</td>
+              </tr>
+              {foreach from=$list item=item}
+              <tr>
+                <td {if $item.mark eq '+'} class="blue"{else}class="orange"{/if}>{$item.mark}{$item.cash_money}</td>
+                <td>{$item.name}</td>
+                <td>{$item.add_time}</td>
+              </tr>
+              {/foreach}
+            </table>
+            <div class="ktbpage fr">
+            {include file=page.bottom.html}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="window001" style="display:none;">
+	<p class="wdktbword">{$coinjieshao}</p>
+</div>
+<div id="window002" style="display:none;">
+	<p class="wdktbword">{$coinhuoqu}
+	</p>
+</div>
+<div id="window003" style="display:none;">
+	<p class="wdktbword">{$coinshiyong}
+	</p>
+</div>
+
+<script>
+function searchs(obj)
+{
+	$("#fsearch").submit();
+}		
+</script>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/usercenter.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>  
+
+<script>
+cotteFn.coin() 
+cotteFn.customer001()
+cotteFn.customer002()
+cotteFn.customer003()
+//cotteFn.index()
+//分享
+window._bd_share_config = {
+	common : {
+		bdText : document.title,	
+		bdDesc : '',	
+		bdUrl : window.location.href, 	
+		bdPic : ''
+	},
+	share : [{
+		"bdSize" : 16
+	}]
+}
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+{include file=footer.html}

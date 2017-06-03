@@ -1,0 +1,145 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+    </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="cfabric" />
+          <input type="hidden" name="act" value="index" />
+           <select class="querySelect" name="field_CATEGORYID">{html_options options=$tname selected=$smarty.get.field_CATEGORYID}
+          </select>
+          
+    
+          <input class="queryInput" type="text" name="field_CODE" value="{$smarty.get.field_CODE|escape}" />
+    
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=cfabric&CATEGORYID={$smarty.get.field_CATEGORYID}">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $f_list}-->
+        <tr class="tatr1">
+             <td align="left">CODE</td>
+            <td>面料名</td>
+            <td><span ectype="order_by" fieldname="STOCK">库存数量</span></td>
+            <td>分类</td>
+            <td>标签</td>
+            <td>风格</td>
+            <td align="left"><span ectype="order_by" fieldname="d_s">无库存显示[1｜2]</span></td>
+            <td align="left"><span ectype="order_by" fieldname="is_warning">是否预警</span></td>
+            <td align="left"><span ectype="order_by" fieldname="is_first">是否首单</span></td>
+            <td align="left"><span ectype="order_by" fieldname="is_sale">是否上架</span></td>
+            <td align="left"><span ectype="order_by" fieldname="activity">是否活动</span></td>
+            <!--{if $dfpid eq 8001}-->
+            <td>西服活动价格</td>
+            <td>西裤活动价格</td>
+            <td>马夹活动价格</td>
+             <td>西服销售价格</td>
+            <td>西裤销售价格</td>
+            <td>马夹销售价格</td>
+              <!--{/if}-->
+              <!--{if $dfpid eq 8030}-->
+            <td>衬衣活动价格</td>
+            <td>衬衣销售价格</td>
+            <!--{/if}-->
+             <!--{if $dfpid eq 8050}-->
+            <td>大衣活动价格</td>
+            <td>大衣销售价格</td>
+            <!--{/if}-->
+            <td>RMB价格</td>
+            <td>排序</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$f_list item=cfabric}-->
+        <tr class="tatr2">
+            <td>{$cfabric.CODE|escape}</td>
+                       <td><span ectype="inline_edit" fieldname="tname" fieldid="{$cfabric.CODE}"   title="{$lang.editable}" class="editable" >{$cfabric.tname|escape}</span></td>
+            
+            <td><span ectype="inline_edit" fieldname="STOCK" fieldid="{$cfabric.CODE}"   title="{$lang.editable}" class="editable" >{$cfabric.STOCK|escape}</span></td>
+            
+         <td> <select class="querySelect mySelect"  name="field_CATEGORYID" data-fid="{$cfabric.CODE}">{html_options options=$c_list selected=$cfabric.VCOMPOSITIONID}</select></td>
+         <td> <select class="querySelect mySelectt"  name="field_CATEGORYID" data-fid="{$cfabric.CODE}">{html_options options=$t_list selected=$cfabric.tags}
+          </select></td>
+         <td> <select class="querySelect mySelects"  name="field_CATEGORYID" data-fid="{$cfabric.CODE}">{html_options options=$s_list selected=$cfabric.mstyle}
+          </select></td>
+          
+           <td><span ectype="inline_edit" fieldname="d_s" fieldid="{$cfabric.CODE}"  title="{$lang.editable}" class="editable" ><!--{if $cfabric.d_s=='1'}-->已下架<!-- {else} -->敬请期待<!--{/if}--></span></td>
+           <td><span ectype="inline_edit" fieldname="is_warning" fieldid="{$cfabric.CODE}"  title="{$lang.editable}" class="editable" ><!--{if $cfabric.is_warning=='1'}--> 是<!-- {else} -->否<!--{/if}--></span></td>
+           <td><span ectype="inline_edit" fieldname="is_first" fieldid="{$cfabric.CODE}"  title="{$lang.editable}" class="editable" ><!--{if $cfabric.is_first=='1'}--> 是<!-- {else} -->否<!--{/if}--></span></td>
+           <td><span ectype="inline_edit" fieldname="is_sale" fieldid="{$cfabric.CODE}"  title="{$lang.editable}" class="editable" ><!--{if $cfabric.is_sale=='1'}--> 是<!-- {else} -->否<!--{/if}--></span></td>
+           <td><span ectype="inline_edit" fieldname="activity" fieldid="{$cfabric.CODE}"  title="{$lang.editable}" class="editable" ><!--{if $cfabric.activity=='1'}--> 是<!-- {else} -->否<!--{/if}--></span></td>
+            <!--{if $dfpid eq 8001}-->
+            <td><span ectype="inline_edit" fieldname="activity_price_0003" fieldid="{$cfabric.CODE}" datatype="only_number"  title="{$lang.editable}" class="editable" >{$cfabric.activity_price_0003}</span></td>
+            <td><span ectype="inline_edit" fieldname="activity_price_0004" fieldid="{$cfabric.CODE}" datatype="only_number"  title="{$lang.editable}" class="editable" >{$cfabric.activity_price_0004}</span></td>
+            <td><span ectype="inline_edit" fieldname="activity_price_0005" fieldid="{$cfabric.CODE}" datatype="only_number"  title="{$lang.editable}" class="editable" >{$cfabric.activity_price_0005}</span></td>
+            <td><span ectype="inline_edit" fieldname="sales__price_0003" fieldid="{$cfabric.CODE}" datatype="only_number"  title="{$lang.editable}" class="editable" >{$cfabric.sales__price_0003}</span></td>
+            <td><span ectype="inline_edit" fieldname="sales__price_0004" fieldid="{$cfabric.CODE}" datatype="only_number"  title="{$lang.editable}" class="editable" >{$cfabric.sales__price_0004}</span></td>
+            <td><span ectype="inline_edit" fieldname="sales__price_0005" fieldid="{$cfabric.CODE}" datatype="only_number"  title="{$lang.editable}" class="editable" >{$cfabric.sales__price_0005}</span></td>
+               <!--{/if}-->
+                <!--{if $dfpid eq 8030}-->
+            <td><span ectype="inline_edit" fieldname="activity_price_0006" fieldid="{$cfabric.CODE}" datatype="only_number"  title="{$lang.editable}" class="editable" >{$cfabric.activity_price_0006}</span></td>
+            <td><span ectype="inline_edit" fieldname="sales__price_0006" fieldid="{$cfabric.CODE}" datatype="only_number"  title="{$lang.editable}" class="editable" >{$cfabric.sales__price_0006}</span></td>
+           <!--{/if}-->
+           <!--{if $dfpid eq 8050}-->
+            <td><span ectype="inline_edit" fieldname="activity_price_0007" fieldid="{$cfabric.CODE}" datatype="only_number"  title="{$lang.editable}" class="editable" >{$cfabric.activity_price_0007}</span></td>
+            <td><span ectype="inline_edit" fieldname="sales__price_0007" fieldid="{$cfabric.CODE}" datatype="only_number"  title="{$lang.editable}" class="editable" >{$cfabric.sales__price_0007}</span></td>
+            <!--{/if}-->
+        <!--     <td><span ectype="inline_edit" fieldname="price" fieldid="{$cfabric.CODE}" datatype="only_number"  title="{$lang.editable}" class="editable" >{$cfabric.rmbprice}</span></td> -->
+            <td>{$cfabric.rmbprice}</td>
+           <td><span ectype="inline_edit" fieldname="sort" fieldid="{$cfabric.CODE}" datatype="pint" maxvalue="255" title="{$lang.editable}" class="editable" >{$cfabric.sort}</span></td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $f_list}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.mySelect').change(function() {
+			var sval = $(this).children('option:selected').val();//这就是selected的值 
+			 var fid = $(this).attr("data-fid");
+		    var url = '/mfd/index.php?app=cfabric&act=ajax_col';
+		    $.getJSON(url, {'value':sval, 'column':'VCOMPOSITIONID','id':fid}, function(data){
+		    });
+		})
+		$('.mySelectt').change(function() {
+			var sval = $(this).children('option:selected').val();//这就是selected的值 
+			 var fid = $(this).attr("data-fid");
+		    var url = '/mfd/index.php?app=cfabric&act=ajax_col';
+		    console.log(sval);
+		    console.log(fid);
+		    console.log(url);
+		    $.getJSON(url, {'value':sval, 'column':'tags','id':fid}, function(data){
+		    });
+		})
+			$('.mySelects').change(function() {
+			var sval = $(this).children('option:selected').val();//这就是selected的值 
+			 var fid = $(this).attr("data-fid");
+		    var url = '/mfd/index.php?app=cfabric&act=ajax_col';
+		    $.getJSON(url, {'value':sval, 'column':'mstyle','id':fid}, function(data){
+		    });
+		})
+	})
+</script>
+{include file="footer.html"}

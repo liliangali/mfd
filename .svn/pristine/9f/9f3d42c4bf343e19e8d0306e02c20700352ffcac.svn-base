@@ -1,0 +1,98 @@
+{include file=header.html}
+<html>
+<head>
+<meta charset="utf-8">
+<!-- disable iPhone inital scale -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>麦富迪</title>
+<link type="text/css" href="../../static/css/expert_designer.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+
+      <div class="grid">
+
+          <figure class="effect-layla">
+              <img src="../../static/img/xsl-pic2.jpg">
+              <figcaption>
+                  <h2>Crazy <span>Layla</span></h2>
+                  <p>When Layla appears, she brings an eternal summer along.</p>					
+              </figcaption>			
+          </figure>
+          
+          <figure class="effect-layla">
+             <img src="../../static/img/xsl-pic2.jpg">
+              <figcaption>
+                  <h2>Crazy <span>Layla</span></h2>
+                  <p>When Layla appears, she brings an eternal summer along.</p>					
+              </figcaption>			
+          </figure>
+          
+          <figure class="effect-layla">
+              <img src="../../static/img/xsl-pic2.jpg">
+              <figcaption>
+                  <h2>Crazy <span>Layla</span></h2>
+                  <p>When Layla appears, she brings an eternal summer along.</p>					
+              </figcaption>			
+          </figure>
+          
+          <figure class="effect-layla">
+              <img src="../../static/img/xsl-pic2.jpg"/>
+              <figcaption>
+                  <h2>Crazy <span>Layla</span></h2>
+                  <p>When Layla appears, she brings an eternal summer along.</p>					
+              </figcaption>			
+          </figure>
+          
+          <figure class="effect-layla">
+              <img src="../../static/img/xsl-pic2.jpg" alt="img04"/>
+              <figcaption>
+                  <h2>Crazy <span>Layla</span></h2>
+                  <p>When Layla appears, she brings an eternal summer along.</p>					
+              </figcaption>			
+          </figure>
+          
+          <figure class="effect-layla">
+              <img src="../../static/img/xsl-pic2.jpg">
+              <figcaption>
+                  <h2>Crazy <span>Layla</span></h2>
+                  <p>When Layla appears, she brings an eternal summer along.</p>					
+              </figcaption>			
+          </figure>
+
+          <figure class="effect-layla">
+              <img src="../../static/img/xsl-pic2.jpg"/>
+              <figcaption>
+                  <h2>Crazy <span>Layla</span></h2>
+                  <p>When Layla appears, she brings an eternal summer along.</p>					
+              </figcaption>			
+          </figure>
+          
+          <figure class="effect-layla">
+              <img src="../../static/img/xsl-pic2.jpg" alt="img04"/>
+              <figcaption>
+                  <h2>Crazy <span>Layla</span></h2>
+                  <p>When Layla appears, she brings an eternal summer along.</p>					
+              </figcaption>			
+          </figure>
+          
+          <figure class="effect-layla">
+              <img src="../../static/img/xsl-pic2.jpg">
+              <figcaption>
+                  <h2>Crazy <span>Layla</span></h2>
+                  <p>When Layla appears, she brings an eternal summer along.</p>					
+              </figcaption>			
+          </figure>
+          
+      </div>
+      
+  </div>
+
+
+{include file=footer.html}
+</body>
+
+</html>
+

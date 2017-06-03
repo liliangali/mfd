@@ -1,0 +1,1 @@
+ALTER TABLE `cf_cart` ADD `favorable_id` INT(11) NOT NULL DEFAULT '0' COMMENT '”≈ª›∑Ω∞∏' AFTER `is_try`; 

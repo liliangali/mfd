@@ -1,0 +1,16 @@
+{if $id == 1}
+<select name="source_id" class="source_id" id="source_id" data-type="{$id}">
+    <option value="">请选择..</option>
+    {foreach from=$list item=lst}
+    <option value="{$lst.md_id}">SN-{$lst.md_sn}</option>
+    {/foreach}
+</select>
+{else}
+<select name="source_id" class="source_id" id="source_id" data-type="{$id}">
+    <option value="">请选择..</option>
+    {foreach from=$list item=lst}
+    <option value="{$lst.figure_sn}">{$lst.customer_name}</option>
+    {/foreach}
+    {* html_options options=$cft.list  selected="" *}
+</select>
+{/if}

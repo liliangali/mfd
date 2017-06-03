@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>coolette mobile</title>
+<link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="static/css/layer.css" media="screen">
+<link rel="stylesheet" href="static/css/mobiscroll.date.css">
+<script>window.onunload=function(){};</script>
+</head>
+
+<body>
+
+<div class="main"> 
+ <div class="bzcmsg">
+ <form method="post"  data-id="2">
+  <ul class="yysmlt" style="margin-top:20px;">
+   <li class="jj_box">
+   <img src="../../../../../../static/img/csxt_2.gif" class="csxt">
+        <span>服务地区：</span>
+        <font class="jj_1">
+        <select name="data[region_id]" id="region_id">
+        <option>请选择</option>
+        {foreach from=$regions item=item}
+        <option value="{$item.region_id}" {if $data.region_id == $item.region_id} selected {/if}>{$item.region_name}</option>
+        {/foreach}
+        </select>
+        </font>
+   </li>
+   <!-- <li class="jj_box"><span>详细地址：</span><font class="jj_1"><input type="text" value="{$data.addr}" name="data[addr]"></font></li> -->
+   <li class="jj_box"><span>真实姓名：</span><font class="jj_1"><input type="text" value="{$data.realname}" name="data[realname]"></font></li>
+   <li class="jj_box">
+   <img src="../../../../../../static/img/csxt_2.gif" class="csxt">
+        <span>性　　别：</span>
+        <font class="jj_1">
+        <select name="data[gender]" id="gender"> 
+        <option value="">请选择</option>
+        <option value="10040" {if $data.gender == '10040'} selected {/if}>男</option>
+        <option value="10041" {if $data.gender == '10041'} selected {/if}>女</option>
+        </select>
+        </font>
+   </li>
+   <li class="jj_box"><span>手机号码：</span><font class="jj_1"><input type="tel" maxlength="11" value="{$data.phone}" name="data[phone]"></font></li>
+   <li class="jj_box">
+   <img src="../../../../../../static/img/rltu.jpg" class="rltu">
+       <span>预约时间：</span>
+       <font class="srb jj_1">
+		<div id="Jdate" class="date-layer"></div>
+	    <input type="text" placeholder="请选择" name="data[time]" value="{$data.time}" id="demo_date">
+       </font>
+   </li>
+   <li class="jj_box" style="border-bottom:0;">
+   <img src="../../../../../../static/img/csxt_2.gif" class="csxt">     
+        <span>量体时段：</span>
+        <font class="jj_1">
+        <select id="Jdata2" name="data[time_noon]">
+			<option value="">请选择</option>
+			<option value="am" {if $data.time_noon == 'am'} selected {/if}>上午</option>
+			<option value="pm" {if $data.time_noon == 'pm'} selected {/if}>下午</option>
+	    </select>
+        </font>
+   </li>
+  </ul> 
+   <h1 class="fwmd" style="margin-top:20px;">选择体验店：</h1>
+   <div class="shrxx" style="width:100%;">
+     <ul id="serverlist">
+
+     </ul>
+    </div>
+    <input type="hidden" name="data[server_id]" value="{$data.server_id}" id="server_id" />
+  <input type="button" value="确 定" class="xiayb saveMea">
+  </form>
+ </div>
+</div>
+<script src="static/js/jquery-1.8.3.min.js"></script>
+<script src="static/js/jquery.form.js"></script>
+<script src="static/js/layer.m.js"></script>
+<script src="static/js/mobiscroll.date.js"></script>
+<script>
+$(function () {
+	function setdate(d){
+		$('#demo_date').mobiscroll().date({
+			theme: 'android', 
+			mode: 'scroller',
+			display: 'modal',
+			lang: 'zh',
+			minDate:d,
+			maxDate:(function(){
+				var date=new Date()
+					date.setMonth(date.getMonth()+1);
+				return date	
+			})()
+		});
+	}
+	$('#Jdate').click(function(){
+		var date=new Date();
+		if($('#Jdata2').val()=='am'||date.getHours()>=12){
+			date.setDate(date.getDate()+1);	
+		}
+		setdate(date);
+		$('#demo_date').click()
+	});
+	//abcd
+	$('#Jdata2').focus(function(){
+		var date=new Date(),
+			date2=new Date($('#demo_date').val()),
+			arr=[[],[],[]];
+			arr[0].push(date.getMonth());
+			arr[0].push(date.getDate());
+			arr[1].push(date2.getMonth());
+			arr[1].push(date2.getDate());
+			arr[2].push(date.getHours());
+			if(arr[0].join()==arr[1].join()){
+				$('#Jdata2')[0].options[1].disabled=true
+				if(arr[2]>=12){
+					$('#Jdata2')[0].options[2].disabled=true
+				}
+			}else{
+				$('#Jdata2')[0].options[1].disabled=false;
+				$('#Jdata2')[0].options[2].disabled=false;	
+			}
+	})
+});
+</script>
+<script type="text/javascript">
+$(function(){
+    var _id = "2";
+    var region_id = "{$data.region_id}"; 
+    var server_id = "{$data.server_id}";
+    if(region_id && server_id)
+    getServers(region_id,server_id);
+    
+    $('.saveMea').unbind().bind('click',function(){
+        var _oj = $(this).parent('form');
+        meaSave(_oj)
+    })
+    
+    $('#region_id').unbind().bind('change',function(){
+	    var region_id = $(this).val();
+	    getServers(region_id)
+	})
+	
+})
+
+function _alert(msg){
+    layer.open({
+        content: '<p style="text-align:center">'+msg+'</p>',
+        btn: ['确定'],
+    }); 
+}
+
+function meaSave(_oj){
+    var _id = _oj.data('id');
+    _oj.ajaxSubmit({
+        type:"post",
+        data:{id:_id},
+        dataType:"json",
+        url:"{link app=cart act=meaSave}?time="+ (new Date()).getTime(),
+        //beforeSubmit:function(formData,jqForm,options){return _oj.valid();},
+        success:function (res,statusText) {
+            if(res.done == false){
+                   _alert(res.msg);
+            }else{
+            	history.go(-2)
+            	return false;
+                location.href="{link app=cart act=checkout}";
+            }
+        }
+    });
+}
+
+function getServers(region_id,server_id){
+    $.post("{link app=cart act=getServer}",{region_id:region_id,server_id:server_id}, function(res){
+        var res = $.parseJSON(res);
+        if(res.done == true){
+            $("#serverlist").html(res.retval.content);
+            $('.server_li').unbind().bind('click',function(){
+                $("#server_id").val($(this).data('id'));
+                $('.server_li').removeClass('on');
+                $(this).addClass('on');
+            })
+        }
+    })
+}
+</script>
+</body>
+</html>
+
+

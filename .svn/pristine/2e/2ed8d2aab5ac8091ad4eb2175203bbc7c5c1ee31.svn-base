@@ -1,0 +1,75 @@
+<table width="745" frame="void" rules="none" cellspacing="0" border="0" class="ddxxtab">
+      <tr class="ddxxfist">
+        <td>客户姓名</td>
+        <td>量体日期</td>
+        <td>门店</td>
+        <td>量体师</td>
+        <td>服务</td>
+      </tr>
+      <tr>
+        <td>{$aData.realname}</td>
+        <td>{$aData.modi_time|date:Y-m-d}&nbsp;&nbsp;{if $aData.time_noon eq "am"}上午{else}下午{/if}</td>
+        <td>{$sData.serve_address}</td>
+        <td>{$aData.liangti_name}</td>
+        <td>{$slang.$aData.liangti_state}</td>
+      </tr>
+    </table>
+    <table width="745" border="0" class="ddxxltsj">
+        <tr>
+          <td>领围：{$aData.lw} CM</td>
+          <td>臀围：{$aData.tw} CM</td>
+          <td>右袖长：{$aData.yxc} CM</td>
+          <td>后衣长：{$aData.hyc} CM</td>
+          <td>后腰高：{$aData.hyg} CM</td>
+        </tr>
+        <tr>
+          <td>后腰节长：{$aData.hyjc} CM</td>
+          <td>左裤长：{$aData.zkc} CM</td>
+          <td>胸围：{$aData.xw} CM</td>
+          <td>上臂围：{$aData.sbw} CM</td>
+          <td>左袖长：{$aData.zxc} CM</td>
+        </tr>
+        <tr>
+          <td>腰围：{$aData.yw} CM</td>
+          <td>前腰高：{$aData.qyg} CM</td>
+          <td>前腰节：{$aData.qyj} CM</td>
+          <td>右裤长：{$aData.ykc} CM</td>
+          <td>后腰高：{$aData.hyg} CM</td>
+        </tr>
+        <tr>
+          <td>中腰围：{$aData.zyw} CM</td>
+          <td>总肩宽：{$aData.zjk} CM</td>
+          <td>前肩宽：{$aData.qjk} CM</td>
+          <td>通挡：{$aData.td} CM</td>
+          <td>裤口：{$aData.jk} CM</td>
+        </tr>
+        <tr>
+          <td>上衣左袖长：{$aData.syzxc} CM</td>
+          <td>衬衣左袖长：{$aData.cyzxc} CM</td>
+          <td>大衣左袖长：{$aData.dyzxc} CM</td>
+          <td>上衣右袖长：{$aData.syyxc} CM</td>
+          <td>衬衣右袖长：{$aData.cyyxc} CM</td>
+        </tr>
+        <tr>
+          <td>大衣右袖长：{$aData.dyyxc} CM</td>
+          <td>上衣后衣长：{$aData.syhyc} CM</td>
+          <td>衬衣后衣长：{$aData.cyhyc} CM</td>
+          <td>大衣后衣长：{$aData.dyhyc} CM</td>
+          <td></td>
+        </tr>
+      </table>
+      <table width="745" border="0" class="ddxxtsx">
+        <tr>
+          <td>特殊体型</td>
+          <td>肚子：{$bodytypes.$aData.body_type_24}</td>
+          <td>手臂：{$bodytypes.$aData.body_type_25}</td>
+          <td>臀：{$bodytypes.$aData.body_type_26}</td>
+          <td>左肩：{$bodytypes.$aData.body_type_19}</td>
+          <td>右肩：{$bodytypes.$aData.body_type_20}</td>
+          <td>着装风格：</td>
+          <td>{foreach from=$bodys item=body}
+             {$body} 
+          {/foreach}
+          </td>
+        </tr>
+      </table>

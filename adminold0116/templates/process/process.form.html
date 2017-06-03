@@ -1,0 +1,242 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#process_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {    
+            title : {
+                required : true
+            },
+            cate_id :{
+                required : true
+            },
+            link    :{
+                url     : true
+            },
+            sort_order:{
+               number   : true
+            }
+        },
+        messages : {
+            title : {
+                required : '{$lang.title_empty}'
+            },
+            cate_id : {
+                required : '{$lang.cate_empty}'
+            },
+            link    : {
+                url     : '{$lang.link_limit}'
+            },
+            sort_order  : {
+                number   : '{$lang.number_only}'
+            }
+        }
+    });
+});
+
+var shops = {$shops};
+
+</script>
+{$build_editor}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=process">{$lang.manage}</a></li>
+        {if $process.process_id}
+        <li><a class="btn1" href="index.php?app=process&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+        <li><a class="btn1" href="index.php?app=pcategory&amp;act=index">{$lang.pcategory}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="process_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    {$lang.title}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="title" type="text" name="title" value="{$process.title|escape}" />
+                </td>
+            </tr>
+            <!--{if !$process.code}-->
+            <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">{$lang.category}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="cate_id" name="cate_id"><option value="">{$lang.select_pls}</option>{html_options options=$parents selected=$process.cate_id}</select>
+                </td>
+            </tr>
+            
+           <!--             <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">商品分类:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="parent_id" name="goods_cat">
+                    <option value="0">{$lang.select_pls}</option>
+                     {html_options options=$cat_list selected=$process.goods_cat}
+                    </select>
+                </td>
+            </tr>
+            
+           <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">所属商铺:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="city_id" name="city_id" onchange="selectShop(this)"><option value="">{$lang.select_pls}</option>{html_options options=$city_list selected=$process.city_id}</select>
+                      <select id="shop_id" name="shop_id">
+                    <option value="0">请选择商铺:</option>
+                    {html_options options=$site_list selected=$process.shop_id}
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    {$lang.link}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="link" type="text" name="link" value="{$process.link|escape}" />
+                </td>
+            </tr>
+			-->
+            <tr>
+                <th class="paddingT15">
+                    <label for="if_show">{$lang.if_show}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="if_show" value="1" {if $process.if_show eq 1} checked="checked"{/if} />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="if_show" value="0" {if $process.if_show eq 0} checked="checked"{/if} />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="sort_order" type="text" name="sort_order" value="{$process.sort_order}" />
+                </td>
+            </tr>
+            <!--{/if}-->
+            <tr>
+                <th class="paddingT15">
+                    <label for="process">{$lang.content}:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="process" name="content" style="width:650px;height:400px;">{$process.content|escape}</textarea>
+                </td>
+            </tr>
+         <!-- <tr>
+                <th class="paddingT15" valign="top">
+                    <label for="parent_id">商品链接:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="cat"><option value="0">{$lang.select_pls}</option></select>
+                  商品名称:<input type="text" name="goods_name"> <input type="button" name="but" value="{$lang.search}" onclick="searchGoods(this)">
+                    <select name="goods_id" id="goodsid">
+                        <option value=0>{$lang.pls_select_goods}</option>
+                    </select>
+                    <input type="button" name="bt" value="{$lang.add}" onclick=selectGoods(this)>
+                    <ul style="clear:both;list-style:none;" id="goods_list">
+                    {foreach from=$goods_list item=goods}
+                        <li><input type="checkbox" value="{$goods.goods_id}" name="ids[]" checked=true> {$goods.goods_name}</li>
+                    {/foreach}
+                    </ul>
+                    </td>
+                    
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    <label for="process">上传:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="file" name="cover_pic">
+                   {if $process.cover_img}
+                      <img src="../upload/process/{$process.cover_img}" width="50" height="50">
+                   {/if}
+                </td>
+            </tr>-->
+            
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<script>
+function selectShop(obj){
+	var city = obj.value;
+	$("#shop_id").empty().append("<option value=0>{$lang.select_pls_shop}</option>");
+    $.each(shops, function(k, v){
+        if(k == city){
+           $.each(v,function(ki,vi){
+        	   $("#shop_id").append("<option value='"+ki+"'>"+vi+"</option>");
+           })
+        }
+    });
+}
+
+function loadChild(obj)
+{
+    var value = obj.value;
+    $.get("index.php?app=gcategory",{act:"loadAttr",type:value}, function(res){
+ 	     var res = eval("("+res+")");
+  	    $(obj).next("select").empty().append('<option value="0">{$lang.select_attr}</option>');
+  	    for(var i = 0 ; i<res.retval.length;i++){
+    	     $(obj).next("select").append("<option value='" + res.retval[i].id +"'>" + res.retval[i].name + "</option>");
+  	    }
+    })    
+}
+
+function searchGoods(obj)
+{
+    	var catid = $(obj).parents("td").children("select").val();
+    	var goods_name = $(obj).parents("td").children("input").val();
+    	
+    	if(!catid && goods_name.length ==0){
+ 		    alert('{$lang.alert_catandgoods}');
+ 		    return false;
+        }
+        
+    	$.get("index.php?app=gcategory",{act:"loadGoods", catid:catid, name:goods_name}, function(res){
+  		    var res = eval("("+ res +")");
+  		    if(res.retval.length > 0){
+    		      var opt = '';
+    		      for(var i=0;i<res.retval.length;i++){
+   		    	      opt += "<option value='"+res.retval[i].id+"'>"+res.retval[i].name+"</option>"
+        		  }
+    		      $("#goodsid").empty().append(opt);
+  	  		}else{
+  	  	  		$("#goodsid").empty().append("<option value=0>-={$lang.nogoods}=-</option>")
+  	  	  	}
+        })
+}
+
+function selectGoods()
+{
+	var ObjGoods = $("#goods_list");
+	var goodsId = $("#goodsid");
+	var msg = '';
+	ObjGoods.find("input").each(function(){
+	    if($(this).val() == goodsId.val()){
+	        msg = '{$lang.goods_exist}';
+		}
+	})
+	
+	if(msg)
+	{
+	    alert(msg);
+	    return false;
+	}	
+   ObjGoods.append("<li><input type='checkbox' checked='true' name='ids[]' value='"+goodsId.val()+"'> "+goodsId.find("option:selected").text()+"</li>");
+}
+
+</script>
+{include file="footer.html"}

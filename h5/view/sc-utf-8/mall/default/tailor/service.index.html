@@ -1,0 +1,29 @@
+{include file=tailor/tailor.header.html}
+<div class="w">
+  <div class="clearfix" id="fixedBox">
+{include file=tailor/tailor.menu.html}
+    <div class="AreaR fr">
+    	<div class="title">
+        <div class="line"></div>
+        <h2 class="tit">案例欣赏</h2>
+        <p class="depict">在这里有最优秀的裁缝，最丰富的面料，最好的工艺，最高的性价比，让定制不再奢侈！</p>
+      </div>
+      	<ul>
+        <!--{foreach from=$store_service item=s}-->
+        <li style="border:1px solid rgb(221, 221, 221);display: inline;float: left;margin: 0 0 25px 30px;overflow:hidden;width: 900px;">
+          <div style="width:600px;float:left;">
+          <ul>
+          <!--{foreach from=$s.storephoto item=storephoto}-->
+          <li style="text-align:center;"><img src="{$storephoto.url}"></li>
+          <!--{/foreach}-->
+          </ul>
+          </div>
+          <div style="color: #626262;float: right;font-size: 14px; line-height: 22px;overflow: hidden;padding: 15px 20px 15px 5px;width:270px;"><p>{$s.description}</p></div>           
+        </li>
+        <!--{/foreach}-->
+        </ul>
+
+    </div>
+  </div>
+</div>
+{include file="footer.html"}

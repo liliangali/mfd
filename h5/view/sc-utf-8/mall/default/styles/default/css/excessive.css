@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+
+.excessive_box{width:1000px; margin:0 auto; position:relative;}
+.banner_box{width:1000px; margin:0 auto; overflow:hidden; margin-top:20px;}
+.banner_box .but-img{height:124px;}
+.banner_boxx{width:1000px; margin:30px auto 50px auto; overflow:hidden;}
+.banner_boxx img{width:1000px; height:100px; float:left;}
+.banner_box3{width:1000px; margin:0 auto; overflow:hidden; margin-top:20px;}
+.banner_box3 img{width:1000px; height:105px; float:left;}
+
+
+.buy_but_box{width:1000px; background:url(../images/gdbg1.jpg); height:74px; text-align:center; padding-top:20px;}
+
+.banner_box2{margin-top:20px;}
+.gdbg1-box{width:1000px; background:url(../images/gdbg1.jpg); padding:20px 0 0 0;}
+.exce-box-bg{width:960px; margin:0px auto 0 auto; background:url(../images/gdbg2.png);}
+.exc-tu1{padding:14px 0 0 29px; float:left;}
+.gsys{float:left; width:579px; color:#fff; margin-left:52px; padding-top:10px;}
+.gsys p{font-size:14px; color:#eeeeee; line-height:24px;}
+.gsystu{padding-bottom:20px;}
+.jtjj{width:960px; padding-top:30px;}
+.jtjjtu{padding:0 0 22px 20px;}
+.jtjj p{font-size:14px; color:#eeeeee; line-height:24px; padding:0 29px 0 40px;}
+.gstu{width:920px; height:365px; margin:25px auto 0 auto; padding-bottom:20px;}
+.exc-box2{width:960px; background:url(../images/gdbg2.jpg); margin:20px auto 0 auto;  padding-bottom:36px;}
+.jmzctu{padding:26px 0 0 20px; }
+.gd-title{display:block; width:97px; height:43px; line-height:40px; padding-left:25px; background:url(../images/gdbg3.gif); 
+font-size:16px; color:#fff; margin:38px 0 0 37px;}
+.jmzc p{line-height:28px; font-size:14px; padding:0 20px 0 66px;}

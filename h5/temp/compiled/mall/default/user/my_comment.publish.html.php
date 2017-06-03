@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<?php echo $this->_var['page_seo']; ?>
+<link rel="stylesheet" type="text/css" href="/static/css/mobile_style.css">
+<link href="public/static/wap/css/slx_style.css" rel="stylesheet" />
+
+<script type="text/javascript" src="/diy/js/jquery-1.8.3.min.js"></script>
+<style>
+
+
+
+
+#code{float:left; margin-left:-1px; margin-bottom:-999em; padding-bottom:999em;}
+#effect{float:right; margin-right:-1px; margin-bottom:-999em; padding-bottom:999em;}
+
+#footer{line-height:1.4; font-size:12px; padding:15px 0; border-top:1px solid #486aaa; font-family:'Lucida Grande',Verdana, Sans-Serif; text-align:center; text-shadow:1px 1px #cad5eb;}
+#footer:before{display:block; height:1px; content:''; background-color:#909BAF; color:#aaa; overflow:hidden; position:relative; top:-15px;}
+#footer img{margin-bottom:-3px;}
+.show{padding-bottom:20px;}
+.show h5{font-size:13px; line-height:20px; padding:10px 0 2px 2px; margin:0 0 0 8px;}
+.demo{padding:10px 12px; *zoom:1;}
+.demo:after{display:table; content:""; clear:both;}
+pre{
+  font:14px/1.3 Consolas, Monaco, monospace;
+  padding:5px 10px;
+  margin:0;
+  white-space:pre-wrap;
+  word-wrap:break-word;
+}
+#ad {display:block!important; text-align:center;}
+.ad {height:60px; position: absolute; top: 0; right: 0; left: 250px; text-align:right; overflow:hidden;}
+@media screen and (max-width: 700px) {
+   .ad {display: none;}
+}
+
+
+.article{font-family:Arial; padding:10px 0; font-size:12px; clear:both;}
+.article_new{margin:-31px 10px 0 0; line-height: 20px; font-family:Arial; padding:5px 0; font-size:12px; clear:both; text-align:right;}
+.article_new a {display: inline-block;}
+#back{line-height:40px;margin-top:-40px; position:absolute; right:0; padding: 0 10px 0 13px; font-size: 12px; background-color: #fff;}
+
+.upload_box{padding:10px 0 70px 0;}
+.upload_main{position:relative; width:100%;}
+.upload_choose{width:54px; height:54px; position:relative;}
+.upload_choose input[type="file"] {width:54px; height:54px; position:absolute; top:0; left:0; z-index:10; opacity:0; cursor:pointer;}
+.upload_img {width:52px; height:52px; border:1px dashed #ccc; position:relative; background:#fff;}
+.upload_img:after {content:''; width:24px; height:2px; background:#ccc; display:block; position:absolute; left:14px; top:25px;}
+.upload_img:before {content:''; width:2px; height:24px; background:#ccc; display:block; position:absolute; left:25px; top:14px;}
+
+.upload_drag_area{display:inline-block; width:60%; padding:4em 0; margin-left:.5em; border:1px dashed #ddd; background:#fff url(./drag.png) no-repeat 20px center; color:#999; text-align:center; vertical-align:middle;}
+.upload_drag_hover{border-color:#069; box-shadow:inset 2px 2px 4px rgba(0, 0, 0, .5); color:#333;}
+.upload_preview{overflow:hidden; _zoom:1;}
+.upload_append_list{height:54px; float:left; position:relative; width:54px; margin-right:10px;}
+.upload_append_list:nth-child(5) {margin-right:0;}
+.upload_append_list img {width:54px; height:54px;}
+
+.upload_delete {background:rgba(0,0,0,0.6); width:16px; height:16px; position:absolute; top:0; right:0; text-indent:9999px;}
+
+.upload_delete:before{content:''; display:block; width:12px;height:1px; background:#fff; -webkit-transform: rotate(45deg); position:absolute; top:7px; left:2px;}
+.upload_delete:after{content:'';display:block;width:12px;height:1px; background:#fff ;-webkit-transform: rotate(-45deg); position:absolute; top:7px; left:2px;}
+
+
+
+.upload_submit{padding-top:1em; padding-left:1em;}
+.upload_submit_btn{display:none; height:32px; font-size:14px;}
+.upload_loading{height:250px; background:url(/study/image/preload.gif) no-repeat center;}
+.upload_progress{display:none; padding:5px; border-radius:10px; color:#fff; background-color:rgba(0,0,0,.6); position:absolute; left:25px; top:45px;}
+.upload_inf {color:#999; font-size:12px; padding-top:15px;}
+</style>
+ 
+</head>
+<body>
+
+<header class="hdtop topBar">
+	<div class="edit fl">
+		<p class="p1" onclick='history.go(-1)'><img src="public/static/wap/images/tw_03.png"></p>
+
+		<p class="p2"><?php echo $this->_var['title']; ?></p>
+	</div>
+</header>
+
+
+<div id="main">
+
+
+	<div class="impression c_bs">
+		<ul class="jj_1">
+			<?php $_from = $this->_var['impress']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'im');$this->_foreach['im'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['im']['total'] > 0):
+    foreach ($_from AS $this->_var['key'] => $this->_var['im']):
+        $this->_foreach['im']['iteration']++;
+?>
+			<li class="c_bs <?php if ($this->_var['im']['on']): ?>pfcur<?php endif; ?>"><span><?php echo $this->_var['im']['impress_name']; ?></span></li>
+			<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+		</ul>
+	</div>
+
+	<div id="star" class="jj_box c_bs">
+		<p class="btxxh">评分：</p>
+		<ul data-num="<?php echo ($this->_var['star'] == '') ? '3' : $this->_var['star']; ?>">
+			<li class="on" <?php if ($this->_var['star'] >= 1): ?>class='on'<?php endif; ?>><a href="javascript:;">1</a></li>
+			<li class="on" <?php if ($this->_var['star'] >= 2): ?>class='on'<?php endif; ?>><a href="javascript:;">2</a></li>
+			<li class="on" <?php if ($this->_var['star'] >= 3): ?>class='on'<?php endif; ?>><a href="javascript:;">3</a></li>
+			<li class="on" <?php if ($this->_var['star'] >= 4): ?>class='on'<?php endif; ?>><a href="javascript:;">4</a></li>
+			<li class="on" <?php if ($this->_var['star'] >= 5): ?>class='on'<?php endif; ?>><a href="javascript:;">5</a></li>
+		</ul>
+	</div>
+
+	<input type="hidden" id="siteurl" value="<?php echo $this->_var['siteurl']; ?>"/>
+	
+	<div class="xd"><textarea class="c_bs" name="content" id="content" cols="" rows="" placeholder="输入你对麦富迪高端定制的评论内容，分享给大家吧！"><?php echo $this->_var['content']; ?></textarea></div>
+
+	<form id="uploadForm" action="<?php echo $this->build_url(array('app'=>'my_comment','act'=>'uploadimg')); ?>" method="post" enctype="multipart/form-data">
+		<div class="demo">
+
+			<div class="upload_box">
+				<div class="upload_main jj_box">
+
+					<div id="preview" class="upload_preview"></div>
+
+					<div class="upload_choose">
+						<input id="fileImage" type="file" size="30" name="fileselect[]" multiple="">
+						<p class="upload_img"></p>
+					</div>
+
+				</div>
+
+
+				<div id="uploadInf" class="upload_inf">最大支持5张，且每张不能超过5M</div>
+			</div>
+
+		</div>
+
+		<input type="button" value="提 交" id="fileSubmit" class="ltbut coment_pinglun"/>
+
+	</form>
+
+
+
+</div>
+
+<script src="/public/static/wap/js/zxxFile.js"></script>
+<script src="/public/static/wap/js/jquery.js"></script>
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/static/wap/js/usercenter.js"></script>
+<script src="public/static/wap/js/public.js"></script>
+	
+<script>
+var params = {
+	fileInput: $("#fileImage").get(0),
+	dragDrop: $("#fileDragArea").get(0),
+	upButton: $("#fileSubmit").get(0),
+	url: $("#uploadForm").attr("action"),
+
+	filter: function(files) {
+		var arrFiles = [];
+		for (var i = 0, file; file = files[i]; i++) {
+			if (file.type.indexOf("image") == 0) {
+				if (file.size >= 5242900) {
+					alert('您这张"'+ file.name +'"图片大小过大，应小于5M');	
+				} else {
+					arrFiles.push(file);	
+				}			
+			} else {
+				alert('文件"' + file.name + '"不是图片。');	
+			}
+		}
+		return arrFiles;
+	},
+	onSelect: function(files) {
+		alert(33)
+		var html = '', i = 0;
+		$("#preview").html('<div class="upload_loading"></div>');
+		var funAppendImage = function() {
+			file = files[i];
+			if (file) {
+				var reader = new FileReader()
+				reader.onload = function(e) {
+					html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p>'+
+						'<a href="javascript:" class="upload_delete" title="X" data-index="'+ i +'">X</a>' +
+						'<img id="uploadImage_' + i + '" src="' + e.target.result + '" class="upload_image" style="width:54px;height:54px;" /></p>'+
+						'<span id="uploadProgress_' + i + '" class="upload_progress"></span>' +
+						'<input name="gallery[]" type="hidden" value="' + e.target.result + '"/>'+
+					'</div>';
+					i++;
+					
+					funAppendImage();
+
+				}
+				reader.readAsDataURL(file);
+			} else {
+				$("#preview").html(html);
+				if (html) {
+					//删除方法
+					$(".upload_delete").click(function() {
+						ZXXFILE.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
+						return false;	
+					});
+					//提交按钮显示
+					$("#fileSubmit").show();	
+				} else {
+					//提交按钮隐藏
+					$("#fileSubmit").hide();	
+				}
+			}
+		};
+		funAppendImage();		
+	},
+	onDelete: function(file) {
+		alert(444)
+		$("#uploadList_" + file.index).fadeOut();
+	},
+	onDragOver: function() {
+		$(this).addClass("upload_drag_hover");
+	},
+	onDragLeave: function() {
+		$(this).removeClass("upload_drag_hover");
+	},
+	onProgress: function(file, loaded, total) {
+		var eleProgress = $("#uploadProgress_" + file.index), percent = (loaded / total * 100).toFixed(2) + '%';
+		eleProgress.show().html(percent);
+	},
+	onSuccess: function(file, response) {
+		if($("#uploadInf li").size() <5){
+		$("#uploadInf").append("<li style='display:none;'><img src=" + response + " style='width:54px;height:54px;'  /><div onclick=drop_gallery(this)>X</div><input type='hidden' name='gallery[]' value=" + response + " /></li>");
+		}
+		if($("#uploadInf li").size() >=5){
+	    	$('.upload_choose').hide();
+	    }
+	},
+	onFailure: function(file) {
+		$("#uploadInf").append("<p>图片" + file.name + "上传失败！</p>");	
+		$("#uploadImage_" + file.index).css("opacity", 0.2);
+	},
+	onComplete: function() {
+		
+		 var id="<?php echo $this->_var['args']['0']; ?>"
+         var type="<?php echo $this->_var['args']['1']; ?>"
+        cotteFn.amount110(id,type)
+       //提交按钮隐藏
+		//$("#fileSubmit").hide();
+		//file控件value置空
+		//$("#fileImage").val("");
+		//$("#uploadInf").append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
+	}
+};
+ZXXFILE = $.extend(ZXXFILE, params);
+ZXXFILE.init();
+
+
+
+</script>
+<script>
+$(".ltbut").click(function(){
+	if(!$("#preview").html()){
+	         var id="<?php echo $this->_var['args']['0']; ?>"
+		     var type="<?php echo $this->_var['args']['1']; ?>"
+		     cotteFn.amount110(id,type)	
+
+	}
+	})
+    var id="<?php echo $this->_var['args']['0']; ?>"
+    var type="<?php echo $this->_var['args']['1']; ?>"
+    cotteFn.amount10(id,type)
+function drop_gallery(obj)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+    $(obj).parents('li').remove();
+    if($("#uploadInf li").size() <5){
+    	$('.upload_choose').show();
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+    <!--用户中心左菜单部分 START-->
+    {include file = member.menu.html}
+    <!--用户中心左菜单部分 END-->
+      <div class="cardright fr">
+		<div class="coolcard">
+        	<h4>我的酷卡</h4>
+            <div class="sens">
+                <div class="sensnr">
+                    <p class="code fl">请输入优惠券激活码</p>
+                    <input type="text" class="coput fl" name="sncode" id="sncode">
+                    <input type="button" value="确认激活" onclick="jh($('#sncode').val())" class="cobut fl">
+                </div>
+            </div>
+            <div class="explain">
+                <strong>使用说明</strong>
+                <p class="kksyword">1、此卡仅限于线上平台使用，当激活卡、券后，等额面值将进入到您的酷卡、优惠券账户，请在有效期内使用；<br>2、酷卡、优惠券仅用于购买正价商品，单次购物结算不找零、不退换、不挂失。</p>
+            </div>
+        </div>
+        <div class="history historys">
+        	<div class="obtain">
+                <dl>
+                    <dd><a href="{link app=kuka act=customer_kuka arg0=1 arg1=wjh}" {if $status eq 'wjh'} class="jfcolor"{/if}>未激活</a></dd>
+                    <dd><span></span></dd>
+                    <dd><a href="{link app=kuka act=customer_kuka arg0=1 arg1=yjh}" {if $status eq 'yjh'} class="jfcolor" {/if}>已激活</a></dd>
+                    <dd><span></span></dd>
+                    <dd><a href="{link app=kuka act=customer_kuka arg0=1 arg1=ygq}" {if $status eq 'ygq'} class="jfcolor" {/if}>已过期</a></dd>
+                </dl> 
+            </div>
+            <table width="100%" frame="void" rules="none" cellspacing="0" class="cyzwdkk">
+               <!--{if $info}-->
+                <tr class="kktab">
+                  <td width="160">酷卡</td>
+                  <td>编号</td>
+                  <td>过期时间</td>
+                  <td>操作</td>
+                </tr>
+                  <!--{foreach from=$info  name=kuka key=key item=item}-->
+                <tr class="kkbottom">
+                  <td>
+                  	<div {if $status eq 'ygq'} class="kkbj  kkbjs" {else} class="kkbj" {/if}>
+                        <p class="kkword">{$item.cate_name}</p>
+                        <p class="kkqian">￥{$item.work_num}</p>
+                    </div>
+                    <p class="kkzsxs"> {$item.donation_mes}</p>
+                  </td>
+                  <td class="kktongy">{$item.sn}</td>
+                  <td class="kktongy">{$item.expire_time}&nbsp;&nbsp;{if $item.day}(仅剩<span>{$item.day}</span>天）{/if}</td>
+                 <!--{if $item.is_used eq '1'}-->
+                 <td class="kktongy">已激活</td>
+                 <!--{else}-->
+                  <td class="kktongy"><a href="javascript:;" onclick="jh('{$item.sn}')"><button>激活</button></a></td>
+                  <!--{/if}-->
+                </tr>
+           <!--{/foreach}-->
+          <!--{else}-->   
+        <tr class="tr_th">
+                        <td style="line-height:10px;">
+                        	<div class="empty">
+                                <div>未匹配酷卡数据<p><br><br><a class="cc_btn s_btn" href="./">麦富迪首页</a></p></div>
+                            </div>
+                        </td>
+                    </tr>
+      <!--{/if}-->    
+          
+              </table>
+                {include file=member.page.bottom.html}
+        </div>
+    </div>
+</div>
+
+
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/global/jquery.swipe.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/user.js"></script>
+
+<script>
+	function jh(obj){
+	
+		$.post('/kuka-kuka.html',{sn:obj},function(res){
+			var res = eval("("+res+")");
+			if(res.done){
+				alert(res.retval.msg)
+				window.location.reload();
+			}else{
+				alert(res.msg)
+			}
+		});
+		
+	}
+
+    cotteFn.kuka()
+
+    //分享
+    window._bd_share_config = {
+        common : {
+            bdText : document.title,
+            bdDesc : '',
+            bdUrl : window.location.href,
+            bdPic : ''
+        },
+        share : [{
+            "bdSize" : 16
+        }]
+    }
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+{include file=../footer-new.html}
+
+
+</body>
+</html>

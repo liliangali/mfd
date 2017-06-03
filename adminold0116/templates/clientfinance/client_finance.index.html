@@ -1,0 +1,215 @@
+{include file="header.html"}
+<script type="text/javascript">
+	$(function() {
+		$('#user_form').validate({
+			errorPlacement : function(error, element) {
+				$(element).next('.field_notice').hide();
+				$(element).after(error);
+			},
+			success : function(label) {
+				label.addClass('right').text('OK!');
+			},
+			onkeyup : false,
+			rules : {
+			/* client_name : {
+				 	required : true,
+					 remote   : {
+				 		url :'index.php?app=client_finance&act=ajax_search_name',
+				 		type:'get',
+						data:{
+						  client_name : function()
+				 			{
+				 				return $('#client_name').val();
+				 			},                       
+				 		}, */
+				/* 	success:function(res){
+				    		if(res.done){
+				        		return true
+				       		 }else{
+				        		return false
+				       		}
+				     	 }
+				      } 
+				   },*/
+				time_to : {
+					/* 				time_from_exit:true, */
+					compare : true,
+				},
+			},
+			messages : {
+				/*             client_name : {
+				 required : '必填',
+				 remote   : '用户名不存在！'
+				 }, */
+				time_to : {
+				//compare:'截至时间必须大于初始时间',
+				}
+
+			}
+		});
+	});
+	jQuery.validator.addMethod("compare", function(value, element) {
+
+		var from = $("#time_from").val();
+		return value >= from;
+
+	}, "截至时间必须大于初始时间");
+	/* jQuery.validator.addMethod("time_from_exit", function(value, element) {   
+
+	 var from = $("#time_from").val();
+	 return from;
+
+	 }, "请选择初始时间"); */
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+		<!-- <li><a class="btn1" href="{$url}">返回</a></li>
+        <li><a class="btn1" href="index.php?app=client_finance&amp;act=export">导出</a></li> -->
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get" id="user_form">
+             <div class="left">
+                <input type="hidden" name="app" value="client_finance" />
+                <input type="hidden" name="act" value="index" />
+                用户：<input type="text" name="client_name" value="{$smarty.get.client_name}"/>
+                
+                <!-- <input type="hidden" name="user_id" value="{$user_id}"/> -->
+                时间从:<input class="queryInput2 Wdate" type="text" value="{$smarty.get.time_from}" style="width:150px" id="time_from" name="time_from" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                至：<input class="queryInput2 Wdate" type="text" value="{$smarty.get.time_to}" style="width:150px" id="time_to" name="time_to" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                <input type="submit" class="formbtn" name='submit' value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=client_finance&act=index">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {if $finance_list}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+
+        <tr class="tatr1">
+        	<td width="5%" class="firstCell"><input type="checkbox" class="checkall" />全选</td>
+            <td width="4%"><span ectype="order_by" fieldname="fyear">用户</span></td>
+            <td width="4%"><span ectype="order_by" fieldname="fmonth">起初余额</span></td>
+
+            <td width="4%"><span ectype="order_by" fieldname="fday">借方（发货）</span></td>
+            
+            <td width="15%"><span ectype="order_by" fieldname="order_sn">贷方（收款）</span></td>
+
+            <td width="30%"><span ectype="order_by" fieldname="abstract">期末余额</span></td>
+            <td width="10%">操作</td>
+
+        </tr>
+
+        <!--{foreach from=$finance_list item=finance}-->
+        <tr class="tatr2">
+        	<td class="firstCell"><input type="checkbox" class="checkitem" value="{$finance.user_id}" /></td>
+        	<td>{$finance.user_name}</td>
+        	<td>{$finance.start_balance}</td>
+        	<td>{$finance.expend|price}</td>
+        	<td style="color:green">{$finance.earning|price}</td>
+        	<td>{$finance.end_balance}</td>
+        	<td><a href="index.php?app=client_finance&amp;act=detail&amp;client_name={$finance.user_name}&amp;user_id={$finance.user_id}&amp;time_from={$smarty.get.time_from}&amp;time_to={$smarty.get.time_to}">查看明细账</a></td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}--> 
+    </table>
+    {if $finance_list}
+    <div id="dataFuncs">
+          <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+          	  <input type="checkbox" class="checkall" />全选
+	          <!-- <input class="formbtn" type="button" value="订单打印" onclick="print()" /> -->
+	          <input class="export_btn formbtn" data-type="all" type="button" value="导出检索订单" />
+	          <input class="export_btn formbtn" data-type="sel" type="button" value="导出所选订单" />
+	          <input type="hidden" id="conditions" value="{$conditions}">
+      	  </div>
+      	
+        <div class="pageLinks">       		 
+            {include file=page.bottom.html}
+            <span class="page mtr10">共{$count}笔交易，累计发生：发货{$expend_money|price}元，收款{$earning_money|price}元</span>
+        </div>
+    </div>
+    {/if}
+    <div class="clear"></div>
+</div>
+<script type="text/javascript">
+	//二级层
+	$('.dataTable .showInfo').click(function() {
+		var $this = $(this), obj = $this.parents('tr').next('tr');
+		if ($this.hasClass('show')) {
+			obj.hide();
+			$this.removeClass('show')
+		} else {
+			obj.show();
+			$this.addClass('show')
+		}
+	})
+
+	$('.export_btn').unbind().bind(
+			'click',
+			function() {
+				var _type = $(this).attr('data-type');
+				
+				if (_type == 'all') {
+					var _condi = '&type=client_finance_all';
+					$('.mrightTop').find('.fontl').find('input').each(
+							function() {
+								if ($(this).val() && $(this).attr('name')) {
+									if ($(this).attr('name') != 'app'
+											&& $(this).attr('name') != 'act' && $(this).attr('name')!='submit') {
+										_condi += '&' + $(this).attr('name')
+												+ '=' + $(this).val();
+									}
+								}
+							})
+				} else {
+					var ids = '';
+					$(".checkitem").each(function() {
+						if ($(this).attr("checked") == true) {
+							ids += ids ? "," + $(this).val() : $(this).val();
+						}
+					});
+
+					if (ids.length == 0) {
+						return false;
+					}
+					var _condi='&type=client_finance_all';
+					$('.mrightTop').find('.fontl').find('input').each(
+							function() {
+								if ($(this).val() && $(this).attr('name')) {
+									if ($(this).attr('name') != 'app'
+											&& $(this).attr('name') != 'act' && $(this).attr('name')!='submit') {
+										_condi += '&' + $(this).attr('name')
+												+ '=' + $(this).val();
+									}
+								}
+							})            		 _condi += '&user_ids=' + ids;
+				}
+			 
+				window.open("index.php?app=client_finance&act=export" + _condi);
+				return;
+			})
+
+	function print() {
+		var ids = '';
+		$(".checkitem").each(function() {
+			if ($(this).attr("checked") == true) {
+				ids += ids ? "," + $(this).val() : $(this).val();
+			}
+		});
+
+		if (ids.length == 0) {
+			return false;
+		}
+		window.open("index.php?app=order&act=orderprint&id=" + ids);
+	}
+</script>
+{include file="footer.html"}

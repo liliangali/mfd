@@ -1,0 +1,140 @@
+{include file=header-new.html}
+<!--头部/E-->
+<link href="/public/static/pc/css/gywm.css" rel="stylesheet">
+<!-- content -->
+<div class="w">
+  <h1 class="cjwt">常见问题<span>({$articlecount})</span></h1>
+  <ul class="rmzx clearfix">
+    {foreach from=$acategories item=acategory name=act key=k}
+      <li id="ti_{$k}" onClick="ceck_pic({$k});" {if !$cate_id}
+      {if $smarty.foreach.act.first}class="now_hover"  
+      {else}class="old_hover" style="border-left:1px solid #d5d5d5;"
+      {/if}
+      {else}
+      {if $cate_id == $k}class="now_hover"  style="border-left:1px solid #d5d5d5;"
+      {else}class="old_hover" style="border-left:1px solid #d5d5d5;"
+      {/if}
+      {/if}>{$acategory.name}&nbsp;&nbsp;{$acategory.count}</li>
+    {/foreach}
+    <!-- <li id="ti_1" class="now_hover" onClick="ceck_pic(1);" style="border-right:1px solid #d5d5d5;">内科 17</li>
+    <li id="ti_2" class="old_hover" onClick="ceck_pic(2);">外科 8</li> -->
+  </ul>
+  {foreach from=$acategories item=acategory name=acategory key=k}
+     <div id="tj_{$k}" class="rwk_box" {if !$cate_id}{if !$smarty.foreach.acategory.first}style='display:none'{/if}{else}{if $cate_id != $k}style='display:none'{/if}{/if}>
+      <ul>
+        {foreach from=$acategory.list item=article key=art_key}
+        <li>
+          <p class="p1"><a href="/professor-view-{$article.article_id}.html" ><span>【{$acategory.name}】</span>{$article.title}</a></p>
+          <p class="p2">{$article.add_time|date:Y-m-d}<span>{$article.add_time|date:H:i}</span></p>
+        </li>
+        {/foreach}
+
+      </ul> 
+    </div>
+  {/foreach}
+    <h1 class="cjwt">专家在线<span>({$kefucount})</span></h1>
+   <ul class="zjzxlist">
+   {if $adminList}
+   {foreach from=$adminList item=kefu}
+      <li>
+       <p class="p1"><img src="{$kefu.face}" /></p>
+       <div>
+        <h1>{$kefu.name}<span>{$kefu.nick}</span><img src="/public/static/pc/images/rztb.png" /></h1>
+        <p>{$kefu.remark}</p>
+       </div>
+       <p class="zxzx">
+           <span style='float: left'>
+               {if $kefu.status==1}
+               <span style="float: left;display:inline-block;line-height:45px;padding-left:10px;">在线</span>
+               {else}
+               <span style="float: left;display:inline-block;line-height:45px;padding-left:10px;">忙碌</span>
+               {/if}
+           </span>
+           {if $user_id != ''}
+           <a href="javascript:;" data-href="{$kefu.url}"  class='sobot_chat' >在线咨询</a>
+           {else}
+           <a href="/member-login.html">在线咨询</a>
+           {/if}
+       </p>
+     </li>
+   {/foreach}
+   {/if}
+   </ul>
+</div>
+<!-- content/E -->
+{include file=footer-new.html}
+<!--底部/E-->
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/static/pc/js/public.js"></script>
+ <script>
+    var $iframe;
+     $(".fixed_box").on("click", function() {
+        if ($iframe) {
+            $iframe.fadeIn();
+        }
+        $(".fixed_box").hide()
+    });
+    $(window).on("message", function(evt) {
+        var e = evt.originalEvent;
+        var data = e.data;
+        // alert(data);
+        if (data === 'zhichiClose') {
+            $iframe.remove();
+            $iframe = null;
+            $(".fixed_box").hide()
+        } else if (data == 'zhichiMin') {
+            $iframe.fadeOut();
+            $(".fixed_box").show()
+        }
+    });
+
+    $(document.body).delegate("a", 'click', function(evt) {
+        var $elm = $(evt.currentTarget);
+        // var height=$(document).height()-300
+        var height=400
+        if (!$iframe) {
+            $iframe = $("<iframe></iframe>");
+            $iframe.css({
+                'width': 400,
+                'height': height,
+                "position": "fixed",
+                "bottom": 0,
+                'right': 20,
+                'border-style':'none',
+            })
+            $iframe.attr("src", $elm.attr("data-href"));
+            $(document.body).append($iframe);
+        }
+        // $iframe.show();
+        $iframe.attr("src", $elm.attr("data-href"));
+    });
+
+</script>
+
+<script>
+  //意见反馈弹层
+  $('#feedback').click(function(){
+	  $.getScript('/public/global/luck/pc/luck.js',function(){
+		  luck.open({
+			  title:'意见反馈',
+			  width:'660px',
+			  height:'475px',
+			  content:'<iframe width="660" height="475" style="display:block" src="view/sc-utf-8/mall/default/feedback/ajax_feedback.html" frameborder="0"></iframe>',
+			  addclass:'mfd-luck'
+		  });
+	  })
+  });
+</script>
+
+<script>
+//切换
+function ceck_pic(ix)
+{
+    $('#ti_'+ix).attr('class','now_hover')
+    $('#ti_'+ix).siblings().attr('class','old_hover')
+    $('#tj_'+ix).show()
+    $('#tj_'+ix).siblings('.rwk_box').hide()
+}
+</script>
+</body>
+</html>

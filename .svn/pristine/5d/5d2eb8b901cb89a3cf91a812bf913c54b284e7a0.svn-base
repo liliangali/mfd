@@ -1,0 +1,56 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ajax_tree.js}" charset="utf-8"></script>
+<div id="rightTop">
+    <!-- <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=paylist&amp;act=index">全部</a></li>
+        <li><a class="btn1" href="index.php?app=paylist&amp;act=income">收入</a></li>
+        <li><a class="btn1" href="index.php?app=paylist&amp;act=spending">支出</a></li>
+        <li><a class="btn1" href="index.php?app=paylist&amp;act=cash">提现记录</a></li>
+    </ul> -->
+</div>
+<form method="get" name="selectcat" id="selectcat">
+    <input type="hidden" name="app" value="paylist" />
+    <input type="hidden" name="act" value="index" />
+    {$lang.username}:<div  style="display:inline;">
+    <input type="text" name="user_name" value="{$smarty.get.user_name|escape}"/>
+    {$lang.type_name}:<div id="cate" style="display:inline;">
+    <select class="querySelect" id="type" name="type">
+        <option value="-1" {if $smarty.get.type === -1}selected{/if}>{$lang.select}</option>
+        {html_options options=$type_list  selected="$smarty.get.type"}
+    </select>
+    
+            
+</div>
+    <input type="submit" class="formbtn" value="{$lang.query}" />
+</form>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable" >
+        <tr class="tatr1" style="text-align: left">
+         	<th >交易简介</th>
+            <th >{$lang.username}</th>
+            <th >{$lang.nickname}</th>
+            <th >收入</th>
+            <th >{$lang.type_name}</th>
+            <th >{$lang.addtime}</th>
+        </tr>
+        <!--{foreach from=$list item=t name='imgs'}-->
+        <tr  border="1">
+        	<td>{$t.name}</td>
+            <td>{$t.user_name}</td>
+            <td>{$t.nickname}</td>
+            <td>{if $t.mark == '-'}{$t.mark}{/if}{$t.cash_money}</td>
+            <td>{$t.type_name}</td>
+            <td>{$t.add_time}</td>
+        </tr>
+        <!-- {/foreach} -->
+    </table>
+    <!--{if $list}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+
+{include file="footer.html"}

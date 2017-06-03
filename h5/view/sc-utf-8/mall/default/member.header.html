@@ -1,0 +1,448 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+    {$page_seo}
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{res file=css/user.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/n_user.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/head_footr.css}" rel="stylesheet" type="text/css" />
+
+
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var PRICE_FORMAT = '{$price_format}';
+var DROP_URL = "{link app=my_goods act=drop_image}";
+//]]>
+</script>
+<script type="text/javascript" src="{link app=default act=jslang}"></script>
+<script type="text/javascript" src="{lib file=jquery.min.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=rctailor.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=member.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{link app=default act=jslang}"></script>
+<script type="text/javascript" src="{lib file=minicart.js}"></script>
+
+<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+<script type="text/javascript" src="{res file=js/plugins/rc.js}"></script>
+
+<script type="text/javascript">
+$(function(){
+    $('#left h1 span,h2.title a.fold').click(function(){
+        if($(this).hasClass('span_close')){
+            $(this).removeClass('span_close');
+            $(this).addClass('span_open');
+            this.title = 'open';
+            closeSubmenu($(this).parent());
+        }
+        else{
+            $(this).removeClass('span_open');
+            $(this).addClass('span_close');
+            this.title = 'close';
+            openSubmenu($(this).parent());
+        }
+    });
+
+    var span = $("#child_nav");
+    span.hover(function(){
+        $("#float_layer:not(:animated)").show();
+    }, function(){
+        $("#float_layer").hide();
+    });
+});
+function closeSubmenu(h1){
+    h1.next('ul').css('display', 'none');
+}
+function openSubmenu(h1){
+    h1.next('ul').css('display', '');
+}
+</script>
+{$_head_tags}
+
+</head>
+
+<body style="background:#f9f9f9;">
+
+<!--头部开始-->
+<div class="m_logo_box">
+  <p class="m_logo"><a href="./"><img src="{res file=images/logo.png}" /></a></p>
+
+  <div class="m_gjsl" onmouseout="this.className='m_gjsl'" onmouseover="this.className='m_gjsl m_gjsl_2'">
+    <p class="m_jongou">中国</p>
+    <div>
+      <p><a href="#">美国</a></p>
+      <p><a href="#">加拿大</a></p>
+      <p><a href="#">英国</a></p>
+      <p><a href="#">法国</a></p>
+    </div>
+  </div>
+
+
+
+        <script type="text/javascript">
+    $(document).ready(function(){
+        $("#keyword").keyup(function(e){        //pos_keyword就是搜索框，当搜索框按下时响应事件keyup,e就是当前元素element
+        	var keycode = e.which;          //keycode就是按键的编码,e当前元素element,e.which是当前的编码
+	        if(keycode==13){                //如果keycode等于13就响应方法进行搜索
+	        	search();
+	        }
+        });
+    })
+    </script>
+
+
+    <script>
+
+  function search(){
+	  var k = $("#keyword").val();
+	  if(!k || k == '找图片、找定制、找主题、找人')
+		  return alert('不能为空...');
+
+	  if(k.length < 2)
+		  return alert('至少输入两个字符(汉字)');
+
+	  if(k.length > 50)
+		  return alert('您输入的字符太多了，机器会被累死..请输入50个字条以内...');
+
+	  location.href="/index.php/search.html?keyword="+k;
+  }
+
+  </script>
+
+
+  <div class="m_tbssk">
+    <input type="text" id='keyword' value="找图片、找定制、找主题、找人" onfocus="if(value=='找图片、找定制、找主题、找人'){value=''}" onblur="if(value==''){value='找图片、找定制、找主题、找人'}" class="input_1" name="keyword"/>
+
+    <input type="button" onclick='search()' class="input_2" />
+    <p class="clear"></p>
+  </div>
+
+  <!--移动端下载入口开始-->
+    <!--鼠标经过显示下拉层js-->
+	<script type="text/javascript">
+    $(function(){
+        var $menu = $('.sgapptu');
+        $menu.children('li').each(function(){
+            var $this = $(this);
+            var $h1 = $this.children('h1');
+
+            $this.bind('mouseenter',function(){
+                $menu.find('.down_tcc').stop(true,true).hide();
+                $h1.addClass("on");
+                $h1.stop().animate(200,function(){
+                $this.find('.down_tcc').slideDown(200);
+                });
+            }).bind('mouseleave',function(){
+                $h1.removeClass("on");
+                $this.find('.down_tcc').stop(true,true).hide();
+                $h1.stop().animate(200);
+            });
+        });
+
+    });
+    </script>
+
+  <div class="sgxlk">
+     <ul class="sgapptu">
+
+       <li class="li1">
+         <h1><b>安卓</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3><span>Android</span>客户端</h3>
+             <p class="smrwm">1.扫描二维码下载</p>
+             <p class="rwmtupa"><img src="{res file=images/qrcode1.png}" /></p>
+             <p class="smrwm"><a href="http://www.rctailor.com/client/rctailor.apk" target="_blank">2.点击此处免费下载</a></p>
+             <p class="ljmfxz"><a href=".{link app=client}"></a></p>
+           </div>
+         </div>
+       </li>
+
+       <li class="li2">
+         <h1><b>苹果</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3><span>iPhone</span>客户端</h3>
+             <p class="smrwm">1.扫描二维码下载</p>
+             <p class="rwmtupa"><img src="{res file=images/qrcode2.png}" /></p>
+             <p class="smrwm">2.App Store免费下载</p>
+             <p class="ljmfxz"><a href=".{link app=client}"></a></p>
+           </div>
+         </div>
+       </li>
+
+       <li class="li3">
+         <h1><b>微信</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div  style="height:260px;">
+             <h3>微信移动端</h3>
+             <p class="smrwm">1.扫描二维码进入</p>
+             <p class="rwmtupa"><img src="{res file=images/qrcode3.png}" /></p>
+             <p class="smrwm">2.访问m.rctailor.com</p>
+           </div>
+         </div>
+       </li>
+
+     </ul>
+     <p class="clear"></p>
+  </div>
+  <!--移动端下载入口结束-->
+  <p class="clear"></p>
+</div>
+
+<div class="m_nav_box">
+  <div class="m_nav">
+    <ul class="m_nav_left">
+      <li><a href="./">首页</a></li>
+      <li {if $currentApp eq 'tailor'}class="on"{/if}><a href="{link app=tailor}">找裁缝</a></li>
+      <li {if $currentApp eq 'fabrics'}class="on"{/if}><a href="{link app=fabrics}">选面料</a></li>
+      <li {if $currentApp eq 'club'}class="on"{/if}><a href="{link app=club}">看晒单</a></li>
+      <li {if $currentApp eq 'service'}class="on"{/if} style="background:none;"><a href="/index.php/service.html">要量体</a></li>
+    </ul>
+    <p class="clear"></p>
+
+    <!--未登录开始-->
+	<!--{if !$visitor.user_id}-->
+      <p class="m_wdlzt"><span><a  href="{link app=member act=entrance}">登录</a></span><span><a href="{link app=member act=register}">注册</a></span></p>
+    <!--未登录结束-->
+    {else}
+    <div class="m_yfmc_on" onMouseOver="this.className='m_yfmc_on m_yfmc_off'" onMouseOut="this.className='m_yfmc_on'">
+      <p class="m_yml">{uname uid=$visitor.user_id sub=8}</p>
+      <div class="m_txtcc">
+        <div class="m_touxia">
+          <p><a href="/index.php/kuke-avatar.html" title="点击修改头像"><img src="{$visitor.avatar}" /></a></p>
+          <ul>
+            <li><a href="/index.php/kuke-index.html">酷客中心</a></li>
+            <li><a href="/index.php/buyer_order.html">我的订单</a></li>
+            <li><a href="/index.php/my_favorite.html">我的收藏</a></li>
+            <li><a href="/index.php/kuke-album.html">我的街拍</a></li>
+          </ul>
+        </div>
+        <p class="clear"></p>
+
+        <div class="m_ktbjfyhj">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+              <th><a href="/index.php/kuke-coin.html">麦富迪币：</a></th>
+              <td><a href="/index.php/kuke-coin.html">{$visitor.coin}</a></td>
+            </tr>
+
+            <tr>
+              <th><a href="/index.php/kuke-point.html">积分：</a></th>
+              <td><a href="/index.php/kuke-point.html">{$visitor.point}</a></td>
+            </tr>
+
+            <tr>
+              <th><a href="/index.php/kuke-coupon.html">优惠券：</a></th>
+              <td><a href="/index.php/kuke-coupon.html">{$visitor.coupon}</a></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="m_grsz"><a href="/index.php/kuke-userinfo.html">个人设置</a><span><a href="{link app=member act=logout}">[退出]</a></span></div>
+
+      </div>
+    </div>
+	{/if}
+
+    <div class="m_qjs_on">
+      <p class="m_gwcqjs">去结算</p>
+      <p class="m_gwcslbg" id="cartGoodsNum"><span class="span_1"></span><font>{$cart_goods_num|default:0}</font><span class="span_2"></span><p class="clear"></p></p>
+      <!--空购物车开始-->
+
+      <!--空购物车结束-->
+
+      <!--购物车列表开始-->
+      <div class="m_gwclb" id="miniCart">
+      </div>
+      <!--购物车列表结束-->
+    </div>
+
+
+  </div>
+</div>
+
+<!--头部结束-->
+<script>
+$(document).ready(function(){
+	opt = {};
+	opt.miniCartUrl = "{link app=cart act=miniCart}";
+	opt.miniDropUrl = "{link app=cart act=drop}";
+	miniCart.init(opt);
+})
+</script>
+
+
+
+
+<div style="display:none;">
+<!--头部开始-->
+
+<div class="dz_head_top_box">
+  <div class="head_top">
+    <div class="dz_head_top_left">
+       <p class="dz_gjdt"></p>
+       <div class="dz_menu2" onMouseOver="this.className='dz_menu1'" onMouseOut="this.className='dz_menu2'">
+         <p class="wdzf"><a href="#">中国</a></p>
+         <DIV class="list">
+          <P><A href="#">美国</A></P>
+          <P><A href="#">英国</A></P>
+          <P><A href="#">日本</A></P>
+         </DIV>
+       </div>
+
+	   <p class="dz_zxgf">
+
+           <!--<a id="BizQQWPA" href="javascript:;">在线客服</a>-->
+      <!--<script type="text/javascript">-->
+      <!--BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4008919867, selector: 'BizQQWPA'});-->
+      <!--</script>-->
+
+       </p>
+    </div>
+
+    <div class="dz_head_top_right">
+      <p class="dz_qdlzc">
+        {if !$visitor.user_id}请<a href="{link app=member act=login}">登录</a><b> 或 </b><a href="{link app=member act=register}">注册</a><span>|</span>
+        {else}
+        {uname uid=$visitor.user_id sub=8}<a href="/?app=member&act=logout">{$lang.logout}</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {/if}</p>
+      <p class="dz_qdlzc"><a href="{link app=kuke act=index}">我的帐号</a><span>|</span></p>
+      <p class="dz_wdyc"><font></font><a href="{link app=cart act=index}">我的衣橱<span>(2)</span>件</a></p>
+    </div>
+    <p class="clear"></p>
+  </div>
+</div>
+
+
+<div class="dz_logo_box">
+  <p class="dz_logo"><a href="index.php"><img src="{res file=images/logo.png}" /></a></p>
+
+
+
+  <!--移动端下载入口开始-->
+    <!--鼠标经过显示下拉层js-->
+    <script type="text/javascript">
+    $(function(){
+        var $menu = $('.sgapptu');
+        $menu.children('li').each(function(){
+            var $this = $(this);
+            var $h1 = $this.children('h1');
+
+            $this.bind('mouseenter',function(){
+                $menu.find('.down_tcc').stop(true,true).hide();
+                $h1.addClass("on");
+                $h1.stop().animate(200,function(){
+                $this.find('.down_tcc').slideDown(200);
+                });
+            }).bind('mouseleave',function(){
+                $h1.removeClass("on");
+                $this.find('.down_tcc').stop(true,true).hide();
+                $h1.stop().animate(200);
+            });
+        });
+
+    });
+    </script>
+
+  <div class="sgxlk">
+     <ul class="sgapptu">
+
+       <li class="li1">
+         <h1><b>安卓</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3><span>Android</span>客户端</h3>
+
+             <p class="smrwm">1.扫描二维码下载</p>
+             <p class="rwmtupa"><img src="{res file=images/rwm.gif}" /></p>
+             <p class="smrwm">2.App Store免费下载</p>
+             <p class="ljmfxz"><a href="<a href=".{link app=client}"></a>"></a></p>
+           </div>
+         </div>
+       </li>
+
+       <li class="li2">
+         <h1><b>苹果</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3><span>iPhone</span>客户端</h3>
+             <p class="smrwm">1.扫描二维码下载</p>
+             <p class="rwmtupa"><img src="{res file=images/rwm.gif}" /></p>
+             <p class="smrwm">2.App Store免费下载</p>
+             <p class="ljmfxz"><a href="<a href=".{link app=client}"></a>"></a></p>
+           </div>
+         </div>
+       </li>
+
+       <li class="li3">
+         <h1><b>微信</b></h1>
+         <div class="down_tcc">
+           <i></i>
+           <div>
+             <h3><span>iPhone</span>客户端</h3>
+             <p class="smrwm">1.扫描二维码下载</p>
+             <p class="rwmtupa"><img src="{res file=images/rwm.gif}" /></p>
+             <p class="smrwm">2.App Store免费下载</p>
+             <p class="ljmfxz"><a href="<a href=".{link app=client}"></a>"></a></p>
+           </div>
+         </div>
+       </li>
+
+
+     </ul>
+     <p class="clear"></p>
+  </div>
+  <!--移动端下载入口结束-->
+  <p class="clear"></p>
+</div>
+
+<div class="dz_nav_box">
+  <div class="dz_nav">
+    <div class="dzfl_1" onMouseOver="this.className='dzfl_2'" onMouseOut="this.className='dzfl_1'">
+       <p class="dinzidh">订制分类</p>
+       <div>
+         <p><a href="#">西装</a></p>
+         <p><a href="#">西裤</a></p>
+         <p><a href="#">衬衫</a></p>
+         <p><a href="#">马甲</a></p>
+         <p><a href="#">大衣</a></p>
+         <p><a href="#">套装</a></p>
+         <p><a href="#">主题</a></p>
+       </div>
+    </div>
+
+    <ul class="dz_nav_right">
+      <li><a href="/">首页</a></li>
+      <li><a href="custom.html">定制中心</a></li>
+      <li><a href="fabrics.html">面料工坊</a></li>
+      <li><a href="club.html">酷客基地</a></li>
+    </ul>
+    <p class="clear"></p>
+  </div>
+</div>
+<!--头部结束-->
+</div>
+
+<div class="kukezx">
+  <p class="p1">酷客中心<span>{$title_info}</span></p>
+  <p class="p2"><a href="/index.php/club-cooler-{$visitor.user_id}.html">个人主页</a></p>
+  <div class="sz_1" onMouseOver="this.className='sz_2'" onMouseOut="this.className='sz_1'">
+    <p class="szfl">设置</p>
+    <div>
+      <p><a href="{link app=kuke act=userinfo}">个人资料</a></p>
+      <p><a href="{link app=my_address}">地址管理</a></p>
+      <p><a href="{link app=kuke act=safeset}">安全设置</a></p>
+    </div>
+  </div>
+</div>

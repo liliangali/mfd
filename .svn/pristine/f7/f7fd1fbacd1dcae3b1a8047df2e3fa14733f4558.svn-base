@@ -1,0 +1,124 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>{$lang.manage}</span></li>
+<!--     <li><a class="btn1" href="index.php?app=user&amp;act=add">{$lang.add}</a></li> -->
+    <li><a class="btn1" href="index.php?app=user&amp;act=admin_userlog">日志查询</a></li>
+    {if $smarty.get.serve_type == 4}<li><a class="btn1" href="index.php?app=serve&wait_verify=1&t=4">待审核</a></li>{/if}
+   <!--  <li><a class="btn1" href="index.php?app=user&amp;act=export">导出</a></li>  -->
+      <li><span><a class="btn1" href="index.php?app=user&amp;act=user_log">登录记录</a></span></li>
+
+  </ul>
+</div>   
+
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="user" />
+          <input type="hidden" name="act" value="index" />
+           <!--<select class="querySelect" name="field_serve_type">{html_options options=$tname selected=$smarty.get.field_serve_type}
+          </select>-->
+
+          <!--<select class="querySelect" name="field_member_lv">{html_options options=$member_lv selected=$smarty.get.field_member_lv}-->
+          <!--</select>-->
+          
+          <select class="querySelect" name="field_name">{html_options options=$query_fields selected=$smarty.get.field_name}
+          </select>
+          <input class="queryInput" type="text" name="field_value" value="{$smarty.get.field_value|escape}" />
+        注册时间从：<input class="queryInput2" type="text" value="{$smarty.get.add_time_from}" style="width:80px" id="add_time_from" name="add_time_from" class="pick_date" />
+        至：<input class="queryInput2" type="text" value="{$smarty.get.add_time_to}" style="width:80px" id="add_time_to" name="add_time_to" class="pick_date" />
+
+         <!--等级变化时间从：<input class="queryInput2" type="text" value="{$smarty.get.lv_time_from}" style="width:80px" id="lv_time_from" name="lv_time_from" class="pick_date" />-->
+           <!--至：<input class="queryInput2" type="text" value="{$smarty.get.lv_time_to}" style="width:80px" id="lv_time_to" name="lv_time_to" class="pick_date" />-->
+
+
+        {$lang.sort_order}:
+        <select class="querySelect" name="sort">{html_options options=$sort_options selected=$smarty.get.sort}
+        </select>
+
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=user&serve_type={$smarty.get.field_serve_type}">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $users}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>{$lang.user_name} </td>
+      <!--<td><span ectype="order_by" fieldname="final_amount_num">当前积分</span></td>-->
+      <td>手机号码</td>
+      <td><span ectype="order_by" fieldname="reg_time">{$lang.reg_time}</span></td>
+      <td><span ectype="order_by" fieldname="last_login">{$lang.last_login}</span></td>
+      <td><span ectype="order_by" fieldname="logins">{$lang.logins}</span></td>
+      <td>注册来源</td>
+      <td>来源渠道</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$users item=user}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$user.user_id}" /></td>
+      <td>{$user.user_name|escape}</td>
+      <!--<td>{$user.point}</td>-->
+      <td>{$user.phone_mob|escape}</td>
+      <td>{$user.reg_time|date}</td>
+      <td><!--{if $user.last_login}-->{$user.last_login|date}<!--{/if}--><br />
+        {$user.last_ip}</td>
+      <td>{$user.logins}</td>
+      <td>
+      {$user.come}
+      </td>
+        <td>
+            {if $user.channel_name}
+            {$user.channel_name}
+            {else}
+            无
+            {/if}
+        </td>
+      <td class="handler">
+      <span style="width: 100px">
+
+      <a href="index.php?app=user&amp;act=edit&amp;id={$user.user_id}">{$lang.edit}</a>
+      | <a href="index.php?app=user&amp;act=member_info&amp;id={$user.user_id}">详情</a>
+      |<a href="index.php?app=user&amp;act=channel&amp;id={$user.user_id}" target="_blank">生成二维码</a>
+      |<a href="index.php?app=user&amp;act=index&amp;channel_pid={$user.user_id}" >下线会员</a>
+      {if $user_info.user_id == 1 || $user_info.user_name == '18765911731'}|
+          <!--<a href="index.php?app=account_log&amp;id={$user.user_id}">账户</a>-->
+          {/if}
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $users}-->
+  <div id="dataFuncs">
+    <!--<div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=user&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+    </div>-->
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+
+<script type="text/javascript">
+//日期
+$('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+$('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+
+
+$('#lv_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+$('#lv_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
+
+{include file="footer.html"}

@@ -1,0 +1,225 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#brand_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            brand_name : {
+                required : true,
+            },
+          
+        },
+        messages : {
+            brand_name : {
+                required : '{$lang.brand_empty}',
+            },
+        }
+    });
+});
+</script>
+{$build_editor}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=brand">{$lang.manage}</a></li>
+        {if $brand.brand_id}
+        <li><a class="btn1" href="index.php?app=brand&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="brand_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                   名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="name" type="text" name="name" value="{$data.name|escape}" />
+                </td>
+            </tr>
+                        <tr>
+                <th class="paddingT15">
+                   服务费:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" type="text" name="service_price" value="{$data.service_price}" />
+                </td>
+            </tr>
+
+                        <tr>
+                <th class="paddingT15">
+                   简介:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea name="brief" rows="5" cols="50">{$data.brief}</textarea>
+                </td>
+            </tr>
+
+            
+                              <tr>
+                <th class="paddingT15">
+             风格:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="style" id="style" {if $data.style}disabled{/if}>
+                        <option value="0">请选择</option>
+                        {foreach from=$style_list item=style key=key}
+                            <option value="{$key}" {if $data.style eq $key}selected{/if}>{$style}</option>
+                        {/foreach}
+                    </select>
+                </td>
+            </tr>
+            
+               <tr>
+                <th class="paddingT15">
+             品类:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="category" id="cat" {if $data.category}disabled{/if}>
+                        <option value="0">请选择</option>
+                        {foreach from=$cat_list item=cat key=key}
+                            <option value="{$key}" {if $data.category eq $key}selected{/if}>{$cat.name}</option>
+                        {/foreach}
+                    </select>
+                    {if $data.category}
+                    <input type="hidden" name="category" value="{$data.category}">
+                    {/if}
+                </td>
+            </tr>
+               <tr>
+                <td colspan="2" id="diy" class="paddingT15 wordSpacing5" style="padding-left:150px;">
+                    <table>
+                        <tr>
+                            <td class="paddingT15 wordSpacing5"><b>款式设计</b></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td class="paddingT15 wordSpacing5"><b>深度设计</b></td>
+                            <td></td>
+                        </tr>
+                        {foreach from=$menus.deep item=menu}
+                            <tr>
+                            <td class="paddingT15 wordSpacing5"><span style="cursor: pointer;float:left;">x</span><a href="javascript:;" data-type="deep" data-id="{$menu.id}" style="color:red;">&nbsp;&nbsp;{$menu.name}</a>
+                            </td>
+                            <td class="layer{$menu.id}">
+                                       {if $menu.children}
+                                         <select name="deep[{$menu.id}]">
+                                            {foreach from=$menu.children item=chi key=key}
+                                                <option value="{$chi.item_id}" {if $chi.is_default}selected{/if}>{$chi.name}</option>
+                                            {/foreach}
+                                        </select>
+                                        {foreach from=$menu.children item=chi}
+                                           <input type="hidden" name="deep_ids[{$menu.id}][]" value="{$chi.item_id}">
+                                        {/foreach}
+                                      {/if}
+                            </td>
+                        </tr>
+                        {/foreach}
+                    <tr>
+                    <td class="paddingT15 wordSpacing5"><a href="javascript:;" style="color:red;float:left;" class="fabric"><b>选择面料</b></a>
+                    </td>
+                    <td id="fabric">
+                    {if $fabrics}
+                            <select name="fab">
+                       {foreach from=$fabrics item=val}
+                            <option value="{$val.ID}" {if $val.is_default}selected{/if}>{$val.CODE}</option>
+                       {/foreach}
+                           </select>
+                           {foreach from=$fabrics item=val}
+                            <input type="hidden" name="fabs[]" value="{$val.ID}">
+                           {/foreach}
+                     {/if}
+                    </td>
+                    </tr>
+                     </table>
+                </td>
+            </tr>
+
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="id" value="{$data.id}">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+
+<script>
+$(document).ready(function(){
+	
+    $("#diy a").bind("click", loadOpt);
+    $(".fabric").unbind("click").bind("click", loadFab);
+    $("#style").change(function(){
+    	$('#cat')[0].selectedIndex = 0;
+    })
+    $("#diy span").bind("click", clearOpt);
+    $("#cat").change(function(){
+        var c = $(this).val();
+        var s = $("#style").val();
+        if(c != 0){
+            $.get("index.php?app=custom&act=loadItem", {style:s,category:c}, function(res){
+                var res = eval("("+res+")");
+                if(res.done == false){
+                    alert(res.msg);
+                    return false;
+                }else{
+                    $("#diy").empty().html(res.retval);
+                    $("#diy a").bind("click", loadOpt);
+                    $("#diy span").unbind("click").bind("click", clearOpt);
+                    $(".fabric").unbind("click").bind("click", loadFab)
+                }
+            })
+        }
+    })
+})
+
+function loadOpt(){
+	var id   = $(this).attr("data-id");
+	var type = $(this).attr("data-type")
+	var ids  = [];
+	$(".layer"+id).find("input[type=hidden]").each(function(){
+	    ids.push($(this).val());
+    })
+    $.cookie("ids",null);
+	var url = "index.php?app=dict&id="+id+"&type="+type+"&ids="+ids.join(",");
+    window.open(url,'选择定制内容','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+}
+
+function callBack(res){
+    $.post("index.php?app=custom&act=itemInfo",{ids:res.ids,type:res.type,hasC:res.hasC}, function(data){
+        var data = eval("("+data+")");
+        $(".layer"+res.id).empty().append(data.retval);
+    })
+}
+
+function loadFab(){
+	 var v   = $("#cat").val();
+	 var ids  = [];
+	 $("#fabric").find("input[type=hidden]").each(function(){
+	    ids.push($(this).val());
+     })
+	 var url = "index.php?app=fab&v="+v+"&ids="+ids;
+	 $.cookie("fabids",null);
+	 window.open(url,'选择定制面料','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+}
+function callBackFab(res){
+	$.post("index.php?app=custom&act=fabInfo",{ids:res.ids}, function(data){
+        var data = eval("("+data+")");
+        $("#fabric").empty().append(data.retval);
+    })
+}
+
+function clearOpt(){
+	var id = $(this).next("a").attr("data-id");
+	$(".layer"+id).empty();
+}
+</script>
+{include file="footer.html"}

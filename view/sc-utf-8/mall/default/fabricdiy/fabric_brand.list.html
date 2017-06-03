@@ -1,0 +1,233 @@
+{include file=header-new.html}
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<link href="/public/static/pc/css/ktsp_list.css" type="text/css" rel="stylesheet">
+<style>
+body{background:#fff;}
+.minfooter{border:none;}
+</style>
+<div class="mlbanner">
+<!-- <img src="/public/static/pc/images/mlbanner.png" width="1680" height="400"> -->
+<!-- {if count($banner)>0} -->
+	<div id="banner" class="swipe">
+	
+		<div class="swipe-wrap">
+	
+	       <!-- {foreach from=$banner item=pictures} -->
+			<div style="display:block; width:100%; height:400px; background:url({$pictures.img}) no-repeat center center;"></div>
+			<!-- {/foreach} -->
+		</div>
+		<!-- {if count($banner)>1} -->
+			<div class="swipe-btn">
+				<!-- {foreach from=$banner item=pictures name=image} -->
+					<span {if $smarty.foreach.image.iteration eq 1}class="cur"{/if}></span> 
+				<!-- {/foreach} -->
+			</div>
+			
+			<span class="swipe-prev"></span> <span class="swipe-next"></span> 
+		<!-- {/if} -->
+	</div>
+	<!-- {/if} --></div>
+<div class="mllist">
+	<!-- {if $ifabrics} -->
+		<div class="lining">
+    		<h4>进口面料专区</h4>
+    		{foreach from=$ifabrics item=fabric name=foo key=k}
+    			{if $k%5 eq	0}<ul>{/if}
+		        	<li {if $smarty.foreach.foo.iteration%5 eq 0}style="border-right:none;"{/if}>
+		            	<div class="hover">
+		                    <a href="fabric_diy-flist-{$fabric.cate_id}.html"><p class="mlimg"><img src="{$fabric.logo}" width="200" height="80">{$fabric.cate_name}</p></a>
+		                    <div {if $smarty.foreach.foo.iteration%5 eq 0}class="sis siss"{else}class="sis"{/if}>
+		                        <h5>{$fabric.cate_name}</h5>
+		                        <p class="jjword">{$fabric.content}</p>
+		                        <p class="mlshanj"></p>
+		                    </div>
+		                </div>
+		            </li>
+		          {if $smarty.foreach.foo.iteration%5 eq 0}</ul>{/if}
+    		{/foreach}
+    	</div>
+	<!-- {/if} -->
+	<!-- {if $dfabrics} -->
+		<div class="lining">
+    		<h4>国内畅销面料专区</h4>
+    		{foreach from=$dfabrics item=fabric name=foo key=k}
+    			{if $k%5 eq	0}<ul>{/if}
+		        	<li {if $smarty.foreach.foo.iteration%5 eq 0}style="border-right:none;"{/if}>
+		            	<div class="hover">
+		                    <a href="fabric_diy-flist-{$fabric.cate_id}.html"><p class="mlimg"><img src="{$fabric.logo}" width="200" height="80">{$fabric.cate_name}</p></a>
+		                    <div {if $smarty.foreach.foo.iteration%5 eq 0}class="sis siss"{else}class="sis"{/if}>
+		                        <h5>{$fabric.cate_name}</h5>
+		                        <p class="jjword">{$fabric.content}</p>
+		                        <p class="mlshanj"></p>
+		                    </div>
+		                </div>
+		            </li>
+		          {if $smarty.foreach.foo.iteration%5 eq 0}</ul>{/if}
+    		{/foreach}
+    	</div>
+	<!-- {/if} -->
+	<!-- <div class="lining">
+    	<h4>意大利面料</h4>
+        <ul>
+        	<li>
+            	<div class="hover">
+                    <a href="#"><p class="mlimg"><img src="/public/static/pc/images/other/009.png" width="200" height="80">世嘉宝</p></a>
+                    <div class="sis">
+                        <h5>Scabal</h5>
+                        <p class="jjword">于1938年创立在比利时布鲁塞尔，现在工厂设在英国Scabal被很多顶级裁缝称作是"金钱能买到得的最好面料Scabal公认为是全球最好的布料，原因在于其信条是“我们从不考虑降低原料成本”。</p>
+                        <p class="mlshanj"></p>
+                    </div>
+                </div>
+            </li>
+            <li>
+            	<div class="hover">
+                    <a href="#"><p class="mlimg"><img src="/public/static/pc/images/other/009.png" width="200" height="80">世嘉宝</p></a>
+                    <div class="sis">
+                        <h5>Scabal</h5>
+                        <p class="jjword">于1938年创立在比利时布鲁塞尔，现在工厂设在英国Scabal被很多顶级裁缝称作是"金钱能买到得的最好面料Scabal公认为是全球最好的布料，原因在于其信条是“我们从不考虑降低原料成本”。</p>
+                        <p class="mlshanj"></p>
+                    </div>
+                </div>
+            </li>
+            <li>
+            	<div class="hover">
+                    <a href="#"><p class="mlimg"><img src="/public/static/pc/images/other/009.png" width="200" height="80">世嘉宝</p></a>
+                    <div class="sis">
+                        <h5>Scabal</h5>
+                        <p class="jjword">于1938年创立在比利时布鲁塞尔，现在工厂设在英国Scabal被很多顶级裁缝称作是"金钱能买到得的最好面料Scabal公认为是全球最好的布料，原因在于其信条是“我们从不考虑降低原料成本”。</p>
+                        <p class="mlshanj"></p>
+                    </div>
+                </div>
+            </li>
+            <li>
+            	<div class="hover">
+                    <a href="#"><p class="mlimg"><img src="/public/static/pc/images/other/009.png" width="200" height="80">世嘉宝</p></a>
+                    <div class="sis">
+                        <h5>Scabal</h5>
+                        <p class="jjword">于1938年创立在比利时布鲁塞尔，现在工厂设在英国Scabal被很多顶级裁缝称作是"金钱能买到得的最好面料Scabal公认为是全球最好的布料，原因在于其信条是“我们从不考虑降低原料成本”。</p>
+                        <p class="mlshanj"></p>
+                    </div>
+                </div>
+            </li>
+            
+            
+            <li style="border-right:none;">
+            	<div class="hover">
+                    <a href="#"><p class="mlimg"><img src="/public/static/pc/images/other/009.png" width="200" height="80">世嘉宝</p></a>
+                    <div class="sis siss">
+                        <h5>Scabal</h5>
+                        <p class="jjword">于1938年创立在比利时布鲁塞尔，现在工厂设在英国Scabal被很多顶级裁缝称作是"金钱能买到得的最好面料Scabal公认为是全球最好的布料，原因在于其信条是“我们从不考虑降低原料成本”。</p>
+                        <p class="mlshanjs"></p>
+                    </div>
+                </div>    
+            </li>
+        </ul>
+        <ul>
+        	<li>
+            	<div class="hover">
+                    <a href="#"><p class="mlimg"><img src="/public/static/pc/images/other/009.png" width="200" height="80">世嘉宝</p></a>
+                    <div class="sis">
+                        <h5>Scabal</h5>
+                        <p class="jjword">于1938年创立在比利时布鲁塞尔，现在工厂设在英国Scabal被很多顶级裁缝称作是"金钱能买到得的最好面料Scabal公认为是全球最好的布料，原因在于其信条是“我们从不考虑降低原料成本”。</p>
+                        <p class="mlshanj"></p>
+                    </div>
+                </div>
+            </li>
+            <li>
+            	<div class="hover">
+                    <a href="#"><p class="mlimg"><img src="/public/static/pc/images/other/009.png" width="200" height="80">世嘉宝</p></a>
+                    <div class="sis">
+                        <h5>Scabal</h5>
+                        <p class="jjword">于1938年创立在比利时布鲁塞尔，现在工厂设在英国Scabal被很多顶级裁缝称作是"金钱能买到得的最好面料Scabal公认为是全球最好的布料，原因在于其信条是“我们从不考虑降低原料成本”。</p>
+                        <p class="mlshanj"></p>
+                    </div>
+                </div>
+            </li>
+            <li>
+            	<div class="hover">
+                    <a href="#"><p class="mlimg"><img src="/public/static/pc/images/other/009.png" width="200" height="80">世嘉宝</p></a>
+                    <div class="sis">
+                        <h5>Scabal</h5>
+                        <p class="jjword">于1938年创立在比利时布鲁塞尔，现在工厂设在英国Scabal被很多顶级裁缝称作是"金钱能买到得的最好面料Scabal公认为是全球最好的布料，原因在于其信条是“我们从不考虑降低原料成本”。</p>
+                        <p class="mlshanj"></p>
+                    </div>
+                </div>
+            </li>
+            <li>
+            	<div class="hover">
+                    <a href="#"><p class="mlimg"><img src="/public/static/pc/images/other/009.png" width="200" height="80">世嘉宝</p></a>
+                    <div class="sis">
+                        <h5>Scabal</h5>
+                        <p class="jjword">于1938年创立在比利时布鲁塞尔，现在工厂设在英国Scabal被很多顶级裁缝称作是"金钱能买到得的最好面料Scabal公认为是全球最好的布料，原因在于其信条是“我们从不考虑降低原料成本”。</p>
+                        <p class="mlshanj"></p>
+                    </div>
+                </div>
+            </li>
+            
+            
+            <li style="border-right:none;">
+            	<div class="hover">
+                    <a href="#"><p class="mlimg"><img src="/public/static/pc/images/other/009.png" width="200" height="80">世嘉宝</p></a>
+                    <div class="sis siss">
+                        <h5>Scabal</h5>
+                        <p class="jjword">于1938年创立在比利时布鲁塞尔，现在工厂设在英国Scabal被很多顶级裁缝称作是"金钱能买到得的最好面料Scabal公认为是全球最好的布料，原因在于其信条是“我们从不考虑降低原料成本”。</p>
+                        <p class="mlshanjs"></p>
+                    </div>
+                </div>    
+            </li>
+        </ul>
+    </div> -->
+
+
+  
+</div>
+<div class="mldbpic"><img src="/public/static/pc/images/mldbpic.png" width="1680" height="106"></div>
+{include file=navicate.html}
+{include file=footer-new.html}
+<!--底部/E-->
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/public.js"></script> 
+<script>
+//幻灯
+;(function(){
+	var len=$('#banner img').length,slider = Swipe(document.getElementById('banner'), {
+		auto: 4000,
+		//continuous: false,
+		callback: function(index, element) {
+			if(len==2){
+				switch(index){
+					case 2:
+					index=0;
+					break;
+					case 3:
+					index=1;
+					break; 	
+				}
+			}
+			$('.swipe-btn span').eq(index).addClass('cur').siblings().removeClass();	
+		}
+	});
+	$('.swipe-prev').click(slider.prev);
+	$('.swipe-next').click(slider.next);
+})();
+
+</script>
+
+<script>
+  //意见反馈弹层
+  $('#feedback').click(function(){
+	  $.getScript('/public/global/luck/pc/luck.js',function(){
+		  luck.open({
+			  title:'意见反馈',
+			  width:'660px',
+			  height:'475px',
+			  content:'<iframe width="660" height="475" style="display:block" src="view/sc-utf-8/mall/default/feedback/ajax_feedback.html" frameborder="0"></iframe>',
+			  addclass:'mfd-luck'
+		  });
+	  })
+  });
+</script>
+</body>
+</html>

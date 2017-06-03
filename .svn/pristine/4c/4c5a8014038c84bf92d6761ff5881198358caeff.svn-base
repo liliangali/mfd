@@ -1,0 +1,12 @@
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/usercenter.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>
+<form method="get">
+ <div id="window" style="display:none;">
+	<p class="gkname">姓名：<input id="customer_name" value="" name="customer_name" type="text"/></p>
+    <p class="gkphone">手机：<input id="customer_mobile" value="" name="customer_mobile"  type="text"/></p>
+    <input type="button" value="添加顾客" class="gkinp" onclick='addcustomer(this)'>
+ </div>
+</form>

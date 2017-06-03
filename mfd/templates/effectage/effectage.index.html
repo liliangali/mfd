@@ -1,0 +1,102 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=EffectAge&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="EffectAge" />
+                <input type="hidden" name="act" value="index" />
+                <input type="hidden" name="wait_verify" value="{$wait_verify}">
+                功效:
+                <select name="fbtype">
+                    <option value="0">请选择</option>
+                    {html_options options=$gongxiao_list selected=$fbtype}
+                </select>
+
+                犬期:
+                <select name="age_id">
+                    <option value="0">请选择</option>
+                    {html_options options=$age_list selected=$age_id}
+                </select>
+
+
+
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+
+<!-- <div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="EffectAge" />
+                <input type="hidden" name="act" value="index" />
+                                                 基础材料名称:<input type="text" value="{$query.name}" name="name" class="pick_date" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+
+            </div>
+                        {if $query.name || $query.to_site}
+            <a class="left formbtn1" href="index.php?app=EffectAge">{$lang.cancel_query}</a>
+            {/if}
+        </form>
+    </div>
+</div> -->
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $list}-->
+        <tr class="tatr1">
+            <!-- <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td> -->
+            <td align="left">价格ID</td>
+            <!-- <td align="left">基料名称</td> -->
+            <td>价格(百克)</td>
+            <td>编码</td>
+            <td align="left">所属功效</td>
+            <td>所属犬期</td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$list item=effectage}-->
+        <tr class="tatr2">
+            <td>{$effectage.ea_id|escape}</td>
+            <!-- <td>{$effectage.ea_name|escape}</td> -->
+            <td >{$effectage.ea_price|price}</td>
+            <td>{$effectage.ea_code}</td>
+            
+            <td >{$effectage.ename}</td>
+            <td >{$effectage.aname}</td>
+            <td>
+                <a href="index.php?app=EffectAge&amp;act=edit&amp;id={$effectage.ea_id}">{$lang.edit}</a>
+                <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=EffectAge&amp;act=drop&amp;id={$effectage.ea_id}');">{$lang.drop}</a>
+			</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $list}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <!-- <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=EffectAge&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+        </div> -->
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

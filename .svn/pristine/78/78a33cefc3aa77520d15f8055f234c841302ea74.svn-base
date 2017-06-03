@@ -1,0 +1,8 @@
+
+<form action="{link app=paycenter act=goToPay}" id="payform" method="post">
+	<input type="hidden" name="obj" value="order" />
+	<input type="hidden" name="os" value="{$orderInfo.order_sn}" />
+</form>
+<script type="text/javascript">
+	document.getElementById('payform').submit();
+</script>

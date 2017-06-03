@@ -1,0 +1,93 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=messagetemplate&amp;act=add&amp;parent_id={$smarty.get.parent_id|escape}">{$lang.add}</a></li>
+       <li><a class="btn1" href="index.php?app=icategory&amp;act=index">{$lang.icategory}</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="messagetemplate" />
+                <input type="hidden" name="act" value="index" />
+                {$lang.title}:
+                <input class="queryInput" type="text" name="title" value="{$query.title|escape}" />
+                {$lang.mt_type}:
+                <input class="queryInput" type="text" name="mt_type" value="{$query.mt_type|escape}" />
+                {$lang.select_acategory}:
+                <select class="querySelect" id="parent_id" name="parent_id">
+                <option value="">{$lang.select_pls}</option>
+                {html_options options=$parents selected=$smarty.get.parent_id}
+                </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+                <!-- <input type='button' class='test' value='test'/>  -->
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=messagetemplate">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $messagetemplates}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left">{$lang.title}</td>
+            <td>{$lang.category}</td>
+            <td>{$lang.mt_type}</td>
+            <td>{$lang.is_special}</td>
+            <td>{$lang.add_time}</td>
+            <td>{$lang.alter_time}</td>
+            <td>{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$messagetemplates item=messagetemplate}-->
+        <tr class="tatr2">
+            <td class="firstCell"><!--{if !$messagetemplate.code}--><input type="checkbox" class="checkitem" value="{$messagetemplate.mt_id}"/><!--{/if}--></td>
+            <td>{$messagetemplate.mt_title|escape}</td>
+            <td>{$messagetemplate.icn|escape}</td>
+            <td>{$messagetemplate.mt_type|escape}</td>
+            <td>{if $messagetemplate.is_special}是{else}否{/if}</td>
+            <td>{$messagetemplate.add_time|date:complete}</td>
+            <td>{$messagetemplate.alter_time|date:complete}</td>
+            <td><a href="index.php?app=messagetemplate&amp;act=edit&amp;id={$messagetemplate.mt_id}">{$lang.edit}</a>
+                <!--{if !$messagetemplate.code}-->|
+                <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=messagetemplate&amp;act=drop&amp;id={$messagetemplate.mt_id}');">{$lang.drop}</a><!--{/if}-->				
+                </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $messagetemplates}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=messagetemplate&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+            &nbsp;&nbsp;
+            <!--<input class="formbtn batchButton" type="button" value="lang.update_order" name="id" presubmit="updateOrder(this);" />-->
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+<!-- <script type='text/javascript' src='templates/js/jquery-1.7.2.min.js'></script> -->
+<script>
+/*  $(".test").click(function(){
+	$.post('index.php?app=messagetemplate&act=sendmessage',{num:1},function(res){
+			alert(res.retval);
+	},'json');
+})  */
+</script>
+{include file="footer.html"}

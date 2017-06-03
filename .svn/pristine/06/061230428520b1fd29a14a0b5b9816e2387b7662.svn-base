@@ -1,0 +1,169 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#user_form').validate({
+   
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+		/**
+            name : {
+                required : true,
+                byteRange: [3,25,'{$charset}'],
+                remote   : {
+                    url :'index.php?app=lv&act=check_name',
+                    type:'get',
+                    data:{
+                        name : function(){
+                            return $('#name').val();
+                        },
+                        id : '{$user.user_id}'
+                    }
+                }
+            },**/
+            dis_count: {
+            	number   : true
+            },
+            experience   : {
+            	number   : true
+            }
+            {if !$set_avatar}
+            ,
+            portrait : {
+                accept : 'png|gif|jpe?g'
+            }
+            {/if}
+        },
+        messages : {
+            name : {
+                required : '{$lang.name_not_empty}',
+                byteRange: '{$lang.name_length_limit}',
+                //remote   : '{$lang.name_exist}'
+            },
+            dis_count : {
+            	number   : '{$lang.dis_count_msg}'
+            },
+            experience : {
+            	number   : '{$lang.dis_experience_msg}'
+            },
+            email  : {
+                required : '{$lang.email_not_empty}',
+                email   : '{$lang.currect_email}'
+            }
+            {if !$set_avatar}
+            ,
+            portrait : {
+                accept : '{$lang.note_portrait}'
+            }
+            {/if}
+        }
+    });
+    
+    $("input[name='default_lv']").click(
+    		function() {
+    			var dlv = $("input[name='default_lv']:checked").val();
+    			var dty = $("#select1").val();
+    			if(!dty)
+    			{
+    				dty = '{$user.lv_type}';
+    			}
+    			if(1 == dlv){
+            		$.ajax({
+            			type: "POST",
+            			url: "index.php?app=lv&act=check_defaultlv&ty="+dty,
+            			dataType:"json",
+            			success: function(msg){
+            				if(msg.res == 0 ){
+            					alert(msg.name+'已经是默认！');
+            					$("input[name='default_lv'][value=0]").attr("checked",true);  
+            				}
+            			}
+            			})
+    			}
+    			
+
+    		}
+);
+    		
+});
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=lv">{$lang.manage}</a></li>
+    <li>
+      <!-- {if $user.user_id} -->
+      <a class="btn1" href="index.php?app=lv&amp;act=add">{$lang.add}</a>
+      <!-- {else} -->
+      <span>{$lang.add}</span>
+      <!-- {/if} -->
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="user_form">
+    <table class="infoTable">
+          <!-- {if !$user.member_lv_id} -->
+       <tr>
+        <th class="paddingT15"> {$lang.lv_type}:</th>
+        <td class="paddingT15 wordSpacing5">  
+	        <select id="select1" name="lv_type">
+	        {html_options options=$tname selected='member'}
+			</select>    
+	     </td>
+      </tr>
+      <!-- {/if} -->
+      <tr>
+        <th class="paddingT15"> {$lang.name}:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input class="infoTableInput2" id="name" type="text" name="name" value="{$user.name|escape}" />
+          <label class="field_notice">{$lang.name}</label>
+        </td>
+      </tr>
+
+
+      <tr>
+        <th class="paddingT15"> {$lang.default_lv}:</th>
+        <td class="paddingT15 wordSpacing5"><p>
+            <label>
+            <input name="default_lv" type="radio" value="0" {if $user.default_lv eq 0}checked="checked"{/if} />
+            {$lang.no}</label>
+            <label>
+            <input type="radio" name="default_lv" value="1" {if $user.default_lv eq 1}checked="checked"{/if} />
+            {$lang.yes}</label>
+          </p></td>
+      </tr>
+
+      <tr>
+        <th class="paddingT15"> {$lang.experience}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="experience" type="text" id="experience" value="{$user.experience}" />  <label class="field_notice">{$lang.experience_notice}</label>        </td>
+      </tr>
+
+     {if !$set_avatar}
+      <tr>
+        <th class="paddingT15">{$lang.lv_logo}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableFile2" type="file" name="lv_logo" id="lv_logo" />
+          {if $user.lv_logo}<br /><img src="../{$user.lv_logo}" alt="" width="100" height="100" />{/if}           </td>
+      </tr>
+     {else}
+        <!--{if $smarty.get.act eq 'edit'}-->
+      <tr>
+        <th class="paddingT15">{$lang.portrait}:</th>
+        <td class="paddingT15 wordSpacing5">{$set_avatar}</td>
+      </tr>
+        <!--{/if}-->
+     {/if}
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="congzi" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

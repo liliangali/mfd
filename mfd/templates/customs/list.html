@@ -1,0 +1,70 @@
+{include file="header.html"}
+<div id="rightTop">
+  
+  <ul class="subnav">
+    <li><span>{$lang.all_goods}</span></li>
+    <li><a class="btn1" href="index.php?app=customs&amp;act=add">{$lang.add}</a></li>
+  </ul>
+</div>
+<div class="mrightTop1 info">
+  <div class="fontl">
+    <form method="get" name="selectcst" id="selectcst">
+      <input type="hidden" name="app" value="customs" />
+      <input type="hidden" name="act" value="index" />
+      {$lang.goods_name}:
+      <input class="queryInput" type="text" id="cst_name" name="cst_name" value="{$smarty.get.cst_name|escape}" />
+        分类:
+          <div id="cst_cate" style="display:inline;">
+            <select class="querySelect" id="cst_cate" name="cst_cate">
+              <option value="">请选择</option>
+              {html_options options=$cates  selected="$smarty.get.cst_cate"}
+            </select>
+          </div>
+      <input type="submit" class="formbtn" value="{$lang.query}" />
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <tr class="tatr1">
+      <td width="10%" class="firstCell"><input type="checkbox" class="checkall" />全选</td>
+      <td width="20%"><span ectype="order_by" fieldname="cst_name">{$lang.goods_name}</span></td>
+      <td>图片</td>
+      <td><span ectype="order_by" fieldname="cst_price">售价</span></td>
+      <td><span ectype="order_by" fieldname="is_hot">热门</span></td>
+      <td><span ectype="order_by" fieldname="cst_store">库存</span></td>
+	  <td><span ectype="order_by" fieldname="cst_sales">销量</span></td>
+      <td><span ectype="order_by" fieldname="cst_likes">喜欢数</span></td>
+      <td><span ectype="order_by" fieldname="cst_views">{$lang.views}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="is_active">{$lang.if_show}</span></td>
+      <td>{$lang.handler}</td>
+    </tr>
+    <!--{foreach from=$goods_list item=goods}-->
+    <tr class="tatr2" align="center">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$goods.cst_id}"/></td>
+      <td>{$goods.cst_name|escape}</td>
+      <td align="center"><img src="{$goods.cst_image}" height="60" /></td>
+      <td align="center">{$goods.cst_price}</td>
+      <td align="center">{if $goods.is_hot eq 1}是{else}否{/if}</td>
+      <td align="center">{$goods.cst_store}</td>
+      <td align="center">{$goods.cst_sales}</td>
+	  <td align="center">{$goods.cst_likes}</td>
+      <td align="center">{$goods.cst_views}</td>
+      <td class="table-center"><!-- {if $goods.is_active} --><img src="{res file=style/images/positive_enabled.gif}" /><!--{else}--><img src="{res file=style/images/positive_disabled.gif}" /><!-- {/if} --></td>
+      <td>
+      <a href="index.php?app=customs&amp;act=edit&amp;id={$goods.cst_id}">{$lang.edit}</a>
+      <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=customs&amp;act=drop&amp;id={$goods.cst_id}');">{$lang.drop}</a>
+      <a target="_blank" href="{$site_url}/custom-minfo-{$goods.cst_id}.html">{$lang.view}</a></td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15">
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=customs&act=drop&ret_page={$page_info.curr_page}" presubmit="confirm('{$lang.drop_confirm}')" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+  </div>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}

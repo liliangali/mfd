@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title></title>
+<link href="themes/mall/default/styles/default/css/head_footr.css" rel="stylesheet" type="text/css" />
+<style>
+.box404{width:1065px; height:374px; background:url(themes/mall/default/styles/default/images/404bg.jpg); margin:100px auto;}
+.text404{margin:0 0 0 550px; width:510px; text-align:center; padding:100px 0 0 0;}
+.text404 h1{font-size:26px; font-weight:normal;}
+.text404 p{font-size:16px; color:#757575; margin-top:20px;}
+.text404 a{display:block; width:130px; height:34px; color:#686868; margin:35px auto 0 auto; line-height:34px; border:#e4e4e4 1px solid; border-radius:3px; background:#fff;}
+</style>
+
+</head>
+<body>
+<div class="box404">
+    <div class="text404">
+       <h1>您在寻找什么商品吗？</h1>
+       <p>很抱歉，您请求的网址在我们的网站上无法正常显示</p>
+       <a href="#">返回定制中心</a>
+    </div>
+</div>
+
+</body>
+
+</html>

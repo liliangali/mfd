@@ -1,0 +1,92 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+
+
+<style>
+    .mfd-luck .luck-title{border-bottom:none;}
+</style>
+
+<div class="user_box">
+    <!--用户中心左菜单部分 START-->
+    {include file = member.menu.html}
+    <!--用户中心左菜单部分 END-->
+
+        <div class="user_right user_rights fr">
+            <div class="lntegral"><p class="mlntegral fl">订单返修</p></div>
+            <div class="fxcontent">
+
+                <!--{foreach from=$fx_info item=item key=k}-->
+                <div class="fxrepair">
+                    <div class="fxnumber">
+                        <p class="fl">订单编号：{$item.order_sn}</p>
+                        <p class="fl fxsqtada">申请时间：{$item.add_time}</p>
+                    </div>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr class="fxone">
+                            <td width="445">商品信息</td>
+                            <td>实付款</td>
+                            <td>返修费用</td>
+                            <td>状态</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul class="tr_list clearfix">
+
+                                    <!--{foreach from=$item.fx_info  item=fx key=kk}-->
+                                    <li>
+                                        <div class="tr_list-img fl"><a href="#" target="_blank"><img src="{$fx.img}" width="64" height="96"></a></div>                               <div class="tr_list-td fl">
+                                        <h3><a href="#" target="_blank">{$fx.goods_name}</a></h3>
+                                        <dl>
+                                            <dd>{$fx.size}</dd>
+                                            <dd>{if $fx.fabric}面料：{$fx.fabric}{/if}</dd>
+                                        </dl>
+                                        <p class="fxmoney">{$fx.oprice}元</p>
+                                    </div>
+                                    </li>
+                                    <!--{/foreach}-->
+                                </ul>
+                            </td>
+                            <td>￥{if $item.order_amount}{$item.order_amount}{else}0{/if}</td>
+                            <td>￥{$item.price}</td>
+                            <td>
+
+                            <!--{if $item.status==11}-->
+                            <a  onclick="cotteFn.receive('{$item.order_id}')" class="{if $item.sign==1}dingdxx fxddtcxqs{/if}{if $item.sign==2}dingdxx fxddtcxqx{/if}" href="javascript:;">确认收货&nbsp;&nbsp;></a>
+                                <!--{else}-->
+                                <a  onclick="cotteFn.show('{$item.order_id}')" class="{if $item.sign==1}dingdxx fxddtcxqs{/if}{if $item.sign==2}dingdxx fxddtcxqx{/if}" href="javascript:;">{$item.status_name}&nbsp;&nbsp;></a>
+                            <!--{/if}-->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--{/foreach}-->
+            </div>
+            {include file=page.bottom.html}
+        </div>
+
+    </div>
+{include file=../footer-new.html}
+
+
+
+
+
+
+
+    <script src="/public/global/jquery-1.8.3.min.js"></script>
+    <script src="/public/global/jquery.swipe.js"></script>
+    <script src="/public/static/pc/js/public.js"></script>
+    <script src="/public/static/pc/js/usercenter.js"></script>
+    <script src="/public/global/luck/pc/luck.js"></script>
+    <script>
+
+
+
+
+//        cotteFn.show(order_id)
+//        cotteFn.receive(order_id)
+//        cotteFn.customer17()
+    </script>
+    </body>
+    </html>

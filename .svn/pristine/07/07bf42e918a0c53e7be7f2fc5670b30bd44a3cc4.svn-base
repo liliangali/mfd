@@ -1,0 +1,171 @@
+<table><tbody>
+<!-- {foreach from=$cates item=cate} --><input type="hidden" name="cates[{$cate.cate_id}][top_id]" value="{$top_id}" />
+<!-- {if !$cate.children} -->
+    <tr>
+    <td width="150" height="30">
+	    <input {if $cate.check eq 1}checked{/if} class="cates_check" id="cates_check_{$cate.cate_id}" type="checkbox" name="cates[{$cate.cate_id}][cate_id]" value="{$cate.cate_id}" />
+	    {input_obj post="$cate.cate_id" filter="cate_id,state" arg0="$cate.cate_id" arg1="1" callback="cates_select" class="$cate.cate_id" value="$cate.items" id="$cate.cate_id" model="part" text="$cate.cate_name"} 
+	    <input type="hidden" class="cates_items" vdft="{$cate.dft}" vids="{$cate.cate_id}" id="cates_value_{$cate.cate_id}" name="cates[{$cate.cate_id}][cate_items]" value="{$cate.items}" />
+    </td>
+    <td>
+	    默认选择
+	    <select id="cates_select_{$cate.cate_id}" name="cates[{$cate.cate_id}][cate_dft]">
+	       {if $selects.$cate.cate_id}
+	           {html_options options=$selects.$cate.cate_id selected=$cate.dft}
+           {else}
+                 <option value="">{$lang.select_pls}</option>
+	       {/if}
+	    </select>
+    </td>
+    </tr>
+    <!-- {else} -->
+    <tr>
+    <td  colspan="2">
+	    <input {if $cate.check eq 1}checked{/if} class="cates_check" haveson="true" id="cates_check_{$cate.cate_id}" type="checkbox" name="cates[{$cate.cate_id}][cate_id]" value="{$cate.cate_id}" />
+	    <span class="cates_label_{$top_id}" value="{$cate.cate_id}" haveson="true" style="width:150px;cursor:pointer;" >
+	        {$cate.cate_name}
+	    </span>
+        <div id="cates_son_{$top_id}_{$cate.cate_id}" style="display:none"><!--  -->
+        <table>
+            <!-- {foreach from=$cate.children item=son key=key2} -->
+            <!-- {if !$son.children} -->
+            <tr><td width="20"></td>
+            <td>
+            <input {if $son.check eq 1}checked{/if} class="cates_check" id="cates_check_{$son.cate_id}" type="checkbox" name="cates[{$cate.cate_id}][son_cate][{$son.cate_id}][cate_id]" value="{$son.cate_id}" />
+                {if $cate.fabric}
+                    {if $cate.fabric == 'color'}
+	                {input_obj post="$son.cate_id" filter="vcolorid,state" arg0="$son.cate_id" arg1="1" callback="cates_select" class="$son.cate_id"  value="$son.items" id="$son.cate_id" model="part" text="$son.cate_name"}
+                    {elseif  $cate.fabric == 'flower'}
+                    {input_obj post="$son.cate_id" filter="vflowerid,state" arg0="$son.cate_id" arg1="1" callback="cates_select" class="$son.cate_id"  value="$son.items" id="$son.cate_id" model="part" text="$son.cate_name"}
+                    {elseif  $cate.fabric == 'composition'}
+                    {input_obj post="$son.cate_id" filter="vcompositionid,state" arg0="$son.cate_id" arg1="1" callback="cates_select" class="$son.cate_id"  value="$son.items" id="$son.cate_id" model="part" text="$son.cate_name"}
+                    {/if}
+                {else}
+	                {input_obj post="$son.cate_id" filter="cate_id,state" arg0="$son.cate_id" arg1="1" callback="cates_select" class="$son.cate_id"  value="$son.items" id="$son.cate_id" model="part" text="$son.cate_name"}
+                {/if}
+                <input type="hidden" class="cates_items" vdft="{$son.dft}" vids="{$son.cate_id}" id="cates_value_{$son.cate_id}" name="cates[{$cate.cate_id}][son_cate][{$son.cate_id}][cate_items]" value="{$son.items}" />
+            </td>
+            <td>
+                默认选择
+                <select id="cates_select_{$son.cate_id}" name="cates[{$cate.cate_id}][son_cate][{$son.cate_id}][cate_dft]">
+                   
+                   {if $selects.$son.cate_id}
+		               {html_options options=$selects.$son.cate_id selected=$son.dft}
+		           {else}
+                       <option value="">{$lang.select_pls}</option>
+		           {/if}
+		                   
+                </select>
+            </td>
+            </tr>
+            <!-- {else} -->
+            <tr>
+		    <td  colspan="2" style="padding-left:20px;">
+		        <input {if $son.check eq 1}checked{/if} class="cates_check" haveson="true" id="cates_check_{$son.cate_id}" type="checkbox" name="cates[{$cate.cate_id}][son_cate][{$son.cate_id}][cate_id]" value="{$son.cate_id}" />
+		        <span class="cates_label_{$top_id}" value="{$son.cate_id}" haveson="true" style="width:150px;cursor:pointer;" >
+		            {$son.cate_name}
+		        </span>
+		        <div id="cates_son_{$top_id}_{$son.cate_id}" style="display:none"><!--  -->
+		        <table>
+		            <!-- {foreach from=$son.children item=child} -->
+		            <tr><td width="20"></td>
+		            <td>
+		            <input {if $child.check eq 1}checked{/if} class="cates_check" id="cates_check_{$child.cate_id}" type="checkbox" name="cates[{$cate.cate_id}][son_cate][{$son.cate_id}][child_cate][{$child.cate_id}][cate_id]" value="{$child.cate_id}" />
+
+		                {if $cate.fabric}
+		                    {if $cate.fabric == 'color'}
+		                    {input_obj post="$child.cate_id" filter="vcolorid,state" arg0="$child.cate_id" arg1="1" callback="cates_select" class="$child.cate_id"  value="$child.items" id="$child.cate_id" model="part" text="$child.cate_name"}
+		                    {elseif  $cate.fabric == 'flower'}
+		                    {input_obj post="$child.cate_id" filter="vflowerid,state" arg0="$child.cate_id" arg1="1" callback="cates_select" class="$child.cate_id"  value="$child.items" id="$child.cate_id" model="part" text="$child.cate_name"}
+		                    {elseif  $cate.fabric == 'composition'}
+		                    {input_obj post="$child.cate_id" filter="vcompositionid,state" arg0="$child.cate_id" arg1="1" callback="cates_select" class="$child.cate_id"  value="$child.items" id="$child.cate_id" model="part" text="$child.cate_name"}
+		                    {/if}
+		                {else}
+		                    {input_obj post="$child.cate_id" filter="cate_id,state" arg0="$child.cate_id" arg1="1" callback="cates_select" class="$child.cate_id"  value="$child.items" id="$child.cate_id" model="part" text="$child.cate_name"}
+		                {/if}
+		                <input type="hidden" class="cates_items" vdft="{$child.dft}" vids="{$child.cate_id}" id="cates_value_{$child.cate_id}" name="cates[{$cate.cate_id}][son_cate][{$son.cate_id}][child_cate][{$child.cate_id}][cate_items]" value="{$child.items}" />
+		            </td>
+		            <td>
+		                默认选择
+		                <select id="cates_select_{$child.cate_id}" name="cates[{$cate.cate_id}][son_cate][{$son.cate_id}][child_cate][{$child.cate_id}][cate_dft]">
+		                   
+		                   
+		                   {if $selects.$child.cate_id}
+		                       {html_options options=$selects.$child.cate_id selected=$child.dft}
+		                   {else}
+		                      <option value="">{$lang.select_pls}</option>
+		                   {/if}
+		                </select>
+		            </td>
+		            </tr>
+		            <!-- {/foreach} -->
+		              </table>
+		        </div>
+		    </td>
+		    </tr>      
+            <!-- {/if} -->
+            <!-- {/foreach} -->
+        </table>
+        </div>
+    </td>
+    </tr><!-- {/if} --><!-- {/foreach} -->
+</tbody></table>
+
+<script type="text/javascript">
+/*
+$(function(){
+    $('.cates_items').each(function(){
+        var _items=$(this).attr('value');
+        var _vids=$(this).attr('vids');
+        var _vdft=$(this).attr('vdft');
+        if(_items!=''){
+            $.ajax({
+                url:"index.php?app=customs&act=ajax_parts_select",
+                data:"ids="+_items+"&dft="+_vdft,
+                success:function(result){
+                    $('#cates_select_'+_vids).html(result);
+                }
+            });
+        }
+    });
+});
+*/
+$('.cates_label_{$top_id}').each(function(){
+    var _topId = "{$top_id}";
+    var _this  = $(this);
+    _this.click(function(){
+        var _id=_this.attr('value');
+        var _items=_this.children('#cates_value_'+_id).attr('value');
+        var _son=_this.attr('haveson');
+        if(_son=='true'){
+            var _display=$('#cates_son_'+_topId+'_'+_id).css('display');
+            if(_display=='block'){
+                $('#cates_son_'+_topId+'_'+_id).css('display','none')
+            }else{
+                $('#cates_son_'+_topId+'_'+_id).css('display','block')
+            }
+        }
+    });
+});
+
+
+
+//回调函数
+function cates_select(res){
+    if(res.ids!=''){
+        $('#cates_check_'+res.post).attr('checked',true);
+        $('#cates_value_'+res.post).val(res.ids);
+        $.ajax({
+            url:"index.php?app=customs&act=ajax_parts_select",
+            data:"ids="+res.ids,
+            success:function(result){
+                $('#cates_select_'+res.post).html(result);
+            }
+        });
+    }else{
+        $('#cates_check_'+res.post).attr('checked',false);
+    }
+}
+
+</script>
+

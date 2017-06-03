@@ -1,0 +1,25 @@
+<div class="address" id="address">
+  <ul>
+    {foreach from=$addresslist item=list name=ads}
+      <li {if $list.addr_id == $def_addr}class="cur"{/if} data-id="{$list.addr_id}">
+      <p class="underlined">{$list.consignee}</p>
+      <p class="tele">{$list.phone_mob}</p>
+      <p class="txaddress">{$list.region_name}{$list.address}<!--{if $list.zipcode}-->({$list.zipcode})<!--{/if}-->
+      <div class="caozuoBtn">
+      <input type="button" value="编辑" class="edit" />
+      <input type="button" value="删除" class="del" />
+      <!--{if $list.addr_id == $def_addr}-->
+      <span class="pnmr">默认</span>
+      <!--{else}-->
+      <input type="button" value="设置默认" class="def" style="width:80px;" />
+      <!--{/if}-->
+      </div>
+      </li>
+    {/foreach} 
+    <li class="syxdz" id="addAddress">
+    <span>+</span>
+    使用新地址
+    </li>
+  </ul>
+</div>
+

@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>阿里裁缝登陆</title>
+<link rel="stylesheet" type="text/css" href="/static/v1/css/login.css">
+<link rel="stylesheet" type="text/css" href="/static/v1/css/style.css">
+<script type="text/javascript" src="/static/v1/expand/jquery.js"></script>
+<script type="text/javascript" src="/static/v1/js/public.js"></script>
+<script type="text/javascript" src="/static/v1/js/shareyqm.js"></script>
+<script   type="text/javascript" src="/static/v1/expand/layer/layer.min.js"></script>
+
+</head>
+
+<body>
+<div class="myForm">
+	<div id="error"></div>
+
+   <div class="item">
+        <div class="tit"><em>*</em>手机号码</div>
+        <input name="contact[mobile]" type="text" class="txt" id="phone"  data-type="phone">
+    </div>
+
+     <div class="item">
+      <div class="tit"><em>*</em> 验证码</div>
+      <input name="code" id="code" type="text" class="txt fl" data-type="required" data-tip="验证码" style="width:150px; margin-right:10px;">
+      <input data-time="60" class="fl sendValidate" value="获取验证码">
+      </div>
+    
+        
+    <div class="btnBox">
+    	<a href="javascript:void(0)" class="login fl" id="btn" ><span>确定</span></a>
+       
+    </div>
+</div>
+
+</body>
+<script >
+  //发送验证码
+ //"phone={$data.user_name}&category=reg&type=reg&opt=reset" ,
+ //   data: {step2:1,uname:$("#auth_code").val(),phone:{$data.user_name}},
+function sendCode(){
+    var reg=/^1[3|5|8|7]\d{9}$/;
+    var phone = $('#phone').val();
+    if(reg.test(phone)){
+      $.ajax({
+        url  : '/recommend-ajaxcode.html',
+        data : '&mobile='+phone,
+        type : 'post',
+        success : function(res){
+          var res = $.parseJSON(res);
+          if(res.done == true){
+            countdown();
+          }else{
+            msg(res.msg);
+          }
+        }
+    });
+    }else{
+      $('#error').html("<i class='ico fl'></i><span class='fl'>请正确输入手机号码！</span>");
+      $('#phone').addClass("error-css");    
+
+    }
+    }
+//倒计时按钮
+function countdown(){
+  var obj=$('.sendValidate'),
+    time=obj.attr('data-time');
+
+    obj.addClass('disabled').attr('disabled',true).val('('+time+')秒重新发送');
+    var n=time;
+    var timer=setInterval(function(){
+      n--
+      if(n<0){
+        obj.val('重新获取').removeClass('disabled').attr('disabled',false);
+        clearInterval(timer); 
+        return
+      }
+      obj.val('('+n+')秒重新发送');
+    },1000) 
+ 
+}      
+  
+
+$('.sendValidate').bind('click',sendCode);
+
+$('#btn').bind('click',function(){
+    var user_name =$('#phone').val();
+    var code     =$('#code').val();
+    var index = parent.layer.getFrameIndex(window.name); //获取当前窗体索引
+  
+  $.ajax({
+      type:"POST",
+      'url':"/recommend-shareyqm.html",
+      'data':{phone:user_name,code:code},
+      'success':function(res){
+        if(!res.done){
+          msg(res.msg);
+
+        }
+       parent.layer.close(index);  //执行关闭
+
+      }
+  });
+});
+
+
+
+</script>
+</html>

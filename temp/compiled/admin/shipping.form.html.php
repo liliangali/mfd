@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html style="min-height: 747px;" lang="zh-CN"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="author" content="shopex UED Team">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<link rel="icon" href="http://dev.bbc.com/public/statics/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://dev.bbc.com/public/statics/favicon.ico" type="image/x-icon">
+
+<!-- common styles -->
+<link href="static/js/shipping/theme.css" rel="stylesheet" media="screen, projection">
+<link href="static/js/shipping/font-awesome.css" rel="stylesheet" media="screen, projection">
+<link href="static/js/shipping/ionicons.css" rel="stylesheet" media="screen, projection"><!-- plugins -->
+<link href="static/js/shipping/bootstrap-validator.css" rel="stylesheet" media="screen, projection">
+<link href="static/js/shipping/bootstrap-daterangepicker.css" rel="stylesheet" media="screen, projection">
+<link href="static/js/shipping/bootstrap-datepicker.css" rel="stylesheet" media="screen, projection">
+<link href="static/js/shipping/summernote.css" rel="stylesheet" media="screen, projection"><!-- common scripts -->
+<script src="static/js/shipping/jquery.js"></script>
+<script src="static/js/shipping/bootstrap.js"></script><!-- plugins -->
+<script src="static/js/shipping/bootstrap-modal.js"></script>
+<script src="static/js/shipping/bootstrap-validator.js"></script>
+<script src="static/js/shipping/moment.js"></script>
+<script src="static/js/shipping/daterangepicker.js"></script>
+<script src="static/js/shipping/datepicker.js"></script>
+<script src="static/js/shipping/jquery_004.js"></script>
+<script src="static/js/shipping/jquery_002.js"></script><!-- editor -->
+<script src="static/js/shipping/summernote.js"></script>
+<script src="static/js/shipping/summernote-zh-CN.js"></script><!-- main scripts -->
+<script src="static/js/shipping/tools.js"></script>
+<script src="static/js/shipping/imageupload.js"></script>
+<script src="static/js/shipping/goodschoose.js"></script>
+<script src="static/js/shipping/app.js"></script><script>
+var imageuploadUrl = "http://dev.bbc.com/shop/image/loadimagemodal.html";
+
+(function() {
+  var explorer = window.navigator.userAgent ;
+  //ie
+  if (explorer.indexOf("MSIE") >= 0) {
+    // window.location.href= "http://dev.bbc.com/shop/browserTip.html"
+  }
+  //firefox
+  else if (explorer.indexOf("Firefox") >= 0) {
+
+  }
+  //Chrome
+  else if(explorer.indexOf("Chrome") >= 0){
+
+  }
+  //Opera
+  else if(explorer.indexOf("Opera") >= 0){
+    window.location.href= "http://dev.bbc.com/shop/browserTip.html"
+  }
+  //Safari
+  else if(explorer.indexOf("Safari") >= 0){
+
+  }
+})()
+</script>
+  </head>
+  <body style="min-height: 747px;" class="skin-blue">
+    <div class="alert alert-error message in" role="alert" id="messagebox" style="display:none;"></div>
+
+<div class="modal fade" id="pwdupdateIndexDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+    <div style="min-height: 678px;" class="wrapper row-offcanvas row-offcanvas-left">
+
+   
+<div class="modal fade" id="feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>
+<script>
+  $("#saveFeedback").Validator();
+  function ajaxSubmit (e) {
+    var form = e.target;
+    $('#action-feedback-btn').attr('disabled','disabled');
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        $('#action-feedback-btn').attr('disabled',false);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+        $('#feedback').on('hide', function(e){
+           $(this).find('input, select, textarea').val('');
+           $("#saveFeedback").Validator('resetForm');
+        }).modal('hide');
+        $('#action-feedback-btn').attr('disabled',false);
+        $(form)[0].reset();
+      }
+    });
+  }
+</script>
+
+      <aside class="right-side">
+                <section class="content-header">
+          <h1>
+            新增运费模板            <small></small>
+          </h1>
+          <ol class="breadcrumb breadcrumb-primary">
+                        <li><a href="http://dev.bbc.com/shop">首页</a></li>
+                        <li><a href="http://dev.bbc.com/shop/wuliu/logis/templates.html">快递运费模板列表</a></li>
+                        <li class="active">新增运费模板</li>
+                      </ol>
+        </section>
+                <section class="content">
+          <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <!--div class="panel-heading">
+  新增运费模板  </div -->
+
+  <div class="panel-body">
+
+    <form novalidate="novalidate" action="" method="post" class="form-horizontal validate-form" data-validate-onsuccess="ajaxSubmit"  role="form"><button style="display: none; width: 0px; height: 0px;" class="hidden-submit" type="submit"></button>
+            <div class="form-group">
+        <label class="col-sm-2 control-label">物流名称：</label>
+        <div class="col-sm-3">
+          <input data-validate-field="shipping_name" name="shipping_name" class="form-control" value="<?php echo $this->_var['info']['shipping_name']; ?>" required="" maxlength="20" type="text">
+        <ins data-validate-result="NOT_VALIDATED" data-validate-for="name" data-validate-validator="length" class="help-block" style="display: none;">请输入符合长度限制的值</ins><ins data-validate-result="NOT_VALIDATED" data-validate-for="name" data-validate-validator="required" class="help-block" style="display: none;">请填写必填项目</ins></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">物流编码：</label>
+        <div class="col-sm-3">
+          <input data-validate-field="code" name="code" value="<?php echo $this->_var['info']['code']; ?>" class="form-control" required="" maxlength="20" type="text">
+        <ins data-validate-result="NOT_VALIDATED" data-validate-for="code" data-validate-validator="length" class="help-block" style="display: none;">请输入符合长度限制的值</ins><ins data-validate-result="NOT_VALIDATED" data-validate-for="name" data-validate-validator="required" class="help-block" style="display: none;">请填写必填项目</ins></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">排序：</label>
+        <div class="col-sm-1">
+          <input name="sort_order" value="<?php echo $this->_var['info']['sort_order']; ?>" value="0" class="form-control" type="text">
+        </div>
+      </div>
+      <!-- <div class="form-group">
+        <label class="col-sm-2 control-label">快递公司：</label>
+        <div class="col-sm-10">
+          <div class="express-list">
+            <ul class="list-inline">
+                        </ul>
+          </div>
+                    <button class="btn btn-default act-addrule" data-toggle="modal" data-target="#expressselect_modal"><i class="fa fa-plus"></i> 添加合作快递公司</button>
+                    <span class="help-block">在发货的时候可以选择该绑定的快递公司</span>
+        </div>
+      </div> -->
+   <!--    
+      <div class="form-group">
+        <label class="col-sm-2 control-label">计价方式：</label>
+        <div class="radio">
+          <label>
+            <input name="valuation" value="1" checked="checked" type="radio">按重量          </label>
+        </div>
+      </div> -->
+      <div class="form-group">
+        <label class="col-sm-2 control-label">是否启用：</label>
+        <div class="radio">
+          <label>
+            <input name="enabled" value="1" <?php if ($this->_var['info']['enabled']): ?>checked="checked"<?php endif; ?> type="radio">启用          </label>
+          <label>
+            <input name="enabled" value="0" <?php if (! $this->_var['info']['enabled']): ?>checked="checked"<?php endif; ?> type="radio">禁用          </label>
+        </div>
+      </div>
+    <!-- 是否免费 -->  
+       <div class="form-group">
+        <label class="col-sm-2 control-label">是否免费：</label>
+        <div class="radio">
+          <label>
+            <input name="is_fress" value="0" <?php if (! $this->_var['info']['is_fress']): ?>checked="checked"<?php endif; ?> type="radio">收费          </label>
+          <label>
+            <input name="is_fress" value="1" <?php if ($this->_var['info']['is_fress']): ?>checked="checked"<?php endif; ?> type="radio">免费          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label">运费计算：</label>
+        <div class="col-sm-10">
+          <div class="well well-sm clearfix">
+            <div class="form-inline">
+              <div class="form-label">默认运费：</div>
+              <div class="clearfix">
+                重量（百克）：<input data-validate-field="fee_conf[0][start_standard]" name="first_weight" value="<?php echo $this->_var['info']['first_weight']; ?>" size="4" class="form-control" type="text">　
+                运费（元）：<input data-validate-field="fee_conf[0][start_fee]" name="first_price" value="<?php echo $this->_var['info']['first_money']; ?>" size="4" class="form-control" type="text">
+              <ins data-validate-result="NOT_VALIDATED" data-validate-for="fee_conf[0][start_standard]" data-validate-validator="required" class="help-block" style="display: none;">请填写重量。</ins><ins data-validate-result="NOT_VALIDATED" data-validate-for="fee_conf[0][start_standard]" data-validate-validator="gt" class="help-block" style="display: none;">请输入大于等于 %s 的数值</ins><ins data-validate-result="NOT_VALIDATED" data-validate-for="fee_conf[0][start_fee]" data-validate-validator="required" class="help-block" style="display: none;">请填写运费。</ins><ins data-validate-result="NOT_VALIDATED" data-validate-for="fee_conf[0][start_fee]" data-validate-validator="gt" class="help-block" style="display: none;">请输入大于等于 %s 的数值</ins></div>
+            </div>
+            <div class="form-inline">
+              <div class="form-label">增重运费：</div>
+              <div class="clearfix">
+                每增加（百克）：<input data-validate-field="fee_conf[0][add_standard]" size="4" value="<?php echo $this->_var['info']['step_weight']; ?>" name="step_weight" class="form-control" type="text">　
+                增加（元）：<input data-validate-field="fee_conf[0][add_fee]" name="step_price" value="<?php echo $this->_var['info']['step_money']; ?>" size="4" class="form-control" type="text">
+              <ins data-validate-result="NOT_VALIDATED" data-validate-for="fee_conf[0][add_standard]" data-validate-validator="gt" class="help-block" style="display: none;">请输入大于等于 %s 的数值</ins><ins data-validate-result="NOT_VALIDATED" data-validate-for="fee_conf[0][add_fee]" data-validate-validator="gt" class="help-block" style="display: none;">请输入大于等于 %s 的数值</ins></div>
+            </div>
+            <!--p><input type="checkbox" name="" value=""> 全区域配送</p-->
+          </div>
+          <div class="well well-sm">
+            <h5>为指定地区城市设置运费</h5>
+            <table class="table table-bordered table-valign-middle bg-white">
+              <colgroup><col class="col-md-3">
+              <col class="col-md-2">
+              <col class="col-md-2">
+              <col class="col-md-2">
+              <col class="col-md-2">
+              </colgroup><thead>
+                <tr>
+                  <td>运送到</td>
+                  <td>首重(百克)</td>
+                  <td>首费(元)</td>
+                  <td>续重(百克)</td>
+                  <td>续费(元)</td>
+                  <td>操作</td>
+                </tr>
+              </thead>
+              <tbody id="data_grid">
+              <?php $_from = $this->_var['fr']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'item');$this->_foreach['loop'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['loop']['total'] > 0):
+    foreach ($_from AS $this->_var['key'] => $this->_var['item']):
+        $this->_foreach['loop']['iteration']++;
+?>
+                <tr>
+                  <td>
+                    <a href="#" class="pull-right action-edit" data-toggle="modal" data-target="#areaselect_modal">编辑</a>
+                    <span>
+                    <?php $_from = $this->_var['item']['p_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'item1');if (count($_from)):
+    foreach ($_from AS $this->_var['item1']):
+?>
+                    <?php echo $this->_var['item1']['name']; ?><em class="text-muted">(<?php echo $this->_var['item1']['f_region_name']; ?>)</em>
+                    <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+                    </span>
+                    <input type="hidden" name="fee_conf[<?php echo $this->_foreach['loop']['iteration']; ?>][area]" required="" value="<?php echo $this->_var['item']['f_region']; ?>" data-validate-field="fee_conf[1][area]">
+                  </td>
+                  <td><input type="text" name="fee_conf[<?php echo $this->_foreach['loop']['iteration']; ?>][start_standard]" size="2" required="" data-validate-required-message="请填写重量。" min="0" data-validate-group="td" value="<?php echo $this->_var['item']['val_list']['first_weight']; ?>" class="form-control" data-validate-field="fee_conf[1][start_standard]"><ins class="help-block" data-validate-validator="gt" data-validate-for="fee_conf[1][start_standard]" data-validate-result="NOT_VALIDATED" style="display: none;">请输入大于等于 %s 的数值</ins><ins class="help-block" data-validate-validator="required" data-validate-for="fee_conf[1][start_standard]" data-validate-result="NOT_VALIDATED" style="display: none;">请填写重量。</ins></td>
+                  <td><input type="text" name="fee_conf[<?php echo $this->_foreach['loop']['iteration']; ?>][start_fee]" size="2" required="" data-validate-required-message="请填写运费。" min="0" data-validate-group="td" value="<?php echo $this->_var['item']['val_list']['first_price']; ?>" class="form-control" data-validate-field="fee_conf[1][start_fee]"><ins class="help-block" data-validate-validator="gt" data-validate-for="fee_conf[1][start_fee]" data-validate-result="NOT_VALIDATED" style="display: none;">请输入大于等于 %s 的数值</ins><ins class="help-block" data-validate-validator="required" data-validate-for="fee_conf[1][start_fee]" data-validate-result="NOT_VALIDATED" style="display: none;">请填写运费。</ins></td>
+                  <td><input type="text" name="fee_conf[<?php echo $this->_foreach['loop']['iteration']; ?>][add_standard]" size="2" value="<?php echo $this->_var['item']['val_list']['step_weight']; ?>" class="form-control"></td>
+                  <td><input type="text" name="fee_conf[<?php echo $this->_foreach['loop']['iteration']; ?>][add_fee]" size="2" value="<?php echo $this->_var['item']['val_list']['step_price']; ?>" class="form-control"></td>
+                  <td><a href="javascript:void(0);" class="action-del">删除</a></td>
+              </tr>
+              <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+              </tbody>
+            </table>
+            <button class="btn btn-default act-addrule" data-toggle="modal" data-target="#areaselect_modal"><i class="fa fa-plus"></i> 添加地区</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-3">
+      <button type="submit" class="btn btn-primary btn-lg btn-block">保存并返回</button>
+    </div>
+    <input type="hidden" name="shipping_id" value="<?php echo $this->_var['info']['shipping_id']; ?>" />
+    <!-- <a href="javascript:void(0);" class="pull-left btn-cancel">取消</a> -->
+  </div>
+</form>
+  <!-- Modal -->
+ 
+</section></aside></div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="areaselect_modal" tabindex="-1" role="dialog">
+  <div class="panel panel-default modal-dialog modal-lg">
+    <div class="panel-heading clearfix">
+      选择区域
+      <div class="pull-right">
+        <button type="button" class="btn btn-primary action-save">保存</button>
+        <button type="button" class="btn btn-default action-cancel" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+    <div class="panel-body tree-list" id="area_list">
+
+    </div>
+  </div>
+</div>
+
+<textarea class="sr-only" id="addrule_template">
+  <tr>
+    <td><a href="javascript:void(0);" class="pull-right action-edit" data-toggle="modal" data-target="#areaselect_modal">编辑</a><span>{areas}</span><input type="hidden" name="fee_conf[{key}][area]" value="{values}"></td>
+    <td><input type="text" name="fee_conf[{key}][start_standard]" size="1" min="0" value="" class="form-control"></td>
+    <td><input type="text" name="fee_conf[{key}][start_fee]" size="1" min="0" value="" class="form-control"></td>
+    <td><input type="text" name="fee_conf[{key}][add_standard]" size="1" value="" class="form-control"></td>
+    <td><input type="text" name="fee_conf[{key}][add_fee]" size="1" value="" class="form-control"></td>
+    <td><a href="javascript:void(0);" class="action-del">删除</a></td>
+  </tr>
+</textarea>
+<textarea class="sr-only" id="addarea_template">
+  <dl class="row">
+    <dt class="col-md-2"><label for="{id}"><input type="checkbox" name="{name}" id="{id}" value="{id}"> {value}</label></dt>
+    <dd class="row col-md-10">
+    <div class="col-md-3">
+      <label for="{id}"><input type="checkbox" name="{name}" id="{id}" value="{id}"> {value}</label> <span class="caret"></span>
+    </div>
+    </dd>
+  </dl>
+</textarea>
+<script src="static/js/shipping/jquery_003.js"></script><script>
+
+$('#form_delivery').Validator({
+    fields: {
+        'fee_conf[0][start_standard]': {
+            group: '.clearfix',
+            validators: {
+                required: {
+                    message: '请填写重量。'
+                },
+                gt: {
+                    value: 0
+                }
+            }
+        },
+        'fee_conf[0][start_fee]': {
+            group: '.clearfix',
+            validators: {
+                required: {
+                    message: '请填写运费。'
+                },
+                gt: {
+                    value: 0
+                }
+            }
+        },
+        'fee_conf[0][add_standard]': {
+            group: '.clearfix',
+            validators: {
+                gt: {
+                    value: 0
+                }
+            }
+        },
+        'fee_conf[0][add_fee]': {
+            group: '.clearfix',
+            validators: {
+                gt: {
+                    value: 0
+                }
+            }
+        }
+    }
+});
+
+var tpl = $('#addrule_template').val();
+var tbody = $('#data_grid');
+var area_list = $('#area_list');
+var input = tbody.find('tr:last input[type=text]');
+var dialog = $('#areaselect_modal');
+var key;
+if(input.size()) {
+    key = input.attr('name').match(/^fee_conf\[(\d*)\].*/)[1] || 0;
+}
+else {
+    key = 0;
+}
+
+$('.act-addrule').on('click', function(e) {
+    e.preventDefault();
+    var self = area_list.data('JSONList');
+    if(!self) return;
+
+    if(self.changeStatus(self.data, getDisabled()).isDisabled()) {
+        e.stopPropagation();
+        return $('#messagebox').message('地区已经添加完毕。');
+    }
+
+    self.rebuild(null, getChecked());
+});
+
+tbody.on('click', '.action-edit', function(e) {
+    $(this).parents('td').addClass('editing');
+    var self = area_list.data('JSONList');
+    self && self.rebuild(getDisabled(this), getChecked(this));
+})
+.on('click', '.action-del', function(e) {
+    var parent = $(this).parents('tr').eq(0);
+    $('#form_delivery')
+        .Validator('removeField', parent.find('.form-control').eq(0))
+        .Validator('removeField', parent.find('.form-control').eq(1));
+    parent.remove();
+});
+
+function getChecked(element) {
+    var chk;
+    if(element) {
+        chk = $(element).nextAll('input[type=hidden]').val().split(',');
+    }
+    else {
+        chk = [];
+    }
+    // console.log(chk);
+    return chk;
+}
+function getDisabled(element) {
+    var dis = [];
+    tbody.find('tr').each(function (i) {
+        var disid;
+        if(element) {
+            var parent = $(element).parents('tr');
+            if(parent[0] == this) {
+                return;
+            }
+        }
+        disid = $(this).find('input[type=hidden]').val();
+        if(disid) {
+            dis = dis.concat(disid.split(','));
+        }
+    });
+    // console.log(dis);
+    return dis;
+}
+
+area_list.jsonList({
+    url: 'index.php?app=shipping&act=region',
+    type: '',
+    items: 'children',
+    label: 'value',
+    name: 'areas',
+    success: function(self) {
+        dialog.on('click', '.action-save', function(e){
+            if(!self.container.find('input[type=checkbox]:checked')[0]) {
+                return $('#messagebox').message('请至少选择一个地区。');
+            }
+
+            var selected = self.getChecked(['value', 'id']);
+            var value = selected[0].join() || '未选择地区';
+            var id = selected[1].join();
+            if(tbody.find('.editing').length) {
+                tbody.find('.editing').removeClass('editing').find('span').html(value).next().val(id);
+            }
+            else {
+                key++;
+
+                var rule = {
+                    key: key,
+                    areas: value,
+                    values: id
+                };
+                var row = $(substitute(tpl, rule));
+
+                row.appendTo(tbody);
+
+                $('#form_delivery')
+                    .Validator('addField', 'fee_conf[' + key + '][start_standard]', {
+                        group: 'td',
+                        validators: {
+                            required: {
+                                message: '请填写重量。'
+                            },
+                            gt: {
+                                value: 0
+                            }
+                        }
+                    })
+                    .Validator('addField', 'fee_conf[' + key + '][start_fee]', {
+                        group: 'td',
+                        validators: {
+                            required: {
+                                message: '请填写运费。'
+                            },
+                            gt: {
+                                value: 0
+                            }
+                        }
+                    });
+            }
+
+            dialog.modal('hide');
+        })
+        .on('click', '.action-cancel', function(e) {
+            tbody.find('.editing').removeClass('editing');
+        });
+    }
+});
+
+function ajaxSubmit (e) {
+  var form = e.target;
+  e.preventDefault();
+  $.post(form.action, $(form).serialize(), function(rs) {
+    if(rs.error) {
+      $('#messagebox').message(rs.message);
+      return;
+    }
+    if(rs.success) {
+      $('#messagebox').message(rs.message, 'success');
+    }
+    if(rs.redirect) {
+      location.href = rs.redirect;
+    }
+  });
+}
+
+$('.act-checkprotect').on('change', function(e) {
+  if(this.checked){
+    $("#protect_checke").css('display','');
+  }
+  else{
+    $("#protect_checke").css('display','none');
+  }
+}).trigger('change');
+
+$('#expressselect_modal .action-save').click(function(){
+  var list = $(this).parents('.modal-dialog').find('.primary li');
+  var checklist = ''
+  for (var i = 0; i < list.length; i++) {
+    if($(list[i]).find('input[type="checkbox"]').prop('checked')==true){
+      checklist += '<li>'+ $(list[i]).find('label').text() + '</li> ';
+    }
+  };
+  $('.express-list ul li').remove()
+  $('.express-list ul').append(checklist);
+  $('#expressselect_modal').modal('hide');
+})
+</script>
+        
+      
+    
+    <!--上传图片组件，弹出图片列表dialog-->
+<div class="modal fade" id="gallery_modal" tabindex="-1" role="dialog">
+	<div class="panel panel-default modal-dialog modal-lg">
+		<div class="modal-content"></div>
+	</div>
+</div>
+
+<!--导出文件，弹出页面预留dialog-->
+<div class="modal fade" id="exportDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+<!-- 查看缩略图大图 -->
+<div class="modal fade show_img_madal" id="show_img_madal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog dialog-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">查看大图</h4>
+      </div>
+      <div class="modal-body">
+        <div class="show-pic-dialog"><div class="show-img"><img id="big_img" src="" alt=""></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- system modal start -->
+  <div id="modal-alert" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          <h5 class="modal-title"><i class="fa fa-exclamation-circle"></i> [Title]</h5>
+        </div>
+        <div class="modal-body">
+          <p>[Message]</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary ok" data-dismiss="modal">[BtnOk]</button>
+          <button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- system modal end -->
+
+<!--商品选择器，弹出页面预留dialog-->
+<div class="modal fade" id="goods_modal" tabindex="-1" role="dialog">
+  <div class="panel panel-default modal-dialog modal-lg">
+    <div class="modal-content"></div>
+  </div>
+</div>
+
+<div id="editShortcutMenu" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="gridModalLabel">编辑常用菜单 </h4>
+        <span class="text-red">最多选择五个快捷菜单</span>
+      </div>
+      <form action="http://dev.bbc.com/shop/common/user/menu.html" method="post" id="editShortcutMenuForm" class="bg-white validate-form" role="form" data-validate-onsuccess="editShortcutMenuAjaxSubmit" novalidate="novalidate"><button style="display: none; width: 0px; height: 0px;" class="hidden-submit" type="submit"></button>
+        <div class="modal-body">
+          <div>
+            <ul class="list-unstyled">
+                            <li>
+                <label class="checkbox-inline"><b>交易</b></label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_trade_list@index" type="checkbox">
+                  订单管理                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_trade_cancel@index" type="checkbox">
+                  订单取消管理                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_shop_dlytmpl@index" type="checkbox">
+                  快递模板配置                </label>
+                              </li>
+                            <li>
+                <label class="checkbox-inline"><b>商品</b></label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_item@itemList" type="checkbox">
+                  商品列表                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_item@add" type="checkbox">
+                  发布商品                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_item@storePolice" type="checkbox">
+                  商品库存报警                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_item_cat@index" type="checkbox">
+                  店铺分类                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_shop_image@index" type="checkbox">
+                  图片管理                </label>
+                              </li>
+                            <li>
+                <label class="checkbox-inline"><b>营销</b></label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_promotion_fullminus@list_fullminus" type="checkbox">
+                  满减管理                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_promotion_fulldiscount@list_fulldiscount" type="checkbox">
+                  满折管理                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_promotion_coupon@list_coupon" type="checkbox">
+                  优惠券管理                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_promotion_freepostage@list_freepostage" type="checkbox">
+                  免邮管理                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_promotion_xydiscount@list_xydiscount" type="checkbox">
+                  X件Y折管理                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_promotion_activity@registered_activity" type="checkbox">
+                  活动报名                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_promotion_package@list_package" type="checkbox">
+                  组合促销管理                </label>
+                              </li>
+                            <li>
+                <label class="checkbox-inline"><b>店铺</b></label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_shop_setting@index" type="checkbox">
+                  店铺配置                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_shop_notice@index" type="checkbox">
+                  商家通知                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_shop_decorate@index" type="checkbox">
+                  店铺装修                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_wap_decorate@index" type="checkbox">
+                  wap端店铺装修                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_shop_shopinfo@index" type="checkbox">
+                  商家入驻信息                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_open@index" type="checkbox">
+                  开发者中心                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_auth_index@index" type="checkbox">
+                  安全中心                </label>
+                              </li>
+                            <li>
+                <label class="checkbox-inline"><b>客服</b></label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_aftersales@index" type="checkbox">
+                  退换货管理                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_rate@index" type="checkbox">
+                  评价列表                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_rate_appeal@appealList" type="checkbox">
+                  申诉列表                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_rate_count@index" type="checkbox">
+                  评价概况                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_consultation@index" type="checkbox">
+                  咨询列表                </label>
+                              </li>
+                            <li>
+                <label class="checkbox-inline"><b>结算</b></label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_clearing_settlement@index" type="checkbox">
+                  商家结算汇总                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_clearing_settlement@detail" type="checkbox">
+                  商家结算明细                </label>
+                              </li>
+                            <li>
+                <label class="checkbox-inline"><b>报表</b></label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_sysstat_sysstat@index" type="checkbox">
+                  商家运营概况                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_sysstat_stattrade@index" type="checkbox">
+                  交易数据分析                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_sysstat_sysbusiness@index" type="checkbox">
+                  业务数据分析                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_sysstat_itemtrade@index" type="checkbox">
+                  商品销售分析                </label>
+                              </li>
+                            <li>
+                <label class="checkbox-inline"><b>账号</b></label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_account_list@index" type="checkbox">
+                  账号管理                </label>
+                                <label class="checkbox-inline">
+                  <input name="shortcutMenu[]" class="check-item" value="topshop_ctl_account_roles@index" type="checkbox">
+                  角色管理                </label>
+                              </li>
+                          </ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="submit" class="btn btn-primary">保存</button>
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+<script>
+  $("#editShortcutMenuForm").Validator();
+  function editShortcutMenuAjaxSubmit (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+        $('#editShortcutMenu').modal('hide');
+        setTimeout(function(){location.reload();}, 1000);
+      }
+
+    });
+  }
+</script>
+  
+
+</body></html>

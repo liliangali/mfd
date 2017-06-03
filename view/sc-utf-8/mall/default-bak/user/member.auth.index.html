@@ -1,0 +1,140 @@
+ {include file=member.header.html}
+<div class="w">
+  <div class="AreaBox clearfix">
+    {include file=member.menu.html}
+    <div class="con">
+        <h2 class="tit">身份认证</h2>
+        <div class="certify">
+          <dl class="real-item clearfix">
+            <dt class="img"><img src="../../static/img/card-01.jpg"></dt>
+            <dd class="desc">
+              <h3>个人认证</h3>
+              <p>需要身份证件扫描件或数码拍摄照片。</p>
+              <p class="grey">每张身份证仅可认证3次</p>
+            </dd>
+            <dd class="btn">
+              <button link-index="1" class="butn" onclick="apply(1)">立即申请 </button>
+            </dd>
+          </dl>
+          <dl class="real-item clearfix">
+            <dt class="img"><img src="../../static/img/card-02.jpg"></dt>
+            <dd class="desc">
+              <h3>企业认证</h3>
+              <p class=""> 需要企业营业执照和组织机构代码证，上传营业执照证件扫描件或数码拍摄照片。 </p>
+            </dd>
+            <dd class="btn">
+              <button link-index="2" class="butn" onclick="apply(2)">立即申请 </button>
+            </dd>
+          </dl>
+        </div>
+        
+        <div class="greze">
+        {if $a_info}
+        <div class="grrz_bz clearfix">
+          <h1>个人认证</h1>
+          <div class="div_1">
+           <div class="p1">
+            <p {if $a_info.status == 0 && $b_info.is_accept == 0} style="width:50%;" {/if} 
+            {if $a_info.status == 0 && $b_info.is_accept == 1} style="width:75%;" {/if} 
+            {if $a_info.status == 1 || $b_info.status == 2} style="width:100%;" {/if} 
+            ></p>
+           </div>
+           <ul>
+            <li class="on">第一步：填写认证资料</li>
+            <li>第二步：确认资料</li>
+            <li>第三步：审核认证资料</li>
+            <li>第四步：认证结果</li>
+           </ul>
+          </div>          
+        </div>
+        
+        <div class="zsxm">
+         <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:0;">
+          <tr>
+           <th>真实姓名：</th>
+           <td>{$a_info.card_name}</td>
+          </tr>
+          
+          <tr>
+           <th>证件号码：</th>
+           <td>{$a_info.card}</td>
+          </tr>
+          
+          <tr>
+           <th>身份证类型：</th>
+           <td>二代身份证</td>
+          </tr>   
+          
+          <tr>
+           <th>身份证到期日期：</th>
+           <td>长期</td>
+          </tr> 
+         </table>
+        </div>
+        {/if}
+        
+        {if $b_info}
+        <div class="grrz_bz clearfix">
+          <h1>企业认证</h1>
+          <div class="div_1">
+           <div class="p1">
+            <p {if $b_info.status == 0 && $b_info.is_accept == 0} style="width:50%;" {/if} 
+            {if $b_info.status == 0 && $b_info.is_accept == 1} style="width:75%;" {/if} 
+            {if $b_info.status == 1 || $b_info.status == 2} style="width:100%;" {/if} 
+            ></p>
+           </div>
+           <ul>
+            <li >第一步：填写认证资料</li>
+            <li {if $b_info.status == 0 && $b_info.is_accept == 0} class="on" {/if}>第二步：确认资料</li>
+            <li {if $b_info.status == 0 && $b_info.is_accept == 1} class="on" {/if} >第三步：审核认证资料</li>
+            <li {if $b_info.status == 1 || $b_info.status == 2} class="on" {/if}>第四步：认证结果</li>
+           </ul>
+          </div>          
+        </div>
+        
+        <div class="zsxm" style="border:none;">
+         <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:0;">
+          <tr>
+           <th>企业名称：</th>
+           <td>{$b_info.firm_name}</td>
+          </tr>
+          
+          <tr>
+           <th>营业执照注册号：</th>
+           <td>{$b_info.licence_num}</td>
+          </tr>
+          
+          <tr>
+           <th>营业年限：</th>
+           <td>{if $b_info.is_long}长期{else} {$b_info.business_life|date:Y-m-d} {/if}</td>
+          </tr>   
+          
+          <tr>
+           <th>组织机构代码：</th>
+           <td>6654368585</td>
+          </tr> 
+         </table>
+        </div>
+        {/if}   
+        
+       </div>
+        
+        
+    </div>
+  </div>
+</div>
+<script>
+function apply(type)
+{
+	if(type == 1)
+	{
+		window.location.href="{link app=member act=tailor arg0=auth_person_info}";
+	}
+	else
+	{
+		window.location.href="{link app=member act=tailor arg0=auth_business_info}";
+	}
+}
+	
+</script>
+{include file="footer.html"}

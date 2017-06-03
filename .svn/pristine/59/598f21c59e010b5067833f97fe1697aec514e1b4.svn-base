@@ -1,0 +1,85 @@
+{include file=header.html}
+<div class="demandInfo">
+    <div class="w">
+<link rel="stylesheet" type="text/css" href="/static/css/detailed.css">
+        <div class="con">
+            <div class="headPic">
+                <img src="{$info.user.avatar}" style="max-width:150px;" />
+                <span class="name">{$info.user.nickname}</span>
+            </div>
+            <h2>{$info.md_title}</h2>
+            <p><span>已有：<em class="red" id="takeInNum">{$info.take_in}</em>个裁缝参与报价</span><span>浏览：<em class="red">{$info.views}</em></span></p>
+            <p>预算价格：<em class="red">{$info.params.4.val}</em></p>
+            <p>地区：<em class="red">{$info.region_name}</em></p>
+           {if $offer.status == 2}
+                  {if $offer.type == 1}
+                <a href="#" class="baojia">参与报价</a>
+                {/if}
+            {/if}
+        </div>
+    </div> 
+</div>
+
+<div class="w AreaBox">
+    <div class="AreaL">
+        <div class="mlbh">
+            <h2>需求描述</h2>
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+              <th width="80">需求编号</th>
+              <td width="230">{$info.md_sn}</td>
+              <th width="80">面料</th>
+              <td width="230">{$info.params.3.val}{if $info.md_type == 'lin'}<a href="{link app=fabrics act=info arg0=$info.part.part_id}" target="_blank"><img src="{$info.part.part_img}" width="40" height="50" /></a>{/if}</td>
+            </tr>
+            
+            <tr>
+              <th width="80">主题风格</th>
+              <td width="230">{$info.params.1.val}
+              {if $info.md_type == 'diy'}
+                <a href="{link app=custom act=minfo arg0=$info.goods.cst_id}" target="_blank"><img src="{$info.goods.cst_image}" width="40" height="50" /></a>
+              {/if}
+              {if $info.md_type == 'suit'}
+                <a href="{$info.goods.small_img}" target="_blank"><img src="{$info.goods.small_img}" width="40" height="50" /></a>
+              {/if}
+              
+              </td>
+              <th width="80">品类</th>
+              <td width="230">{$info.params.2.val}
+              
+              </td>
+            </tr>    
+            
+            <tr>
+              <th width="80">预算价格</th>
+              <td width="230">{$info.params.4.val}</td>
+              <th width="80">量体方式</th>
+              <td width="230">{$info.params.5.val}</td>
+            </tr> 
+            <tr>
+                <th width="80">备注</th>
+                <td colspan="3">{$info.remark}&nbsp;</td>
+            </tr>
+            <tr>
+                <th width="80">附件</th>
+                <td colspan="3"><p class="annex">{if $info.adjunct}{foreach from=$info.adjunct item=adj key=__adjKey name=__adj}
+                <a href="{$site_url}{$adj}" target="_blank">附件{$smarty.foreach.__adj.iteration}</a> 
+                {/foreach}{/if}&nbsp;</p></td>
+            </tr>      
+           </table>
+        </div>
+        <input type="hidden" value="{$info.md_id}" id="md_id" />
+        <div id="offerList">
+        {include file=demand/offer.html}
+        </div>
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript" src="/static/expand/jquery.swipe.js"></script> 
+<script  type="text/javascript" src="/static/js/detailed.js"></script>
+<script  type="text/javascript" src="/static/expand/layer/layer.min.js"></script>
+
+<!--底部开始-->
+{include file=footer.html}

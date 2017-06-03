@@ -1,0 +1,104 @@
+{include file=member.header.html}
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+</style>
+<script type="text/javascript">
+$(function(){
+	
+    $('#deposit_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        rules : {
+        	money : {
+                required : true,
+             	number   : true,
+             	min      : 1
+            },
+            remark : {
+                required : false,
+                maxlength: 200,
+            }
+        },
+        messages : {
+            money : {
+                required : '请输入提现金额!',
+             	number : '请输入有效的金额!',
+             	min    : '提现金额必须大于0!'
+            },
+            remark : {
+                required : '请填写备注信息！',
+                maxlength: '最多只能输入200个字符'
+            }
+        }
+    });
+});
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+            {include file=member.submenu.html}
+            <div class="wrap">
+                <div class="public">
+                <form method="post" enctype="multipart/form-data" id="deposit_form" target="_blank">
+                    <div class="information">
+                        <div class="info individual">
+                            <table>
+                                <tr>
+                                    <th class="width4">充值金额: </th>
+                                    <td><input type="text" class="text width_normal" name="money" value="" /></td>
+                                </tr>
+                                <tr>
+                                    <th>备注:</th>
+                                    <td><textarea rows="5" cols="60" class="text" name="remark"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>支付方式: </th>
+                                    <td class="label">
+            
+            <!--{if $payments.online}-->
+            <dl>
+                <!--{foreach from=$payments.online item=payment}-->
+                <dd>
+                   <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                     <tr>
+                       <td width="25">
+                         <input id="payment_{$payment.payment_code}" type="radio" name="payment_id" value="{$payment.payment_id}" />
+                       </td>
+                       <td width="135">
+                        <label for="payment_{$payment.payment_code}"><img src="{$site_url}/includes/payments/{$payment.payment_code}/logo.gif" alt="{$payment.payment_name|escape}-{$payment.payment_desc|escape}" title="{$payment.payment_name|escape}-{$payment.payment_desc|escape}" width="120" height="40" /></label>
+                       </td>
+                       <td>{$payment.payment_desc|escape}</td>
+                     </tr>
+                   </table>                
+                </dd>
+                <!--{/foreach}-->
+            </dl>
+            <!--{/if}-->
+                                    </td>
+                                </tr>
+                               <tr>
+                                    <td colspan="2" class="label align2">
+                                    	<input type="submit" name="sub" value="提交申请" class="btn">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <div class="wrap_bottom"></div>
+            </div>
+
+            <div class="clear"></div>
+
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{include file=login_footer.html}

@@ -1,0 +1,16 @@
+<h2>刺绣信息：</h2>
+<ul class="ul_list">
+{foreach from=$embs item=emb key=__embKey}
+<li>
+<span>{$emb.tname}:</span>
+<select name="embs[{$__embKey}]" data-cloth="{$emb.clothingID}">
+    <option value="">请选择..</option>
+    {foreach from=$emb.list item=emb_item}
+    <option value="{$emb_item.e_id}">{$emb_item.e_name}</option>
+    {/foreach}
+    {* html_options options=$cft.list  selected="" *}
+</select>
+</li>
+{/foreach}
+<li style="width:100%;"><span>内容:</span><input type="text" name="embs[emb_con]" style="width:357px;" /></li>
+</ul>

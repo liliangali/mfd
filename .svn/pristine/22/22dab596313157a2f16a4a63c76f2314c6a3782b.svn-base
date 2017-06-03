@@ -1,0 +1,97 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <!-- <a class="btn1" href="index.php?app=serve&t={$smarty.get.t}">{$lang.manage}</a></li> --><li>
+    <li><span>管理</span></li>
+	<li><a class="btn1" href="index.php?app=serve&act=addlt">添加</a></li>
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="serve" />
+          <input type="hidden" name="act" value="quantity" />
+          
+          <select class="querySelect" name="field_name">{html_options options=$query_fields selected=$smarty.get.field_name}
+          </select>
+          <input class="queryInput" type="text" name="field_value" value="{$smarty.get.field_value|escape}" />
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=serve&act=quantity">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+   
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td><span ectype="order_by" fieldname="real_name">量体师姓名</span></td>
+      <td><span  ectype="order_by" fieldname="manager_id">所属门店</span></td>
+      <td><span ectype="order_by" fieldname="gender">性别</span></td>
+      <td><span ectype="order_by" fieldname="user_name">登录账号</span></td>
+      <td  ><span ectype="order_by" fieldname="alone">是否单独承接业务</span></td>
+      <td  ><span ectype="order_by" fieldname="alone">已服务顾客</span></td>
+     <td><span ectype="order_by" fieldname="alone">总收入</span></td> 
+      <td><span ectype="order_by" fieldname="money">当前余额</span></td>
+      <td><span ectype="order_by" fieldname="state_info">帐号状态</span></td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+  
+    <!--{foreach from=$liangti item=liang}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$serve.idserve}" /></td>
+      <td>{$liang.real_name}</td>
+      <td>{$liang.manager_name}</td>
+      {if $liang.gender==1}
+      <td>男</td>
+      {elseif $liang.gender==2}
+      <td>女</td>
+      {else}<td>保密</td>{/if}
+      <td>{$liang.phone_mob}</td>
+      {if $liang.alone==1}
+      <td>是</td>
+      {else}
+      <td>否</td>
+      {/if}
+      <td>{$liang.num}人</td>
+    <td><font color="#FF0000">{$liang.sum}</font></td> 
+      <td><font color="#00cc00">￥{$liang.money} 元</font></td>  
+      <td>
+      {if $liang.state_info==0}
+      	未审核
+      {elseif $liang.state_info==1}
+                     正常
+      {elseif $liang.state_info==2}
+     <font color="#FF0000">  注销</font>
+      {/if}
+     </td>
+      
+      <td class="handler">
+      <span style="width: 100px">
+      
+      <a href="index.php?app=serve&amp;act=ltinfo&amp;id={$liang.user_id}&t=2&field_name={$get.field_name|escape}&field_value={$get.field_value|escape}">详情</a> |
+      <a href="index.php?app=serve&amp;act=editlt&amp;id={$liang.user_id}&t=2&field_name={$get.field_name|escape}&field_value={$get.field_value|escape}">编辑</a> |
+      <a href="index.php?app=serve&amp;act=droplt&amp;id={$liang.user_id}&t=2">删除</a>
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+</div>
+{include file="footer.html"}

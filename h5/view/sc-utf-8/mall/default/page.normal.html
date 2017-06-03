@@ -1,0 +1,22 @@
+<div class="page_box clearfix">
+  <div class="page">
+   <form action="" style="float:left;" name="pageForm" method="post">
+   <!--{if $page_info.prev_link}-->
+    <a href="{$page_info.prev_link}{$url}">上一页</a>
+    <!--{/if}-->
+      <!--{foreach from=$page_info.page_links key=page item=link}-->
+      <!--{if $page_info.curr_page eq $page}-->
+        <a class="on" href="{$link}{$url}">{$page}</a>
+        <!--{else}-->
+        <a href="{$link}{$url}">{$page}</a>
+        <!--{/if}-->
+    <!--{/foreach}-->
+
+      <!--{if $page_info.next_link}-->
+    <a href="{$page_info.next_link}{$url}">下一页</a>
+    <!--{/if}-->
+  <span>{$page_info.curr_page}/{$page_info.page_count}</span>
+  <span>去<input type="text" name="page" value="{$page_info.curr_page}">页</span><a href="javascript:;" onclick="document.forms['pageForm'].submit()">确定</a> 
+  </form>
+  </div>
+</div>

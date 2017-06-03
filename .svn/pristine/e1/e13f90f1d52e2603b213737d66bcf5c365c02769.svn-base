@@ -1,0 +1,188 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=setting&amp;act=base_setting">{$lang.base_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=base_information">{$lang.base_information}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=email_setting">{$lang.email_setting}</a></li>
+<!--         <li><a class="btn1" href="index.php?app=setting&amp;act=captcha_setting">{$lang.captcha_setting}</a></li> -->
+        <li><a class="btn1" href="index.php?app=setting&amp;act=store_setting">{$lang.store_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=credit_setting">{$lang.credit_setting}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=subdomain_setting">{$lang.subdomain_setting}</a></li>
+        <li><span>{$lang.creditscore_setting}</span></li>
+<!-- 		<li><a class="btn1" href="index.php?app=setting&amp;act=appupdate_setting">{$lang.app_setting}</a></li>
+		<li><a class="btn1" href="index.php?app=setting&amp;act=appupdate_linking">{$lang.app_linking}</a></li> -->
+        <!-- <li><a class="btn1" href="index.php?app=setting&amp;act=profit_setting">{$lang.profit_setting}</a></li> -->
+        </ul>
+</div>
+
+<style>
+.htcxjf input { border:1px solid #ddd; wigth:150px; height:22px; margin-right:5px;}
+.htcxjf h6 {float:left; margin:0 10px 10px 20px;  height:24px; line-height:24px; font-weight:normal; overflow:hidden;}
+.infoTable{ min-width:700px;}
+</style>
+
+<div class="info">
+    <form method="post" id="myform"  enctype="multipart/form-data">
+        <table class="infoTable">
+        
+       <!--   累加
+        <tr>
+	      <td class="paddingT15 wordSpacing5">
+           <div class="htcxjf" style="overflow:hidden;">
+	         <h6>订单分成比例(单笔):</h6><input type="text" id=jf name="jfs[]" style="float:left;"/>
+	         <h6>订单分成额度(单笔):</h6><input type="text" id=dj name="djs[]" style="float:left;"/> <a href="javascript:void(0);" onclick="addAAttrSel(this)" style="position:relative; top:3px;">[+]</a>
+           </div>                 
+	      </td>        
+        </tr>
+         {foreach from=$list1 key=key item=items}
+         <tr>
+	      <td class="paddingT15 wordSpacing5">
+           <div class="htcxjf" style="overflow:hidden;">
+             <p><input type="hidden" value="{$items.id}"  name=newid[{$items.id}] style="float:left;"/></p>
+	         <p><h6>订单分成比例(单笔):</h6><input type="text" value="{$items.integral}" id= newjf name="jfs[]" style="float:left;"/></p>
+	         <p><h6>订单分成额度(单笔):</h6><input type="text" value="{$items.class}"  id= newdj name="djs[]" style="float:left;"/> <a href="javascript:void(0);" onclick="delAAttrSel({$items.id});" style="position:relative; top:3px;">[-]</a>&nbsp;
+	         </p>
+	        
+           </div>                 
+	      </td>        
+        </tr>
+          {/foreach}
+          
+        
+        <tr>
+	      <td class="paddingT15 wordSpacing5">
+           <div class="htcxjf" style="overflow:hidden;">
+	         <h6>订单分成比例(累加):</h6><input type="text" id=jf name="jfd[]" style="float:left;"/>
+	         <h6>订单分成额度(累加):</h6><input type="text" id=dj name="djd[]" style="float:left;"/> <a href="javascript:void(0);" onclick="addAAttrSel(this)" style="position:relative; top:3px;">[+]</a>
+           </div>                 
+	      </td>        
+        </tr>
+         {foreach from=$list2 key=key item=items}
+         <tr>
+	      <td class="paddingT15 wordSpacing5">
+           <div class="htcxjf" style="overflow:hidden;">
+             <input type="hidden" value="{$items.id}"  name=newid[{$items.id}] style="float:left;"/>
+	         <h6>订单分成比例(累加):</h6><input type="text" value="{$items.integral}" id= newjf name="jfd[]" style="float:left;"/>
+	         <h6>订单分成额度(累加):</h6><input type="text" value="{$items.class}"  id= newdj name="djd[]" style="float:left;"/> <a href="javascript:void(0);" onclick="delAAttrSel({$items.id});" style="position:relative; top:3px;">[-]</a>&nbsp;
+           </div>                 
+	      </td>        
+        </tr>
+          {/foreach}
+          
+           -->
+          
+          
+          <!-- 订单提成 -->
+          <tr>
+	      <td class="paddingT15 wordSpacing5">
+           <div class="htcxjf" style="overflow:hidden;">
+	        <h6>订单提成(给邀请人)第(*)笔:</h6><input type="text" id=jf name="cut[]" style="float:left;"/>
+	         <h6>服务奖金(%):</h6><input type="text" id=dj name="cutn[]" style="float:left;"/> <a href="javascript:void(0);" onclick="addAAttrSel(this)" style="position:relative; top:3px;">[+]</a>
+           </div>                 
+	      </td>        
+        </tr>
+         {foreach from=$list_cut key=key item=items}
+         <tr>
+	      <td class="paddingT15 wordSpacing5">
+           <div class="htcxjf" style="overflow:hidden;">
+	         <h6>订单提成(给邀请人)第(*)笔:</h6><input type="text" value="{$items.class}" id= newjf name="cut[]" style="float:left;"/>
+	         <h6>服务奖金(%):</h6><input type="text" value="{$items.integral}"  id= newdj name="cutn[]" style="float:left;"/> <a href="javascript:void(0);" onclick="delAAttrSel({$items.id});" style="position:relative; top:3px;">[-]</a>&nbsp;
+           </div>                 
+	      </td>        
+        </tr>
+          {/foreach}
+          
+        
+        
+        <tr>
+	      <td class="paddingT15 wordSpacing5">
+           <div class="htcxjf" style="overflow:hidden;">
+	         <h6>订单提成(给邀请人)第(*)笔:</h6><input type="text" id=jf value="{$list_cutp.class}" name="cutp" style="float:left;"/>
+	         <h6>送积分(%):</h6><input type="text" id=dj value="{$list_cutp.integral}" name="cutpn" style="float:left;"/>
+           </div>                 
+	      </td>        
+        </tr>
+        
+        
+        <tr>
+	      <td class="paddingT15 wordSpacing5">
+           <div class="htcxjf" style="overflow:hidden;">
+	         <h6>交易送积分（给自己）:</h6><input type="text" id=jf value="{$setting.selfp}" name="selfp" style="float:left;"/>送积分(%)
+           </div>                 
+	      </td>        
+        </tr>
+        
+      
+          
+        
+        
+        
+      <!--  
+         {foreach from=$list key=key item=items}
+         <tr>
+	      <td class="paddingT15 wordSpacing5">
+           <div class="htcxjf" style="overflow:hidden;">
+             <input type="hidden" value="{$items.id}"  name=newid[{$items.id}] style="float:left;"/>
+	         <h6>等级积分:</h6><input type="text" value="{$items.integral}" id= newjf name=newjf[{$items.id}] style="float:left;"/>
+	         <h6>等级名称:</h6><input type="text" value="{$items.class}"  id= newdj name=newdj[{$items.id}] style="float:left;"/> <a href="javascript:void(0);" onclick="delAAttrSel({$items.id});" style="position:relative; top:3px;">[-]</a>&nbsp;
+	        
+	        
+           </div>                 
+	      </td>        
+        </tr>
+          {/foreach}-->
+       <tr>
+        <td class="ptb20" style="text-align:center;"><input class="tijia" type="submit" id="Submit" value="{$lang.submit}" /></td>
+        
+      </tr>
+      
+        </table>
+    </form>
+</div>
+{include file="footer.html"}
+
+<script type="text/javascript" src="{lib file=jquery.form.js}" charset="utf-8"></script>
+
+<script type="text/javascript">
+
+
+function delAAttrSel(id){
+	if (!confirm("确认要删除？")) {
+        window.event.returnValue = false;
+        return false;
+    }
+     var url="index.php?app=setting&act=delcreditscore";
+    $.get(url, { id:id},
+    		  function(data){
+    			if(data){
+    		    alert('删除成功');
+    			}else{
+    			alert('删除失败');
+    			}
+    		 window.location.reload(true);
+    		  });
+	
+}
+
+function addAAttrSel(o)
+{
+	// 转化成JQ对象
+	var jqa = $(o);
+	// 获取上级DIV
+	var parent = jqa.parent();
+	if(jqa.html() == '[+]')
+	{
+		var newd = parent.clone();
+
+		// 找到DIV中的A标签，设置为－
+		newd.find('a').html('[-]');
+		parent.after(newd);
+		
+	}
+	else
+	{
+		parent.remove();
+	}
+}
+
+</script>

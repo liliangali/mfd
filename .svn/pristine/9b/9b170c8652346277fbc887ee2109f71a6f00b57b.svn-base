@@ -1,0 +1,60 @@
+body { margin:0;padding:0;color:#333;font:14px/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;}
+div, form, ul, ol, li, span, p, dl, dt, dd, img, i, em, input, textarea, h1, h2, h3, h4, h5, h6 {margin:0;padding:0;border:0;outline:0;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;}
+ul, ol, li { list-style:none;}
+em, i {font-style:normal;}
+table,tr,td{padding:0;margin:0;}
+.fl{float:left;}
+.fr{float:right;}
+a{text-decoration:none;}
+.container{width:100%;margin-top:20px;}
+/*====index/S====*/
+.title{height:30px;line-height:30px;border-bottom:1px solid #999999;padding-left:27px;}
+.add a{width:72px;height:30px;line-height:30px;display:block;text-align:center;border:1px solid #999999;border-bottom:none;color:#444444;text-decoration:none;}
+.sup a{border-right:none;color:#F00;}
+.indexbg{padding-left:27px;text-align:center;line-height:36px;margin-top:10px;}
+.indexbg td{border-bottom:1px dashed #ccc;}
+.indexbg .bag{background:#e4e4e4;font-weight:bold;}
+.indexbg .bag td{border:none;}
+.indexbg .indexlabel a{color:#333;margin:0 5px;}
+.indexbg .indexlabel a:hover{color:#a40000;}
+.indexbot{height:38px;padding-left:52px;margin-top:10px;}
+.indexbot .but input{width:70px;height:25px;color:#000; text-align:center;border:1px solid #707070;cursor:pointer; background:#dddddd;border-radius:3px;margin-top:6px;}
+.indexbot .mit{color:#a3a3a3;line-height:38px;}
+.indexbot .mitbut{width:24px;height:24px; background:url(../images/indexfl.png) no-repeat;margin:0 5px;cursor:pointer;}
+.indexbot .shuzi{padding:3px 8px;margin:0 5px;border:1px solid #dddddd;border-radius:3px;color:#a3a3a3;}
+.indexbot .col{ background:#a40000;border:1px solid #a40000;border-radius:3px;color:#fff;}
+.indexbot span{border:1px solid #dddddd;border-radius:3px;padding:3px 10px;}
+.indexbot .mitbuts{width:24px;height:24px; background:url(../images/indexfr.png) no-repeat;margin:0 5px;cursor:pointer;}
+/*====index/E====*/
+
+/*====组织管理/S====*/
+.org{height:27px;line-height:27px;padding-left:27px;color:#3333333;margin-top:20px;}
+.zzmc{padding-right:15px;}
+.zzmc .zzinput{width:160px;height:25px;border:1px solid #a3a3a3;margin-left:10px;padding-left:5px;}
+.zzmc select{width:160px;height:25px;border:1px solid #a3a3a3;margin-left:10px;}
+.cxbot .zzcx{width:70px;height:25px;color:#000;text-align:center;border:1px solid #a3a3a3;cursor:pointer; background:#dddddd;border-radius:3px;}
+/*====组织管理/E====*/
+
+/*====添加组织/S====*/
+.fhbot{width:45px;margin-top:6px;}
+.fhbot .zzfanh{ background:none;cursor:pointer;}
+.tith{text-align:center;font-weight:bold;padding-left:20%;font-size:16px;}
+.tjzzxz{padding-left:10%;margin-top:55px;}
+.tjzzxz .zzmcinp{height:27px;line-height:27px;}
+.tjzzxz .zzmcinp .mcinp{width:160px;height:25px;border:1px solid #a3a3a3;margin:0 10px;}
+.tjzzxz .zzmcinp span{color:#ff0000;}
+.tjzzxz .zzsfxz select{width:75px;height:25px;border:1px solid #a3a3a3;margin:20px 10px 0 10px;}
+.zztjbut{width:80px;height:40px;margin:20px 0 0 80px;}
+.zztjbut .zztijiao{width:78px;height:28px;border:1px solid #b02318;border-radius:3px;background:#b02318;color:#fff;cursor:pointer;}
+/*====添加组织/E====*/
+
+/*====组织-添加推广员/S====*/
+.det{padding-left:10%;margin-top:25px;}
+.det .detxq{height:27px;line-height:27px;margin-top:10px;}
+.det .detxq input{width:160px;height:25px;border:1px solid #a3a3a3;padding-left:5px;}
+.det .detxq select{width:168px;height:25px;border:1px solid #a3a3a3;padding-left:5px;}
+.det .tjtex{margin-top:10px;}
+.tjtex textarea{border:1px solid #a3a3a3;width:165px;line-height:20px;margin-left:2px;}
+.det .marl input{margin-left:2px;}
+/*====组织-添加推广员/E====*/

@@ -1,0 +1,61 @@
+<!--头部/S--> 
+<?php echo $this->fetch('header-new.html'); ?> 
+<!--头部/E-->
+<link rel="stylesheet" href="/public/static/pc/css/appdownload.css">
+<div class="downpage">
+	<div class="screen screen1 before-show">
+	<div class="download">
+		<img src="/public/static/pc/images/download/qrcode.png" alt="" class="qrcode">
+		<div class="btn-group"> <a href="https://itunes.apple.com/us/app/ku-te/id1008515405?mt=8" target="_blank" class="ios-btn"><i class="icon-apple"></i>App store 下载 </a> <a href="http://apk.hiapk.com/appinfo/com.cameo.mfd" target="_blank" class="android-btn"><i class="icon-android"></i>Android 下载 </a> </div>
+	</div>
+	<h1>
+		<div>酷享本色，特立独行！</div>众创时代，他们都在麦富迪
+
+	</h1>
+	<div class="screenshot"> <img src="/public/static/pc/images/download/pic1.png"> <img src="/public/static/pc/images/download/pic2.png"> <img src="/public/static/pc/images/download/pic3.png"> </div>
+</div>
+	<div class="screen screen2 before-show">
+		<h2>
+			<p>我们准备好了，就等你了</p>
+			<div>无风险，无成本，高收益，轻松成就你的创业梦</div>
+		</h2>
+		<div class="screenshot"> <img src="/public/static/pc/images/download/pic4.png" class="left"> <img src="/public/static/pc/images/download/pic5.png"> <img src="/public/static/pc/images/download/pic6.png" class="right"> </div>
+	</div>
+	<div class="screen screen3 before-show">
+		<h2>
+			<p>众创时代，选择麦富迪</p>
+			<div>全方位帮扶、服务体系，完善的创业实施系统，你身边的私人工厂</div>
+		</h2>
+		<div class="screenshot"> <img src="/public/static/pc/images/download/pic7.png"> <img src="/public/static/pc/images/download/pic8.png"> </div>
+	</div>
+	<div class="screen screen4 before-show">
+		<h2>
+			<p>麦富迪尚品  品质 优雅 潮流</p>
+			<div>以简约的风格、完美的设计、精致的款式，展现现代都市群体的自信与个性品味</div>
+		</h2>
+		<div class="screenshot"> <img src="/public/static/pc/images/download/pic12.png" class="right"> <img src="/public/static/pc/images/download/pic13.png" class="center"> <img src="/public/static/pc/images/download/pic11.png" class="left"> </div>
+	</div>
+</div>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/static/pc/js/public.js"></script> 
+<script>
+$(window).load(function(){
+    //APP页动画
+    var beforeShowCls = 'before-show';
+    $('.screen1').removeClass(beforeShowCls);
+    $(window).scroll(function(){
+        $('.screen').each(function(){
+            var section = $(this);
+            var bound = section.offset().top - $(window).scrollTop() - $(window).height() + section.height();
+            if(bound < 100){
+                section.removeClass(beforeShowCls);
+            }
+        });
+    });
+});
+</script> 
+<!--底部/S--> 
+<?php echo $this->fetch('footer-new.html'); ?> 
+<!--底部/E-->
+</body>
+</html>

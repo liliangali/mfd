@@ -1,0 +1,63 @@
+{include file="header.html"}
+<div id="rightTop">
+ <script>
+$().ready(function() {
+	$("#status").change(function() {
+		$("#selectcat").submit();
+	})
+})
+</script> 
+</div>
+<div class="mrightTop1 info">
+  <div class="fontl">    
+    <form method="get" name="selectcat" id="selectcat">
+      <input type="hidden" name="app" value="authfigure" />
+      <input type="hidden" name="act" value="index" />
+      身份证姓名:<input class="queryInput" type="text" id="realname" name="realname" value="{$smarty.get.realname|escape}" />
+      
+      	审核状态:<div id="cate" style="display:inline;">
+            <select class="querySelect" id="status" name="status">
+              <option value="0" {if $smarty.get.status === 0}selected{/if}>未审核</option>
+              {html_options options=$status   selected="$smarty.get.status"}
+            </select>
+          </div>
+      
+      <input type="submit" class="formbtn" value="{$lang.query}" />
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <tr class="tatr1">
+      <td class="firstCell"><input type="checkbox" class="checkall" />全选</td>
+      <td><span ectype="order_by" fieldname="md_id">身份证号码</span></td>
+      <td><span>姓名</span></td>
+      <td><span>联系电话</span></td>
+      <td><span>审核状态</span></td>
+      <td>操作</td>
+    </tr>
+    <!--{foreach from=$list item=ls}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$ls.id}"/></td>
+      <td>{$ls.card}</td>
+      <td>{$ls.realname|escape}</td>
+      <td>{$ls.phone_mob|escape}</td>
+      <td>{if $ls.status == 0 || $ls.status == 3}<font style="color:red">未审核</font>{elseif $ls.status == 1}<font style="color:blue">审核成功</font>{elseif $ls.status == 2}<font style="color:dark">审核失败</font>{else}{/if}</td>
+      <td>
+	      <a href="index.php?app=authfigure&amp;act=edit&amp;id={$ls.id}">审核</a>
+	      <!-- 后期屏蔽删除操作 -->
+	      <a name="drop" href="javascript:drop_confirm('您确定要删除吗（不可恢复）？', 'index.php?app=authfigure&amp;act=drop&amp;id={$ls.id}');">删除</a>
+      </td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15">
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=authfigure&act=drop&ret_page={$page_info.curr_page}" presubmit="confirm('您确定要删除吗（不可恢复）？')" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+  </div>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}

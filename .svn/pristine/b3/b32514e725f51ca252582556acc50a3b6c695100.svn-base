@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="email=no" name="format-detection" />
+
+<title>我的评价</title>
+
+<link href="public/static/wap/css/public.css" rel="stylesheet" />
+<link href="public/static/wap/css/slx_style.css" rel="stylesheet" />
+
+</head>
+
+<body class="body_bg">
+  	<header class="topBar" id="header">
+            <div class="wrap">
+                <span class="back" onClick="history.go(-1)"></span>
+                <h1>我的评价</h1>
+            </div>
+        </header>
+	<div class="main">
+
+  
+
+        {if $comment_list}
+
+
+            {foreach from=$comment_list name=comment key=key item=content}
+    		<section class="pro_list">
+
+            	<div class="c_db pro_con">
+                	<p><img src="{$content.ordergoods.goods_image}"></p>
+                    <div class="c_bf1">
+                       <h3>
+                      {if $content.ordergoods.type=='fdiy'}
+                            {$content.ordergoods.format_params}
+                       {else}
+					    {$content.ordergoods.goods_name}
+					   {/if}
+                       </h3>
+                       <h2 class="star_box star_{$content.star}" style="margin-top:4px;"></h2>
+                    </div>
+                </div>
+
+                <h1 class="comment_text">{$content.content}</h1>
+                <p class="comm_time">{$content.add_time}</p>
+
+                <div class="comment_img">
+                    <ul>
+                        {if $content.commentimgs}
+                        {foreach from=$content.commentimgs item=imgs}
+                        <li>
+                            <img src="{if $imgs.s_image}{$imgs.s_image}{else}{$imgs.image}{/if}" alt="" onclick="commentbig(this)" data-commentid="{$imgs.comment_id}" />
+                        </li>
+                        {/foreach}
+                        {/if}
+                    </ul>
+                </div>
+
+
+               <!-- <a href="javascript:;">
+                <div class="c_db comm_btn c_bac comm_bd">
+                  <p class="c_bf1 avatar_info">{if $content.avatar}<img src="{$content.avatar}"><i>{$content.user_name}</i>{/if}</p>
+                  <p class="gmkey" attr-id="{$content.goods_id}" attr-product-id="{$content.product_id}" attr-type="{$content.type}" attr-cloth="{$content.cloth}" attr-params='{$content.params}' attr-img="{$content.goods_image}" attr-deal='1' attr-rec_id='{$content.rec_id}' attr-dog_name="{$content.dog_name}" attr-dog_date="{$content.dog_date}" attr-dog_desc="{$content.dog_desc}" attr-style="{$content.style}" attr-weight="{$content.weight}" attr-body_condition="{$content.body_condition}" attr-run_time="{$content.run_time}" attr-time_id="{$content.time_id}" attr-dog_nums="{$content.dog_nums}"><span>再次购买</span></p>
+                <i class="c_jtr"></i>
+                </div>
+                </a> --> 
+
+            </section>
+           
+            {/foreach}
+        {else}
+
+        {/if}
+
+    </div>
+    {include file=footer.html}
+</body>
+<script src="public/global/jquery-1.8.3.min.js"></script>
+<script src="public/static/wap/js/public.js"></script>
+<script >
+
+$(".gmkey").click(function(){
+    var goods_id=$(this).attr("attr-id");
+    var num=1;
+    var product_id=$(this).attr("attr-product-id");
+    var name="hasLogin";
+    var type=$(this).attr('attr-type')
+    var cid=$(this).attr('attr-cloth')
+    var key=$(this).attr('attr-key')
+    var img=$(this).attr('attr-img')
+    var deal=$(this).attr('attr-deal')
+    var params=$(this).attr('attr-params')
+    var dog_name=$(this).attr('attr-dog_name')
+    var dog_date=$(this).attr('attr-dog_date')
+    var dog_desc=$(this).attr('attr-dog_desc')
+    var body_condition=$(this).attr('attr-body_condition')
+    var run_time=$(this).attr('attr-run_time')
+    var time_id=$(this).attr('attr-time_id')
+    var weight=$(this).attr('attr-weight')
+    var dog_nums=$(this).attr('attr-dog_nums')
+    var img_dir=$(this).attr('attr-style')
+
+
+    // var params=$.cookie('params'+key)
+    if(!deal)
+    {
+        return false;
+    }
+    $(this).attr('attr-deal',0)
+
+//    var haslogin=document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+//      if(haslogin){
+//          if(unescape(haslogin[2])== 0){
+//                 location.href = "/member-login.html";
+//                  return
+//                }
+//      }else{
+//        location.href = "/member-login.html";
+//                  return
+//      }
+      $(this).children().html("结算中……");
+
+    if(type=='custom'){
+        $.ajax({
+            url:'/cart-add.html',
+            type:'POST',
+            timeout:5000,
+            dataType:"json",
+            data:{
+                pid: product_id,
+                gid:goods_id,
+                num:num,
+            },
+            success:function(data){
+                if(data.done){
+                    alert(data.msg);
+                    setTimeout(window.location.href='/cart.html',2000)
+                    
+                }
+                else
+                {
+                    $(this).attr('attr-deal',1)
+                    alert(data.msg);
+                }
+
+            },
+            error:function(){
+                $(this).attr('attr-deal',1)
+                alert('加入购物车请求出错')
+            }
+        });
+    }else{
+        $.ajax({
+            url:'/cart-add.html',
+            type:'POST',
+            timeout:5000,
+            dataType:"json",
+            data:{
+                type:type,
+                num:num,
+                dog_name:dog_name,
+                dog_date:dog_date,
+                dog_desc:dog_desc,
+                body_condition:body_condition,
+                run_time:run_time,
+                time_id:time_id,
+                weight:weight,
+                dog_nums:dog_nums,
+                img_dir:img_dir,
+                params:params,//配置
+                cid:cid,
+                token:''
+            },
+
+
+            success:function(data){
+                //$("p").unbind("click");
+                if(data.done){
+                    alert(data.msg)
+                    setTimeout(window.location.href='/cart.html',2000)
+                }else{
+                    $(this).children().html("一键购买");
+                       // $('#sizeSelect').modal('hide');
+                        //_diy.alert(data.msg);
+                        alert(data.msg)
+                    $(this).attr('attr-deal',1)
+                }
+            },
+            error:function(){
+                $(this).children().html("一键购买");
+                alert('加入购物车请求出错');
+               $(this).attr('attr-deal',1)
+            }
+        });
+    }
+     
+    
+    /*  $.post("/cart-add.html",{pid: product_id,gid:goods_id,num:num}, function(res){
+         var res = $.parseJSON(res);
+            if(res.done==true){
+                
+            }
+        }) */
+})
+var updata={
+    page:"{$page_info.item_count}",//当前条数
+    num:"{$page_info.pageper}",//每次加载条数
+    curr:"{$page_info.curr_page}",//当前页数
+    init:function(){
+        {if $page_info.item_count<$page_info.pageper}
+        $(window).on('scroll',updata.getData);
+        {/if}
+    },
+    getData:function(){
+       var winh=$(window).height(),
+            $container=$('.main'),
+            bodyh=$container.height();
+			alert($(window).scrollTop()+winh)
+        if(($(window).scrollTop()+winh)>=bodyh){
+            $(window).off('scroll',updata.getData);
+            $container.append('<p style="text-align:center" class="loading">加载中...</p>');
+                updata.curr=parseInt(updata.curr)+1
+                $.ajax({
+                    url: "/comment-ajax_comment_list-"+updata.curr+".html",
+                    type: "GET",
+                    data: '',
+                    success: function(data) {
+                        var data = $.parseJSON(data);
+                        if(data.done == false){
+                            $('.loading').remove();
+                            var obj=$('<p style="text-align:center" class="loading">加载完毕</p>');
+                            $container.append(obj);
+                            setTimeout(function(){
+                                obj.remove();
+                            },1000)
+
+                            return
+                        }
+                        var html = '';
+                        //var len=data.retval.length;
+                        //console.log(len)
+                        if(data.done){
+                          $.each(data.retval,function(i,d){
+                         
+        var star=d.pl_info[0].star
+		
+		  html+='<section class="pro_list"><div class="c_db pro_con"><p><img src="'+d.ordergoods.goods_image+'"></p><div class="c_bf1"><h3>';
+		  if(d.ordergoods.type=='fdiy'){
+		  html+=d.ordergoods.format_params;
+		  }else{
+		  html+=d.ordergoods.goods_name;
+		  }
+		 html+='</h3><h2 class="star_box star_'+d.star+'" style="margin-top:4px;"></h2>'; 
+		 html+='</div></div><h1 class="comment_text">'+d.content+'</h1>'; 
+		 html+='<p class="comm_time">'+d.add_time+'</p>'; 
+		 html+='<div class="comment_img"><ul>';
+		 if(d.commentimgs){
+		 $.each(d.commentimgs,function(y,imgs){
+		  html+='<li><img src="';
+		  if(imgs.s_image){
+		  html+=imgs.s_image;
+		  }else{
+		   html+=imgs.image;
+		  }
+		  html+='" alt="" onclick="commentbig(this)" data-commentid="'+imgs.comment_id+'" /></li>';
+		  }
+		 }
+		  html+='<ul></div></section>';
+		  
+	
+                          })
+                            $container.append(html);
+                            $container.children('.loading').remove();
+                            setTimeout(function(){
+                              $(window).on('scroll',updata.getData);
+                            },500)
+                        }else{
+                            return;
+                        }
+                    }
+                });
+
+        }
+    }
+}
+updata.init()
+
+
+</script>
+<script>
+    //检测是否是微信浏览器
+    function is_weixin() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    if (is_weixin()) {
+        document.getElementById("header").style.display = 'none';
+    }
+</script>
+</html>

@@ -1,0 +1,11 @@
+@charset "utf-8";
+/* CSS Document */
+.rele_style i,.page a,.page span{background:url(../images/apply_service.png) no-repeat;}
+
+.page_box{width:438px; height:27px; margin:0 auto;}
+.page{width:100%; height:27px;}
+.page .uppage a,.page .nextpage a,.page .page_number a,.page_number span,.page_number em{float:left; height:27px; line-height:27px; text-align:center; margin-right:5px; display:inline;}
+.page .uppage a,.page .nextpage a{width:55px; background-position:0 -393px;}
+.page .page_number a{width:26px; height:27px; line-height:27px; background-position:-63px -393px;}
+.page .page_number span{width:26px; height:27px; line-height:27px; background-position:-99px -393px; color:#FFF;}
+.page .page_number em{width:26px; height:27px; line-height:27px; font-style:normal;}

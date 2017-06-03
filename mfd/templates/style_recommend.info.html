@@ -1,0 +1,179 @@
+{include file="header.html"}
+
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=shuffling">轮播图列表</a></li>
+        {if $data.id}
+        <li><a class="btn1" href="index.php?app=shuffling&amp;act=add">添加轮播图</a></li>
+        {else}
+        <li><span>轮播图添加</span></li>
+        {/if}
+        <li><a class="btn1" href="index.php?app=shuffling&amp;act=group_list">轮播图图分组</a></li>
+        <li><a class="btn1" href="index.php?app=shuffling&amp;act=add_group">添加轮播图分组</a></li>
+    </ul>
+</div>
+{$build_editor}
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="dis_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    轮播图名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="name"  type="text" name="name" value="{$data.name|escape}" onblur="changetitle(this)" />
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    轮播图title:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" id="title" type="text" name="title" value="{$data.title|escape}" />
+                    <label class="field_notice">默认与名称相同</label>
+                </td>
+            </tr>
+
+            <tr >
+                <th class="paddingT15">发布平台：</th>
+                <td class="paddingT15 wordSpacing5" >
+                    <select name="site_id" id="site_id" onchange="get_groups(this)">
+                        <option value="0" class="site_id">{$lang.select_pls}</option>{html_options options=$sites selected=$data.site_id}
+                    </select>
+                </td>
+            </tr>
+			
+			<tr >
+				<th class="paddingT15">所属分组：</th>
+                <td class="paddingT15 wordSpacing5" >
+                    <select name="group" id="group">
+                        <option value="0" class="group">{$lang.select_pls}</option>
+                        <!-- {if $group} -->{html_options options=$group selected=$data.groups}<!-- {/if} -->
+                    </select>
+                </td>
+			</tr>
+			
+			<tr style="display:none" class="is_blank">
+                <th class="paddingT15">
+                    <span style="color:red">*</span>是否新窗口打开:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="radio" name="is_blank" value=1 {if $data.is_blank }checked{/if}>是
+                    <input type="radio" name="is_blank" value=0 {if !$data.is_blank }checked{/if}>否
+                </td>
+            </tr>
+
+            <tr >
+                <th class="paddingT15">链接url：</th>
+                <td class="paddingT15 wordSpacing5" >
+                    <select id="url_rule"  onchange="change_url(this)"><option value=''>请选择</option>{html_options  values=$url_rule_values output=$url_rule_names  selected=$data.match_url}</select><label class='field_notice'>固定url规则</label><br>
+                    <!-- {if $data.cat_id} --><select  id="cat_id"  onchange="setCat(this)" >
+                                <option value="0">请选择</option>
+                                {foreach from=$options item=op key=key}
+                                    <option value="{$key}"  {if $data.cat_id eq $key}selected{/if}>{$op}</option>
+                                {/foreach}
+                       </select><label class='field_notice'>固定url规则</label><br><!-- {/if} -->
+                    <input type="text" name="link_url" value="{$data.link_url}" class="link_url" id="link_url"/><label class='field_notice'>可选择固定url（需填写参数），也可以自定义url</label>
+                </td>
+            </tr>
+
+            
+            <tr>
+                <th class="paddingT15">
+                 上传图片:</th>
+                <td class="paddingT15 wordSpacing5" >
+                     {input_img  name="img"  value="$data.img" dir="shuffling"}<label class="field_notice">建议规格700*500</label>
+                </td>
+            </tr>
+    
+        <tr>
+                <th class="paddingT15">
+                    {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="sort_order" type="text" name="sort_order" value="{$data.sort_order}" />
+                </td>
+            </tr>
+			
+			<tr>
+                <th class="paddingT15">
+                    <span style="color:red">*</span>是否显示:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="radio" name="status" value=1 {if $data.status || $status}checked{/if}>是
+                    <input type="radio" name="status" value=0 {if $data.status === 0}checked{/if}>否
+                </td>
+            </tr>
+			
+			<tr>
+				<th></th>
+				<td class="ptb20">
+					<input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+					<input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+					<input type="hidden" name="id" value="{$data.id}"/>
+
+				</td>
+			</tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+$(function(){
+	var site=$("#site_id").val()
+	if(site==1){
+        $(".is_blank").show();
+    }
+})
+function get_groups(obj)
+{
+    var p_id = $(obj).val();
+    if(p_id==1){
+    	$(".is_blank").show();
+    }else{
+    	$(".is_blank").hide();
+    }
+    $.post("./index.php?app=shuffling&act=ajax_get_groups",{pid:p_id}, function(res){
+        if(res.done){
+        	$('#group').empty();
+            $('#group').append(res.retval)
+        }
+           
+    },'json');
+}
+function changetitle(obj)
+{
+	var info=$(obj).val();
+	var title=$("#title").val();
+	if(title){
+	}else{
+		$("#title").val(info)
+	}
+}
+function change_url(obj){
+    var url=$(obj).children(':selected').val();
+    $(obj).siblings('select').next().next().remove()
+    $(obj).siblings('select').next().remove()
+    $(obj).siblings('select').remove()
+    if(url=='productlist/分类ID'){
+    	var type=1
+    	$.post('./index.php?app=shuffling&act=ajaxGetId',{type:type},function(res){
+    		if(res.done){
+    			res.retval='<br>'+res.retval+'<label class="field_notice">设置对应ID</label>'
+    			
+    			$(obj).next().after(res.retval)
+    		}else{
+    			alert(res.msg)
+    		}
+    	},'json')
+    }
+    if(url){
+        $(obj).siblings('input').val(url);
+    }
+    
+}
+
+function setCat(obj){
+	var id=$(obj).val();
+	var val=$(obj).siblings('input').val();
+	var arr=val.split('/')
+	$(obj).siblings('input').val(arr[0]+'/'+id);
+	
+}
+</script>
+{include file="footer.html"}

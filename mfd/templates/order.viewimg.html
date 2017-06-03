@@ -1,0 +1,69 @@
+{include file="header.html"}
+<div id="rightTop">
+
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=goods">个性化签名审核</a></li>
+    <li>
+
+    </li>
+  </ul>
+</div>
+{$build_editor}
+<div class="info">
+    <form method="post" enctype="multipart/form-data" action="index.php?app=bannerimg&act=view_img" id="dis_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                   狗狗名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="dog_name" type="text" name="dog_name" value="{$data.dog_name|escape}" />
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                   生日:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="dog_date" type="text" name="dog_date" value="{$data.dog_date|escape}" />
+                </td>
+            </tr>
+			 <tr>
+                <th class="paddingT15">
+                   寄语:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="dog_desc" type="text" name="dog_desc" value="{$data.dog_desc|escape}" style="width:300px;" />
+                </td>
+            </tr>
+			 
+			<tr >
+                <th class="paddingT15">
+                 个性化图片:</th>
+                <td class="paddingT15 wordSpacing5">
+                     {input_img name="style" value="$data.style" dir="cst"}
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    审核:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select name="status">
+					<option value="0" {if $data.status=='0'}selected{/if}>未审核</option>
+					<option value="1" {if $data.status=='1'}selected{/if}>审核成功</option>
+					<option value="2" {if $data.status=='2'}selected{/if}>审核失败</option>
+					</select>
+                </td>
+            </tr>            
+             <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input type="hidden" name="id" value="{$data.rec_id}"/>
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+
+<script type="text/javascript">
+
+</script>
+{include file="footer.html"}

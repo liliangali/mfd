@@ -1,0 +1,76 @@
+<!-- $Id: ads_js.html 318 2015-04-27 00:21:26Z xiao5 $ -->
+{include file="header.html"}
+
+<div class="form-div">
+<form action="" method="post" name="js_code">
+  <table width="100%">
+    <tr>
+      <td class="label">投放广告的站点名称</td>
+      <td><input type="text" name="outside_address" size="30" /></td>
+    </tr>
+    <tr>
+      <td class="label">选择编码</td>
+      <td><select name="charset" id="charset">
+        {html_options options=$lang_list}
+      </select></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="center">
+        <input type="button" name="gen_code" value="生成并复制JS" onclick="validate(); genCode(); autocopy()" class="button" />
+      </div></td>
+      </tr>
+    <tr>
+      <td colspan="2">
+        <div align="center">
+          <textarea name="ads_js" cols="70" rows="5">{$js_code}</textarea>
+        </div></td>
+    </tr>
+  </table>
+ </form>
+</div>
+<script type="text/javascript" src="{res file=js/utils.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/validator.js}" charset="utf-8"></script>
+<script language="JavaScript">
+var elements = document.forms['js_code'].elements;
+var url = '{$url}';
+no_outside_address = "建议您指定所要投放的站点的名称，以便该广告的来源统计";
+<!--
+{literal}
+document.forms['js_code'].elements['outside_address'].focus();
+
+
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("js_code");
+    validator.required("outside_address",  no_outside_address);
+    return validator.passed();
+}
+/**
+ * 生成代码
+ */
+function genCode()
+{
+    // 生成代码
+    var code = '<script src="' + url;
+        code += '-' + encodeURI(elements['outside_address'].value);
+        code += '-' + elements['charset'].value + '.html';
+        code += '"></script\>';
+        elements['ads_js'].value = code;
+}
+
+function autocopy()
+{
+    if (Browser.isIE)
+    {
+        window.clipboardData.setData('text', document.js_code.ads_js.value);
+    }
+    document.forms['js_code'].elements['ads_js'].select();
+}
+
+//-->
+{/literal}
+</script>
+{include file="footer.html"}

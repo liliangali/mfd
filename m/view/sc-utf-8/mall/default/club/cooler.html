@@ -1,0 +1,164 @@
+{include file="header.html"}
+
+<link type="text/css" href="{$img_url}/css/head_footr.css" rel="stylesheet" />
+
+<link type="text/css" rel="stylesheet" href="{$img_url}/css/coolke.css" />
+
+
+
+<link type="text/css" rel="stylesheet" href="{res file=css/new_pubuliu.css}" />
+
+<link type="text/css" href="{$img_url}/css/head_footr.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="{$img_url}/css/coolke.css" />
+<link type="text/css" rel="stylesheet" href="{res file=css/new_pubuliu.css}" />
+<script type="text/javascript" src="{$img_url}/js/coolke.js"></script>
+
+<script type="Text/Javascript" src="{res file=js/plugins/formvalidator.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+
+
+<script>
+
+function member_cancle(to_uid){
+    if(!$.rc.dialog.islogin())
+        return 0;
+
+	$.ajax({
+		"url":"/index.php/club-ajax_unfollow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			var obj = $("#member_fans_"+to_uid);
+			$("#p_"+to_uid).attr('class','m_guazu');
+			obj.attr('onclick','member_follow('+to_uid+ ');');
+
+		}
+	});
+}
+
+function member_follow(to_uid){
+    if(!$.rc.dialog.islogin())
+        return 0;
+
+	$.ajax({
+		"url":"/index.php/club-ajax_follow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			var obj = $("#member_fans_"+to_uid);
+            $("#p_"+to_uid).attr('class','m_qxgz');
+			obj.attr('onclick','member_cancle('+to_uid+ ');');
+		}
+	});
+}
+
+//function member_cancle2(to_uid){
+//    if(!$.rc.dialog.islogin())
+//        return 0;
+//
+//	$.ajax({
+//		"url":"/index.php/club-ajax_unfollow.html",
+//		"data": "uid=" + to_uid,
+//		"type": "GET",
+//		"success": function(data) {
+//			var data = eval( "(" + data + ")" );
+//            alert(data.msg);
+//			var obj = $("#user_follow");
+//			obj.html('关注');
+//			obj.attr('class','m_guanziu');
+//			obj.attr('onclick','member_follow2('+to_uid+ ')');
+//
+//		}
+//	});
+//}
+//
+//function member_follow2(to_uid){
+//    if(!$.rc.dialog.islogin())
+//        return 0;
+//
+//	$.ajax({
+//		"url":"/index.php/club-ajax_follow.html",
+//		"data": "uid=" + to_uid,
+//		"type": "GET",
+//		"success": function(data) {
+//			var data = eval( "(" + data + ")" );
+//			var obj = $("#user_follow");
+//            alert(data.msg);
+//			obj.html('取消关注');
+//			obj.attr('class','m_qxguanziu');
+//			obj.attr('onclick','member_cancle2('+to_uid+ ')');
+//		}
+//	});
+//}
+
+
+</script>
+
+<div class="m_drkj_box">
+  
+
+{include file="club/uinfo.html"}
+
+  <p class="clear"></p>
+</div>
+
+<div class="m_drlb_box">
+ <ul>
+ 
+ 
+ {foreach from=$member key=k item=v }    
+   <li class="on" onmouseover="className='off'" onmouseout="className='on'">
+     <p class="m_drtx"><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.uid}"><img src="{$v.user.avatar}" /></a></p>
+     <div>
+       <h1><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.uid}">{uname uid=$v.user.uid sub=20}</a><img src="{$v.level_logo}" class="m_daren" /></h1>
+       <p class="m_fstpxh"><span>粉丝<font>{$v.user.fans}</font></span><span>图片<font>{$v.user.pic_num}</font></span><span>喜欢<font>{$v.user.like_num}</font></span></p>
+       <!-- <p class="m_guazu"><a href="#"></a></p> -->
+
+
+       {if !$v.self}
+
+         {if $v.isFans}
+             <p class="m_qxgz" id="p_{$v.uid}">
+                 <a href="javascript:void(0);" id='member_fans_{$v.uid}'  onclick="member_cancle({$v.uid});"></a>
+             </p>
+         {else}
+             <p class="m_guazu"  id="p_{$v.uid}">
+                 <a href="javascript:void(0);" id='member_fans_{$v.uid}' onclick="member_follow({$v.uid});"></a>
+             </p>
+         {/if}
+
+        {else}
+        	<p><a href="javascript:void(0);" >个人空间</a></p>
+        {/if}
+
+     </div>
+   </li>
+    {/foreach}
+   
+ </ul>
+ <p class="clear"></p>
+</div>
+
+<!--翻页开始-->
+
+<div style="margin:0 auto 50px auto; width:1000px;">
+    <div class="faye_box"><a href="#" class="gdstjl">共{if $total}{$total}{else}0{/if}条记录</a>
+    
+    {$page_show}   
+    
+    <p class="clear"></p>
+   </div>
+<p class="clear"></p>
+ </div>
+<!--翻页结束-->
+<script>
+
+    var PINER = {
+        uid: "<?php echo $_SESSION['user_info']['user_id'] ?>"
+    };
+
+</script>
+{include file="footer.html"}

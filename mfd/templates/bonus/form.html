@@ -1,0 +1,295 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=bonus">红包管理</a></li>
+    <li><span>红包添加</span></li>
+  </ul>
+</div>
+<script type="text/javascript" src="{res file=js/luck/luck.js}" charset="utf-8"></script>
+<script type="text/javascript">
+var reginUrl = "/index.php/mlselection.html";
+$(function(){
+
+	//regionInit("region");
+	
+	$.validator.addMethod("checkAreas",function(value,element,params){
+
+		var checked = false;
+		$("#areas").find("input").each(function(){
+			if($(this).attr("checked")){
+				checked= true;
+			}
+		});
+		
+		return checked;
+	});
+	
+    $('#shipping_form').validate({
+        errorPlacement: function(error, element){
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {    
+        	name : {
+                required : true
+            },
+            money    :{
+                required     : true,
+                number       : true,
+            },
+            response_text:{
+            	required     : true,
+            },
+            expire:{
+            	required     : true,
+            },
+            remark:{
+            	required     : true,
+            },
+            region_name:{
+            	checkAreas   : true,
+            }
+            
+        },
+        messages : {
+        	name : {
+                required : '必填参数'
+            },
+            money    : {
+            	required    : '必填参数',
+            	number      : '必须是数字'
+            },
+            response_text  : {
+            	required    : '必填参数',
+            },
+            expire  : {
+            	required    : '必填参数',
+            },
+            remark  : {
+            	required    : '必填参数',
+            },
+            region_name  :{
+            	checkAreas : '没有添加所辖地区',
+            }
+            
+        }
+    });
+});
+function hide_error(){
+    $('#region').find('.error').hide();
+}
+</script>
+<div class="info">
+     <form method="post" id="shipping_form">
+      <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> <label for="site_name">红包主题:</label></th>
+        <td class="paddingT15 wordSpacing5">
+        <input type="text" name="name" value=""/>
+        </td>
+      </tr>
+      
+      <tr id="member_t">
+        <th class="paddingT15"> <label for="site_name">发放对象:</label></th>
+        <td class="paddingT15 wordSpacing5 obj">
+         <select name='obj_type'>
+                          {html_options options=$obj_type}
+        </select>
+        <span style="color:blue;cursor:pointer" id="ponintUser">指定会员</span>
+        </td>
+      </tr>
+      
+      <tr id="member_p" style="display:none">
+        <th class="paddingT15"> <label for="site_name">发放对象:</label></th>
+        <td class="paddingT15 wordSpacing5 obj">
+        <input type='text' name='member' placeholder='输入用户ID敲回车键添加' id='member'/> <input type='button' value='确定' id='addok'/>
+        <span style="color:blue;cursor:pointer" id="ponintUserT">指定会员类型</span>
+        <br><div style='border:1px dashed #BBBBBB;width:500px;height:auto;min-height:200px;padding-left:5px' id='member_text'></div>
+        
+        </td>
+      </tr>
+      
+       <tr id="money_d">
+        <th class="paddingT15"> <label for="site_name">单个金额:</label></th>
+        <td class="paddingT15 wordSpacing5">
+        <label id="money_type1">
+        <input type="text" class="text width2"  name="money"/>元/币
+        <input type="hidden" class="text width2" value="0" name="money_type"/>
+        </label>
+        
+        <br>
+        <label>每人收到的固定金额，<span style="color:blue;cursor:pointer" id="money_d_m">改为随机金额</span></label>
+        </td>
+      </tr>
+     
+     <tr style="display:none"  id="money_t">
+        <th class="paddingT15"> <label for="site_name">总金额:</label></th>
+        <td class="paddingT15 wordSpacing5">
+        <label id="money_type2">
+        </label>
+        
+        <br>
+        <label>每人收到的金额随机，<span style="color:blue;cursor:pointer" id="money_t_m">改为固定金额</span></label>
+        </td>
+      </tr>
+      
+       <tr>
+        <th class="paddingT15"> <label for="site_name">红包类型:</label></th>
+        <td class="paddingT15 wordSpacing5">
+         <select  name='type'>
+                          {html_options options=$type}
+        </select>
+        </td>
+      </tr>
+      
+      <tr>
+        <th class="paddingT15"> <label for="site_name">通知方式:</label></th>
+        <td class="paddingT15 wordSpacing5">
+        <p>
+            <label>
+            <input name="response_type" type="radio" value="0" checked="checked" />
+            系统消息</label>
+            <label>
+            <input type="radio" name="response_type" value="1" />
+            短信通知</label>
+          </p>
+        </td>
+      </tr>
+      
+      <tr>
+        <th class="paddingT15"> <label for="site_name">通知内容:</label></th>
+        <td class="paddingT15 wordSpacing5">
+       <textarea rows="3" cols="20" name='response_text'></textarea>
+！内容自带前缀【mfd 麦富迪】，请勿重复输入。     
+</td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="site_name">有效期:</label></th>
+        <td class="paddingT15 wordSpacing5">
+        <input class="infoTableInput Wdate" onClick="WdatePicker()" type="text" name="expire" value="">
+        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="site_name">备注说明:</label></th>
+        <td class="paddingT15 wordSpacing5">
+        <textarea rows="3" cols="20" name='remark'></textarea>
+        </td>
+      </tr>
+      
+        	  <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />        </td>
+      </tr>
+      </table>
+        </form>
+    </div>
+    
+     <script>
+      $("#ponintUser").click(function(){
+    	  $("#member_t").css("display","none")
+    	  $("#member_p").css("display","")
+    	  var str = '<input type="hidden" class="text width2" value="0" name="obj_type" id="obj_type"/>';
+    	  $("#member_p").append(str);
+      })
+      
+       $("#ponintUserT").click(function(){
+    	  $("#member_p").css("display","none")
+    	  $("#member_t").css("display","")
+    	  $("#obj_type").remove();
+      })
+      
+       $("#money_d_m").click(function(){
+    	  $("#money_d").css("display","none")
+    	  $("#money_t").css("display","")
+    	  var str ='<input type="text" class="text width2" name="money"/>元/币<input type="hidden" class="text width2" value="1" name="money_type"/>';
+    	  $("#money_type1").empty();
+    	  $("#money_type2").append(str);
+    	  
+      })
+      
+       $("#money_t_m").click(function(){
+    	  $("#money_t").css("display","none")
+    	  $("#money_d").css("display","")
+    	  var str ='<input type="text" class="text width2" name="money"/>元/币<input type="hidden" class="text width2" value="0" name="money_type"/>';
+    	  $("#money_type2").empty();
+    	  $("#money_type1").append(str);
+      })
+      
+      $("#addok").click(function(){
+    	  
+    	  var member = $("#member").val();
+    	  //检查是否已经在添加文件中存在
+    	  var input_length = parseInt($("#member_text input").length);
+    	  if(input_length > 0)
+   		  {
+    		  for(var i=0;i<input_length;i++)
+        	  {
+        		  var info = $('#member_text input:eq('+i+')').val();
+        		  if(info == member)
+        		  {
+        			  luck.alert('系统提示','此会员已添加成功!请勿重复添加',6);
+        			  return false;
+        		  }	   
+        	  }
+   		  }
+    	  
+    	  //alert(input_length);
+    	  
+    	  $.post("index.php?app=bonus&act=checkm",{phone:member},function(res){
+    		 var ress = eval('('+res+')');
+    		  if(ress.done == true)
+   			  {
+    			  var sp = "<label onclick= 'del(this)'><input  name='' type='text'  value="+member+" readonly='readonly' style='width:80px;height:16px;border:2px solid #EEEEEE; border-right:20px solid #EEEEEE;margin:5px 5px 5px 5px;' /><input type='hidden' name='obj_val[]' value="+ress.retval+" /></label>";
+    	    	  $("#member_text").append(sp);
+   			  }
+    		  else
+   			  {
+    			  luck.alert('系统提示','会员不存在',6);
+   			  }
+    	  })
+    	  
+    	  
+      })
+      
+      function del(objs)
+      {
+    	  luck.confirm('系统提示','确认删除',function(obj){
+    					if(obj)
+   						{
+    						//luck.alert('系统提示',t);
+    	    				$(objs).remove();
+   						}
+    		},['确定','取消']);
+      }
+      </script>
+      
+<script>
+$(document).ready(function(){
+	$("#addArea").click(function(){
+		var regionId    = $("#region_id").val();
+		var regionName  = $("#region_name").val();
+		var _name = regionName.split("	");
+		var _regionName = _name[_name.length-1];
+		var exist = false;
+		if(!_regionName || !regionId || _regionName == ''){
+			alert("-请选择地区");
+			return false;
+		}
+		
+		$("#areas").find("input").each(function(){
+			if($(this).val() == regionId){
+				exist = true;
+				alert("-选择的地区已经存在");
+			}
+		})
+		if(exist) return false;
+		
+		var input = "<input type='checkbox' name='regions[]' value='" + regionId + "' checked='true' /> " + _regionName + "&nbsp;&nbsp;";
+		$("#areas").append(input);		
+	})
+})
+</script>
+{include file="footer.html"}

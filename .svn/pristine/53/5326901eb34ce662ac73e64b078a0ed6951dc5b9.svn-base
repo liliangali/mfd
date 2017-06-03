@@ -1,0 +1,48 @@
+<div class="wxpjl">
+      <div class="wxhpl left">
+       <p class="p1">{$comment_list.star_info.score|default:0}<font>%</font></p>
+       <p class="p2">五星评价率</p>
+      </div>
+      <div class="pjrs left">
+       <p class="p1">{$comment_list.star_info.five_star|default:0}人</p>
+       <p class="p2">{$comment_list.star_info.four_star|default:0}人</p>
+       <p class="p3">{$comment_list.star_info.three_star|default:0}人</p>
+       <p class="p4">{$comment_list.star_info.two_star|default:0}人</p>
+       <p class="p5">{$comment_list.star_info.one_star|default:0}人</p>
+      </div>    
+    </div>
+     {foreach from=$comment_list.list item=content key=key}
+    <ul class="pjlist">
+     <li>
+      <p class="yxtx"><img src="{$content.face}"><span>{$content.nickname}</span></p>      
+      <div class="div_1">
+       <h1 class="star{$content.star|default:1}"><span>{$content.ftime}</span></h1>
+       <p class="p1">{$content.content}</p>
+       {if $content.answer}
+       <p class="p2"><span>客服：</span>{$content.answer.content}</p>
+      {/if}
+      </div>
+     </li>
+    </ul>
+      {/foreach}
+
+      <!--翻页开始-->
+  <div class="cc_page">
+    <!--{if $page_info.prev_link}-->
+    <a href="javascript:;" onclick="goToCommentPage(this)" data-url="{$page_info.prev_link}" title="上一页" class="zjt">&lt;</a>
+    <!--{/if}-->
+     <!--{foreach from=$page_info.page_links key=page item=link}-->
+     <!--{if $page_info.curr_page eq $page}-->
+     <span class="active">{$page}</span>
+      <!--{else}-->
+      <a href="javascript:;" onclick="goToCommentPage(this)" data-url="{$link}">{$page}</a>
+          <!--{/if}-->
+<!--{/foreach}-->
+    <!--{if $page_info.next_link}-->
+    <a href="javascript:;" onclick="goToCommentPage(this)" data-url="{$page_info.next_link}" title="下一页" class="zjt">&gt;</a>
+    <!--{/if}-->
+ </div>  
+<!--翻页结束-->
+  
+
+    

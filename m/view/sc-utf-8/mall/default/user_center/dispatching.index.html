@@ -1,0 +1,114 @@
+{include file=../user/member.header.html}
+{$_head_tags} 
+<script type="text/javascript">
+//<!CDATA[
+var PINER = {uid: "{$session_info_user_id}"}; 
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+var REGION_URL="{link app=mlselection act=index arg=region}";
+var reginUrl=REAL_SITE_URL+REGION_URL;
+ $(function(){
+    regionInit("region");
+}); 
+ //]]>
+</script>
+
+
+   <div class="w">
+    <div class="AreaBox clearfix">
+        {include file=../user/member.menu.html}
+    <div class="con">
+        <h2 class="tit">派工量体<a href="javascript:applyWork()">申请派工</a></h2>
+        <div class="paiData">
+        <!--{if $store_dispatching}-->
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <th width="10%">消费者姓名</th>
+                <th >消费者手机</th>
+                <th>详细地址</th>
+                <th width="20%">备注</th>
+                <th width="12%">量体时间</th>
+                <th width="10%">状态</th>
+              </tr>
+              <!--{foreach from=$store_dispatching item=sd}-->
+              <tr>
+                <td>{$sd.owner_name}</td>
+                <td>{$sd.tel}</td>
+                <td>{$sd.region_name}  {$sd.address}</td>
+                <td>{$sd.description}</td>
+                <td>{$sd.date} {$lang.apply_date.$sd.apply_date}</td>
+                <td>{$lang.dispatching_status.$sd.status}</td>
+              </tr>
+              <!--{/foreach}-->
+            </table>
+            <div class="area">
+            <div class="hyzx_fy clearfix fr">
+                <div>
+                {include file="../user/member.page.bottom.html"}
+                 </div>
+               </div>
+            </div>
+            
+            <!--{else}--> 
+            <div class="noRecord">
+              您目前还没有使用过派工量体<input type="button" value="申请派工" onclick="applyWork()" />
+            </div>
+             <!--{/if}-->
+            
+            <div class="myForm" style="display:none">
+            <form method="post" enctype="multipart/form-data" id="dispatching_form">
+            <div class="item">
+                <div class="t"><i>*</i>消费者姓名：</div>
+                <input type="text" id="owner_name" name="owner_name" class="txt" data-type="required" data-tip="消费者姓名" />
+            </div>
+            <div class="item">
+                <div class="t"><i>*</i>消费者性别：</div>
+                <label><input type="radio" id="sex" value="1" name="sex" checked="checked" /> 男</label>
+                <label><input type="radio" id="sex" value="0" name="sex" /> 女</label>
+            </div>
+            <div class="item">
+                <div class="t"><i>*</i>消费者手机：</div>
+                <input type="text" name="tel" id="tel" class="txt" data-type="phone" />
+            </div>
+            <div class="item">
+                <div class="t"><i>*</i>所在区域：</div>
+              <div id="region">
+              <input type="hidden" id="region_id" name="region_id" value="" class="mls_id" />
+              <input type="hidden" id="region_name" name="region_name" value="" class="mls_names" />
+              <select class="select">
+                <option>{$lang.select_pls}</option>
+                {html_options options=$regions}
+              </select>
+              </div>
+            </div>
+            <div class="item">
+                <div class="t"><i>*</i>详细地址：</div>
+                <input type="text" id="address" name="address" class="txt" size="40" data-type="required" data-tip="详细地址" />
+            </div>
+            <div class="item">
+                <div class="t"><i>*</i>量体时间：</div>
+                <input type="text" id="date" name="date" class="txt Wdate" data-type="required" data-tip="量体时间" onClick="WdatePicker({minDate:'%y-%M-%d'})" />
+                <select name="apply_date" id="apply_date"><option value="0">上午</option><option value="1">下午</option></select>
+            </div>
+            <div class="item">
+                <div class="t">备注：</div>
+                <textarea name="description" id="description" maxlength="30" placeholder="30字以内"></textarea>
+            </div>
+            <div class="error" id="error"></div>
+            <input type="button" value="提交申请" class="btn" onclick="applyWork_submit()" />
+            </form>
+        </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+   </div>
+</div>
+<script  type="text/javascript" src="static/js/usercenter.js"></script>
+ {include file="../user/footer.html"}

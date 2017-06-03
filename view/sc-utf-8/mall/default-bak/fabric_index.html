@@ -1,0 +1,113 @@
+{include file="header2.html"}
+<link rel="stylesheet" type="text/css" href="static/css/material.css">
+<div class="w">
+    <div class="tabTit clearfix">
+         <p class="tit">面料工坊</p>
+    </div>
+    <div class="filters clearfix">
+       {foreach from=$attrs item=attr key=key}
+       {if $key eq '3'}
+       <dl>
+        <dt>国家：</dt>
+        <dd>
+         <a href="{$attr.all}" {if $attr.select}class="cur"{/if}>全部</a><i>|</i>
+         {foreach from=$attr.children item=chi name=loop}
+         <a href="{$chi.url}" {if $chi.select}class="cur"{/if}>{$chi.name}</a>{if !$smarty.foreach.loop.last}<i>|</i>{/if}
+         {/foreach}
+        </dd>
+       </dl>
+       {/if}
+       {/foreach}
+    
+         {foreach from=$attrs item=attr key=key}
+              {if $key neq '3'}
+    	<dl>
+        	<dt>{$attr.name}：</dt>
+            <dd>
+            	<a href="{$attr.all}" {if $attr.select}class="cur"{/if}>不限</a><i>|</i>
+            	 {foreach from=$attr.children item=chi name=loop}
+            	   <a href="{$chi.url}" {if $chi.select}class="cur"{/if}>{$chi.name}</a>{if !$smarty.foreach.loop.last}<i>|</i>{/if}
+            	 {/foreach}
+            </dd>
+        </dl>
+               {/if}
+              {/foreach}
+    </div>
+    <div class="sortBox">
+    	<div class="sort fl">
+        	<a href="{link app=fabrics}?order=order_count&attr={$gattr}" {if $order eq 'order_count'} class="cur"{/if}">销量</a>
+            <i>|</i>
+            <a href="{link app=fabrics}?order=click_count&attr={$gattr}" {if $order eq 'click_count'} class="cur"{/if}">人气</a>
+            <i>|</i>
+            <a href="{link app=fabrics}?order=part_id&attr={$gattr}" {if $order eq 'part_id'} class="cur"{/if}>最新</a>
+        </div>
+        <div class="minPage fr">
+        	<span>共找到 <em class="red">{$page_info.item_count}</em> 款面料</span>
+            <p>
+            <span class="prev on"><a href="{$page_info.prev_link}">&lt;</a></span>
+            <span><em class="red">{$page_info.curr_page}</em>/<em>{$page_info.page_count}</em></span>
+            <span class="next"><a href="{$page_info.next_link}">&gt;</a></span>
+            </p>
+        </div>
+    </div>
+    <ul class="picList clearfix">
+    {foreach from=$fabric_list item=fabric}
+    	<li>
+        	<div class="item">
+                <a href="{link app=fabrics act=info arg0=$fabric.part_id}" target="_blank" class="pic"><img src="{$fabric.part_small}" width="245" height="320" /></a>
+                <div class="info">
+                    <p class="p1">编号{$fabric.goods_sn}</p>
+                    <p class="p2">人气<em class="red"> {$fabric.click_count}</em></p>
+                    <p class="p3">{$fabric.zujian_brief}</p>
+                    <div class="btn">
+                        <a href="javascript:void(0)" id="{$fabric.part_name}" onclick="addFavorite('{$fabric.part_id}','{$fabric.part_name}')" class="btnFavorite"><i></i>收藏</a>
+                        <a href="{link app=fabrics act=info arg0=$fabric.part_id}" class="btnInfo"><i></i>详情</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    {/foreach}
+    </ul>
+</div>
+<script>
+function addFavorite(id,kys){
+	if(hasLogin()== 0){
+      login(function(){
+        $.cookie("hasLogin",1);
+        addFavorite(id,kys)
+      })
+      return
+    }
+    var url = "{link app=my_favorite act=add}?type=fabric";
+    $.get(url, {'item_id':id,'keyword':kys,'ajax':1}, function(data){
+        var data = eval("("+data+")")
+		if(data.done){
+			var html="<i id='animate' style='display:none;position:absolute;z-index:11;width:19px;height:17px;background:url(../../static/img/comm.png) 0 -22px'></i>";
+			if($('#'+kys).is(':visible')){
+				var s=$('#'+kys).offset()
+			}else{
+				var s=$('#'+kys).parents('.info').offset()	
+			}
+			var sL=s.left+40,
+				sT=s.top+20,
+				e=$('.fixed-nav').offset(),
+				eL=e.left+15,
+				eT=e.top;
+			$('body').append(html);
+			var $animate=$('#animate');
+			$animate.css({left:sL,top:sT,display:'block'}).animate({left:eL,top:eT-50},'slow',function(){
+				$animate.animate({left:eL,top:eT,opacity:0.5},'slow',function(){
+					$animate.remove()
+				})
+			})
+		}else{
+			msg(data.msg);	
+		}
+    });
+}
+</script>
+<!--翻页开始-->
+{include file="page.normal.html"}
+<!--翻页结束-->  
+<script  type="text/javascript" src="static/js/material.js"></script>
+{include file="footer.html"}

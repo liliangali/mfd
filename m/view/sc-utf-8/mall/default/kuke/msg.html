@@ -1,0 +1,24 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+
+
+
+ <div class="aqsc_box">
+ {if !$err}
+  <h1 class="grzl">温馨提示</h1>
+  <div class="zpsccgsb">
+    <p class="p1">{$msg}</p>
+    <p class="p2">你可以访问：<a href="/">首页</a>或<a href="{$back}">返回上一步</a></p>
+  </div>
+  {else} 
+  <div class="zpsccgsb zpsccgsb_2">
+    <p class="p1">{$msg}</p>
+    <p class="p2">你可以访问：<a href="/">首页</a>或<a href="{$back}">返回上一步</a></p>
+  </div> 
+   {/if}
+ </div>
+ <p class="clear"></p>
+</div>
+{include file="footer.html"}

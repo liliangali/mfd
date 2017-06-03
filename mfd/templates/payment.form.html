@@ -1,0 +1,75 @@
+{include file="header.html"}
+<script type="text/javascript">
+<!--//<![CDATA[
+$(function(){
+    {$payment.onconfig}
+});
+//]]>-->
+</script>
+
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>安装支付方式</span></li>
+    <li><span><a class="btn1" href="index.php?app=payment">返回支付列表</a></span></li>
+  </ul>
+</div>
+
+<div class="info">
+    
+        <form method="post" action="index.php?app=payment&amp;act={$smarty.get.act}&amp;code={$smarty.get.code}&amp;payment_id={$smarty.get.payment_id}">
+      <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> <label for="site_name">{$lang.payment_name}:</label></th>
+        <td class="paddingT15 wordSpacing5">{$payment.name|escape}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="site_name">描述:</label></th>
+        <td class="paddingT15 wordSpacing5"><textarea class="text" name="payment_desc">{$payment.payment_desc|escape}</textarea><span>该信息将在用户下单时被看到</span></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="site_name">是否启用:</label></th>
+        <td class="paddingT15 wordSpacing5">{html_radios options=$yes_or_no checked=$payment.enabled name=enabled}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="site_name">手机支付:</label></th>
+        <td class="paddingT15 wordSpacing5">{html_radios options=$yes_or_no checked=$payment.ismobile name=ismobile}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="site_name">排序:</label></th>
+        <td class="paddingT15 wordSpacing5"><input type="text" class="text width2" value="{$payment.sort_order}" name="sort_order"/></td>
+      </tr>
+      <!--{foreach from=$payment.config item=info key=conf}-->
+      <tr>
+        <th class="paddingT15"> <label for="site_name">{$info.text}:</label></th>
+        <td class="paddingT15 wordSpacing5">
+		<!--{if $info.type eq 'text'}--> <input type="text" name="config[{$conf}]" id="ctrl_{$conf}" value="{$config.$conf}" size="{$info.size}" onfocus="{$info.onfocus}" onchange="{$info.onchange}" onblur="{$info.onblur}" class="text"/>
+		<!--{elseif $info.type eq 'select'}-->
+                <select name="config[{$conf}]" id="ctrl_{$conf}" onchange="{$info.onchange}" class="width8 padding4">
+                       {html_options options=$info.items selected=$config.$conf}
+                 </select>
+                 <!--{elseif $info.type eq 'textarea'}-->
+                 <textarea cols="{$info.cols}" rows="{$info.rows}" name="config[{$conf}]" id="ctrl_{$conf}" onfocus="{$info.onfocus}" onchange="{$info.onchange}" onblur="{$info.onblur}" class="text" >{$config.$conf}</textarea>
+                 <!--{elseif $info.type eq 'radio'}-->
+                       {html_radios options=$info.items checked=$config.$conf name=$info.name}
+                 <!--{elseif $info.type eq 'checkbox'}-->
+                    {html_checkbox options=$info.items checked=$config.$conf name=$info.name}
+                 <!--{/if}-->
+                 <span>{$info.desc}
+		</td>
+      </tr>
+      <!--{/foreach}-->
+      <!--{if $payment.is_online}-->
+            <tr>
+        <th class="paddingT15"> <label for="site_name">区别码:</label></th>
+        <td class="paddingT15 wordSpacing5"><input type="text" name="config[pcode]" value="{$config.pcode}" size="3" class="text" /> <span>正常情况下可留空，仅当支付时频繁出错时使用</span></td>
+      </tr>
+       <!--{/if}-->
+  <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />        </td>
+      </tr>
+      </table>
+        </form>
+    </div>
+{include file="footer.html"}

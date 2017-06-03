@@ -1,0 +1,177 @@
+{include file=header2.html}
+{include file=curlocal2.html}
+
+
+
+<div class="tab_tit">
+   <ul>
+    <li class="on"><a href="index.php?app=category">所有分类</a></li>
+    <li class="off"><a href="index.php?app=brand">所有品牌</a></li>
+   </ul>
+   <p class="clear"></p>
+</div>
+
+   
+<div class="allct_tit">
+  <h1>更多特价产品，请进入以下二级频道页面</h1>
+  <ul>
+    <li><a href="#">海鲜干货</a></li>
+    <li><a href="#">进口食品</a></li>
+    <li><a href="#">文具玩具</a></li>
+    <li><a href="#">精品饰品</a></li>
+    <li><a href="#">海鲜干货</a></li>
+    <li><a href="#">进口食品</a></li>
+    <li><a href="#">文具玩具</a></li>
+    <li><a href="#">精品饰品</a></li> 
+    <li><a href="#">海鲜干货</a></li>
+    <li><a href="#">进口食品</a></li>
+    <li><a href="#">文具玩具</a></li>
+    <li><a href="#">精品饰品</a></li>                              
+  </ul>
+  <p class="clear"></p>
+</div>
+
+
+<div class="allct">
+  <ul>
+    <li class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">
+       <h1><a href="#">进口食品</a></h1>
+       <dl>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>                   
+       </dl>
+    </li>
+    
+    <li class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">
+       <h1><a href="#">进口食品</a></h1>
+       <dl>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>                   
+       </dl>
+    </li>
+    
+    <li class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">
+       <h1><a href="#">进口食品</a></h1>
+       <dl>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>                   
+       </dl>
+    </li>
+    
+    <li class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">
+       <h1><a href="#">进口食品</a></h1>
+       <dl>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>                   
+       </dl>
+    </li>
+    
+    <li class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">
+       <h1><a href="#">进口食品</a></h1>
+       <dl>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>                   
+       </dl>
+    </li>
+    
+    <li class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">
+       <h1><a href="#">进口食品</a></h1>
+       <dl>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>                   
+       </dl>
+    </li> 
+    
+    <li class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">
+       <h1><a href="#">进口食品</a></h1>
+       <dl>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>                   
+       </dl>
+    </li>
+    
+    <li class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">
+       <h1><a href="#">进口食品</a></h1>
+       <dl>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>
+         <dt><a href="#">洋年货</a></dt>
+         <dd>
+           <span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span><span><a href="#">糖果巧克力</a></span><span><a href="#">红酒/洋酒</a></span><span><a href="#">进口零食</a></span><span><a href="#">保健品</a></span>
+         </dd>                   
+       </dl>
+    </li>                
+                                                 
+  </ul>
+  <p class="clear"></p>
+</div>
+  
+
+
+<!--
+<script language="javascript">
+  function lihw(ix)
+  {
+	 for (i=1; i<3; i++) 
+	 {
+	  if (i==ix)	 
+	    {
+		 document.getElementById('ti_'+i).className='on';
+		 document.getElementById('tj_'+i).style.display='block';
+	    }
+		else
+		{
+		 document.getElementById('ti_'+i).className='off';
+		 document.getElementById('tj_'+i).style.display='none';		
+	    }
+     }
+  }
+</script>
+-->
+
+
+{include file=login_footer.html}

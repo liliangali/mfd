@@ -1,0 +1,120 @@
+﻿/*====新版-产品详情/S====*/
+.little{bottom:15px; right:15px;height:40px; width:40px; line-height:40px; border-radius:50%; background:rgba(200,200,202,.5); color:#fff;position:absolute;text-align: center;overflow:hidden;}
+@media screen and (min-width:640px) {
+.little{ margin-left:580px; right:inherit;}
+}
+.tent{position:fixed; bottom:0px; background:#fff; max-width:640px; min-width:320px; width:100%; padding:8px 0; text-align:center;opacity:0.9; }
+.tent p { margin:0 8px;}
+.tent span{width:100%; height:38px; line-height:38px; border:1px solid #898787; display:inline-block; margin-top:10px; background:#fff;}
+.tent .addCart{border:1px solid #3f3b3a; background:#3f3b3a; color:#fff;}
+
+/*尺码*/
+.sizeTable { bottom: 0; max-width: 640px; overflow: hidden; position:fixed; z-index: 102; width: 100%; background:#fff; height: 306px; transform: translateY(300px); -webkit-transform: translateY(300px); transition: all .5s; -webkit-transition: all .5s; }
+.sizeTable .step1 { margin:0 20px;}
+.sizeTable .step1 li {width:95%; height:40px; line-height:40px; border: solid 1px #ddd; margin:15px 0; background:#fff; text-align:right; padding-right:5%; border-radius:0; display:block}
+.sizeTable .step1 li:hover, .sizeTable .step1 li:active { color: #666; background: #fff; border-color: #3f3b3a; color:#fff; background:#21d0fd;}
+.sizeTable .step1 .base {background:url(/public/static/wap/images/slx_icon2.png) 5% -74px no-repeat; background-size:31px 250px;}
+.sizeTable .step1 .amount {background:url(/public/static/wap/images/slx_icon2.png) 5% -146px no-repeat; background-size:31px 250px;}
+.sizeTable .step1 .base:hover {background:#3f3b3a url(/public/static/wap/images/slx_icon2.png) 5% -108px no-repeat; background-size:31px 250px;}
+.sizeTable .step1 .amount:hover {background:#3f3b3a url(/public/static/wap/images/slx_icon2.png) 5% -178px no-repeat; background-size:31px 250px;}
+.sizeTable .step2 { display: none; }
+.sizeTable .titBar { padding:20px 0 5px 0; clear: both; color: #999; height: 45px; line-height: 45px; overflow: hidden; font-size:12px;}
+.sizeTable .titBar .tit { color: #999;}
+.sizeTable .titBar .seeSize { color: #3f3b3a; }
+.sizeTable .scrollBox { clear: both; height: 193px; overflow-x: hidden; overflow-y: auto; }
+.sizeTable.show { transform: translateY(0); -webkit-transform: translateY(0) }
+.sizeTable .tabBar { padding: 10px; color: #666; overflow: hidden; }
+.sizeTable .tabBar .tab { line-height: 1.5; }
+.sizeTable .tabBar .tab li { float: left; border-bottom: solid 2px rgba(255,255,255,0); padding:5px 20px; }
+.sizeTable .tabBar .tab .cur { color: #3f3b3a; border-color: #3f3b3a; }
+.sizeTable .tabBar .save { background: #3f3b3a; border-radius: 5px; color: #fff; padding: 2px 10px; }
+.sizeTable .itemList { padding: 0 8px; overflow: hidden; line-height: 30px; color: #666; font-size: 14px; }
+.sizeTable .itemList li { float: left; width: 22%; margin: 1.5%; text-align: center; background: #fff; border-radius: 5px; border: solid 1px #d5d5d5; box-sizing: border-box; }
+.sizeTable .itemList .cur { border-color: #c30d23; color: #c30d23; }
+.sizeTable .loading { text-align: center; line-height: 140px; }
+.productInfo{position:fixed;bottom:0;background:#fff;max-width:640px;min-width:320px;width:100%;padding:20px 0; transition:all .5s;-webkit-transition:all .5s; transform:translate3d(0,230px,0);-webkit-transform:translate3d(0,230px,0); z-index:51;height:190px;overflow:auto;}
+.productInfo.show{transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0);}
+.productInfo .ingredients{width:90%;margin:0 auto;color:#999999;overflow:hidden;}
+.productInfo .ingredients h1{font-size:16px;color:#000000;border-bottom:1px solid #cccccc;padding-bottom:8px;padding-left:1%;}
+.productInfo .ingredients .xifu{width:100%;padding-left:1%;margin-top:18px;color:#222222;}
+.productInfo .ingredients .chens{clear:both;padding-top:18px;}
+.productInfo .ingredients ul{margin-top:2px;}
+.productInfo .ingredients ul li{width:44%;float:left;padding-top:12px;padding-left:1%;}
+.productInfo .top17{margin-top:35px;}
+.productInfo .ingredients .beyond{ padding-bottom:40px;}
+.productInfo .ingredients .beyond .text{padding-top:15px;padding-left:1%;}
+
+
+
+
+.menu_wrap{ margin:0 15px;}
+.menu_wrap .menu_list{ border-bottom:1px solid #ddd;}
+.menu_wrap h4 {background:url(/public/static/wap/images/slx_icon2.png) right -8px no-repeat; font-weight:normal; font-size:14px; height:38px; line-height:38px; cursor:pointer; color:#333; background-size:31px 250px; margin:4px 0;}
+.menu_wrap .cur h4{background:url(/public/static/wap/images/slx_icon2.png) right 15px no-repeat; font-weight:bold; background-size:31px 250px;}
+.menu_wrap .menu_detail {display:none; *position:relative;*zoom:1;}
+.menu_wrap .menu_detail .p1 {font-size:12px; color:#717171; line-height:18px; margin-bottom:20px;}
+.menu_wrap .menu_detail dl { overflow:hidden; margin-bottom:20px;}
+.menu_wrap .menu_detail dt {font-size:12px; color:#333; line-height:18px; margin-bottom:4px;}
+.menu_wrap .menu_detail dd { float:left; width:50%; font-size:12px; color:#717171;}
+
+
+.fenxia { position:absolute; right:15px; top:0; height:45px; line-height:45px;}
+.fenxia a { display:block; background:url(/public/static/wap/images/slx_icon.png) left -232px no-repeat; width:18px; height:18px; background-size:18px 250px; float:left; margin:17px 0 0 10px;}
+
+.xgdp {margin:0 15px; overflow:auto;}
+.xgdp h1 {font-size:14px; line-height:24px; margin:12px 0 7px 0; font-weight:normal;}
+.xgdp ul {width:10000px;}
+.xgdp ul li { float:left; width:135px; margin-right:12px; text-align:center;}
+.xgdp ul li:last-of-type{ margin-right:0%;}
+.xgdp ul li img {width:100%;}
+.xgdp ul li .p2 {font-size:12px; color:#333; line-height:24px;}
+
+/*====新版-产品详情/E====*/
+
+/* 作品详情 */
+/*滑动效果/S*/
+.swipe { overflow: hidden; visibility: hidden; position: relative;}
+.swipe-wrap { overflow: hidden; position: relative;}
+.swipe-wrap > div { float: left; width: 100%; position: relative;}
+.tpdx div img {width:159px; height:275px;}
+/*滑动效果/E*/
+
+.xiangc { padding:20px 0; width: 100%; text-align: center; }
+.xcfy { text-align: center; height: 40px; line-height: 40px; overflow: hidden; font-size: 14px; color: #000; }
+.xcfy span { color: #666; }
+.xiangc h4 { text-align: center; font-weight: normal; font-size: 18px; line-height:28px; margin-top: 15px; color:#333;}
+.xiangc h4 font { font-size:12px; display: block; color:#717171;}
+.xiangc h4 span { font-family: arial; font-size:24px; margin-bootom: 7px; display: block; color:#ff5500;}
+
+.jgt { height:10px; border-top:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; background:#f6f6f6;}
+
+.sjll { padding:15px 15px 0 15px;}
+.sjll h1 {font-size:14px; color:#333; line-height:22px; margin-bottom:8px; font-weight:normal;}
+.sjll h2 {font-size:12px; color:#333; line-height:22px; margin-bottom:8px; font-weight:normal;}
+.sjll p {font-size:12px; line-height:20px; color:#717171; margin-bottom:15px;}
+.sjll p span {padding-left:10px;}
+
+.scjxsj { background:#f6f6f6; border-top:1px solid #f5f5f5; height:44px; position:fixed; bottom:0; max-width:640px; width:100%;}
+.scjxsj li {width:50%; float:left; text-align:center; font-size:14px; line-height:44px;}
+.scjxsj li a { color:#666;}
+.scjxsj li .on { color:#21d0fd;}
+
+.yx_bt {font-size: 14px;height: 20px;line-height: 20px;margin-top: 10px;}
+
+/* 我的作品_删除作品 */
+.kdsz {width:100%; overflow:auto; height:auto;}
+.zplist { border-bottom:1px solid #e2e2e2; overflow:hidden; margin-bottom:20px; padding:0 10px; width:800px;}
+.zplist li { float:left; font-size:13px; color:#717171; text-align:center; height:40px; line-height:40px; padding:0 40px; position:relative; margin:0 10px;}
+.zplist li span { position:absolute; right:-13px; top:0; color:#eee; height:6px; display:block;} 
+.zplist .now_hover { color:#21d0fd; border-bottom:3px solid #21d0fd;}
+
+.zplb { width:100%; margin:0 auto; overflow:hidden;}
+.zplb .brick{ margin:10px auto;}
+.zplb .brick .item { width:150px; margin:0 5px 10px; transition:all ease 1s;}
+.zplb ul {border:1px solid #dfdfdf; padding:10px; background:#fff;}
+.zplb ul li p img {width:100%;}
+.zplb ul li .p1 {padding-bottom:10px;}
+.zplb ul li .p2 {font-size:14px; color:#333; line-height:20px; height:20px; overflow:hidden; margin-bottom:3px;}
+.zplb ul li .p3 {font-size:12px; color:#717171; line-height:16px;}
+
+

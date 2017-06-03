@@ -1,0 +1,77 @@
+{include file=header-new.html}
+<link href="/public/static/pc/css/orderinfo.css" rel="stylesheet">
+<div class="main">
+    <div class="orderInfo">
+        <h1>填写并核对订单信息</h1>
+        <form>
+        <!-- 收货信息 -->
+        {include file="cart/order/shipping.html"}
+        
+        <!-- 发票信息 -->
+        {include file="cart/order/invoice.html"}
+
+	   <!-- 支付信息 -->
+	    {include file="cart/order/payment.html"}
+	    
+	    <!-- 商品清单 -->
+        {include file="cart/order/goods.html"}
+        <div class="list_box">
+			<!-- 抵扣信息 -->
+			{include file="cart/order/deduction.html"}
+			<div class="accordion clearfix">
+				<div class="tit" style="padding-left:0; background:none;">订单备注</div>
+				<div class="layer orderRemark" style="display:block">
+					<textarea name="order[remark]"></textarea>
+				</div>
+			</div>
+			{if $member.pay_password}
+			<div class="accordion clearfix paypassword">
+				<p class="payPwd">支付密码：<input type="password" tip="支付密码" id="payPwd" name="dedu[payPwd]" /><a href="{link app=member act=safe}" class="blue">忘记支付密码？</a></p>
+			</div>
+			{else}
+			{/if}
+		</div>
+	    <!-- 结算信息 -->
+	    {include file="cart/order/total.info.html"}
+        </form>
+    </div>
+</div>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/my97date/wdatepicker.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>
+<script src="/public/static/pc/js/public.js"></script> 
+<script src="/public/static/pc/js/orderinfo.js"></script> 
+<script type="text/javascript" src="/public/global/jquery.form.js"></script>
+<script>
+
+cotteFn.orderInfo({
+    createUrl: "{link app=order act=create}",
+    serverUrl : "{link app=cart act=getServer}",
+    historyUrl : "{link app=cart act=getHistory}",
+    addressDel : "{link app=cart act=addressDrop}",
+    delAddrUrl : "{link app=cart act=dropAddr}",
+    getAddrUrl : "{link app=cart act=getAddress}",
+    addressUrl : "{link app=cart act=address}",
+    editAddrUrl : "{link app=cart act=uAddress}",
+    paycenterUrl : "{link app=order act=paycenter}",
+    debitRuleUrl: "{link app=cart act=debit_rules}",
+    regionUrl: "{link app=mlselection}",
+    addressSaveUrl : "{link app=cart act=addressSave}",
+    hasMoney:{$member.money},
+    hasCoin:{$member.coin},
+    canCoin:'{if $cart.cloth_bi || $member.member_lv_id > 1}1{else}0{/if}',
+    userID:'{$member.user_id}',
+    amount:{$cart.final_amount},
+	diy_price:{$cart.diy_price},
+	custom_price:{$cart.custom_price},
+    hasPayPwd:'{if $member.pay_password}1{else}0{/if}',
+    userAddr : '{$member.def_addr}',
+    freeShipping : '{$cart.free_shipping}',
+    weight : '{$cart.weight}'
+});
+
+
+
+</script>
+
+{include file="footer-new.html"}

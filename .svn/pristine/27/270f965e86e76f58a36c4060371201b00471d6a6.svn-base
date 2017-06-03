@@ -1,0 +1,27 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+#首页
+RewriteRule ^default.html/?$ index.php/default.html [L]
+
+#会员
+RewriteRule ^member-([0-9a-z-A-z-]+).html/?$ index.php/member-$1.html [L]
+
+#ajax请求
+RewriteRule ^ajax-([0-9a-z-A-Z-]+).html/?$ index.php/ajax-$1.html [L]
+
+#ns add找裁缝 待优化
+RewriteRule ^tailor.html index.php/tailor.html [L]
+RewriteRule ^tailor-([0-9a-z-A-Z-]+).html/?$ index.php/tailor-$1.html [L]
+
+#ns add申请裁缝
+RewriteRule ^apply.html index.php/apply.html [L]
+RewriteRule ^apply-([0-9a-z-A-Z-]+).html/?$ index.php/apply-$1.html [L]
+
+#ns add获取地区
+RewriteRule ^mlselection.html index.php/mlselection.html [L]
+
+#通用rewrite 不足可改进 #@sin
+RewriteRule ^([a-z]+[-\w+]*).html$ index.php/$1.html [L]
+#RewriteRule ^([a-z]+[-\w+]*).html(.*)$ index.php/$1.html$2 [L]
+</IfModule>

@@ -1,0 +1,69 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>管理</span></li>
+  </ul>
+</div>
+
+
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="smsRegTmp" />
+          <input type="hidden" name="act" value="index" />
+          <select class="querySelect" name="field_name">{html_options options=$query_fields selected=$smarty.get.field_name}
+          </select>
+          <input class="queryInput" type="text" name="field_value" value="{$smarty.get.field_value|escape}" />
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=smsRegTmp}">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+</div>
+
+
+<div class="tdare">
+  <form method=get>
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $code_list}-->
+    <tr class="tatr1">
+      <td width="140">手机号</td>
+      <td width="100"><span ectype="order_by">code码</span></td>
+      <td width="120"><span ectype="order_by" fieldname="category">大分类</span></td>
+      <td width="120"><span ectype="order_by" fieldname="type">小分类</span></td>
+      <td width="170"><span ectype="order_by" fieldname="add_time">添加时间</span></td>
+      <td width="170"><span ectype="order_by" fieldname="fail_time">过期时间</span></td>
+      <td width="210">备注</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$code_list item=code}-->
+    <tr class="tatr2">
+      <td>{$code.phone}</td>
+      <td>{$code.code}</td>
+      <td>{$code.category}</td>
+      <td>{$code.type}</td>
+      <td>{$code.add_time|date:Y-m-d H:i:s}</td>
+      <td>{$code.fail_time|date:Y-m-d H:i:s}</td>
+      <td>{$code.ps|truncate:60:"....":true}</td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  </form>
+  <!--{if $code_list}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+
+
+
+{include file="footer.html"}

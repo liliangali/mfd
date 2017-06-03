@@ -1,0 +1,474 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/orderinfo.css" rel="stylesheet">
+<div class="main">
+	<div class="orderInfo">
+		<h1>填写并核对订单信息</h1>
+		<form>
+			<div class="addressInfo mt">
+			<h2>配送信息</h2>
+			<div id="addressLayer">
+				<div id="address" class="address">
+					<ul>
+					{foreach from=$addresslist item=list name=ads}
+						<li data-id="{$list.addr_id}" {if $smarty.foreach.ads.first && !$defAddr} class="cur" {/if} {if $list.addr_id eq $defAddr} class="cur" {/if}>
+							<p class="underlined">{$list.consignee}</p>
+							<p class="tele">{$list.phone_mob}</p>
+							<p class="txaddress">{$list.region_name}{$list.address}</p>
+							<div class="caozuoBtn">
+								<input type="button" class="edit" value="编辑" data-id="{$list.addr_id}">
+								<input type="button" class="del" value="删除" data-id="{$list.addr_id}">
+							</div>
+						</li>
+                    {/foreach}
+					   {if $count < 5}
+						<li id="addAddress" class="syxdz">
+							<span>+</span>
+							使用新地址
+						</li>
+						{/if}
+					</ul>
+				</div>
+			</div>
+		</div>
+			<div class="mt clearfix">
+				<h2>支付方式</h2>
+				<ul class="tabBtn clearfix" id="payMethod">
+    				{foreach from=$payments item=pmt name=npmt}
+    					<li data-id="{$pmt.payment_id}" data-code="{$pmt.payment_code}" {if $smarty.foreach.npmt.first} class="cur" {/if}>{$pmt.payment_name}</li>
+    				{/foreach}
+				</ul>
+			</div>
+		<div class="mt">
+			<h2 style="border:0">商品清单</h2>
+			<div class="qingdan">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<th colspan="2">商品信息</th>
+					<th>单价（元）</th>
+					<th>数量</th>
+					<th>金额（元）</th>
+				</tr>
+				<tr>
+					<td width="50"><a href="{link app=fabricbook-info}?id={$book.id}"><img src="{$book.img}" width="50" height="50"></a></td>
+					<td><a href="{link app=fabricbook-info}?id={$book.id}">{$book.name}</a></td>
+					<td>{$book.price|price}</td>
+					<td>{$book.number}</td>
+					<td>{$book.subtotal|price}</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		
+			<div class="list_box">
+			<div class="accordion clearfix">
+				<div class="tit">使用麦富迪币</div>
+				<div class="layer mfdMoney">
+				{if !$mInfo.pay_password}
+					<p>您有麦富迪币{$mInfo.coin|default:0}个，为保障您的账户资金安全，麦富迪币暂不可用，请先 <a href="{link app=member act=safe}" class="blue">[开启支付密码]</a></p>
+			    {else}
+					<div>
+						<p>本次使用
+							<input type="text" class="txt" id="JmfdMoneyTxt" data-max="500">
+							您有麦富迪币<b class="orange">{$mInfo.coin|default:0}</b>个，使用<b class="blue num">0</b>个，折合人民币<b class="orange money">0元</b></p>
+					</div>
+			    {/if}
+				</div>
+				<div class="accordion clearfix">
+					<div class="tit">使用余额</div>
+					<div class="layer yue">
+					{if !$mInfo.pay_password}
+						<p>您的账户余额<b class="orange">{$mInfo.money|price}</b>为保障您的账户资金安全，余额暂不可用，请先 <a href="{link app=member act=safe}" class="blue">[开启支付密码]</a></p>
+					 {else}
+						<div>
+							<p>本次使用
+								<input type="text" class="txt" id="JyueTxt" data-max="">
+								您的账户余额：<b class="orange">{$mInfo.money|price}</b> 使用<b class="blue num">0</b>元，剩余<b class="orange money">0元</b></p>
+						</div>
+					{/if}
+					</div>
+				</div>
+				<div class="accordion clearfix">
+					<div class="tit">订单备注</div>
+					<div class="layer orderRemark">
+						<textarea name="remark" id="remark"></textarea>
+					</div>
+				</div>
+				<div class="accordion clearfix">
+					<p class="payPwd">支付密码：
+						<input type="password" tip="支付密码" id="payPwd" >
+						<a href="{link app=member act=edit_pay_password_1}" class="blue">忘记支付密码？</a></p>
+				</div>
+			</div>
+			<div class="accounts mt clearfix">
+				<ul class="priceList">
+					<li><span class="fl">商品件数：</span><span class="fr">{$book.number} 件</span></li>
+					 <dt id="total">
+					    {include file=total.html}
+					</dt>
+				</ul>
+				<input type="button" value="立即下单" id="orderDown" class="orderDown fr" />
+			</div>
+		</form>
+	</div>
+</div>
+<form action="{link app=order act=goToPay}" id="payform" method="post">
+<input type="hidden" name="obj" value="order" />
+<input type="hidden" name="os" value="" />
+</form>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/luck/pc/luck.js"></script> 
+<script src="/public/static/pc/js/public.js"></script> 
+<script src="/public/static/pc/js/address.js"></script>
+<script type="text/javascript" src="static/expand/jquery.form.js"></script> 
+<script>
+var coin      = "{$mInfo.coin|default:0}";
+var surplus   = "{$mInfo.money|default:0}";
+
+$(document).ready(function(){
+	//麦富迪币
+	$("#JmfdMoneyTxt").blur(function(){
+		   var useCoin = $(this).val();
+		   if(!useCoin) useCoin = 0;
+	   	   if(!/^\d+$/.test(useCoin)){
+	   	   	  useCoin = parseInt(useCoin);
+	   	   	  $(this).val(useCoin);
+	   	   }
+	   	   var $this = this;
+	   	   $.get("buy-coin.html",{coin:useCoin}, function(res){
+		   	    var res = eval("("+res+")");
+		   	    if(res.done== false){
+			   	     alert(res.msg);
+			   	     return false;
+			   	}
+			   	
+		   		$($this).val(res.retval.coin);
+			   	$($this).parents(".layer").find(".blue.num").html(res.retval.coin);
+				$($this).parents(".layer").find(".orange.money").html(res.retval.coin);
+			   	$("#total").html(res.retval.content);
+		   });
+		   
+    }).keyup(function(){
+		   var useCoin = $(this).val();
+		   if(!useCoin) useCoin = 0;
+	   	   if(!/^\d+$/.test(useCoin)){
+	   	   	  useCoin = parseInt(useCoin);
+	   	   	  if(!useCoin) useCoin = 0;
+	   	   	  $(this).val(useCoin);
+	   	   }
+    })
+
+	//余额
+	$("#JyueTxt").blur(function(){
+    		 var useSurplus = $(this).val();
+    		 if(!useSurplus) useSurplus = 0;
+    	   	 if(!/^\d+$/.test(useSurplus) && !/^\d+\.\d{1,2}/.test(useSurplus)){
+    	       	 alert("请输入正确的金额");
+    	       	 return false;
+    	   	 }
+    	   	 var $this = this;
+	   	     $.get("buy-surplus.html",{surplus:useSurplus}, function(res){
+		   	    var res = eval("("+res+")");
+		   	    if(res.done== false){
+			   	     alert(res.msg);
+			   	     return false;
+			   	}
+			   	
+		   		$($this).val(res.retval.surplus);
+			   	$($this).parents(".layer").find(".blue.num").html(res.retval.surplus);
+				$($this).parents(".layer").find(".orange.money").html(res.retval.balance);
+			   	$("#total").html(res.retval.content);
+		   });
+    })
+})
+//地址管理
+function address(obj,id){
+	var popLayer=$('<div>'),
+		popShadow=$('<div>'),
+		offset=(obj=='add')?$(this).offset():$(this).parents('li').offset(),
+		left=offset.left,
+		top=offset.top;
+	popShadow.css({
+		width:'100%',
+		height:'100%',
+		position:'fixed',
+		background:'#000',
+		opacity:'0.2',
+		left:0,
+		top:0,
+		zIndex:100,
+		display:'none'	
+	}).attr('id','popShadow').click(function(){
+		$(this).fadeOut('fast',function(){
+			$(this).remove();	
+		});	
+		popLayer.fadeOut('fast',function(){
+			$(this).remove();	
+		})
+	})
+	$.get("/buy-address.html",{opt:obj,addrid:id}, function(res){
+		var res = eval("("+res+")");
+		if(res.done == false){
+		    alert(res.msg);
+		    return false;
+	    }
+	    
+		$('body').append(
+				popLayer.css({
+					width:335,
+					height:445,
+					position:'absolute',
+					left:left,
+					top:top,
+					background:'#fff',
+					boxShadow:'0 18px 30px #999',
+					zIndex:101,
+					display:'none'
+				}).attr('id','popLayer').html(res.retval)).append(popShadow);
+				popLayer.fadeIn('fast');
+				popShadow.fadeIn('fast');
+
+				$('.address-edit-box').find('select').on('change', regionChange)
+				
+ 				$('#J_cancel').click(closeLayer)
+				$('#J_save').on('click',saveAddress);
+				
+// 			    var ri = $("#area_list").val();
+// 			    var regions = ri.split(",");
+// 			    $("#addressForm select:first").find("option").each(function(){
+// 			        if($(this).val() == regions[0]) $(this).attr("selected", "true");
+// 			    })
+			    $(".address-edit-box select:first").change();
+	});
+}
+
+function saveAddress(){
+    var b = false;
+    b=$('.address-edit-box').validate({
+            acticle:true,
+            error:function(obj,error){
+                obj.next('.msg-error').remove()
+                $(obj).parent().append('<p class="msg msg-error">'+error+'</p>')
+                obj.focus();
+                obj.one('blur',function(){
+                    $(this).next('.msg-error').remove();
+                })
+            },
+        });
+    if(b){
+        $('.address-edit-box form').ajaxSubmit({
+            type:"post",
+            url : "buy-store.html",
+            success:function(res){
+                var res = $.parseJSON(res);
+                if(res.done == false){
+                    alert(res.msg);
+                    return false;
+                }
+                
+                $('#address').html(res.retval);
+                closeLayer();
+                init();
+            }
+        });
+    }
+}
+
+function regionChange()
+{
+    var ri = $("#area_id").val();
+    var regions = ri.split(",");
+    //var pin = $(this).parents('.xm-select').index();
+    var pin = $(this).parents('.xm-select').data('index');
+    
+    var _nxp = $('.address-edit-box').find('.xm-select').eq(pin + 1);
+
+    //$(this).nextAll("select").remove();
+    _nxp.find('select').remove();
+    
+    //var selects = $(this).siblings("select").andSelf();
+    var selects = $(this).parents('.address-edit-box').find("select");
+
+    var id = 0;
+    var names = new Array();
+    var ids = new Array();
+    for (i = 0; i < selects.length; i++) {
+        sel = selects[i];
+        if (sel.value > 0) {
+            ids.push(sel.value);
+            id = sel.value;
+            name = sel.options[sel.selectedIndex].text;
+            names.push(name);
+        }
+    }
+    
+    if(this.value > 0) {
+        var _self = this;
+        $.get("mlselection.html", {
+            'pid': this.value,
+            'type': 'region'
+        }, function(data) {
+            var data = eval("("+data+")");
+            if (data.done) {
+                if (data.retval.length > 0) {
+                    ns = _nxp.find('.dropdown').find("select");
+                    if (ns.is("select") == false) {
+                        _nxp.find('.dropdown').append("<select><option>请选择</option></select>");
+                        //$("<select><option>请选择</option></select>").insertAfter(_self);
+                    }
+
+                    _nxp.find("select").on("change", regionChange)
+                    var data = data.retval;
+                    for (i = 0; i < data.length; i++) {
+                        var s = "";
+                        try {
+                            if (regions) {
+                                for (r = 0; r < regions.length; r++) {
+                                    if (data[i].region_id == regions[r]) {
+                                        s = " selected";
+                                    }
+                                }
+                            }
+                        } catch (e) {}
+                        _nxp.find("select").append("<option value='" + data[i].region_id + "'" + s + ">" + data[i].region_name + "</option>");
+                    }
+                    if (regions) {
+                        var select = _nxp.find("select");
+                        if (select.val() > 0) $(select).change();
+                    }
+                } else {
+                    regions = "";
+                    $("#area_list").val(ids.join(","));
+                    $("#area_id").val(ids.join(","));
+                    $("#area_name").val(names.join("\t"));
+                    _nxp.find('select').remove();
+                }
+            }
+        });
+    }
+
+}
+
+function init(){
+	/*======================*
+	地址管理
+    *======================*/
+    $('#addressTab li').click(function(){
+    $(this).addClass('cur').siblings().removeClass('cur');
+    var index = $(this).index();
+    $('#addressLayer > div').eq(index).show().siblings().hide();
+    if(index>0){
+    	$('#fixTime').hide();
+    }else{
+    	$('#fixTime').show();	
+    }
+    });
+    //选择
+    $('#address>ul>li').not('#addAddress').click(function(){
+        $(this).addClass('cur').siblings().removeClass('cur');
+    });
+    //删除
+    $('#address .caozuoBtn .del').click(function(){
+    if(window.confirm('确定要删除？')){
+    	$(this).parents('li').fadeOut('fast',function(){
+        	var id = $(this).find(".del").data("id");
+        	
+    		$.get("buy-destroy.html",{addrid:id}, function(res){
+    		    var res = eval("("+res+")");
+                $('#address').html(res.retval);
+                init();
+            })
+    	})	
+    }
+    });
+	//添加
+	$('#addAddress').click(function(){
+		address.call(this,'add',0)
+	})
+	//修改
+	$('#address .caozuoBtn .edit').click(function(){
+		address.call(this,'edit',$(this).data("id"));	
+	});
+}
+
+/*======================*
+		支付方式
+ *======================*/
+$('#payMethod li').click(function(){
+	$(this).addClass('cur').siblings().removeClass('cur');
+	$('#paymentType').val($(this).data('id'))
+});
+
+/*======================*
+		数量控件
+ *======================*/
+
+$('.jajia_box a').click(function(){
+	var _input=$(this).parent().children('input'),num=Number(_input.val());
+	if(!num || num < 1)num=1
+	var val = $(this).hasClass('a_2') ? 1 : -1;
+	var quantity = num + val;
+	if(quantity < 1){
+		_input.val(1);
+		_input.data("num",1);
+		return false;
+	}
+	_input.val(quantity);
+});
+
+		
+/*======================*
+		各种优惠券
+ *======================*/
+$('.accordion .tit').click(function(){
+	var $this=$(this),$layer=$this.next('.layer');
+	var input = $layer.find("input");
+	if($layer.is(':visible')){
+		input.val(0);
+		input.blur();
+		$layer.slideUp('fast');
+		$this.removeClass('show')
+	}else{
+		if($layer.hasClass("mfdMoney")){
+		    input.val(coin);
+		}else{
+			input.val(surplus);
+		}
+		input.blur();
+		$layer.slideDown('fast');
+		$this.addClass('show');	
+	}
+});
+		
+/*======================*
+		立即下单
+ *======================*/
+
+$('#orderDown').click(function(){
+	var data ={};
+	data.addrid = $("#address").find(".cur").data("id");
+	data.payid  = $("#payMethod").find(".cur").data("id");
+	data.remark = $("#remark").val();
+	data.paypwd = $("#payPwd").val();
+	
+    $.post("/buy-create.html",data, function(res){
+        var res = eval("("+res+")");
+        if(res.done == false){
+            alert(res.msg);
+            return false;
+        }else{
+		    if(res.retval.result){
+			    //alert(res.retval.result);
+			    location.href="buy-paycenter.html?id="+res.retval.ordersn;
+			    return false;
+		    }else{
+    	    	$("#payform input[name=os]").val(res.retval.ordersn);
+    	    	$("#payform").submit();
+		    }
+        }
+    })
+})
+
+init();
+</script>
+{include file=../footer-new.html}

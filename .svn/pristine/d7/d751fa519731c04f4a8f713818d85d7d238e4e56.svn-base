@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+<title> {$lang.rctailor_sysmsg}</title>
+<link href="templates/style/admin.css" rel="stylesheet" type="text/css" />
+<style>
+<!--
+body {background: none; font-family: "微软雅黑";}
+h1 {font-size: 16px; color: #444; font-weight:normal; line-height: 55px; background: url(templates/style/images/welcome_h1.gif); padding-left: 2%}
+dl {line-height: 40px; background: url(templates/style/images/welcome.gif) no-repeat left 10px; padding-left: 40px; margin: 35px 0 45px 15%}
+dt {color: #333; font-size: 14px;}
+dd {color: #333; font-size: 14px;}
+a {color: #bb422e; text-decoration: none; font-size: 14px;}
+a:hover {color: #bb422e; text-decoration:underline;}
+p {color: #999; border-top: 1px solid #ebebeb; text-align: center; padding-top: 20px;}
+-->
+</style>
+</head>
+
+<body>
+<h1>{$lang.rctailor_sysmsg}</h1>
+<dl>
+    <dt>{$message}</dt>
+    {if $err_file}
+    <dd>Error File: <b>{$err_file}</b> at <b>{$err_line}</b> line.</dd>
+    {/if}
+    {if $redirect}
+    <dd>{$lang.auto_redirect}</dd>
+    {/if}
+    {foreach from=$links item=item}
+    <dd><a href="{$item.href}" class="forward">{$item.text}</a></dd>
+    {/foreach}
+</dl>
+{if $redirect}
+<script type="text/javascript">
+<!--
+window.setTimeout("{$redirect}", 2000);
+//-->
+</script>
+{/if}
+<p></p>
+</body>
+</html>

@@ -1,0 +1,105 @@
+{include file="register_header.html"}
+<link href="{res file=css/register.css}" rel="stylesheet" type="text/css">
+
+
+
+<div class="newreg_wrap">
+  <div class="newreg">
+    <div class="newreg_inner">
+        <div class="title">
+            <strong>手机/邮箱注册</strong>
+            <span class="log">
+            已有帐号？
+            <a href="{link app=member act="login"}">立即登录</a>
+            </span>
+       </div>
+       <div class="container">
+           <div class="cssm-state cssm-state2 clearfix">
+                <ul>
+                    <li>
+                        <p>填写帐号信息</p>
+                        <span>1</span>
+                    </li>
+                    <li class="current">
+                        <p>验证手机/邮箱</p>
+                        <span>2</span>
+                    </li>
+                    <li class="last">
+                        <p>注册完成</p>
+                        <span>3</span>
+                    </li>
+                </ul>
+                <div class="r-line"></div>
+            </div>
+            <ul class="sy-ul sy-ul2" style="padding-left:150px;">
+                <li class="first">
+                    <i class="b-icon"></i>
+                    验证邮件已发送，请前往邮箱点击激活链接完成注册
+                </li>
+                <li class="s-mar">
+                    注册邮箱：{$email}
+                </li>
+                <li class="two-li em-li" style="border:0;">
+                    <p class="code_button">
+                    <a id="getSMS" class=""   href="javascript:void(0)">重新发送</a>
+                    </p>
+                     <input id="password" type="hidden" value="{$data.password}" name="password">
+                    <input id="account_register" type="hidden" value="{$data.account_register}" name="account_register">
+                    <a id="goto_email_site" target='_blank' class="em-a" href="javascript:void(0);">
+                    <span>验证邮件有效时长为 5 分钟，请及时去查收验证邮件</span>
+                    </a>
+                    <!-- <p id="tip_verifycode_register" class="tip ok">
+                        <span class="ok">
+                            验证邮件已发送，
+                            <a href="http://126.com" target="_blank">前往邮箱>></a>
+                        </span>
+                    </p> -->
+                </li>
+            </ul>
+       </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    var loop_del = null;
+    function resetSMSCode(){
+        $.ajax({
+            "url":"/index.php/ajax-resetEmail.html",
+            "data": "email={$phone}&category=reg&type=reg&opt=reset" ,
+            "type": "GET",
+            'dataType':'json',
+            "success": function(res) {
+                if(res.err){
+                    alert('出错:'+res.msg);
+                }else{
+                    $("#getSMS").html(res.msg+"后重新发送...");
+                    $("#getSMS").unbind('click');
+
+                    loop_del  = setInterval(resetCode,1000);
+                }
+            }
+        });
+    }
+
+
+    $("#getSMS").bind('click',resetSMSCode);
+
+
+    function resetCode(){
+        var num = $("#getSMS").html();
+        num = parseInt(num);
+        if(num > 0){
+            num = num - 1;
+            $("#getSMS").html(num+"后重新发送...");
+        }else{
+            clearInterval(loop_del);
+            $("#getSMS").bind("click",resetSMSCode);
+            $("#getSMS").html("重新发送");
+        }
+    }
+
+</script>
+
+{include file="login_footer.html"}
+

@@ -1,0 +1,909 @@
+{
+  "sizeAll": [
+    {
+      "Id": "155/78A",
+      "Name": "155/78A",
+      "Dv": true
+    },
+    {
+      "Id": "155/82A",
+      "Name": "155/82A",
+      "Dv": false
+    },
+    {
+      "Id": "155/86A",
+      "Name": "155/86A",
+      "Dv": false
+    },
+    {
+      "Id": "160/80A",
+      "Name": "160/80A",
+      "Dv": false
+    },
+    {
+      "Id": "160/84A",
+      "Name": "160/84A",
+      "Dv": false
+    },
+    {
+      "Id": "160/88A",
+      "Name": "160/88A",
+      "Dv": false
+    },
+    {
+      "Id": "160/92A",
+      "Name": "160/92A",
+      "Dv": false
+    },
+    {
+      "Id": "165/82A",
+      "Name": "165/82A",
+      "Dv": false
+    },
+    {
+      "Id": "165/86A",
+      "Name": "165/86A",
+      "Dv": false
+    },
+    {
+      "Id": "165/90A",
+      "Name": "165/90A",
+      "Dv": false
+    },
+    {
+      "Id": "165/94A",
+      "Name": "165/94A",
+      "Dv": false
+    },
+    {
+      "Id": "165/98A",
+      "Name": "165/98A",
+      "Dv": false
+    },
+    {
+      "Id": "170/84A",
+      "Name": "170/84A",
+      "Dv": false
+    },
+    {
+      "Id": "170/88A",
+      "Name": "170/88A",
+      "Dv": false
+    },
+    {
+      "Id": "170/92A",
+      "Name": "170/92A",
+      "Dv": false
+    },
+    {
+      "Id": "170/96A",
+      "Name": "170/96A",
+      "Dv": false
+    },
+    {
+      "Id": "170/100A",
+      "Name": "170/100A",
+      "Dv": false
+    },
+    {
+      "Id": "175/90A",
+      "Name": "175/90A",
+      "Dv": false
+    },
+    {
+      "Id": "175/94A",
+      "Name": "175/94A",
+      "Dv": false
+    },
+    {
+      "Id": "175/98A",
+      "Name": "175/98A",
+      "Dv": false
+    },
+    {
+      "Id": "175/102A",
+      "Name": "175/102A",
+      "Dv": false
+    }
+  ],
+  "standardAll": {
+    "155/78A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "155/82A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "155/86A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "160/80A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "160/84A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "160/88A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "160/92A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "165/82A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "165/86A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "165/90A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "165/94A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "165/98A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "170/84A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "170/88A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "170/92A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "170/96A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "170/100A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "175/90A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "175/94A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "175/98A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ],
+    "175/102A": [
+      {
+        "Id": "10111",
+        "Name": "总肩宽",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-2",
+        "SIZETO": "2"
+      },
+      {
+        "Id": "10105",
+        "Name": "中腰",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-4",
+        "SIZETO": "4"
+      },
+      {
+        "Id": "10113",
+        "Name": "左袖长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-3",
+        "SIZETO": "3"
+      },
+      {
+        "Id": "10117",
+        "Name": "后衣长",
+        "Rw": false,
+        "Required": false,
+        "DefaultValue": "",
+        "SIZEFROM": "-10",
+        "SIZETO": "10"
+      }
+    ]
+  }
+}

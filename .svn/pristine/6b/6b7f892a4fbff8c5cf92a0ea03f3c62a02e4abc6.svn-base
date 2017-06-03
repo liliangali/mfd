@@ -1,0 +1,82 @@
+{include file="header.html"}
+<div id="rightTop">
+
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=complaint">{$lang.manage}</a></li>
+    </ul>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="complaint" />
+                <input type="hidden" name="act" value="index" />
+                {$lang.status} :
+                <select class="querySelect" id="status_id" name="status_id">
+                    <option value="">{$lang.select_pls}</option>
+                    {html_options options=$status_options selected=$status_id}
+                </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+
+
+
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <tbody><tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall"></td>
+            <td><span ectype="order_by" fieldname="id" >{$lang.num}</span></td>
+            <td ><span ectype="order_by" fieldname="from_id" >{$lang.from_nickname}</span></td>
+            <td><span ectype="order_by" fieldname="to_id" >{$lang.to_nickname}</span></td>
+            <td><span ectype="order_by" fieldname="status" >{$lang.status}</span></td>
+            <td><span ectype="order_by" fieldname="c_time" >{$lang.time}</span></td>
+
+            <td>{$lang.handle}</td>
+        </tr>
+        <!--{foreach from=$complaints item=complaint}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input type="checkbox" class="checkitem" value="{$complaint.id}"></td>
+            <td>{$complaint.id}</td>
+            <td>{$complaint.from_nickname}</td>
+            <td>{$complaint.to_nickname}</td>
+            <td>
+                {$status_options.$complaint.status}
+            </td>
+            <td>{$complaint.c_time|date}</td>
+            <td>
+                <a href="index.php?app=complaint&amp;act=reply&amp;id={$complaint.id}">{$lang.handle}</a>
+                |
+                <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=complaint&act=drop&id={$complaint.id}');">{$lang.drop}</a></td>
+        </tr>
+
+
+        <!--{foreachelse}-->
+
+            <tr class="no_data">
+                <td colspan="7">{$lang.no_data}</td>
+            </tr>
+        <!--{/foreach}-->
+        </tbody>
+
+    </table>
+    <!--{if $complaints}-->
+    <div id="dataFuncs">
+        <div id="batchAction" class="left paddingT15">
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=complaint&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+        </div>
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <!--{/if}-->
+    <div class="clear"></div>
+</div>
+
+{include file="footer.html"}

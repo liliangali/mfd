@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>coolette mobile</title>
+<link type="text/css" href="/static/css/style.css" rel="stylesheet" />
+<script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script> 
+<script  type="text/javascript" src="../../static/expand/my97date/wdatepicker.js"></script>
+{$_head_tags}
+</head>
+<body>
+<script type="text/javascript">
+$(function(){
+    $('#user_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            //label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+        	username   : {
+                required : true,
+            },
+            mobile   : {
+                required : true,
+                number   : true,
+            },
+            city3   : {
+                required : true,
+            },
+            address   : {
+                required : true,
+            },
+        },
+        messages : {
+        	username  : {
+                required : '真实姓名必须填写',
+            },
+            mobile  : {
+                required : '手机号必须填写',
+                number   : '手机号必须是数字',
+            },
+            city3   : {
+                required : '请选择城市',
+            },
+            address   : {
+                required : '详细地址必须填写',
+            },
+        }
+    });
+    
+    
+    $('#user_form2').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            //label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+        	username   : {
+                required : true,
+            },
+            mobile   : {
+                required : true,
+                number   : true,
+            },
+            city3_shang   : {
+                required : true,
+            },
+            address   : {
+                required : true,
+            },
+            serve_id   : {
+                required : true,
+            },
+            
+        },
+        messages : {
+        	username  : {
+                required : '真实姓名必须填写',
+            },
+            mobile  : {
+                required : '手机号必须填写',
+                number   : '手机号必须是数字',
+            },
+            city3_shang   : {
+                required : '请选择城市',
+            },
+            address   : {
+                required : '详细地址必须填写',
+            },
+            serve_id   : {
+                required : '',
+            },
+        }
+    });
+});
+</script>
+
+
+<div class="main">
+<!--头部开始-->
+    <div class="header clearfix">
+      <p class="p1"><a href="javascript:history.go(-1)"><img src="/static/img/hdtb.png" /></a></p>
+      <p class="p2">预约量体信息</p>
+    </div>
+<!--头部结束-->
+    <div class="wrap">
+        <h4>预约量体方式</h4>
+        <div class="tabs">
+            <a href="#" hidefocus="true" class="active">上门量体</a>
+            <a href="#" hidefocus="true">服务门面</a>
+          <!--   <a href="#" hidefocus="true">历史数据</a>--> 
+        </div>    
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+           
+         
+                <div class="swiper-slide">
+                	<div class="methods top34">
+                	  <form method="post" id="user_form" name="user_form">
+                        <h4>真实姓名</h4>
+                        <input type="text" class="fill" name="username" id="username" value=""  >
+                    </div>
+                    <div class="methods top34">
+            			<h4>手机号码</h4>
+            			<input type="text" class="fill" name="mobile" id="mobile" value="">
+        			</div>
+                    <div class="methods top34">
+                        <h4>服务地区</h4>
+                        <p class="szdq">
+                            <select>
+                            <option>中国</option>
+                            
+                            </select>
+                            <select onchange="getRegion(this)">
+                            <option value="" name="city2" id="city2">请选择</option>
+                            {html_options options=$regions}
+                            </select>
+                            <select name="city3" id="city3">
+                            
+                            </select>
+                        </p>
+                    </div>
+    				<div class="methods top34">
+            			<h4>详细地址</h4>
+            			<input type="text" class="fill" id="address" name="address" value="">
+        			</div>
+    				<div class="methods top34">
+            			<h4>预约时间</h4>
+            			<input type="text" placeholder="例如：2013-05-31"  onclick="WdatePicker({minDate:'%y-%M-%d'})" onfocus="javascript:if(this.value=='例如：2013-05-31')this.value='';" class="fill" id="timeserve" name="timeserve">
+        			</div>
+    				<div class="methods color_ac top34 border">预约上门量体会收取80元量体费</div>
+    				<input type="hidden" name="figure_mode"  value="1" />
+    				<div class="bc_sc"><input type="submit" value="保存" class="input_3"  value=""></div>
+    				</form>
+                </div>
+                
+                
+                <div class="swiper-slide">
+                <form method="post" id="user_form2" name="user_form2" onsubmit="submitTest();" >
+                	<div class="methods top34">
+                        <h4>真实姓名</h4>
+                        <input type="text" class="fill" name="username" id="username" value="">
+                    </div>
+                    <div class="methods top34">
+                        <h4>手机号码</h4>
+                        <input type="text" class="fill" name="mobile" id="mobile" value="">
+                    </div>
+                    <div class="methods top34">
+                        <h4>服务地区</h4>
+                        <p class="szdq">
+                            <select>
+                            <option>中国</option>
+                            </select>
+                            <select onchange="getRegion_shang(this)">
+                            <option value="" name="city2_shang" id="city2_shang">请选择</option>
+                            {html_options options=$regions}
+                            </select>
+                            <select name="city3_shang" id="city3_shang" onchange="getServe(this)">
+                            
+                            </select>
+                        </p>
+                    </div>
+                    <div class="methods top34">
+                        <h4>详细地址</h4>
+                        <input type="text" class="fill" id="address" name="address" value="">
+                    </div>
+                    <div class="methods top34">
+                        <h4>预约时间</h4>
+                        <input type="text" value="例如：2013-05-31" onclick="WdatePicker({minDate:'%y-%M-%d'})" onfocus="javascript:if(this.value=='例如：2013-05-31')this.value='';" class="fill" id="timeserve" name="timeserve">
+                    </div>
+                    <div class="methods top34 same">
+                        <h4>服务门面</h4>
+                        
+                    </div>
+                    <input type="hidden" name="serve_id" id="serve_id" value="" />
+                    <input type="hidden" name="figure_mode"  value="2" />
+                    <div class="bc_sc"><input type="submit" value="保存" class="input_3"></div>   
+                    </form> 
+                </div>
+              
+          </div>
+       </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/js/idangerous.swiper.min.js"></script> 
+<script type="text/javascript">
+
+	function getServe(obj)
+	{
+		
+		var region_id = $(obj).val();
+		$.ajax({
+			   type: "POST",
+			   url: "{link app=service act=getServe}",
+			   data: "region_id="+region_id,
+			   success: function(res){
+				 res =  jQuery.parseJSON(res)
+			     if(res.done)
+		    	 {
+			    	 $(".same").empty();
+			    	 $(".same").append("<h4>服务地区</h4>");
+			    	$(".same").append(res.retval);
+		    	 }
+			    
+			   }
+			});
+	}
+	
+	function selectServe(obj)
+	{
+		var serve_id = $(obj).val();
+		$("#serve_id").val(serve_id);
+	}
+	
+	function submitTest()
+	{
+		var serve_id = $("#serve_id").val();
+		if(serve_id)
+		{
+			return true;
+		}
+		alert('请选择服务点');
+		return false;
+	}
+
+	function getRegion(obj)
+	{
+		
+		var region_id = $(obj).val();
+		$.ajax({
+			   type: "POST",
+			   url: "{link app=service act=getServeRegionThree}",
+			   data: "region_id="+region_id,
+			   success: function(res){
+				 res =  jQuery.parseJSON(res)
+			     if(res.done)
+		    	 {
+			 		jQuery("#city3").empty();
+					jQuery("#city3").append(res.retval);
+		    	 }
+			    
+			   }
+			});
+	}
+	
+	
+	function getRegion_shang(obj)
+	{
+		
+		var region_id = $(obj).val();
+		$.ajax({
+			   type: "POST",
+			   url: "{link app=service act=getServeRegionThree}",
+			   data: "region_id="+region_id,
+			   success: function(res){
+				 res =  jQuery.parseJSON(res)
+			     if(res.done)
+		    	 {
+			 		jQuery("#city3_shang").empty();
+					jQuery("#city3_shang").append(res.retval);
+		    	 }
+			    
+			   }
+			});
+	}
+	
+var tabsSwiper = new Swiper('.swiper-container',{
+	speed:500,
+	onSlideChangeStart: function(){
+		$(".tabs .active").removeClass('active');
+		$(".tabs a").eq(tabsSwiper.activeIndex).addClass('active');
+	}
+});
+
+$(".tabs a").on('touchstart mousedown',function(e){
+	e.preventDefault()
+	$(".tabs .active").removeClass('active');
+	$(this).addClass('active');
+	tabsSwiper.swipeTo($(this).index());
+});
+
+$(".tabs a").click(function(e){
+	e.preventDefault();
+});
+
+$(document).ready(function(){
+    $("#getFigure").click(function(){
+        var url = "{link app=paycenter act=get_figure_info}";
+        $.post(url, {'tel':$('#tel').val(),'ajax':1},  function(data){
+            var data = eval("("+data+")");
+            var html = '';
+            for(var i = 0; i<data.count;i++)
+              {
+                html+="<div class='methods top34 same'><div class='select selects'><input name='text' type='radio' value='' class='radios' /><div class='data'><h3>"+data.nickname+"&nbsp;&nbsp;&nbsp;&nbsp;"+data.list[i].create_date+"</h3><dl><dd>领围:"+data.list[i].lw+"cm</dd><dd>胸围:"+data.list[i].xw+"cm </dd><dd>中腰围:"+data.list[i].zyw+"cm</dd><dd>臀围:"+data.list[i].tw+"cm</dd><dd>上臀围:"+data.list[i].sbw+"cm</dd><dd>上臀围:44cm</dd><dd>总肩宽:55cm</dd><dd>右袖长:55cm </dd><dd>左袖长:44cm</dd><dd>前肩宽:55cm</dd><dd>后衣长:66cm</dd><dd>腰围:78cm</dd><dd>通裆:101cm</dd><dd>后腰高:14cm</dd><dd>前腰高:14cm</dd><dd>裤口:55cm</dd><dd>后腰节长:52cm</dd><dd>前腰节:44cm</dd><dd>腿根围:100cm</dd><dd>左裤长:90cm</dd><dd>右裤长:88cm</dd><dd>膝围:100cm</dd></dl></div></div></div>";
+              }
+            $('#list').append(html);
+        })
+    })
+});
+
+</script>
+</div>
+</body>
+</html>

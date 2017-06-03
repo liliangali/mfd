@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>订单支付成功</title>
+<link rel="stylesheet" type="text/css" href="static/css/kukaorder.css" media="screen">
+</head>
+	<body>
+		<div class="ddsuccess">
+			<p class="cgpic"><img src="static/images/dpic.png"></p>
+			<p class="ddcgword">您的订单已支付成功！</p>
+		</div>
+		<div class="dddetailed dddetaileds">
+			<p>订单编号:{$order.order_sn}</p>
+			<p>订单金额:{$order.order_amount|price} </p>
+		</div>
+		<div class="telephone">如果有任何问题都可以致电给：400-169-8836<br>感谢您对麦富迪网的信任！</div>
+		<div class="pay" style=" background:#111111;color:#fff;"><a href="http://www.baidu.com/"  class="a_2" onclick="goIndex()">返回首页</a></div>
+		<script>
+		function goIndex(){
+			app.done();
+		}
+		function goOrder(){
+			 app.toOrder();
+		}
+		</script>
+	</body>
+</html>

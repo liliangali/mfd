@@ -1,0 +1,52 @@
+{include file=header.html}
+<title>常见问题</title>
+<link type="text/css" href="../../static/css/common.css" rel="stylesheet" />
+<div class="banner"><a href="#"><img src="../../static/img/cjwtpic.png" width="1600"></a></div>
+<div class="content">
+	<div class="zdaohang left">
+    	<div class="problem">
+    	
+           <!--   {foreach from=$newcate item=new key=key name=foo}-->
+           <div style="padding-bottom: 36px;">
+            <h4>{$new.data.cate_name}</h4>
+             <ul>
+           <!-- {foreach from=$new.list item=ne key=key1 name=loop}-->
+           <li value="{$key1}" {if $smarty.foreach.loop.iteration == 1 &&$smarty.foreach.foo.iteration == 1 }class="current"{/if} ><a  href="javascript:;">{$ne.title}</a></li>
+           <!--{/foreach}-->
+           </ul>
+            </div>
+           <!--{/foreach}-->
+       
+        </div>
+    </div>
+    <div class="ydaohang right">
+    	<h2 id="title"></h2>
+        <div class="words" id="content">{$article_mr}</div>
+    </div>
+</div>
+<!--底部/S-->
+{include file=footer.html}
+<!--底部/E-->
+<script>
+$(document).ready(function(){
+    $(".problem").on('click','li',function(){
+    	$(".problem .current").removeClass('current')
+    	$(this).addClass('current');
+    	var cur=$(this).val();
+    	$.post("{link app=helps act=jsion}",{cur:cur},function(res){
+        var res = eval("("+res+")");
+	        if(res.retval.title){
+	        	 $("#title").html(res.retval.title);
+	  	       $("#content").html(res.retval.content);
+	        }else{
+	        	 $("#title").html("");
+		  	       $("#content").html("");
+	        }
+	        });
+    	
+    })
+    
+})
+    
+
+</script>

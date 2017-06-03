@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>评选内页</title>
+<link href="/static/css/selection_page.css" rel="stylesheet" type="text/css" />
+    <script type="Text/Javascript" src="/static/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.masonry.js"></script>
+
+    <script  type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+
+    <script  type="text/javascript" src="/static/expand/layer/layer.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/work_comment.js"></script>
+    <script  type="text/javascript" src="/static/js/work_score.js"></script>
+</head>
+
+<body>
+   <!--头部/S-->
+	<div class="head">
+    	<div class="nav">
+            <a href="#" class="logo fl"></a>
+            <div class="navBox fr">
+                <ul class="fl">
+                    <li><a href="#" target="_blank">男士</a></li>
+                    <li><a href="#" target="_blank">活动</a></li>
+                    <li><a href="#" target="_blank">评选</a></li>
+                    <li><a href="#" target="_blank">潮流</a></li>
+                    <li><a href="#" target="_blank">体验店</a></li>
+                </ul>
+                <div class="car fl">
+                    <a href="#" target="_blank"></a>
+                </div>
+                <div class="uCenter fl">
+                    <a href="#" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+   <!--头部/E-->
+  
+    <div class="container">
+      <div class="pxly_box clearfix">
+
+        <div class="pxly_left fl">
+            {$member_work.work_name}
+            <!--{foreach from=$member_work.imgurl item=list  key=key1}-->
+         <p class="p1"><img src="{$list.img_url}" /></p>
+            <!--{/foreach}-->
+         <p class="p2 clearfix"><span class="fl">查看下一个作品</span><a onclick="wnext_enter('{$nid}','{$type}')" href="javascript:void(0)" class="fl">ENTER</a></p>
+        </div>
+
+
+        <div class="pxly_right fr">
+         <div class="yml_tx clearfix" style="margin-top:25px;">
+          <p class="p1 fl"><a href="#"><img src="{$avatar}" width="220" height="220" /></a></p>
+          <p class="p2 fl"><font>{$member.nickname}</font><span>{$member_work.add_time}</span></p>
+         </div>
+         
+         <p class="grpl">{$member_work.description}</p>
+         
+         <div class="tpscfx clearfix">
+          <p class="{$vote_sign.class}" id="work_vote_{$member_work.id}" onclick="setVote('{$member_work.id}','userwork');"><a href="javascript:void(0)"  >{$vote_sign.text} ({$vote_num})</a></p>
+          <p class="p3 fl"  onclick="addFavorite('{$member_work.id}','{$member_work.work_name}')"><a href="javascript:void(0)">{$collect_sign.text}</a></p>
+          <p class="p2 fl"><a href="javascript:void(0)">分享</a></p>
+         </div>
+         
+         <div class="fbpl clearfix"><textarea name="" cols="" rows="" id="editor"></textarea><input type="submit" class="submit" value="发表评论" /></div>
+         
+
+
+        </div>
+      </div>
+    </div>
+   <script type="text/javascript">
+
+       function wnext_enter(e_nid,e_type){
+           if(e_nid == ''){
+               msg('已经是最后一个作品')
+               return false;
+           }
+           window.location ='/work_score-info.html?id='+e_nid+'&type='+e_type;
+       }
+
+
+       /*投票*/
+       function setVote(like_id,cate){
+           if(hasLogin()== 0){
+               login(function(){
+                   $.cookie("hasLogin",1);
+                   setVote(like_id,cate)
+               })
+               return
+           }
+
+           $.ajax({
+               "url":"/index.php/ajax-setTop.html",
+               "data":  "cate="+cate+"&like_id="+like_id ,
+               "type": "GET",
+               "success": function(data) {
+                   var data = eval( "(" + data + ")" );
+                   if( data.done == false){//data.err ||
+                       msg(data.msg);
+                   }else{
+                       //投票改成 已投票   和前端沟通   可能只是需要改个class
+                       $("#work_vote_"+like_id).attr('class',"p1 fl on");
+                        var num = parseInt($("#work_vote_"+like_id).find("a").html())+1;
+                       $("#work_vote_"+like_id).find('a').text("已投票 ("+num+")")
+
+//                   $("#collection_num").html(num);
+                       msg('投票成功');
+                   }
+               }
+           });
+       }
+
+
+       /*收藏*/
+       function addFavorite(id,kys){
+
+           if(hasLogin()== 0){
+               login(function(){
+                   $.cookie("hasLogin",1);
+                   addFavorite(id,kys)
+               })
+               return
+           }
+
+
+           $.post("/my_favorite-add.html",{id:id,type:'userwork',keyword:kys},  function(data){
+                var data = $.parseJSON(data);
+//               console.log(data)
+               if(data.done == true){
+                   $('.p3.fl a').text('已收藏');
+
+                   //修改样式----yusw
+//                   $('.p3.fl').attr('class',"");
+//                   $('.p3.fl a').attr('onclick','');
+                   msg(data.msg);
+
+               }else{
+
+                   msg(data.msg);
+               }
+           });
+       }
+
+       $(document).ready(function(){
+           $.sc({
+               loadUrl:'{link app=work_score act=loadComment arg0=$member_work.id}',
+               postUrl:'{link app=work_score act=commit arg=$member_work.id}',
+               type:'wk',
+               id:'{$member_work.id}'
+           })
+       })
+
+
+   </script>
+   <!--底部/S--> 
+    <div class="footer">
+    	<div class="footers">
+            <div class="contact fl">mfd联系方式<br /><br />TEL:4009-899-899<br />Email：mfd@mfd.cn</div>
+            <div class="time fl">mfdmfd体验店营业时间<br /><br />周一 至 周五 : 11:00am - 08:30pm<br />周末、节假日 : 11：00am - 09:00pm</div>
+            <div class="scanning fl">@2015 mfd.cn<br />All&nbsp;rights&nbsp;reserved<br /><br /><img src="../../static/img/hd_icon6.png" width="367" height="47" /></div>
+        </div>
+    </div>
+   <!--底部/E-->
+</body>
+</html>

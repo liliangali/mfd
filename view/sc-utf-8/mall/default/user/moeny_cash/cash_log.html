@@ -1,0 +1,15 @@
+<table width="100%" frame="void" rules="none" cellspacing="0" class="jltab">
+	<tr>
+		<td width="30%" class="fisty">存入/支出</td>
+		<td width="40%" class="fisty">明细</td>
+        <td width="30%" class="fisty">时间</td>
+	</tr>
+	
+	<!--{foreach from=$cash_list key=key item=cash}-->
+	<tr>
+		<td {if $cash.mark == '+'}class="rege"{else}class="failure"{/if}>{$cash.mark}&nbsp;{$cash.cash_money|price}</td>
+		<td>{$cash.name|escape}</td>
+		<td>{$cash.add_time|date:Y-m-d H:i}</td>
+	</tr>
+	<!--{/foreach}-->
+</table>

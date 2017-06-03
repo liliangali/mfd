@@ -1,0 +1,111 @@
+{include file="header.html"}
+<script>
+$().ready(function() {
+	$("#cate_id").change(function() {
+		
+		$("#selectpart").submit();
+	})
+	$("#store_id").change(function() {
+		//alert("aa");
+		$("#selectpart").submit();
+	})
+})
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        
+    </ul>
+</div>
+<!-- 查询开始 -->
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get" name="selectpart" id="selectpart">
+        <input type="hidden" name="app" value="part" />
+        <input type="hidden" name="act" value="partlining" />
+            <div class="left">
+                	名称:
+                <input class="queryInput" type="text" name="part_name" value="{$query.part_name|escape}" />
+                  	分类:
+               <select id="cate_id" name="cate_id">
+               		 <option value="0">{$lang.select_please}</option> 
+                      {html_options options=$parents selected=$cate_id}
+               </select>
+               	店铺:
+             	<select name="store_id" id="store_id">
+            	<option value="0">{$lang.select_please}</option> 
+            	{html_options options=$store_list selected=$store_id}
+           	    </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+      <span>
+              </span></form>
+    </div>
+</div>
+<!-- 查询结束 -->
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $parts}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left"><span ectype="order_by" fieldname="part_name">{$lang.part_name}</span></td>
+            <td class="table-center"><span ectype="order_by" fieldname="part_sn">{$lang.part_sn}</span></td>
+            <td class="table-center"><span ectype="order_by" fieldname="price">{$lang.price}</span></td>
+            <td class="table-center"><span ectype="order_by" fieldname="sort_order">{$lang.sort_order}</span></td>
+            <td class="table-center"><span ectype="order_by" fieldname="is_on_sale">{$lang.if_show}</span></td>
+            <td class="table-center"><span ectype="order_by" fieldname="part_number">{$lang.part_number}</span></td>
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$parts item=part}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input value="{$part.part_id}" class='checkitem' type="checkbox" /></td>
+            <td align="left"><span ectype="" fieldname="part_name" fieldid="{$part.part_id}" required="1" class="" title="{$lang.editable}">{$part.part_name|escape}</span></td>
+            <td class="table-center">
+            <span ectype="" fieldname="part_sn" fieldid="{$part.part_id}"  maxvalue="255" class="" title="{$lang.editable}">{$part.goods_sn}
+            </span>
+            </td>
+             <td class="table-center">
+            <span ectype="" fieldname="price" fieldid="{$part.part_id}" datatype="number" maxvalue="255" class="" title="{$lang.editable}">{$part.price}
+            </span>
+            </td>
+            <td class="table-center">
+            <span ectype="" fieldname="sort_order" fieldid="{$part.part_id}" datatype="pint" maxvalue="255" class="" title="{$lang.editable}">{$part.sort_order}
+            </span>
+            </td>
+            <td class="table-center">
+            <!--{if $part.is_on_sale}-->
+            <img src="templates/style/images/positive_enabled.gif" ectype="" fieldname="is_on_sale" fieldid="{$part.part_id}" fieldvalue="1" title="{$lang.editable}"/>
+            <!--{else}-->
+            <img src="templates/style/images/positive_disabled.gif" ectype="" fieldname="is_on_sale" fieldid="{$part.part_id}" fieldvalue="0" title="{$lang.editable}"/>
+            <!--{/if}-->
+            </td>
+            
+            <td class="table-center">
+            <span ectype="" fieldname="part_number" fieldid="{$part.part_id}" datatype="pint" maxvalue="255" class="" title="{$lang.editable}">{$part.part_number}
+            </span>
+            </td>
+            <td class="handler">
+            <a href="index.php?app=part&amp;act=editlining&amp;id={$part.part_id}">{$lang.edit}</a>  |  <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=part&amp;act=drop&amp;del_act=partlining&amp;id={$part.part_id}');">{$lang.drop}</a>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $parts}-->
+    <div id="dataFuncs">
+        <div id="batchAction" class="left paddingT15">
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=part&act=drop&del_act=partlining" presubmit="confirm('{$lang.drop_confirm}');" />
+        </div>
+        <div class="pageLinks">
+        
+            {if $parts}{include file=page.bottom.html}{/if}
+        </div>
+    </div>
+    <!--{/if}-->
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

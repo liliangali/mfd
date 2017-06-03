@@ -1,0 +1,14 @@
+            <ul>
+                {foreach from=$data.list item=item key=key}
+                <li data-id="{$key}" {if $key == $check} class="cur"{/if}>
+                	 {if $item.is_free}
+		   			<i>收费 ¥100</i>
+		   			{else}
+		   			<span>免费</span>
+		   			{/if}
+                    <p class="p1">姓名：{$item.name}</p>
+                    <p class="p2">电话：{$item.phone}</p>
+                    <p class="p3">地区：{$item.serve_name}</p>
+                </li>
+                {/foreach}
+            </ul>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.swipe.js"></script>
+<script type="text/javascript" src="/static/js/com_comment.js"></script>
+
+<title>作品详情</title>
+<style>
+
+</style>
+</head>
+
+<body>
+<div class="main"> 
+
+  <div id="slider" class="swipe">
+
+    <div class="swipe-wrap">
+	  <!--{if empty($list)}-->
+	  <div><a href="javascript:void(0)"><img src=""></a></div>
+		<!--{else}-->
+      <!--{foreach from=$list item=v  key=key1}-->
+	  <div><a href="javascript:void(0)"><img src="{$v.v_image}" style="width:100%;"></a></div>
+	  <!--{/foreach}-->
+	    <!--{/if}-->
+    </div>
+    <h1 class="zpbt"><span>CAMEO</span>{$v.v_name}</h1>
+  </div>
+
+    <div class="sjs_lc jj_box">
+        <p class="m_touxia jj_1"><img src="{$member.avatar}"></p>
+        <div class="hysjs">
+            <h1>衣尚设计师 </h1>
+            <p class="yfmc">{$member.nickname}</p>
+            <div class="m_xhpl clearfix"><a href="javascript:void(0)" class="a_2">123</a></div>
+        </div>
+    </div>
+ 
+   
+<p  id="just_id" style="padding-top:60px;"></p>
+  <div class="fdplfb">
+    <div class="fbpj">
+      <input type="text" value="" placeholder="评论" class="input_1">
+      <input type="submit" value="发表" class="input_2">
+    </div>
+  </div>
+
+</div>
+
+ <script type="text/javascript">
+
+//页面滚动效果
+Swipe(document.getElementById('slider'), {				
+	continuous: false,
+	callback: function(index, element) {
+		//---
+		$('.xcfy em').text(index+1)
+		} 
+});
+Swipe(document.getElementById('slider2'));
+$('.spread').toggle(function(){
+	//----
+	$(this).children('div').slideDown('fast')	
+},function(){
+	//--------
+	$(this).children('div').slideUp('fast')	
+})
+
+
+
+$(document).ready(function(){
+   $.sc({
+	   loadUrl:'{link app=share act=loadComment arg0=$v.v_id}',
+	   postUrl:'{link app=share act=commit arg=$v.v_id}',
+	   type:'cy',
+	   id:'{$v.v_id}'
+   })
+})
+
+</script>
+</body>
+</html>

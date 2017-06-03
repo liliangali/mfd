@@ -1,0 +1,40 @@
+{if $list}
+{foreach from=$list item=item key=key}
+<div class="methods top34 same">
+    <div class="select selects">
+        <input type="radio" value="{$key}" class="radios" {if $ckid == $key} checked {/if} onClick='javascript:$("#history_id").val($(this).val());' />
+        <div class="data">
+            <h3>{$item.realname}&nbsp;&nbsp;&nbsp;&nbsp;{if $item.modi_time}{$item.modi_time|data:'Y/m/d'}{else}{$item.time}{/if}</h3>
+            <dl>
+                <dd>领围:{$item.lw}cm</dd>
+                <dd>胸围:{$item.xw}cm </dd>
+                <dd>中腰围:{$item.zyw}cm</dd>
+                <dd>臀围:{$item.tw}cm</dd>
+                <dd>上臀围:{$item.stw}cm</dd>
+                <dd>总肩宽:{$item.zjk}cm</dd>
+                <dd>右袖长:{$item.yxc}cm </dd>
+                <dd>左袖长:{$item.zxc}cm</dd>
+                <dd>前肩宽:{$item.qjk}cm</dd>
+                <dd>后衣长:{$item.hyc}cm</dd>
+                <dd>腰围:{$item.yw}cm</dd>
+                <dd>通裆:{$item.td}cm</dd>
+                <dd>后腰高:{$item.hyg}cm</dd>
+                <dd>前腰高:{$item.qyg}cm</dd>
+                <dd>裤口:{$item.kk}cm</dd>
+                <dd>后腰节长:{$item.hyjc}cm</dd>
+                <dd>前腰节:{$item.qyj}cm</dd>
+                <dd>腿根围:{$item.tgw}cm</dd>
+                <dd>左裤长:{$item.zkc}cm</dd>
+                <dd>右裤长:{$item.ykc}cm</dd>
+                <dd>膝围:{$item.xiw}cm</dd>                         
+            </dl>
+        </div>
+    </div>
+</div>
+{/foreach}
+{else}
+<div class="methods top34 same sames">
+    <span>对不起，没有数据记录！</span><br>
+    您可以选择上门量体或者服务门店采取数据
+</div>
+{/if}

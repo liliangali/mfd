@@ -1,0 +1,479 @@
+{include file="header.html"}
+
+
+<link type="text/css" rel="stylesheet" href="{res file=css/new_pubuliu.css}" />
+
+<link type="text/css" href="{$img_url}/css/head_footr.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="{$img_url}/css/coolke.css" />
+<link type="text/css" rel="stylesheet" href="{res file=css/new_pubuliu.css}" />
+<script type="text/javascript" src="{$img_url}/js/coolke.js"></script>
+
+<script type="Text/Javascript" src="{res file=js/plugins/formvalidator.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+
+
+<script>
+
+var setLike = function (uid,like_id,cate){
+	if(!$.rc.dialog.islogin())
+		return 0;
+	
+	$.ajax({
+		"url":"/index.php/ajax-setLike.html",
+		"data": "uid=" + uid + "&cate="+cate+"&like_id="+like_id ,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			if(data.err){
+				alert(data.msg);
+			}else{
+				$("#like_"+like_id).attr('class',"yxih");
+				$("#like_"+like_id).attr('onclick','');
+				var like_num = parseInt( $("#like_num_"+like_id).html() ) + 1;
+				$("#like_num_"+like_id).html(like_num);
+			}
+		}
+	});
+}
+
+function cancle(to_uid,id){
+	if(!$.rc.dialog.islogin())
+		return 0;
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_unfollow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			//alert('已取消关注');
+			var obj = $("#fans_"+id);
+			//alert(obj.html());
+			obj.html('关注');
+			obj.attr('class','user_guanz');
+			obj.attr('onclick','follow('+to_uid+ "," + id+');');
+			
+		}
+	});
+}
+
+function follow(to_uid, id){
+	if(!$.rc.dialog.islogin())
+		return 0;
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_follow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			//alert('已关注');
+			//alert("#fans_"+id);
+			var obj = $("#fans_"+id);
+			//alert(obj.html());
+			obj.html('取消关注');
+			obj.attr('class','user_guanz user-qxgz');
+			obj.attr('onclick','cancle('+to_uid+ "," + id+');');
+		}
+	});
+}
+
+
+function member_cancle(to_uid){
+	if(!$.rc.dialog.islogin())
+		return 0;
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_unfollow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			//alert('已取消关注');
+			var obj = $("#member_fans_"+to_uid);
+			//alert(obj.html());
+			obj.html('关注');
+			obj.attr('class','');
+			obj.attr('onclick','member_follow('+to_uid+');');
+			
+		}
+	});
+}
+
+function member_follow(to_uid){
+	if(!$.rc.dialog.islogin())
+		return 0;
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_follow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			//alert('已关注');
+			//alert("#fans_"+id);
+			var obj = $("#member_fans_"+to_uid);
+			//alert(obj.html());
+			obj.html('取消关注');
+			obj.attr('class','u_qxgz');
+			obj.attr('onclick','member_cancle('+to_uid+ ');');
+		}
+	});
+}
+
+function reco_cancle(to_uid){
+	if(!$.rc.dialog.islogin())
+		return 0;
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_unfollow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			//alert('已取消关注');
+			var obj = $("#reco_fans_"+to_uid);
+			//alert(obj.html());
+			obj.html('关注');
+			obj.attr('class','coolba_user_guanz');
+			obj.attr('onclick','reco_follow('+to_uid+');');
+			
+		}
+	});
+}
+
+function reco_follow(to_uid){
+	if(!$.rc.dialog.islogin())
+		return 0;
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_follow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			//alert('已关注');
+			//alert("#fans_"+id);
+			var obj = $("#reco_fans_"+to_uid);
+			//alert(obj.html());
+			obj.html('取消关注');
+			obj.attr('class','coolba_user_qxguanz');
+			obj.attr('onclick','reco_cancle('+to_uid+ ');');
+		}
+	});
+}
+
+
+
+</script>
+
+<!-- 中间 开始 -->
+  <div class="coolke_box">
+      <div class="cool_hot_box">
+      <!-- 街拍 开始 -->
+          <div class="cool_ti_box" style=" padding-bottom:0;">
+             <h1>时尚街拍TOP</h1>
+             <a href="/index.php/club-photolist-1-up.html" target="_blank" id="cooler_more" class="cool_more">更多</a>
+          </div>
+          <div class="cool_hot_list" id="CoolKe1">
+              <ul>
+              	{if $hot_camera}
+              	              		{foreach from=$hot_camera key=k item=v }
+              			                 <li>
+                     <a href="{$v.link}#{$v.id}" class="hot_img" target="_blank"><img src="{$v.url}"></a>
+                     <p class="hot_tu"><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}"><img src="{$v.user.avatar}" width="44" height="44"></a></p>
+                     <p class="hot_name"><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}" target="_blank">{uname uid=$v.user.uid sub=20}</a></p>
+                     <p class="hot_jianj">{$v.desc}</p>
+                     <div class="hot_bt">
+                         <a href="javascript:void(0);" class="{if $v.like}yxih{else}xih{/if}" 
+                         id='like_{$v.id}' 
+                         {if !$v.like} onclick='setLike({$visitor.user_id},{$v.id},"jiepai_like");' {/if}>
+                         喜欢
+                         </a>
+                         <span class="xih_cout"><a id='like_num_{$v.id}'>{$v.like_num}</a><s></s></span>
+                         <a href="javascript:void(0);" class="comts_cout">{$v.comment_num}</a>
+                         <span class="comts">评论：</span>
+                     </div>
+                     <!-- 弹出层 开始 -->
+                     <div class="user_box">
+                         <dl class="user_info">
+                            <dt>
+                            	<a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}" target="_blank">
+                            		<img src="{$v.user.avatar}" width="60" height="60">
+                            	</a>
+                            </dt>
+                            <dd>
+                               <p class="user_name"><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}" target="_blank">{uname uid=$v.user.uid sub=20}</a><img src="{$v.user.level_logo}"></p>
+                               <p class="user_address">{$v.user.province_name}  {$v.user.city_name}</p>
+                               <p class="user_fstpxh">
+                                 <span>粉丝 <a href="{$v.user.link}" target="_blank">{$v.user.fans}</a></span>
+                                 <span>街拍 <a href="/index.php/club-hwaterfall-1-2-{$v.user.uid}.html" target="_blank">{$v.user.pic_num}</a></span>
+                                 <span class="user_xih">喜欢 <a href="/index.php/club-like-{$v.uid}.html" target="_blank">{$v.user.like_num}</a></span>
+                               </p>
+                            </dd>
+                         </dl>
+                         <p class="user_biaoq"><font>标签：</font>{$v.user.signature}</p>
+                         {if !$v.self}
+                         <a href="javascript:void(0);" id='fans_{$v.id}'
+                         onclick="{if $v.isFans}cancle({$v.user.uid},{$v.id}){else}follow({$v.user.uid},{$v.id}){/if};" 
+                         
+                         class="{if !$v.isFans}user_guanz{else}user_guanz user-qxgz{/if}">{if $v.isFans}关注{else}取消关注{/if}
+                         </a>
+                         {else}
+                         <a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}" target="_blank"  class="user-wdkj">我的空间</a>
+                         {/if}
+                     </div>
+                     <!-- 弹出层 结束 -->
+                 </li>
+              		{/foreach}
+              		{else}
+              		<li>暂时无数据</li>
+              		{/if}
+              </ul>
+          </div>
+      <!-- 街拍 结束 -->
+      </div>
+      
+<!-- 流行趋势 开始 -->
+          <div class="cool_ti_box" style="padding-top:0; padding-bottom:0px;">
+             <h1>大牌T台秀</h1>
+             <a href="/index.php/trends-index.html" target="_blank" class="cool_more">更多</a>
+          </div>
+      <div class="cool_productshow">
+      
+      <div class="scrollcontainer" id="moveid">
+                     <ul>
+                     
+                     {foreach from=$fashion key=k item=v }
+                        <li>
+                            <dl>
+                              <dt>
+                                <a href="/index.php/trends-info-{$k}.html" target="_blank">
+                                <img src="{$v.img.img_url}" width="230" height="307" /></a>
+                                <p class="tmpng"><a href="/index.php/trends-info-{$k}.html" target="_blank">{$v.img.img_desc}</a></p>
+                              </dt>
+                           </dl>
+                       </li>
+                       {/foreach}
+                       
+                    </ul>
+                </div>
+                <p class="clear"></p>
+         </div>
+      <!-- 流行趋势 结束 -->
+      <!-- 个人设计 开始 -->
+          <div class="cool_ti_box" style="padding-bottom:0;">
+             <h1>个人设计TOP</h1>
+             <a href="index.php/club-streetlist.html" target="_blank" id="cooler_more" class="cool_more">更多</a>
+          </div>
+          <div class="cool_hot_list cool_shiji" id="CoolKe" style="display:block;">
+              <ul>
+              		{if $hot}
+              		{foreach from=$hot key=k item=v }
+               <li class="sjli">
+                     <div class="hot_img_div">
+                       <a href="{$v.link}#{$v.id}" class="hot_img" target="_blank">
+                       <img src="{$v.url}">
+                       </a>
+                     </div>
+                     <div class="hot_name">
+                        <a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}" target="_blank">{uname uid=$v.user.uid sub=20}</a>
+                        <p class="hot_tu hot_tu1">
+                     	   <a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}" target="_blank"><img src="{$v.user.avatar}" width="44" height="44" /></a>
+                        </p>
+                     </div>
+                     <p class="hot_jianj">{$v.desc}</p>
+                     <div class="hot_bt">
+                         <a href="javascript:void(0);" id='like_{$v.id}' 
+                         class="{if $v.like}yxih{else}xih{/if}" 
+                         {if !$v.like} onclick='setLike({$visitor.user_id},{$v.id},"sheji_like");' {/if}>
+                         喜欢
+                         </a>
+                         <span class="xih_cout"><a  id='like_num_{$v.id}'>{$v.like_num}</a><s></s></span>
+                         <a href="javascript:void(0);" class="comts_cout">{$v.comment_num}</a>
+                         <span class="comts">评论：</span>
+                     </div>
+                     <!-- 弹出层 开始 -->
+                     <div class="user_box user_box1">
+                         <dl class="user_info">
+                            <dt>
+                            	<a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}" target="_blank">
+                            	<img src="{$v.user.avatar}" width="60" height="60">
+                            	</a>
+                            </dt>
+                            <dd>
+                               <p class="user_name"><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}" target="_blank">{uname uid=$v.user.uid sub=20}</a>
+                               <img src="{$v.user.level_logo}"></p>
+                               <p class="user_address">{$v.user.province_name}  {$v.user.city_name}</p>
+                               <p class="user_fstpxh">
+                                 <span>粉丝 <a href="{$v.user.link}" target="_blank">{$v.user.fans}</a></span>
+                                 <span>设计 <a href="/index.php/club-hwaterfall-1-1-{$v.user.uid}.html" target="_blank">{$v.user.pic_num}</a></span>
+                                 <span class="user_xih">喜欢 <a href="/index.php/club-like-{$v.uid}.html" target="_blank">{$v.user.like_num}</a></span>
+                               </p>
+                            </dd>
+                         </dl>
+                         <p class="user_biaoq"><font>标签：</font>{$v.user.signature}</p>
+                         {if !$v.self}
+                         <a href="javascript:void(0);" id='fans_{$v.id}'
+                         onclick="{if $v.isFans}cancle({$v.user.uid},{$v.id}){else}follow({$v.user.uid},{$v.id}){/if};" 
+                         
+                         class="{if !$v.isFans}user_guanz{else}user_guanz user-qxgz{/if}">{if $v.isFans}关注{else}取消关注{/if}
+                         </a>
+                         {else}
+                         <a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}"  target="_blank" class="user-wdkj">我的空间</a>
+                         {/if}
+                     </div>
+                     <!-- 弹出层 结束 -->
+                 </li>
+                 
+              		{/foreach}
+              		{else}
+              		<li>暂时无数据</li>
+              		{/if}
+
+              </ul>
+          </div>
+      <!-- 个人设计 结束 -->
+      <!-- 酷吧推荐 开始 -->
+          <div class="cool_ti_box" style="padding-top:0;">
+             <h1>酷吧推荐</h1>
+          </div>
+          <div class="cool_coolba">
+              <ul>
+              	{if $recommend}
+              		{foreach from=$recommend key=k item=v }
+                 <li>
+                    <a href="/index.php/club-albuminfo-{$v.id}-{$v.uid}.html" class="coolba_img" target="_blank"><img src="{$v.img.0.url}" width="235" height="313" title="杰尼亚2014秋冬男装发布" /></a>
+                    <span><a href="/index.php/club-albuminfo-{$v.id}-{$v.uid}.html">{$v.title}</a></span>
+                    <div class="coolba_small">
+                       <a href="/index.php/club-albuminfo-{$v.id}-{$v.uid}.html" target="_blank"><img src="{$v.img.1.url}" width="75" height="75" title="杰尼亚2014秋冬男装发布" /></a>
+                       <a href="/index.php/club-albuminfo-{$v.id}-{$v.uid}.html" target="_blank"><img src="{$v.img.2.url}" width="75" height="75" title="杰尼亚2014秋冬男装发布" /></a>
+                       <a href="/index.php/club-albuminfo-{$v.id}-{$v.uid}.html" target="_blank"><img src="{$v.img.3.url}" width="75" height="75" title="杰尼亚2014秋冬男装发布" /></a>
+                    </div>
+                    <div class="coolba_bott">
+                        <div class="coolba_bott1">
+                           <a href="javascript:;" class="coolba_pic" >{$v.pic_num}</a>
+                           <a href="javascript:;" class="coolba_yan" >{$v.views}</a>
+                        </div>
+                        <div class="coolba_user">
+                          <a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}" target="_blank" class="coolba_user_img"><img src="{$v.user.avatar}" width="30" height="30"></a>
+                          <a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}" target="_blank" class="coolba_username">{uname uid=$v.user.uid sub=20}</a>
+                          
+                          	{if !$v.self}
+                          		{if $v.isFans}
+                          		<a href="javascript:void(0);" class="coolba_user_qxguanz" id='reco_fans_{$v.uid}' onclick="reco_cancle({$v.uid})" >取消关注</a>
+                          		{else}
+                          		<a href="javascript:void(0);" class="coolba_user_guanz" id='reco_fans_{$v.uid}' onclick="reco_follow({$v.uid})" >关注</a>
+                          		{/if}
+		                    {else}
+		                       <a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user.uid}" target="_blank" class="coolba_user_grkj">个人空间</a>
+                            {/if}
+                        </div>
+                    </div>
+                 </li>
+                  {/foreach}  
+                  {else}
+                  	暂时无数据
+                  {/if}
+              </ul>
+              <p class="clear"></p>
+          </div>
+      <!-- 酷吧推荐 结束 -->
+      <!-- 酷吧达人 开始 -->
+          <div class="coolke_daren">
+              <div class="cool_ti_box cool_ti_box1" style="width:960px;">
+              <h1>酷客达人</h1><a href="/index.php/club-coolerlist.html" target="_blank" class="cool_more">更多</a></div>
+              <ul>
+              	{foreach from=$member key=k item=v }
+                 <li>
+                    <dl class="user_info">
+                            <dt>
+                            	<a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user_id}" target="_blank">
+                            	<img src="{$v.avatar}" width="60" height="60">
+                            	</a>
+                            	
+                            	</dt>
+                            <dd>
+                               <p class="user_name"><a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user_id}" target="_blank">{uname uid=$v.user_id sub=19}</a><img src="{$v.level_logo}"></p>
+                               <p class="user_fstpxh">
+                                 <span>粉丝 <a href="/index.php/club-cooler-{$v.user_id}.html" target="_blank">{$v.fans}</a></span>
+                                 <span>街拍 <a href="/index.php/club-hwaterfall-1-2-{$v.user_id}.html" target="_blank">{$v.pic_num}</a></span>
+                                 <span class="user_xih">喜欢 <a href="/index.php/club-cooler-{$v.user_id}.html" target="_blank">{$v.like_num}</a></span>
+                                 </p>
+                               </p>
+                               {if !$v.self}
+                               <p class="user_guanz">
+                               <a href="javascript:void(0);" id='member_fans_{$v.user_id}'
+		                         onclick="{if $v.isFans}member_cancle({$v.user_id}){else}member_follow({$v.user_id}){/if};" 
+		                         class="{if $v.isFans}u_qxgz{/if}">{if $v.isFans}取消关注{else}关注{/if}
+		                       </a>
+		                       </p>
+		                       {else}
+		                       <p class="user_grkj">
+		                       		<a href="{link app=club act=hwaterfall arg0=1 arg1=2 arg2=$v.user_id}" target="_blank" class="u_grkj">个人空间</a>
+		                       </p>
+                               {/if}
+                               
+                            </dd>
+                    </dl>
+                 </li>
+                  {/foreach}  
+              </ul>
+              <p class="clear"></p>
+          </div>
+      <!-- 酷吧达人 结束 -->
+  </div>
+<!-- 中间 结束 -->
+
+
+
+<script>
+//流行趋势小图切换;
+$(function(){
+	 $("#moveid ul li").each(function(){
+		  var box = $(this);
+		  var Child_p = box.find('.tmpng');
+		  var Child_a = box.find('.tmpng').find('a');
+		  var TTTime = null;
+			   
+		  box.mousemove(function(){
+	         clearTimeout(TTTime);
+			  Child_p.stop().animate({opacity:'0.7'},300).show();
+			   
+		  });
+		  Child_a.mousemove(function(){
+			  clearTimeout(TTTime);
+			  Child_p.stop().animate({opacity:'0.7'},300).show();
+			   
+		  });
+		  Child_p.mousemove(function(){
+			  clearTimeout(TTTime);
+			  Child_p.stop().animate({opacity:'0.7'},300).show();
+			   
+		  });
+		  box.mouseout(function(){
+			  TTTime = setTimeout(function(){Child_p.stop().animate({opacity:'0'},300).hide();},50);
+			  
+			   
+		  });
+		  
+	 });	
+	
+	
+	 
+	 
+});
+var PINER = {
+	    uid: "<?php echo $_SESSION['user_info']['user_id'] ?>"
+	};
+</script>
+<div id="J_returntop" class="return_top"></div>
+{include file="footer.html"}
+
+
+
+
+
+
+

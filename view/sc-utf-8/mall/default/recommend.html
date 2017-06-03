@@ -1,0 +1,68 @@
+{include file=header.html}
+
+<style>
+.conall{height:200px;width:100%;overflow:hidden; background:url(../../../../static/v1/img/fxyi.png) center top no-repeat;}
+
+.sxg { margin:90px 0 110px 0 !important;}
+
+.ktapp {width:329px; height:298px; margin:100px auto 120px auto;}
+.ktapp img {width:329px; height:298px;}
+
+.container{max-width:500px;margin:87px auto 117px auto; overflow:hidden;}
+.container .share-area{line-height:64px;margin:34px 0 0 50px;}
+.container .share-area a {width:64px; height:64px; margin: 0 18px;background:url(../../../../static/v1/img/fxbg.png) left top no-repeat; padding:0; float:left;}
+.container .share-area a:hover { text-decoration: none; }
+.container .share-area a.qq { background-position:0 0; }
+.container .share-area a.weibo { background-position:-100px 0; }
+.container .share-area a.wechat { background-position: -196px 0; position: relative; }
+.container .share-area .wechat:hover .none{ display:block;}
+.container .share-area a.wechat img { position: absolute; bottom: 32px; left: -125px;}
+.container .share-area a.renren { background-position: -292px 0; }
+.container .share-area span.copy { display: inline-block; float: right; width: 120px; height: 36px; color: #fff; background: #ffae00; cursor: pointer; text-align: center; transition: all 0.4s; border-radius: 7px; }
+.container .share-area span.copy.zeroclipboard-is-hover { background: #0080c2; }
+</style>
+<div class="conall"></div>
+<div class="rhks_box">
+ <div class="bczl">
+  <p class="p3 sxg"><img src="../../static/v1/img/yx_5.jpg"></p>
+  <p class="p2">创业者推荐客户下载、注册APP并在注册时绑定该创业者的邀请码，平台将派发“现金红包”（金额丰厚，随机派送）给创业者。</p>
+
+  <p class="p3 sxg"><img src="../../static/v1/img/yx_6.jpg"></p>
+  <p class="p2">客户将得到平台赠送的新人大礼包，可用于本人的订单额抵现（一张价值200元的西服券和一张价值30元的衬衣券，可用于购买“初单体验款”之外的任何产品）。</p>
+ </div>
+</div>
+
+<section id="mainbody" style=" background:#f4f4f4; height:130px;">  
+    <div class="container clearfix">
+        <div class="bdsharebuttonbox share-area" data-tag="share_1">
+            <span class="fl" style="font-size:16px;">分享：</span>
+            <a href="javascript:" class="qq" data-cmd="qzone">&nbsp;</a>
+            <a href="javascript:" class="weibo" data-cmd="weixin">&nbsp;</a>
+            <a href="javascript:" class="wechat" data-cmd="tsina"></a>
+            <a href="javascript:" class="renren" data-cmd="renren">&nbsp;</a>
+        </div>
+    </div>
+</section>
+
+<div class="ktapp"><img src="../../static/v1/img/ktrwm.jpg"></div>
+<!--底部/S-->
+{include file=footer.html}
+<!--底部/E-->
+<script>
+//分享
+window._bd_share_config = {
+	common : {
+		bdText : document.title,	
+		bdDesc : '',	
+		bdUrl : window.location.href, 	
+		bdPic : ''
+	},
+	share : [{
+		"bdSize" : 16
+	}]
+}
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+</body>
+</html>
+

@@ -1,0 +1,50 @@
+<div class="w2">
+  <div class="footer"> 
+    <!--{foreach from=$helps item=f_val name=loop}-->
+    <dl class="first">
+      <dt>{$f_val.cate_name}</dt>
+      <dd>
+        <ul>
+          <!--{foreach from=$f_val.article item=a_val}-->
+          {if $a_val.article_id eq 86 or $a_val.article_id eq 87 or $a_val.article_id eq 88}
+          <li><a href="help-{$a_val.article_id}.html">{$a_val.title}</a></li>
+          {else}
+          <li><a href="article-view-{$a_val.article_id}.html">{$a_val.title}</a></li>
+          {/if}
+          <!--{/foreach}-->
+        </ul>
+      </dd>
+    </dl>
+    <!--{/foreach}-->
+    <dl class="last" style="border:none;">
+      <dt>裁缝客户端下载</dt>
+      <dd>
+        <div class="qrcode">
+        <img src="/static/img/qrcode.png" width="74" height="74" />
+<a href="client.html" class="Iphome"></a> <a href="client.html" class="Android"></a> </div>
+      </dd>
+    </dl>
+    <dl class="last">
+      <dt>客服热线</dt>
+      <dd>
+        <p class="p1">400-8919-867</p>
+        <a href="#" class="p3"></a> </dd>
+    </dl>
+    <div class="copyright">
+      <p class="p1">
+      	<a href="#">关于我们</a>
+        <span>|</span>
+        <a href="#">联系我们</a>
+        <span>|</span>
+        <a href="#">免责声明</a>
+        <span>|</span>
+        <a href="#">加入我们</a>
+        <span>|</span>
+        <a href="#">商家入驻</a>
+      </p>
+      <p class="p2">©2015 Alicaifeng Telecom Equipment Co., Ltd. All rights reserved. <span>邮箱：rcmtm@rcmtm.com</span><span>鲁ICP备10207738</span><span>鲁公网安备110106010015号</span></p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

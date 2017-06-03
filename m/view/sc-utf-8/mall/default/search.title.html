@@ -1,0 +1,6 @@
+  <h1 class="search_jg">搜索结果：<span>{$keyword}</span></h1>
+ <ul class="switch">
+ {foreach from=$titles item=t name=loop key=key}
+  <li class="{if $key eq $cur}now_hover{else}old_hover{/if}"><a href="{$t.url}">{$t.name}({$t.num|default:0})</a>{if !$smarty.foreach.loop.last}<span>|</span>{/if}</li>
+ {/foreach}
+ </ul>

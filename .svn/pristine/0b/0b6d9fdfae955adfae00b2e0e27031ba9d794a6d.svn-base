@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>麦富迪微商城</title>
+		<link rel="stylesheet" type="text/css" href="static/css/mobile_style.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="../../../../public/static/wap/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../public/static/wap/css/products.css" />
+		<link rel="stylesheet" type="text/css" href="public/static/wap/css/footer.css" />
+		<script type="text/javascript" src="{lib file=jquery-1.8.3.min.js}"></script>
+		<script type="text/javascript" src="{lib file=swiper-3.4.1.jquery.min.js}"></script>
+		<script type="text/javascript" src="/diy/js/layer_mobile/layer.js"></script>
+	</head>
+
+	<body>
+		<div class="sy_section c_bs">
+			<div class="nav_header">
+				<!--banner轮播-->
+				<div class="swiper-container banner">
+					<div class="swiper-wrapper">
+
+						<!-- {foreach from=$banners item=banner} -->
+						<div class="swiper-slide">
+							<a href="{$banner.link_url}"><img src="{$banner.img}" /></a>
+						</div>
+						<!-- {/foreach} -->
+
+					</div>
+					<!-- 如果需要分页器 -->
+					<div class="swiper-pagination" id="pagination"></div>
+				</div>
+				<!--导航图标-->
+				<div class="nav c_db c_bpc c_bac">
+					<a href="product.html?p_id=128516&son_id=0" class="nav_1 c_db c_bov c_bac c_bpc">
+						<span><img src="public/static/wap/images/goods_05.jpg" /></span>
+						<span>主食专区</span>
+					</a>
+
+					<a href="product.html?p_id=128522&son_id=0" class="nav_1 c_db c_bov c_bac c_bpc">
+						<span><img src="public/static/wap/images/goods_07.jpg" /></span>
+						<span>湿粮专区</sapn>
+					</a>
+
+					<a href="product.html?p_id=128519&son_id=0" class="nav_1 c_db c_bov c_bac c_bpc">
+						<span><img src="public/static/wap/images/goods_09.jpg" /></span>
+						<span>零食专区</span>
+					</a>
+
+					<a href="product.html?p_id=128526&son_id=0" class="nav_1 c_db c_bov c_bac c_bpc">
+						<span><img src="public/static/wap/images/goods_11.jpg" /></span>
+						<span>咬胶专区</span>
+					</a>
+				</div>
+			</div>
+
+			<!--商品展示区-->
+			<!--标题-->
+			<div class="goods_title c_bs c_db c_bac c_bpj">
+				<a href="###" class="gt_left">精品推荐</a>
+			</div>
+
+			<div class="sy_jptj c_db c_bac c_bpj">
+				{if $is_try}
+				<div class="sy_jptj_left">
+					<a href="{link app=fdiy act=tryeat arg0=1 arg1=3}"><img src="public/static/wap/images/goods_20.jpg" alt="" /></a>
+				</div>
+				{else}
+				<div class="sy_jptj_left try" >
+					<a href="###"><img src="public/static/wap/images/goods_20.jpg" alt="" /></a>
+				</div>
+				{/if}
+				{foreach from=$ads item=item}
+				<div class="sy_jptj_right">
+					{foreach from=$item.rc item=item1 name=name1}
+					<div class="sy_jptj_right_{$smarty.foreach.name1.iteration}">
+						<a href="{$item1.link_url}"><img src="{$item1.img}" alt="" /></a>
+					</div>
+					{/foreach}
+
+				</div>
+				{/foreach}
+
+			</div>
+
+			<!--标题-->
+			<div class="goods_title c_bs c_db c_bac c_bpj">
+				<a href="" class="gt_left">热销商品</a>
+			</div>
+
+			<div class="sy_rxsq">
+				{foreach from=$goods_list item=item name=name}
+				<div class="rx_one {if $smarty.foreach.name.last}clearfix{/if}">
+					<div class="rx_one_top">
+						<a href="product-content.html?id={$item.goods_id}"><img src="{$item.thumbnail_pic}" /></a>
+					</div>
+
+					<div class="rx_one_bottom">
+						<p>
+							<a href="product-content.html?id={$item.goods_id}">{$item.name}</a>
+						</p>
+						<p>{$item.price}元</p>
+					</div>
+				</div>
+				{/foreach}
+
+				<!--<div class="rx_one clearfix">-->
+				<!--<div class="rx_one_top">-->
+				<!--<a href=""><img src="images/goods_01.jpg" /></a>-->
+				<!--</div>-->
+				<!--<div class="rx_one_bottom">-->
+				<!--<p>-->
+				<!--<a href="">靓毛护理 三文鱼+鸡块</a>-->
+				<!--</p>-->
+				<!--<p>69元</p>-->
+				<!--</div>-->
+				<!--</div>-->
+
+			</div>
+			<div>
+			</div>
+			{include file=footer_footer.html}
+
+			{include file=fudong1.html}
+
+
+
+	</body>
+
+
+	<script type="text/javascript">
+		var mySwiper = new Swiper(".banner", {
+			//direction: 'vertical',
+			loop: true,
+			autoplay: 4000,
+
+			// 如果需要分页器
+			pagination: '#pagination',
+		});
+
+		$(".try").click(function(){
+			layer.open({
+				content: "亲，0元定制的活动只能体验1次，如果未购买过本次活动产品，麻烦在我的->用户中心->待付款中查看是否已经有本次活动的订单了"
+				,skin: 'msg'
+				,time: 6 //2秒后自动关闭
+			});
+		})
+
+	</script>
+
+</html>

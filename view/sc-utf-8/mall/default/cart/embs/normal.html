@@ -1,0 +1,44 @@
+<div class="cixiu clearfix">
+    <h4>您是否需要免费签名</h4>
+    <div class="cixiucon clearfix">
+        <form>
+        <div class="clearfix">
+            {foreach from=$embs.$list.cloth item=eitems}
+            {if $eitems.statusid == 10001}
+                <div class="mnSelect" data-id="{$eitems.id}" data-status="{$eitems.statusid}">
+                    <dl class="s_select" style="width:120px">
+                        <dt>
+                            <span class="s_tit">
+                                {if $list.embs.$eitems.id}
+                                    {assign var=_sonid value=$list.embs.$eitems.id}
+                                    {assign var=_son value=$eitems.list.$_sonid}
+                                    <img src="{$_son.image}" />
+                                {/if}
+                            </span>
+                            <i></i>
+                            <input type="hidden" value="{$list.embs.$eitems.id}"  name="embs[{$list.ident}][{$eitems.id}]" />
+                        </dt>
+                        <dd style="display: none;max-height:500px;">
+                        {foreach from=$eitems.list item=eitem}
+                            <a href="javascript:void(0)" data-id="{$eitem.id}"><img src="{$eitem.image}" title="{$eitem.name}" /></a>
+                         {/foreach}  
+                        </dd>
+                    </dl>
+                </div>
+            {elseif  $eitems.statusid == 10008}
+                <input type="text" class="cixiutxt" placeholder="在此输入您要刺绣的名字" name="embs[{$list.ident}][{$eitems.id}]" value="{$list.embs.$eitems.id}" />
+            {elseif $eitems.statusid == 10002}
+                <h5>刺绣位置</h5>
+                <ul class="clearfix cxPosition">
+                  {assign var=weizhi value=}
+                  {foreach from=$eitems.list item=l key=__lkey}
+                      <li value="{$__lkey}" {if $list.embs.$eitems.id.$__lkey} class="cur" {/if} >{$l.name}<input  {if $list.embs.$eitems.id.$__lkey} checked="checked" {/if}  value="{$l.id}" type="checkbox"  style="display:none" name="embs[{$list.ident}][{$eitems.id}][{$l.id}]" /></li>
+                  {/foreach}
+                </ul>
+            {/if}
+            {/foreach}
+        </div>
+        <input type="button" value="保存" class="bcbot" data-id="{$list.ident}" />
+        </form>
+    </div>
+</div>

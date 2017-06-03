@@ -1,0 +1,57 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.series_list}</span></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=add_series">{$lang.add_series}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=good_list">{$lang.shop_list}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=add_good">{$lang.add_shop}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=cover">{$lang.cover}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=add_cover">{$lang.add_cover}</a></li>
+    </ul>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $series}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left">{$lang.series_name}</td>
+            <td>{$lang.series_img}</td>
+            <td>{$lang.sort_order}</td>
+            <td align="left">{$lang.is_show}</td>
+            <td>{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$series item=data}-->
+        <tr class="tatr2">
+            <td class="firstCell"><input type="checkbox" class="checkitem" value="{$data.series_id}" /></td>
+            <td>{$data.series_name}</td>
+            <td><img src="{$data.image}" width="50" height="50"></td>
+            <td>{$data.sort_order}</td>
+            <td>{if $data.is_show == 0}显示{else}不显示{/if}</td>
+            <td><a href="index.php?app=elephotos&amp;act=edit_series&amp;id={$data.series_id}">{$lang.edit}</a>
+                
+                <a href="index.php?app=elephotos&amp;act=drop_series&amp;id={$data.series_id}">{$lang.drop}</a>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $series}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=elephotos&act=drop_series" />
+            &nbsp;&nbsp;
+            <!--<input class="formbtn batchButton" type="button" value="lang.update_order" name="id" presubmit="updateOrder(this);" />-->
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

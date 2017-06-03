@@ -1,0 +1,152 @@
+{include file=header-new.html}
+<link href="/public/static/pc/css/gwc.css" rel="stylesheet">
+<div class="wdgwc_box w">
+<!---->
+	<h1 class="wdgwc">我的购物车</h1>
+	<div class="spxx">
+		<p class="p1">商品信息</p>
+		<p class="p2">单价(元)</p>
+		<p class="p3">优惠方案</p>
+		<p class="p4">数量</p>
+		<p class="p5">金额(元)</p>
+		<p class="p6">操作</p>
+	</div>
+	<form role="form" id="checkBo-demo-from" class="cartMain">
+		<ul class="gwclb" id="JcartList">
+
+			{foreach from=$cart.object item=list}
+			
+			<li data-id="{$list.ident}" data-type="{$list.type}" data-cate="{$list.cate}" data-price="{$list.goods.markprice}" data-sub="{$list.subtotal}" {if $list.goods.favorable_id or $list.goods.zhek_id} data-favor="{$list.subtotal}"{/if}  data-ft="{$list.first}"  class="cartList">
+				<div class="fxk fl">
+				{if $list.goods.marketable}
+				    <label class="cb-checkbox checkbox-row {if $list.check} checked ch11 {/if}">
+						<input type="checkbox">
+						<!--<span class="cb-inner"><i><input type="checkbox"></i></span>-->
+                    </label>
+                 {else}
+                      已下架
+                  {/if}
+					
+				</div>
+				<p class="gwclbtu fl"><a href="{if $list.goods.goods_id>0}{link app=goods arg=$list.goods.goods_id}{else}{$list.goods.goods_url}{/if}"><img src="{$list.goods.image}"></a></p>
+				<div class="gwclbjs fl">
+					<h1>
+						{if $list.type == 'fdiy'}
+						{if $list.dog_name}{$list.dog_name}的专属狗粮{else}订制化主粮{/if}
+						{else}
+						{$list.goods.name}
+						{/if}
+					</h1>
+					<p class="p1">
+						{if $list.type == 'fdiy'}
+						定制商品：<span style="padding-left: 5px;">{$list.goods.dname}</span>
+						{else}
+						{foreach from=$list.list item=ls} 
+						<span style="padding-left: 5px;">{$ls.params.oProducts.spec_info}</span>{/foreach}{/if}
+						
+					</p>
+					{if $list.goods.pdata.yhcase}
+					<span><img src="/public/static/pc/images/sales_{$list.goods.pdata.yhcase}.png" class="cuxiao">{$list.goods.pdata.name}</span>
+					{/if}
+				</div>
+				<p class="jiag fl">{$list.goods.basePrice|price}</p>
+				<p class="youhui fl">
+				
+				{if $list.favorable_mj}
+				<div class="youhui_box fl" data-ss="11">
+				<input style="display:none;" value="{$list.goods.goods_id} " data-num="{$list.goods.quantity}" data-ident="{$list.ident}" class="goodsid">
+				<select style=" height:28px; border: 1px solid #dfdfdf; width:100px; font-size:12x;" name='favorable' class="selecss" data-id="{$list.ident}" >
+				<option value='0'>选择优惠</option>
+				{foreach from=$list.favorable_mj item=fav }
+				<option value='{$fav.id}'{if $fav.id ==$list.goods.favorable_id}selected{/if}>{$fav.name}</option>
+				{/foreach}
+				</select>
+				</div>
+				{/if}
+				{if $list.favorable_zk}
+				<div class="zhek_box fl" data-ss="11">
+				<input style="display:none;" value="{$list.goods.goods_id} " data-num="{$list.goods.quantity}" data-ident="{$list.ident}" class="goodsid">
+				<select style=" height:28px; border: 1px solid #dfdfdf; width:100px; font-size:12x;" name='favorable_zk' class="selecss" data-id="{$list.ident}" >
+				<option value='0'>选择折扣优惠</option>
+				{foreach from=$list.favorable_zk item=fav }
+				<option value='{$fav.id}'{if $fav.id ==$list.goods.zhek_id}selected{/if}>{$fav.name}</option>
+				{/foreach}
+				</select>
+				</div>
+				{/if}
+				</p>
+				<div class="jajia_box fl">
+					<a href="javascript:;" class="a_1"></a>
+					<input type="text" value="{$list.goods.quantity}" disabled data-num="{$list.goods.quantity}">
+					<a href="javascript:;" class="a_2"></a>
+				</div>
+				<p class="jine fl">{$list.goods.price|price}</p> 
+				<a href="javascript:;" class="cazua fl"></a>
+			</li> 
+
+			{/foreach}
+
+		</ul>
+		<div class="gwcjs_je">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="48" style="padding-left: 20px;">
+					<label class="cb-checkbox" id="check-all" style="position: relative; top: 3px;">
+					<input type="checkbox">
+					</label>
+					</td>
+					<td width="70">全选</td>
+					<td width="500" class="sc"><a href="javascript:;" class="clearCart">删除</a></td>
+					<td width="480" class="dzsp">您定制了<span id="cart_num">{$cart.check_num|default:0}</span>件商品，总价：<span>{$cart.check_amount_m|default:0|price}</span></td>
+					<td width="150"><input type="button" value="去结算" class="mr"></td>
+				</tr>
+			</table>
+		</div>
+	</form>
+</div>
+<div id="window04" class="hide"></div>
+
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/global/checkbox-master/src/js/checkBo.js"></script>
+<script src="/public/global/jquery.form.js"></script>
+<script src="/public/static/pc/js/Xslider.js"></script>
+<script src="/public/static/pc/js/cart.js"></script>
+<script>
+	$(document).ready(function() {
+		$.cart({
+			dropUrl : "{link app=cart act=drop}",
+			cartUrl : "{link app=cart}",
+			clearUrl : "{link app=cart act=clear}",
+			updateUrl : "{link app=cart act=update}",
+			checkoutUrl : "{link app=cart act=checkout}",
+			checkUrl : "{link app=cart act=check}",
+			embUrl : "{link app=cart act=embs}",
+			embSaveUrl : "{link app=cart act=embsSave}",
+			choiceUrl : "{link app=cart act=choice}",
+			choiceAllUrl : "{link app=cart act=choiceAll}",
+			favoreUrl : "{link app=cart act=updata_favore}",
+			zhekUrl : "{link app=cart act=updata_zhek}",
+		});
+	});
+</script>
+<script>
+ /*function youhui(obj){
+ var goodsid=$('#goodsid').val();
+ var num=$('#goodsid').attr('data-num');
+ var fav_id=$(obj).val();
+ var ident=$('.cartList').attr('data-id');
+
+		  $.post("{link app=cart act=updata_favore}",{ident:ident,fav_id:fav_id,goods_id:goodsid,num:num},function(res){
+                  if(res.done == true){
+			
+                	  _loadData();
+					  
+                  }else{
+                	  alert(res.msg)               	  
+                  }
+        },"json");
+	}*/
+</script>
+{include file=footer-new.html}

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- disable iPhone inital scale -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>创业故事</title>
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/cygs.css" rel="stylesheet">
+</head>
+<style>
+
+.brick { margin-top:20px; clear:both; margin-left:-15px; margin-right:-15px; }
+.item {margin-bottom: 20px; float: left;}
+.brick .item img { width:100%; }
+</style>
+<body>
+<!--头部/S-->
+{include file=header-new.html}
+<!--头部/E-->
+
+<div class="banner"><a href="#"><img src="/public/static/pc/images/cygs.jpg"></a></div>
+
+<div  class="cygs_bt">
+ <h1>创<span>业故</span>事</h1>
+ <p>mfd代表一种以定制、个性化的文化内涵引导人们的高品位生活方式。<br/>店内的加盟品牌不仅仅是西装的高级定制及周边配饰，而是通过时尚的款式设计，专业的着装顾问，多元化的搭配选择。</p>
+</div>
+
+<div class="container">
+  <div class="menu" id="menu">    
+     <div id="brick" class="brick">
+
+     </div>
+   </div>
+</div>  
+
+<div class="zzjz_box" id="zzjz_box" >
+ <p class="jzz">正在加载</p>
+</div> 
+
+<!--底部/S-->
+{include file=footer-new.html}
+<!--底部/E-->
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/jquery.masonry.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/category.js"></script>
+<script>
+cotteFn.chuangye()
+</script>
+</body>
+</html>

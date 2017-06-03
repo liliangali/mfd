@@ -1,0 +1,59 @@
+    <div class="AreaL fl">
+      <div class="tailorInfo">
+        <div class="clearfix">
+          <p class="headPic"><img src="{$tailor.member_logo}" width="150" height="150"></p>
+          <p class="name">{$tailor.member.nickname}<img src="{$tailor.lv_logo}" title="{$tailor.lv_name}"></p>
+          <span class="s fl">服务过<em>{$tailor.service_num}</em></span><span class="s fl">人气<em>{$tailor.popularity}</em></span> <span class="s last fl">粉丝<em>{$tailor.fans}</em></span> </div>
+        <!--{if $is_follow}-->
+        <div class="related" onclick="follow({$tailor.store_id})"><b>＋</b>关注TA</div>
+        <!--{else}-->
+        <div class="related">您已关注</div>
+        <!--{/if}-->
+        <ul class="infoList">
+          <li><span>好评度：</span>
+            <p>{$public.avg}%</p>
+          </li>
+          <li><span>开业时间：</span>
+            <p>{$tailor.add_time|date:Y-m-d}</p>
+          </li>
+        </ul>
+        <ul class="infoList">
+          <li><span>电话：</span>
+            <p>{$tailor.tel}</p>
+          </li>
+          <li><span>QQ：</span>
+            <p>{$tailor.im_qq}</p>
+          </li>
+          <li><span>微信：</span>
+            <p>{$tailor.im_wx}</p>
+          </li>
+          <li><span>Emall：</span>
+            <p>{$tailor.email}</p>
+          </li>
+          <li><span>地址：</span>
+            <p>{$tailor.address}</p>
+          </li>
+        </ul>
+        <div class="kefu"> <a href="http://wpa.qq.com/msgrd?v=3&uin={$tailor.im_qq}&site=qq&menu=yes" target="_blank"></a> </div>
+      </div>
+    </div>
+    
+<script type="text/javascript">
+//关注操作 - 验证登录
+function follow(fuid){
+	var uid=hasLogin();
+	if(uid){
+		 $.getJSON('/ajax-ajaxFollow.html', {uid:fuid}, function(result){
+	          if(result.status == 1){
+	        	  window.location.reload();
+	          }else{
+	        	  msg(result.msg);
+	          }
+	      });
+	}else{
+		login(function(){follow({$tailor.store_id})});
+	}
+	 
+}
+</script>
+

@@ -1,0 +1,42 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+<!--sortlist end-->
+
+
+  
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">安全设置</h1>
+   <!--  <div class="aqjb">安全级别：<img src="{$img_url}/images/aqdj.gif" /><span>中级</span>建议您启动全部安全设置，以保障账户及资金安全。</div> -->
+    <div class="m_dlmm">
+      <p class="p1">登录密码</p>
+      <p class="p2">互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</p>
+      <p class="p3"><a href="/?app=kuke&act=upps">修改密码</a></p>
+    </div>
+    
+    <div class="{if !$visitor.pay_ps }m_zfmm{else}m_dlmm{/if}">
+      <p class="p1">支付密码</p>
+      <p class="p2">启用支付密码后，在使用账户中麦富迪币可优惠券等资产时，需要输入支付密码。</p>
+      <p class="p3">{if $visitor.pay_ps }<a href="kuke-uppayps.html">修改</a>{else}<a href="/?app=kuke&act=setpayps">立即启用</a>{/if}</p>
+    </div>
+    
+    <div class="{if !$visitor.phone_mob }m_zfmm{else}m_dlmm{/if}">
+      <p class="p1">手机验证</p>
+      <p class="p2">{if $visitor.phone_mob }您验证的手机： {$hide_phone}  若已丢失或停用，请立即更换，避免账户被盗{else}
+      验证后，可用于快速找回登录密码，并且增加账户安全
+      {/if}</p>
+      <p class="p3">{if $visitor.phone_mob }<a href="/?app=kuke&act=upphone">修改手机</a>{else}<a href="/?app=kuke&act=bindphone">立即绑定</a>{/if}</p>
+    </div>
+    
+    <div class="{if !$visitor.email }m_zfmm{else}m_dlmm{/if}">
+      <p class="p1">邮箱验证</p>
+      <p class="p2">验证后，可用于快速找回登录密码，接收账户余额变动提醒。</p>
+      <p class="p3">{if $visitor.email}<a href="/?app=kuke&act=upemail">修改邮箱</a>{else}<a href="/?app=kuke&act=bindemail">立即绑定</a>{/if}</p>
+    </div>
+    <p class="clear"></p>
+  </div>
+  <p class="clear"></p>
+</div>
+
+ {include file=footer.html}

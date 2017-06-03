@@ -1,0 +1,18 @@
+<div class="m_xzyhj">
+  <h4>选择您的账户内可用优惠券，享受优惠折扣！</h4>
+  {foreach from=$item_list item=list}
+  <div class="m_yhjktds">
+    <input name="coupon[]" type="checkbox" value="{$list.coupon_sn}" {if $list.checked}checked{/if}/>
+    <p class="p1">
+    	{$list.cpn_name}[序列号：{$list.coupon_sn}]
+    </p>
+    <p class="p2" style="width:80px;">
+    {if $list.cpn_money > 0}
+    	可抵<span>{$list.cpn_money|price}</span>
+   	{/if}
+    </p>           
+  </div>
+  {/foreach}
+  <p class="clear"></p>
+  <input type="button" value="使用" class="shiyong usecoupon" />
+</div>

@@ -1,0 +1,2 @@
+ALTER TABLE `cf_comment_img` ADD `m_image` VARCHAR(255) NOT NULL COMMENT '中图' AFTER `comment_id`;
+ALTER TABLE `cf_order_goods` ADD `fav_id` INT(11) NOT NULL DEFAULT '0' COMMENT '优惠方案' AFTER `is_send`, ADD `fav_name` VARCHAR(255) NOT NULL COMMENT '优惠名称' AFTER `fav_id`, ADD `fav_price` VARCHAR(255) NOT NULL DEFAULT '0' COMMENT '优惠金额' AFTER `fav_name`;

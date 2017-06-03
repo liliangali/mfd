@@ -1,0 +1,311 @@
+{include file=member.header.html}
+<div class="container clearfix">
+{include file=member.menu.html}
+ <div class="ucenter_right fr">
+<div class="title"><h2>量体数据</h2></div>
+<!--内容-->
+      <div class="m_ltsj_lb">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+         <th width="33.3%">量体师</th>
+         <th width="33.3%">创建时间</th>
+         <th width="33.3%">操作</th>
+        </tr>
+
+        <!--{if $figures}-->
+        <!--{foreach from=$figures item=item}-->
+         <tr>
+         <td>{$item.nickname}</td>
+         <td>{$item.lasttime|date:Y-m-d H:i}</td>
+         <td><a href="#">查看</a>{if $item.is_new==1}<a href="javascript:;" id="ckpj_{$item.figure_sn}" onclick="fuwu('{$item.figure_sn}','{$item.storeid}')">服务评价</a>{/if}</td>
+        </tr>
+
+        <tr style="display:none">
+         <td colspan="4" style="background:#fafafa;">
+           <div class="ltxx_lb m_ltxx_lb_2 clearfix">
+          <ul class="jbxx"><li>基本信息</li></ul>
+
+           <ul>
+            <li>
+            <span>体重</span>
+            <font><input type="text" value="{$item.weight}" name="size"></font>
+            </li>
+            <li>
+            <span>身高</span>
+            <font><input type="text" value="{$item.height}" name="size"></font>
+            </li>
+            <li>
+            <span>中腰围</span>
+            <font><input type="text" value="{$item.zyw}" name="size"></font>
+            </li>
+
+            <li>
+            <span>臀围</span>
+            <font><input type="text" value="{$item.tw}" name="size"></font>
+            </li>
+
+            <li>
+            <span>上臂围</span>
+            <font><input type="text" value="{$item.stw}" name="size"></font>
+            </li>
+
+            <li>
+            <span>总肩宽</span>
+            <font><input type="text" value="{$item.zjk}" name="size"></font>
+            </li>
+
+            <li>
+            <span>左袖长</span>
+            <font><input type="text" value="{$item.zxc}" name="size"></font>
+            </li>
+
+            <li>
+            <span>右袖长</span>
+            <font><input type="text" value="{$item.yxc}" name="size"></font>
+            </li>
+
+            <li>
+            <span>前肩宽</span>
+            <font><input type="text" value="{$item.qjk}" name="size"></font>
+            </li>
+
+            <li>
+            <span>后腰节长</span>
+            <font><input type="text" value="{$item.hyjc}" name="size"></font>
+            </li>
+
+            <li>
+            <span>后衣长</span>
+            <font><input type="text" value="{$item.hyc}" name="size"></font>
+            </li>
+
+            <li>
+            <span>前腰节</span>
+            <font><input type="text" value="{$item.qyj}" name="size"></font>
+            </li>
+
+            <li>
+            <span>领围（成衣）</span>
+            <font><input type="text" value="{$item.lw}" name="size"></font>
+            </li>
+
+            <li>
+            <span>胸围</span>
+            <font><input type="text" value="{$item.xw}" name="size"></font>
+            </li>
+
+            <li>
+            <span>腰围</span>
+            <font><input type="text" value="{$item.yw}" name="size"></font>
+            </li>
+
+            <li>
+            <span>臀围</span>
+            <font><input type="text" value="{$item.tw}" name="size"></font>
+            </li>
+
+            <li>
+            <span>腿根围</span>
+            <font><input type="text" value="{$item.tgw}" name="size"></font>
+            </li>
+
+            <li>
+            <span>通裆</span>
+            <font><input type="text" value="{$item.td}" name="size"></font>
+            </li>
+
+            <li>
+            <span>后腰高</span>
+            <font><input type="text" value="{$item.hyg}" name="size"></font>
+            </li>
+
+            <li>
+            <span>前腰高</span>
+            <font><input type="text" value="{$item.qyg}" name="size"></font>
+            </li>
+
+            <li>
+            <span>左裤长</span>
+            <font><input type="text" value="{$item.zkc}" name="size"></font>
+            </li>
+
+            <li>
+            <span>右裤长</span>
+            <font><input type="text" value="{$item.ykc}" name="size"></font>
+            </li>
+
+            <li>
+            <span>膝围（成衣）</span>
+            <font><input type="text" value="{$item.xiw}" name="size"></font>
+            </li>
+
+            <li>
+            <span>脚口（成衣）</span>
+            <font><input type="text" value="{$item.jk}" name="size"></font>
+            </li>
+           </ul>
+          <ul class="jbxx"><li>特殊体形</li></ul>
+          <ul>
+            <li>
+            <span>{$item.special_du.cateName}：</span>
+            <font>{$item.special_du.name}</font>
+            </li>
+            <li>
+            <span>{$item.special_tun.cateName}：</span>
+            <font>{$item.special_tun.name}</font>
+            </li>
+                        <li>
+            <span>{$item.special_sbi.cateName}：</span>
+            <font>{$item.special_sbi.name}</font>
+            </li>
+                        <li>
+            <span>{$item.special_zjian.cateName}：</span>
+            <font>{$item.special_zjian.name}</font>
+            </li>
+                        <li>
+            <span>{$item.special_yjian.cateName}：</span>
+            <font>{$item.special_yjian.name}</font>
+            </li>
+                        <li>
+            <span>{$item.special_syi.cateName}：</span>
+            <font>{$item.special_syi.name}</font>
+            </li>
+                        <li>
+            <span>{$item.special_xku.cateName}：</span>
+            <font>{$item.special_xku.name}</font>
+            </li>
+
+          </ul>
+
+
+         </div>
+         </td>
+        </tr>
+        <!--{/foreach}-->
+        <!--{/if}-->
+      </table>
+     </div>
+<!--内容 end-->
+
+ </div>
+</div>
+<style>
+.fbpj_pf {width:600px; margin:15px 50px 0 50px;}
+</style>
+<script src="../static/expand/layer/layer.min.js"></script>
+<script src="../static/expand/jquery.js"></script>
+<script>
+//查看
+$('.m_ltsj_lb a:contains("查看")').click(function(){
+  var $this=$(this),obj=$this.parents('tr').next('tr');
+  obj.find('input[type=text]').attr('disabled',true);
+  obj.find('.m_baoc').hide();
+  if($this.hasClass('cur')){
+    obj.css('display','none');
+    $this.removeClass('cur');
+  }else{
+    obj.parents('.m_ddxx_box').find('.show').not(obj).hide()
+    obj.css('display','table-row').addClass('show');
+    $this.parents('.m_ddxx_box').find('a').not($this).removeClass('cur').end()
+    $this.addClass('cur');
+  };
+  return false;
+});
+
+//删除
+$('.m_ltsj_lb a:contains(删除)').click(function(){
+  if(window.confirm('确定删除这条数据')){
+    $(this).parents('tr').next('tr').remove();
+    $(this).parents('tr').remove();
+  }
+  return false;
+})
+</script>
+
+<script>
+
+
+function submit(f_sn,s_id){
+
+    var star = parseInt($('.star strong').html());
+    var content = $('.xd textarea').val()
+    var nm = $('#nm').attr('checked')=='checked'?1:0;
+
+    if(star<1){
+        msg('请对商品进行评分')
+        return false;
+    }
+
+    $.post('{link app=figure_comment act=commit}',{content:content,star:star,nm:nm,m_id:s_id,f_sn:f_sn}, function(res){
+        var res = eval("("+res+")");
+
+        if(res.done == true){
+            if(res.retval == "login"){
+                login();
+            }else{
+                layer.closeAll()
+                $("#ckpj_"+f_sn).remove();
+                msg("发表评论成功！");
+            }
+            return false;
+        }else{
+            msg(res.msg)
+            return false;
+        }
+    })
+    
+
+}
+
+
+function fuwu(f_sn,s_id){
+
+	use('../../static/expand/layer/layer.min.js',function(){
+		$.layer({
+			type: 1,
+			title: '',
+			border : [5, 0.5, '#666'],
+			closeBtn: [1, true],
+			area: ['540px','280px'],
+			shadeClose: true,
+			page: {html: '<div class="fbpj_pf"><div class="star"><span><b class="btxxh">*</b>评分：</span><ul><li class="on"><a href="javascript:;">1</a></li><li class="on"><a href="javascript:;">2</a></li><li class="on"><a href="javascript:;">3</a></li><li class="on"><a href="javascript:;">4</a></li><li class="on"><a href="javascript:;">5</a></li></ul><span><strong>5 分</strong></span></div><p class="xd"><span><b class="btxxh">*</b>服务：</span><textarea name="" cols="" rows="" placeholder="快速写下你的评价，分享给大家吧！"></textarea></p><div class="pj_lm clearfix"><input type="submit" value="评价" onclick="submit('+f_sn+','+s_id+')" class="input_1"><p class="p1"><input name="" type="checkbox" value="1" id="nm">匿名评价</p></div></div>'},
+			success: function(layero){
+				$(".star").each(function(index, element) {
+					var oStar = $(this);
+					var aLi = oStar.find("li");
+					var oSpan = oStar.find("span");
+
+					var i = iScore = iStar = 1;
+					for (i = 1; i <= aLi.length; i++){
+						aLi[i - 1].index = i;
+						//鼠标移过显示分数
+						aLi[i - 1].onmouseover = function (){
+							fnPoint(this.index);
+							//浮动层显示
+						};
+						//鼠标离开后恢复上次评分
+						aLi[i - 1].onmouseout = function (){
+							fnPoint();
+						};
+
+						//点击后进行评分处理
+						aLi[i - 1].onclick = function (){
+							iStar = this.index;
+							oSpan[1].innerHTML = "<strong>" + (this.index) + " 分</strong>"
+						}
+					}
+					//评分处理
+					function fnPoint(iArg){
+						//分数赋值
+						iScore = iArg || iStar;
+						for (i = 0; i < aLi.length; i++) aLi[i].className = i < iScore ? "on" : "";
+					}
+				});
+			}
+		});
+	})
+
+}
+</script>
+
+{include file="footer.html"}

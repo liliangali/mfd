@@ -1,0 +1,29 @@
+   {foreach from=$item_list item=item}
+  <div class="J_item wall_item coool_space">
+        <!-- 删除按钮 -->
+        {if $authority}<a class="J_delitem cool-delete" href="javascript:;" data-id="{$item.id}" data-ty="{$type}" >删除</a>{/if}
+        <!--图片-->
+        <ul class="pic">
+            <li>
+<!--                 <a href="{link app=club act=personaldesign}" title="{$item.title}" target="_blank"><img alt="{$item.title}" class="J_img J_decode_img" src="{$item.url}"></a> -->
+                <a href="{link app=club act=$infourl arg0=$item.id}" title="{$item.title}" target="_blank"><img alt="{$item.title}" class="J_img J_decode_img" src="{userphoto file_name=$item.url size=500 cate=$type}"></a>
+                <a href="javascript:;" class="J_joinalbum addalbum_btn" data-id="{$item.id}"></a>
+            </li>
+        </ul>
+         <!-- 喜欢 -->
+        <div class="hot_bt">
+        {if $item.is_like}
+        <a href="javascript:;" class="yxih" data-id="{$item.id}" data-ty="{if $item.cate eq 1}sheji_like{else}jiepai_like{/if}">已喜欢</a>
+        {else}
+         <a href="javascript:;" class="xih J_likeitem" id="like_{$item.id}" data-id="{$item.id}" data-ty="{if $item.cate eq 1}sheji_like{else}jiepai_like{/if}">喜欢</a>
+        {/if}
+            <span class="J_like_n xih_cout"><a>{$item.like_num}</a><s></s></span>
+            <span class="comts_cout">{$item.comment_num}</span>
+            <span class="comts">评论：</span>
+        </div>
+        <!--说明-->
+        <p class="intro clr6">{$item.a_description|truncate:60}</p>
+    </div>
+    {foreachelse}
+    数据完善中....
+    {/foreach}

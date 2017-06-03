@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>编辑收货地址</title>
+
+<link rel="stylesheet" type="text/css" href="/static/css/style.css" media="screen">
+<script type="text/javascript" src="{lib file=jquery.js}"></script>
+<script type="text/javascript">
+  var reginUrl = "{link app=mlselection}";
+</script>
+<script type="text/javascript" src="/static/js/address/mlselection.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  regionInit("region");
+})
+</script>
+</head>
+
+<body>
+<div class="main"> 
+  <!--头部开始-->
+  <div class="header clearfix">
+    <p class="p1"><a href="javascript:history.go(-1)"><img src="/static/img/hdtb.png" /></a></p>
+    <p class="p2">编辑收货地址</p>
+  </div>
+  <!--头部结束-->
+  
+  <div class="tjdz w">
+  <form method="post" action="{link app=paycenter act=$act}?addr_id={$address.addr_id}" id="address_form">
+    <h1>收件人</h1>
+    <p>
+      <input type="text" class="text width_normal" id="consignee" name="consignee" value="{$address.consignee|escape}"/>
+    </p>
+    <h1>手机号码</h1>
+    <p>
+      <input type="text" class="text width_normal" id="phone_mob" name="phone_mob" value="{$address.phone_mob}"/>
+    </p>
+    <h1>所在地区</h1>
+    <p><div id="region">
+    <input type="hidden" name="region_id" value="{$address.region_id}" id="region_id" class="mls_id" />
+    <input type="hidden" name="region_name" value="{$address.region_name|escape}" class="mls_names" />
+    <input type="hidden" name="region_list" value="{$address.region_id}" id="region_list" />
+    <!-- {if $address.region_id} -->
+    <span>{$address.region_name|escape}</span>
+    <input type="button" value="{$lang.edit}" class="edit_region" />
+    <select style="display:none" onchange="hide_error();">
+    <option>{$lang.select_pls}</option>
+    {html_options options=$regions}
+    </select>
+    <!-- {else} -->
+    <select onchange="hide_error();">
+    <option>{$lang.select_pls}</option>
+    {html_options options=$regions}
+    </select>
+    <!-- {/if} -->
+    <b class="field_message" style="font-weight:normal;"><label class="field_notice"></label></b>
+    </div></p>
+    <h1>详细地址</h1>
+    <p><input type="text" class="text width_normal" id="address" name="address" value="{$address.address|escape}"/></p>    
+    <div class="bc_sc">
+     <input type="submit" value="删除" class="input_1">
+     <input type="submit" id="preservation" value="保存" class="input_2">
+    </div>
+    </form>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#preservation").click(function(){
+        var r = '';
+        $("#region select").each(function(){
+            r += r ? ","+ $(this).val() : $(this).val();
+        })
+        $("#region_list").val(r);
+        $("#address_form").submit();
+    })
+})
+</script>
+
+</body>
+</html>

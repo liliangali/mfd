@@ -1,0 +1,170 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#onegift_form').validate({
+		rules: {
+			/* cpn_money: {
+			    min: 0
+			},
+			cpn_prefix:{
+			    maxlength :4
+			} */
+	    },
+		messages: {
+			/* cpn_money: {
+				min: "正确的金额数"
+			},
+			cpn_prefix:{
+			    maxlength :'最多四位'
+			} */
+		 },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+    });
+});
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=promotion&act=onegift">活动列表</a></li>
+    <li><span>新增活动</span></li>
+  </ul>
+</div>
+<div class="info">
+    <form method="post" action="index.php?app=promotion&act=addOneGift" enctype="multipart/form-data" id="onegift_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">是否开启 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="coupon_id" type="hidden" name="one_id" value="{$data.one_id|escape}" />
+                    {foreach from=$status item=sval key=skey}
+                    <label><input type="radio" name="is_active" value="{$skey}" {if $skey == $data.is_active} checked {/if}/>{$sval}</label>
+                    {/foreach}
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">是否限制员工 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    {foreach from=$status item=sval1 key=skey1}
+                    <label><input type="radio" name="is_employee" value="{$skey1}" {if $skey1 == $data.is_employee} checked {/if}/>{$sval1}</label>
+                    {/foreach}
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">开始时间:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                        <input class="infoTableInput2 pick_date" id="start_time" type="text" name="start_time" value="{if $data.start_time}{$data.start_time|date:Y-m-d}{/if}" />
+                </td>
+            </tr>
+            
+           <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">结束时间:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2 pick_date" id="end_time" type="text" name="end_time" value="{if $data.end_time}{$data.end_time|date:Y-m-d}{/if}" />
+                    <span>注意：这里的时间是当日的零点。比如要做22日、23日两天活动，开始结束时间就要分别选择22、24。</span>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">活动条件</th>
+                <td class="paddingT15 wordSpacing5 conditions">
+                    <ul>
+                    {foreach from=$data.condi item=cItem key=cKey name=foo}
+	                    <li><select name="condi[{$cKey}][0]">
+	                       {html_options options=$cloths selected=$cItem[0]}
+	                    </select>
+	                    +
+	                    <select name="condi[{$cKey}][1]">
+	                       {html_options options=$cloths selected=$cItem[1]}
+	                    </select>
+	                    <a href="javascript:void(0)" class="rmCondi">X</a>
+	                    </li>
+	                    {if $smarty.foreach.foo.last} {assign var=condikey value=$ckey}{/if}
+                    {/foreach}
+                    </ul>
+                    <input type="hidden" value="{$condikey}" />
+                    <a href="javascript:void(0)" class="newCondi">新增条件</a>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">指定面料 :</th>
+                <td class="paddingT15 wordSpacing5 is_fabric">
+                    {foreach from=$status item=sval2 key=skey2}
+                    <label><input class="fbradio" type="radio" name="is_fabric" value="{$skey2}" {if $skey2 == $data.is_fabric} checked {/if}/>{$sval2}</label>
+                    {/foreach}
+                    
+                    <div class="fabrics" {if $data.is_fabric == '1'} {else}style="display:none" {/if}>
+                        <table>
+                        {foreach from=$data.appoint_fabric item=fItem key=fKey}
+                            <tr>
+                            <th width="50">{$fKey}</th>
+                            <td>|
+                            {foreach from=$fItem item=fitm}
+                            <label> {$fitm} |</label>
+                            {/foreach}
+                            </td>
+                            </tr>
+                        {/foreach}
+                        </table>
+                        <input type="file" name="appoint_fabric" />
+                    </div>
+                    
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">价格算法 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="algo" name="algo">
+                       {html_options options=$algorithms selected=$data.algorithm}
+                    </select>
+                </td>
+            </tr>
+
+	        <tr>
+	            <th></th>
+	            <td class="ptb20">
+	                <input class="tijia" type="submit" name="Submit" id="Submit" value="提交" />
+	                <input class="congzi" type="reset" name="Submit2" value="重置" />
+	            </td>
+	        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+$('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+$('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+
+$('.is_fabric').find('.fbradio').click(function(){
+    var _this = $(this);
+	var _val  = _this.val();
+	if(_val == '1'){
+		_this.parents('.is_fabric').find('.fabrics').css('display','block')
+	}else{
+		_this.parents('.is_fabric').find('.fabrics').css('display','none')
+	}
+})
+
+
+$('.conditions').find('.newCondi').click(function(){
+	var _this = $(this);
+	var _key  = _this.parents('.conditions').find('input');
+	$.post("index.php?app=promotion&act=ajaxCondi",{key:_key.val()},function(data){
+		_key.val(data.retval.key)
+		_key.before(data.retval.content);
+		bindRm();
+	},"json");
+})
+function bindRm(){
+	$('.rmCondi').click(function(){
+	    $(this).parent('li').remove()
+	})
+}
+
+
+</script>
+{include file="footer.html"}

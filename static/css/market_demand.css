@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*需求市场*/
+.xqlb { font-weight: normal; font-size: 24px; color: #333; line-height: 30px; margin: 30px 0 20px 0; }
+.zhpx_box { width: 100%; height: 48px; background: #f3f3f3; }
+.zhpx_box ul { float: left; }
+.zhpx_box ul li { float: left; height: 48px; line-height: 48px; padding: 0 20px; background: url(../img/lbbg.gif) right 20px no-repeat; }
+.zhpx_box ul li .on { color: #a40001; }
+.zhpx_box div { float: right; width: 241px; height: 28px; border: 1px solid #ccc; background: #fff; margin: 9px 20px 0 0; }
+.zhpx_box div .input_1 { float: left; width: 200px; background: #fff; height: 100%; line-height: 100%; padding: 0 5px; color: #999; font-size: 12px; }
+.zhpx_box div .input_2 { float: right; width: 30px; height: 20px; border-left: 1px solid #f1f1f1; margin-top: 4px; background: #fff url(../img/icon_1.png) 8px -26px no-repeat; cursor: pointer; }
+.xqlb_ul { width: 100%; margin-bottom: 50px; }
+.xqlb_ul li { border-bottom: 1px solid #eee;}
+.xqlb_ul li a{ display:block; height:60px; padding:18px 0;}
+.xqlb_ul li a:hover { background: #fcfcfc; }
+.xqlb_ul .errorTip { text-align: center; padding: 100px 0 200px; }
+.xqlb_ul .errorTip p { font-size: 24px; padding-bottom:20px; }
+.xqlb_ul .errorTip a { font-size: 14px; }
+.xqlb_ul li .p1 { width: 8.4%; float: left; text-align: center; }
+.xqlb_ul li .p1 img { width: 60px; height: 60px; border-radius: 30px; }
+.xqlb_ul li .div_1 { float: left; width: 56%; }
+.xqlb_ul li .div_1 h1 { font-weight: normal; font-size: 15px; line-height: 24px; margin: 4px 0 6px 0; }
+.xqlb_ul li .div_1 h1 font { color: #a40001; font-size: 17px; padding-right: 10px; float: left; font-family: arial; }
+.xqlb_ul li .div_1 h1 div { background: #a40001; color: #fff; font-size: 12px; margin-left: 18px; float: left; position: relative; cursor: pointer; padding:0 4px 1px 4px; height: 20px; line-height: 20px; margin-top: 2px; }
+.xqlb_ul li .div_1 h1 div p { display: none; position: absolute; top: -44px; left: -70px; width: 158px; height: 32px; background: #000; color: #fff; line-height: 32px; text-align: center; border-radius: 4px; }
+.xqlb_ul li .div_1 h1 div p img { position: absolute; bottom: -5px; left: 46.5%; }
+.xqlb_ul li .div_1 h1 a { color: #333; float: left; }
+.xqlb_ul li .div_1 p { font-size: 12px; color: #666; line-height: 20px; }
+.xqlb_ul li .p2 { width: 16.6%; float: left; text-align: center; color: #666; }
+.xqlb_ul li .p2 font { font-size: 20px; font-family: Georgia; color: #bb442e; padding-right: 10px; }
+.xqlb_ul li .p3 { float: right; width: 19%; text-align: right; }
+.xqlb_ul li .p3 span { padding: 0 20px 0 10px; }

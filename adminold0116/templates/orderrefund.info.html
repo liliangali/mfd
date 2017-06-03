@@ -1,0 +1,106 @@
+{include file="header.html"}
+
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>退款申请</span></li>
+    <li><a class="btn4" href="index.php?app=orderrefund">返回申请列表</a></li>
+  </ul>
+</div>
+
+<div class="order_form">
+	<h1>基本信息：</h1>
+	<div class="tdare">
+	<ul>
+		<li><b>订单号：</b>{$info.order_sn} &nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php?app=order&amp;act=view&amp;id={$info.order_id}">查看订单详情></a></li>
+		<li><b>用户名ID：</b>{$info.user_name}</li>
+		<li><b>总价：</b>{$info.order_amount|price}</span>({$lang.preference}:{$info.discount|price})</li>
+		<li><b>订单状态：</b>
+            {if $info.extension eq 'fabricbook'}
+            {$lang.fabricBookOrderStatus.$info.o_status}
+            {else}
+            {$lang.ORDER_STATUS.$info.o_status}
+            {/if}
+		</li>
+	</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div class="order_form">
+	<h1>退款信息：</h1>
+	<div class="tdare">
+	<form method="post" action="index.php?app=orderrefund&act=process" method="POST">
+		<table width="100%" cellspacing="0" border="1">
+			
+			<tr>
+			  <td align="left"><b>业务员ID：</b>{$info.action_id}</td>
+			</tr>
+			<tr>
+			  <td align="left"><b>用户申请时间：</b>{$info.apply_time|date:complete}</td>
+			</tr>
+			<tr>
+			  <td align="left"><b>退款原因：</b>{$info.refund_reason}</td>
+			</tr>
+			<tr>
+			  <td align="left"><b>商品退还物流单号：</b>{$info.logistics_num}</td>
+			</tr>
+			<tr>
+			  <td align="left"><b>审核状态：</b>{if $info.status eq 1}通过审核{elseif $info.status eq 2}申请驳回{else}未审核{/if}</td>
+			</tr>
+			{if $info.status!=0}
+			<tr>
+			  <td align="left"><b>审核人：</b>{$info.verify_id}</td>
+			</tr>
+			<tr>
+			  <td align="left"><b>审核时间：</b>{$info.verify_time|date:Y-m-d H:i:s}</td>
+			</tr>
+			{/if}
+			<tr>
+			  <td align="left"> 
+			  {if $info.status eq 0 &&  $info.verify_time == 0 &&  $info.apply_time != 0}
+				  <input type="submit" class="formbtn"   value="允许退款" name="finished"/>
+				  <input type="hidden" name="id" value="{$info.id}">
+				  <input type="hidden" id="return_money" name="return_money" value="{$info.return_money}">
+				  <input type="hidden" name="order_id" value="{$info.order_id}">
+			  {/if}
+			  </td>
+			</tr>
+		</table>
+	</form>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div class="order_form">
+	<h1>撤销信息：</h1>
+	<div class="tdare">
+		<table width="100%" cellspacing="0" border="1">
+			<!--{foreach from=$refund_log_list key=key item=ls}-->
+			<tr>
+			  <td align="left">{$ls.name}</td>
+			</tr>
+			<!--{foreachelse}-->
+			<tr class="no_data">
+			  <td colspan="5">{$lang.no_data}</td>
+			</tr>
+			<!--{/foreach}-->
+		</table>
+	</div>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$(":submit").click(function(event) {
+		var return_money = $("#return_money").val();
+		var r = confirm("确认将"+return_money+"元退回到用户余额，并撤销与该订单相关的收益？");
+		if (r==true) {
+		  return true;
+		} else {
+		  return false;
+		}
+
+	});
+});
+</script>
+{include file="footer.html"}

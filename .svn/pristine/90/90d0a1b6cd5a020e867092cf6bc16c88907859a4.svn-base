@@ -1,0 +1,253 @@
+2016-07-22 17:00:43, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[66]------ ============处理前台请求开始=============== 
+2016-07-22 17:01:21, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[66]------ ============处理前台请求开始=============== 
+2016-07-22 17:01:22, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[45]------ =====签名报文开始====== 
+2016-07-22 17:01:22, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[51]------ 签名key=val&...串 >accessType=0&backUrl=http://local.mfdb2c.com/paynotify-account-.html&bizType=000201&certId=40220995861346480087409489142384722381&channelType=08&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://local.mfdb2c.com/paynotify-accountnotify-.html&merId=777290058134758&orderId=5070&reqReserved= 透传信息&signMethod=01&txnAmt=3627440&txnSubType=01&txnTime=20160722170122&txnType=01&version=5.0.0 
+2016-07-22 17:01:22, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[54]------ 摘要sha1x16 >cfde931505f20fba56a00c768210af2c7138cd73 
+2016-07-22 17:01:22, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[66]------ 签名串为 >OKw6mwZvdCDWg5ywSAJkrq+dy5+sHFPzuMeKV2vauj0jdccmE9kEjGHNaCQA68Y9Y3BwpwpMrysXIxxyqhuzmTLYHdIajjCGQsUkM+ZjLc8ghz9vRKqJvyp2JPvG1Pn7ya0i6S0lbdsYz1xOt5E7EOkrZ3digr/xleEOxxFsnbc= 
+2016-07-22 17:01:22, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[71]------ =====签名报文结束====== 
+2016-07-22 17:01:22, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[106]------ 前台请求地址为>https://gateway.95516.com/gateway/api/frontTransReq.do 
+2016-07-22 17:01:22, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[110]------ -------前台交易自动提交表单>--begin---- 
+2016-07-22 17:01:22, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[111]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://gateway.95516.com/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.0.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="certId" id="certId" value="40220995861346480087409489142384722381" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://local.mfdb2c.com/paynotify-accountnotify-.html" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://local.mfdb2c.com/paynotify-account-.html" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="08" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="merId" id="merId" value="777290058134758" />
+    <input type="hidden" name="orderId" id="orderId" value="5070" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20160722170122" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="3627440" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="defaultPayType" id="defaultPayType" value="0001" />
+    <input type="hidden" name="reqReserved" id="reqReserved" value=" 透传信息" />
+    <input type="hidden" name="signature" id="signature" value="OKw6mwZvdCDWg5ywSAJkrq+dy5+sHFPzuMeKV2vauj0jdccmE9kEjGHNaCQA68Y9Y3BwpwpMrysXIxxyqhuzmTLYHdIajjCGQsUkM+ZjLc8ghz9vRKqJvyp2JPvG1Pn7ya0i6S0lbdsYz1xOt5E7EOkrZ3digr/xleEOxxFsnbc=" />
+ 
+2016-07-22 17:01:22, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[112]------ -------前台交易自动提交表单>--end------- 
+2016-07-22 17:01:22, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[113]------ ============处理前台请求 结束=========== 
+2016-07-22 17:03:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[66]------ ============处理前台请求开始=============== 
+2016-07-22 17:03:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[45]------ =====签名报文开始====== 
+2016-07-22 17:03:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[51]------ 签名key=val&...串 >accessType=0&backUrl=http://local.mfdb2c.com/paynotify-account-.html&bizType=000201&certId=40220995861346480087409489142384722381&channelType=08&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://local.mfdb2c.com/paynotify-accountnotify-.html&merId=777290058134758&orderId=5070&reqReserved= 透传信息&signMethod=01&txnAmt=3627440&txnSubType=01&txnTime=20160722170353&txnType=01&version=5.0.0 
+2016-07-22 17:03:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[54]------ 摘要sha1x16 >ba9496a82114342609799699a66852214bef2121 
+2016-07-22 17:03:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[66]------ 签名串为 >RCgpuwMvHcSz4FfAWcszFAHVVU4dZUjLc5UG8UQ6WMH6Y8FpPF8FzCkghbNX3ZbBGn/iYmP7x4t8jIcsgy5fUJm3jxd9qw3dPn0eWtzKkoF7kr6in6Gojsn1OUUU2fONbpy6wy+Xa3P61IAqHV41CdWfynT1GwOtkcu/70iByqw= 
+2016-07-22 17:03:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[71]------ =====签名报文结束====== 
+2016-07-22 17:03:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[106]------ 前台请求地址为>https://101.231.204.80:5000/gateway/api/frontTransReq.do 
+2016-07-22 17:03:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[110]------ -------前台交易自动提交表单>--begin---- 
+2016-07-22 17:03:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[111]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://101.231.204.80:5000/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.0.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="certId" id="certId" value="40220995861346480087409489142384722381" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://local.mfdb2c.com/paynotify-accountnotify-.html" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://local.mfdb2c.com/paynotify-account-.html" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="08" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="merId" id="merId" value="777290058134758" />
+    <input type="hidden" name="orderId" id="orderId" value="5070" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20160722170353" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="3627440" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="defaultPayType" id="defaultPayType" value="0001" />
+    <input type="hidden" name="reqReserved" id="reqReserved" value=" 透传信息" />
+    <input type="hidden" name="signature" id="signature" value="RCgpuwMvHcSz4FfAWcszFAHVVU4dZUjLc5UG8UQ6WMH6Y8FpPF8FzCkghbNX3ZbBGn/iYmP7x4t8jIcsgy5fUJm3jxd9qw3dPn0eWtzKkoF7kr6in6Gojsn1OUUU2fONbpy6wy+Xa3P61IAqHV41CdWfynT1GwOtkcu/70iByqw=" />
+ 
+2016-07-22 17:03:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[112]------ -------前台交易自动提交表单>--end------- 
+2016-07-22 17:03:53, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[113]------ ============处理前台请求 结束=========== 
+2016-07-22 17:13:08, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[66]------ ============处理前台请求开始=============== 
+2016-07-22 17:13:08, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[45]------ =====签名报文开始====== 
+2016-07-22 17:13:08, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[51]------ 签名key=val&...串 >accessType=0&backUrl=http://local.mfdb2c.com/paynotify-account-.html&bizType=000201&certId=40220995861346480087409489142384722381&channelType=08&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://local.mfdb2c.com/paynotify-accountnotify-.html&merId=777290058134758&orderId=14691787888787&reqReserved= 透传信息&signMethod=01&txnAmt=64&txnSubType=01&txnTime=20160722171308&txnType=01&version=5.0.0 
+2016-07-22 17:13:08, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[54]------ 摘要sha1x16 >27eef8ac7e591397b3c4ce6a3705d14d7680a4f3 
+2016-07-22 17:13:08, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[66]------ 签名串为 >j0yO96ZTFulelCD0PMkKZ0e1RuNBURBdRROnbr4SJE/tJEgWRyem4ok3JkHV6nHaEYXCLOqZ7MmgVaNzpQW8CiAFq/9csiljTRtmCNrOqHzqXIydxg4c44qsmQAui3gIUT/MM4akcwHMYhUVMc8HTujtg30Neti5vDxMyU3N9+w= 
+2016-07-22 17:13:08, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[71]------ =====签名报文结束====== 
+2016-07-22 17:13:08, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[106]------ 前台请求地址为>https://101.231.204.80:5000/gateway/api/frontTransReq.do 
+2016-07-22 17:13:08, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[110]------ -------前台交易自动提交表单>--begin---- 
+2016-07-22 17:13:08, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[111]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://101.231.204.80:5000/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.0.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="certId" id="certId" value="40220995861346480087409489142384722381" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://local.mfdb2c.com/paynotify-accountnotify-.html" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://local.mfdb2c.com/paynotify-account-.html" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="08" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="merId" id="merId" value="777290058134758" />
+    <input type="hidden" name="orderId" id="orderId" value="14691787888787" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20160722171308" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="64" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="defaultPayType" id="defaultPayType" value="0001" />
+    <input type="hidden" name="reqReserved" id="reqReserved" value=" 透传信息" />
+    <input type="hidden" name="signature" id="signature" value="j0yO96ZTFulelCD0PMkKZ0e1RuNBURBdRROnbr4SJE/tJEgWRyem4ok3JkHV6nHaEYXCLOqZ7MmgVaNzpQW8CiAFq/9csiljTRtmCNrOqHzqXIydxg4c44qsmQAui3gIUT/MM4akcwHMYhUVMc8HTujtg30Neti5vDxMyU3N9+w=" />
+ 
+2016-07-22 17:13:08, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[112]------ -------前台交易自动提交表单>--end------- 
+2016-07-22 17:13:08, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[113]------ ============处理前台请求 结束=========== 
+2016-07-22 17:15:34, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[66]------ ============处理前台请求开始=============== 
+2016-07-22 17:15:34, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[45]------ =====签名报文开始====== 
+2016-07-22 17:15:34, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[51]------ 签名key=val&...串 >accessType=0&backUrl=http://local.mfdb2c.com/paynotify-account-.html&bizType=000201&certId=40220995861346480087409489142384722381&channelType=07&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://local.mfdb2c.com/paynotify-accountnotify-.html&merId=777290058134758&orderId=14691789344766&reqReserved= 透传信息&signMethod=01&txnAmt=64&txnSubType=01&txnTime=20160722171534&txnType=01&version=5.0.0 
+2016-07-22 17:15:34, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[54]------ 摘要sha1x16 >7a7bed77072306cf520186b599c15ea4b9dbde0e 
+2016-07-22 17:15:34, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[66]------ 签名串为 >gw9MAZ6AC1TI//wV/Gq9Q9pePLf9jQH6oMRLH93awqkpPZrbGg3SsWyIsxAMm2qYzktQxTn20PEheV0uo6L4wRfIQmTHk91pV5G9BW0zHhpw/yduIm/r55a+RcJV1mthdAt7C2Jaz1I5I5AqABRY6X9deo1jrXY+6DW0L7jMiiw= 
+2016-07-22 17:15:34, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[71]------ =====签名报文结束====== 
+2016-07-22 17:15:34, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[106]------ 前台请求地址为>https://101.231.204.80:5000/gateway/api/frontTransReq.do 
+2016-07-22 17:15:34, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[110]------ -------前台交易自动提交表单>--begin---- 
+2016-07-22 17:15:34, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[111]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://101.231.204.80:5000/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.0.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="certId" id="certId" value="40220995861346480087409489142384722381" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://local.mfdb2c.com/paynotify-accountnotify-.html" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://local.mfdb2c.com/paynotify-account-.html" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="07" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="merId" id="merId" value="777290058134758" />
+    <input type="hidden" name="orderId" id="orderId" value="14691789344766" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20160722171534" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="64" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="defaultPayType" id="defaultPayType" value="0001" />
+    <input type="hidden" name="reqReserved" id="reqReserved" value=" 透传信息" />
+    <input type="hidden" name="signature" id="signature" value="gw9MAZ6AC1TI//wV/Gq9Q9pePLf9jQH6oMRLH93awqkpPZrbGg3SsWyIsxAMm2qYzktQxTn20PEheV0uo6L4wRfIQmTHk91pV5G9BW0zHhpw/yduIm/r55a+RcJV1mthdAt7C2Jaz1I5I5AqABRY6X9deo1jrXY+6DW0L7jMiiw=" />
+ 
+2016-07-22 17:15:34, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[112]------ -------前台交易自动提交表单>--end------- 
+2016-07-22 17:15:34, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[113]------ ============处理前台请求 结束=========== 
+2016-07-22 17:17:14, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[66]------ ============处理前台请求开始=============== 
+2016-07-22 17:17:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[45]------ =====签名报文开始====== 
+2016-07-22 17:17:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[51]------ 签名key=val&...串 >accessType=0&backUrl=http://local.mfdb2c.com/paynotify-account-.html&bizType=000201&certId=40220995861346480087409489142384722381&channelType=07&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://local.mfdb2c.com/paynotify-accountnotify-.html&merId=777290058134758&orderId=14691790345994&reqReserved= 透传信息&signMethod=01&txnAmt=64&txnSubType=01&txnTime=20160722171715&txnType=01&version=5.0.0 
+2016-07-22 17:17:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[54]------ 摘要sha1x16 >b661cc4d7df02f2518e9d616ed69db290bb25c8d 
+2016-07-22 17:17:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[66]------ 签名串为 >kDbsRVkD3QfE03ptJUcNxoOn+qEulQBNKhWY6YRYdJTO09vz9feZ8vr8lHTJsyNkPtqd5wOsQmjnb6JhNwIJ212/5vrcRgY43oeB9KxC5QPyq5tNb2h0yK4uGaXhu0Qf9Q5AgxbYLBDeO5o0iRaR0LQzO/DqbaMgZAIpLt/2O4s= 
+2016-07-22 17:17:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[71]------ =====签名报文结束====== 
+2016-07-22 17:17:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[106]------ 前台请求地址为>https://101.231.204.80:5000/gateway/api/frontTransReq.do 
+2016-07-22 17:17:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[110]------ -------前台交易自动提交表单>--begin---- 
+2016-07-22 17:17:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[111]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://101.231.204.80:5000/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.0.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="certId" id="certId" value="40220995861346480087409489142384722381" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://local.mfdb2c.com/paynotify-accountnotify-.html" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://local.mfdb2c.com/paynotify-account-.html" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="07" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="merId" id="merId" value="777290058134758" />
+    <input type="hidden" name="orderId" id="orderId" value="14691790345994" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20160722171715" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="64" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="defaultPayType" id="defaultPayType" value="0001" />
+    <input type="hidden" name="reqReserved" id="reqReserved" value=" 透传信息" />
+    <input type="hidden" name="signature" id="signature" value="kDbsRVkD3QfE03ptJUcNxoOn+qEulQBNKhWY6YRYdJTO09vz9feZ8vr8lHTJsyNkPtqd5wOsQmjnb6JhNwIJ212/5vrcRgY43oeB9KxC5QPyq5tNb2h0yK4uGaXhu0Qf9Q5AgxbYLBDeO5o0iRaR0LQzO/DqbaMgZAIpLt/2O4s=" />
+ 
+2016-07-22 17:17:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[112]------ -------前台交易自动提交表单>--end------- 
+2016-07-22 17:17:15, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[113]------ ============处理前台请求 结束=========== 
+2016-07-22 17:22:47, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[66]------ ============处理前台请求开始=============== 
+2016-07-22 17:22:47, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[45]------ =====签名报文开始====== 
+2016-07-22 17:22:47, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[51]------ 签名key=val&...串 >accessType=0&backUrl=http://local.mfdb2c.com/paynotify-account-.html&bizType=000201&certId=40220995861346480087409489142384722381&channelType=07&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://local.mfdb2c.com/paynotify-accountnotify-.html&merId=777290058134758&orderId=14691793670951&reqReserved= 透传信息&signMethod=01&txnAmt=64&txnSubType=01&txnTime=20160722172247&txnType=01&version=5.0.0 
+2016-07-22 17:22:47, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[54]------ 摘要sha1x16 >c2ef8d41d495ead2a6aec5944adda6827b7ea55b 
+2016-07-22 17:22:47, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[66]------ 签名串为 >TIpwgoPFWdoykl3iEq3hpy+vVqdYpv/RVYaPpxShDPnoy4zDPrVSz8LGlrAKLOa73nmFk69IFo09lMqaV22nfEnvzv5TE7AuBnm7zqYCr7JXe9PS0WuVyVYSilk+wmzOgY/Vu/+McmaOhwCewPkUi/Zspps3sq3epphMrbE8elc= 
+2016-07-22 17:22:47, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[71]------ =====签名报文结束====== 
+2016-07-22 17:22:47, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[106]------ 前台请求地址为>https://101.231.204.80:5000/gateway/api/frontTransReq.do 
+2016-07-22 17:22:47, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[110]------ -------前台交易自动提交表单>--begin---- 
+2016-07-22 17:22:47, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[111]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://101.231.204.80:5000/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.0.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="certId" id="certId" value="40220995861346480087409489142384722381" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://local.mfdb2c.com/paynotify-accountnotify-.html" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://local.mfdb2c.com/paynotify-account-.html" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="07" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="merId" id="merId" value="777290058134758" />
+    <input type="hidden" name="orderId" id="orderId" value="14691793670951" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20160722172247" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="64" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="defaultPayType" id="defaultPayType" value="0001" />
+    <input type="hidden" name="reqReserved" id="reqReserved" value=" 透传信息" />
+    <input type="hidden" name="signature" id="signature" value="TIpwgoPFWdoykl3iEq3hpy+vVqdYpv/RVYaPpxShDPnoy4zDPrVSz8LGlrAKLOa73nmFk69IFo09lMqaV22nfEnvzv5TE7AuBnm7zqYCr7JXe9PS0WuVyVYSilk+wmzOgY/Vu/+McmaOhwCewPkUi/Zspps3sq3epphMrbE8elc=" />
+ 
+2016-07-22 17:22:47, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[112]------ -------前台交易自动提交表单>--end------- 
+2016-07-22 17:22:47, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[113]------ ============处理前台请求 结束=========== 
+2016-07-22 17:35:26, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[65]------ ============处理前台请求开始=============== 
+2016-07-22 17:35:26, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[45]------ =====签名报文开始====== 
+2016-07-22 17:35:26, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[51]------ 签名key=val&...串 >accessType=0&backUrl=http://local.mfdb2c.com/paynotify-account-.html&bizType=000201&certId=40220995861346480087409489142384722381&channelType=07&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://local.mfdb2c.com/paynotify-accountnotify-.html&merId=777290058134758&orderId=14691801266290&reqReserved= 透传信息&signMethod=01&txnAmt=64&txnSubType=01&txnTime=20160722173526&txnType=01&version=5.0.0 
+2016-07-22 17:35:26, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[54]------ 摘要sha1x16 >0d9dbcabd9e6f2be9449af86ea4dfe038dc3e691 
+2016-07-22 17:35:26, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[66]------ 签名串为 >NFw89MwRwvTdvfqG0BKG5Z9TFO/FxFg9pCD6PGLDhxquorXDN0c4cPi3nJF51tqv0lNjPF4izHkViT1tobHSDgOJS9zmqXT7YLs2Mc/8CRYK4cftkN44kP+LK9yRoSyPr4olqcuO9dp7wwS4gQNB3dAvqgtJL6RH6e9B6qMogKM= 
+2016-07-22 17:35:26, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\func\secureUtil.php ], Line[71]------ =====签名报文结束====== 
+2016-07-22 17:35:26, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[105]------ 前台请求地址为>https://101.231.204.80:5000/gateway/api/frontTransReq.do 
+2016-07-22 17:35:26, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[109]------ -------前台交易自动提交表单>--begin---- 
+2016-07-22 17:35:26, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[110]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://101.231.204.80:5000/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.0.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="certId" id="certId" value="40220995861346480087409489142384722381" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://local.mfdb2c.com/paynotify-accountnotify-.html" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://local.mfdb2c.com/paynotify-account-.html" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="07" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="merId" id="merId" value="777290058134758" />
+    <input type="hidden" name="orderId" id="orderId" value="14691801266290" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20160722173526" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="64" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="defaultPayType" id="defaultPayType" value="0001" />
+    <input type="hidden" name="reqReserved" id="reqReserved" value=" 透传信息" />
+    <input type="hidden" name="signature" id="signature" value="NFw89MwRwvTdvfqG0BKG5Z9TFO/FxFg9pCD6PGLDhxquorXDN0c4cPi3nJF51tqv0lNjPF4izHkViT1tobHSDgOJS9zmqXT7YLs2Mc/8CRYK4cftkN44kP+LK9yRoSyPr4olqcuO9dp7wwS4gQNB3dAvqgtJL6RH6e9B6qMogKM=" />
+ 
+2016-07-22 17:35:26, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[111]------ -------前台交易自动提交表单>--end------- 
+2016-07-22 17:35:26, INFO, 127.0.0.1, File[ E:\Ampps\www\local.mfdb2c.com\includes\payments\upop\upop.payment.php ], Line[112]------ ============处理前台请求 结束=========== 

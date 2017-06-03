@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>麦富迪讲堂</title>
+<link rel="stylesheet" type="text/css" href="/static/css/mobile_style.css" media="screen">
+<style>
+body { padding: 0; margin: 0; font-size: 12px; background: #eee; color: #333; font-family: "微软雅黑", "Arial"; min-width: 320px; -webkit-text-size-adjust: none; }
+h1, h2, h3, h4, h5, h6, p, form, div, dl, dd, dt, ul, li, img { padding: 0; margin: 0; list-style-type: none; border: 0; font-weight: normal;-webkit-tap-highlight-color:rgba(0,0,0,0) }
+input, textarea, select { outline: none; list-style-type: none; border: none; padding: 0; margin: 0; background: none; resize:none;}
+img, fieldset { border: 0; }
+input, img { vertical-align: middle; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif; }
+ul, ol { list-style: none; }
+em, address { font-style: normal; }
+a { color: #333; text-decoration: none; }
+body a { outline: none; blr:expression(this.onFocus=this.blur());}
+table { border-collapse: collapse; }
+.clearfix:after { content: "."; height: 0px; line-height: 0px; overflow: hidden; clear: both; display: block; visibility: hidden; }
+.clearfix { zoom: 1; }
+.jj_box { display: box; display: -webkit-box; display: -moz-box; orient: horizontal; width: 100%; }
+.jj_1 { box-flex: 1; -webkit-box-flex: 1; -moz-box-flex: 1; display: block; }
+input[type="button"], input[type="submit"], input[type="reset"], input[type="text"], input[type="password"],select,textarea{-webkit-appearance: none; border-radius: 0;}
+:-moz-placeholder {  /*Mozilla Firefox 4 to 18*/  color: #999; opacity: 10;}
+::-moz-placeholder { /* Mozilla Firefox 19+ */color: #999; opacity: 10;}
+input:-ms-input-placeholder,textarea:-ms-input-placeholder {color: #999; opacity: 10;}
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder { color: #999; opacity: 10;}
+
+.main {margin: 0 auto; max-width: 750px; min-width: 320px; width: 100%; overflow:hidden;}
+.dyhxx_box { background:#fff; border:1px solid #dfdfdf; border-radius:5px; padding:10px; margin:20px;}
+.dyhxx_box h1 { font-size:14px; color:#000; line-height:20px; margin-bottom:15px;}
+.dyhxx_box .p1 img { width:100%; height:100%;}
+.dyhxx_box .p2 {line-height:20px; font-size:12px; color:#999; margin:10px 0;}
+.dyhxx_box .ydqw { display:block; position:relative; height:24px; line-height:24px; overflow:hidden; border-top:1px solid #dfdfdf; color:#333; padding-top:5px;}
+.dyhxx_box .ydqw span { position:absolute; right:0; top:10px; display:block; width:8px; height:12px; background:url(public/images/icon_jt.jpg) left top no-repeat; background-size:8px 12px;}
+.dyhxx_box .ydqw font {display:block; color:#999; overflow:hidden; font-size:12px; position:absolute; right:15px; top:4px;}
+</style>
+
+</head>
+<body>
+<div class="main">
+	{if $articles}
+	{foreach from=$articles item=article}
+		<div class="dyhxx_box">
+		    <h1>{$article.title}</h1>
+		    <p class="p1"><a href="/article-views-{$article.article_id}.html"><img src="{$article.img}"></a></p>
+		    <p class="p2" style='overflow:hidden'>{$article.brief}</p>
+		    <a href="/article-views-{$article.article_id}.html" class="ydqw">阅读全文<font>{$smarty.now|date:m月d}</font><span></span></a>
+		 </div>
+	{/foreach}
+  <!-- <div class="dyhxx_box">
+    <h1>订阅号标题订阅号标题订阅号标题订阅号标题订阅号标题订阅号标题订阅号标题</h1>
+    <p class="p1"><img src="images/banner.jpg"></p>
+    <p class="p2">订阅号内容订阅号内容订阅号内容订阅号内容订阅号内容订阅号内容订阅号内容订阅号内容订阅号内容</p>
+    <a href="#" class="ydqw">阅读全文<font>10月20</font><span></span></a>
+  </div> -->
+  {/if}
+</div>
+{include file=footer.html}
+</body>
+</html>

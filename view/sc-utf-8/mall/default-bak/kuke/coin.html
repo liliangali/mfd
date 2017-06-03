@@ -1,0 +1,93 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+<!--sortlist end-->
+  
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">我的麦富迪币<a href="{link app=article act=view arg0=57}" class="sygz">麦富迪币规则</a></h1>
+     
+    <div class="m_wdktb">
+      <p class="p1">可用麦富迪币：<span>{$visitor.coin}</span></p>
+      <div class="p2">
+        <p class="m_djjf">冻结麦富迪币：{$visitor.freezes_coin} ( <span>何时冻结</span></p> <div class="ktbgz1" onMouseOver="this.className='ktbgz2'" onMouseOut="this.className='ktbgz1'"/><div>
+        <img src="{$img_url}/images/djal.gif" /><p>当您使用麦富迪币进行下订单支付时，订单未确认之前麦富迪币为冻结状态。</p></div></div>)</div>
+    </div>
+
+  <div class="m_ktbqh_box">
+   <UL class="ktb_ul">
+      <LI id="ti_1" class="now_hover" >麦富迪币获取</LI>
+    </UL>
+    <p class="clear"></p>
+
+
+    <div id="tj_1" class="ktbhq">
+       <div class="m_qbxgktb">
+         <a href="/index.php/kuke-coin.html" {if !$cate} class="on"{/if}>全部{if !$cate}<img src="{$img_url}/images/wsy.png" />{/if}</a>
+         <a href="/index.php/kuke-coin.html?cate=order" {if $cate == 'order' } class="on"{/if}>订单相关 {if $cate == 'order' }<img src="{$img_url}/images/wsy.png" />{/if}</a>
+         <a href="/index.php/kuke-coin.html?cate=sheji" {if $cate == 'sheji' } class="on"{/if}>设计相关 {if $cate == 'sheji' }<img src="{$img_url}/images/wsy.png" />{/if}</a>
+         <a href="/index.php/kuke-coin.html?cate=jiepai" {if $cate == 'jiepai' } class="on"{/if}>街拍相关 {if $cate == 'jiepai'}<img src="{$img_url}/images/wsy.png" />{/if}</a>
+         <p class="clear"></p>
+       </div>
+       
+       
+       <script>
+       
+       function getMonth(){
+    	   var month = $("#date").val();
+    	   location.href='/index.php/kuke-coin.html?month='+month;
+       }
+       
+       </script>
+       
+       <p class="zjsgydjl">
+         <select name='date' id='date' onchange='getMonth()'>
+         	<option value='1' {if $month == 1}selected{/if}>最近一个月的获取记录</option>
+           	<option value='3' {if $month == 3}selected{/if}>最近三个月的获取记录</option>
+           	<option value='6' {if $month == 6}selected{/if}>最近六个月的获取记录</option>
+         </select>
+       </p>
+     
+    
+      <table cellpadding="0" cellspacing="0" border="0" width="100%" class="wdyhj" >
+        <tr>
+          <th width="96px" style="padding-left:15px;">收益麦富迪币</th>
+          <th width="110">消费麦富迪币</th>
+          <th width="116">麦富迪币类型</th>
+          <th width="320">麦富迪币详情</th>
+          <th width="128">日期</th>
+        </tr>
+        
+          {foreach from=$coin key=k item=v }     
+        <tr>
+          <td style="padding-left:15px;">{if $v.opt =='add'}{$v.num}{else}0{/if}</td>
+          <td>{if $v.opt =='del'}{$v.num}{else}0{/if}</td>
+          <td>{$v.desc.desc}</td>
+          <td>{$v.msg}</td>
+          <td>{$v.date}</td>
+        </tr>  
+         {/foreach}
+        
+                    
+      </table>  
+      <p style="height:2px; width:100%; background:#fff; position:relative; top:-2px;"></p> 
+    </div>
+
+    <div id="tj_2"></div>
+    
+  </div>
+
+    
+    <div class="lulals_fy">    
+      <p>共{if $total}{$total}{else}0{/if}条记录</p>  
+      <div>
+        {$page_show}
+        <p class="clear"></p>
+      </div>
+    </div>
+    
+  </div>
+  <p class="clear"></p>
+</div>
+
+{include file="footer.html"}

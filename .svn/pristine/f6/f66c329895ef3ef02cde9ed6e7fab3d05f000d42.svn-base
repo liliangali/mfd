@@ -1,0 +1,152 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/orderinfo.css" rel="stylesheet">
+<div class="main">
+	<div class="orderInfo">
+		<h1>填写并核对订单信息</h1>
+		<form>
+			<div class="mt clearfix">
+				<h2>支付方式</h2>
+				<ul class="tabBtn clearfix" id="payMethod">
+   				{foreach from=$payments item=pmt name=npmt}
+    					<li data-id="{$pmt.payment_id}" data-code="{$pmt.payment_code}" {if $smarty.foreach.npmt.first} class="cur" {/if}>{$pmt.payment_name}</li>
+    				{/foreach}
+				</ul>
+			</div>
+			<div class="mt">
+				<h2 style="border:0">麦富迪币清单</h2>
+				<div class="qingdan">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<th>麦富迪币面值</th>
+							<th>增加积分（分）</th>
+							<th>数量</th>
+							<th>金额（元）</th>
+						</tr>
+						<tr>
+							<td>{$coin.facevalue} 元</td>
+							<td>{$coin.integral}</td>
+							<td>1</td>
+							<td>{$coin.price|price}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="list_box">
+				<div class="accordion clearfix">
+					<div class="tit">使用余额</div>
+					<div class="layer yue">
+					{if !$mInfo.pay_password}
+						<p>您的账户余额<b class="orange">{$mInfo.money|price}</b>为保障您的账户资金安全，余额暂不可用，请先 <a href="{link app=member act=safe}" class="blue">[开启支付密码]</a></p>
+					 {else}
+						<div>
+							<p>本次使用
+								<input type="text" class="txt" id="JyueTxt" data-max="">
+								您的账户余额：<b class="orange">{$mInfo.money|price}</b> 使用<b class="blue num">0</b>元，剩余<b class="orange money">0元</b></p>
+						</div>
+					{/if}
+					</div>
+				</div>
+				<div class="accordion clearfix">
+					<p class="payPwd">支付密码：
+						<input type="password" tip="支付密码" id="payPwd" >
+						<a href="{link app=member act=edit_pay_password_1}" class="blue">忘记支付密码？</a></p>
+				</div>
+			</div>
+			<div class="accounts mt clearfix">
+				<ul class="priceList">
+					<li><span class="fl">商品件数：</span><span class="fr">1件</span></li>
+					<dt id="total">
+					    {include file=total.html}
+					</dt>
+				</ul>
+				<input type="button" value="立即下单" id="orderDown" class="orderDown fr" />
+			</div>
+		</form>
+	</div>
+</div>
+<form action="{link app=order act=goToPay}" id="payform" method="post">
+<input type="hidden" name="obj" value="order" />
+<input type="hidden" name="os" value="" />
+</form>
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/luck/pc/luck.js"></script> 
+<script src="/public/static/pc/js/public.js"></script> 
+<script type="text/javascript" src="static/expand/jquery.form.js"></script> 
+<script>
+var surplus   = "{$mInfo.money|default:0}";
+/*======================*
+		支付方式
+ *======================*/
+$('#payMethod li').click(function(){
+	$(this).addClass('cur').siblings().removeClass('cur');
+	$('#paymentType').val($(this).data('id'))
+});
+
+$(document).ready(function(){
+	//余额
+	$("#JyueTxt").blur(function(){
+    		 var useSurplus = $(this).val();
+    		 if(!useSurplus) useSurplus = 0;
+    	   	 if(!/^\d+$/.test(useSurplus) && !/^\d+\.\d{1,2}/.test(useSurplus)){
+    	       	 alert("请输入正确的金额");
+    	       	 return false;
+    	   	 }
+    	   	 var $this = this;
+	   	     $.get("coinbuy-surplus.html",{surplus:useSurplus}, function(res){
+		   	    var res = eval("("+res+")");
+		   	    if(res.done== false){
+			   	     alert(res.msg);
+			   	     return false;
+			   	}
+			   	
+		   		$($this).val(res.retval.surplus);
+			   	$($this).parents(".layer").find(".blue.num").html(res.retval.surplus);
+				$($this).parents(".layer").find(".orange.money").html(res.retval.balance);
+			   	$("#total").html(res.retval.content);
+		   });
+    })
+
+    $('#orderDown').click(function(){
+    	var data ={};
+    	data.payid  = $("#payMethod").find(".cur").data("id");
+    	data.paypwd = $("#payPwd").val();
+    	
+        $.post("/coinbuy-create.html",data, function(res){
+            var res = eval("("+res+")");
+            if(res.done == false){
+                alert(res.msg);
+                return false;
+            }else{
+    		    if(res.retval.result){
+    			    //alert(res.retval.result);
+    			    location.href="coinbuy-paycenter.html?id="+res.retval.ordersn;
+    			    return false;
+    		    }else{
+        	    	$("#payform input[name=os]").val(res.retval.ordersn);
+        	    	$("#payform").submit();
+    		    }
+            }
+        })
+    })
+})
+
+/*======================*
+		各种优惠券
+ *======================*/
+$('.accordion .tit').click(function(){
+	var $this=$(this),$layer=$this.next('.layer');
+	var input = $layer.find("input");
+	if($layer.is(':visible')){
+		input.val(0);
+		input.blur();
+		$layer.slideUp('fast');
+		$this.removeClass('show')
+	}else{
+		input.val(surplus);
+		input.blur();
+		$layer.slideDown('fast');
+		$this.addClass('show');	
+	}
+});
+</script>
+{include file=../footer-new.html}

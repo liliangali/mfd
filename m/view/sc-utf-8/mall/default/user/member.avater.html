@@ -1,0 +1,30 @@
+{include file=member.header.html}
+   <div class="w">
+    <div class="AreaBox clearfix">
+        {include file=member.menu.html}
+       
+        <div class="con">
+            <h2 class="tit">个人资料</h2>
+                    <div class="information">
+                       
+                        <div class="photo width13">
+                         <img src="{$avatar}" width="100" height="100" />
+                         
+                         
+                         {$uc_avatarflash}
+                            
+                        </div>
+                       
+                    </div>
+    </div>
+</div>
+</div>
+
+
+{include file=footer.html}
+
+<script type="text/javascript">
+function updateavatar() {
+    window.location.href='/member-profile.html';
+}
+</script>

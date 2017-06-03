@@ -1,0 +1,9 @@
+<div class="m_shxx_bt"><p>收货人信息</p><span class="lightTitle"></span></div>
+<p class="clear"></p>
+
+{if !$address}
+<p class="mqmyshrxx">你目前还没有收货人信息</p>
+{else}
+<p class="mqmyshrxx">{$address.consignee} {$address.phone_mob}</p>
+<p class="mqmyshrxx">{$address.region_name} {$address.address}</p>
+{/if}

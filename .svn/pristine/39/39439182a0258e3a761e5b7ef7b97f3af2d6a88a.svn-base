@@ -1,0 +1,111 @@
+<!--头部/S-->
+{include file=header-new.html}
+<!--头部/E-->
+<title>mfd.麦富迪 -- 合伙人计划</title>
+<link rel="stylesheet" href="/public/global/animate.min.css">
+<link rel="stylesheet" href="/public/static/pc/css/start.css">
+<div class="panel panel-1" data-section-name="panel-1">
+	<div class="animate">
+		<img src="/public/static/pc/images/hehuo/s1_pic1.png" class="s1_pic1 animated" data-animated="zoomIn">
+		<img src="/public/static/pc/images/hehuo/s1_pic2.png" class="s1_pic2 animated" data-animated="fadeInUp">
+		<img src="/public/static/pc/images/hehuo/s1_pic3.png" class="s1_pic3 animated" data-animated="fadeInDown">
+	</div>
+	<i class="arrow"></i>
+</div>
+<div class="panel panel-2" data-section-name="panel-2">
+	<div class="animate">
+		<img src="/public/static/pc/images/hehuo/s2_pic1.png?v1" class="s2_pic1 animated" data-animated="bounceIn">
+		<img src="/public/static/pc/images/hehuo/s2_pic2.png?v1" class="s2_pic2 animated" data-animated="bounceIn">
+		<img src="/public/static/pc/images/hehuo/s2_pic3.png?v1" class="s2_pic3 animated" data-animated="rotateIn">
+		<img src="/public/static/pc/images/hehuo/s2_pic4.png?v1" class="s2_pic4 animated" data-animated="rotateIn">
+	</div>	
+	<i class="arrow"></i>
+</div>
+<div class="panel panel-3" data-section-name="panel-3">
+	<div class="animate">
+		<img src="/public/static/pc/images/hehuo/s3_pic1.png" class="s3_pic1 animated" data-animated="fadeInUp">
+		<img src="/public/static/pc/images/hehuo/s3_pic2.png" class="s3_pic2 animated" data-animated="fadeInUp">
+		<img src="/public/static/pc/images/hehuo/s3_pic3.png" class="s3_pic3 animated" data-animated="fadeInDown">
+		<img src="/public/static/pc/images/hehuo/s3_pic4.png" class="s3_pic4 animated" data-animated="fadeInUp">
+		<img src="/public/static/pc/images/hehuo/s3_pic5.png" class="s3_pic5 animated" data-animated="fadeInUp">
+		<img src="/public/static/pc/images/hehuo/s3_pic6.png" class="s3_pic6 animated" data-animated="fadeInDown">
+		<img src="/public/static/pc/images/hehuo/s3_pic7.png" class="s3_pic7 animated" data-animated="fadeInUp">
+		<img src="/public/static/pc/images/hehuo/s3_pic8.png" class="s3_pic8 animated" data-animated="fadeInUp">
+		<img src="/public/static/pc/images/hehuo/s3_pic9.png" class="s3_pic9 animated" data-animated="fadeInUp">
+	</div>	
+	<i class="arrow"></i>
+</div>
+<div class="panel panel-4" data-section-name="panel-4">
+	<div class="animate">
+		<img src="/public/static/pc/images/hehuo/s4_pic1.png" class="s4_pic1 animated" data-animated="fadeInRight">
+		<img src="/public/static/pc/images/hehuo/s4_pic2.png" class="s4_pic2 animated" data-animated="fadeInLeft">
+		<img src="/public/static/pc/images/hehuo/s4_pic3.png" class="s4_pic3 animated" data-animated="fadeInRB">
+		<div class="s4_pic4 animated" data-animated="fadeInUp">
+			<img src="/public/static/pc/images/hehuo/s4_pic4.png">
+			<a href="/down.html" class="android-download"></a>
+			<a href="/down.html" class="ios-download"></a>
+			<img src="/public/static/pc/images/hehuo/s4_pic5.png" class="s4_pic5 animated" data-animated="bounceIn">
+		</div>
+	</div>	
+	<!--底部/S-->
+	{include file=footer-new.html}
+	<!--底部/E-->
+</div>
+<ul class="pageNav" id="Jnav">
+	<li>
+		<i></i>
+		<span>简介</span>
+	</li>
+	<li>
+		<i></i>
+		<span>服务</span>
+	</li>
+	<li>
+		<i></i>
+		<span>招募</span>
+	</li>
+	<li>
+		<i></i>
+		<span>下载</span>
+	</li>
+</ul>
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/global/scrolify/jquery.scrollify.js"></script>
+<script>
+(function(){
+	$.scrollify({
+		section: '.panel',
+		scrollbars: true,
+	//		sectionName : "section-name",
+	//		easing: "easeInBounce",
+	//		scrollSpeed: 1100,
+		offset : 0,
+		before:function(i) {
+			if(i==0){
+				$('.head').slideDown('fast');
+			}else{
+				$('.head').slideUp('fast');		
+			}
+			$('#Jnav li').eq(i).addClass('cur').siblings().removeClass();
+			var obj=$('.panel').eq(i);
+			$('#Jnav').removeClass().addClass('pageNav nav-'+(i+1))
+			obj.find('[data-animated]').each(function(i, e) {
+				var cla=$(e).attr('data-animated');
+				$(e).addClass(cla).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+				  $(this).removeClass(cla);
+				});
+			});
+		}
+	});
+	$('#Jnav li').click(function(){
+		var i=$(this).index()+1;
+		$.scrollify.instantMove("#panel-"+i);
+		//$.scrollify.move("#panel-"+i);
+		$('#Jnav').removeClass().addClass('pageNav nav-'+i)
+	});
+	$('.panel .arrow').click($.scrollify.next)
+})()
+</script>
+</body>
+</html>

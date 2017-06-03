@@ -1,0 +1,424 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<!-- disable iPhone inital scale -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>定制</title>
+
+<!-- main css -->
+<link href="{res file=css/style.css}" rel="stylesheet" type="text/css">
+
+<!-- media queries css -->
+<link href="{res file=css/media-queries.css}" rel="stylesheet" type="text/css">
+
+<!-- html5.js for IE less than 9 -->
+<script src="{lib file=html5.js}"></script>
+
+<!-- css3-mediaqueries.js for IE less than 9 -->
+<script src="{lib file=css3-mediaqueries.js}"></script>
+
+<!-- z_style css -->
+<link href="{res file=css/z_style.css}" rel="stylesheet" type="text/css">
+<link href="{res file=css/z_media.css}" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{lib file=jquery-1.7.1.min.js}"></script>
+<script>
+$(document).ready(function(){
+    
+    function verifyinput(pos){
+
+            var inputname = pos.attr('name');
+            var inputval = pos.val();
+            var postip = pos.parent().find('.tip label');
+            var poszhenq = pos.parents('dl').find('.zhenq');
+
+            switch(inputname){
+                case 'username':
+                        if( inputval.length < 4 || inputval.length > 30 ){
+                            pos.focus();
+                            postip.text('10-30个字符');
+                            poszhenq.css('display','none');
+                            return false;
+                        }else{
+                            postip.text('');
+                            pos.parents('dl').find('.zhenq').css('display','block');
+                        }
+                    break;
+                case 'password':
+                        if(inputval.length < 4 || inputval.length > 30){
+                            pos.focus();
+                            postip.text('6-30个字符');
+                            poszhenq.css('display','none');
+                            return false;
+                        }else{
+                            postip.text('');
+                            pos.parents('dl').find('.zhenq').css('display','block');
+                        }
+                    break;
+                case 'pwd':
+                        if( $("input[type='password']").val() != inputval ){
+                            pos.focus();
+                            postip.text('两次输入的密码不一致');
+                            poszhenq.css('display','none');
+                            return false;
+                        }
+                        if(inputval.length < 6 || inputval.length > 30){
+                            pos.focus();
+                            postip.text('6-30个字符');
+                            poszhenq.css('display','none');
+                            return false;
+                        }
+                        postip.text('');
+                        pos.parents('dl').find('.zhenq').css('display','block');
+                    break;
+                case 'mobile':
+                        if( !validatemobile(inputval) ){
+                            return false;
+                        }
+                    break;
+                case 'check_code':
+                        if(inputval.length == 0){
+                        }else if(inputval.length != 4){
+                            pos.focus();
+                            postip.text('4个字符');
+                            poszhenq.css('display','none');
+                            return false;
+                        }else{
+                            postip.text('');
+                            pos.parents('dl').find('.zhenq').css('display','block');
+                        }
+                    break;
+                case 'login_username':
+                        if( (inputval.length < 4 || inputval.length > 30 ) || inputval == '请输入您的手机号/邮箱/昵称等登录名'){
+                            pos.focus();
+                            postip.text('10-30个字符');
+                            poszhenq.css('display','none');
+                            return false;
+                        }else{
+                            postip.text('');
+                            pos.parents('dl').find('.zhenq').css('display','block');
+                        }
+                    break;
+                case 'login_password':
+                        if(inputval.length < 4 || inputval.length > 30){
+                            pos.focus();
+                            postip.text('6-30个字符');
+                            poszhenq.css('display','none');
+                            return false;
+                        }else{
+                            postip.text('');
+                            pos.parents('dl').find('.zhenq').css('display','block');
+                        }
+                    break;
+            }
+    }
+    
+    function validatemobile(mobile)
+    {
+        var pos = $("#mf input[name='mobile']");
+        var postip = pos.parent().find('.tip label');
+        var poszhenq = pos.parents('dl').find('.zhenq');
+        if(mobile.length==0)
+        {
+            pos.focus();
+            postip.text('请输入手机号码！');
+            poszhenq.css('display','none');
+            return false;
+        }
+        
+        if(mobile.length!=11)
+        {
+            pos.focus();
+            postip.text('请输入有效的手机号码！');
+            poszhenq.css('display','none');
+            return false;
+        }
+        
+        var myreg = /^(((13[0-9]{1})|159|153|186|188)+\d{8})$/;
+        if(!myreg.test(mobile))
+        {
+            pos.focus();
+            postip.text('请输入有效的手机号码！');
+            poszhenq.css('display','none');
+            return false;
+        }
+        
+        postip.text('');
+        pos.parents('dl').find('.zhenq').css('display','block');
+        return true;
+    }
+    
+    $("#text-pwd").focus(function(){
+        if($(this).val() == "输入密码"){
+            $(this).hide();
+            $("#login_password").show().focus(); 
+        }
+    });
+    $("#login_password").blur(function(){
+        if($(this).val() == ""){
+            $(this).hide();
+            $("#text-pwd").show();
+        }
+    });
+    
+    // 发送验证码
+    $('.opgetcode').click(function(){
+        var mobile = $("#mf input[name='mobile']").val();
+        if( validatemobile(mobile) )
+        {
+            $.ajax({
+                type: 'POST',
+                url: "/index.php/member-entrance.html",
+                async: false,
+                data: 'mobile='+mobile+'&t=getcode',
+                dataType: 'json',
+                success: function(data){
+                    if(data.error == 0){
+                        time($('.opgetcode'));
+                    }
+                }
+             });
+        }
+    });
+    var wait = 60;
+    function time(btn) {
+        if (wait == 0) {
+            btn.attr("disabled",false);
+            btn.text("获取验证码");
+            wait = 60;
+        } else {
+            btn.attr("disabled", true);
+            btn.text(wait + "秒后可重新获取");
+            wait--;
+            setTimeout(function () { time(btn); }, 1000);
+        }
+    }
+    
+    // 处理表单验证
+    $("input[type='text'],input[type='password']").blur(function(){ verifyinput($(this)); });
+    
+    $('#mf').submit(function() {
+            var msg = $.ajax({
+                            type: 'POST',
+                            url: "/index.php/member-entrance.html",
+                            async: false,
+                            data: $(this).serialize()+'&t=reg'
+                        }).responseText;
+            
+            var ojberr = {1:'username',2:'username',3:'password',4:'pwd',5:'mobile',6:'mobile',7:'check_code'}
+            
+            if(msg==0){
+                window.location.href="/index.php/member-index.html";
+            }else if(msg==5){
+                if( !validatemobile($("input[name='username']").val()) ){
+                    return false;
+                }
+            }else if(msg && ojberr[msg] != '' && ojberr[msg] != undefined)
+            {
+                var pos = $("input[name='"+ojberr[msg]+"']");
+                var postip = pos.parent().find('.tip label');
+                var poszhenq = pos.parents('dl').find('.zhenq');
+                var tipcontent = '';
+                if(msg==1){
+                    tipcontent = '10-30个字符';
+                }else if(msg==2){
+                    tipcontent = '用户名已存在';
+                }else if(msg==3){
+                    tipcontent = '6-30个字符';
+                }else if(msg==4){
+                    tipcontent = '两次输入的密码不一致';
+                }else if(msg==6){
+                    tipcontent = '手机已存在';
+                }else if(msg==7){
+                    tipcontent = '验证码错误';
+                }
+                pos.focus();
+                postip.text(tipcontent);
+                poszhenq.css('display','none');
+                return false;
+            }
+        return false;
+    });
+    
+    
+    $('.relg-submit').click(function() {
+            if( verifyinput($("#login_username")) === false ){ return false; }
+            if( verifyinput($("#login_password")) === false ){ return false; }
+            var msg = $.ajax({
+                            type:'POST',
+                            url: "/index.php/member-entrance.html",
+                            async: false,
+                            data: $('#user_login').serialize()+'&t=login'
+                        }).responseText;
+            if(msg == 1){
+                var pos = $("#login_password");
+                var postip = pos.parent().find('.tip label');
+                var poszhenq = pos.parents('dl').find('.zhenq');
+                pos.focus();
+                postip.text('用户名或者密码错误');
+                poszhenq.css('display','none');
+            }else if(msg == 2) {
+                window.location.href="/index.php/member-index.html";
+            }
+        return false;
+    });
+    
+});
+</script>
+</head>
+<body>
+<!-- herder -->
+<header class="cart_header">
+   <div class="header_cart_top header_cart_topbg">
+        <div class="header_nav">
+		   <p class="header_nav_l">
+			   <a href="##">[ 青岛 ]</a> 
+			   <a href="##">登录</a> 
+			   / 
+			   <a href="#">注册</a>
+		   </p>
+		   <a href="#" class="cart-small"><img src="{res file=images/cart.png}"></a>
+		</div>
+   </div>
+   <div class="header_cen_box">
+		<div class="head-c-l">
+                    <span><img src="{res file=images/logo.png}"></span>
+			<strong>男装</strong>
+		</div>
+		<div class="head-c-r">
+		    <div class="head-search">
+			     <input type="text" name="search" value="输入关键字搜索..."  onblur="if(value==''){value='输入关键字搜索...'}" onfocus="if(value=='输入关键字搜索...'){value=''}" class="search-inp">
+				 <input type="image" src="{res file=images/cart-search.png}" class="search-submit">
+			</div>
+			<p class="clear"></p>
+			<div class="head-nav-box">
+			   <ul class="head-nav">
+			      <li><a href="###">首页</a></li>
+				  <li><a href="###">正装</a></li>
+				  <li><a href="###">休闲</a></li>
+				  <li><a href="###">礼服</a></li>
+				  <li><a href="###">弹性面料</a></li>
+				  <li><a href="###">新品发布</a></li> 
+				  <li><a href="###">活动专区</a></li> 
+				  <li><a href="###">如何定制</a></li> 
+				  <li><a href="###">试衣间</a></li> 				                          				  
+			   </ul>
+			   <div class="head-go-index"><a href="###">返回主站</a></div>
+			</div>
+		</div>
+   </div>
+</header>
+
+<!-- center -->
+<div class="cus_center_box" style="padding-bottom:0;">
+   <div class="relg-bg">
+    <div class="relg-box">
+	   <div class="relg-l">
+	       <h1>注册</h1>
+		    <form id="mf" action="" method="post">
+		   <dl>
+		      <dt>用户名</dt>
+			  <dd><input type="text" value="" name="username" class="relg-input">
+			      <p class="tip"><label></label></p>
+			  </dd>
+			  <dd>
+			      <span class="zhenq">正确</span>
+			  </dd>
+		   </dl>
+		   <dl>
+		      <dt>设置密码</dt>
+			  <dd><input type="password" value="" name="password" id="password" class="relg-input">
+                              <p class="tip"><label></label></p>
+			  </dd>
+			  <dd>
+			      <span class="zhenq">正确</span>
+			  </dd>
+		   </dl>
+		   <dl>
+		      <dt>请确认密码</dt>
+			  <dd><input type="password" value="" name="pwd" id="pwd" class="relg-input">
+                              <p class="tip"><label></label></p>
+			  </dd>
+			  <dd>
+                              <span class="zhenq">正确</span>
+			  </dd>
+		   </dl>
+		   <dl>
+		      <dt>验证手机</dt>
+			  <dd><input type="text" value="" name="mobile" class="relg-input">
+			      <p class="tip"><label></label></p>
+			  </dd>
+			  <dd>
+			      <span class="zhenq">正确</span>
+			  </dd>
+		   </dl>
+		   <dl>
+		      <dt>短信验证码</dt>
+			  <dd><input type="text" value="" name="check_code" class="relg-input yzm-input">
+			      <p class="tip"><label></label></p>
+			  </dd>
+                          <dd><button type="button" class="hqyzm opgetcode" style="border: none;">获取验证吗</button></dd>
+			  <dd>
+			      <span class="zhenq">正确</span>
+			  </dd>
+		   </dl>
+		    <dl>
+		      <dt></dt>
+			  <dd><input type="submit" value="立即注册" class="relg-submit"></dd>
+		   </dl>
+		   </form>
+	   </div>
+	   <div class="relg-l relg-lnoe">
+	       <h1>登录</h1>
+		   <form id="user_login" action="" method="post">
+		   <dl>
+			  <dd><input type="text" value="请输入您的手机号/邮箱/昵称等登录名" name="login_username" id="login_username" onfocus="if(value=='请输入您的手机号/邮箱/昵称等登录名'){value=''}" onblur="if(value==''){value='请输入您的手机号/邮箱/昵称等登录名'}" class="relg-input">
+			      <p class="tip"><label></label></p>
+			  </dd>
+		   </dl>
+		   <dl>
+			  <dd><input type="text" value="输入密码" class="relg-input" id="text-pwd">
+			      <input type="password" value="" id="login_password" class="relg-input" name="login_password" style="display:none;">
+			      <p class="tip"><label></label></p>
+			  </dd>
+		   </dl>
+		   <dl>
+			  <dd class="wjmm">
+			    <a href="###">忘记密码</a>
+			  </dd>
+ 		   </dl>
+		    <dl>
+			  <dd><input type="button" value="登录" class="relg-submit"></dd>
+		   </dl>
+		  </form>
+	   </div>
+	 </div>
+   </div>
+</div>
+<!-- footer -->
+<div class="cart-footer">
+    <div class="cart-footer-box">
+      <div class="cart-f-l">
+			<div class="thirteen columns">
+				<p style="color: #979797;">
+				The celebrities named or featured on Store Front have not endorsed recommended or approved the items offered on site
+				<br>
+				© 2014 Coolette. All rights reserved
+				</p>
+		    </div>
+	  </div>
+	  <div class="three columns ">
+			<div class="fxd-text">分享到</div>
+				<div>
+					<div id="foot-share" class="right bdsharebuttonbox bdshare-button-style0-32" data-tag="share_1" data-bd-bind="1416017920137">
+						<a class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+						<a class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+						<a class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+				    </div>
+			    </div>
+	       </div>
+	  </div>
+</div>
+</body>
+</html>

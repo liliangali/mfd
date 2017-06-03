@@ -1,0 +1,275 @@
+<?php
+use Cyteam\Shop\Type;
+use Cyteam\Shop\Type\Types;
+ini_set('date.timezone','Asia/Shanghai');
+error_reporting(E_ERROR);
+require_once "weipay/lib/WxPay.Api.php";
+require_once 'weipay/lib/WxPay.Notify.php';
+require_once 'weipay/log.php';
+require_once 'includes/functions.lib.php';
+/**
+ *    支付网关通知接口
+ *
+ *    @author    Garbin
+ *    @usage    none
+ */
+class PaynotifywApp extends MallbaseApp
+{
+    /**
+     *    支付完成后返回的URL，在此只进行提示，不对订单进行任何修改操作,这里不严格验证，不改变订单状态
+     *
+     *    @author    Garbin
+     *    @return    void
+     */
+    function index()
+    {
+        $logHandler= new CLogFileHandler("logs/".date('Y-m-d-H:i:s').'.log');
+        Log::Init($logHandler, 15);
+// file_put_contents("logs/log.log", json_encode($logHandler));
+        Log::DEBUG("begin notify");
+        $notify = new PayNotifyCallBack();
+        $notify->Handle(false);
+       // $data = $notify->GetValues();
+
+      // file_put_contents("logs/log.log", json_encode($data));
+    }
+}
+
+class PayNotifyCallBack extends WxPayNotify
+{
+    //查询订单
+    public function Queryorder($transaction_id)
+    {
+        $input = new WxPayOrderQuery();
+        $input->SetTransaction_id($transaction_id);
+        $result = WxPayApi::orderQuery($input);
+        //Log::DEBUG("query:" . json_encode($result));
+        if(array_key_exists("return_code", $result)
+            && array_key_exists("result_code", $result)
+            && $result["return_code"] == "SUCCESS"
+            && $result["result_code"] == "SUCCESS")
+        {
+            return true;
+        }
+        return false;
+    }
+
+    //重写回调处理函数
+    public function NotifyProcess($data, &$msg)
+    {
+        //Log::DEBUG("call back:" . json_encode($data));
+        $notfiyOutput = array();
+        
+        if(!array_key_exists("transaction_id", $data)){
+            $msg = "输入参数不正确";
+            return false;
+        }
+        //查询订单，判断订单真实性
+        if(!$this->Queryorder($data["transaction_id"])){
+            $msg = "订单查询失败";
+            return false;
+        }
+        
+        //=====  查询订单状态  =====
+        $order_mod = m('order');
+        $mod_bills = &m("paymentbills");
+        $bills_info =  $mod_bills->get("payment_sn = '{$data['out_trade_no']}' ");
+        if (!$bills_info)
+        {
+            $msg = "此订单不存在";
+            return false;
+        }
+        $order_sn = $bills_info['order_sn'];
+
+        $order_info = $order_mod->get("order_sn = $order_sn ");
+        if (!$order_info) 
+        {
+            $msg = "此订单不存在";
+            return false;
+        }
+        if ($order_info['status'] != ORDER_PENDING)
+        {
+            $msg = "此订单状态不是待付款";
+            return false;
+        }
+        
+      
+        
+        $order_status['target'] = ORDER_ACCEPTED;   //生产中
+        
+        
+// m('error')->add(array('content'=>5));
+// m('error')->add(array('content'=>json_encode($data,true)));
+        
+        //改变订单状态 
+       /*  if($order_info['has_measure'] == '1'){
+				        $order_status = ORDER_WAITFIGURE;   //待量体
+				    }else{
+				        $order_status = ORDER_ACCEPTED;   //已付款
+				    } */
+        $changeRes = $this->_change_order_status($order_info['order_id'], $order_info['extension'], $order_status);
+		
+       
+        
+        if ($changeRes){
+            $this->lastSomeThing($order_info);
+                  echo true;
+//            imports("orderLogs.lib");
+//            $oLogs = new OrderLogs();
+//            $oLogs->_record(array(
+//                'order_id' => $order_info['order_id'],
+//                'op_id'    => $order_info['user_id'],
+//                'op_name'  => $order_info['user_name'],
+//                'behavior' => 'create',
+//                'remark'   => '支付宝支付成功，支付单号为:'.$order_info['out_trade_sn'],
+//            ));
+        }
+
+        //调用春节放假短信
+       // jiaqi($order_info['order_id']);
+        
+       /*  $order_type  =& ot("normal");
+        $res =$order_type->respond_notify($data["out_trade_no"]);    //响应通知 */
+        return $changeRes;
+    }
+  
+   
+    /*
+     * 订单写入电商仓库
+     * */
+    function add_order_in($order_info){
+        $region_mod=m('region');
+		$goods_mod=m('goods');
+		 $orders_mod=m('order');
+        $regions=$region_mod->find('1=1');
+        $region='';
+        if($regions){
+            foreach($regions as $k1=>$v1){
+                $region[$v1['region_id']]=$v1['region_name'];
+                 
+            }
+        }
+        $ordergoods_mod=m('ordergoods');
+        $order_goods=$ordergoods_mod->find("order_id='{$order_info['order_id']}'");
+      
+        if($order_goods){
+            $ins='0';
+        
+            foreach($order_goods as $key=>$val){
+                if($val['type']=='fdiy'){
+                    $ins +=1;
+                }	
+	   $params=json_decode($val['params'],true); 
+	    $bns=$params['oProducts']['goods_id'];
+		$goodsn=$goods_mod->get("goods_id='{$bns}'");
+		
+		if($goodsn['bn']){
+			$order_goods[$key]['goodsn']=$goodsn['bn'];	  
+	
+		}else{
+			$order_goods[$key]['goodsn']='';
+	
+		}				
+		
+            }
+        }
+        if($ins==0){
+            require './../cron/edbdemo1.php';
+            $cl=new EdbDemo();
+            if($order_info['ship_area_id']){
+                $order_region=explode(',' , $order_info['ship_area_id']);
+            }
+            if($order_region){
+                $region1=$region[$order_region[0]];
+                $region2=$region[$order_region[1]];
+                $region3=$region[$order_region[2]];
+            }
+           
+            $re=$cl->edbTradeAdd($order_info,$num,$order_goods,$region1,$region2,$region3); //添加订单
+			 if($re){
+                $res=json_decode($re, true);	
+				if($res){
+					 foreach($res as $key=>$row){
+					if($row['items']['item'][0]['is_success']=='True'){
+						
+						  $edData = array(
+							'mes_status'   =>1,
+							);
+							
+						  $orders_mod->edit("order_sn = '{$order_info['order_sn']}'" ,$edData);
+					  
+						
+					}else{
+							$edData = array(
+							'mes_status'   =>2,
+							);
+					
+					     $orders_mod->edit("order_sn = '{$order_info['order_sn']}'" ,$edData);
+					
+					}
+
+				   }
+				}
+					
+				  
+			   }
+			
+        }
+        
+    }
+    /**
+     *    改变订单状态
+     *
+     *    @author    yhao.bai
+     *    @param     int $order_id
+     *    @param     string $order_type
+     *    @param     array  $notify_result
+     *    @return    void
+     */
+    function _change_order_status($order_id, $order_type = "normal", $notify_result)
+    {
+        /* 将验证结果传递给订单类型处理 */
+        $order_type  =& ot($order_type);
+        return $order_type->respond_notify($order_id, $notify_result);    //响应通知
+    
+    }
+    
+    public function lastSomeThing($order_info){
+        //支付成功短信通知
+       // fukuan($order_info['order_id']);
+
+
+        $sn = $order_info['out_trade_sn'];
+        $_mod_bills = &m("paymentbills");
+        if ($sn) 
+        {
+            $data['status'] = "TRADE_SUCCESS";
+            $data['end_time'] = time();
+            $_mod_bills->edit("payment_sn = $sn",$data);
+        }
+        $orderLogs[] = [
+            'order_id' => $order_info['order_id'],
+            'op_id'    => $order_info['user_id'],
+            'op_name'  => $order_info['user_name'],
+            'from'     => $order_info['status'],
+            'to'       => ORDER_ACCEPTED,
+            'behavior' => 'payment',
+            'remark'   => '在线支付成功，支付单号为:'.$order_info['out_trade_sn'],
+        ];
+
+        import('shopCommon');
+        ShopCommon::recordLogs($orderLogs);
+        ShopCommon::recordFinance($order_info);
+        ShopCommon::give_debit($order_info['final_amount'],$order_info['user_id']);
+        ShopCommon::f_goods($order_info);
+
+        //===== 执行成功 推送mes       =====
+        $goods = Types::createObj("fdiy");
+        $res = $goods->mesf($order_info['order_id']);
+         //订单写入数据库
+        $add_in=$this->add_order_in($order_info);
+        
+    }
+    
+}
+?>

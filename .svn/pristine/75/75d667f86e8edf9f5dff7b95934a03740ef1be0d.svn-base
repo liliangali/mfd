@@ -1,0 +1,215 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+    <!--用户中心左菜单部分 START-->
+    {include file = member.menu.html}
+    <!--用户中心左菜单部分 END-->
+    <div class="user_right user_rights fr">
+    	<div class="lntegral"><p class="mlntegral fl">商品返修</p></div>
+        <div class="fxlogistics">
+            <table width="100%" frame="void" rules="none" cellspacing="0" border="0" class="spqdxx">
+              <tr class="ycpxx">
+                <td>商品名称</td>
+                <td>量体信息</td>
+                <td>数量</td>
+                <td>金额</td>
+              </tr>
+
+
+              <!--{foreach from=$order_info.fx_info item=item key=k}-->
+                <tr>
+                    <td class="cpxxsj">
+                        <p class="fl cppic"><img src="{$item.img}" width="100" height="150"></p>
+                        <p class="fl cpxxword">{$item.goods_name}</p>
+                    </td>
+                    <td>{$item.size}</td>
+                    <td>1</td>
+                    <td>￥{$item.oprice}</td>
+                </tr>
+              <!--{/foreach}-->
+            </table>
+        </div>
+
+        <!--{if !empty($fx_info)}-->
+        <!--线上-->
+        {if $fx_info.sign==1}
+
+        <!--   xs  mianfei -->
+        {if $fx_info.free==1}
+        <form method="post" action="{link app=fx act=add}?addr_id=1" >
+             <div class="fxinfo">
+                <h5>填写返修信息</h5>
+                 <div class="fxxinx">
+                     <p class="fxsite fl">返修方式：</p>
+                     <p class="fl">线上返修</p>
+                 </div>
+                <div class="fxxinx">
+                    <p class="fxsite fl">寄回地址：</p>
+                    <p class="fl">{$fx_info.address}</p>
+                </div>
+
+                <div class="fxxinx">
+                    <p class="fxsite fl">返修原因：</p>
+                    <select name="fx_reason" id="fx_reason">
+                        <option value="all" >请选择</option>
+                        {html_options options=$fx_info.fx_reason }
+                    </select>
+                </div>
+                <div class="fxxinx">
+                    <p class="fxsite fl">物流单号：</p>
+                    <input type="text" name="wl_sn" id="wl_sn">
+                </div>
+                 <input type="hidden" name="order_id" id="order_id" value="{$order_id}">
+                <input type="button"  onclick="cotteFn.fx()" value="提交" class="fxbut">
+            </div>
+        </form>
+        {/if}
+
+
+        <!--xs   shoufei-->
+        {if $fx_info.free==0}
+        <form method="post" action="{link app=fx act=add}?addr_id=1">
+            <div class="fxinfo">
+                <h5>填写返修信息</h5>
+                <div class="fxxinx">
+                    <p class="fxsite fl">返修方式：</p>
+                    <p class="fl">线上返修</p>
+                </div>
+                <div class="fxxinx">
+                    <p class="fxsite fl">寄回地址：</p>
+                    <p class="fl">{$fx_info.address}</p>
+                </div>
+
+                <div class="fxxinx">
+                    <p class="fxsite fl">返修原因：</p>
+                    <select name="fx_reason" id="fx_reason" >
+                        <option value="all" >请选择</option>
+                        {html_options options=$fx_info.fx_reason }
+                    </select>
+                </div>
+                <div class="fxxinx">
+                    <p class="fxsite fl">物流单号：</p>
+                    <input type="text" name="wl_sn" id="wl_sn" value="">
+                </div>
+                <div class="fxxinx">
+                    <p class="fxsite fl">返修方案：</p>
+                    <textarea rows="" cols="" name="">{$fx_info.gy_method}</textarea>
+                </div>
+                <div class="fxxinx">
+                    <p class="fxsite fl">返修费用：</p>
+                    <p class="fl">{$fx_info.price}元</p>
+                </div>
+                <input type="hidden" name="order_id" id="order_id" value="{$order_id}">
+                <input type="button" class="fxbut" onclick="cotteFn.fx()" value="确认支付">
+            </div>
+        </form>
+        {/if}
+        {/if}
+
+
+
+
+        <!--线下-->
+        {if $fx_info.sign==2}
+        <!--mianfei-->
+        {if $fx_info.free==1}
+        <form method="post" action="{link app=fx act=add}?addr_id=1" >
+            <div class="fxinfo">
+                <h5>填写返修信息</h5>
+                <div class="fxxinx">
+                    <p class="fxsite fl">返修方式：</p>
+                    <p class="fl">到店返修</p>
+                </div>
+                <div class="fxxinx">
+                    <p class="fxsite fl">受理门店：</p>
+                    <p class="fl">{$fx_info.store_name}</p>
+                </div>
+                <div class="fxxinx">
+                    <p class="fxsite fl">门店地址：</p>
+                    <p class="fl">{$fx_info.address}</p>
+                </div>
+                <div class="fxxinx">
+                    <p class="fxsite fl">受理人：</p>
+                    <p class="fl">{$fx_info.liangti_name}</p>
+                </div>
+                <div class="fxxinx">
+                    <p class="fxsite fl">返修原因：</p>
+                    <select name="fx_reason" id="fx_reason">
+                        <option value="all" >请选择</option>
+                        {html_options options=$fx_info.fx_reason }
+                    </select>
+                </div>
+
+                <div class="fxxinx">
+                    <p class="fxsite fl">预约到店时间2：</p>
+                    <input id="to_time" type="text"  name="to_time" onClick="WdatePicker()"/>
+                </div>
+
+                <input type="hidden" name="order_id" id="order_id" value="{$order_id}">
+                <input type="button" value="提交" onclick="cotteFn.fx()" class="fxbut">
+            </div>
+        </form>
+        {/if}
+
+        <!--xx shoufei-->
+        {if $fx_info.free==0}
+        <div class="fxinfo">
+            <h5>填写返修信息</h5>
+            <div class="fxxinx">
+                <p class="fxsite fl">返修方式：</p>
+                <p class="fl">到店返修</p>
+            </div>
+            <div class="fxxinx">
+                <p class="fxsite fl">受理门店：</p>
+                <p class="fl">{$fx_info.store_name}</p>
+            </div>
+            <div class="fxxinx">
+                <p class="fxsite fl">门店地址：</p>
+                <p class="fl">{$fx_info.address}</p>
+            </div>
+            <div class="fxxinx">
+                <p class="fxsite fl">受理人：</p>
+                <p class="fl">{$fx_info.liangti_name}</p>
+            </div>
+            <div class="fxxinx" id="fx_reason">
+                <p class="fxsite fl">返修原因：</p>
+                <select name="fx_reason" id="fx_reason">
+                    <option value="all" >请选择</option>
+                    {html_options options=$fx_info.fx_reason }
+                </select>
+            </div>
+            <div class="fxxinx">
+                <p class="fxsite fl">预约到店时间22：</p>
+                <input id="to_time" type="text"  name="to_time" onClick="WdatePicker()"/>
+            </div>
+            <div class="fxxinx">
+                <p class="fxsite fl">返修方案：</p>
+                <textarea rows="" cols="" name="">{$fx_info.gy_method}</textarea>
+            </div>
+            <div class="fxxinx">
+                <p class="fxsite fl">返修费用：</p>
+                <p class="fl">{$fx_info.price}元</p>
+            </div>
+            <input type="hidden" name="order_id" id="order_id" value="{$order_id}">
+            <input type="button" class="fxbut" onclick="cotteFn.fx()" value="确认支付">
+        </div>
+
+        {/if}
+        {/if}
+
+
+        {/if}
+
+    </div>
+</div>
+
+{include file=../footer-new.html}
+
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/usercenter.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>
+<script src="/public/global/my97date/wdatepicker.js"></script>
+</body>
+</html>

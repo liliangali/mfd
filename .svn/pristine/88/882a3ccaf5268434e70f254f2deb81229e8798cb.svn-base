@@ -1,0 +1,10 @@
+{include file="header.html"}
+
+<div class="gwclb_box">
+ <div class="m_kgwc">
+      <div>您的衣橱内暂时没有衣服哦，当您<a href="{link app=member act=login}">登录</a>后，将显示出您收藏在衣橱内的衣服</br>或者，<a href="/index.php/dissertation.html">去定制中心</a>挑选我喜欢的衣服。</div>
+ </div>
+
+</div>
+
+{include file="login_footer.html"}

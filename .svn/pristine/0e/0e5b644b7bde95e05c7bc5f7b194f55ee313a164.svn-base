@@ -1,0 +1,164 @@
+2015-04-28 11:41:46, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[24]------ ============处理前台请求开始=============== 
+2015-04-28 11:43:08, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[24]------ ============处理前台请求开始=============== 
+2015-04-28 11:43:31, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[24]------ ============处理前台请求开始=============== 
+2015-04-28 11:43:33, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[24]------ ============处理前台请求开始=============== 
+2015-04-28 11:43:37, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[24]------ ============处理前台请求开始=============== 
+2015-04-28 11:43:39, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[24]------ ============处理前台请求开始=============== 
+2015-04-28 11:45:01, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[24]------ ============处理前台请求开始=============== 
+2015-04-28 11:45:12, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[24]------ ============处理前台请求开始=============== 
+2015-04-28 11:45:12, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[17]------ =====签名报文开始====== 
+2015-04-28 11:45:12, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[23]------ 签名key=val&...串 >accessType=0&backUrl=http://114.82.43.123/upacp_sdk_php/demo/utf8/BackReceive.php&bizType=000201&certId=124876885185794726986301355951670452718&channelType=08&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://localhost:8085/upacp_sdk_php/demo/utf8/FrontReceive.php&merId=888888888888888&orderId=20150428114512&reqReserved= 透传信息&signMethod=01&txnAmt=1&txnSubType=01&txnTime=20150428114512&txnType=01&version=5.0.0 
+2015-04-28 11:45:12, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[26]------ 摘要sha1x16 >a40d56c75e7dc5c2c91a9a1d0224a385dc8627c6 
+2015-04-28 11:45:12, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[34]------ 签名串为 >cr/LGad3RkAqDqPSEwtmIeJgZznZzhLazJwfA2u+je6+zqPkd5HsYs/MIiAh9x/42olNLXsPWqyygwrBNEQ6zNavWaHz1MQx9qVqXbqbIl7E1W44G9dw4qSfmsXX1deDiscDGH3azMnAO7r3hBdx0fOCNKslgv4X4L26RWZzYVY= 
+2015-04-28 11:45:12, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[39]------ =====签名报文结束====== 
+2015-04-28 11:45:12, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[55]------ 前台请求地址为>https://101.231.204.80:5000/gateway/api/frontTransReq.do 
+2015-04-28 11:45:12, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[59]------ -------前台交易自动提交表单>--begin---- 
+2015-04-28 11:45:12, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[60]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://101.231.204.80:5000/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.0.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="certId" id="certId" value="124876885185794726986301355951670452718" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://localhost:8085/upacp_sdk_php/demo/utf8/FrontReceive.php" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://114.82.43.123/upacp_sdk_php/demo/utf8/BackReceive.php" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="08" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="merId" id="merId" value="888888888888888" />
+    <input type="hidden" name="orderId" id="orderId" value="20150428114512" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20150428114512" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="1" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="defaultPayType" id="defaultPayType" value="0001" />
+    <input type="hidden" name="reqReserved" id="reqReserved" value=" 透传信息" />
+    <input type="hidden" name="signature" id="signature" value="cr/LGad3RkAqDqPSEwtmIeJgZznZzhLazJwfA2u+je6+zqPkd5HsYs/MIiAh9x/42olNLXsPWqyygwrBNEQ6zNavWaHz1MQx9qVqXbqbIl7E1W44G9dw4qSfmsXX1deDiscDGH3azMnAO7r3hBdx0fOCNKslgv4X4L26RWZzYVY=" />
+    <input type="submit" type="hidden">
+    </form>
+</body>
+</html> 
+2015-04-28 11:45:12, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[61]------ -------前台交易自动提交表单>--end------- 
+2015-04-28 11:45:12, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[62]------ ============处理前台请求 结束=========== 
+2015-04-28 12:43:13, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[24]------ ============处理前台请求开始=============== 
+2015-04-28 12:45:19, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[24]------ ============处理前台请求开始=============== 
+2015-04-28 12:45:19, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[17]------ =====签名报文开始====== 
+2015-04-28 12:45:19, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[23]------ 签名key=val&...串 >accessType=0&backUrl=http://114.82.43.123/upacp_sdk_php/demo/utf8/BackReceive.php&bizType=000201&certId=124876885185794726986301355951670452718&channelType=08&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://106.120.107.77/upacp_sdk_php/demo/utf8/FrontReceive.php&merId=700000000000001&orderId=20150428124519&reqReserved= 透传信息&signMethod=01&txnAmt=1&txnSubType=01&txnTime=20150428124519&txnType=01&version=5.0.0 
+2015-04-28 12:45:19, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[26]------ 摘要sha1x16 >755967b14097780507a7cd52a534a245516a9ab7 
+2015-04-28 12:45:19, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[34]------ 签名串为 >sBJn4Bs+0CXc6ClauSNhr/b7Jb4+SwyMvpcjbm2C8XFEmQvgHA4ezzw6X5t5x7n60SnDEfY/yrn/pC1MyuL6YQuF0+uso/INRCmOe47aW3ApOTmLcEuAREAXB5QzAs2kTB0qSa5K1PQqJun8DpKSCuaTbLFKSrjGWrmEVd8wmcM= 
+2015-04-28 12:45:19, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[39]------ =====签名报文结束====== 
+2015-04-28 12:45:19, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[56]------ 前台请求地址为>https://101.231.204.80:5000/gateway/api/frontTransReq.do 
+2015-04-28 12:45:19, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[60]------ -------前台交易自动提交表单>--begin---- 
+2015-04-28 12:45:19, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[61]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://101.231.204.80:5000/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.0.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="certId" id="certId" value="124876885185794726986301355951670452718" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://106.120.107.77/upacp_sdk_php/demo/utf8/FrontReceive.php" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://114.82.43.123/upacp_sdk_php/demo/utf8/BackReceive.php" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="08" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="merId" id="merId" value="700000000000001" />
+    <input type="hidden" name="orderId" id="orderId" value="20150428124519" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20150428124519" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="1" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="defaultPayType" id="defaultPayType" value="0001" />
+    <input type="hidden" name="reqReserved" id="reqReserved" value=" 透传信息" />
+    <input type="hidden" name="signature" id="signature" value="sBJn4Bs+0CXc6ClauSNhr/b7Jb4+SwyMvpcjbm2C8XFEmQvgHA4ezzw6X5t5x7n60SnDEfY/yrn/pC1MyuL6YQuF0+uso/INRCmOe47aW3ApOTmLcEuAREAXB5QzAs2kTB0qSa5K1PQqJun8DpKSCuaTbLFKSrjGWrmEVd8wmcM=" />
+    <input type="submit" type="hidden">
+    </form>
+</body>
+</html> 
+2015-04-28 12:45:19, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[62]------ -------前台交易自动提交表单>--end------- 
+2015-04-28 12:45:19, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[63]------ ============处理前台请求 结束=========== 
+2015-04-28 13:09:54, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[24]------ ============处理前台请求开始=============== 
+2015-04-28 13:09:54, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[17]------ =====签名报文开始====== 
+2015-04-28 13:09:54, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[23]------ 签名key=val&...串 >accessType=0&backUrl=http://114.82.43.123/v/backReceive&bizType=000201&certId=124876885185794726986301355951670452718&channelType=08&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://106.120.107.77/v/frontReceive&merId=700000000000001&orderId=20150428130954&reqReserved= 透传信息&signMethod=01&txnAmt=1&txnSubType=01&txnTime=20150428130954&txnType=01&version=5.0.0 
+2015-04-28 13:09:54, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[26]------ 摘要sha1x16 >01cd1e5b4f2300cd4673f62ea7f2f4968104716d 
+2015-04-28 13:09:54, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[34]------ 签名串为 >XUPU6SBqatI3rV44KesIBHIcX1dDn1XNTRn2QHJ1wMQIGpRa/LIwp6yAkJbT9M15DtEm0XsLkX+TagTVZrR9n2WEAiREn2Qr4scME7ki8Xq4ZBfv1760BrRqZySipwqpiiHaca5HZNJuBx5p333tYaDBxu/GZkEptPiF89o6z7I= 
+2015-04-28 13:09:54, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[39]------ =====签名报文结束====== 
+2015-04-28 13:09:54, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[56]------ 前台请求地址为>https://101.231.204.80:5000/gateway/api/frontTransReq.do 
+2015-04-28 13:09:54, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[60]------ -------前台交易自动提交表单>--begin---- 
+2015-04-28 13:09:54, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[61]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://101.231.204.80:5000/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.0.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="certId" id="certId" value="124876885185794726986301355951670452718" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://106.120.107.77/v/frontReceive" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://114.82.43.123/v/backReceive" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="08" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="merId" id="merId" value="700000000000001" />
+    <input type="hidden" name="orderId" id="orderId" value="20150428130954" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20150428130954" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="1" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="defaultPayType" id="defaultPayType" value="0001" />
+    <input type="hidden" name="reqReserved" id="reqReserved" value=" 透传信息" />
+    <input type="hidden" name="signature" id="signature" value="XUPU6SBqatI3rV44KesIBHIcX1dDn1XNTRn2QHJ1wMQIGpRa/LIwp6yAkJbT9M15DtEm0XsLkX+TagTVZrR9n2WEAiREn2Qr4scME7ki8Xq4ZBfv1760BrRqZySipwqpiiHaca5HZNJuBx5p333tYaDBxu/GZkEptPiF89o6z7I=" />
+    <input type="submit" type="hidden">
+    </form>
+</body>
+</html> 
+2015-04-28 13:09:54, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[62]------ -------前台交易自动提交表单>--end------- 
+2015-04-28 13:09:54, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[63]------ ============处理前台请求 结束=========== 
+2015-04-28 15:02:48, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[24]------ ============处理前台请求开始=============== 
+2015-04-28 15:02:48, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[17]------ =====签名报文开始====== 
+2015-04-28 15:02:48, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[23]------ 签名key=val&...串 >accessType=0&backUrl=http://106.120.107.77/v/backReceive&bizType=000201&certId=124876885185794726986301355951670452718&channelType=08&currencyCode=156&defaultPayType=0001&encoding=utf-8&frontUrl=http://106.120.107.77/v/frontReceive&merId=700000000000001&orderId=20150428150248&reqReserved= 透传信息&signMethod=01&txnAmt=1&txnSubType=01&txnTime=20150428150248&txnType=01&version=5.0.0 
+2015-04-28 15:02:48, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[26]------ 摘要sha1x16 >21c7f7f6e28e9f445000b5ae811970fa4850e57d 
+2015-04-28 15:02:48, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[34]------ 签名串为 >Fol1eCWbTgi9bx95QVYezqAUU6UOIb+yqRPtR1R5WLKAwmUzBFpdFEpnDvL3zL04AWX2iNla61QsjNb5/AMDxBmN+lAizBa/rAQFSY5vwEHizF751lB5mms+LIoX6Cpy+taf2nTUK4ACaNlhOlHxQwSsU9bAyUqaCN9x6H+wEz0= 
+2015-04-28 15:02:48, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/func/secureUtil.php ], Line[39]------ =====签名报文结束====== 
+2015-04-28 15:02:48, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[56]------ 前台请求地址为>https://101.231.204.80:5000/gateway/api/frontTransReq.do 
+2015-04-28 15:02:48, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[60]------ -------前台交易自动提交表单>--begin---- 
+2015-04-28 15:02:48, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[61]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="https://101.231.204.80:5000/gateway/api/frontTransReq.do" method="post">
+	    <input type="hidden" name="version" id="version" value="5.0.0" />
+    <input type="hidden" name="encoding" id="encoding" value="utf-8" />
+    <input type="hidden" name="certId" id="certId" value="124876885185794726986301355951670452718" />
+    <input type="hidden" name="txnType" id="txnType" value="01" />
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01" />
+    <input type="hidden" name="bizType" id="bizType" value="000201" />
+    <input type="hidden" name="frontUrl" id="frontUrl" value="http://106.120.107.77/v/frontReceive" />
+    <input type="hidden" name="backUrl" id="backUrl" value="http://106.120.107.77/v/backReceive" />
+    <input type="hidden" name="signMethod" id="signMethod" value="01" />
+    <input type="hidden" name="channelType" id="channelType" value="08" />
+    <input type="hidden" name="accessType" id="accessType" value="0" />
+    <input type="hidden" name="merId" id="merId" value="700000000000001" />
+    <input type="hidden" name="orderId" id="orderId" value="20150428150248" />
+    <input type="hidden" name="txnTime" id="txnTime" value="20150428150248" />
+    <input type="hidden" name="txnAmt" id="txnAmt" value="1" />
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156" />
+    <input type="hidden" name="defaultPayType" id="defaultPayType" value="0001" />
+    <input type="hidden" name="reqReserved" id="reqReserved" value=" 透传信息" />
+    <input type="hidden" name="signature" id="signature" value="Fol1eCWbTgi9bx95QVYezqAUU6UOIb+yqRPtR1R5WLKAwmUzBFpdFEpnDvL3zL04AWX2iNla61QsjNb5/AMDxBmN+lAizBa/rAQFSY5vwEHizF751lB5mms+LIoX6Cpy+taf2nTUK4ACaNlhOlHxQwSsU9bAyUqaCN9x6H+wEz0=" />
+    <input type="submit" type="hidden">
+    </form>
+</body>
+</html> 
+2015-04-28 15:02:48, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[62]------ -------前台交易自动提交表单>--end------- 
+2015-04-28 15:02:48, INFO, 106.120.107.74, File[ /var/www/fireFly/include/extensions/unionPay/UnionPay.php ], Line[63]------ ============处理前台请求 结束=========== 

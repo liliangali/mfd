@@ -1,0 +1,50 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=coupon">所有优惠券</a></li>
+    <li><a class="btn1" href="index.php?app=coupon&amp;act=add">添加优惠券</a></li>
+    <li><span>发放优惠券</span></li>
+  </ul>
+</div>
+<div class="info">
+    <form method="post" id="coupon_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">优惠券名称 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="coupon_id" type="hidden" name="cpn_id" value="{$data.cpn_id|escape}" />
+                    <input class="infoTableInput required" id="cpn_name" type="text" name="cpn_name" value="{$data.cpn_name|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">发放优惠券 :</th>
+                <td class="paddingT15 wordSpacing5">
+{input_obj callback="getMembers" name="member_id" value="" id="member_id" model="member" text="选择会员"}                   
+<div id="send_members">
+
+</div>
+                </td>
+            </tr>
+            
+	        <tr>
+	            <th></th>
+	            <td class="ptb20">
+	                <input class="tijia" type="submit" name="Submit" id="Submit" value="提交" />
+	                <input class="congzi" type="reset" name="Submit2" value="重置" />
+	            </td>
+	        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+function getMembers(res){
+    $.ajax({
+        url    : "index.php?app=coupon&act=ajax_send_member",
+        data   : "ids="+res.ids,
+        success: function(result){
+            $("#send_members").html(result);
+        }
+    });
+}
+</script>
+{include file="footer.html"}

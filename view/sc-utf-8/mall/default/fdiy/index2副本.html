@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<link href="/diy/css/diy.css" type="text/css" rel="stylesheet" />
+<link href="/diy/css/animate.min.css" type="text/css" rel="stylesheet" />
+<script src="/diy/js/jquery-1.8.3.min.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+
+<style>
+	#clipArea {width:520px; z-index:100; height: 240px; position:absolute; top:56px; left:0;}
+	#clipBtn {display:none; width:72px; background:#e66800; height:32px; line-height:32px; border:0; color:#fff; position:absolute; top:250px; left:50%; margin-left:-30px; z-index:999; cursor:pointer;}
+</style>
+
+</head>
+
+<body class="body">
+{include file=fdiy/dict_header.html}
+
+<!--定制模块开始-->
+
+<div class="diy_box">
+
+
+  <!--箭头导向-->
+  <p class="jt_01"></p>
+  <p class="jt_02"></p>
+  <p class="jt_03"></p>
+  <p class="jt_04"></p>
+  <p class="jt_05"></p>
+
+  <div class="diy_info">
+
+
+      {foreach from=$clist item=item name=name}
+      <div class="diymore" id="diy0{$smarty.foreach.name.iteration}">
+          <i class="axuan{$item.cate_id}" ></i><span>{$item.cate_name}</span>
+      </div>
+      {/foreach}
+
+      <div class="diymore" id="diy04">
+          <i class=" axuan04"></i><span>包装规格</span>
+      </div>
+
+      <div class="diymore" id="diy05">
+          <i class=" axuan05"></i><span>个性设计</span>
+      </div>
+
+      <div class="dog_info">
+        <img src="{$quanzhong_info.small_img}" class="dog_img">
+        <h1>{$quanzhong_info.cate_name}</h1>
+        <h2>主人寄语：<i class="zword">{$word}</i></h2>
+        <h2>
+            阶段: <i class="sxuan34"></i><span></span>
+            口味: <i class="sxuan6"></i><br>
+            包装: <i class="sxuan16"></i><span></span>
+            规格: <i class="sxuan11"></i><br>
+            功效: <i class="sxuan1"></i></h2>
+      </div>
+
+  </div>
+
+</div>
+
+
+<!--购买信息-->
+<div class="buy_info" data-id="0.00">
+  数量：<i class="jian"></i><input type="text" class="bnum goods_num" value="1">
+    <i class="jia"></i>
+    <span>总价：¥0.00</span>
+    <button class="butt2 addCart1">快速购买</button>
+    <button class="butt addCart">加入购物车</button>
+</div>
+
+
+
+<!--弹层信息-->
+<div id="infobox">
+
+    <span class="close icon btns"></span>
+
+    {foreach from=$clist item=item name=name}
+    <div id="diy0{$smarty.foreach.name.iteration}_info">
+       <div class="show_con clearfix">
+         <ul class="ul_list clearfix xuan{$item.cate_id}"  s-type="{$item.is_box}"  data-name="{$item.cate_name}">
+             {foreach from=$item.children item=item2 name=name1}
+           <li class="rule{$item2.cate_id} {if $item2.is_def eq 1}on{/if}" data-fprice="{$item2.fprice}" data-uprice="{$item2.uprice}" data-content="{$item2.gongxiao_content}"  ve="{$item2.ve}" sid="{$item2.cate_id}" pid="{$item.cate_id}" >{$item2.cate_name}</li>
+             {/foreach}
+         </ul>
+           {if $item.cate_id == 1}
+         <div class="ts_text"><b>温馨提示</b>
+             <p class="gongxiao_content">怀孕期的狗狗不宜添加更多的功能，麦麦为您推荐上述两个功能</p>
+             <p>选择三种功效是为保证最大功效，如果您选择更多的功效，将降低功效的有效性，如您希望更多功效，建议您重新下单</p>
+         </div>
+         {/if}
+         <button class="button closes btns" style="clear:both;">确 定</button>
+       </div>
+
+    </div>
+   {/foreach}
+
+
+    <div id="diy04_info">
+
+       <div class="show_con clearfix">
+         <ul class="ul_list ul2 xuan16"  s-type="0"  data-name="规格" style="padding-bottom:20px;">
+
+             {foreach from=$baozhuang_list.children item=item2 name=name}
+           <li class="bg{$smarty.foreach.name.iteration} rule{$item2.cate_id} {if $item2.is_def eq 1}on{/if}" data-fprice="{$item2.fprice}" data-uprice="{$item2.uprice}" data-content="{$item2.gongxiao_content}"  ve="{$item2.ve}" sid="{$item2.cate_id}" pid="16"><i></i>{$item2.cate_name}</li>
+             {/foreach}
+
+         </ul>
+
+         <div class="gg_tab clearfix">
+
+         <ul class="ul_list ul3 xuan11 clearfix" s-type="0" data-name="包装" style="padding-bottom:45px;">
+             {foreach from=$guige_list.children item=item2 name=name}
+           <li class="rule{$item2.cate_id} {if $item2.is_def eq 1}on{/if}" data-fprice="{$item2.fprice}" data-uprice="{$item2.uprice}" data-content="{$item2.gongxiao_content}"  ve="{$item2.ve}" sid="{$item2.cate_id}" pid="11">{$item2.cate_name}</li>
+             {/foreach}
+         </ul>
+
+       </div>
+
+       <button class="button closes btns" style="clear:both;">确 定</button>
+
+
+       </div>
+    </div>
+
+
+    <div id="diy05_info">
+
+      <div class="show_con clearfix">
+
+
+          <div class="tag_box">
+
+            <div id="keydown">
+
+              <div class="tag_ipt">
+               <label><span class="span1">狗狗名称</span><input type="text" name="dog_name" class="input_txt dog_ipt" /></label>
+               <label><span class="span2"></span><input placeholder="狗狗生日" type="text" name="dog_date"  id="demo" class="input_txt dog_date laydate-icon" /></label>
+              </div>
+
+              <div class="jiyu">
+               <label><span>主人寄语</span><textarea name="dog_desc" class="input_txt" placeholder="主人寄语：{$word}"></textarea></label>
+              </div>
+            </div>
+
+              <p class="tag_text">亲，选择一张狗狗与你相伴的照片，亲手做一个独一无二的包装设计吧！</p>
+
+              <div id="clipArea" style="display: none"></div>
+              <button id="clipBtn">截取</button>
+
+              <div class="tag_img">
+                <p class="file_box">
+                 <input name="" type="file" id="file">
+                </p>
+
+                <div id="view" class="file_img"></div>
+
+
+              </div>
+
+          </div>
+
+          <button class="button closes btns" style="clear:both; margin-top:35px;">确 定</button>
+
+
+
+      </div>
+    </div>
+
+</div>
+
+<div id="fade_bg"></div>
+
+<!--定制模块结束-->
+
+<script src="/diy/js/iscroll-zoom.js"></script>
+<script src="/diy/js/hammer.js"></script>
+<script src="/diy/js/lrz.all.bundle.js"></script>
+<script src="/diy/js/jquery.photoClip.js"></script>
+<script src="/diy/js/laydate.js"></script>
+
+<script>
+    //document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    var clipArea = new bjj.PhotoClip("#clipArea", {
+        size: [180, 180],
+        outputSize: [640, 640],
+        file: "#file",
+        view: "#view",
+        ok: "#clipBtn",
+        loadStart: function() {
+            $("#clipArea").css("display",'');
+            console.log("照片读取中");
+            $('.jieqtu').hide();
+			$('#clipBtn').show();
+        },
+        loadComplete: function() {
+            console.log("照片读取完成");
+        },
+        clipFinish: function(dataURL) {
+            $("#clipArea").css("display",'none');
+			$('#clipBtn').hide();
+            $('.jieqtu').show();
+
+            $('.file_img').attr('src',dataURL);
+            $(".zrtx").attr('src',dataURL);
+            console.log(dataURL);
+        }
+    });
+
+
+/*
+    laydate({
+
+        elem: '#J-xl'
+
+    });
+
+
+
+    document.getElementById('J-xl-2-btn').onclick = function(){
+
+        laydate({
+
+            elem: '#J-xl-2'
+
+        });
+
+    };
+
+
+
+    laydate({
+
+        elem: '#J-xl-3'
+
+    });
+
+
+
+    laydate({
+
+        elem: document.getElementById('J-xl-4')
+
+    });
+
+	*/
+
+    //clipArea.destroy();
+
+!function () {
+
+//laydate.skin('molv');
+
+laydate({
+   elem: '#demo'
+})
+
+}();
+</script>
+
+<script>
+
+(function() {
+	$(".diy_info>div:lt(5)").each(function(i){//遍历按钮点击事件
+		$(".diymore>i").eq(i).attr("data",i+1);
+		$(".closes").eq(i).attr("data",i+1);
+		$(".close").eq(i).attr("data",i+1);
+	})
+	$(".diymore>i").eq(0).addClass("animated pulse on infinite")
+})()
+//选择当前属性后添加下一个属性动画提示
+$('.btns').click(function(){
+	var id = $(this).attr('data');
+	$("#infobox").fadeOut(500);
+	$('#diy0'+id+'_info').fadeOut(500);
+	var oFangXiang=$(".diy_box>p");
+	var oDivs=$(".diymore>i");
+	if(!oDivs.eq(id).attr("select")){
+		oDivs.eq(id).attr("select","select");
+
+		if(id == 5){
+			oDivs.eq(id-1).removeClass("animated pulse infinite");
+		}else{
+			oDivs.each(function(i){
+				//if(id<i){
+						oDivs.removeClass("animated pulse infinite");
+				//}
+			})
+			oDivs.eq(id).addClass("animated pulse cur infinite");
+		}
+		oFangXiang.eq(id-1).show(function(){
+			oDivs.eq(id-1).addClass("on");
+			oFangXiang.eq(id-1).animate({'height':"100%"},1000,function(){
+				oDivs.eq(id-1).removeClass("cur");
+			});
+		});
+
+	}
+	attrClik(id);
+})
+//按id绑定属性点击事件；
+function attrClik(id){
+	var id=id;
+	var obj=$(".diymore>i");
+	obj.eq(id).click(function(){
+		var id = $(this).attr('data');
+		$("#infobox").fadeIn(500);
+		$('#diy0'+id+'_info').fadeIn(500);
+	})
+	return false
+
+}
+$(function(){
+	 attrClik(0)
+})
+
+
+</script>
+
+<!--弹层样式-->
+<script>
+$(function(){
+    $("textarea[name=dog_desc]").keyup(function () {
+        var tex = $(this).val();
+        $(".zword").text(tex);
+    });
+
+
+$(".ul2 li").click(function(){
+		$(this).eq($(this).index(this)).addClass("on").siblings().removeClass("on");
+		$(".gg_tab .ul3").eq($(".ul2 li").index(this)).show().siblings().hide();
+	});
+
+
+	//导航
+   $('.menu_img').click(function(){
+	  $('.menu_position').animate({width:'250px'});
+	  $(this).hide();
+	  $('.menu_img2').show();
+	  $('.menu').fadeIn();
+	  });
+
+   $('.menu_img2').click(function(){
+	  $('.menu_position').animate({width:'100px'});
+	  $(this).hide();
+	  $('.menu_img').show();
+	  $('.menu').fadeOut();
+	  });
+
+
+
+	//弹层
+
+	$('.diymore i').click(function() {
+		this.blur();
+	});
+
+	//隐藏在信息框中的所有项目说明
+	//$("#infobox > div").css("display", "none");
+    $("#keydown .input_txt").each(function(){
+     var thisVal=$(this).val();
+     //判断文本框的值是否为空，有值的情况就隐藏提示语，没有值就显示
+     if(thisVal!=""){
+       $(this).siblings("span").hide();
+      }else{
+       $(this).siblings("span").show();
+      }
+      $(this).focus(function(){
+       $(this).siblings("span").hide();
+      }).blur(function(){
+        var val=$(this).val();
+        if(val!=""){
+         $(this).siblings("span").hide();
+        }else{
+         $(this).siblings("span").show();
+        }
+       })
+     })
+});
+
+try{
+    $rule ={$rule};//冲突配置
+    $mid='{$mid}';
+    $cid='{$cid}';
+    $sid='{$sid}';
+    $gxmaxnum='{$maxnum}';
+    $effectprice='{$aprice}';
+    $quanzhong = "{$quanzhong}";
+    $quanzhong_son = "{$quanzhong_son}";
+}catch(e){}
+
+</script>
+
+<script src="/diy/js/diy2.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>
+</body>
+
+</html>

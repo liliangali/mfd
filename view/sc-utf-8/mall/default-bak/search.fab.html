@@ -1,0 +1,30 @@
+{include file="header2.html"}
+<link rel="stylesheet" type="text/css" href="../../static/css/search.css">
+<div class="w">
+{include file="search.title.html"}
+    <ul class="picList clearfix">
+    {foreach from=$list item=fabric}
+    	<li>
+        	<div class="item">
+                <a href="{link app=fabrics act=info arg0=$fabric.part_id}" target="_blank" class="pic"><img src="{$fabric.part_small}" width="245" height="320" /></a>
+                <div class="info">
+                    <p class="p1">编号{$fabric.goods_sn}</p>
+                    <p class="p2">人气<em class="red"> {$fabric.click_count}</em></p>
+                    <p class="p3">{$fabric.zujian_brief}</p>
+                    <div class="btn">
+                        <a href="javascript:void(0)" onclick="{if $visitor.user_id}addFavorite('{$fabric.part_id}','{$fabric.part_name}'){else}login(function(){addFavorite('{$fabric.part_id}','{$fabric.part_name}')}){/if}" class="btnFavorite"><i></i>收藏</a>
+                        <a href="{link app=fabrics act=info arg0=$fabric.part_id}" class="btnInfo"><i></i>详情</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    {/foreach}
+    </ul>
+ 
+ </div>
+    <!--翻页开始-->
+{include file="page.normal.html"}
+<!--翻页结束-->  
+</div>
+<script  type="text/javascript" src="static/js/material.js"></script>
+{include file="footer.html"}

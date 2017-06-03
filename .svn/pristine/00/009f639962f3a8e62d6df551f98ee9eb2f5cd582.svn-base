@@ -1,0 +1,11 @@
+<div class="sjlb">
+      <ul>
+   {foreach from=$custom_list item=v}
+    <li>
+     <p class="p1"><a href="{link app=custom arg=$v.id}"><img src="{$v.source_img}"></a></p>
+     <p class="p2"><a href="{link app=custom arg=$v.id}">{$v.name}</a></p>
+     <p class="p3">￥{$v.price} </p>
+    </li>
+    {/foreach}
+   </ul>
+</div>

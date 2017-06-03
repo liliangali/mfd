@@ -1,0 +1,89 @@
+{include file="header.html"}
+
+<div id="rightTop">
+ <ul class="subnav">
+        <li><span>创业者认证</span></li>
+   </ul>
+
+</div>
+<div class="mrightTop1 info">
+  <div class="fontl">    
+    <form method="get">
+    
+      <input type="hidden" name="app" value="authcyz" />
+      <input type="hidden" name="act" value="index" />
+         <select class="querySelect" name=field_name >{html_options options=$query_fields selected=$smarty.get.field_name}
+         </select>
+        <input type="text"   name="field_value" value="{$smarty.get.field_value|escape}"/>
+        提交时间从：<input class="queryInput2" type="text" value="{$query.add_time_from}" style="width:80px" id="add_time_from" name="add_time_from" class="pick_date" />
+        至：<input class="queryInput2" type="text" value="{$query.add_time_to}" style="width:80px" id="add_time_to" name="add_time_to" class="pick_date" />
+
+        会员类别： <select class="querySelect" name=user>
+         <option value="">全部</option>
+         {html_options options=$user_fields selected=$smarty.get.user}
+         </select>
+      
+      	审核状态: <select class="querySelect" name=status>
+         <option value="">全部</option>
+         {html_options options=$status selected=$smarty.get.status}
+         </select>
+      
+      <input type="submit" class="formbtn" value="{$lang.query}" />
+    </form>
+  </div>
+  
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <tr class="tatr1">
+      <td class="firstCell" ><input type="checkbox" class="checkall" />全选</td>
+      <td><span>会员ID</span></td>
+      <td><span>会员类别</span></td>
+      <td><span>真实姓名</span></td>
+      <td><span>所在地区</span></td>
+      <td><span>邀请码</span></td>
+      <td><span>提交时间</span></td>
+      <td><span>当前状态</span></td>
+      <td>操作</td>
+    </tr>
+       <!--{if !empty($list)}-->
+    <!--{foreach from=$list item=ls}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$ls.id}"/></td>
+      <td>{$ls.user_name|escape}</td>
+       <td>{if $ls.member_lv_id eq 1}普通会员{elseif $ls.member_lv_id gt 1}创业者{/if}</td>
+      <td>{$ls.realname|escape}</td>
+      <td>{$ls.province|escape} {$ls.city|escape}</td>
+      <td>{$ls.invite|escape}</td>
+      <td>{$ls.last_update_time|escape}</td>
+      <td>{if $ls.status == 0 || $ls.status == 3}<font style="color:red">未审核</font>{elseif $ls.status == 1}<font style="color:blue">审核成功</font>{elseif $ls.status == 2}<font style="color:dark">审核失败</font>{else}{/if}</td>
+      <td>
+	  {if $ls.status==0}    <a href="index.php?app=authcyz&amp;act=edit&amp;id={$ls.id}">审核</a>  |{/if} <a href="index.php?app=authcyz&amp;act=view&amp;id={$ls.id}">查看详情</a>
+	   
+	    
+      </td>
+    </tr>
+    <!--{/foreach}-->
+       <!--{else}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+  </table>
+
+
+
+  <div id="dataFuncs">
+       <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+        <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=authcyz&act=drop&ret_page={$page_info.curr_page}" presubmit="confirm('{$lang.drop_confirm}');" />
+       </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+  </div>
+  <div class="clear"></div>
+</div>
+<script type="text/javascript">
+//日期
+$('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+$('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
+{include file="footer.html"}

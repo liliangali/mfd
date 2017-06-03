@@ -1,0 +1,136 @@
+{include file=order/member.header.html}
+	<form method="post" action='order-addApp.html?opt=2' name="form_order_addapp_step2"  id="orderForm">
+		<div class="dd_tit">
+			<div class="tit_h">
+				<h3>订单来源</h3>
+				<span class="a1">
+					<li class="left0">
+						<input type="radio" name="source" {if $sess_data.source == 1 || empty($sess_data)}  checked="checked" {/if}    id="totally" value="1"/>
+						<label {if $sess_data.source == 1 || empty($sess_data)}  class="moren" {/if}  for="totally">我的需求</label>
+					</li>
+					<li class="right0">
+						<input type="radio" name="source" {if $sess_data.source == 2} checked="checked" {/if} id="no-way" value="2" />
+						<label {if $sess_data.source == 2} class="moren"  {/if} for="no-way">我的消费者</label>
+					</li>
+				</span>
+				<!--选项消费者 来源-->
+				<div id="source"></div>
+			</div>
+		</div>        
+		<div class="tit_h2">     
+			<h3>品类选择</h3>
+			<span class="a2">
+				<ul>
+					<li>
+						<input type="radio" {if $sess_data.clothingID == 3 || empty($sess_data)} checked="checked" {/if} name="clothingID" id="a1" value="3" />
+						<label {if $sess_data.clothingID == 3 || empty($sess_data)} class="moren" {/if} for="a1">上衣</label>
+					</li>
+					<li>
+						<input type="radio" {if $sess_data.clothingID == 2000} checked="checked" {/if} name="clothingID" id="a2" value="2000" />
+						<label {if $sess_data.clothingID == 2000} class="moren" {/if} for="a2">西裤</label>
+					</li>
+					<li>
+						<input type="radio" {if $sess_data.clothingID == 3000} checked="checked" {/if} name="clothingID" id="a3" value="3000" />
+						<label {if $sess_data.clothingID == 3000} class="moren" {/if} for="a3">衬衣</label>
+					</li>
+					<li>
+						<input type="radio" {if $sess_data.clothingID == 4000} checked="checked" {/if} name="clothingID" id="a4" value="4000" />
+						<label {if $sess_data.clothingID == 4000} class="moren" {/if} for="a4">马夹</label>
+					</li>
+					<li>
+						<input type="radio" {if $sess_data.clothingID == 6000} checked="checked" {/if} name="clothingID" id="a5" value="6000" />
+						<label {if $sess_data.clothingID == 6000} class="moren" {/if} for="a5">大衣</label>
+					</li>
+				</ul>
+			</span>
+		</div>
+		<div class="dd_tit">
+			<div class="tit_h">     
+				<h3 class="fabric_result">面料查询<span></span></h3>
+				<span class="a3 fabric clearfix">
+					 <input type="text" name="fabric" class="left1 fabric" placeholder="请输入面料号查询" value="{$sess_data.fabric}" />
+					 <input type="button" class="right1 checkFabric" value="查库存" />
+				</span>
+			</div>
+		</div>  
+		<div class="dd_tit"><button type="submit" class="w100 next_botton">下一步</button></div>  
+	</form>
+</div>
+
+<!--载入js-->
+<script type="text/javascript" src="/static/js/apporder.js"></script>
+<script type="text/javascript" src="/static/expand/jquery.form.js"></script>
+<script>
+	var isStock = true;
+	$(function(){
+		$.order({
+			checkFabricUrl : "{link app=order act=ajax_fabric}",
+			checkSourceUrl : "{link app=order act=ajax_source}",
+			_clothVal      : $('input[name=clothingID]:checked').val(),
+			_sourceVal     : $('input[name=source]:checked').val(),
+		});
+	});
+	
+	//按钮提交前判断
+	$(document).ready(function(){
+		$(":submit").click(function(event) {
+			var select = $('select[name=source_id]').val();//客户来源不能为空
+			var fabric = $('input[name=fabric]').val();//客户来源不能为空
+
+			if(select=='' || typeof(select)=="undefined") {
+				//执行弹出层
+				easyDialogEmpty('请选择客户来源后再进行<br>下一步操作', 2000);
+				return false;
+			}
+			//面料提交之前筛选
+			if(fabric=='' || typeof(fabric) == 'undefined') {
+				//执行弹出层
+				easyDialogEmpty('请填写查询面料后再进行<br>下一步操作', 2000);
+				return false;
+			} else {
+				//获取分类id
+				var clothId   = $('input[name=clothingID]:checked').val();
+				//执行一步处理判断当前面料库存
+				$.ajax({
+					type:'post',
+					url:'order-ajax_fabric.html',
+					data:'code='+fabric+'&id='+clothId,
+					dataType:'json',
+					success:doEasyDialog,
+					async: false
+				});
+				
+				if(!isStock) {
+					return false;
+				}
+			}
+		});
+	});
+	//处理弹出框
+	function doEasyDialog(data) {
+		if(data.done == false) {
+			//执行弹出层
+			easyDialog.open({
+				container : {
+					content : data.msg + '<br/>请确认后重新操作'
+				},
+				autoClose : 2000
+			});
+			isStock = false;
+		} else {
+			isStock = true;
+		}
+	}
+	//空处理弹出框
+	function easyDialogEmpty(content, time) {
+		//执行弹出层
+		easyDialog.open({
+			container : {
+				content : content
+			},
+			autoClose : time
+		});
+	}
+</script>
+</body>
+</html>

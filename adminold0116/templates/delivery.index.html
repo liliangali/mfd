@@ -1,0 +1,167 @@
+	{include file="header.html"}
+<link href="templates/jquery-tipso/css/tipso.min.css" type="text/css" rel="stylesheet"/>
+<script src="templates/jquery-tipso/js/jquery-1.8.3.min.js"></script>
+<script src="templates/jquery-tipso/js/tipso.min.js"></script>
+
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="delivery" />
+                <input type="hidden" name="act" value="index" />
+                <select class="querySelect" name="field">{html_options options=$search_options selected=$smarty.get.field}
+                </select><input class="queryInput" type="text" name="search_name" value="{$query.search_name|escape}" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=delivery">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {if $deliverys}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $deliverys}-->
+        <tr class="tatr1">
+                    <td ><input type="checkbox" class="checkall" /></td>
+            <td width="15%"><span ectype="delivery_by" fieldname="t_begin">单据创建时间</span></td>
+            <td width="8%"><span ectype="delivery_by" fieldname="logi_name">物流公司</span></td>
+            <td width="10%"><span ectype="delivery_by" fieldname="op_name">操作员</span></td>
+            <td width="7%"><span ectype="delivery_by" fieldname="post_fee">物流费用</span></td>
+            <td width="15">发货单号</td>
+            <td width="10%"><span ectype="delivery_by" fieldname="receiver_name">收货人</span></td>
+            <td width="10%">订单号</td>
+            <td width="20%">收货地址</td>
+           <!--  <td width="7%">物流状态</td> -->
+            <td width="10%">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$deliverys item=delivery key=key}-->
+        <tr class="tatr2">
+            <td ><input type="checkbox" class="checkitem" value="{$delivery.delivery_id}" /></td>
+            <td>{$delivery.t_begin|date:complete}</td>
+            <td>{$delivery.logi_name|escape}</td>
+            <td>{$delivery.op_name|escape}</td>
+            <td>{$delivery.post_fee|price}</td>
+            <td>{$delivery.tid}</td>
+            <td>{$delivery.receiver_name|escape}</td>
+            <td>{$delivery.logi_no}</td>
+            <td>{$delivery.area_names}{$delivery.receiver_address}</td>
+           <!--   <td>{$delivery.status}</td> -->
+            <td>
+                <a href="index.php?app=delivery&amp;act=view&amp;id={$delivery.delivery_id}">{$lang.view}</a> 
+            </td>
+        </tr>
+        <!-- ns add 添加发货单rcmtm的发货单显示 -->
+        <tr style="display:none">
+        	<td colspan="10" style="padding:0">
+            	<div style="background: #eee;bdelivery-bottom: 2px solid #ccc;color: #000; line-height: 42px;padding: 0 10px;">rcmtm发货单号：{$delivery.r_delivery_id}</div>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}--> 
+    </table>
+    <div id="dataFuncs">
+          <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+          <input class="formbtn" type="button" value="发货单打印" onclick="print()" />
+    <!--       <input class="export_btn formbtn" data-type="all" type="button" value="导出检索发货单" /> -->
+          <input class="export_btn formbtn" data-type="sel" type="button" value="导出所选发货单" />
+          <input type="hidden" id="conditions" value="{$conditions}">
+      </div>
+        <div class="pageLinks">
+            {if $deliverys}{include file=page.bottom.html}{/if}
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<script type="text/javascript">
+
+/**
+ * 鼠标悬停显示TITLE
+ * @params     obj        当前悬停的标签
+ *
+ */
+function titleMouseOver(obj) {
+	$(obj).tipso({
+		useTitle: false
+	});
+}
+
+
+
+
+
+//二级层
+$('.dataTable .showInfo').click(function(){
+	var $this=$(this),obj=$this.parents('tr').next('tr');
+	if($this.hasClass('show')){
+		obj.hide();
+		$this.removeClass('show')
+	}else{
+		obj.show();
+		$this.addClass('show')
+	}
+})
+
+$('.export_btn').unbind().bind('click',function(){
+	var _type = $(this).attr('data-type');
+	if(_type == 'all'){
+		var _condi = '&sinexporttype=all';
+		$('.mrightTop').find('.fontl').find('input').each(function(){
+	        if($(this).val() && $(this).attr('name')){
+	            if($(this).attr('name') != 'app' && $(this).attr('name') != 'act'){
+	                _condi += '&'+$(this).attr('name')+'='+$(this).val();
+	            }
+	        }
+	    })
+	    $('.mrightTop').find('.fontl').find('select').each(function(){
+	        if($(this).val() && $(this).attr('name'))
+	        _condi += '&'+$(this).attr('name')+'='+$(this).val();
+	    })
+	}else if(_type == 'sel'){
+		var _condi = '&sinexporttype=sel';
+		var ids='';
+		 $(".checkitem:checked").each(function(){
+		        //if($(this).attr("checked") == true){
+		           ids += ids ? ","+$(this).val() : $(this).val();
+		        //}
+		    });
+
+	    if(ids.length == 0){
+	        return false;
+	    }
+	     _condi += '&id='+ids;
+	}
+	if(_type == 'all' || _type == 'sel')
+		{
+		window.open("index.php?app=delivery&act=export"+_condi);
+		}else{
+		window.open("index.php?app=delivery&act=figure_export"+_condi);	
+		}
+	
+	
+	return;
+})
+
+function print(){
+    var ids='';
+    $(":checkbox").each(function(){
+        if($(this).attr("checked")){
+        	alert($(this).val());
+            ids += ids ? ","+$(this).val() : $(this).val();
+        }
+    });
+
+    if(ids.length == 0){
+        return false;
+    }
+    window.open("index.php?app=delivery&act=deliveryprint&id="+ids);
+}
+</script>
+{include file="footer.html"}

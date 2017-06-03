@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body{margin:0; padding:0 35px; font-size:14px; line-height:24px; color:#666;}
+</style>
+</head>
+
+<body>
+<?php echo $this->_var['data']['content']; ?>
+</body>
+</html>

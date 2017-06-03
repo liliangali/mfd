@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui">
+<meta name="format-detection" content="telphone=no, email=no">
+{$page_seo}
+<script>
+if('{$p_source}'=='mobile'){
+	window.location.href=window.location.href.replace('www','wap').replace(/(bcasual|bdress|bformal)/,'$1-mfd')
+}
+</script>
+
+<link rel="stylesheet" href="/public/global/scroll/jquery.mCustomScrollbar.css">
+<link rel="stylesheet" href="/public/static/diy/pc/style/diy.css">
+</head>
+
+<body>
+<div class="main">
+	<div class="topBar">
+		<dl class="topNav">
+			<dt><span></span></dt>
+			<dd>
+				<span class="close"></span>
+				<div class="list">
+					<a href="/" target="_blank">首页</a>
+					<a href="gallery.html" target="_blank">麦富迪尚品</a>
+					<a href="activepublic.html" target="_blank">活动特惠</a>
+					<a href="help.html" target="_blank">帮助中心</a>
+					<a href="down.html" target="_blank">APP下载</a>
+					<a href="member.html" target="_blank">账户中心</a>
+				</div>
+			</dd>
+		</dl>
+		<h1 class="fl logo"><a href="/"><img src="/public/static/diy/pc/images/logo.png"></a></h1>
+	</div>
+	<div class="AreaL fl">
+		<div class="catMenu"> {foreach key=c item=m from=$ms}
+			<dl  {if $pargs.0 eq $c} class="cur"{/if}>
+				<dt>{$m}</dt>
+				{foreach key=k item=s from=$ss}
+                  {if $c eq '0007' && $k eq 'bdress' }
+                   {else}
+                    <dd> <a href="{$site_url}custom-diy-{$c}-{$k}.html"  {if $pargs.1 eq $k && $pargs.0 eq $c } class="cur"{/if}>{$s}</a> </dd>
+                   {/if}
+                   
+				{/foreach}
+			</dl>
+			{/foreach} </div>
+		<div class="subMenu-2">
+			<span class="help"><a  href="javascript:void(0)" class="zhichi">在线客服</a></span>
+			<span class="tishi"><a href="javascript:void(0)">温馨提示</a></span>
+			<!--<span class="setbg"><span>更换背景</span><a class="lt"></a><a class="gt"></a></span>-->
+		</div>
+	</div>
+	<div class="AreaR fr">
+		<div class="menuBox">
+			<ul id="menu">
+			</ul>
+		</div>
+		<div id="rightBox">
+			<div class="opt" id="opt"><!--动态加载--></div>
+			<div class="optDown"> <span class="price">￥<span id="price">00.00</span></span>
+				<button class="addCart fr">加入购物车</button>
+			</div>
+		</div>
+	</div>
+	<div class="AreaC">
+		<div class="showArea" id="showArea"><!--动态加载--></div>
+		<div class="tzTab" id="tzTab"><!--动态加载--></div>
+		<ul class="subMenu">
+			<li class="reset" id="reset"> <i class="ico"></i> <span class="tip">重来</span> </li>
+			<li class="rotate" id="rotate"> <i class="ico"></i> <span class="tip">旋转</span> </li>
+			<li class="share" id="share"> <i class="ico"></i> <span class="tip">分享</span>
+				<div class="shareList"> 
+					<a title="微信" data-cmd="wx" class="wx"></a>
+					<a title="新郎微博" data-cmd="tsina" class="tsina"></a> <a title="腾讯微博" data-cmd="tqq" class="tqq"></a> <a title="QQ空间" data-cmd="qzone" class="qzone"></a> </div>
+			</li>
+			<li class="save" id="saveWork"> <i class="ico"></i> <span class="tip">保存</span> </li>
+			<li class="diyinfo" id="diyinfo"> <i class="ico"></i> <span class="tip">工艺</span> </li>
+			<li class="fullScreen" id="fullScreen"> <i class="ico"></i> <span class="tip">全屏</span> </li>
+		</ul>
+	</div>
+</div>
+<!--面料信息-->
+<div class="fabricInfo">
+	<span class="fabricInfo-close"></span>
+	<div id="fabricInfo-box"></div>
+</div>
+<!--遮罩层-->
+<div id="zhezhaoLayer"></div>
+<!--Loading-->
+<div id="loadingTip"></div>
+{include file=zhichikefu.html}
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/scroll/jquery.mCustomScrollbar.concat.min.js"></script> 
+<script src="/public/global/luck/pc/luck.js"></script> 
+<script src="/public/global/my97date/wdatepicker.js"></script> 
+<script src="/public/static/diy/pc/js/diy.js"></script> 
+<script>
+var $utk = "{$tk}";
+var $uid = "{$uid}";
+var diy=new Diy();
+diy.init();
+</script>
+<div style="display:none;">
+    <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?96c2b8c44ecbfb71d690719e24a1eba2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256310283'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256310283' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+</body>
+</html>

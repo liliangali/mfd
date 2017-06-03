@@ -1,0 +1,62 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<div class="user_box">
+    <!--用户中心左菜单部分 START-->
+    {include file = member.menu.html}
+    <!--用户中心左菜单部分 END-->
+
+    <div class="cardright fr">
+        <div class="coolcard">
+            <h4>我的特权码</h4>
+            <div class="sens">
+                <div class="sensnr">
+                    <p class="code fl">请输入特权码享受特权</p>
+                    <input type="text" class="coput fl" id="special_code" name="special_code">
+                    <input type="button" value="确定" class="cobut fl" id="special_submit">
+                </div>
+            </div>
+            <div class="explain">
+                <strong>当前特权</strong>
+                <p class="kksyword">
+                    {if !$special_info}
+                    无任何特权！
+                    <!--<br>1、越级升级会员特权，直接享受越级会员等级福利。
+                    <br>2、初级升级会员特权，直接享受初级会员等级福利。-->
+                    {else}
+
+                    {foreach from=$special_info item=item key=key}
+                    <br>{$item.description}
+                    {/foreach}
+                    {/if}
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{include file=../footer-new.html}
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/global/jquery.swipe.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/static/pc/js/user.js"></script>>
+<script>
+    cotteFn.special()
+
+    //分享
+    window._bd_share_config = {
+        common : {
+            bdText : document.title,
+            bdDesc : '',
+            bdUrl : window.location.href,
+            bdPic : ''
+        },
+        share : [{
+            "bdSize" : 16
+        }]
+    }
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+</body>
+</html>

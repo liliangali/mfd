@@ -1,0 +1,67 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=setting&amp;act=voucher">优惠券列表</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=voucher_create">生成优惠券</a></li>
+        <li><span>批次日志</span></li>
+    </ul>
+</div>
+<br/>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <tr class="tatr1">
+            <td width="3%"><span ectype="order_by" fieldname="id">ID</span></td>
+            <td width="12%"><span  ectype="order_by" fieldname="debit_name">券名称</span></td>
+            <td width="8%"><span  ectype="order_by" fieldname="cate">品类</span></td>
+            <td width="7%"><span  ectype="order_by" fieldname="debit_sn">价格</span></td>
+            <td width="10%"><span  ectype="order_by" fieldname="debit_sn">生成时间</span></td>
+            <td width="10%"><span  ectype="order_by" fieldname="debit_sn">生效时间</span></td>
+            <td width="10%"><span  ectype="order_by" fieldname="debit_sn">过期时间</span></td>
+            <!--<td width="10%"><span  ectype="order_by" fieldname="debit_sn">是否启用</span></td>-->
+            <td width="10%"><span  ectype="order_by" fieldname="debit_sn">生成数量</span></td>
+            <td width="10%">操作</td>
+        </tr>
+
+        <!--{if !empty($list)}-->
+        <!--{foreach from=$list item=item key=k}-->
+        <tr class="tatr2">
+            <td class="firstCell">{$item.id}</td>
+            <td>{$item.name}</td>
+            <td>{if $item.category eq "1"}定制商品{elseif $item.category eq "2"}普通商品{else}通用{/if}</td>
+            <td>{$item.money}</td>
+            <td>{$item.create_time|date}</td>
+            <td>{$item.start_time|date}</td>
+            <td>{$item.end_time|date}</td>
+            <!--<td>{$item.status}{$cate_arr.$item.cate}</td>-->
+            <td>{$item.num}</td>
+            <td>
+                <a href="index.php?app=setting&act=voucher_batch&op=export&id={$item.id}" target="_blank">导出</a>
+                &nbsp;&nbsp; 
+                <a href="index.php?app=setting&act=voucher_batch&op=del&id={$item.id}" onclick="return confirmAct();">删除</a>
+            </td>
+        </tr>
+        <!--{/foreach}-->
+        <!--{else}-->
+        <tr class="no_data">
+            <td colspan="9">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+    </table>
+    <!--{if !empty($list)}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+</div>
+
+<script type="text/javascript">
+function confirmAct() 
+{ 
+    if(confirm('确定要执行此操作吗?')){ return true; } return false; 
+}
+    //日期
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
+{include file="footer.html"}

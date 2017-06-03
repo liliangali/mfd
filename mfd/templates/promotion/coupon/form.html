@@ -1,0 +1,117 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#coupon_form').validate({
+		rules: {
+			cpn_money: {
+			    min: 0
+			},
+			cpn_prefix:{
+			    maxlength :4
+			}
+	    },
+		messages: {
+			cpn_money: {
+				min: "正确的金额数"
+			},
+			cpn_prefix:{
+			    maxlength :'最多四位'
+			}
+		 },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+    });
+});
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=coupon">所有优惠券</a></li>
+    <li><span>添加优惠券</span></li>
+  </ul>
+</div>
+<div class="info">
+    <form method="post" action="index.php?app=coupon&act=toAdd" enctype="multipart/form-data" id="coupon_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">优惠券名称 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="coupon_id" type="hidden" name="cpn_id" value="{$data.cpn_id|escape}" />
+                    <input class="infoTableInput required" id="cpn_name" type="text" name="cpn_name" value="{$data.cpn_name|escape}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">优惠券号码 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput required" id="cpn_prefix" type="text" name="cpn_prefix" value="{$data.cpn_prefix|escape}" />
+                    <span>四位优惠券号码前缀,少于四位以0补充.</span>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">抵现金额 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput required " id="cpn_money" type="text" name="cpn_money" value="{$data.cpn_money|escape|default:0}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">所需积分 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput required " id="cpn_point" type="text" name="cpn_point" value="{$data.cpn_point|escape|default:0}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15"> 状 态 :</th>
+                <td class="paddingT15 wordSpacing5">
+					<select id="cpn_status" name="cpn_status" class="required ">
+					   {html_options options=$status selected=$data.cpn_status}
+					</select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15"> 权 重 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput required digits " id="cpn_rank" type="text" name="cpn_rank" value="{$data.cpn_rank|escape|default:1}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">开始时间:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                        <input class="infoTableInput2 pick_date" id="start_time" type="text" name="start_time" value="{if $data.start_time}{$data.start_time|date:Y-m-d}{/if}" />
+                </td>
+            </tr>
+            
+           <tr>
+                <th class="paddingT15">
+                    <label for="cate_id">结束时间:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2 pick_date" id="end_time" type="text" name="end_time" value="{if $data.end_time}{$data.end_time|date:Y-m-d}{/if}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15"><label for="article">描述 :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="cpn_content" name="cpn_content" style="width:400px;height:110px;">{$data.cpn_content|escape}</textarea>
+                </td>
+            </tr>
+	        <tr>
+	            <th></th>
+	            <td class="ptb20">
+	                <input class="tijia" type="submit" name="Submit" id="Submit" value="提交" />
+	                <input class="congzi" type="reset" name="Submit2" value="重置" />
+	            </td>
+	        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+$('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+$('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
+{include file="footer.html"}

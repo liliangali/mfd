@@ -1,0 +1,54 @@
+<style>
+body{ display:none;}/*不许删*/
+
+body { font: 14px/1.5 arial, "Microsoft Yahei", "Hiragino Sans GB", sans-serif; color:#333; }
+body a{outline:none;blr:expression(this.onFocus=this.blur());}
+body, form, ul, ol, li, span, p, dl, dt, dd, img, h1, h2, h3, h4, h5, h6 ,input{ margin: 0; padding: 0; border:none;}
+img { border: 0; }
+input,textarea,button{ outline:0;}
+ul, ol, li { list-style: none }
+em { font-style: normal }
+a { text-decoration: none; color: #333; transition:color ease .3s;-webkit-transition:color ease .3s;}
+a:hover { color: #e66800;}
+.fl { float: left; } 
+.fr { float: right; }
+.clearfix:after { content: "."; height: 0px; line-height: 0px; overflow: hidden; clear: both; display: block; visibility: hidden; }
+.clearfix { zoom: 1; }
+
+.zttu {width:100%;}
+.zttu img {width:100%; display:block; max-width:1920px; margin:0 auto;}
+</style>
+<div id="zhuanti">
+  <div class="zttu"><a href="http://www.mfd.cn/man-8.html" target="_blank"><img src="images/hdth_1.jpg"></a></div>
+  <div class="zttu"><img src="images/hdth_2.jpg"></div>
+  <div class="zttu"><img src="images/hdth_3.jpg"></div>
+  <div class="zttu"><img src="images/hdth_4.jpg"></div>
+  <div class="zttu"><img src="images/hdth_5.jpg"></div>
+  <div class="zttu"><img src="images/hdth_6.jpg"></div>
+</div>
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script>
+document.domain='mfd.cn';
+$.ajax({
+	url:'/header.html',
+	success: function(d){
+		$('#zhuanti').before(d)
+		$.ajax({
+			url:'/footer.html',
+			success: function(d){
+				$('#zhuanti').after(d);
+				$('body').fadeIn('slow');
+			},
+			error:function(e){}	
+		});
+	},
+	error:function(e){}	
+});
+</script>
+<!--统计代码-->
+<div style="display:none;">
+<script type="text/javascript">
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1256310283'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256310283' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<!--统计代码-->

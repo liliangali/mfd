@@ -1,0 +1,54 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p style="display:none;"><strong>{$lang.area_manage}</strong></p>
+    <ul class="subnav">
+    	<li><a class="btn1" href="index.php?app=area&act=add&shipping_id={$shipping_id}">添加配送地区</a></li>
+  </ul>
+</div>
+<div class="tdare info">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $areas}-->
+        <tr class="tatr1">
+            <td class="firstCell" width="50%">区域名称</td>
+            <td width="10%">首重费用</td>
+            <td width="10%">续重费用</td>
+            <td width="150">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$areas item=area}-->
+        <tr class="tatr2">
+            <td class="firstCell">{$area.area_name}</td>
+            <td>{$area.first_price}</td>
+            <td>{$area.step_price}</td>
+            <td>
+          <a href="index.php?app=area&amp;act=edit&area_id={$area.area_id}">编辑</a> 
+          <a href="javascript:;" onclick="if(confirm('确认删除该配送地区吗？')) location.href='index.php?app=area&amp;act=drop&area_id={$area.area_id}&shipping_id={$shipping_id}'" class="delete">移除</a>             
+          </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="5">{$lang.no_installed_area}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+</div>
+  <!--{if $areas}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+<script>
+/*
+$(document).ready(function(){
+	$('*[ectype="dialog"]').click(function(){
+		var id = $(this).attr('dialog_id');
+		var title = $(this).attr('dialog_title') ? $(this).attr('dialog_title') : '';
+		var url = $(this).attr('uri');
+		var width = $(this).attr('dialog_width');
+		ajax_form(id, title, url, width);
+		return false;
+		}); 
+})*/
+</script>
+{include file="footer.html"}

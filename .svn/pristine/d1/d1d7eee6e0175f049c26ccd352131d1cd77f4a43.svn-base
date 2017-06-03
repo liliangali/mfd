@@ -1,0 +1,101 @@
+{include file=member.header.html}
+<div class="container clearfix">
+{include file=member.menu.html}
+ <div class="ucenter_right fr">
+  <h2 class="tit">我要晒单</h2>
+          <form  method='post' id='myForm_single' enctype="multipart/form-data">
+            <div class="shaidan">
+              <div class="item">
+                  <div class="t"><span class="red">*</span> 晒单标题：</div>
+                    <input id="img_name" type="text" class="txt" name="img_name" value="{$single.img_name}"/>
+                </div>
+                <div class="item">
+                  <div class="t"><span class="red">*</span> 款式风格：</div>
+                    <div id="pinlei" data-input-id="type_id">
+                      <a href="#" data-id="0">请选择品类</a>
+                      <!--{foreach from=$lang.store_arrt_list.2 item=fg key=fgid}-->
+                        <a href="#" data-id="{$fgid}">{$fg.name}</a>
+                      <!--{/foreach}-->
+                    </div>
+                  </div>
+                <div class="item">
+                  <div class="t"><span class="red">*</span> 描述：</div>
+                  <textarea name="description" id="description" class="textarea">{$single.description|escape}</textarea>
+                </div>
+                <div class="item">
+                    <div class="t"><span class="red">*</span> 晒单图片：</div>
+                    <div class="piclist clearfix">
+                   <p class="tip">请点击以下添加图片按钮进行图片上传操作</p>
+                     <div id="ul_single"></div>
+                    </div>
+                    <div class="updata">
+                      <div class="fl btn">
+                          <span>添加图片</span>
+                            <input type="file" value="" id='up_file' name='up_file' />
+                        </div>
+                        <span class="fl">图片不超过10张，且单张最大不超过2M</span>
+                    </div>
+                </div>
+                <div class="error"></div>
+                <input type='hidden' name='total' id='total' />
+                <input type='hidden' name='top_url' id='top_url' />
+                <div class="btnBox"><input type="button" value="保存" class="baocun" onclick="shaidan()" /></div>
+            </div>
+        </form>
+
+ </div>
+
+
+
+</div>
+
+
+
+<script type="text/javascript" src="static/expand/jquery.form.js"></script> 
+<script>
+function del_li(num){
+	$("#li_"+num).remove();
+	num--
+	if(top_id == num){
+		top_id = -1;
+		$("#top_url").val('');
+	}
+}
+function setTop(num,url){
+	if(top_id == num){
+		return;
+	}
+	if(top_id != -1){
+		$("#top_id_"+top_id).html('设为封面').removeClass('red');
+	}
+	top_id = num;
+	var top_url = $("#input_"+top_id).val();
+	$("#top_id_"+num).html('已设封面').addClass('red');
+	$("#top_url").val(top_url);
+}
+var num = 0;
+var top_id = -1;
+$('#up_file').change(function(){
+	if($('#up_file').val()==""||num>9){
+	  return
+	}
+	if($('#ul_single .loading').length<=0){
+		$('#ul_single').append('<div class="loading">加载中...</div>')
+	}
+	var options = {
+			url:'my_single-upload.html?num='+num+'&r='+(10000*Math.random()),
+			success: function(data) {
+				var dd = eval( "(" + data + ")" );
+				var html = '<div class="list" id="li_'+num+'"><img width="80" height="80" src="'+dd.src+'" />';
+					html += "<input type='hidden' id='input_"+num+"' name='input_"+num+"' value='"+dd.file+"' >";
+					html += '<a id="top_id_'+num+'" href="javascript:void(0);" onclick="setTop('+num+  ',  \''+dd.file+'\')">设为封面</a>';
+					html += '<a href="javascript:void(0);" onclick=del_li(\''+num+  '\'); >删除</a></div>';
+				$('#ul_single .loading').remove();
+				$('#ul_single').append(html);
+				num++;
+			} 
+	};
+	$('#myForm_single').ajaxSubmit(options);
+});
+</script>
+{include file="footer.html"}

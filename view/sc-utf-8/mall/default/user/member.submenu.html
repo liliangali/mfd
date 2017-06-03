@@ -1,0 +1,10 @@
+<h2 class="m_tupsc_ul">
+            <!--{foreach from=$_member_submenu item=_s_m name=member_submenu}-->
+            <!--{if $_curmenu eq $_s_m.name}-->
+            <span style="color:#ff3300;">{$_s_m.text}</span>
+            <!--{else}-->
+            <a href="{$_s_m.url}">{$_s_m.text}</a>
+            <!--{/if}-->
+            <!--{/foreach}-->
+</h2>
+<p class="clear"></p>

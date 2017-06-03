@@ -1,0 +1,35 @@
+<div class="footer">
+  <div class="w">
+    <!--{foreach from=$helps item=f_val name=loop}-->
+    <dl{if $smarty.foreach.loop.first} class="first"{/if}>
+      <dt>{$f_val.cate_name}</dt>
+      <dd>
+        <ul>
+              <!--{foreach from=$f_val.article item=a_val}-->
+              <li><a href="{link app=help arg=$a_val.article_id}">{$a_val.title}</a></li>
+            <!--{/foreach}-->  
+        </ul>
+      </dd>
+    </dl>
+  <!--{/foreach}-->  
+    <dl class="last">
+      <dt>关注我们</dt>
+      <dd>
+        <div class="share"> <span class="sina"></span> <span class="qzone"></span> <span class="weixin"></span> <span class="qqwb"></span> </div>
+        <div class="qrcode">
+          <p>阿里裁缝APP</p>
+          <a href="#">扫描或点击下载</a> </div>
+      </dd>
+    </dl>
+    <div class="bottom"> <a href="#" class="logo fl"></a>
+      <div class="fr">
+        <p>© alicaifneg.com 版权所有&nbsp;&nbsp;&nbsp;客服中心：service@alicaifneg.com</p>
+        <p>鲁ICP备10207738&nbsp;&nbsp;&nbsp; 京公网安备110106010015号</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="static/expand/jquery.swipe.js"></script> 
+<script  type="text/javascript" src="static/js/index.js"></script>
+</body>
+</html>

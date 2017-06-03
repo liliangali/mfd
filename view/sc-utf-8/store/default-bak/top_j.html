@@ -1,0 +1,15 @@
+    <div class="dpsybkzq">
+      <ul>
+       <!--{foreach from=$jtop_goods item=jgoods}-->
+        <li>
+          <p><a href="{url app=groupbuy&id=$jgoods.goods_id}"><img width="320" height="350" src="{$jgoods.default_image}" /></a></p>
+          <div>
+            <p class="yj" style="padding-top:14px;">原价：<del>{$jgoods.price_n}</del>元</p>
+            <!-- <p class="zjys">最近已售：<span>{$jgoods.sales_volume}</span></p> -->
+            <p class="xiajia">￥<span>{$jgoods.price}</span></p>
+          </div>
+        </li>
+         <!--{/foreach}--> 
+      </ul>
+      <p class="clear"></p>
+    </div>

@@ -1,0 +1,73 @@
+@charset "utf-8";
+.container{margin:0 auto; max-width:1236px;}
+
+/*内容*/
+.banner {width:100%; margin-top:-1px;}
+.banner img {width:100%;}
+
+.list_fl {width:1234px; border:1px solid #eaeceb; margin-top:40px;}
+.list_fl ul li { height:54px; line-height:54px; overflow:hidden; border-bottom:1px solid #f2f2f2; color:#000;}
+.list_fl ul li h1 { float:left;  font-size:14px; font-weight:normal;  padding-left:30px; border-right:1px solid #f2f2f2; width:90px;}
+.list_fl ul li div { float:left; padding-left:30px;}
+.list_fl ul li div a {padding-right:40px; color:#666;}
+.list_fl ul .yxz { height:70px; line-height:70px;}
+.list_fl ul .yxz div {padding-top:20px;}
+.list_fl ul li div p { padding:0 30px; height:28px; border:1px solid #dfdfdf; line-height:28px; text-align:center; margin:0 8px 8px 0; color:#666; float:left; position:relative;}
+.list_fl ul li div p a { color:#aaa; font-size:14px; font-family:arial; position:absolute; right:5px; top:0; display:block; width:12px; height:12px; padding:0;}
+.list_fl ul li .on { color:#fc2908;}
+.list_fl ul li:last-of-type{ border:none;}
+.list_fl .filter{ overflow:hidden; height:290px;}
+.list_fl .li_3 {-moz-user-select:none; width:140px; height:33px; line-height:33px; overflow:hidden; position:absolute; left:50%; border:1px solid #eaeceb; border-top:none; text-align:center; margin-left:-10px; background:#fff url(../img/lzlb.png) 110px 14px no-repeat; color:#666;}
+.list_fl .li_3 span {padding-left:5px;}
+
+.textwbsi{text-align:center; margin-top:90px; font-size:37px;}
+.textwbsi span{width:115px;height:20px;display:block;margin:0 auto;border-bottom:5px solid #fd2604;}
+.textwbw{font-size:20px;text-align:center;margin-top:36px;color:#4a4a4a;}
+
+#containers{ width:1236px; margin:0 auto; position:relative; z-index:0; margin:86px 0 130px 0;}
+.slides_container {width:1236px;  overflow:hidden; position:relative; height:330px;  margin-left:48px;}
+.supplement{width:1236px; overflow:hidden;}
+.qhword{width:220px; float:left; text-align:center; margin-left:50px; position:relative;}
+.qhword img{margin:0 auto; border-radius:50%; width:200px; height:200px;}
+.qhword div {position:absolute; top:0; left:10px; width:200px; height:200px; border-radius:50%; text-align:center; background-color: rgba(0,0,0,0.4); color:#fff; transition:all ease .3s; transform:scale(0,0);}
+.qhword:hover div {transform:scale(1,1);}
+.qhword div h1 { font-weight:normal; font-size:16px; line-height:24px; height:24px; overflow:hidden; margin:70px 0 10px 0;}
+.qhword div p span { padding:0 10px; font-size:12px;}
+.qhword div p i { padding-left:6px;}
+.qhword .english{font-size:12px; line-height:22px; margin-top:12px; color:#666;}
+#slides .next,#slides .prev {position:absolute;top:80px;left:0px;width:33px;height:61px;display:block;z-index:101; font-size:50px; font-weight:inherit; color:#9a9a9a; background:url(../img/lzlb.png) left -74px no-repeat;}
+#slides .next {left:96.3%; background-position:left -140px;}
+.pagination{display:none;}
+
+.hstz { height:72px; background:#f6f6f6; margin-top:30px;}
+
+.szph { overflow:hidden; width:100%;}
+.szph li { float:left;}
+.szph li a { color:#666; display:block;  padding:0 20px; border:1px solid #dfdfdf; height:34px; line-height:34px; overflow:hidden; margin-right:8px;}
+.szph .jg a {background:url(../img/lzlb.png) 65px 15px no-repeat; padding:0 35px 0 23px;}
+.szph .jg_2 a {background:url(../img/lzlb.png) 92px 15px no-repeat; padding:0 35px 0 23px;}
+.szph .sj a {background:url(../img/lzlb.png) 62px -23px no-repeat; padding:0 35px 0 23px;}
+.szph .sj_2 a {background:url(../img/lzlb.png) 90px -23px no-repeat; padding:0 35px 0 23px;}
+.szph .on a { color:#000;  border:1px solid #000;}
+
+.menu{ width:100%; margin:0 auto; margin-top:50px; overflow:hidden;}
+.menu .brick{margin-top:30px;overflow:hidden; width:105%; position:relative;}
+.menu .brick .item {width:286px; height:440px;text-align:center; margin:0 30px 63px 0;}
+.menu .brick .item img{width:286px;height:381px;}
+.menu .brick .item .hymc {width:63px; height:63px; position:absolute; left:0; top:315px;}
+.menu .brick .item .hymc img {width:60px; height:60px; border-radius:50%; border:3px solid #fff;}
+.menu .brick .item .cpjsmc{font-size:14px;  height:22px; line-height:22px; overflow:hidden; margin-top:10px;}
+.menu .brick .item .jine{color:#757575; overflow:hidden; height:22px; line-height:22px; overflow:hidden;}
+
+@media (min-width:1px) and (max-width:979px){
+.container { width:768px; }
+
+}
+
+@media (min-width: 980px) and (max-width:1024px){
+.container { width: 980px; }
+
+
+}
+
+

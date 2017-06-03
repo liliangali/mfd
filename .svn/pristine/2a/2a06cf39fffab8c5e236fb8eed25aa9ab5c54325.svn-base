@@ -1,0 +1,451 @@
+{include file="header.html"}
+<style>
+.ac_results { padding: 0px; border: 1px solid WindowFrame; background-color: Window; overflow: hidden; z-index: 19891020; /* 1000 */ }
+.ac_results ul { width: 100%; list-style-position: outside; list-style: none; padding: 0; margin: 0; }
+.ac_results iframe { display: none;/*sorry for IE5*/ display/**/: block;/*sorry for IE5*/ position: absolute; top: 0; left: 0; z-index: -1; filter: mask(); width: 3000px; height: 3000px; }
+.ac_results li { margin: 0px; padding: 2px 5px; cursor: pointer; display: block; font: menu; font-size: 12px; overflow: hidden; }
+.ac_over { background-color: Highlight; color: HighlightText; }
+</style>
+<script type="text/javascript">
+$(function(){
+    $('#brand_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            name : {
+                required : true,
+            },
+            price : {
+                required : true,
+            },
+            belong_series:{
+                required: true,
+            }
+        },
+        messages : {
+            name : {
+                required : '请填写样衣名称',
+            },
+            price : {
+                required : "请填写商品价格",
+            },
+            belong_series:{
+                required: "请选择归属系列",
+            }
+        }
+    });
+});
+</script>
+{$build_editor1}
+{$build_editor2}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=index">{$lang.series_list}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=add_series">{$lang.add_series}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=good_list">{$lang.shop_list}</a></li>
+        <li><span>{$lang.add_shop}</span></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=cover">{$lang.cover}</a></li>
+        <li><a class="btn1" href="index.php?app=elephotos&amp;act=add_cover">{$lang.add_cover}</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="brand_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                   {$lang.good_name}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="name" type="text" name="name" value="{$data.good_name|escape}" />
+                </td>
+            </tr>
+                        <tr>
+                <th class="paddingT15">
+                   {$lang.good_price}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" type="text" name="price" value="{$data.good_price}" />
+                </td>
+            </tr>
+
+         <tr>
+            <th class="paddingT15">
+               {$lang.belong_series}:</th>
+            <td class="paddingT15 wordSpacing5">
+                <select name="series">
+                <option value="0">{$lang.select_pls}</option>{html_options options=$series selected=$data.belong_series}
+                </select>
+            </td>
+        </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.good_fabric}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea  name="fabric" id="fabric" style="width:650px;height:400px;">{$data.fabric|escape}</textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">
+                    {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="sort_order" type="text" name="sort_order" value="{$data.sort_order}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    {$lang.is_show}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="radio" name="is_show" value="0" {if $data.is_show =="0"}checked{/if}/>是
+                    <input type="radio" name="is_show" value="1" {if $data.is_show =="1"}checked{/if}/>否
+                </td>
+            </tr>
+              <tr>
+                <th class="paddingT15">
+                    {$lang.good_process}:</th>
+                <td class="paddingT15 wordSpacing5">
+                <textarea  name="content" id="content" style="width:650px;height:400px;">{$data.good_process|escape}</textarea>
+                </td>
+            </tr>
+
+                  <tr>
+                <th>{$lang.good_img} :</th>
+                <td id="gallery">
+                {$build_upload}
+        <table class="infoTable qdhqx_tab">
+        <tr>
+                <td class="paddingT15 wordSpacing5">
+					 <div id="divSwfuploadContainer">
+                <div id="divButtonContainer" style="float:left;">
+                    <span id="spanButtonPlaceholder"></span>
+                </div>
+                
+                <div id="divFileProgressContainer"></div>
+            </div>
+                </td>
+            </tr>
+
+            <tr>
+            	<td>
+            	文件列表(双击图片进行删除)
+					<ul id="thumbnails">
+						{foreach from=$idata item=gallery}
+						  <li id="gallery_{$gallery.id}"  data_id ="{$gallery.id}"  onclick="selectImg(this)">
+						  <img ondblclick="drop_gallery({$gallery.id})" src="{$gallery.img_url}" width="80" height="80"></li>
+						{/foreach}
+					</ul>
+				</td>
+            </tr>
+            </table>
+                </td>
+            </tr>
+            
+            
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input type="hidden" name="id" value="{$data.id}">
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript" src="/static/expand/jquery.autocomplete.js"></script>
+<script src="{res file=js/jquery.dragsort-0.5.1.js}"></script>
+<script>
+$("#thumbnails").dragsort({ dragSelector: "li", dragBetween: false,placeHolderTemplate: "<li style='background-color:white; border:dashed 1px gray'></li>",dragEnd:stor});
+function stor(){
+	var data=[],li=$("#thumbnails li");
+	for(var i=0;i<li.length;i++){
+		data.push(li[i].getAttribute('data_id')+':'+i)	
+	}
+ 
+	$.ajax({
+		url:"index.php?app=jpjz_dissertation&act=gallarysort",
+        type: "POST",
+		data:{
+			photo_id:data.join()	
+		},
+		success: function(){}
+	})
+}
+
+</script>
+<script>
+var cat = "{$data.category}";
+$(document).ready(function(){
+	loadItem(cat);
+    $("#diy a").bind("click", loadOpt);
+    $(".fabric").unbind("click").bind("click", loadFab);
+//     $("#style").change(function(){
+//     	$('#cat')[0].selectedIndex = 0;
+//     })
+    $("#diy span").bind("click", clearOpt);
+//     $("#cat").change(function(){
+//         var c = $(this).val();
+//         var s = $("#style").val();
+//         if(c != 0){
+//             $.get("index.php?app=custom&act=loadItem", {style:s,category:c}, function(res){
+//                 var res = eval("("+res+")");
+//                 if(res.done == false){
+//                     alert(res.msg);
+//                     return false;
+//                 }else{
+//                     $("#diy").empty().html(res.retval);
+//                     $("#diy a").bind("click", loadOpt);
+//                     $("#diy span").unbind("click").bind("click", clearOpt);
+//                     $(".fabric").unbind("click").bind("click", loadFab)
+//                 }
+//             })
+//         }
+//     })
+
+    $("#cat").change(function(){
+        var val = $(this).val();
+        $(".items li").each(function(){
+            if(!$(this).hasClass("add")){
+                $(this).remove();
+            }
+        })
+        
+        loadItem(val);
+        $.get("index.php?app=custom&act=loadAssign",{cat:val}, function(res){
+            var res = eval("("+res+")");
+            $("#assignPrice").html(res.retval);
+        })
+    });
+//     $(".diyItem").keyup(function(){
+//         var cat = $("#cat").val();
+//         var val = $(this).val();
+//         if(cat.length == 0){
+//             alert("请选择定制品类!");
+//             return false;
+//         }
+//         $.get("index.php?app=custom&act=loadItem",{cat:cat,v:val}, function(res){
+//             var res = eval("("+res+")");
+
+            
+//         })
+//     });
+    
+    $("#type_id").change(function(){
+        var id = $(this).val();
+        $.get("index.php?app=custom&act=loadAttr",{id:id}, function(res){
+            var res = eval("("+res+")");
+            $("#attr").html(res.retval);
+        });
+    })
+    
+    $(".recommend").click(function(){
+        var ids='';
+        $("#recommend input").each(function(){
+            ids += ids ? ","+$(this).val() : $(this).val();
+        })
+        $.cookie("ids",null);
+    	var url = "index.php?app=linkCustom";
+    	if(ids){
+    	    url += "&ids="+ids;
+         }
+        window.open(url,'请选择样衣','height=800,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+    })
+})
+
+function dropItem(obj){
+    var li = $(obj).parents("li");
+    var p = li.attr("data-p");
+    var check = $(obj).parents("li").find("input[type=radio]").attr("checked");
+    li.remove();
+    $(".items li").each(function(){
+    	if(check){
+            if($(this).attr("data-p") == p){
+               // $(this).find("input[type=radio]").attr("checked", "checked");
+                return;
+            }
+    	}
+    })
+
+}
+
+function loadItem(val){
+	if(val.length == 0){
+	    return;
+	}
+    $.get("index.php?app=custom&act=loadItem",{cat:val}, function(res){
+    	var cData = eval("("+res+")");
+    	data = cData.retval;
+    		//alert(data.length);
+    		$(".diyItem").autocomplete(data,{
+                minChars: 0,//自动完成激活之前填入的最小字符
+                max:20,//列表条目数
+                width: 500,//提示的宽度
+                scrollHeight: 200,//提示的高度
+                matchContains: false,//是否只要包含文本框里的就可以
+                autoFill:false,//自动填充
+                //cacheLength:10000,
+                formatItem: function(data, i, max) {//格式化列表中的条目 row:条目对象,i:当前条目数,max:总条目数
+                   // alert(data.code);
+                	return data.code + ' ['+data.name+']';
+            	},
+        		formatResult: function(data) {//定义最终返回的数据，比如我们还是要返回原始数据，而不是formatItem过的数据
+        			return data.code; 
+        		}
+          }).result(function(event,data){
+        	  $(this).val('');
+        	  var e = true;
+        	  var checked = 'checked';
+        	  $(".items li").each(function(){
+        		  if($(this).attr("data-id") == data.id){
+          			    alert("已选了相同的工艺，请重新选择");
+          			    e = false;
+            	  }
+
+            	  if($(this).attr("data-p") == data.pid){
+          		       //checked = "";
+                  }
+              });
+              
+              var input = '';
+              if(data.sid == "10008"){
+          	      input = "  <input type='text' name='assign["+data.id+"]'>"
+              }
+
+              
+              var html = "<li data-id='"+data.id+"' data-p='"+data.pid+"'><input type='hidden' name='item["+data.id+"]' value='"+data.pid+"'><input type='text' value='"+data.code+"' autocomplete='off' readonly='readonly'> "+ data.name+input+" 设为默认工艺：<input type='checkbox' name='is_default["+data.id+"]' value='"+data.id+"' "+checked+"><span onclick='dropItem(this)' style='cursor:pointer;'>x<span> </li>";
+              var li = $(this).parents("li");
+              if(e){
+            	  li.before(html);
+              }
+          });
+    })
+}
+function loadOpt(){
+	var id   = $(this).attr("data-id");
+	var type = $(this).attr("data-type")
+	var ids  = [];
+	$(".layer"+id).find("input[type=hidden]").each(function(){
+	    ids.push($(this).val());
+    })
+    $.cookie("ids",null);
+	var url = "index.php?app=dict&id="+id+"&type="+type+"&ids="+ids.join(",");
+    window.open(url,'选择定制内容','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+}
+
+function callBack(res){
+    $.post("index.php?app=custom&act=itemInfo",{ids:res.ids,type:res.type,hasC:res.hasC}, function(data){
+        var data = eval("("+data+")");
+        $(".layer"+res.id).empty().append(data.retval);
+    })
+}
+
+function loadFab(){
+	 var v   = $("#cat").val();
+	 var ids  = [];
+	 $("#fabric").find("input[type=hidden]").each(function(){
+	    ids.push($(this).val());
+     })
+	 var url = "index.php?app=fab&v="+v+"&ids="+ids;
+	 $.cookie("fabids",null);
+	 window.open(url,'选择定制面料','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no')
+}
+function callBackFab(res){
+	$.post("index.php?app=custom&act=fabInfo",{ids:res.ids}, function(data){
+        var data = eval("("+data+")");
+        $("#fabric").empty().append(data.retval);
+    })
+}
+
+function clearOpt(){
+	var id = $(this).next("a").attr("data-id");
+	$(".layer"+id).empty();
+}
+
+function add_uploadedfile(file_data)
+{
+    var newImg = '<li id="' + file_data.file_id + '" onclick="selectImg(this)">'+
+    '<input type=hidden name=gallery[] value='+SITE_URL + '/' + file_data.file_path+'>'+
+    '<img width="80px" height="80px" src="' + SITE_URL + '/' + file_data.file_path + '" ondblclick="drop_uploadedfile(' + file_data.file_id + ');"/></li>';
+    $('#thumbnails').prepend(newImg);
+}
+
+function drop_uploadedfile(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+
+    $('#' + file_id).remove();
+    
+    $.getJSON('index.php?app=article&act=drop_uploadedfile&file_id=' + file_id, function(result){
+        if(result.done){
+            
+        }else{
+            alert('drop_error');
+        }
+    });
+}
+
+function drop_gallery(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+
+    $('#gallery_' + file_id).remove();
+    
+    $.getJSON('index.php?app=elephotos&act=drop_gallery&id=' + file_id, function(result){
+        if(result.done == false){
+            alert('drop_error');
+        }
+    });
+}
+
+function selectImg(obj){
+	$(obj).parents("ul").find("li").each(function(){
+		$(this).removeClass("on");
+	})
+	
+	$(obj).addClass("on");
+}
+
+
+function customCallBack(ids){
+
+    $.get('index.php?app=custom&act=loadCustom&ids='+ids,function(result){
+        var result = eval("("+result+")");
+        if(result.done == true){
+            var html='<ul>';
+            for(var i=0;i<result.retval.length;i++){
+                html += "<li>"+result.retval[i].name+"<input type='hidden' name='newRecommend["+result.retval[i].id+"]' value='"+result.retval[i].id+"'> <a href='javascript:;' style='color:red;' onclick='removeRec(this)' data-ret='0'>x</a> </li>";
+            }
+            html += "</ul>";
+            $("#recommend").html(html);
+        }else{
+            alert(result.msg);
+            return false;    
+        }
+    });
+}
+
+function removeRec(obj){
+    var id = $(obj).attr("data-ret");
+
+    if(id == 0){
+        $(obj).parents("li").remove();
+    }else{
+        $.get("index.php?app=custom&act=removeLink",{id:id}, function(res){
+            var res = eval("("+res+")");
+           // if(res.done==true){
+            	$(obj).parents("li").remove();
+           // }
+        })
+    }
+}
+</script>
+{include file="footer.html"}

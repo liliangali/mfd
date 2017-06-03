@@ -1,0 +1,125 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#position_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            position_name : {
+                required : true,
+                remote   : {                //唯一
+                url :'index.php?app=adposition&act=check_position',
+                type:'get',
+                data:{
+                    position_name : function(){
+                        return $('#position_name').val();
+                        },
+                    id  : '{$position.position_id}'
+                    }
+                }
+            },
+            ad_width : {
+            	 required : true,
+            	 number   : true,
+                 range	 :  [1,1024]
+            },
+            ad_height : {
+            	 required  : true,
+            	 number   : true,
+                 range	 :  [1,1024]
+            },
+            position_style : {
+            	required  : true,
+            },
+        },
+        messages : {
+        	position_name : {
+                required : '名称不能为空',
+                remote   : '名称已经存在'
+            },
+            ad_width : {
+            	required : '必填参数',
+            	number   :  '必须是一个数字',
+            	range    : '数字必须介于1-1024之间'
+            },
+            ad_height : {
+            	required : '必填参数',
+            	number   :  '必须是一个数字',
+            	range    : '数字必须介于1-1024之间'
+            },
+            position_style : {
+            	required : '必填参数'
+            },
+        }
+    });
+});
+</script>
+{$build_editor}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=adposition">{$lang.manage}</a></li>
+        {if $position.position_id}
+        <li><a class="btn1" href="index.php?app=adposition&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="position_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    广告位名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="position_name" type="text" name="position_name" value="{$position.position_name|escape}" />
+                </td>
+            </tr>
+            <tr>
+               <th class="paddingT15">
+                    广告位宽度:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="ad_width" type="text" name="ad_width" value="{$position.ad_width|escape}" />
+                </td>
+            </tr>
+              <tr>
+               <th class="paddingT15">
+                    广告位高度:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="ad_height" type="text" name="ad_height" value="{$position.ad_height|escape}" />
+                </td>
+            </tr>  
+             <tr>
+               <th class="paddingT15">
+                    广告位描述:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="position_desc" type="text" name="position_desc" value="{$position.position_desc|escape}" />
+                </td>
+            </tr>  
+         <!--        
+              <tr>
+                <th class="paddingT15">
+                  广告位模板:</th>
+                <td class="paddingT15 wordSpacing5">
+                <textarea id="position_style" name="position_style" >{$position.position_style|escape}</textarea>
+                </td>
+            </tr>  -->    
+        <tr>
+            <th></th>
+            <td class="ptb20">
+            	<input type="hidden" name="id" value="{$position.position_id}" />
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

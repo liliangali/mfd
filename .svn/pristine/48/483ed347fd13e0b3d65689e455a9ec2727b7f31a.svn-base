@@ -1,0 +1,79 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+<!--sortlist end-->
+
+
+  
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">我的收藏</h1>
+    <div class="slide">
+      <ul class="slide-ul">
+         <li class="picimglink">
+            <img width="184" height="228" src="{$img_url}/images/kkzxmj.gif"/>
+            <div class="pic-txt">
+              <p class="p1"><a href="#">[商务]藏青香槟条纹商务休闲藏青香槟条纹商务休闲藏青香槟条纹商务休闲藏青香槟条纹商务休闲</a></p>
+              <p class="p2"><span>￥5860</span><a href="#">立即定制</a></p>
+            </div> 
+         </li>
+         <li class="picimglink">
+            <img width="184" height="228" src="{$img_url}/images/kkzxmj.gif"/>
+            <div class="pic-txt">
+              <p class="p1"><a href="#">[商务]藏青香槟条纹商务休闲藏青香槟条纹商务休闲藏青香槟条纹商务休闲藏青香槟条纹商务休闲</a></p>
+              <p class="p2"><span>￥5860</span><a href="#">立即定制</a></p>
+            </div> 
+         </li>  
+         <li class="picimglink">
+            <img width="184" height="228" src="{$img_url}/images/kkzxmj.gif"/>
+            <div class="pic-txt">
+              <p class="p1"><a href="#">[商务]藏青香槟条纹商务休闲藏青香槟条纹商务休闲藏青香槟条纹商务休闲藏青香槟条纹商务休闲</a></p>
+              <p class="p2"><span>￥5860</span><a href="#">立即定制</a></p>
+            </div> 
+         </li>
+         <li class="picimglink">
+            <img width="184" height="228" src="{$img_url}/images/kkzxmj.gif"/>
+            <div class="pic-txt">
+              <p class="p1"><a href="#">[商务]藏青香槟条纹商务休闲藏青香槟条纹商务休闲藏青香槟条纹商务休闲藏青香槟条纹商务休闲</a></p>
+              <p class="p2"><span>￥5860</span><a href="#">立即定制</a></p>
+            </div> 
+         </li>                                              
+        </ul>
+        <p class="clear"></p>
+    </div>
+    
+    <div class="lulals_fy">    
+      <p>共4条记录</p>  
+      <div>
+        <a href="#" class="fyzj"></a>
+        <a href="#" class="on">1</a>
+        <a href="#" class="fyyj"></a>
+        <p class="clear"></p>
+      </div>
+    </div>
+    
+  </div>
+  <p class="clear"></p>
+</div>
+
+
+
+<script type="text/javascript">
+  $(".picimglink").bind({
+	  mouseenter: function() {
+		  $(this).children("div").animate({
+			  bottom: "0px"
+		  },
+		  300)
+	  },
+	  mouseleave: function() {
+		  $(this).children("div").clearQueue().animate({
+			  bottom: "-60px"
+		  },
+		  500)
+	  }
+  });
+</script>
+
+</div>
+{include file="footer.html"}

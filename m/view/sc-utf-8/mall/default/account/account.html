@@ -1,0 +1,55 @@
+{include file=member.header.html}
+<style type="text/css">
+.user_name { position: relative; bottom: 18px; margin-left:5px; }
+
+</style>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public table">
+                <table class="table_head_line">
+                    <!--{if $account_list}-->
+                    <tr class="line tr_color">
+                        <th class="align1" style="padding-left:15px;"><b>操作时间</b></th>
+                        <th><b>类型</b></th>
+                        <th><b>金额</b></th>
+                        <th><b>备注</b></th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$account_list item=list name=v}-->
+                    <tr <!--{if $smarty.foreach.v.last}-->class="line_bold"<!--{else}-->class="line"<!--{/if}-->>
+                        <td class="width13" style="padding-left:15px;">{$list.dateline|date:Y-m-d H:i:s}</td>
+                        <td class="width15 align2">{if $list.money > 0}增加{else}减少{/if}</td>
+                        <td class="width13 align2" style="color:{if $list.money < 0}red{else}#bb422e{/if}"><b>{$list.money}</b></td>
+                        <td class="width8">{$list.remark}</td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="4" class="member_no_records padding6">{$lang.no_records}{$lang.$smarty.get.act}</td>
+                    </tr>
+
+                    <!--{/foreach}-->
+                    <!--{if $account_list}-->
+                    <tr>
+                        <td colspan="4">
+                           <p class="position2">
+                                	<div class="page">当前可用资金：￥{$user.money}</div> {include file=member.page.bottom.html}
+                            </p>
+                        </td>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=login_footer.html}

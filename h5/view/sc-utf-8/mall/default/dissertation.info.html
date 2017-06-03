@@ -1,0 +1,384 @@
+{include file=header.html}
+<link href="{res file=css/motif.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/thickbox.css}" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="{res file=js/lunbojs.js}"></script>
+<script type="text/javascript" src="{res file=js/jquery.qqFace.js}"></script>
+<script type="text/javascript" src="{res file=js/thickbox-compressad.js}"></script>
+<script type="text/javascript" src="{res file=js/custom.js}"></script>
+<script type="text/javascript" src="{res file=js/customjscroll.js}"></script>
+<script type="text/javascript" src="{res file=js/customjscroll1.js}"></script>
+<script type="text/javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="text/javascript" src="{res file=js/plugins/dialog.js}"></script>
+<script type="text/javascript" src="{res file=js/plugins/user.js}"></script>
+<script type="text/javascript" src="{lib file=disComment.js}"></script>
+<!--[if IE 6]>
+<![endif]-->
+</head>
+<body style="background:#f9f9f9;">
+
+<!--中间开始-->
+<div class="m_box" style="position:relative;" >
+   <h1 class="m_h1">{$info.title}</h1>
+   <!--图片展示、基本信息 开始-->
+   <div class="m_goods_box">
+      <div class="m_goods_l">
+       <div class="big_pic">
+            <img src="{$info.middle_img}" />
+        </div>
+		<!--其他主题展示 开始-->
+		    {$info.content}
+		<!--其他主题展示 结束-->
+      </div>
+      <div class="m_goods_r">
+         <div class="m_goods_rti"><font>此主题包含的基本款</font></div>
+               
+                   <div class="buy_theme" id="buy">
+                   {foreach from=$customs item=custom}
+                      <dl class="hover_dt" data-id="{$custom.cst_id}" data-price="{$custom.cst_price}" data-market="{$custom.cst_market}">
+                          <dt><img src="{$custom.cst_dis_image}" width="60" height="80" /></dt>
+                          <dd>
+                             <p class="p1"><a href="{link app=custom act=info arg=$custom.cst_id}" target="_blank">{$custom.cst_name}</a></p>
+                             <p class="p3">{$custom.cst_description}</p>
+                             <p class="p2"><font>{$custom.cst_price|price}</font><a href="{link app=custom act=info arg=$custom.cst_id}"  target="_black" class=" m_frwd">我要个性定制></a></p>
+                          </dd>
+                      </dl>
+                   {/foreach}
+                   <input type="hidden" name="ids" value="{$ids}">
+                   </div>
+                   <div class="buy_bottom">
+           <div class="buy_sum"><span>已选择 <font class="selected">{$selected}</font> 件配搭</span><span class="setmeal_price">组合价：<font class="price">{$total|price}</font></span></div>
+       </div>
+               <!-- 二维码 -->    
+            <div class="m_buy_but">
+              {qrcode type='dissertation' id=$info.id size=2}
+              
+              <a href="javascript:;" class="addtocart m_buy_gmczh">购买此组合</a>
+           </div>
+           <div class="like_share">
+           {if $info.is_like eq 1}
+	           <a href="javascript:;"  class="y_xh ylike_a">已喜欢</a>
+	           {else}
+	           <a href="javascript:;"  class="m_xh like_a">喜欢</a>
+	           {/if}
+               
+               <span class="like_sum">{$info.likes}</span>
+               
+              <div class="m_share bdsharebuttonbox" data-tag="share_1">
+                  <span class="fxd">分享到：</span>
+                  <a class="bds_163" href="javascript:void(0);" data-cmd="t163">网易</a>
+                  <a class="bds_sina" href="javascript:void(0);"  data-cmd="tsina">新浪</a>
+                  <a class="bds_ren" href="javascript:void(0);"  data-cmd="renren">人人</a>
+                  <a class="bds_zone" href="javascript:void(0);"  data-cmd="qzone">qq空间</a>
+              </div>
+          </div> 
+		  <!--设计理念 开始-->
+		    <div class="design">
+			  <h1>设计理念</h1>
+			  <p>{$info.design}</p><p>&nbsp;</p>
+			</div>
+		  <!--设计理念 结束-->
+
+          <!--评论 开始-->
+		    <div class="comments_box">
+			    <div class="com_form">
+					<textarea class="input_text" id="saytext" name="saytext" maxlength="185">你也可以随便说点什么</textarea>
+					<p>
+					  <span class="emotion">表情</span>
+					  <span class="shuru">还可以输入<font>185</font>个字符</span>
+					  <input type="button" class="sub_btn_comm" value="">
+					</p>
+			    </div>
+				<div class="comment_list">
+	
+				</div>
+			</div>
+
+          <!--评论 结束-->
+      </div>
+    <p class="blank15"></p>
+   </div>
+   <!--图片展示、基本信息 结束-->
+   <div id="topcontrol" style="z-index:9998;">
+       <div class="buy_but_box">
+           <span>{$info.title}</span>
+           <div class="buy_2">
+           	
+             <a href="javascript:;" class="addtocart m_buy_gmczh">购买此组合</a>
+             
+           </div>
+       </div>
+   </div>
+<script type="text/javascript" src="{res file=js/scrolltopcontrol.js}"></script>
+   
+   <p class="blank20"></p>
+   <!--其它进行中的主题 start-->
+   {if $other_list}
+   <div class="basic_re_box">
+       <h3>您可能喜欢这些</h3>
+        <!--相册轮播开始-->
+  <div class="basic_re_show">
+    <div class="scrollcontainer" id="moveid">
+       <ul>
+       {foreach from=$other_list item=other}
+          <li>
+            <p><a href="{link app=dissertation act=info arg=$other.id}"><img src="{$other.small_img}" alt="{$other.title}"/></a></p>
+            <p class="p1"><a href="{link app=dissertation act=info arg=$other.id}">{$other.title}</a></p>
+          </li>
+      {/foreach}
+      </ul>
+      <p class="clear"></p> 
+    </div>
+    <a class="abtn aleft" href="#left">左移</a>
+    <a class="abtn aright" href="#right">右移</a>
+  </div>
+ <!--相册轮播结束--> 
+   </div>
+   {/if}
+<!--其它进行中的主题 end-->
+</div>
+<!--中间结束-->
+
+<div id="login" class="tcc_box" style="display:none;">
+   <div class="cart_login">
+       <div class="tcc_tit">您尚未登录</div>
+       <p class="gb"><a href="javascript:void(0);" onClick="tb_remove();"><img src="{res file=images/tccgb.png}" /></a></p>
+       <div class="gwctcc_left">
+       
+         <div class="sjhyx" style="margin-top:10px;"><input type="text" value="手机或邮箱" onFocus="if(value=='手机或邮箱'){value=''}" onBlur="if(value==''){value='手机或邮箱'}" class="input_1" /></div>        
+         <div class="mima" style="margin-top:28px;"><input class="pswt" value="密 码"><input style="display:none;" class="pswh" name="password" type="password"></div>
+         
+         <div class="jzzh_zhmm" style="margin-top:28px;">
+           <input name="" type="checkbox" value="" class="jzzhinput" />
+           <p class="jzzh">记住帐号</p>
+           <p class="zhmm"><a href="javascript:void(0);">找回密码？</a></p>
+         </div>
+         <p class="clear"></p>
+         
+         <div class="hydl"><input type="submit" value="" /></div>
+         
+         <p class="hmzh_ljzc" style="padding-right:32px;">还没有帐号？<a href="javascript:void(0);">立即注册</a></p>
+         
+         <p class="hzzhdl" style="margin-top:34px;">合作网站帐号登录：</p>
+         <div class="hzzhdl_s"><a href="javascript:void(0);" class="dyg_a"></a><a href="javascript:void(0);" class="drg_a"></a><a href="javascript:void(0);" class="dsag_a"></a><a href="javascript:void(0);" class="dsig_a"></a><p class="clear"></p></div>
+       
+       </div>
+       
+       <div class="gwctcc_right">
+         <p class="wxtx">温馨提示：</p>
+         <p class="bxtzcbdl">本系统支持不登录即可下单</p>
+         <p class="wdlwfckwl">未登录用户下单后将无法查询订单信息及物流状态</p>
+         <p class="bdlzjjs"><a href="{link app=flow act=index}">不登录，直接结算</a></p>
+       </div>
+       <p class="clear"></p>
+  </div>      
+</div>
+<a class='thickbox ljjs' href='#TB_inline?height=430&width=620&inlineId=login&TB_iniframe=-1&modal=true'></a>
+<SCRIPT>
+/*左侧菜单点击*/
+$(".menu_wrap_1").delegate("h4","click",function(){
+	var _thisMeneDetail = $(this).next(".menu_detail")
+		,_menuList = $(this).parents(".menu_list");
+	_menuList.addClass("cur").siblings(".menu_list").removeClass("cur");
+	if(_thisMeneDetail.is( ":visible")){
+		_menuList.removeClass("cur");
+		_thisMeneDetail.slideUp();
+		return false;
+	}else{
+		$(".menu_detail",".menu_list").slideUp();
+		_thisMeneDetail.slideDown();
+		return false;
+	}
+});
+/*左侧菜单*/
+function menuListShow(idx,idx2){
+	$(".menu_list",".menu_wrap_1").removeClass("cur");
+	$(".menu_list",".menu_wrap_1").eq(idx).addClass("cur");
+	$(".menu_list",".menu_wrap_1").eq(idx).find(".menu_detail").show();
+	$(".menu_list",".menu_wrap_1").eq(idx).find("a",".menu_detail").removeClass("cur");
+	$(".menu_list",".menu_wrap_1").eq(idx).find("a",".menu_detail").eq(idx2).addClass("cur");
+}
+</SCRIPT>
+<script>
+                         $(function(){
+                        	  var ids=[];
+						      $("#buy").find("dl").each(function(){
+								  var Othis = $(this).find("dt");
+								  var Child = "<i>对号</i>";
+								  var Childi = Othis.find("i");
+
+								  Othis.addClass("hover_dt");
+								  Othis.append(Child);
+								  ids.push($(this).data("id"));
+							      Othis.click(function(){
+									 if(Othis.attr("class") != "hover_dt" && Childi){
+								
+									  Othis.append(Child);
+								      Othis.addClass("hover_dt");   
+									 }else{
+										 if(Childi){
+									      	Othis.find("i").remove();
+										 	Othis.removeClass("hover_dt");
+										 }
+									 }
+									  var price = 0;
+									  var market = 0;
+									  var selected = 0;
+									  var saved = 0;
+									  var sids = [];
+									  $("#buy").find("dl").each(function(){
+										  
+							    		  if($(this).children("dt").attr("class") == "hover_dt"){
+							    			 // alert($(this).data("price"));
+							    			  price += parseFloat($(this).data("price"));
+							    			  market += parseFloat($(this).data("market"));
+							    			  sids.push($(this).data("id"));
+							    			  selected ++;
+							    			  
+							    		  }
+							    	  })
+							    	  
+							    	  $("#buy input[name=ids]").val(sids.join(","));
+							    	  $(".price").html("¥"+price);
+									  $(".market").html("¥"+market);
+									  $(".saved").html("¥"+(market-price));
+									  $(".selected").html(selected);
+									  
+								  });
+							  });
+						      $("#buy input[name=ids]").val(ids.join(","));
+						 })
+                      </script>
+<script type="text/javascript">
+$(function(){
+	
+	$('.emotion').qqFace({
+		id : 'facebox', 
+		assign:'saytext', 
+		path:'{res file=images/arclist}/'	//表情存放的路径
+	});
+	
+	$(".basic_re_show:eq(0)").Xslider({
+		 unitdisplayed:4,
+		numtoMove:1
+	});
+	
+});
+ 
+$(function(){
+
+	//var _purl = "{link app=dissertation act=praise arg=$info.id}";
+	//var _curl = "{link app=dissertation act=comment arg=$info.id}";
+	var disid = "{$info.id}";
+	var opt = {};
+	opt.disid = "{$info.id}";
+	opt.loadUrl = "{link app=dissertation act=comment_list arg=1}";
+	opt.postUrl = "{link app=dissertation act=comment arg=$info.id}";
+	comment.init(opt);
+	//二、左右切换：最后一个显示在最右侧;
+/* 	$(".basic_re_show:eq(0)").Xslider({
+		unitdisplayed:3,
+		numtoMove:1,
+		autoscroll:2000
+	}); */
+
+	 $(".addtocart").click(function(){
+		 var url = "{link app=cart act=add}";
+		 
+		 var ids = $("#buy input[name=ids]").val();
+		 if(!ids){
+			 $.rc.tip({content:'请选择一个基本款', icon:"error"});
+			 return false;
+		 }
+		// if(ids.)
+		 $.post(url, {"goods_id":ids,"disid":disid,'type':'dis'},function(res){
+			 var res = $.evalJSON(res);
+			 if(res.done == false){
+				 $.rc.tip({content:res.msg, icon:"error"});
+				 return false;
+			 }else{
+				 try{
+					 $("#cartGoodsNum font").html(res.retval.goods_num);
+					 }catch(e){}
+					//$.rc.tip({content:'添加购物车成功'});
+				    location.href="{link app=cart}";
+			 }
+		 })
+	 });
+	
+	$("a").focus(function(){this.blur();});
+	/*
+	$(".like_a").click(function(){
+		var num = parseInt($(".like_sum").html());
+		$.post(_purl,function(res){
+			var res = $.evalJSON(res);
+			if(res.done == false){
+				alert(res.msg);
+			}else{
+				if(res.retval != "warning"){
+					$(".like_sum").html(num+1);
+				}
+			}
+		})
+	})
+	*/
+	//
+
+})
+
+</script>
+
+{include file=footer.html}
+{* Ruesin Ajax likes *}
+<script type="Text/Javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+<link type="text/css" rel="stylesheet" href="{res file=css/new_pubuliu.css}" />
+<script>
+var PINER = {
+        uid: "<?php echo $_SESSION['user_info']['user_id'] ?>" 
+    };
+
+$(".m_xh").click(function(){
+    if(!$.rc.dialog.islogin())return;
+    var _this=$(this);
+    var _cls = _this.attr('class');
+    if(_cls=='y_xh')return;
+    var _count = parseInt($(".like_sum").html());
+    var _itemId={$did};
+    $.ajax({
+        url    :"{link app=dissertation act=ajax_like}",
+        data   :{"itemId":_itemId},
+        dataType: "json", 
+        success:function(result,status){
+            if(result.num==0){
+                ///alert(result.msg);
+                return;
+            }
+            //_this.removeClass();
+            //_this.addClass(result.cls);
+            _this.attr('class',result.cls);
+            _this.html(result.msg);
+            $(".like_sum").html(parseInt(_count)+result.num)
+        }
+    });
+    
+
+
+});
+
+</script>
+
+<script>
+	window._bd_share_config = {
+		common : {
+			bdText : '{$info.title}',	
+			bdDesc : '{$info.title}',	
+			bdUrl : 'http://www.baidu.com', 	
+			bdPic : '{$info.middle_img}'
+		},
+		share : [{
+			"bdSize" : 24
+		}]
+
+	}
+	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>

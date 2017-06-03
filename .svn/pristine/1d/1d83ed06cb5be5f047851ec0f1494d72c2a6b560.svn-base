@@ -1,0 +1,47 @@
+{include file="header.html"}
+<div id="rightTop">
+	<ul class="subnav">
+    <li><span>{$lang.manage}</span></li>
+
+  </ul>
+</div>
+
+
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $brokerages}-->
+    <tr class="tatr1">
+      <td class="firstCell">{$lang.brokerage_level}</td>
+      <td >{$lang.serve} </td>
+      
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$brokerages item=brokerage}-->
+    <tr class="tatr2">
+      <td class="firstCell">{$brokerage.brokerage_level|escape}</td>
+      <td >{$brokerage.serve|escape}%</td>
+      
+      
+      
+      <td class="handler">
+      <span style="width: 100px">
+      <a href="index.php?app=brokerage&amp;act=edit&amp;id={$brokerage.id}">{$lang.edit}</a> 
+
+      </span>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="10">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $brokerages}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

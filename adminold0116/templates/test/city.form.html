@@ -1,0 +1,295 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#city_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            city_name : {
+                required : true,
+            },
+            site_name : {
+                required : true,
+            },
+            site_phone : {
+                required : true,
+            },
+            address : {
+                required : true,
+            },
+            lng : {
+                required : true,
+            },
+            lat : {
+                required : true,
+            },
+            sort_order : {
+                number   : true,
+                range	 :  [0,255]
+            }
+        },
+        messages : {
+        	city_name : {
+                required : '{$lang.city_name_empty}',
+            },
+            site_name : {
+                required : '{$lang.site_name_empty}',
+            },
+            site_phone : {
+                required : '{$lang.site_phone_empty}',
+            },
+            address : {
+                required : '{$lang.address_empty}',
+            },
+            lng : {
+                required : '{$lang.lng_empty}',
+            },
+            lat : {
+                required : '{$lang.lat_empty}',
+            },
+            sort_order  : {
+                number   : '{$lang.number_only}',
+                range	 : '{$lang.sort_order_range}',
+            }
+        }
+    });
+});
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";font-size:14px;}
+		#allmap {width:100%;height:500px;}
+	</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=UqtlIBv9TuMU6Upp4Y1YuXTd"></script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=testsite">{$lang.manage}</a></li>
+        {if $city.city_id}
+        <li><a class="btn1" href="index.php?app=testsite&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+<div id="allmap" style="width:500px;height:500px;float:left;" ></div>
+<div class="info" style="float:right;">
+    <form method="post" enctype="multipart/form-data" id="city_form" name="city_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                   	 {$lang.city_name} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="city_name" type="text" name="city_name" value="{$city.city_name|escape}" readonly/>
+                </td>
+                	
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                   	 {$lang.site_name} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="site_name" type="text" name="site_name" value="{$city.site_name|escape}" />
+                </td>
+                	
+            </tr>
+           
+           	 <tr>
+                <th class="paddingT15">
+                   	 {$lang.site_type} :</th>
+                <td class="paddingT15 wordSpacing5">
+                	<select name="site_type" id="site_type" >
+            			{html_options options=$site_type selected=$city.site_type}
+           			</select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                   	 门店类型 :</th>
+                <td class="paddingT15 wordSpacing5">
+                	<select name="type" id="type" >
+            			{html_options options=$type selected=$city.type}
+           			</select>
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <th class="paddingT15">
+                   	 {$lang.site_phone} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="site_phone" type="text" name="site_phone" value="{$city.site_phone|escape}" />
+                </td>
+                	
+            </tr>
+            
+            <!--  
+            <tr>
+            <th class="paddingT15"> 
+                	城市code :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="code" type="text" name="code" value="{$city.code|escape}" />
+                </td>
+            </tr>-->
+            
+            <tr>
+            	 <th class="paddingT15"> 
+                	{$lang.address} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="address" type="text" name="address" value="{$city.address|escape}" />
+                </td>
+             </tr>
+             <tr>
+            	 <th class="paddingT15"> 
+                	{$lang.lng} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="lng" type="text" name="lng" value="{$city.lng|escape}" />
+                </td>
+             </tr>
+             <tr>
+            	 <th class="paddingT15"> 
+                	{$lang.lat} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput2" id="lat" type="text" name="lat" value="{$city.lat|escape}" />
+                </td>
+             </tr>
+            <tr>
+                <th class="paddingT15">
+                    	{$lang.is_open}:</th>
+                <td class="paddingT15 wordSpacing5">
+                {html_radios options=$is_open checked=$city.is_open name=is_open}</td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">
+                  	  {$lang.sort_order}:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="sort_order" id="sort_order" type="text" name="sort_order" value="{$city.sort_order}" />
+                </td>
+            </tr>
+        	<tr>
+            <th></th>
+            <td class="ptb20">
+           		<input type="hidden" name="id" value="{$city.city_id}" />
+                <input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+       	 	</tr>
+        </table>
+    </form>
+</div>
+
+
+	<p>点击地图展示详细地址</p>
+	
+	<div id="r-result">请输入:<input type="text" id="suggestId" size="20" value="百度" style="width:150px;" />
+	</div>
+	<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;">
+	</div>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");
+	var point = new BMap.Point(120.384428,36.105215);
+	var geoc = new BMap.Geocoder();    
+	map.centerAndZoom("{$city.city_name}",12);//设置地图默认城市
+	
+	map.addEventListener("click", function(e){        
+		var pt = e.point;
+		geoc.getLocation(pt, function(rs){
+			var addComp = rs.addressComponents;
+			 address= addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
+			 cityName = addComp.city;
+			 lng = e.point.lng;
+			 lat = e.point.lat;
+		});
+		
+		//======获得code=====
+		function myFun(result){
+		console.log(result);
+	     code = result.code;
+		}
+		var myCity = new BMap.LocalCity();
+		myCity.get(myFun);
+		$("#city_name").val(cityName);
+		$("#address").val(address);
+		$("#lng").val(lng);
+		$("#lat").val(lat);
+	});
+	
+	
+	
+	
+	                
+	map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
+	map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+	
+	//=====根据输入城市搜索 Beg=====
+	function G(id) {
+		return document.getElementById(id);
+	}
+	var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+		{"input" : "suggestId"
+		,"location" : map
+	});
+
+	ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+	var str = "";
+		var _value = e.fromitem.value;
+		var value = "";
+		if (e.fromitem.index > -1) {
+			value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+		}    
+		str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+		
+		value = "";
+		if (e.toitem.index > -1) {
+			_value = e.toitem.value;
+			value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+		}    
+		str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+		G("searchResultPanel").innerHTML = str;
+	});
+
+	var myValue;
+	ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+	var _value = e.item.value;
+		myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+		G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+		
+		setPlace();
+	});
+	
+	function setPlace(){
+		map.clearOverlays();    //清除地图上所有覆盖物
+		function myFun(){
+			var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+			map.centerAndZoom(pp, 18);
+			map.addOverlay(new BMap.Marker(pp));    //添加标注
+		}
+		var local = new BMap.LocalSearch(map, { //智能搜索
+		  onSearchComplete: myFun
+		});
+		local.search(myValue);
+	}
+	//=====根据输入城市搜索 End====	
+
+	
+	
+	
+	
+	function dump_obj(myObject) {  
+		  var s = "";  
+		  for (var property in myObject) {  
+		   s = s + "\n "+property +": " + myObject[property] ;  
+		  }  
+		  alert(s);  
+		}  
+</script>
+

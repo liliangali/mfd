@@ -1,0 +1,79 @@
+{include file=member.header.html}
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+</style>
+<script type="text/javascript">
+$(function(){
+	
+    $('#apply_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        rules : {
+        	money : {
+                required : true,
+             	number   : true,
+             	min      : 1
+            },
+            remark : {
+                required : true,
+                maxlength: 200,
+            }
+        },
+        messages : {
+            money : {
+                required : '请输入提现金额!',
+             	number : '请输入有效的金额!',
+             	min    : '提现金额必须大于0!'
+            },
+            remark : {
+                required : '请填写备注信息！',
+                maxlength: '最多只能输入200个字符'
+            }
+        }
+    });
+});
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+            {include file=member.submenu.html}
+            <div class="wrap">
+                <div class="public">
+                <form method="post" enctype="multipart/form-data" id="apply_form">
+                    <div class="information">
+                        <div class="info individual">
+                            <table>
+                                <tr>
+                                    <th class="width4">提现金额: </th>
+                                    <td><input type="text" class="text width_normal" name="money" value="" /></td>
+                                </tr>
+                                <tr>
+                                    <th>备注:</th>
+                                    <td><textarea rows="5" cols="60" class="text" name="remark"></textarea></td>
+                                </tr>
+                               <tr>
+                                    <td colspan="2" class="label align2">
+                                    	<input type="submit" name="sub" value="提交申请" class="btn">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <div class="wrap_bottom"></div>
+            </div>
+
+            <div class="clear"></div>
+
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{include file=login_footer.html}

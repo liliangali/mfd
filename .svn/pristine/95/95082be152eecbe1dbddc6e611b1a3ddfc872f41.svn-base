@@ -1,0 +1,222 @@
+{include file=member.header.html}
+<div class="w">
+  <div class="AreaBox clearfix"> {include file=member.menu.html}
+    {if $ac =='tailor'} 
+    <script type="text/javascript">
+//<!CDATA[
+var PINER = {uid: "{$session_info_user_id}"}; 
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+var REGION_URL="{link app=mlselection act=index arg=region}";
+var reginUrl=REAL_SITE_URL+REGION_URL;
+//]]>
+</script>
+{$_head_tags} 
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+   regionInit("region");
+});
+//]]>
+</script>
+
+    <div class="con">
+      <form method="post" enctype="multipart/form-data" id="my_store_form">
+      <h2 class="tit">服务信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+        <div class="cfCenter">
+			<div class="headShow">
+                
+                {if $store.store_logo neq ''}
+                <img src="/{$store.store_logo}" width="200" />
+                {else}
+                <div style="height:267px;"></div>
+                {/if}
+                <div class="upfile">
+                    <span class="btn">设置封面图<input type="file" name="store_logo" class="width_normal" onchange="$(this).parent().next('.txt').text(this.value)" /> </span>
+                    <span class="txt" style="width:105px">(展示在裁缝列表)</span>
+           		</div>
+            </div>
+          <div class="item">
+            <div class="t"><b style="color:#a40001">*</b> 店铺名称 :</div>
+            <p class="td_block"><input validate="required|remote|maxlength" maxlength="20" id="store_name" type="text" class="text width_normal" name="store_name" value="{$store.store_name|escape}"/><label class="field_notice"></label></p>
+          </div>
+          <div class="item">
+            <div class="t"><b style="color:#a40001">*</b> 服务地区 :</div>
+            <div id="region">
+              <input validate="required" type="hidden" name="region_id" value="{$store.region_id}" class="mls_id" />
+              <input validate="required" type="hidden" name="region_name" value="{$store.region_name|escape}" class="mls_names" />
+              <!-- {if $store.store_id} --> 
+              <span>{$store.region_name|escape}</span>
+              <input type="button" value="{$lang.edit}" class="edit_region" />
+              <select style="display:none">
+                <option>{$lang.select_pls}</option>
+                {html_options options=$regions}  
+              </select>
+              <!-- {else} -->
+              <select class="select">
+                <option>{$lang.select_pls}</option>
+                {html_options options=$regions}
+              </select>
+              <!-- {/if} --></div>
+          </div>
+          <div class="item">
+            <div class="t">{$lang.address} :</div>
+            <input type="text" name="address" class="text width_normal" id="address" value="{$store.address|escape}" />
+            <span class="field_notice"></span> </div>
+          <div class="item">
+            <div class="t"><b style="color:#a40001">*</b> 真实姓名 :</div>
+            <input validate="required|minlength" minlength="2" id="owner_name" type="text" class="text width_normal" name="owner_name" value="{$store.owner_name|escape}"/>
+          </div>
+
+          <div class="item">
+            <div class="t"><b style="color:#a40001">*</b> 联系电话 :</div>
+            <input validate="required|phone" name="tel" type="text" class="text width_normal" id="tel" value="{$store.tel}" />
+           </div>
+          <div class="item">
+            <div class="t">联系QQ :</div>
+            <input validate="number" name="im_qq" type="text" class="text width_normal" id="im_qq" value="{$store.im_qq}" />
+          </div>
+          <div class="item">
+            <div class="t">微&nbsp;&nbsp;信 :</div>
+            <input name="im_wx" type="text" class="text width_normal" id="im_wx" value="{$store.im_wx}" />
+          </div>
+          <div class="item">
+            <div class="t">Emall :</div>
+            <input validate="email" name="email" type="text" class="text width_normal" id="email" value="{$store.email}" />
+          </div>
+         <!--<div class="item">
+            <div class="t">专业经历 :</div>
+            <input name="experience" type="text" class="text width_normal" id="experience" value="{$store.experience}" />
+          </div> -->
+          <div class="item">
+            <div class="t"><b style="color:#a40001">*</b> 签名介绍 :</div>
+            <input validate="required" name="personality" type="text" class="text width_normal" id="personality" value="{$store.personality}" />
+          </div>
+          <div class="item checkbox">
+            <div class="t"><b style="color:#a40001">*</b> 服务方式 :</div>
+            <!--{foreach from=$lang.store_arrt_list.1 item=fw}-->
+            
+            <label><input type="checkbox" <!--{if $store.$fw.ch}-->checked<!--{/if}--> value="1" name="{$fw.ch}">{$fw.name}</label>
+            
+            <!--{/foreach}--> 
+          </div>
+          <div class="item checkbox">
+            <div class="t"><b style="color:#a40001">*</b> 服务风格 :</div>
+            <!--{foreach from=$lang.store_arrt_list.2 item=fg}-->
+            
+            <label><input type="checkbox" <!--{if $store.$fg.ch}-->checked<!--{/if}--> value="1" name="{$fg.ch}">{$fg.name}</label>
+            
+            <!--{/foreach}--> 
+          </div>
+          <div class="item">
+            <div class="t">从业经历 :</div>
+            <textarea name="description" id="description">{$store.description|escape}</textarea>
+          </div>
+          </div>
+
+          <h2 class="tit">个性化设置 :</h2>
+          <div class="cfCenter">
+          <div class="item">
+          
+                {if $store.banner neq ''}
+                <img src="/{$store.banner}" width="80" height="80" />
+                {/if} 
+                <div class="upfile">
+                   banner图片：<span class="btn">浏览...<input type="file" name="banner" class="width_normal" onchange="$(this).parent().next('.txt').text(this.value)" /> </span>
+                    <span class="txt">为选择文件。</span>
+              </div>
+          </div>
+
+          <div class="item">
+            <div class="t">个性域名 :</div>
+            <p class="td_block"><input validate="required|remote|maxlength" maxlength="20" id="url" type="text" class="text width_normal" name="url" value="{$store.url|escape}" {if $store.url}readonly{/if}/><label class="field_notice"></label></p>
+          </div> 
+
+          </div>
+
+          <div class="cfCenter">
+
+          <input type="submit" class="baocun" value="{$lang.submit}" />
+        </div>
+      </form>
+    </div>
+<script type="text/javascript">
+$('#my_store_form').verify({
+	messages:{required:'此处不能为空',remote:'店铺名字重复请重新输入'},
+	validate:{
+		remote:function(e){
+			var success=true
+			$.ajax({
+				url  : 'apply-check_name.html?ajax=1',
+				async:false,
+				type : 'get',
+				data : {
+					store_name :e.val(),
+					store_id : '{$store.store_id}'
+				},
+				success: function(d){
+					success=eval(d);
+					if(!success){
+						_error(e,'remote')	
+					}
+				}
+			});
+			return success
+		}	 
+	}
+});
+$('.checkbox input[type=checkbox]').click(function(){
+	var obj=$(this).parents('.checkbox');
+	if(obj.find('input:checked').length<=0){
+		this.checked=true;
+		use('/static/expand/layer/layer.min.js',function(){
+			$.layer({
+				shade: [0.3, '#000'],
+				area: ['330px','150px'],
+				dialog: {
+					msg: '最少选择一项',
+					btns: 1,                    
+					type: 0,
+					btn: ['确定']
+				}
+			});
+		})
+	}
+})
+</script>
+  {else}
+  <div class="con">
+          <div class="wdzf_box">
+            <h2 class="wdzf_bt">我的账户</h2>
+            <div class="userData">
+                <div class="minHead">
+                    <img src="{$avatar}" width="100" height="100" />
+                    <a href="member-index-upavater.html" class="edit">修改头像</a>
+                </div>
+                <ul class="baseData">
+                    <li><span>邮箱：</span>{$user.email}</li>
+                    <li><span>手机：</span>{$user.phone_mob}<p class="tc_xgzl"><a href="member-logout.html" data-e="login-out">安全退出</a><a href="member-index-user_set.html">修改个人资料</a></p></li>
+                    <li><span>昵称：</span>{$user.nickname}</li>
+                </ul>
+             </div>               
+            </div>
+                        <div class="wdzf_box clearfix">
+             <h2 class="wdzf_bt">根据浏览，猜你喜欢</h2> 
+             <ul class="cnxh">
+            
+                <!--{foreach from=$list item=cs}-->
+                  <li>
+               <p><a href="custom-minfo-{$cs.cst_id}.html"><img src="{$cs.cst_image}"></a></p>
+               <p class="p2"><a href="#">{$cs.cst_name}</a></p>
+                 </li>
+                <!--{/foreach}-->
+            
+              
+             </ul>             
+            </div>  
+  </div>
+  {/if}
+  </div>
+</div>
+{include file=footer.html}

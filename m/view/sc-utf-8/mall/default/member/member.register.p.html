@@ -1,0 +1,155 @@
+{include file="register_header.html"}
+<!-- <script type="Text/Javascript">timer_start_register();</script> -->
+<link href="{res file=css/register.css}" rel="stylesheet" type="text/css">
+
+
+<div class="newreg_wrap">
+  <div class="newreg">
+    <div class="newreg_inner">
+        <div class="title">
+            <strong>手机/邮箱注册</strong>
+            <span class="log">
+            已有帐号？
+            <a href="{link app=member act="login"}">立即登录</a>
+            </span>
+       </div>
+       <div class="container">
+           <div class="cssm-state cssm-state2 clearfix">
+                <ul>
+                    <li>
+                        <p>填写帐号信息</p>
+                        <span>1</span>
+                    </li>
+                    <li class="current">
+                        <p>验证手机/邮箱</p>
+                        <span>2</span>
+                    </li>
+                    <li class="last">
+                        <p>注册完成</p>
+                        <span>3</span>
+                    </li>
+                </ul>
+                <div class="r-line"></div>
+            </div>
+            <form id="mf" action="/index.php/member-register.html?opt=5" method="post">
+                <input type="hidden" name="phone" value="{$phone}" />
+                <input type="hidden" name="ps" value="{$ps}" />
+
+                <ul class="sy-ul sy-ul2" style="padding-left:150px;">
+                    <li class="first">
+                        <i class="b-icon"></i>
+                        验证码短信已发送，请查看
+                    </li>
+                    <li class="two-li">
+                        注册手机：{$phone}
+                    </li>
+                    <li>
+                        <input id="auth_code" class="login_text" type="text" name="auth_code" maxlength="4" autocomplete="off" placeholder="输入4位短信验证码">
+                        <p class="code_button">
+                        <a id="getSMS" class="" href="javascript:void(0)">重新发送</a>
+                        </p>
+                        <label id="tip_verifycode_register" class="tip"></label>
+                    </li>
+                    <li class="s-mar">
+                        <input id="submit_register_confirm" class="l-btn" type="submit" value="完成注册">
+                        <input type="hidden" value="967003" name="register_form_id">
+                    </li>
+                </ul>
+            </form>
+       </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    var loop_del = null;
+    function resetSMSCode(){
+        $.ajax({
+            "url":"/index.php/member-resetSMSCode.html",
+            "data": "phone={$phone}&category=reg&type=reg&opt=reset" ,
+            "type": "GET",
+            'dataType':'json',
+            "success": function(res) {
+                if(res.err){
+                    alert('出错:'+res.msg);
+                }else{
+                    $("#getSMS").html(res.msg+"后重新发送...");
+                    $("#getSMS").unbind('click');
+
+                    loop_del  = setInterval(resetCode,1000);
+                }
+            }
+        });
+    }
+
+
+    $("#getSMS").bind('click',resetSMSCode);
+
+
+    function resetCode(){
+        var num = $("#getSMS").html();
+        num = parseInt(num);
+        if(num > 0){
+            num = num - 1;
+            $("#getSMS").html(num+"后重新发送...");
+        }else{
+            clearInterval(loop_del);
+            $("#getSMS").bind("click",resetSMSCode);
+            $("#getSMS").html("重新发送");
+        }
+    }
+
+</script>
+
+
+<script>
+
+    $(function(){
+        $('#mf').validate({
+        	errorPlacement: function(error, element){
+                $(element).nextAll('.tip').addClass('error-on').html(error);
+            },
+            success       : function(label){
+            	label.parent().removeClass('error-on').addClass('ok');
+            },
+            highlight: function(element) {
+              $(element).nextAll('.tip').removeClass('ok').addClass('error-on');
+            },
+            onkeyup    : false,
+            submitHandler:function(){
+                var f = getElementById("mf");
+                f.submit();
+            },
+
+            rules : {
+                auth_code:{
+                    required : true,
+                    rangelength:[4,4],
+                    remote:{
+                        url: "/index.php/ajax-authCode.html",     //后台处理程序
+                        type: "get",               //数据发送方式
+                        dataType: "json",           //接受数据格式
+                        data: {                     //要传递的数据
+                            uname: function() {
+                                return $("#auth_code").val();
+                            },
+                            phone:{$phone}
+                        }
+                    }
+                }
+            },
+
+            messages:{
+                check_code : {
+                    required : '必填写',
+                    rangelength:'4-4个字符',
+                    remote:'验证码错误'
+                }
+            }
+        });
+    });
+
+
+</script>
+
+{include file="login_footer.html"}

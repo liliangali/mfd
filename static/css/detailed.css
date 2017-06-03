@@ -1,0 +1,138 @@
+@charset "utf-8";
+/* CSS Document */
+.AreaBox{ padding-top:35px; overflow:hidden;}
+.AreaBox h2{ font-size:20px; line-height:40px; color:#000; overflow:hidden;}
+.AreaL{ float:left; width:820px; padding-bottom:10000px; margin-bottom:-10000px;}
+.AreaR{ float:right; width:330px; border-left:solid 1px #ddd;padding-bottom:10000px; margin-bottom:-10000px;}
+
+/*--需求信息/S-*/
+.demandInfo{ height:300px; background:url(../img/bg.jpg) no-repeat center center #f8f8f8;}
+.demandInfo .con{ padding:60px 15px 0 200px; position:relative; height:240px;}
+.demandInfo .headPic{ width:150px; height:150px; float:left; margin-left:-190px; margin-top:-15px; border-radius:50%; overflow:hidden; box-shadow:0 0 5px #999; border:solid 3px #f9f9f9; position:relative; background:#000;}
+.demandInfo .headPic img{ opacity:0.6; filter:alpha(opacity=60);}
+.demandInfo .headPic span{ display:block; position:absolute; left:0; top:0; width:100%; height:100%; line-height:150px; text-align:center; color:#fff;}
+.demandInfo h2{ font-size:24px; line-height:normal;color:#000;}
+.demandInfo p{ margin-top:15px;font-size:14px; color:#333;}
+.demandInfo p span{ margin-right:80px;}
+.demandInfo p em{ padding:0 5px;}
+.demandInfo .baojia{ position:absolute; right:80px; bottom:40px; width:180px; height:49px; text-align:center; line-height:49px; font-size:16px; color:#000; background:#bbb; border-radius:5px;}
+.demandInfo .baojia:hover{ background:#a40001; color:#fff;}
+/*--需求信息/E-*/
+
+/*--步骤/S-*/
+.step{ height:50px; background:#514e4d;}
+.step span{ float:left; height:22px; line-height:22px; background:url(../img/step.gif) no-repeat; color:#fff; padding-left:60px; margin:14px 78px 0 0; opacity:0.2; filter:alpha(opacity=20);}
+.step .s2{ background-position:0 -22px;}
+.step .s3{ background-position:0 -44px;}
+.step .s4{ background-position:0 -66px;}
+.step .s5{ background-position:0 -88px;}
+.step .s6{ background-position:0 -110px;}
+.step .box{ height:50px; position:relative;}
+.step .line{ position:absolute; left:0; bottom:0; height:3px; width:0; background:#a40001; z-index:1;}
+.step em{ width:13px; height:13px;background:url(../img/step.gif) -13px -133px; position:absolute; bottom:-6px; z-index:2;}
+.step .r2{ left:290px;}
+.step .r3{ left:495px;}
+.step .r4{ left:698px;}
+.step .r5{ left:890px;}
+.step .r6{ left:1091px;}
+.step-2 .line{ width:290px;}
+.step-3 .line{ width:495px;}
+.step-4 .line{ width:698px;}
+.step-5 .line{ width:890px;}
+.step-6 .line{ width:1091px;}
+.step-2 .s1,.step-2 .s2,.step-3 .s1,.step-3 .s2,.step-3 .s3,.step-4 .s1,.step-4 .s2,.step-4 .s3,.step-4 .s4,.step-5 .s1,.step-5 .s2,.step-5 .s3,.step-5 .s4,.step-5 .s5,.step-6 .s1,.step-6 .s2,.step-6 .s3,.step-6 .s4,.step-6 .s5,.step-6 .s6{ opacity:1; filter:alpha(opacity=100);}
+.step-2 .r2,.step-3 .r2,.step-3 .r3,.step-4 .r2,.step-4 .r3,.step-4 .r4,.step-5 .r2,.step-5 .r3,.step-5 .r4,.step-5 .r5,.step-6 .r2,.step-6 .r3,.step-6 .r4,.step-6 .r5,.step-6 .r6{ background-position:0 -133px;}
+/*--步骤/E-*/
+
+/*--报价列表/S-*/
+.priceList table{ text-align:left; margin:10px 0 0 -1px; clear:both; color:#333;}
+.priceList th{height:45px; background:#f6f6f6; border-left:solid 1px #e9e9e9; padding:0 5px 0 15px; color:#000;}
+.priceList td{ height:45px; border-bottom:dotted 1px #e4e4e4;padding:0 5px 0 15px;}
+.priceList td .btn{ display:block; width:70px; height:25px; line-height:25px; text-align:center; background:#bbb;border-radius:3px; color:#333;}
+.priceList td .btn:hover{ background:#a40001; color:#fff;}
+.priceList h2 .btn{ width:117px; height:32px; line-height:32px; background:#bbb; text-align:center; margin-top:7px; border-radius:3px; color:#000; font-size:14px; font-weight:normal;}
+.priceList h2 .btn:hover{ background:#a40001; color:#fff;}
+.priceList tr:nth-child(odd){ background:#fcfcfc;}
+.priceList tr:hover{ background:#eee;}
+.priceList .dongjie{ background:#e5e5e5; height:105px; text-align:center; margin-top:10px; line-height:105px; color:#000; clear:both;}
+.priceList .page2{ margin-top:40px;}
+.priceList .dongjie a{ color:#1e3696; text-decoration:underline; margin-left:5px;}
+/*--报价列表/E-*/
+
+/*--最新需求/S-*/
+.newList{ padding-left:30px;}
+.newList h2{ border-bottom:solid 1px #ddd;}
+.newList h2 a{ float:right; font-size:12px; font-weight:normal;}
+.newList dl{ border-bottom:dotted 1px #e4e4e4; padding:20px 0;}
+.newList dl:last-child{ border:0;}
+.newList dt a{ font-size:14px; color:#000;}
+.newList dt a:hover{ color:#a40001; text-decoration:underline;}
+.newList dd{ padding-top:10px;}
+/*--最新需求/E-*/
+
+/*--需求描述/S-*/
+.mlbh { margin:0 0 40px; }
+.mlbh table{border-top: 1px solid #ddd; margin-left:-1px; }
+.mlbh th { border-bottom: 1px solid #ddd; border-left: 1px solid #ddd; height: 60px; text-align: right; padding-right: 20px; background: #fcfcfc; font-size: 14px; color: #000; font-weight: normal; }
+.mlbh td { border-bottom: 1px solid #ddd; border-left: 1px solid #ddd; height: 60px; padding-left: 20px; font-size: 14px; }
+.mlbh img{ vertical-align:middle; margin-left:5px;}
+.mlbh .annex a{ margin-right:15px;}
+/*--需求描述/E-*/
+
+/*--标题/S--*/
+.title { text-align: center; border-top: 1px solid #ddd; margin-top:50px; padding: 0 140px; }
+.title .line { width: 70px; height: 3px; margin: 0 auto; background: #000; position: relative; top: -2px; }
+.title .tit { font-size: 22px; color: #292823; margin: 26px 0 20px; }
+.title .depict { font-size: 14px; color: #666; margin-bottom: 34px; }
+/*--标题/E--*/
+
+/*--最受欢迎的裁缝/S-*/
+.slideBox { height: 335px; margin-top:30px; position: relative; }
+.slideBox .swipe-wrap { position: relative; width: 100%; }
+.slideBox .prev, .slideBox .next { width: 33px; height: 62px; position: absolute; top: 50%; margin-top: -53px; background: url(../img/bg4.png) no-repeat 0 -34px; opacity: 0.8; filter: alpha(opacity=80); cursor: pointer; transition: all ease .2s; -moz-transition: all ease .2s; -ms-transition: all ease .2s; -o-transition: all ease .2s; -webkit-transition: all ease .2s; }
+.slideBox .prev { left: 0; }
+.slideBox .next { right: 0; background-position: -35px -34px; }
+.slideBox:hover .prev { opacity: 1; filter: alpha(opacity=100); left: -10px; transform: scaleY(0.8) }
+.slideBox:hover .next { opacity: 1; filter: alpha(opacity=100); right: -10px; transform: scaleY(0.8) }
+.slideBox .swipe { width: 1075px; height: 325px; overflow: hidden; visibility: hidden; position: relative; margin: 0 auto; }
+.slideBox .swipe .item { float: left; position: relative; }
+.slideBox ul { width: 105%; }
+.slideBox li { float: left; width: 190px; margin-right: 31px; }
+.slideBox .pic { display: block; height: 248px; overflow: hidden; }
+.slideBox img { width: 100%; height: auto; }
+.slideBox .info a { display:block; height: 40px; margin:10px 0 5px; line-height: 20px; overflow: hidden; }
+.slideBox .info span{ font-size:14px;}
+/*--最受欢迎的裁缝/E--*/
+
+/*--发布报价/S--*/
+.bjLayer{ width:600px;}
+.bjLayer .myForm{ width:405px; margin:0 auto;}
+.bjLayer .item{line-height:36px; padding-left:45px; margin-bottom:15px;}
+.bjLayer .tit{ float:left; margin-left:-40px; font-size:14px; color:#333;}
+.bjLayer .txt{ border:solid 1px #ddd; width:210px; height:34px; line-height:34px; padding:0 3px;}
+.bjLayer .item .txt:focus{ border-color:#000;}
+.bjLayer textarea{border:solid 1px #ddd; width:350px; height:55px; padding:3px; color:#666; font-size:12px;}
+.bjLayer .btn{ display:block; width:195px; height:46px; margin-left:45px; background:url(../img/btn.jpg) no-repeat}
+.bjLayer .btn span{ display:block; height:46px; text-align:center; line-height:46px; font-size:16px; color:#fff;background:url(../img/btn.jpg) right top; margin-left:3px;}
+.bjLayer .btn:hover{background-position: 0 -46px}
+.bjLayer .btn:hover span{ background-position: right -46px; margin-left:3px;}
+.bjLayer .btn:active{ opacity:0.8;}
+.bjLayer .error-css, .bjLayer .error-css:focus { background-color: #f2dede; border-color: #ebccd1; color: #a94442; }
+#error { height:60px; line-height:60px; padding-left:45px; font-size:14px; color: #a50001;}
+#error .ico { float: left; width: 24px; height: 24px; background: url(../img/bg2.png) no-repeat -79px -54px; margin:18px 5px 0 0; }
+/*--发布报价/E--*/
+
+/*--采纳裁缝/S--*/
+.confirm{width:600px;}
+.confirm p{ text-align:center; color:#333;font-size:20px; line-height:190px;}
+.confirm .ok{float:left; display:block; width:135px; height:40px; margin-left:165px; background:url(../img/btn.jpg) 0 -93px}
+.confirm .ok span{ display:block; height:40px; text-align:center; line-height:40px; font-size:16px; color:#fff;background:url(../img/btn.jpg) right -93px; margin-left:3px; }
+.confirm .ok:hover{background-position: 0 -133px}
+.confirm .ok:hover span{ background-position: right -133px; margin-left:3px;}
+.confirm .ok:active{ opacity:0.8;}
+.confirm .no{ float:left; display:block; width:135px; height:40px; margin-left:20px; background:url(../img/btn.jpg) 0 -173px}
+.confirm .no span{ display:block; height:40px; text-align:center; line-height:40px; font-size:16px; color:#fff;background:url(../img/btn.jpg) right -173px; margin-left:3px; color:#333;}
+.confirm .no:hover{background-position: 0 -213px}
+.confirm .no:hover span{ background-position: right -213px; margin-left:3px;}
+.confirm .no:active{ opacity:0.8;}
+/*--采纳裁缝/S--*/

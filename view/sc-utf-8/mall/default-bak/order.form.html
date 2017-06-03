@@ -1,0 +1,28 @@
+{include file="header3.html"}
+<script type="text/javascript" src="{lib file=cart.js}" charset="utf-8"></script>
+
+<div class="cart_top">
+   <a href="./"><img src="{res file=images}/logo3.gif" class="cart_logo" /></a>
+   <div class="cart_lc">
+     <div class="div2"></div>
+     <ul>
+       <li>我的购物车</li>
+       <li><span>填写订单信息</span></li>
+       <li>支付、订单完成</li>
+     </ul>
+     <p class="clear"></p>
+   </div>
+</div>
+
+
+<form method="post" id="order_form">
+<div class="content">
+
+  {include file="order.shipping.html"}
+  {include file="order.goods.html"}
+  {include file="order.amount.html"}
+
+</div>
+</form>
+
+{include file=login_footer.html}

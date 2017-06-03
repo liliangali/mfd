@@ -1,0 +1,86 @@
+{include file=member.header.html}
+<style>
+.table .ware_text { width:290px; }
+</style>
+<script type="text/javascript">
+//<!CDATA[
+function add_to_cart(spec_id, quantity)
+{
+    var url = SITE_URL + '/index.php/cart-add.html';
+    $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
+        alert(data.msg);
+    });
+}
+</script>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        <div class="wrap">
+        {include file=member.submenu.html}
+
+            <div class="public table">
+                <table>
+                    <!--{if $collect_customs}-->
+                    <tr class="line_bold">
+                        <th class="width1"><input type="checkbox" id="all" class="checkall"/></th>
+                        <th class="align1" colspan="6">
+                            <label for="all"><span class="all">{$lang.checkall}</span></label>
+                            <a href="javascript:void(0);" class="delete" uri="{link app=my_favorite act=drop}?type=customs" name="item_id" presubmit="confirm('{$lang.drop_confirm}')" ectype="batchbutton">{$lang.drop}</a>
+                        </th>
+                    </tr>
+                    <tr ectype="table_header" class="gray">
+                                        <th></th>
+                                        <th></th>
+                                        <th inputwidth="50%" checker="check_required" column="cate_name" coltype="editable" class="align1" style="padding-left: 10px;">基本款名称</th>
+                                        <th inputwidth="50%" checker="check_required" column="cate_name" coltype="editable" class="align1">浏览数</th>
+                                        <th inputwidth="50%" checker="check_required" column="cate_name" coltype="editable" class="align1">销量</th>
+                                        <th inputwidth="50%" checker="check_required" column="cate_name" coltype="editable" class="align1">库存</th>
+                                        <th inputwidth="50%" checker="check_required" column="cate_name" coltype="editable" class="align1">价格</th>
+                                        <th style="text-align:left;padding-left:10px;" class="width3">操作</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$collect_customs item=customs name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td class="align2"><input type="checkbox" class="checkitem" value="{$customs.cst_id}" /></td>
+                        <td>
+                            <p class="ware_pic"><a href="{link app=custom act=info arg=$customs.cst_id}" target="_blank"><img src="{$customs.cst_image}" width="50" height="50"  /></a></p>
+                        </td>
+                        <td>
+                            <p class="ware_text"><a href="{link app=custom act=info arg=$customs.cst_id}" target="_blank">{$customs.cst_name|escape}</a></p>
+                        </td>
+                        <td class="width3">{$customs.cst_views}</td>
+                        <td class="width3">{$customs.cst_sales}</td>
+                        <td class="width3">{$customs.cst_store}</td>
+                        <td class="width3">{$customs.cst_price|price}</td>
+                        <td class="width2"><a href="javascript:drop_confirm('{$lang.drop_confirm}', '{link app=my_favorite act=drop}?type=customs&item_id={$customs.cst_id}');" class="delete">{$lang.drop}</a></td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="7" class="member_no_records">您还没有收藏的基本款</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{if $collect_customs}-->
+                    <tr>
+                        <th><input type="checkbox" id="all2" class="checkall"/></th>
+                        <th colspan="6">
+                            <p class="position1">
+                                <label for="all2"><span class="all">{$lang.checkall}</span></label>
+                                <a href="javascript:void(0);" class="delete" uri="{link app=my_favorite act=drop}?type=customs" name="item_id" presubmit="confirm('{$lang.drop_confirm}')" ectype="batchbutton">{$lang.drop}</a>
+                            </p>
+                            <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe id='iframe_post' name="iframe_post" src="about:blank" frameborder="0" width="0" height="0"></iframe>
+{include file=login_footer.html}

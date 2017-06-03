@@ -1,0 +1,15 @@
+        <div class="mt clearfix">
+            <h2>支付方式</h2>
+            <ul class="tabBtn clearfix" id="payMethod">
+                {if $payments}
+                {foreach from=$payments item=pmt name=npmt}
+                <li data-id="{$pmt.payment_id}" data-code="{$pmt.payment_code}" {if $smarty.foreach.npmt.first} class="cur" {/if}>{$pmt.payment_name}</li>
+                {if $smarty.foreach.npmt.first} 
+                <input type="hidden" name="order[payment][id]" id="paymentType" value="{$pmt.payment_id}" />
+                {/if}
+                {/foreach}
+                {else}
+                <input type="hidden" name="order[payment][id]" id="paymentType" value="" />
+                {/if}
+            </ul>
+        </div>

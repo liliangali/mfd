@@ -1,0 +1,121 @@
+{include file="header.html"}
+<link href="{$img_url}/css/head_footr.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="{res file=css/coolke.css}" />
+<link type="text/css" rel="stylesheet" href="{res file=css/new_pubuliu.css}" />
+
+<script type="Text/Javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/plugins/dialog.js}"></script>
+<script type="text/javascript" src="{$img_url}/js/coolke.js"></script>
+
+<script>
+
+function member_cancle(to_uid){
+	if(!$.rc.dialog.islogin())
+		return 0;
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_unfollow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			//alert('已取消关注');
+			//alert("#fans_"+id);
+			var obj = $("#member_fans_"+to_uid);
+			//alert(obj.html());
+			//obj.html('关注');
+			$("#member_fans_p"+to_uid).attr('class','m_guazu');//m_qxgz
+			obj.attr('onclick','member_follow('+to_uid+');');
+			
+		}
+	});
+}
+
+function member_follow(to_uid){
+	if(!$.rc.dialog.islogin())
+		return 0;
+	
+	$.ajax({
+		"url":"/index.php/club-ajax_follow.html",
+		"data": "uid=" + to_uid,
+		"type": "GET",
+		"success": function(data) {
+			var data = eval( "(" + data + ")" );
+			//alert('已关注');
+			//alert("#fans_"+id);
+			var obj = $("#member_fans_"+to_uid);
+			//alert(obj.html());
+			//obj.html('取消关注');
+			$("#member_fans_p"+to_uid).attr('class','m_qxgz');//m_guazu
+			obj.attr('onclick','member_cancle('+to_uid+');');
+		}
+	});
+}
+
+</script>
+
+
+<div class="m_drlb_box">
+ <h1 class="m_dswdr"><span>{$total}</span>位达人</h1>
+
+ <ul>
+ 	{if  $member}
+  {foreach from=$member key=k item=v }
+   <li class="on" onmouseover="className='off'" onmouseout="className='on'">
+     <p class="m_drtx"><a href="/index.php/club-cooler-{$v.user_id}.html"><img src="{$v.avatar}" /></a></p>
+     <div>
+       <h1><a href="/index.php/club-cooler-{$v.user_id}.html">{uname uid=$v.user_id sub=18} </a><img src="{$v.level_logo}" class="m_daren" /></h1>
+       <p class="m_fstpxh">
+       	<span>粉丝<font>{$v.fans}</font></span>
+       	<span>图片<font>{$v.pic_num}</font>
+       	</span><span>喜欢<font>{$v.like_num}</font></span>
+       </p>
+       
+       
+       {if !$v.self}
+              <p class="{if $v.isFans}m_qxgz{else}m_guazu{/if}" id='member_fans_p{$v.user_id}'>
+              <a href="javascript:void(0);" id='member_fans_{$v.user_id}'
+          onclick="{if $v.isFans}member_cancle({$v.user_id}){else}member_follow({$v.user_id}){/if};" 
+          class=""> 
+        </a>
+        </p>
+        {else}
+        <p class="m_wodekj">
+        		<a href="/index.php/club-cooler-{$v.user_id}.html" class="u_grkj">我的空间</a>
+        </p>
+        {/if}
+                               
+       
+       
+     </div>
+   </li>
+    {/foreach} 
+  {else}
+  	暂无数据
+  {/if}
+ </ul>
+ <p class="clear"></p>
+</div>
+
+<!--翻页开始-->
+
+<div style="margin:0 auto 50px auto; width:1000px;">
+    <div class="faye_box">
+    	<a href="#" class="gdstjl">共{if $total}{$total}{else}0{/if}条记录</a>
+    	 {$page_show}   
+    	 </div>
+    <p class="clear"></p>
+</div>
+<!--翻页结束-->
+
+<script>
+
+var PINER = {
+	    uid: "<?php echo $_SESSION['user_info']['user_id'] ?>",
+	};
+
+
+</script>
+
+
+{include file="footer.html"}

@@ -1,0 +1,79 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>印花管理</span></li>
+        <li><a class="btn1" href="index.php?app=yh_template&amp;act=custom">用户上传印花</a></li>
+        <li><a class="btn1" href="index.php?app=yh_template&amp;act=add">添加印花模板</a></li>
+		<li><a class="btn1" href="index.php?app=yh_category&amp;act=index">印花分类</a></li>
+		<li><a class="btn1" href="index.php?app=yh_category&amp;act=add">添加印花分类</a></li>
+		<li><a class="btn1" href="index.php?app=shirt">所有衬衫</a></li>
+        <li><a class="btn1" href="index.php?app=shirt&amp;act=add">添加衬衫</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="yh_template" />
+          <input type="hidden" name="act" value="index" />       
+         印花名称：<input class="queryInput" type="text" name="title" value="{$title}" />
+         分类:
+          <div id="cst_cate" style="display:inline;">
+            <select class="querySelect" name="cat">
+              <option value="">请选择</option>
+              	{foreach from=$cats item=cat key=key}
+                   <option value="{$key}" {if $data.category eq $key}selected{/if}>{$cat.name}</option>
+                {/foreach}
+            </select>
+          </div>
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=yh_template">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $items}-->
+    <tr class="tatr1">
+      <td>印花名称</td>
+      <td>价格</td>
+	  <td>所属系列</td>
+      <td>状态</td>
+	  <td>使用数</td>
+      <td>排序</td>
+      <td>图片</td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$items item=list}-->
+    <tr class="tatr2">
+      <td width="200">{$list.title}</td>
+      <td width="200">{$list.price}</td>
+	  <td width="200">{$list.name}</td>
+	  <td width="200"><!--{if $list.state==0} -->有库存<!--{else }--> 无库存<!-- {/if} --></td>
+	  <td width="200"></td>
+	  <td width="200">{$list.sort_order}</td>
+      <td><a href="{$list.images}" target="_blank"><img src="{$list.images}" height="60" width="60" /></a></td>
+      <td class="handler">
+      <a href="index.php?app=yh_template&amp;act=edit&amp;id={$list.id}">编辑</a>
+      <a href="javascript:;" onclick="if(confirm('确定删除吗？')) location.href='index.php?app=yh_template&amp;act=drop&amp;id={$list.id}'">删除</a>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="6">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $items}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

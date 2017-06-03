@@ -1,0 +1,123 @@
+﻿/*====新版-产品详情/S====*/
+.little{bottom:15px; right:15px;height:40px; width:40px; line-height:40px; border-radius:50%; background:rgba(200,200,202,.5); color:#fff;position:absolute;text-align: center;overflow:hidden;}
+@media screen and (min-width:640px) {
+.little{ margin-left:580px; right:inherit;}
+}
+.tent{position:fixed; bottom:0px; background:#fff; max-width:640px; min-width:320px; width:100%; padding:8px 0; text-align:center;opacity:0.9; }
+.tent span{width:100%; height:38px; line-height:38px; border:1px solid #898787; display:inline-block; margin-top:10px; background:#fff;}
+.tent .span_1 {color: #000;float: left; font-size: 14px;line-height: 40px; text-align: left; width: 40%; margin: 8px 0 0 15px;}
+.tent .span_2 {background: #21d0fd; float: right;font-size: 14px; line-height: 40px; margin: 8px 15px 0 0; text-align: center; width: 35%; color:#fff;}
+.tent .span_1 font {padding-right:10px; color:#ff5500}
+.tent .span_1 del { color:#999;}
+.menu_wrap{ margin:0 15px;}
+.menu_wrap .menu_list{ border-bottom:1px solid #ddd;}
+.menu_wrap h4 {background:url(/public/static/wap/images/slx_icon2.png) right -8px no-repeat; font-weight:normal; font-size:14px; height:38px; line-height:38px; cursor:pointer; color:#333; background-size:31px 250px; margin:4px 0;}
+.menu_wrap .cur h4{background:url(/public/static/wap/images/slx_icon2.png) right 15px no-repeat; font-weight:bold; background-size:31px 250px;}
+.menu_wrap .menu_detail {display:none; *position:relative;*zoom:1;}
+.menu_wrap .menu_detail .p1 {font-size:12px; color:#717171; line-height:18px; margin-bottom:20px;}
+.menu_wrap .menu_detail dl { overflow:hidden; margin-bottom:20px;}
+.menu_wrap .menu_detail dt {font-size:12px; color:#333; line-height:18px; margin-bottom:4px;}
+.menu_wrap .menu_detail dd { float:left; width:50%; font-size:12px; color:#717171; line-height:24px;}
+
+
+.fenxia { position:absolute; right:15px; top:0; height:45px; line-height:45px;}
+.fenxia a { display:block; background:url(/public/static/wap/images/slx_icon.png) left -232px no-repeat; width:18px; height:18px; background-size:18px 250px; float:left; margin:17px 0 0 10px;}
+
+.xgdp {margin:0 15px; overflow:hidden;}
+.xgdp h1 {font-size:14px; line-height:24px; margin:12px 0 7px 0; font-weight:normal;}
+.xgdp ul {width:100%;}
+.xgdp ul li { float:left; width:31%; margin-right:2%; text-align:center; margin-bottom:10px;}
+.xgdp ul li:last-of-type{ margin-right:0%;}
+.xgdp ul li img {width:100%;}
+.xgdp ul li .p2 {font-size:12px; color:#333; line-height:24px;height:24px; overflow:hidden;}
+.xgdp ul li .p2 span {padding-right:10px; color:#ff5500;}
+.xgdp ul li .p2 del { color:#999;}
+
+/*====新版-产品详情/E====*/
+
+/* 作品详情 */
+/*滑动效果/S*/
+.swipe { overflow: hidden; visibility: hidden; position: relative;}
+.swipe-wrap { overflow: hidden; position: relative; }
+.swipe-wrap > div { float: left; width: 100%; position: relative;}
+.tpdx div img {width:159px; height:275px;}
+/*滑动效果/E*/
+
+.xiangc { padding:20px 0; width: 100%; text-align: center; }
+.xcfy { text-align: center; height: 40px; line-height: 40px; overflow: hidden; font-size: 14px; color: #000; }
+.xcfy span { color: #666; }
+.xiangc h4 { text-align: center; font-weight: normal; font-size: 18px; line-height:28px; margin-top: 15px; color:#333;}
+.xiangc h4 font { font-size:12px; display: block; color:#717171;}
+.xiangc h4 span { font-family: arial; font-size:24px; margin-bootom: 7px; display: block; color:#ff5500;}
+
+.sjll { padding:15px 15px 0 15px;}
+.sjll h1 {font-size:14px; color:#333; line-height:22px; margin-bottom:8px; font-weight:normal;}
+.sjll h2 {font-size:12px; color:#333; line-height:22px; margin-bottom:8px; font-weight:normal;}
+.sjll p {font-size:12px; line-height:20px; color:#717171; margin-bottom:15px;}
+.sjll p span {padding-left:10px;}
+
+.scjxsj { background:#fff;height:39px; position:fixed; bottom:0; max-width:640px; width:92%;filter:alpha(opacity:90); opacity:0.9; -moz-opacity:0.9;-khtml-opacity: 0.9;margin:0 4%;padding:10px 0;}
+.scjxsj li {width:48%; float:left; text-align:center; font-size:14px; line-height:36px;border:1px solid #111111; background:#fff;}
+.scjxsj li a { display:block;color:#333333;}
+.scjxsj li .on {background:#111111;color:#fff;}
+
+/* 我的作品_删除作品 */
+.kdsz {width:100%; overflow:auto; height:auto;}
+.zplist { border-bottom:1px solid #e8e8e8; overflow:hidden; margin-bottom:20px; width:100%; position: relative;}
+.zplist li { float:left; font-size:13px; color:#717171; width:20%; text-align:center; height:40px; line-height:40px;  overflow:hidden;}
+.zplist .now_hover { color:#e66800; border-bottom:2px solid #e66800;height:38px;}
+.zplist .now_hover a { color:#e66800;}
+
+
+.zplb { width:101%; margin:0 auto; overflow:hidden;}
+.zplb .brick{ margin:0 auto;}
+.zplb .brick .item {border-bottom: 1px solid #dfdfdf; border-right: 1px solid #dfdfdf; box-sizing: border-box; float: left;  padding:20px 10px;  text-align: center; width: 50%; transition:all ease 1s;}
+.zplb ul {background:#fff; text-align:center;}
+.zplb ul li .p1 img {max-width:100%;}
+.zplb ul li .p1 { padding:0 10px 10px 10px;}
+.zplb ul li .p2 {font-size:14px;color:#000;line-height:20px; height:20px; overflow:hidden; margin-bottom:3px;}
+.zplb ul li .p2 a{color:#717171;}
+.zplb ul li .p3 {font-size:12px; color:#717171; height:24px; line-height:24px;width:62px;margin:0 auto;margin-top:5px;border:1px solid #dfdfdf; text-align:center;}
+
+
+/*下单弹层*/
+.bottomSize{ height:240px; bottom: 0; max-width: 640px; overflow: hidden; position:fixed; z-index: 102; width: 100%; background:#fff; transform: translate3d(0,240px,0); -webkit-transform: translate3d(0,240px,0); transition: all .3s; -webkit-transition: all .3s; }
+.bottomSize.show { transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0) }
+.bottomSize .tit{ font-size:14px; color:#999; padding:25px 15px 0}
+.bottomSize .close{ width:20px; height:20px; background:url(/public/static/diy/images/close.png) no-repeat center center; background-size:15px auto; position:absolute;top:15px; right:15px;}
+.bottomSize .button{ display:block; border:solid 1px #ccc; text-align:right; padding:12px 20px; font-size:16px; color:#333; margin:25px 15px 0; background:url(/public/static/diy/images/size.png) no-repeat; background-size:40px auto;}
+.bottomSize .base{ background-position:10px 8px;}
+.bottomSize .amount{ background-position:10px -50px;}
+
+/*尺码表*/
+.sizeTable .tabBar { line-height:30px; overflow:hidden; margin:10px 3%;}
+.sizeTable .tabBar li { float: left; border-bottom: solid 2px rgba(255,255,255,0); padding: 0 20px; }
+.sizeTable .tabBar .cur { color: #21d0fd; border-color: #21d0fd; }
+.sizeTable .itemList {overflow: hidden; line-height: 30px; color: #666; font-size: 14px; }
+.sizeTable .itemList li { float: left; width:27.3%; margin:1.5% 3%; text-align: center; background: #fff; border-radius: 5px; border: solid 1px #d5d5d5; box-sizing: border-box; }
+.sizeTable .itemList .cur { border-color: #21d0fd; color: #21d0fd; }
+.sizeTable .loading { text-align: center; line-height: 140px; }
+.sizeTable .scrollBox { overflow-x: hidden; overflow-y: auto;height:257px;height:-webkit-calc(100% - 143px) }
+
+/*尺码助手*/
+.sizeReferTable table{ border-collapse:collapse; font-size:12px; color:#999}
+.sizeReferTable td,.sizeReferTable th{ border:solid 1px #eee; text-align:center; padding:3px;}
+.sizeReferTable th{ white-space:nowrap; background:#f8f8f8; font-weight:normal; color:#333;}
+.sizeReferTable .scrollBox div{ width:560px; padding:20px;}
+.sizeReferTable .scrollBox{height:353px;overflow:auto;}
+.sizeReferTable .loading { line-height: 140px; font-size:14px;}
+.sizeReferTable h2 {font-size: 16px;font-weight: normal;padding: 0 0 10px;}
+
+/*右侧弹层*/
+.rightLayer{ width:100%; max-width:640px; height:100%; position:fixed;z-index:102; bottom:0; background:#fff; height:400px;
+transform:translate3d(0,400px,0);
+-webkit-transform:translate3d(0,400px,0);
+transition:all .5s;
+-webkit-transition:all .5s;}
+.rightLayer.show{transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0);}
+.rightLayer .head{ text-align:center; height:45px; position:static; line-height:45px; border-bottom:solid 1px #e6e6e6; background:none;}
+.rightLayer .head .back{ position:absolute; right:0; top:0; width:45px; height:45px; background:url(/public/static/diy/images/close.png) no-repeat center center; background-size:15px auto;}
+.rightLayer .head a{ position:absolute; left:20px; top:0; font-size:14px; color:#717171;}
+.rightLayer .downBtn{width:100%; height:45px; border:0; background:#f6f6f6; border-top:solid 1px #e6e6e6; color:#21d0fd; font-size:16px;}
+
+

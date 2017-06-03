@@ -1,0 +1,48 @@
+ {include file=member.header.html}
+<div class="w">
+  <div class="AreaBox clearfix">
+    {include file=member.menu.html}
+    <div class="con">
+    	<h2 class="tit">提交审核</h2>
+        <div class="shPrompt">
+        	<div class="results">
+            	<h3>认证申请成功，审核会在1-3个工作日完成！</h3>
+            	<p class="p1">您可以通过以下方式查询您的认证结果:</p>
+                <p class="p2">
+                	<span>人工查询电话：400-2323-2323</span>
+                    <span>/</span>
+                	<span>进入</span>
+                    <span><a href="#">我的实名认证</a></span>查询
+                </p>
+                <p class="p3"><span>若您想重新认证，请先</span><a href="#">放弃本次认证申请</a></p>
+            </div>
+            <h4>使用遇到的问题</h4>
+            <dl>
+            	<dt>问题名称</dt>
+                <dd>
+                	题答案嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻想
+                </dd>
+            </dl>
+            <dl>
+            	<dt>问题名称</dt>
+                <dd>
+                	题答案嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻想
+                </dd>
+            </dl>
+            <dl>
+            	<dt>问题名称</dt>
+                <dd>
+                	题答案嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻想
+                </dd>
+            </dl>
+            <dl>
+            	<dt>问题名称</dt>
+                <dd>
+                	题答案嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻想
+                </dd>
+            </dl>
+        </div>
+    </div>
+  </div>
+</div>
+{include file="footer.html"}

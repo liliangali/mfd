@@ -1,0 +1,216 @@
+{include file=member.header.html}
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+</style>
+
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+var REGION_URL="{link app=mlselection act=index arg=region}";
+reginUrl=REAL_SITE_URL+REGION_URL;
+//]]>
+</script>
+
+<script type="text/javascript">
+$(function(){
+	$.ajaxSetup({async : false});
+	regionInit("region");
+
+	var value="<!--{$value}-->";
+	var r2="<!--{$r2}-->";
+	var r1="<!--{$r1}-->";
+	//alert(value);
+	if (r1.length>0){
+		$("#region select:eq(0)").val(r1).trigger("change");
+	}
+	if (r2.length>0){
+		$("#region select:eq(1)").val(r2).trigger("change");
+	}
+	if (value.length>0){
+		$("#region select:eq(2)").val(value).trigger("change");
+	}
+	
+	
+	$.validator.addMethod("isPhone",function(value,element){
+		var length = value.length;   
+		  var mobile = /^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/;   
+		  var tel = /^\d{3,4}-?\d{7,9}$/;   
+		  //return this.optional(element) || (tel.test(value) || mobile.test(value));   
+		  return mobile.test(value);
+		});
+	
+	$('#serve_form').validate({
+    rules : {
+        email   : {
+            required : true,
+            email : true
+        },
+        linkman   : {
+            required : true
+        },
+        mobile   : {
+            required : true
+            //,
+            //isPhone:true
+        },
+        enterprise_url:{
+        	//required : true,
+        	url : true
+        },
+        serve_name:{
+        	required : true,
+            remote   : {
+    	
+                url :'{link app=servicemember act=check_serve_name}',
+                type:'get',
+                data:{
+                    user_name : function(){
+                        return $('#serve_name').val();
+                    }
+                }
+            }
+        }
+        
+    },
+    messages : {
+        email  : {
+            required : '{$lang.email_not_empty}',
+            email   : '{$lang.currect_email}'
+        },
+        linkman  : {
+            required : '{$lang.linkman_not_empty}'
+        },
+        mobile  : {
+            required : '{$lang.mobile_not_empty}'
+                //,
+            //isPhone:'{$lang.currect_mobile}'
+        },
+        enterprise_url : {
+            //required : '{$lang.enterprise_url_not_empty}',
+            url : '{$lang.currect_url}'
+        },
+        serve_name : {
+            required : '服务点名称不能为空',
+            remote : '服务点名称己存在'
+        },
+    }
+	});
+});
+
+</script>
+<div class="content">
+ {include file=member.menu.html}
+ <div id="right">
+  <div class="wrap">
+   {include file=member.submenu.html}
+   <div class="public">
+    <form method="post" enctype="multipart/form-data" id="serve_form">
+    <div class="information">       
+     <div class="info individual">
+     <table border="0" width="100%" cellpadding="0" cellspacing="0">                
+      <tr style="display:none;">
+        <th class="paddingT15"> {$lang.region_id}：</th>
+        <td class="paddingT15 wordSpacing5">{$serve.region_id|escape}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15">名称：</th>
+        <td class="paddingT15 wordSpacing5">
+          
+          
+          <input class="text width_normal" name="serve_name" type="text" id="serve_name" value="{$serve.serve_name|escape}" />
+                    
+          
+         </td>
+      </tr>
+      <tr>
+        <th class="paddingT15">地址：</th>
+        <td class="paddingT15 wordSpacing5">
+          
+          <input class="text width_normal" name="serve_address" type="text" id="serve_address" value="{$serve.serve_address|escape}" />
+         </td>
+      </tr>
+    
+    <tr>
+        <th class="paddingT15">所在地区：</th>
+        <td class="paddingT15 wordSpacing5">
+          
+          <div id="region" class="apply_select">
+          <select>
+              <option>{$lang.select_pls}</option>
+              {html_options options=$regions}
+            </select>
+          <input type="hidden" name="region_id" id="region_id"  class="mls_id" />
+          <input type="hidden" name="region_name" id="region_name"  class="mls_names" />
+          </div>
+         </td>
+      </tr>
+    
+      <tr>
+        <th class="paddingT15">公司名称：</th>
+        <td class="paddingT15 wordSpacing5">
+          
+          <input class="text width_normal" name="company_name" type="text" id="company_name" value="{$serve.company_name|escape}" />
+         </td>
+      </tr>
+
+	  <tr>
+        <th class="paddingT15">成立日期：</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.establish_date|truncate:10}
+         </td>
+      </tr>
+
+      <tr>
+        <th class="paddingT15"> {$lang.email}：</th>
+        <td class="paddingT15 wordSpacing5"><input class="text width_normal" name="email" type="text" id="email" value="{$serve.email|escape}" />
+                    </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.linkman}：</th>
+        <td class="paddingT15 wordSpacing5"><input class="text width_normal" name="linkman" type="text" id="linkman" value="{$serve.linkman|escape}" />        </td>
+      </tr>
+      
+      
+      <tr>
+        <th class="paddingT15"> {$lang.enterprise_url}：</th>
+        <td class="paddingT15 wordSpacing5"><input class="text width_normal" name="enterprise_url" type="text" id="enterprise_url" value="{$serve.enterprise_url|escape}" />        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.mobile}：</th>
+        <td class="paddingT15 wordSpacing5"><input class="text width_normal" name="mobile" type="text" id="mobile" value="{$serve.mobile|escape}" maxlength='11' />        </td>
+      </tr>
+
+	<tr>
+        <th class="paddingT15"> {$lang.post}：</th>
+        <td class="paddingT15 wordSpacing5"><input class="text width_normal" name="post" type="text" id="post" value="{$serve.post|escape}" />        </td>
+      </tr>
+     
+                                
+               <tr>
+        <th class="paddingT15"> 微信：</th>
+        <td class="paddingT15 wordSpacing5"><input class="text width_normal" name="weixin" type="text" id="weixin" value="{$serve.weixin|escape}" />        </td>
+      </tr>                 
+                                
+                                
+                                <tr>
+                                    <th></th>
+                                    <td><input type="submit" class="btn" value="{$lang.save_edit}" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <div class="wrap_bottom"></div>
+            </div>
+
+            <div class="clear"></div>
+
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{include file=login_footer.html}

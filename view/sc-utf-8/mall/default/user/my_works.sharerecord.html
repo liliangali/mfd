@@ -1,0 +1,57 @@
+{include file=../header-new.html}
+<link href="/public/static/pc/css/user_2.css" rel="stylesheet">
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+<link href="/public/static/pc/css/user.css" rel="stylesheet">
+<style type="text/css">
+    .zcfx a {width:98px !important;}
+    .luck-shade { background:none !important;}
+    .luck-box {background-color: rgba(0,0,0,0.5) !important; width:295px; height:90px;  font-size:20px; border-radius:5px;}
+    .luck-close { display:none;}
+    .luck-con { text-align:center; line-height:90px !important; color:#fff;}
+</style>
+<div class="user_box">
+    {include file=member.menu.html}
+
+    <div class="user_right user_rights fr">
+     <input type="hidden" id="wid" name="wid" value="{$work_id}">
+        <h4 class="collection">作品分享记录</h4>
+
+        <ul class="fxgwdgk">
+            <!--{foreach from=$result item=data}-->
+            <li>
+                <div class="div_1 fl"><img src="{$data.avatar}" width="61" height="61"></div>
+                <div class="div_2 marginleft fl">{$data.nickname}</div>
+                <div class="div_3 marginleft fl">{$data.phone_mob}</div>
+                <div class="div_3 marginleft fl">{$data.add_time|date:Y-m-d H:i }</div>
+                <!-- <div class="div_4 zcfx fr"><input type="hidden" name="id" value="{$data.id}"><a href="#" class="on" onClick="share(this);">再次分享</a><input type="hidden" name="shared" value="{$data.shared}" class="shared"></div> -->
+            </li>
+            <!--{/foreach}-->
+        </ul>
+
+    </div>
+</div>
+
+{include file=footer.html}
+
+<script src="/public/global/jquery-1.8.3.min.js"></script>
+<script src="/public/static/pc/js/public.js"></script>
+<script src="/public/global/luck/pc/luck.js"></script>
+
+<script>
+//ajax分享
+function share(obj){
+    var cid = $(obj).prev().val();
+    var wid = $('#wid').val();
+    var con = $(obj).html();
+    $.post("./my_works-shareRecordWork.html",{mvid:cid,wid:wid,record:1}, function(res){
+        var res = eval("("+res+")");
+        if(res.done){
+         $(obj).html('已分享');
+        }
+    });
+}
+
+
+</script>
+</body>
+</html>

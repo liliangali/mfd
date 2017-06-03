@@ -1,0 +1,206 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+{include file=member.menu.html}
+<script type="text/javascript" src="{$img_url}/js/jquery.form.js"></script>
+
+
+{$_head_tags}
+
+<script>
+
+$(function(){
+	$('#myForm').validate({ 
+		errorClass:"error-on",
+		success : function(label){
+			 label.addClass('error-ok');
+		}, 
+	    rules : {
+	        title : {
+	            required : true
+	        },
+	        description : {
+	            required : true
+	        }
+	    },
+	    messages:{
+	    	title : {
+	            required : '街拍说明不能为空'
+	        },
+		    description : {
+	            required : '街拍描述不能为空'
+	        }
+	    },
+	    submitHandler:function(form){
+
+            if(!input_num){
+                return alert('请至少上传一张图片');
+            }
+
+	    	var title =  $("#title").val();
+	    	$("#myForm").attr('action','/index.php/kuke-camera.html?opt=1');
+	    	$("#total").val(input_num);
+	    	$("#myForm").submit();
+	    	
+	    }
+	});
+});
+
+</script>
+
+<script>
+
+function sub(){
+
+}
+
+function del_li(li_num){
+	$("#li_"+li_num).remove();
+	input_num--;
+	if(num){
+		num--;
+	}else{
+		first = 1;
+	}
+	
+	if(top_id == num){
+		top_id = -1;
+		$("#top_url").val('');
+	}
+}
+
+function setTop(num,url){
+	if(top_id == num){
+		return 0;
+	}
+	if(top_id != -1){
+		$("#top_id_"+top_id).html('设为封面');
+	}
+	top_id = num;
+	var top_url = $("#input_"+top_id).val();
+	$("#top_id_"+num).html('已设封面');
+	$("#top_url").val(top_url);
+}
+
+var num = 0;
+var first = 1;
+var input_num = 0 ;
+var top_id = -1;
+
+$(document).ready(
+		
+	function() {
+		$('#up_file').change(function(){
+			$('#wait_up').html('上传中请等待...');
+			
+			var r  = 10000*Math.random();
+			var options = {
+					url:'/index.php/kuke-upload.html?num='+num+'&r='+r,
+					success: function(data) {
+						var dd = eval( "(" + data + ")" );
+						if(first){
+							num = 0;
+							var last_li_id = "ul_li";
+						}else{
+							var last_li_id = "li_"+ num ;
+							num++;
+						}
+						var li_id = "li_"+num;
+						var li_html = '<li id="'+li_id+'"><p class="p1"><a href="#"><img src="'+dd.src+'" /></a></p>';
+						li_html += "<input type='hidden' id='input_"+num+"' name='input_"+num+"' value='"+dd.file+"' >";
+						li_html += '<p class="p2"><a id="top_id_'+num+'" href="javascript:void(0);" onclick="setTop('+num+  ',  \''+dd.file+'\')">设为封面</a></p>';
+						li_html += '<p class="p2"><a href="javascript:void(0);" onclick=del_li(\''+num+  '\'); >删除</a></p></li>';
+						
+						if(first ){
+							$('#'+last_li_id).html(li_html);
+							first = 0;
+						}else{
+							$('#'+last_li_id).after(li_html);
+						}
+						input_num++;
+						$('#wait_up').html('');
+						return 1;
+					} 
+			};
+	
+			$('#myForm').ajaxSubmit(options);
+        
+		});
+	}
+);
+
+</script>
+
+ <div class="aqsc_box">
+  <ul class="m_tupsc_ul" >
+    <li><a href="/index.php/kuke-album.html">街拍相册</a></li>
+    <li class="on">上传街拍<img src="{$img_url}/images/m_sjjpxb.png" /></li>
+  </ul>
+  <p class="clear"></p>
+
+  <div class="tupsc_box">
+  
+  
+  
+  <form  method='post' id='myForm' enctype="multipart/form-data">
+  
+    <table cellpadding="0" cellspacing="0" width="100%" border="0">
+    
+    	<input type='hidden' name='total' id='total' />
+    	<input type='hidden' name='top_url' id='top_url' />
+    
+      <tr>
+        <th>街拍说明：</th>
+        <td class="m_sjsm">
+        <input type="text" name='title' id='title' value="" maxlength=30 style="float:left; margin-right:0;" /><span>
+        <!-- <img src="{$img_url}/images/m_scjpts.png" />设计说明不能为空</span> -->
+        </td>
+      </tr>      
+
+      <tr>
+        <th>街拍描述：</th>
+        <td class="m_miaosu"><textarea name="description" id='description' cols="" rows="" maxlength="200" style="float:left;" ></textarea></td>
+      </tr>      
+      
+      <tr>
+        <th valign="top" style="padding-top:55px;">图片信息：</th>
+        <td style="padding-top:8px;">
+          <ul class="m_tplb_ul" id='ul_li'>
+          
+<!--            <li id='li_'>
+             <p class="p1"><a href="#"><img src="{$img_url}/images/m_tjtplb.gif" /></a></p>
+             <p class="p2"><a href="#">设为封面</a></p>
+             <p class="p2"><a href="#">删除</a></p>
+           </li> -->
+           
+          </ul>
+          <p class="clear"></p>
+        </td>
+      </tr>
+      
+      <tr>
+        <th></th>
+        <td class="m_xztp">
+         <div>
+           选择图片
+           <input type="file" value="" id='up_file' name='up_file' />
+         </div>
+          <p><span style="color:red;">&nbsp;&nbsp;当上传完一张图片后，还可以继续点此“选择图片”按钮继续上传多张图片</span></p>
+          <p id='wait_up'></p>
+        </td>
+      </tr>      
+            
+      <tr>
+        <th></th>
+        <td><input type="submit" onclick='sub();' value="开始上传" class="m_kssc" /></td>
+      </tr> 
+      
+            
+    </table>
+    
+    </form>
+  </div>
+
+</div>
+<p class="clear"></p>
+</div>
+{include file="footer.html"}

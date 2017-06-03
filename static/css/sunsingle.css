@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+/*--布局/S--*/
+.AreaL{ float:left; width:790px;}
+.AreaR{ float:right; width:380px;}
+/*--布局/E--*/
+
+/*--文章/S--*/
+.article{ border-top:solid 1px #ddd;  border-bottom:solid 1px #ddd; margin-top:30px; padding:30px 0 45px 0;font-size:14px;}
+.article h2{ font-size:24px; color:#333; text-align:center;}
+.article .aside { text-align:center; line-height:50px;}
+.article .aside span{ padding:0 12px;}
+.article .abstract{ background:#f8f8f8; padding:10px 20px; margin-top:15px;line-height:22px;}
+.article .con{ padding:20px 0; font-size:14px; line-height:24px;}
+.article .con p{ text-indent:2em; margin-bottom:2em;}
+.article .con img{ display:block; margin:10px auto; max-width:100%;}
+.article .share{ height:50px; line-height:50px; margin-top:10px; color:#333;}
+/*--文章/E--*/
+
+
+/*--编辑器/S--*/
+.editorBox{ margin-top:45px; font-size:14px;}
+.editorBox .title .tit{ font-size:20px; color:#333;}
+.editorBox .title .num{ font-size:14px; margin-left:10px;}
+.editorBox .editor{ margin-top:15px; border:solid 1px #ddd; width:784px; height:79px; font-size:14px; color:#666; padding:2px; resize:vertical}
+.editorBox .editB{ height:25px; line-height:25px; padding-top:10px;}
+.editorBox .s1{ background:url(../img/ico_02.gif) no-repeat 0 -78px; padding-left:25px; cursor:pointer;}
+.editorBox .s2{ margin-left:50px;}
+.editorBox .s2 .num{ padding:0 2px;}
+.editorBox .editB .submit{ width:70px; height:30px; border:0; background:#bbb; border-radius:3px; cursor:pointer; font-size:14px;}
+.editorBox .editB .submit:hover{ background:#000; color:#fff;}
+#facebox{ background:#fff; border:solid 1px #ddd; padding:2px;}
+#facebox td{ padding:3px;}
+#facebox img{ cursor:pointer;}
+/*--编辑器/E--*/
+
+/*--评论列表/S--*/
+.comList{ font-size:14px; border-top:dashed 1px #eee; margin-top:25px; padding:25px 0;}
+.comList .item{ min-height:50px; padding:8px 0 8px 65px; position:relative; margin-bottom:15px;}
+.comList .item .menu{ position:absolute; right:20px; top:32px; display:none;}
+.comList .item .del{ margin-left:10px;color:#bb422e;}
+.comList .item .del:hover{ text-decoration:underline;}
+.comList .item:hover{ background:#f9f9f9;}
+.comList .item:hover .menu{ display:block;}
+.comList .headPic{ margin-left:-65px; float:left;}
+.comList .tbar .name{ color:#000; }
+.comList .tbar .time{padding-left:10px; color:#a0a0a0;}
+.comList .con{ line-height:22px; margin-top:5px; padding-right:100px;}
+.comList .getMore{ height:36px; line-height:36px; color:#333; text-align:center; background:#f5f5f5; cursor:pointer;}
+.comList .getMore:hover{ background:#ccc;}
+/*--评论列表/E--*/
+
+/*--右侧分享、收藏、评论/S--*/
+.operate{ border:solid 1px #ddd; font-size:14px; color:#333; margin-top:30px;}
+.operate span{ float:left; width:33%; height:68px; text-align:center; border-left:solid 1px #ddd; margin-left:-1px;}
+.operate i{ display:block; width:28px; height:20px; background:url(../img/ico_02.gif) no-repeat; margin:13px auto 5px; opacity:0.6; filter:alpha(opacity=60);}
+.operate .comNum i{ background-position:0 -27px}
+.operate .share i{ background-position:0 -53px}
+.operate .collect,.operate .share{ cursor:pointer;}
+.operate .collect:hover i,.operate .share:hover i{opacity:1; filter:alpha(opacity=100);}
+.shareBox{ width:263px; height:50px; border:solid 1px #ddd; position:absolute; left:50%; top:50%; background:#fff; display:none;}
+.shareBox .angle{ width:9px; height:6px; background:url(../img/bg.png) no-repeat -147px -157px; position:absolute; right:62px; top:-5px;}
+/*--右侧分享、收藏、评论/E--*/
+
+/*--右侧列表/S--*/
+.picList{ margin-top:20px; border:solid 1px #ddd; padding:10px 10px 20px 20px; clear:both;}
+.picList h2{ font-size:20px; color:#333; margin-bottom:7px;}
+.picList a{ float:left; margin:7px 7px 0 0;}
+/*--右侧列表/E--*/
+
+/*--分享按钮/S--*/
+.shareList{ padding:10px 0;}
+.shareList a{ float:left; width:32px; height:32px; background:url(../img/share.png) no-repeat; margin-left:10px; cursor:pointer; opacity:0.9;}
+.shareList a:hover{ opacity:1;}
+.shareList .qblog{ background-position:-32px 0;}
+.shareList .qzone{ background-position:-64px 0;}
+.shareList .renren{background-position:-96px 0;}
+.shareList .douban{background-position:-128px 0;}
+.shareList .weixin{background-position:-224px 0;}
+/*--分享按钮/E--*/

@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>注册及登录-RCTAILOR-定制是一种生活态度(rctailor.com)</title>
+<link href="{res file=css/style.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/head_footr.css}" rel="stylesheet" type="text/css" />
+
+    {$page_seo}
+
+    <script src="{res file=js/jquery-1.7.1.min.js}" language="javascript" charset="UTF-8" type="text/javascript"></script>
+    <script src=" /themes/mall/default/styles/default/js/jquery.validate.js" charset="UTF-8" language="javascript" type="text/javascript" ></script>
+
+
+{$_head_tags}
+<style>
+.re_welcome{float:left; height:44px; line-height:44px; font-size:24px; border-left:#dddddd 1px solid; margin:15px 0 0 16px; padding-left:13px;}
+</style>
+
+<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+</head>
+
+<body>
+
+<!--头部开始-->
+
+<div class="login_head">
+  <div class="denlu_logo"><a href="{link app=default act=index}"><img src="{res file=images}/logo.png" /></a></div>
+  <div class="re_welcome">会员登录</div>
+  <div class="login_head_right">
+    <div>
+      <p class="qdlzc_1"><a href="/index.php/article-view-32.html">帮助中心</a><span>|</span></p>
+      <p class="qdlzc_1"><a id="BizQQWPA" href="javascript:;">在线客服</a>
+      <script type="text/javascript">
+      BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4008919867, selector: 'BizQQWPA'});
+      </script></p>
+    </div>
+  </div>
+  <p class="clear"></p>
+</div>
+
+<!--头部结束-->
+
+<div class="login_body_box">
+  <div class="login_body">
+     <div class="login_banner"><img src="{res file=images}/login_03.jpg" /></div>
+     
+     <div class="login_denlu" style="height:auto; padding-bottom:20px;">
+       <h1>会员登录</h1>
+       <div class="zykrss">
+         <p class="dlcwdts"></p>
+         
+         <div class="sjhyx"><input type="text" value="{if !$cookie_uname}手机或邮箱{else}{$cookie_uname}{/if}" name="user_name" id="username" onfocus="if(value=='手机或邮箱'){value=''}" onblur="if(value==''){value='手机或邮箱'}" class="input_1" /></div>
+         
+         <div class="mima"><input class="pswt" value="密 码"><input style="display:none;" class="pswh" id="password" name="password" type="password" value=""></div>
+
+         <p class="clear"></p>
+         
+         <div class="jzzh_zhmm">
+             <!-- <input name="" type="checkbox" value="" class="jzzhinput" />
+            <p class="jzzh">记住帐号</p>-->
+           <p class="zhmm"><a href="{link app=member act=find_password}">忘记密码？</a></p>
+         </div>
+         <p class="clear"></p>
+         
+         <div class="hydl" onmouseout="this.className='hydl'" onmouseover="this.className='hydl_2'" ><input type="submit" value="" id="submit"/></div>
+         
+         <p class="hmzh_ljzc">还没有帐号？<a href="{link app=member act=register}">立即注册</a></p>
+         
+         <p class="hzzhdl" style="display:none;">合作网站帐号登录：</p>
+         <div class="hzzhdl_s" style="display:none;">
+         	<a href="#" class="dyg_a"></a>
+         	<a href="#" class="drg_a"></a><a href="#" class="dsag_a"></a><a href="#" class="dsig_a"></a><p class="clear"></p></div>
+        
+       </div>
+     </div>
+     
+  </div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	
+    $("#password").keydown(function(e){ 
+        var curKey = e.which; 
+        if(curKey == 13){
+        	var username = $("#username").val();
+    		var password = $("#password").val();
+    		//alert(username);alert(password);alert(captcha);
+    		$.ajax({
+    			type:"POST",
+    			url:"/index.php/member-login.html",
+    			data:"username="+username+"&password="+password,
+    			success: function(msg){
+    				if(msg == 1) {
+    					$(".dlcwdts").html("用户名或者密码错误");
+    				}else if(msg == 3) {
+    					$(".dlcwdts").html("验证码错误");
+    				}else if(msg == 2) {
+    					$(".dlcwdts").html("登录成功");
+    					window.location.href="{$back}";
+    				}
+    			     
+    			}
+    		});
+        }
+    }); 
+    
+	$("#submit").click(function() {
+		var username = $("#username").val();
+		var password = $("#password").val();
+		//alert(username);alert(password);alert(captcha);
+		$.ajax({
+			type:"POST",
+			url:"/index.php/member-login.html",
+			data:"username="+username+"&password="+password,
+			success: function(msg){
+				if(msg == 1) {
+					$(".dlcwdts").html("用户名或者密码错误");
+				}else if(msg == 3) {
+					$(".dlcwdts").html("验证码错误");
+				}else if(msg == 2) {
+					$(".dlcwdts").html("登录成功");
+					window.location.href="/";
+				}
+			     
+			}
+		});
+	}
+	);
+	
+	
+});
+
+</script>
+
+<!--底部开始-->
+<div class="login_dbbox">
+  <p class="p1"><span>© RCTAILOR版权所有</span><span>服务电话：400-169-8836</span><span>邮箱：kefu@rctailor.com</span></p> 
+  <p class="p2">鲁ICP备10207738</p>
+</div>
+<!--底部结束-->
+<!--密码框明文转密文JS-->
+<script type="text/javascript">
+jQuery(document).ready(function() {
+								
+	jQuery(":input[type='password']").val("");
+	
+	$(":input").focus(function() {
+		var $obj = jQuery(this).addClass("iuib_l_hover iuib_l_focus");
+		var defValue = $obj.attr("def");
+		var $IU_tip = $obj.parent().siblings(".IU_tip");
+		if (defValue == $obj.val()) {
+			$obj.val("");
+		}
+		if ($obj.hasClass("pswt")) {
+			$obj.hide().siblings("input.pswh").show().focus();
+		}
+		if ($IU_tip) {
+			$IU_tip.show();
+		}
+	});
+	
+	$(":input").blur(function() {
+		var $obj = jQuery(this).removeClass("iuib_l_hover");
+		var $IU_tip = $obj.parent().siblings(".IU_tip");
+		if ($obj.val() == "") {
+			$obj.val($obj.attr("def"));
+			$obj.removeClass("iuib_l_focus");
+		}
+		if ($obj.hasClass("pswh")) {
+			if ($obj.val() == "") {
+				$obj.hide().siblings("input.pswt").show();
+			}
+		}
+		if ($IU_tip) {
+			$IU_tip.hide();
+		}
+	});
+
+
+});
+
+</script>
+<!--密码框明文转密文JS-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe3dcd4ebd61e5356326c9772b873f72b' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>
+

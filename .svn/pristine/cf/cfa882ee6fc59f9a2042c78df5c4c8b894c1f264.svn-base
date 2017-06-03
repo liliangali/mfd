@@ -1,0 +1,202 @@
+{include file=member.header.html}
+<link href="{res file=css/thickbox.css}" type="text/css" rel="stylesheet" />
+<style>
+.table .ware_text { width:290px; }
+</style>
+<script type="text/javascript">
+//<!CDATA[
+function add_to_cart(spec_id, quantity)
+{
+    var url = SITE_URL + '/index.php?app=cart&act=add';
+    $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
+        alert(data.msg);
+    });
+}
+
+function delPic(id){
+	$.ajax({
+		"url":"/index.php/kuke-delcamera.html",
+		"data": "id=" + id,
+		"type": "GET",
+		"success": function(data) {
+			alert('删除成功');
+			//location.reload();
+		}
+	});
+}
+
+</script>
+
+
+
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+   
+        
+  
+  <div class="aqsc_box">
+  
+  <!--我的设计开始-->
+    <h1 class="syhtmdbt">我的设计</h1>
+ {if $album}
+ 	{if $pic}  
+    <div class="wdsj_box">
+      <ul>
+      
+       {foreach from=$pic key=k item=v }     
+       <li class="on" onmouseout="this.className='on'" onmouseover="this.className='off'">
+         <p class="p1"><a href="{$v.link}#{$v.id}" target="_blank"><img src="{$v.url}" /></a></p>
+         <p class="p2"><a href="{$v.link}" target="_blank">{$v.title}</a>|{$v.album.title}</p>
+         {if !$v.album_id}
+         	<p class="p4"><a href='javascript:void(0);' onclick='showPop({$v.id},"{$v.url}")' >{$v.album_id}加入酷吧</a></p>
+         {/if}
+         <p class="p5"><a href="javascript:void(0);" onclick='delPic({$v.id})'>删除</a></p>
+       </li>
+ {/foreach}
+       
+       <a class='thickbox' href='#TB_inline?height=330&width=610&inlineId=login&TB_iniframe=-1&modal=true'></a>
+       
+       <script>
+       var sel_id = 0;
+        $(document).ready(function(){
+        	//$("#alert").click(function(){
+        	//	var sss = $(this).data("url");
+        		
+        	//	sel_id = $(this).data("id");
+        		
+        	//	$("#pop_src").attr('src',sss);
+        	//	$(".thickbox").click();
+        	//});
+        	
+        	
+        });
+        
+        function showPop(id ,url ){
+    		sel_id = id;
+    		
+    		$("#pop_src").attr('src',url);
+    		$(".thickbox").click();
+        }
+        
+        function creaPhoto(){
+        	$("#create").css('display','block');
+        }
+        
+        function sendPhoto(){
+        	//var photo_id = $("#").val();
+        	var album_id = $("#album_sel").val();
+        	//var photo_id = $("#").val();
+        	
+        	//alert(sel_id);
+        	//return 1;
+    		$.ajax({
+    			"url":"/index.php/kuke-joinAlbum.html",
+    			"data": "album_id="+album_id + "&photo_id="+sel_id ,
+    			"type": "GET",
+    			'dataType':'json',
+    			"success": function(res) {
+    				alert("加入成功");
+    				location.reload();
+    			}
+    		});
+        }
+        
+        function creaAlbum(){
+        	var album_name = $("#album_name").val();
+        	if(!album_name)
+        		return alert('相册名称为空');
+        	
+    		$.ajax({
+    			"url":"/index.php/kuke-creaalbum.html",
+    			"data": "album_name="+album_name ,
+    			"type": "GET",
+    			'dataType':'json',
+    			"success": function(res) {
+    				
+    				$("#album_sel").append("<option value="+res+">"+album_name+"</option>");
+    				$("#album_sel option:last").attr("selected", true);
+    				
+    				$("#album_name").val("");
+    	        	$("#create").css('display','none');
+    				
+    	        	//var res = eval( "(" + res + ")" );
+    				//if(res.err){
+    				//	alert('出错:'+res.msg);
+    				//}else{
+    				//	$("#getSMS").html(res.msg);
+    				//	$("#getSMS").unbind('click');
+    				//}
+    			}
+    		});	
+    		
+        	
+        }
+       </script>
+       
+         
+      </ul>
+      <p class="clear"></p>
+    </div>
+    
+<!--弹出层模块开始-->   
+<script type="text/javascript" src="{res file=js/thickbox-compressad.js}"></script>
+
+<div id="login" class="m_wdsj_box" style="display:none;">
+   <div class="m_wdsj_tcc">
+       <div class="tcc_tit">加入专辑</div>
+       <p class="gb"><a href="javascript:void(0);" onclick="tb_remove();"><img src="{res file=images/tccgb.png}" /></a></p>
+       
+       <p class="m_jrzjtu"><img id='pop_src' src="" /></p>
+       <div class="m_cjkb">
+          <div class="m_kbmc">
+            <select id='album_sel' >
+            
+            {foreach from=$album key=k item=v }  
+            	<option value='{$v.id}'>{$v.title}</option>
+            {/foreach}
+            	
+            </select>
+            
+            <a href="javascript:void(0);" onclick='creaPhoto();'>创建酷吧</a>
+          </div>
+          <p class="clear"></p>
+          <div id='create' class="m_hwdxzkb" style="display:none;">
+            <input type="text" value="" id='album_name' class="input_1" maxlength=10 />
+            <input type="button" onclick='creaAlbum();' value="创建" class="input_2" />
+          </div>
+          <input type="button" onclick='sendPhoto();' value="确定" class="m_qiudin"/>
+       </div>
+       <p class="clear"></p>
+  </div>  
+</div>    
+<!--弹出层模块结束-->   
+
+<!--我的设计结束-->  
+    
+   <!--翻页开始--> 
+    <div class="lulals_fy">    
+      <p>共{if $total}{$total}{else}0{/if}条记录</p>  
+      <div>
+        {$page_show}
+        <p class="clear"></p>
+      </div>
+    </div>
+  <!--翻页结束--> 
+  	{else}
+  	<p style="width:810px; float:right; margin-top:10px;">您有了相册，但是还没有图片，请先去<a href="/index.php/kuke-designup.html" style="color:#bb422e; padding:0 5px;">上传</a>一个图片吧！</p>
+  	{/if}
+    {else}
+  	<p style="width:810px; float:right; margin-top:10px;">您还没有相册，请先去<a href="/index.php/club-createAlbum-{$visitor.user_id}.html" style="color:#bb422e; padding:0 5px;">建立</a>一个相册吧！</p>
+  {/if}
+  
+  
+  </div>
+
+  <p class="clear"></p>
+</div>       
+       
+
+</div>
+
+{include file=login_footer.html}

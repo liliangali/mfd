@@ -1,0 +1,42 @@
+{include file=../user/member.header.html}
+   <div class="w">
+    <div class="AreaBox clearfix">
+        {include file=../user/member.menu.html}
+       
+                <div class="con">
+            <h2 class="tit">收藏的面料({$page_info.item_count})</h2>
+          {if $collects}
+              <ul class="shoucang">
+              <!--{foreach from=$collects item=collect}-->
+              <li>
+               <a href="{link app=fabrics act=info arg0=$collect.item_id}"><img src="{$collect.part_img}" width="200" height="261" /></a>
+               <a href="{link app=member act=user_favorite_drop}?item_id={$collect.item_id}&type=fabric" class="Delete"></a>
+                <p class="p1">{$collect.code}</p>
+                <p class="p2">编号 {$collect.code}</p>
+                <p class="p3">人气 <em class="red"> {$collect.click_count}</em></p>
+              </li>
+               <!--{/foreach}-->
+             </ul>
+          {else}
+          <!--没有订单时提示-->
+          <div class="myddts">还没有收藏</div> 
+          <!--没有订单时提示-->
+            
+          {/if}
+           <!--用户中心分页开始--> 
+           <div class="hyzx_fy clearfix">
+            {if $collects}{include file=../user/member.page.bottom.html}{/if}
+           </div>
+           <!--用户中心分页结束--> 
+      
+        </div>
+</div>
+</div>
+
+<!-- <script type="text/javascript">
+collect_single('1','kes');
+
+</script>
+ -->
+{include file="../user/footer.html"}
+

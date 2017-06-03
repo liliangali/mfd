@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui">
+		<title>量体数据项</title>
+		<link type="text/css" href="http://r.cotte.cn/cotte/m/css/public.css" rel="stylesheet" />
+		<link type="text/css" href="http://r.cotte.cn/cotte/m/css/my_customers.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="main">
+			<!--头部开始-->
+			<div class="two_head">
+				<div class="wrap">
+					<span class="back" onClick="history.go(-1)"></span>
+					<h1>量体数据</h1>
+				</div>
+				<div class="sta"></div>
+			</div>
+			<!--头部结束-->
+
+			<h1 class="title_1">{$worker.lasttime} </h1>
+			<div class="white_3">
+				<ul class="ltsj">
+				{foreach from=$figure_info item=figure}
+					<li>{$figure.name}:{$figure.val}</li>
+					{/foreach}
+				</ul>
+			</div>
+
+			<h1 class="title_1">特殊体型</h1>
+			<div class="white_3">
+				<ul class="tstx">
+					{foreach from=$feature item=feat}
+					<li>{$feat.name}:{$feat.val}</li>
+					{/foreach}
+				</ul>
+			</div>
+
+			<h1 class="title_1">着装风格</h1>
+			<div class="white_3">
+				<ul class="tstx">
+					{foreach from=$style item=sty}
+					<li>{$sty.name}:{$sty.val}</li>
+					{/foreach}
+				</ul>
+			</div>
+
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,9 @@
+{include file="../header.html"}
+<div class="ddtjcgy_box">
+  <div class="m_zfcgsy">
+   <p class="m_zfcg">{$lang.pay_successed}</p>
+   <p class="m_nycgzf">您已成功支付了，您可以去 <a href="{link app=kuke act=index}">{$lang.member_center}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{link app=buyer_order act=view arg0=$order.order_id}">{$lang.view_order}</a></p>
+   <p class="m_scsy"><a href="./">回首页</a></p>
+  </div>
+</div>
+{include file="../footer.html"}

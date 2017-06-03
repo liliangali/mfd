@@ -1,0 +1,1 @@
+ALTER TABLE `cf_order` ADD `img_status` TINYINT( 1 ) NOT NULL DEFAULT '0' COMMENT 'Í¼Æ¬ÉóºË×´Ì¬£¨1³É¹¦£¬0Ê§°Ü£©' AFTER `r_status` 

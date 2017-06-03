@@ -1,0 +1,32 @@
+<!--{if $page_info.page_count gt 1}-->
+<div id="J_wall_page" class="wall_page">
+	    <div class="page_bar">
+               <div class="faye_box">
+                 <a href="#" class="gdstjl">{sprintf lang=total_item var1=page_info.item_count}</a>
+                 <!--{if $page_info.prev_link}-->
+                 <a href="{$page_info.prev_link}" class="sanyy"></a>
+                 <!--{else}-->
+                  <a href="#" class="sanyy"></a>
+                 <!--{/if}-->
+                  <!--{if $page_info.first_link}-->
+				    <a class="page_link" href="{$page_info.first_link}">1&nbsp;<!--{$page_info.first_suspen}--></a>
+				   <!--{/if}-->
+                 <!--{foreach from=$page_info.page_links key=page item=link}-->
+			    <!--{if $page_info.curr_page eq $page}-->
+			    <a href="javascript:;" class="curr">{$page}</a>
+			    <!--{else}-->
+			    <a  href="{$link}">{$page}</a>
+			    <!--{/if}-->
+			    <!--{/foreach}-->
+			    <!--{if $page_info.last_link}-->
+			    <a class="page_link" href="{$page_info.last_link}"><!--{$page_info.last_suspen}-->&nbsp;<!--{$page_info.page_count}--></a>
+			    <!--{/if}-->
+                 <!--{if $page_info.next_link}-->
+                 <a href="{$page_info.next_link}" class="xiayy"></a>
+                 <!--{else}-->
+                 <a href="#" class="xiayy"></a>
+                 <!--{/if}-->
+               </div>
+           </div>
+</div>
+<!--{/if}-->

@@ -1,0 +1,72 @@
+/*主框架*/
+.panel{ position:relative;}
+.panel:after{ content:''; display:block; height:800px;}
+.panel .arrow{position:absolute; left:50%; bottom:40px; width:30px; height:19px; background:url(/public/static/pc/images/hehuo/arrow.png?v1) no-repeat center center; animation:arrow ease-in-out 1s infinite alternate;-webkit-animation:arrow ease-in-out 1s infinite alternate; cursor:pointer;}
+@keyframes arrow{
+	0%{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+	100%{-webkit-transform:translate3d(0,10px,0);transform:translate3d(0,10px,0)}
+}
+@-webkit-keyframes arrow{
+	0%{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+	100%{-webkit-transform:translate3d(0,10px,0);transform:translate3d(0,10px,0)}
+}
+.panel img{ position:absolute;}
+.panel .animate{ width:80%; height:2px; position:absolute; left:10%; top:50%;}
+.panel-1{ background:url(/public/static/pc/images/hehuo/bg1.jpg) no-repeat center center; background-size:cover;}
+.panel-2{ background:url(/public/static/pc/images/hehuo/bg2.jpg) no-repeat center center; background-size:cover;}
+.panel-3{ background:url(/public/static/pc/images/hehuo/bg3.jpg) no-repeat center center; background-size:cover;}
+.panel-4{ background:url(/public/static/pc/images/hehuo/bg4.png) no-repeat center center; background-size:cover;padding-bottom:150px; }
+/*第一屏动画*/
+.s1_pic1{right:55%; top:-210px;animation-delay:.2s;-webkit-animation-delay:.2s;}
+.s1_pic2{left:50%; top:-150px;animation-delay:.4s;-webkit-animation-delay:.4s;}
+.s1_pic3{left:55%; top:-210px;animation-delay:.8s;-webkit-animation-delay:.8s;}
+/*第二屏动画*/
+.s2_pic1{left:50%; top:-370px; margin-left:-103px;animation-delay:.2s;-webkit-animation-delay:.2s;}
+.s2_pic2{left:50%; top:-257px; margin-left:-350px;animation-delay:.5s;-webkit-animation-delay:.5s;}
+.s2_pic3{left:50%; top:-170px; margin-left:-172px;animation-delay:.8s;-webkit-animation-delay:.8s;}
+.s2_pic4{left:50%; top:-105px; margin-left:-112px;animation-delay:1s;-webkit-animation-delay:1s;}
+/*第三屏动画*/
+.s3_pic1{left:50%; top:-305px; margin-left:-228px}
+.s3_pic2{left:10%; top:64px;}
+.s3_pic3{left:20%; top:-120px;}
+.s3_pic4{left:28%; top:25px;}
+.s3_pic5{right:28%; top:25px;}
+.s3_pic6{right:20%; top:-120px;}
+.s3_pic7{right:10%; top:64px;}
+.s3_pic8{left:50%; top:-170px; margin-left:-104px;}
+.s3_pic9{left:50%; top:126px; margin-left:-135px;}
+/*第四屏动画*/
+.s4_pic1{left:50%; top:-385px; margin-left:-287px;-webkit-animation-duration:2s;
+animation-duration:2s;}
+.s4_pic2{left:50%; top:-310px;-webkit-animation-duration:2s;
+animation-duration:2s;}
+.s4_pic3{right:51%; top:-265px;animation-delay:.8s;-webkit-animation-delay:.8s;}
+.s4_pic4{ width:353px; height:278px; position:absolute;left:50%; top:-166px;animation-delay:2s;-webkit-animation-delay:2s;}
+.android-download{ width:145px; height:33px; position:absolute; left:0; top:177px;}
+.ios-download{ width:145px; height:33px; position:absolute; left:0; top:220px;}
+.s4_pic5{left:103%; top:160px;animation-delay:2.5s;-webkit-animation-delay:2.5s;}
+.fadeInRB{-webkit-animation-name:fadeInRB;animation-name:fadeInRB;
+-webkit-animation-duration:2s;
+animation-duration:2s;
+}
+@-webkit-keyframes fadeInRB{
+	0%{opacity:0;-webkit-transform:translate3d(60px,60px,0);transform:translate3d(60px,60px,0)}
+	100%{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+}
+@keyframes fadeInRB{
+	0%{opacity:0;-webkit-transform:translate3d(60px,60px,0);transform:translate3d(60px,60px,0)}
+	100%{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+}
+/*侧边导航*/
+.pageNav{ width:90px; position:fixed; right:25px; top:50%; margin-top:-50px; text-align:right; font-size:12px;}
+.pageNav li{height:30px; position:relative; cursor:pointer;}
+.pageNav i{ display:block; width:10px; height:10px; margin-top:3px; float:right;border:solid 1px #fff; border-radius:10px; transition:all ease .2s;-webkit-transition:all ease .2s;}
+.pageNav span{ float:left; width:4em;visibility:hidden; transition:right ease .2s;-webkit-transition:right ease .2s;}
+.pageNav li:hover i,.pageNav li.cur i{ background:#0af; border-color:#0af; width:20px;}
+.pageNav li:hover span,.pageNav li.cur span{visibility:visible;}
+.nav-1 span{ color:#fff;}
+.nav-2 span{ color:#fff;}
+.nav-2  li:hover i,.nav-2  li.cur i{ background:#fff; border-color:#fff; width:20px;}
+.nav-3 i,.nav-4 i{ border-color:#0af}
+.head{ position:fixed; left:0; top:0; width:100%;}
+.minfooter{ position:absolute; bottom:0; left:0; width:100%;}

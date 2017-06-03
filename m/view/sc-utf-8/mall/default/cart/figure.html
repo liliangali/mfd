@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<title>预约量体信息</title>
+<link type="text/css" href="static/css/style.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="main">
+<!--头部开始-->
+<!--头部结束-->
+    <div class="wrap">
+        <h4>预约量体方式</h4>
+        <div class="tabs">
+            <a href="javascript:void(0)" hidefocus="true" class="active" id="tab_1" data-id="1">上门量体</a>
+            <a href="javascript:void(0)" hidefocus="true"  data-id="2" id="tab_2">服务门面</a>
+            <a href="javascript:void(0)" hidefocus="true"  data-id="3" id="tab_3">历史数据</a>
+        </div>    
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- 预约量体1 Bgn  -->
+                <div class="swiper-slide">
+                    <form id="measureForm_1">
+                    <div class="methods top34">
+                        <h4>真实姓名</h4>
+                        <input type="text" class="fill" name="realname" value="{$data.1.realname}" />
+                    </div>
+                    <div class="methods top34">
+                        <h4>手机号码</h4>
+                        <input type="text" class="fill" name="phone"  value="{$data.1.phone}"  />
+                    </div>
+                    <div class="methods top34">
+                        <h4>服务地区</h4>
+                        <p class="szdq">
+                            <select>
+                            <option>中国</option>
+                            </select>
+                            
+                            <select class="sincity" name="city2" data-id="1">
+                            <option value=""  id="city2_1">请选择</option>
+                            {html_options options=$regions selected=$data.1.city2}
+                            </select>
+                            <select name="city3" id="city3_1"></select>
+                        </p>
+                    </div>
+                    <div class="methods top34">
+                        <h4>详细地址</h4>
+                        <input type="text" class="fill" name="addr" value="{$data.1.addr}" />
+                    </div>
+                    <div class="methods top34">
+                        <h4>预约时间</h4>
+                        <input type="text" placeholder="" value="{$data.1.time}"  onclick="WdatePicker({minDate:'%y-%M-%d'})" onfocus="javascript:if(this.value=='例如：2013-05-31')this.value='';" class="fill" id="time" name="time">
+                    </div>
+                    <div class="methods color_ac top34 border">预约上门量体会收取80元量体费</div>
+                    <input type="hidden" name="type" value="1" />
+                    <input type="hidden" name="fee" value="80" />
+                    <div class="bc_sc"><input type="button" value="保存" class="input_3 sub_btn" data-id="1"></div>
+                    </form>
+                </div>
+                <!-- 预约量体1 End  -->
+                <!-- 服务门面2 Bgn -->
+                <div class="swiper-slide">
+                    <form id="measureForm_2">
+                    <div class="methods top34">
+                        <h4>真实姓名</h4>
+                        <input type="text" class="fill" name="realname" value="{$data.2.realname}">
+                    </div>
+                    <div class="methods top34">
+                        <h4>手机号码</h4>
+                        <input type="text" class="fill" name="phone" value="{$data.2.phone}">
+                    </div>
+                    <div class="methods top34">
+                        <h4>服务地区</h4>
+                        <p class="szdq">
+                            <select>
+                            <option>中国</option>
+                            </select>
+                            <select class="sincity" name="city2" data-id="2">
+                            <option value="" id="city2_2">请选择</option>
+                            {html_options options=$regions selected=$data.2.city2}
+                            </select>
+                            <select name="city3" id="city3_2" >
+                            
+                            </select>
+                        </p>
+                    </div>
+                    <div class="methods top34">
+                        <h4>详细地址</h4>
+                        <input type="text" class="fill" name="addr" value="{$data.2.addr}">
+                    </div>
+                    <div class="methods top34">
+                        <h4>预约时间</h4>
+                        <input type="text" placeholder="" value="{$data.2.time}"  onclick="WdatePicker({minDate:'%y-%M-%d'})" onfocus="javascript:if(this.value=='例如：2013-05-31')this.value='';" class="fill" id="time" name="time">
+                    </div>
+                    <div class="methods top34 same" id="serverlist"></div>
+                    <input type="hidden" name="type" value="2" />
+                    <input type="hidden" name="server_id" id="server_id" value="{$data.2.server_id}">
+                    <div class="bc_sc"><input type="button" value="保存" class="input_3 sub_btn" data-id="2"></div>
+                    </form>
+                </div>
+                <!-- 服务门面2 End -->
+                
+                <div class="swiper-slide">
+                    <form id="measureForm_3">
+                    <div class="methods top34 location">
+                        <h4>请输入手机号查询</h4>
+                        <input type="text" class="fill" name="phone" id="sc_phone" value="{if $data.3.phone}{$data.3.phone}{else}请输入手机号{/if}" data-value="请输入手机号" onfocus="javascript:if(this.value=='请输入手机号')this.value='';">
+                        <input type="button" class="ssbot" id="sc">
+                    </div>
+                    <div id="historyList">
+                    
+                    </div>
+                    <input type="hidden" name="type" value="3" />
+                    <input type="hidden" name="history_id" id="history_id" value="{$dat.3.history_id}">
+                    <div class="bc_sc"><input type="button" value="保存" class="input_3 sub_btn" data-id="3"></div>
+                    </form>
+                </div>
+          </div>
+       </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"></script> 
+<script type="text/javascript" src="static/js/idangerous.swiper.min.js"></script>
+<script  type="text/javascript" src="static/expand/my97date/wdatepicker.js"></script>
+<script type="text/javascript" src="/includes/libraries/javascript/jquery.plugins/jquery.validate.js"></script>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+
+{if $type =='1' || $type == '2'}
+{assign var="tp" value="$data.$type"}
+
+<script type="text/javascript">
+$(function(){
+	var _id = "{$type}";
+	var region_id = "{$tp.city2}"; 
+	var next_id = "{$tp.city3}";
+    var server_id = "{$tp.server_id}";
+   	getCitys(_id,region_id,next_id);
+   	if(_id == 2){
+   		getServers(next_id,server_id);
+   	}
+    
+})
+</script>
+{/if}
+{if $type =='3'}
+{assign var="tp" value="$data.$type"}
+
+<script type="text/javascript">
+$(function(){
+    var _id = "{$tp.history_id}";
+    var phone = "{$tp.phone}"; 
+    getHistorys(phone,_id);
+    
+})
+</script>
+{/if}
+<script type="text/javascript">
+
+function _alert(msg){
+    layer.open({
+        content: '<p style="text-align:center">'+msg+'</p>',
+        btn: ['确定'],
+    }); 
+}
+function getServers(region_id,server_id){
+
+    $.post("{link app=cart act=getServe}",{region_id:region_id,server_id:server_id}, function(res){
+        var res = $.parseJSON(res);
+        if(res.done == true){
+            $("#serverlist").html(res.retval.content);
+        }
+    })
+}
+
+function getCitys(_id,region_id,next_id){
+    $.post("{link app=cart act=getServeRegionThree}",{region_id:region_id,next_id:next_id}, function(res){
+        var res = $.parseJSON(res);
+        if(res.done == true){
+            $("#serverlist").empty();
+            $("#city3_"+_id).html(res.retval);
+        }
+    })
+}
+
+$('.sub_btn').click(function(){
+    var _id = $(this).data('id');
+    var _oj = $('#measureForm_'+_id);
+    _oj.ajaxSubmit({
+        type:"post",
+        url:"{link app=cart act=figureSave}?time="+ (new Date()).getTime(),
+        beforeSubmit:function(formData,jqForm,options){return _oj.valid();},
+        success:function (res,statusText) {
+        	var res = $.parseJSON(res);
+        	if(res.done == false){
+        		   _alert(res.msg);
+        	}else{
+        		//alert(res.msg);
+        		//history.go(-1)
+        		//return false;
+        		location.href="{link app=cart act=checkout}";
+        	}
+        }
+    });
+});
+
+$('.sincity').change(function(){
+    var region_id = $(this).val();
+    var _id       = $(this).data('id');
+    getCitys(_id,region_id)
+});
+
+$('#city3_2').change(function(){
+	var region_id = $(this).val();
+	getServers(region_id)
+})
+
+
+function getHistorys(phone,_id){
+	$.post("{link app=cart act=figureSc}",{phone:phone,id:_id}, function(res){
+        var res = $.parseJSON(res);
+        if(res.done == true){
+            $("#historyList").html(res.retval.content);
+        }
+    })
+}
+
+$('#sc').click(function(){
+	var phone = $('#sc_phone').val();
+	var _val = $('#sc_phone').data('value');
+	if(phone == _val) return;
+	getHistorys(phone)
+})
+
+
+//==========================
+var tabsSwiper = new Swiper('.swiper-container',{
+    speed:500,
+    onSlideChangeStart: function(){
+        $(".tabs .active").removeClass('active');
+        $(".tabs a").eq(tabsSwiper.activeIndex).addClass('active');
+    }
+});
+
+$(".tabs a").on('touchstart mousedown',function(e){
+    e.preventDefault()
+    $(".tabs .active").removeClass('active');
+    $(this).addClass('active');
+    tabsSwiper.swipeTo($(this).index());
+});
+
+$(".tabs a").click(function(e){
+    e.preventDefault();
+});
+
+$(function(){
+	var _tab_id = "{if $type}{$type}{else}1{/if}";
+    $(".tabs .active").removeClass('active');
+    $('#tab_'+_tab_id).addClass('active');
+    tabsSwiper.swipeTo($('#tab_'+_tab_id).index());
+})
+
+//==========================
+</script>
+
+<script type="text/javascript">
+$(function(){
+    $('#measureForm_1').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            //label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            realname   : {
+                required : true,
+            },
+            phone   : {
+                required : true,
+                number   : true,
+            },
+            city3   : {
+                required : true,
+            },
+            addr   : {
+                required : true,
+            },
+            time   : {
+                required : true,
+            },
+        },
+        messages : {
+            realname  : {
+                required : '真实姓名必须填写',
+            },
+            phone  : {
+                required : '手机号必须填写',
+                number   : '手机号必须是数字',
+            },
+            city3   : {
+                required : '请选择城市',
+            },
+            addr   : {
+                required : '详细地址必须填写',
+            },
+            time   : {
+                required : '预约时间必须填写',
+            },
+        },
+    });
+    
+    $('#measureForm_2').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            //label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            realname   : {
+                required : true,
+            },
+            phone   : {
+                required : true,
+                number   : true,
+            },
+            city3   : {
+                required : true,
+            },
+            addr   : {
+                required : true,
+            },
+            time   : {
+                required : true,
+            },
+            server_id   : {
+                required : true,
+            },
+        },
+        messages : {
+            realname  : {
+                required : '真实姓名必须填写',
+            },
+            phone  : {
+                required : '手机号必须填写',
+                number   : '手机号必须是数字',
+            },
+            city3   : {
+                required : '请选择城市',
+            },
+            addr   : {
+                required : '详细地址必须填写',
+            },
+            time   : {
+                required : '预约时间必须填写',
+            },
+            server_id   : {
+                required : '请选择服务点',
+            },
+        },
+    });
+    
+    $('#measureForm_3').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            //label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            phone   : {
+                required : true,
+                number   : true,
+            },
+            history_id   : {
+                required : true,
+            },
+        },
+        messages : {
+            phone  : {
+                required : '手机号必须填写',
+                number   : '手机号必须是数字',
+            },
+            server_id   : {
+                required : '请选择量体数据',
+            },
+        },
+    });
+});
+
+</script>
+</body>
+</html>

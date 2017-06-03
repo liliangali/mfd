@@ -1,0 +1,13 @@
+
+
+
+<h2>客户信息：</h2>
+<ul class="ul_list">
+  <li><span>姓名:</span><input type="text" name="kh[name]" value="{$data.kh_name}" /></li>
+  <li><span>性别:</span><select name="kh[sex]" ><option {if $data.kh_sex == 1} selected {/if}value="1">男</option><option {if $data.kh_sex == 2} selected {/if} value="2">女</option></select></li>
+  <li><span>身高:</span><input type="text" name="figure[height]" value="{$data.figure.height}" /></li>
+  <li><span>体重:</span><input type="text" name="figure[weight]" value="{$data.figure.weight}" /></li>
+  <li><span>手机:</span><input type="text" name="kh[mobile]" value="{$data.kh_mobile}" /></li>
+  <li><span>地址:</span><input type="text" name="kh[address]" value="{$data.kh_addr}" /></li>
+  <li><span>备注:</span><input type="text" name="memo" /></li>
+</ul>

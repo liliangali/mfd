@@ -1,0 +1,77 @@
+<div id="box">
+{foreach from=$list item=lists key=key}
+    <div class="imagetx">
+    	<h4><p class="ddh fl">订单号:{$lists.order_sn} </p><p class="dfk fr">{$lists.status_name}</p></h4>
+        <dl>
+    <a href="{link app=my_order act=detail arg=$lists.order_id}">
+		{foreach from=$lists.item item=goods  key=k name=loop}
+        	<dd><img src="{$goods.goods_image}" width="42" height="42"></dd>
+          {if $smarty.foreach.loop.total == 1}
+          <dt>
+            <p>{$goods.goods_name}</p>
+            <p style="color:#717171;">
+              {if $goods.type eq 'fdiy'}
+              定制
+              {else}
+
+              {/if}
+            </p>
+            </dt>
+            <span style="margin-top:10px;float:right;">{$goods.price|price} * {$goods.quantity}</span>
+          {/if}
+		{/foreach}
+		</a>
+        </dl>
+        <dl><div class="sjfk">实付款：  <span style="color:#e66800">{$lists.final_amount|price}</span></div>
+        <div class="ddbut">
+            {if $lists.status eq 11 }
+                 <a href="javascript:;" onclick="luck3({$lists.order_id})" class="dingdxx">取消订单</a>
+            {/if}
+            {if $lists.status eq 11}
+            <a href="###" class="pay dingdxx" data-orderid="{$lists.order_id}">去支付</a>
+            {/if}
+
+            {if $lists.status eq 30}
+                 <a href="javascript:;" onclick="luck4({$lists.order_id})" class="dingdxx">确认认货</a>
+            {/if}
+        </div>
+        </dl>
+
+    </div>
+{/foreach}
+</div>
+<script src="http://r.cotte.cn/global/luck/mobile/luck.js"></script>
+<script>
+function luck3(id){
+	
+	luck.open({
+		title: ['取消订单','background:#e59501;color:#fff'],//标题
+		content: '确认取消该订单吗？',//内容
+		btn:['确认','取消'],
+		yes:function(){
+			location.href="my_order-operation-cancel-"+id+".html"
+			luck.close()
+		},
+		no: function(){
+			luck.close()	
+		}
+	});
+	//_hmt.push(['_trackEvent','luck-mobile-询问框','click'])
+}
+function luck4(id){
+	
+	luck.open({
+		title: ['确认收货','background:#e59501;color:#fff'],//标题
+		content: '确认收货吗？',//内容
+		btn:['确认','取消'],
+		yes:function(){
+			location.href="my_order-operation-finish-"+id+".html"
+			luck.close()
+		},
+		no: function(){
+			luck.close()	
+		}
+	});
+	//_hmt.push(['_trackEvent','luck-mobile-询问框','click'])
+}
+</script>

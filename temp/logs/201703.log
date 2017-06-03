@@ -1,0 +1,76 @@
+Thu, 02 Mar 2017 08:20:34 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:SELECT *,shipping.shipping_id FROM cf_shipping shipping WHERE shipping_id=
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Thu, 02 Mar 2017 14:34:55 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:SELECT *,shipping.shipping_id FROM cf_shipping shipping WHERE shipping_id=
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Thu, 02 Mar 2017 14:34:59 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:SELECT *,shipping.shipping_id FROM cf_shipping shipping WHERE shipping_id=
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Thu, 02 Mar 2017 14:35:01 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:SELECT *,shipping.shipping_id FROM cf_shipping shipping WHERE shipping_id=
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Thu, 02 Mar 2017 14:35:03 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:SELECT *,shipping.shipping_id FROM cf_shipping shipping WHERE shipping_id=
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Thu, 02 Mar 2017 14:36:15 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:SELECT *,shipping.shipping_id FROM cf_shipping shipping WHERE shipping_id=
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Thu, 02 Mar 2017 14:38:26 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:SELECT *,shipping.shipping_id FROM cf_shipping shipping WHERE shipping_id=
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Tue, 14 Mar 2017 14:51:46 +0800	[2]Cannot use a scalar value as an array	vendors/Cyteam/Shop/Type/FdiyBase.php	94
+Tue, 14 Mar 2017 14:53:19 +0800	[2]Cannot use a scalar value as an array	vendors/Cyteam/Shop/Type/FdiyBase.php	94
+Tue, 14 Mar 2017 14:54:03 +0800	[2]Cannot use a scalar value as an array	vendors/Cyteam/Shop/Type/FdiyBase.php	94
+Tue, 14 Mar 2017 14:56:54 +0800	[2]Cannot use a scalar value as an array	vendors/Cyteam/Shop/Type/FdiyBase.php	96
+Tue, 14 Mar 2017 14:57:34 +0800	[2]Cannot use a scalar value as an array	vendors/Cyteam/Shop/Type/FdiyBase.php	97
+Tue, 14 Mar 2017 14:57:48 +0800	[2]Cannot use a scalar value as an array	vendors/Cyteam/Shop/Type/FdiyBase.php	97
+Tue, 14 Mar 2017 14:58:25 +0800	[2]Cannot use a scalar value as an array	vendors/Cyteam/Shop/Type/FdiyBase.php	97
+Tue, 14 Mar 2017 14:58:58 +0800	[2]Cannot use a scalar value as an array	vendors/Cyteam/Shop/Type/FdiyBase.php	97
+Tue, 14 Mar 2017 14:59:08 +0800	[2]Cannot use a scalar value as an array	vendors/Cyteam/Shop/Type/FdiyBase.php	97
+Tue, 14 Mar 2017 15:00:31 +0800	[2]Cannot use a scalar value as an array	vendors/Cyteam/Shop/Type/FdiyBase.php	98
+Tue, 14 Mar 2017 15:01:48 +0800	[2]Cannot use a scalar value as an array	vendors/Cyteam/Shop/Type/FdiyBase.php	99
+Tue, 14 Mar 2017 16:07:14 +0800	[2]Division by zero	h5/includes/ordertypes/news.otype.php	323
+Tue, 14 Mar 2017 16:20:20 +0800	[2]Division by zero	h5/includes/ordertypes/news.otype.php	323
+Tue, 14 Mar 2017 16:20:34 +0800	[2]Division by zero	h5/includes/ordertypes/news.otype.php	324
+Tue, 14 Mar 2017 16:21:08 +0800	[2]Division by zero	h5/includes/ordertypes/news.otype.php	325
+Tue, 14 Mar 2017 16:27:16 +0800	[2]Division by zero	h5/includes/ordertypes/news.otype.php	326
+Tue, 14 Mar 2017 16:28:02 +0800	[2]Division by zero	h5/includes/ordertypes/news.otype.php	327
+Tue, 14 Mar 2017 16:30:14 +0800	[2]Division by zero	h5/includes/ordertypes/news.otype.php	79
+Tue, 14 Mar 2017 16:30:30 +0800	[2]Division by zero	h5/includes/ordertypes/news.otype.php	79
+Thu, 23 Mar 2017 14:02:40 +0800	[2]file_get_contents(/Applications/MAMP/htdocs/mfd2//h5/view/sc-utf-8/mall/default/fdiy/rang.html): failed to open stream: No such file or directory	h5/eccore/view/template.php	315
+Thu, 23 Mar 2017 14:59:34 +0800	[2]preg_match() expects parameter 2 to be string, array given	/includes/ecapp.base.php	955
+Thu, 23 Mar 2017 15:03:45 +0800	[2]Illegal string offset 'status'	/mfd/app/order.app.php	684
+Sat, 25 Mar 2017 15:46:40 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like% \xE8\xA5\xBF\xE8\xA3\x85' at line 1
+MySQL Query:SELECT COUNT(*) as c FROM cf_goods g WHERE marketable=1  AND name %like% 西装
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[490]	eccore/model/mysql.php	319
+Sat, 25 Mar 2017 15:47:03 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like% \xE8\xA5\xBF\xE8\xA3\x85' at line 1
+MySQL Query:SELECT COUNT(*) as c FROM cf_goods g WHERE marketable=1  AND name %like% 西装
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[490]	eccore/model/mysql.php	319
+Sat, 25 Mar 2017 15:47:17 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%\xE8\xA5\xBF\xE8\xA3\x85%' at line 1
+MySQL Query:SELECT COUNT(*) as c FROM cf_goods g WHERE marketable=1  AND name like %西装%
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[490]	eccore/model/mysql.php	319
+Sat, 25 Mar 2017 15:47:19 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%\xE8\xA5\xBF\xE8\xA3\x85%' at line 1
+MySQL Query:SELECT COUNT(*) as c FROM cf_goods g WHERE marketable=1  AND name like %西装%
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[490]	eccore/model/mysql.php	319
+Mon, 27 Mar 2017 13:43:41 +0800	[2]require_once(weipay/lib/WxPay.Api.php): failed to open stream: No such file or directory	/app/apply.app.php	196
+Mon, 27 Mar 2017 13:44:04 +0800	[2]require_once(weipay/lib/WxPay.Api.php): failed to open stream: No such file or directory	/app/apply.app.php	196
+Mon, 27 Mar 2017 13:44:10 +0800	[2]require_once(weipay/lib/WxPay.Api.php): failed to open stream: No such file or directory	/app/apply.app.php	196
+Mon, 27 Mar 2017 13:44:11 +0800	[2]require_once(weipay/lib/WxPay.Api.php): failed to open stream: No such file or directory	/app/apply.app.php	196
+Mon, 27 Mar 2017 13:44:46 +0800	[2]require_once(weipay/lib/WxPay.Api.php): failed to open stream: No such file or directory	/app/apply.app.php	196
+Mon, 27 Mar 2017 15:49:42 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as num,order_alias.order_id FROM cf_order order_alias WHERE is_try=1 AND add_' at line 1
+MySQL Query:SELECT sum(*) as num,order_alias.order_id FROM cf_order order_alias WHERE is_try=1 AND add_time >= 1490544000 AND status IN(20.30,40)
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Mon, 27 Mar 2017 15:50:57 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as num,order_alias.order_id FROM cf_order order_alias WHERE  is_try=1 AND add' at line 1
+MySQL Query:SELECT sum(*) as num,order_alias.order_id FROM cf_order order_alias WHERE  is_try=1 AND add_time >= 1490544000 AND status IN(20.30,40)
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Mon, 27 Mar 2017 15:54:48 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as num,order_alias.order_id FROM cf_order order_alias WHERE  is_try=1 AND add' at line 1
+MySQL Query:SELECT sum(*) as num,order_alias.order_id FROM cf_order order_alias WHERE  is_try=1 AND add_time >= 1490544000 AND status IN(20,30,40)
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Mon, 27 Mar 2017 15:54:51 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as num,order_alias.order_id FROM cf_order order_alias WHERE  is_try=1 AND add' at line 1
+MySQL Query:SELECT sum(*) as num,order_alias.order_id FROM cf_order order_alias WHERE  is_try=1 AND add_time >= 1490544000 AND status IN(20,30,40)
+Wrong File:  /Applications/MAMP/htdocs/mfd2/eccore/model/mysql.php[566]	eccore/model/mysql.php	319
+Tue, 28 Mar 2017 22:13:56 +0800	[2]Missing argument 1 for EasyWeChat\Foundation\Application::__construct(), called in /Applications/MAMP/htdocs/mfd2/vendors/Cyteam/Goods/Goods.php on line 21 and defined	/vendor/overtrue/wechat/src/Foundation/Application.php	108
+Thu, 30 Mar 2017 09:40:37 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''\xE6\x99\x92\xE9\xBB\x91\xE7\x9A\x84bear'' WHERE user_id = 5' at line 1
+MySQL Query:UPDATE cf_member SET user_name='晒黑的bear'' WHERE user_id = 5
+Wrong File:  /Applications/MAMP/htdocs/mfd2/h5/eccore/model/model.base.php[543]	eccore/model/mysql.php	319

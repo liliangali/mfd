@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>作品详情</title>
+<link type="text/css" href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link type="text/css" href="http://r.cotte.cn/cotte/wap/css/cpxq.css" rel="stylesheet" />
+</head>
+<body>
+<div class="main">
+  <!--头部开始-->
+  <div class="topBar">
+      <div class="wrap"> <span class="back" onClick="history.go(-1)"></span>
+          <h1>作品详情</h1>
+          <div class="fenxia filter"></div>
+      </div>
+      <div class="sta"></div>
+  </div>
+  <!--头部结束-->     
+        
+    
+  <div class="xiangc">  
+     <div id="slider" class="swipe">
+      <div class="swipe-wrap">
+        <!--{foreach from=$result.imgs item=imgs}-->
+        {if $imgs}
+       <div><a href="#"><img src="{$imgs}" /></a></div>
+       {/if}
+        <!--{/foreach}-->
+      </div>
+    </div>
+    
+    
+    <p class="xcfy"><em>1</em>/<span>3</span></p>
+    <h4><span>¥{$result.pa.price}</span><a href="#">{$result.work_name}</a><font>{$result.add_time|date}</font>
+    {if !$result.pa.is_sale}
+    <h2 style="color:#AAAAAA">此面料已经下架</h2>
+    {/if}
+    </h4>
+  </div>
+  <p class="jgt"></p>
+  
+  <div class="sjll">
+   <h1>设计理念：</h1>
+   <p>{$result.description}</p>
+  </div>
+  <p class="jgt"></p>
+  
+  <div class="sjll">
+   <h1>工艺信息：</h1>
+     <!--{foreach from=$result.params_value item=params_value}-->
+     <h2>{$params_value.name}</h2>
+        <!--{foreach from=$params_value.params item=params}-->
+        {if $params.p_name}
+        <p>{$params.p_name}选择：{$params.s_name} </p>
+        {/if}
+        <!--{/foreach}-->
+        
+     <!--{/foreach}-->
+  </div>
+  
+  <ul class="scjxsj"><li><a href="#" onclick="del({$result.id})">删除</a></li>
+  {if $result.pa.is_sale}
+  <li style="float:right;"><a href="{$result.url}" class="on">继续设计</a></li>
+  {else}
+  <li style="float:right;"><a href="#" style="color:#AAAAAA" class="on">继续设计</a></li>
+  {/if}
+  </ul>
+        
+  <p style="height:50px;"></p>
+  </div>
+
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script src="http://r.cotte.cn/global/jquery.swipe.js"></script>
+<script src="http://r.cotte.cn/cotte/wap/js/public.js"></script>
+<script src="http://r.cotte.cn/cotte/wap/js/fy.js"></script>
+<script type="text/javascript">
+function del(id){
+    //var id = $(obj).next().val();
+    $.post("./my_works-delWork.html",{id:id}, function(res){
+        var res = eval("("+res+")");
+        if(res.done){
+            alert('删除成功')
+            location.reload();
+        }else{
+            alert('删除失败')
+        }
+
+    });
+}
+</script>
+
+
+</body>
+</html>

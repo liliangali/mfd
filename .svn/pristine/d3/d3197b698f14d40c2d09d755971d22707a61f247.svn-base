@@ -1,0 +1,17 @@
+<style>
+.diy-xk{width:887px; margin:0 auto;}
+.diy-xk img{float:left;}
+
+</style>
+<div class="diy-xk">
+<img src="{res file=images/xiku_1.jpg}" width="886">
+<img src="{res file=images/xiku_2.jpg}" width="886">
+<img src="{res file=images/xiku_3.jpg}" width="886">
+<img src="{res file=images/xiku_4.jpg}" width="886">
+<img src="{res file=images/xiku_5.jpg}" width="886">
+<img src="{res file=images/xiku_6.jpg}" width="886">
+<img src="{res file=images/xiku_7.jpg}" width="886">
+<img src="{res file=images/xiku_8.jpg}" width="886">
+<img src="{res file=images/xiku_9.jpg}" width="886">
+<p class="clear"></p>
+</div>

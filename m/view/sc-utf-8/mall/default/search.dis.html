@@ -1,0 +1,43 @@
+{include file="header2.html"}
+<link rel="stylesheet" type="text/css" href="../../static/css/search.css">
+<div class="w">
+{include file="search.title.html"}
+ <div class="product clearfix">
+   {foreach from=$dislist item=dis}
+    <div class="item taozhuang" data-name="{$dis.title}" data-id="{$dis.id}" data-pic="[{foreach from=$append.$dis.id item=cst name=loop}'{$cst.cst_image}'{if !$smarty.foreach.loop.last},{/if}{/foreach}]">
+      <div class="bigPic"><img src="{$dis.middle_img}" width="290" height="387" /> <a href="#" class="dingzhi">立即定制</a> </div>
+      <ul class="smallPic">
+      {foreach from=$append.$dis.id item=cst name=loop}
+        {if $smarty.foreach.loop.iteration lt 5}
+           <li><img src="{$cst.cst_dis_image}" width="75" height="93" /></li>
+        {/if}
+      {/foreach}
+      </ul>
+      <table width="100%" border="0">
+        <caption>
+          {$dis.title}
+        </caption>
+        <tr>
+          <th>卖点</th>
+          <td colspan="3"><p class="lhdg">{$dis.brief}</p></td>
+        </tr>
+      </table>
+    </div>
+    {/foreach}
+
+ </div>
+     <!--翻页开始-->
+{include file="page.normal.html"}
+<!--翻页结束-->  
+</div>
+<script>
+var reginUrl = "{link app=mlselection}";
+var sendUrl = "{link app=ajax act=resetSMSCode}";
+var cityOption = '{html_options options=$regions}';
+var opts = '{html_options options=$opts}';
+var checkCode = "{link app=gallery act=checkCode}";
+</script>
+<script  type="text/javascript" src="static/js/mlselection.js"></script>
+<script  type="text/javascript" src="static/js/custom.js"></script>
+<script type="text/javascript" src="static/expand/jquery.form.js"></script>
+{include file="footer.html"}

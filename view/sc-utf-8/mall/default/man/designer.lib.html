@@ -1,0 +1,33 @@
+<div class="container">     
+    <div class="textwbsi top127">
+    	<p>DESIGNER</p>
+        <span></span>
+        <p class="textwbw">全国知名设计师齐聚麦富迪平台，让麦富迪满足您所有的服装奢求</p>
+    </div>
+    <div id="containers">
+		<div id="example">
+			<div id="slides">
+				<div class="slides_container">
+				{foreach from=$designer item=design name=loop}
+					<div  {if $smarty.foreach.loop.iteration eq 1}class="supplement"{/if}>
+						{foreach from=$design item=val}
+						<div class="qhword">
+                         <a href="{link app=designer arg0=1 arg1=0 arg2=$val.id}" style="display:block;">
+                        	<p><img src="{$val.photo_url}" /></p>
+                            <div>
+                             <h1>{$val.username}</h1>
+                             <p><span>作品<i>{$val.count|default:0}</i></span><span>关注<i>{$val.popularity}</i></span></p>
+                            </div>
+                            <p class="english">{$val.signaturl}</p>
+                          </a>
+                        </div>
+                    {/foreach}
+					</div>
+				{/foreach}
+				</div>
+				<a href="#" class="prev icon-angle-left"></a>
+				<a href="#" class="next icon-angle-right"></a>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,74 @@
+{include file=member.header.html}
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">       
+        <div class="wrap">
+          <h1 class="grzl">{$serve_type_name}</h1>
+<div class="eject_btn" title="{$lang.add_data}" style="display:none;"><b class="ico2" onclick="go('{link app=$modelname act=add}');">{$lang.add_data}</b></div>
+
+            <div class="public table">
+                <table class="table_head_line">
+                    <!--{if $datas}-->
+                    <tr class="line_bold">
+                        <th colspan="6"></th>
+                    </tr>
+                    <tr class="line tr_color">
+                    
+                    
+
+
+      <th>ID</th>
+      <th>操作日期</th>
+      <th>操作员</th>
+      
+      
+      <th>分成金额</th>
+      <th>操作</th>
+      
+      
+
+
+                    </tr>
+                    <!--{/if}-->
+                    <!--{foreach from=$datas item=data name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold tr_align"><!--{else}--><tr class="line tr_align"><!--{/if}-->
+                        
+      <td>{$data.idfigureadminlog|escape} </td>
+      <td>{$data.add_time|date:Y-m-d H:i:s}</td>
+      <td>{$data.author|escape}</td>
+      
+      
+      
+    <td>{$data.div_amount}</td>     
+
+      <td>
+      
+      
+      {$data.opt}
+      </td>
+      
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="6" class="member_no_records padding6">{$lang.$smarty.get.act}{$lang.no_records}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                </table>
+                <!--{if $datas}-->
+                    <div class="all_btn all_bg_down">
+
+                    </div>
+                    <div class="pages">
+                        {include file=member.page.bottom.html}
+                    </div>
+                    <!--{/if}-->
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+<iframe id='iframe_post' name="iframe_post" src="about:blank" frameborder="0" width="0" height="0"></iframe>
+{include file=login_footer.html}

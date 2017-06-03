@@ -1,0 +1,29 @@
+<div id="rightTop">
+  <ul class="subnav">
+  <li> <a class="btn1" href="index.php?app=profit&amp;act=change_account&id={$user_id}">调整会员账户</a></li>
+  <li><a class="btn1" href="index.php?app=profit&amp;act=account&id={$user_id}">账户变动明细</a></li>
+  </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <select class="querySelect" name="type">
+        	<!-- <option value="0">-=所有账户=-</option> -->
+        	<option value="1" {if $type eq 1}selected{/if}>后台资金调整</option>
+        	<!-- <option value="2" {if $type eq 2}selected{/if}>冻结资金账户</option> -->
+        	<option value="2" {if $type eq 2}selected{/if}>订单返现资金</option>
+        	<option value="3" {if $type eq 3}selected{/if}>注册送红包资金</option>
+        	<option value="4" {if $type eq 4}selected{/if}>订单送积分</option>
+        	<option value="5" {if $type eq 5}selected{/if}>抵用券</option>
+          </select>
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+          <input type="hidden" name="app" value="profit">
+          <input type="hidden" name="act" value="account">
+          <input type="hidden" name="id" value="{$user.user_id}">
+          {$user.user_name} -- 可用资金:{$user.money} 冻结资金:{$user.frozen}
+      </div>
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>

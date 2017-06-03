@@ -1,0 +1,94 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p style="display:none;">配置配送方式</p>
+  <ul class="subnav">
+    <li><span><a href="index.php?app=shipping">返回配送列表</a></span></li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+$(function(){
+    $('#shipping_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {    
+        	shipping_name : {
+                required : true
+            },
+            code :{
+                required : true
+            },
+            first_weight    :{
+                required     : true,
+                number       : true,
+            },
+            step_weight:{
+            	required     : true,
+               number   : true
+            }
+        },
+        messages : {
+        	shipping_name : {
+                required : '配送方式名称不能为空'
+            },
+            code : {
+                required : '配送方式编码不能为空'
+            },
+            first_weight    : {
+            	required    : '首重不能为空',
+            	number      : '首重必须是数字'
+            },
+            step_weight  : {
+            	required    : '续重不能为空',
+                number   : '续重必须是数字'
+            }
+        }
+    });
+});
+</script>
+<div class="info">
+     <form method="post" id="shipping_form">
+      <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> <label for="site_name">{$lang.shipping_name}:</label></th>
+        <td class="paddingT15 wordSpacing5"><input type="text" name="shipping_name" value="{$shipping.shipping_name}"></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="site_name">配送方式编码:</label></th>
+        <td class="paddingT15 wordSpacing5"><input type="text" class="text width2" value="{$shipping.code}" name="code"/></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="site_name">首重重量(克):</label></th>
+        <td class="paddingT15 wordSpacing5"><input type="text" class="text width2" value="{$shipping.first_weight}" name="first_weight"/></td>
+      </tr>
+     <tr>
+        <th class="paddingT15"> <label for="site_name">续重重量(克):</label></th>
+        <td class="paddingT15 wordSpacing5"><input type="text" class="text width2" value="{$shipping.step_weight}" name="step_weight"/></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="site_name">描述:</label></th>
+        <td class="paddingT15 wordSpacing5"><textarea class="text" name="shipping_desc">{$shipping.shipping_desc|escape}</textarea><span>该信息将在用户下单时被看到</span></td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="site_name">是否启用:</label></th>
+        <td class="paddingT15 wordSpacing5">{html_radios options=$yes_or_no checked=$shipping.enabled name=enabled}</td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> <label for="site_name">排序:</label></th>
+        <td class="paddingT15 wordSpacing5"><input type="text" class="text width2" value="{$shipping.sort_order}" name="sort_order"/></td>
+      </tr>
+  	  <tr>
+        <th></th>
+        <td class="ptb20"><input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />        </td>
+      </tr>
+      </table>
+      <input type="hidden" name="shipping_id" value="{$shipping.shipping_id}">
+        </form>
+    </div>
+{include file="footer.html"}

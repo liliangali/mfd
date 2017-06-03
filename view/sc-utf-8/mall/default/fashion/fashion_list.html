@@ -1,0 +1,96 @@
+{include file=header.html}
+<link type="text/css" href="../../static/css/trend.css" rel="stylesheet" />
+
+<div class="banner"><a href="#"><img src="../../static/img/cl_banner.png"></a></div>
+
+<div class="yxbt">
+ <h1>FASHION NEWS</h1>
+ <P>最新的潮流信息在这里为您展示，让您及时了解麦富迪动态，紧跟潮流了解时尚信息</P>
+</div>
+
+<div id="cllb" class="cllb container" >
+<!--  <ul> -->
+
+<!--  <li> -->
+<!--    <p class="p1" onclick="addclicknum({$v.id})" style="cursor:pointer"><img src="{$v.pphoto}" ></p> -->
+<!--    <p class="p2" onclick="addclicknum({$v.id})" style="cursor:pointer">{$v.title}</p> -->
+<!--    <p class="p3">{$v.pubdate}</p> -->
+<!--    <p class="p4" onclick="addclicknum({$v.id})" style="cursor:pointer">{$v.summary}</p> -->
+<!--   </li> -->
+
+<!--  </ul> -->
+</div>
+
+
+<script type="text/javascript" src="../../static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../static/js/public.js"></script>
+<script type="text/javascript">
+ function addclicknum(id){
+	 
+	 $.ajax({
+		type:"GET",
+		url:"/fashion-ajax_click-"+id+".html",
+		success:function(r){
+			var a=eval("("+r+")");//加上圆括号的目的是将括号内的表达式强制转换为对象
+			if(a.retval){
+				window.location.href="/fashion-info-"+id+".html";
+			}else{
+				msg(a.msg,330,150);				
+			}
+		},
+		 error:function(){
+			 msg("异常!",330,150);
+		 }
+	});
+ }
+
+</script>
+<script src="../../static/js/jquery.masonry.js"></script>
+<script>
+var $container = $('#cllb'),delay=null,flag=null;
+var fashion = {};
+fashion.url   = '{link app=fashion act=loadCustomData}';
+//获取数据
+function getData(){
+	var winh=$(window).height(),
+		bodyh=$container.height();
+
+	if(($(window).scrollTop()+winh)>=bodyh-350){
+		$(window).off('scroll',getData);
+		if(delay){clearTimeout(delay)}
+		delay=setTimeout(function(){
+			if(!fashion.url){
+				//$newElems = $("<div class='item'>加载完成</div>")
+		    	//$container.append($newElems).masonry("appended",$newElems);
+		        return false;
+		    }
+		    $.get(fashion.url,function(res){
+		        var res = eval("("+res+")");
+		        var $newElems = $(res.retval.content);
+		        fashion.url = res.retval.link;
+				if(flag){
+					$container.append($newElems).masonry("appended",$newElems);
+				}else{
+					$container.append(res.retval.content);
+					$container.imagesLoaded( function(){
+					  $container.masonry({
+						columnWidth:0,
+						itemSelector: '.item'
+					  });
+					});
+					flag=true;
+				}
+		        $(window).on('scroll',getData);
+		    });
+			
+		},500)
+	}	
+}
+$(window).on('scroll',getData);
+
+//初始化
+getData();
+</script>
+<!--底部/S-->
+{include file=footer.html}
+<!--底部/E-->

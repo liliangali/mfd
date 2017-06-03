@@ -1,0 +1,8 @@
+<div class="order_total">
+    <h1>{$lang.order_amount}：<strong id="order_amount">{$goods_info.amount|price}</strong></h1>
+    <div class="order_bnt">
+        <a href="javascript:void($('#order_form').submit());" class="bnt"></a>
+        <a href="{url app=cart&store_id=$goods_info.store_id}" class="back">> {$lang.backto_cart}</a>
+    </div>
+</div>
+

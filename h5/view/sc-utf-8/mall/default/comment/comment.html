@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+		<title></title>
+		<link href="public/static/wap/css/public.css" rel="stylesheet" />
+		<link href="public/static/wap/css/slx_style.css" rel="stylesheet" />
+		<script type="text/javascript" src="/diy/js/jquery-1.8.3.min.js"></script>
+
+
+		<script>
+			!
+					function(n) {
+						var e = n.document,
+								t = e.documentElement,
+								i = 720,
+								d = i / 100,
+								o = "orientationchange" in n ? "orientationchange": "resize",
+								a = function() {
+									var n = t.clientWidth || 320;
+									n > 720 && (n = 720),
+											t.style.fontSize = n / d + "px"
+								};
+						e.addEventListener && (n.addEventListener(o, a, !1), e.addEventListener("DOMContentLoaded", a, !1))
+					} (window);
+		</script>
+
+	</head>
+
+	<body class="bg_gray">
+
+		<div class="tab_menu c_bdb c_txc bg_white">
+			<ul class="c_db">
+				<li {if $smarty.get.type=='0' or !$smarty.get.type} class="on c_bf1"{else}class="c_bf1"{/if}><span><a href="/comment-comments.html?quan_id={$quan_id}&type=0&s_id={$smarty.get.s_id}">全部</a></span></li>
+				<li {if $smarty.get.type=='1'} class="on c_bf1"{else}class="c_bf1"{/if}><span><a href="/comment-comments.html?quan_id={$quan_id}&type=1&s_id={$smarty.get.s_id}">晒图</a></span></li>
+				<li {if $smarty.get.type=='2'} class="on c_bf1"{else}class="c_bf1"{/if}><span><a href="/comment-comments.html?quan_id={$quan_id}&type=2&s_id={$smarty.get.s_id}">无图</a></span></li>
+			</ul>
+		</div>
+		<div class="kongge"></div>
+
+		<div class="cate_s bg_white">
+			{if $fblists}
+			{foreach from=$fblists item=fb key=key}
+			<a href="/comment-comments.html?quan_id={$quan_id}&type={$smarty.get.type}&s_id={$key}" {if $smarty.get.s_id == $key }class="on"{/if}>{$fb.name}({$fb.num})</a>
+			{/foreach}
+		    {/if}
+		</div>
+		<div id="box">
+		 {if $comment_list}
+		 {foreach from=$comment_list name=comment key=key item=content}
+		<div class="comment_list bg_white">
+			<div class="order_con c_db">
+				<p class="order_pic"><img src="{$content.avatar}"></p>
+				<div class="c_bf1 order_text">
+					<h2>{$content.user_name}<span class="fr star_box star_{$content.star}"></span></h2>
+					<div><!-- 2017-03-09/成犬期/鸡肉味/袋装/1kg -->
+                          <p class="jsword">{$content.format_params}</p>
+
+					</div>
+
+				</div>
+			</div>
+			<h1>{$content.content}</h1>
+			<ul class="comment_img">
+			{if $content.commentimgs}
+			{foreach from=$content.commentimgs item=imgs}
+					<li>
+						<p><img src="{if $imgs.s_image}{$imgs.s_image}{else}{$imgs.image}{/if}" alt="" onclick="parent.commentbig(this)" data-commentid="{$imgs.comment_id}"/></p>
+					</li>
+			{/foreach}
+			{/if}
+			</ul>
+			<p class="comment_time">{$content.add_time}评价</p>
+		</div>
+		{/foreach}
+		{/if}
+		</div>
+
+		<script>
+
+var updata={
+    page:1,//当前条数
+    num:10,//每次加载条数
+    init:function(){
+
+        $(window).on('scroll',updata.getData);
+    },
+    getData:function(){
+
+       var winh=$(window).height(),
+            $container=$('#box'),
+            bodyh=$container.height();
+
+        if(($(window).scrollTop()+winh)>=bodyh){
+            $(window).off('scroll',updata.getData);
+            $container.append('<p style="text-align:center" class="loading">加载中...</p>');
+
+                updata.page+=updata.num;
+                var aQuery = window.location.href.split("?");  //取得Get参数
+                var data = "limit="+updata.page;
+                if(aQuery && aQuery[1]){
+                    data = "limit="+updata.page+"&"+aQuery[1];
+                }
+                $.ajax( {
+                    url: "/comment-ajax_order_list.html",
+                    type: "GET",
+                    data: data,
+                    success: function(data) {
+                        var data = $.parseJSON(data);
+                        if(data.done == false){
+                            $('.loading').html('');
+							var obj=$('<p style="text-align:center" class="loading">加载完毕</p>');
+                            $container.append(obj);
+							setTimeout(function(){
+								obj.remove();
+							},1000)
+
+                            return
+                        }
+                        var html = '';
+                        //var len=data.retval.length;
+                        //console.log(len)
+                        if(data.done){
+                          $.each(data.retval,function(i,d){
+							html+='<div class="comment_list bg_white"><div class="order_con c_db"><p class="order_pic">';
+							html+='<img src="'+d.avatar+'"/></p><div class="c_bf1 order_text c_f7"><h2>'+d.user_name+'<span class="fr star star_3"></span></h2><div>';
+							html+=' <p class="jsword">'+d.format_params+'</p>';
+							html+='</div></div></div><h1>'+d.content+'</h1><ul class="comment_img">';
+							if(d.commentimgs){
+								 for(var s=1;s<=d.imgscount;s++){
+								  html+=' <li><p><img src="';
+								  if(d.commentimgs[s-1].s_image){
+								    html+=d.commentimgs[s-1].s_image;
+								  }else{
+								    html+=d.commentimgs[s-1].image;
+								  }
+								  
+								  html+='" alt="" onclick="parent.commentbig(this)" data-commentid="'+d.commentimgs[s-1].comment_id+'" style="width:100px;height:100px;" /></p></li>';
+								}
+							}
+
+								html+='</ul><p class="comment_time">'+d.add_time+'评价</p></div>';
+                          })
+                            $container.append(html);
+
+                            $container.children('.loading').remove();
+                            setTimeout(function(){
+                              $(window).on('scroll',updata.getData);
+                            },500)
+                        }else{
+                            return;
+                        }
+                    }
+                });
+
+        }
+    }
+}
+updata.init()
+
+
+</script>
+	</body>
+
+</html>

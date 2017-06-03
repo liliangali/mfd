@@ -1,0 +1,179 @@
+{include file="header.html"}
+<div class="gwclb_box">
+<!--{if !$visitor.user_id}-->
+   <p class="gwcwxts"><span>温馨提示：</span>亲爱的消费者，您还没有<a href="{link app=member act=login}">登录</a>，产品价格、优惠活动等以登录后显示为准.<img src="{res file=images/wxtsxsj.gif}" /></p>
+<!-- {/if} -->
+<div class="cart_main">
+	{include file="item.list.html"}
+   </div>
+   <div class="jxdz_ljjs"><a href="{link app=dissertation act=index}" class="jxdz"></a>
+   <a class='ljjs checkout' href="javascript:;">立即结算</a></div>
+   <p class="clear"></p>
+   
+   <p class="nklgxxd" style="margin-top:25px;">你可能感兴趣的</p>
+</div>
+
+<a class="thickbox" href='#TB_inline?height=430&width=620&inlineId=login&TB_iniframe=-1&modal=true'></a>
+
+<!--弹出层登录模块开始-->
+<div id="login" class="tcc_box" style="display:none;">
+   <div class="cart_login" style="height:350px;">
+       <div class="tcc_tit">您尚未登录</div>
+       <p class="gb"><a href="javascript:void(0);" onClick="tb_remove();"></a></p>
+       <div class="gwctcc_left">
+       	<div id="errorShow"></div>
+         <div class="sjhyx" style="margin-top:10px;"><input type="text" value="手机或邮箱" name="username" onFocus="if(value=='手机或邮箱'){value=''}" onBlur="if(value==''){value='手机或邮箱'}" class="input_1" /></div>        
+         <div class="mima" style="margin-top:28px;"><input class="pswt" value="密 码"><input style="display:none;" class="pswh" name="password" type="password"></div>
+         
+         <div class="jzzh_zhmm" style="margin-top:28px;">
+           <input name="remember" type="checkbox" value="1" class="jzzhinput" />
+           <p class="jzzh">记住帐号</p>
+           <p class="zhmm"><a href="{link app=member act=find_password}">找回密码？</a></p>
+         </div>
+         <p class="clear"></p>
+         
+         <div class="hydl"><input type="button" value="" id="cartLogin"/></div>
+         
+         <p class="hmzh_ljzc" style="padding-right:32px;">还没有帐号？<a href="{link app=member act=register}">立即注册</a></p>
+         
+         <p class="hzzhdl" style="margin-top:34px; display:none;">合作网站帐号登录：</p>
+         <div class="hzzhdl_s" style="display:none;"><a href="javascript:void(0);" class="dyg_a"></a><a href="javascript:void(0);" class="drg_a"></a><a href="javascript:void(0);" class="dsag_a"></a><a href="javascript:void(0);" class="dsig_a"></a><p class="clear"></p></div>
+       
+       </div>
+       
+       <div class="gwctcc_right" style="height:270px;">
+         <p class="wxtx">温馨提示：</p>
+         <p class="bxtzcbdl">本系统支持不登录即可下单</p>
+         <p class="wdlwfckwl">未登录用户下单后将无法查询订单信息及物流状态</p>
+         <p class="bdlzjjs"><a href="{link app=cart act=checkout arg=guest}">不登录，直接结算</a></p>
+       </div>
+       <p class="clear"></p>
+  </div>  
+</div>
+<!--弹出层登录模块结束-->   
+
+ <!--相册轮播开始-->
+  <div class="productshow">
+    <div class="scrollcontainer" id="moveid">
+       <ul>
+       {foreach from=$cus_list item=list}
+          <li class="picimglink">
+            <p><a href="{link app=custom act=info arg0=$list.cst_id}"><img src="{$list.cst_image}" alt="{$list.cst_name}" /></a></p>
+            <div class="pic-txt">
+             <p class="p1"><a href="{link app=custom act=info arg0=$list.cst_id}">{$list.cst_name}</a></p>
+             <p class="p2">{$list.cst_price}</p>
+            </div>
+          </li>
+        {/foreach}  
+      </ul>
+      <p class="clear"></p> 
+    </div>
+    <a class="abtn aleft" href="#left">左移</a>
+    <a class="abtn aright" href="#right">右移</a>
+  </div>
+  
+  <script type="text/javascript">
+  $(".picimglink").bind({
+	  mouseenter: function() {
+		  $(this).children("div").animate({
+			  bottom: "0px"
+		  },
+		  300)
+	  },
+	  mouseleave: function() {
+		  $(this).children("div").clearQueue().animate({
+			  bottom: "-60px"
+		  },
+		  500)
+	  }
+  });
+</script>
+ <!--相册轮播结束-->
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$.cart({
+		dropUrl:"{link app=cart act=drop}",
+		cartUrl:"{link app=cart}",
+		clearUrl:"{link app=cart act=clear}",
+		updateUrl:"{link app=cart act=update}",
+		checkoutUrl:"{link app=cart act=checkout}",
+		checkloginUrl:"{link app=cart act=login}",
+		cartLoginUrl:"{link app=club act=ajax_do_login}"
+	});
+	
+	$(":input[type='password']").val("");
+	
+	$(":input").focus(function() {
+		var $obj = jQuery(this).addClass("iuib_l_hover iuib_l_focus");
+		var defValue = $obj.attr("def");
+		var $IU_tip = $obj.parent().siblings(".IU_tip");
+		if (defValue == $obj.val()) {
+			$obj.val("");
+		}
+		if ($obj.hasClass("pswt")) {
+			$obj.hide().siblings("input.pswh").show().focus();
+		}
+		if ($IU_tip) {
+			$IU_tip.show();
+		}
+	});
+	
+	$(":input").blur(function() {
+		var $obj = jQuery(this).removeClass("iuib_l_hover");
+		var $IU_tip = $obj.parent().siblings(".IU_tip");
+		if ($obj.val() == "") {
+			$obj.val($obj.attr("def"));
+			$obj.removeClass("iuib_l_focus");
+		}
+		if ($obj.hasClass("pswh")) {
+			if ($obj.val() == "") {
+				$obj.hide().siblings("input.pswt").show();
+			}
+		}
+		if ($IU_tip) {
+			$IU_tip.hide();
+		}
+	});
+});
+
+$(function(){
+
+	//二、左右切换：最后一个显示在最右侧;
+	$(".productshow:eq(0)").Xslider({
+		unitdisplayed:5,
+		numtoMove:1,
+		autoscroll:3000
+	});
+	
+	$("a").focus(function(){this.blur();});
+})
+</script>
+<div style="display:none;position:absolute;z-index:100;" class="warning warning_1">
+	<p style="float:left; width:164px;">确定要删除这个产品吗？</p>
+	<div style="float:left; padding-left:35px;">
+	  <input type="button" name="ok" value="确定" class="warning_ok">
+	  <input type="button" name="cancel" value="取消" class="warning_cancel">
+	</div>
+    <span class="jtbt_box">
+      <i class="jt_bt1">1</i>
+      <i class="jt_bt2">1</i>
+    </span>
+</div>
+<!-- 反回顶部代码开始 -->
+<script type="text/javascript" src="{res file=js/js.js}"></script>
+<div id="piaofu-right" href="javascript:void(0)">
+    <a href="{link app=cart act=index}" target="_blank" class="yichu"></a>
+
+      <a href="javascript:;" class="kefu" id="BizQQWPA"></a>
+      <script type="text/javascript">
+      BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4008919867, selector: 'BizQQWPA'});
+      </script>
+
+
+</div>
+<div id="gotop1" href="javascript:void(0)" style="display:block;">
+    <a href="javascript:void(0)" class="go_top"></a>
+</div>
+<!-- 反回顶部代码开始 -->
+{include file="login_footer.html"}

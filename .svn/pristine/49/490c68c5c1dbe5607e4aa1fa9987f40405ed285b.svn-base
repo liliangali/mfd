@@ -1,0 +1,137 @@
+{include file=member.header.html}
+<div class="container clearfix">
+    {include file=member.menu.html}
+
+
+ <div class="ucenter_right fr">
+   <div class="title">
+    <h2>订单评价   {$list.sn}</h2>
+   </div>
+   <div class="m_ltsj_lb">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+            <th width="70%" colspan="2">商品信息</th>
+            <th width="30%">购买时间</th>
+        </tr>
+
+          <!--{if $list.goods}-->
+          <!--{foreach from=$list.goods key=key item=good}-->
+        <tr>
+         <td width="10%" class="zbk sptupa"><a href="#"><img src="/static/img/other/zwpic12.png"></a></td>
+         <td class="ybk"><a href="#">{$good.name}<br/><span style="color:#ff3300;">￥{$good.price}</span></a></td>
+         <td>{$list.addtime|date:complete}</td>
+
+        </tr>
+        
+        <tr id="{$key}">
+         <td colspan="4" style="background:#fafafa;">
+           <div class="fbpj_pf">
+            <!--星级评论打分开始-->
+              <div class="star">
+                <span><b class="btxxh">*</b>评分：</span>
+                <ul>
+                    <li class="on"><a href="javascript:;">1</a></li>
+                    <li class="on"><a href="javascript:;">2</a></li>
+                    <li class="on"><a href="javascript:;">3</a></li>
+                    <li class="on"><a href="javascript:;">4</a></li>
+                    <li class="on"><a href="javascript:;">5</a></li>
+                </ul>
+                <span><strong>5 分</strong></span>
+              </div> 
+            <!--星级评论打分结束-->     
+
+             <input type="hidden" value="{$good.id}" id="c_id">
+             <input type="hidden" value="{$good.type}" id="cate">
+             <input type="hidden" value="{$good.suit_ids}" id="suit_ids">
+
+             <p class="xd"><span><b class="btxxh">*</b>心得：</span><textarea name="" cols="" rows="" placeholder="快速写下你的评价，分享给大家吧！"></textarea></p>
+             <div class="pj_lm clearfix"><input type="submit" value="评价" class="input_1" onclick="comment('{$key}')"><p class="p1"><input name="" type="checkbox" value="" >匿名评价</p></div>
+           </div>      
+         </td>
+        </tr>
+          <!--{/foreach}-->
+          <!--{/if}-->
+
+
+
+
+
+      </table>
+     </div>
+
+ </div>
+
+</div>
+
+{include file="footer.html"}
+<script src="/static/expand/jquery.js"></script>
+<script type="text/javascript">
+    var o_id='{$list.order_id}';
+    function comment(id){
+        var content=$('#'+id+' p textarea').val()
+        var c_id  =$('#'+id+' #c_id').val()
+        var cate = $('#'+id+' #cate').val()
+        var suit_ids = $('#'+id+' #suit_ids').val()
+        var star =  parseInt($('#'+id+' .star strong').html())
+        var nm = $("#"+id+" .p1 input").attr('checked')=='checked'?1:0;
+
+        if(star<1){
+            msg('请对商品进行评分')
+            return false;
+        }
+        $.post('{link app=detail_comment act=commit}', {content:content,o_id:o_id,c_id:c_id,cate:cate,star:star,nm:nm,r_id:id,suit_ids:suit_ids}, function(res){
+            var res = eval("("+res+")");
+
+            if(res.done == false){
+                msg(res.msg)
+                return false;
+            }else{
+                if(res.retval == "login"){
+                    login();
+                }else{
+                    $('#'+id).prev().remove()
+                    $('#'+id).remove();
+                    msg("发表评论成功！");
+                }
+            }
+        })
+
+    }
+
+
+    $(".star").each(function(index, element) {
+        var oStar = $(this);
+        var aLi = oStar.find("li");
+        var oSpan = oStar.find("span");
+
+        var i = iScore = iStar = 1;
+        for (i = 1; i <= aLi.length; i++){
+            aLi[i - 1].index = i;
+            //鼠标移过显示分数
+            aLi[i - 1].onmouseover = function (){
+                fnPoint(this.index);
+                //浮动层显示
+            };
+            //鼠标离开后恢复上次评分
+            aLi[i - 1].onmouseout = function (){
+                fnPoint();
+            };
+
+            //点击后进行评分处理
+            aLi[i - 1].onclick = function (){
+                iStar = this.index;
+                oSpan[1].innerHTML = "<strong>" + (this.index) + " 分</strong>"
+
+            }
+        }
+        //评分处理
+        function fnPoint(iArg){
+            //分数赋值
+            iScore = iArg || iStar;
+            for (i = 0; i < aLi.length; i++) aLi[i].className = i < iScore ? "on" : "";
+        }
+    });
+
+</script>
+</body>
+</html>

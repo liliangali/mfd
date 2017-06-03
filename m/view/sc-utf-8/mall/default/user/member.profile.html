@@ -1,0 +1,191 @@
+{include file=member.header.html}
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+</style>
+<script type="text/javascript" src="static/expand/jquery.js" charset="utf-8"></script> 
+<script type="text/javascript" src="static/expand/my97date/wdatepicker.js" charset="utf-8"></script> 
+{$_head_tags} 
+<script type="text/javascript">
+
+//<!CDATA[
+var PINER = {uid: "{$session_info_user_id}"}; 
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var REAL_BACKEND_URL = "{$real_backend_url}";
+var REGION_URL="{link app=mlselection act=index arg=region}";
+var reginUrl=REAL_SITE_URL+REGION_URL;
+
+ $(function(){
+	 
+    /* $('#profile_form').validate({
+        errorPlacement: function(error, element){
+            $(element).parent('span').parent('b').after(error);
+        },
+        rules : {
+            portrait : {
+                accept   : 'gif|jpe?g|png'
+            }
+        },
+        messages : {
+            portrait  : {
+                accept   : '{$lang.avatar}'
+            }
+        }
+    });
+    $('input[ectype="change_avatar"]').change(function(){
+
+        var src = getFullPath($(this)[0]);
+        $('img[ectype="avatar"]').attr('src', src);
+        $('input[ectype="change_avatar"]').removeAttr('name');
+        $(this).attr('name', 'portrait');
+    }); */
+    
+    regionInit("region");
+}); 
+</script>
+
+   <div class="w">
+    <div class="AreaBox clearfix">
+        {include file=member.menu.html}
+        <div class="con">
+            <h2 class="tit">个人资料</h2>
+ <form method="post" enctype="multipart/form-data" id="profile_form">
+     <div class="userData">
+                <div class="minHead">
+                    <img src="{$avatar}" width="100" height="100" />
+                    <a href="member-{$ac}-upavater.html" class="edit">修改头像</a>
+                </div>
+                <ul class="baseData">
+                    <li><span>邮箱：</span>{$user.email}<p><a href="member-logout.html" data-e="login-out">[安全退出]</a></p></li>
+                    <li><span>手机：</span>{$user.phone_mob}</li>
+                </ul>
+                <div class="addData">
+                    <p class="tip">亲爱的 {$user.nickname}，填写真实的资料，增加信誉度，有助于达成交易。</p>
+                    <div class="item">
+                        <span class="t">昵称：</span>
+                        <input type="text" class="txt"  name="nickname" value="{$user.nickname}"/>
+                    </div>
+                    <div class="item">
+                        <span class="t">性别：</span>
+                       
+                        <label><input type="radio" name="gender" {if $profile.gender eq 1 | $profile.gender eq 0}checked="checked"{/if}  value="1"/>
+                        男</label>
+                        <label><input type="radio" name="gender"{if $profile.gender eq 2}checked="checked"{/if} value="2" />
+                        女</label>
+                    </div>
+                    
+                       <div class="item" style="clear:both">
+                <div class="t">出生年月：</div>
+                <input type="text" class="txt Wdate" value="{$user.birthday}" data-type="required" data-tip="出生年月：" name="birthday" onClick="WdatePicker()" />
+            </div>
+              <div class="item">
+            <div class="t">{$lang.region} :</div>
+            <div id="region">
+              <input type="hidden" name="region_id" value="{$store.region_id}" class="mls_id" />
+              <input type="hidden" name="region_name" value="{$store.region_name|escape}" class="mls_names" />
+              <!-- {if $user.user_id} --> 
+              <span>{$user.m_rname|escape}</span>
+              <input type="button" value="{$lang.edit}" class="edit_region" />
+              <select style="display:none">
+                <option>{$lang.select_pls}</option>
+                {html_options options=$regions}  
+              </select>
+              <!-- {else} -->
+              <select class="select">
+                <option>{$lang.select_pls}</option>
+                {html_options options=$regions}
+              </select>
+              <!-- {/if} --></div>
+          </div>                   
+
+                    <div class="item">
+                     <span class="t">身高：</span>
+                     <input type="text"  class="sg_tz" name="height" value="{$user.height}"/>cm
+                    </div>
+                    
+                    <div class="item">
+                     <span class="t">体重：</span>
+                     <input type="text"  class="sg_tz" name="weight" value="{$user.weight}"/>kg
+                    </div>
+                    
+                    <div class="item">
+                        <span class="t">个人简介：</span>
+                        <textarea class="textarea" name='memo'>{$user.memo}</textarea>
+                    </div>
+                    <input type="submit" value="保存" class="baocun" />
+                </div>
+            </div>
+ 
+ 
+ 
+   <!--                  <div class="information">
+  
+                        <div class="photo width13">
+                         <img src="{$avatar}" width="100" height="100" />
+
+                        </div>
+
+                        <div class="info individual">
+                            <table>
+                                <tr>
+                                    <th class="width4">{$lang.user_name}: </th>
+                                    <td>{$profile.user_name|escape}</td>
+                                </tr>
+                                <tr>
+                                    <th>{$lang.email}:</th>
+                                    <td>{$profile.email}</td>
+                                </tr>
+                                <tr>
+                                    <th>{$lang.real_name}:</th>
+                                    <td><input type="text" class="text width_normal" name="real_name" value="{$profile.real_name|escape}" /></td>
+                                </tr>
+                                <tr>
+                                    <th>{$lang.gender}: </th>
+                                    <td class="label">
+                                        <label>
+                                           <input type="radio" name="gender" value="0" {if $profile.gender eq 0}checked="checked"{/if} />{$lang.unknown}  </label>
+                                            <label>
+                                            <input type="radio" name="gender" value="1" {if $profile.gender eq 1}checked="checked"{/if} />{$lang.male}   </label>
+                                            <label>
+                                            <input type="radio" name="gender" value="2" {if $profile.gender eq 2}checked="checked"{/if} />{$lang.female} </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{$lang.birthday}: </th>
+                                    <td>
+                                        <input type="text" class="text width_normal" name="birthday" id="birthday" value="{$profile.birthday|escape}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{$lang.im_qq}:</th>
+                                    <td> <input type="text" class="text width_normal" name="im_qq" value="{$profile.im_qq|escape}" /></td>
+                                </tr>
+                                <tr>
+                                    <th>{$lang.im_msn}:</th>
+                                    <td><input type="text"  class="text width_normal"name="im_msn" value="{$profile.im_msn|escape}" /></td>
+                                </tr>
+                                {if $edit_avatar}
+                                <tr>
+                                    <th>{$lang.portrait}:</th>
+                                    <td>{$edit_avatar}</td>
+                                </tr>
+                                {/if}
+                                <tr>
+                                    <th></th>
+                                    <td><input type="submit" class="btn" value="{$lang.save_edit}" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div> -->
+                </form>
+    </div>
+</div>
+</div>
+{include file=footer.html}
+<script type="text/javascript">
+function updateavatar() {
+	window.location.href='/member-profile.html';
+	//window.location.reload();
+}
+</script>

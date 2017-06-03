@@ -1,0 +1,69 @@
+    <form id="embsForm">
+
+    <div class="qianming">
+        <ul class="xfxk">
+	        {foreach from=$info item=item name=lst1}
+	            <li {if $smarty.foreach.lst1.first} class="now_hover" {/if}  id="tab_{$item.ident}" data-id="{$item.ident}">
+	            {$item.cate_name}
+	            </li>
+            {/foreach}
+        </ul>
+        
+        {foreach from=$info item=lst2 name=ls2}
+        <div  class="embBox embBox_{$lst2.ident} hide">
+        {foreach from=$lst2.embitems item=eitems name=els2}
+            {if $eitems.cate_name == '内容'}sdfd{/if}
+            {if $eitems.cate_name == '字体' || $eitems.cate_name == '颜色'}
+                <div class="item color colorBox">
+                <span class="tit">{$eitems.cate_name}</span>
+                <div class="list productshow">
+                    <div class="scrollcontainer" id="moveid">
+                        <ul class="color">
+                    {if $lst2.embs.$eitems.cate_id}
+                        {assign var=_sonid value=$lst2.embs.$eitems.cate_id}
+                    {/if}
+                    {foreach from=$eitems.list item=eitem}
+                        <li {if $eitem.cate_id == $_sonid} class="cur" {/if} data-value="{$eitem.cate_id}" data-name="{$eitem.cate_name}"><img src="{$eitem.image}" /></li>
+                    {/foreach}
+                    <input type="hidden" name="embs[{$lst2.ident}][{$eitems.cate_id}]" validate="required"  value="{$lst2.embs.$eitems.cate_id}" />
+                </ul>
+                </div>
+                <a class="abtn aleft" href="#left">左移</a> <a class="abtn aright" href="#right">右移</a>
+                </div>
+                </div>
+                
+            {elseif $eitems.cate_name == 'neirong'}
+	            <div class="item">
+	                <span class="tit">内容</span>
+	                <input type="text" value="{$lst2.embs.-1}" placeholder="可输入7个汉字或14个字母" class="cxlr" name="embs[{$lst2.ident}][-1]"  maxlength="14">
+	            </div>
+                
+            {elseif $eitems.cate_name == '位置'}
+            
+            <div class="item">
+                <span class="tit">位置</span>
+                <ul class="qmwz">
+                
+                 {foreach from=$eitems.list item=l key=__lkey}
+                 <li data-value="{$__lkey}" data-id="{$l.cate_id}" {if $lst2.embs.$eitems.cate_id.$__lkey} class="current" {/if}>{$l.cate_name}
+                 <input style="display:none" type="checkbox" {if $lst2.embs.$eitems.cate_id.$__lkey} checked="checked" {/if} value="{$l.cate_id}" name="embs[{$lst2.ident}][{$eitems.cate_id}][{$l.cate_id}]" />
+                 </li>
+                 
+                {/foreach}
+                </ul>
+            </div>
+            {/if}
+            
+        {/foreach}
+        </div>
+        {/foreach}
+        <input type="hidden" name="type" value="fdiy">
+        <input type="button" value="保存" class="baoz">
+    </div>
+        </form>
+    
+    
+    
+    
+    
+    

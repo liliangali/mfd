@@ -1,0 +1,255 @@
+{include file="header.html"}
+
+<script type="text/javascript">
+$(function(){
+
+	$.validator.addMethod("isPhone",function(value,element){
+		var length = value.length;   
+		  var mobile = /^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/;   
+		  var tel = /^\d{3,4}-?\d{7,9}$/;   
+		  //return this.optional(element) || (tel.test(value) || mobile.test(value));   
+		  return mobile.test(value);
+		});
+	
+	$('#serve_form').validate({
+    rules : {
+		company_name : {
+            <!--{if $smarty.get.act eq 'add'}-->
+            remote   : {
+    	
+                url :'/index.php/serve-check_company.html',
+                type:'get',
+                data:{
+                    user_name : function(){
+                        return $('#company_name').val();
+                    }
+                }
+            }
+            <!--{/if}-->
+        },
+        email   : {
+            required : true,
+            email : true
+        },
+        linkman   : {
+            required : true
+        },
+        mobile   : {
+            required : true,
+            //isPhone:true
+        },
+        rc_code   : {
+            <!--{if $smarty.get.act eq 'add'}-->
+            remote   : {
+    	
+                url :'/index.php/serve-check_rc_code.html',
+                type:'get',
+                data:{
+                    user_name : function(){
+                        return $('#rc_code').val();
+                    }
+                }
+            }
+            <!--{/if}-->
+        }
+
+        
+    },
+    messages : {
+    	company_name : {
+            required : '{$lang.company_name_not_empty}'
+            	<!--{if $smarty.get.act eq 'add'}-->
+                ,
+            remote : '{$lang.company_name_exist}'
+            	 <!--{/if}--> 
+        },
+        email  : {
+            required : '{$lang.email_not_empty}',
+            email   : '{$lang.currect_email}'
+        },
+        linkman  : {
+            required : '{$lang.linkman_not_empty}'
+        },
+        mobile  : {
+            required : '{$lang.mobile_not_empty}',
+            //isPhone : '{$lang.currect_mobile}'
+        },
+        rc_code  : {
+            required : '{$lang.rc_code_not_empty}'
+            	<!--{if $smarty.get.act eq 'add'}-->
+                ,
+            remote : '{$lang.rc_code_exist}'
+            	 <!--{/if}--> 
+        }
+    }
+	});
+});
+
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=serve&t={$smarty.get.t}">{$lang.manage}</a></li>
+    <li>
+     
+      <span>{$acc}</span>
+      
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="serve_form">
+    <table class="infoTable">
+    
+    <tr>
+        <th class="paddingT15"> {$lang.region_id}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.region_id|escape}
+         </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.partner_name}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.serve_name|escape}
+         </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.partner_address}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.serve_address|escape}
+         </td>
+      </tr>
+    
+    <tr>
+        <th class="paddingT15"> {$lang.region_name}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.region_name|escape}
+         </td>
+      </tr>
+    
+      <tr>
+        <th class="paddingT15"> {$lang.company_name}:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input <!--{if $smarty.get.act neq 'add'}--> readonly="true" <!--{/if}--> class="infoTableInput2" id="company_name" type="text" name="company_name" value="{$serve.company_name|escape}" />
+         </td>
+      </tr>
+
+	  <tr>
+        <th class="paddingT15"> {$lang.establish_date}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.establish_date|escape}
+         </td>
+      </tr>
+		
+		
+
+
+
+      <tr>
+        <th class="paddingT15"> {$lang.email}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="email" type="text" id="email" value="{$serve.email|escape}" />
+                    </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.linkman}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="linkman" type="text" id="linkman" value="{$serve.linkman|escape}" />        </td>
+      </tr>
+      
+      
+      <tr>
+        <th class="paddingT15"> {$lang.enterprise_url}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="enterprise_url" type="text" id="enterprise_url" value="{$serve.enterprise_url|escape}" />        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.mobile}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="mobile" type="text" id="mobile" value="{$serve.mobile|escape}" maxlength='16's />        </td>
+      </tr>
+
+	<tr>
+        <th class="paddingT15"> {$lang.post}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="post" type="text" id="post" value="{$serve.post|escape}" />        </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.business_license}:</th>
+        <td class="paddingT15 wordSpacing5">
+        {if $serve.business_license}<br /><a href="/{$serve.business_license}" target="_blank"><img src="../{$serve.business_license}" alt="" width="100" height="100" /></a>{/if} 
+          
+         </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.tax_card}:</th>
+        <td class="paddingT15 wordSpacing5">
+        {if $serve.tax_card}<br /><a href="/{$serve.tax_card}" target="_blank"><img src="../{$serve.tax_card}" alt="" width="100" height="100" /></a>{/if} 
+         
+         </td>
+      </tr>
+     <tr>
+        <th class="paddingT15"> {$lang.organization_card}:</th>
+        <td class="paddingT15 wordSpacing5">
+        {if $serve.organization_card}<br /><a href="/{$serve.organization_card}" target="_blank"><img src="../{$serve.organization_card}" alt="" width="100" height="100" /></a>{/if} 
+         
+          
+         </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.company_synopsis}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.company_synopsis|escape}
+         </td>
+      </tr>
+     <tr>
+        <th class="paddingT15"> {$lang.partner_level}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.brokerage_level|escape}
+         </td>
+      </tr>
+     
+     
+     <tr>
+        <th class="paddingT15"> {$lang.state}:</th>
+        
+        <td class="paddingT15 wordSpacing5">
+        
+        <select class="querySelect" name="state" id="state">{html_options options=$state selected=$serve.state}
+          </select>
+        <input id="ostate" name="ostate" type="hidden" value="{$serve.state}" />
+        <input id="userid" name="userid" type="hidden" value="{$serve.userid}" />
+		</td>
+          
+         
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.reason}:</th>
+        
+        <td class="paddingT15 wordSpacing5">
+          
+          <textarea rows="5" cols="3" name="reason" id="reason">{$serve.reason|escape}</textarea>
+         </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.partner_code}:</th>
+        <td class="paddingT15 wordSpacing5">
+          <input <!--{if $smarty.get.act neq 'add'}--> readonly="true" <!--{/if}--> class="infoTableInput2" id="rc_code" type="text" name="rc_code" value="{$serve.rc_code|escape}" />
+         </td>
+      </tr>
+     
+     <tr>
+        <th class="paddingT15"> {$lang.create_date}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {$serve.create_date|escape}
+         </td>
+      </tr>
+     
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="tijia" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="congzi" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

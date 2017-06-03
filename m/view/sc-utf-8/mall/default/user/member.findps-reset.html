@@ -1,0 +1,59 @@
+
+
+
+    <!--头部开始-->
+    <div class="header clearfix head">
+        <p class="p1"><a href="javascript:history.go(-1)"><img src="public/static/wap/images/tw_03.png" /></a></p>
+        <p class="p2">找回密码</p>
+    </div>
+    <!--头部结束-->
+    
+     <div class="logins">
+    	<input type="password" value="" id="userpwd1" placeholder="6-20个大小写英文字母、符号或数字"  class="logyx"/>
+        <input type="password" value="" id="userpwd2" placeholder="请再次输入密码"  class="logyx"/>
+        
+      
+        <a href="javascript:void(0)" onClick="next()" class="zhmmnext">下一步</a>
+    </div>
+
+
+
+<script>
+//下一步按钮
+function next(){
+
+		var pwd1=$('#userpwd1').val(),pwd2=$('#userpwd2').val();
+		
+		if(!(pwd1.length>=6) || !(pwd1.length<=32)){
+			cottewap.popTip('请输入6到32位的新密码',2000);
+			return
+		}
+		if(pwd2==''){
+			cottewap.popTip('确认新密码不能为空',2000);
+			return
+		}
+		if(pwd1!=pwd2){
+			cottewap.popTip('两次密码输入不一致',2000);
+			return
+		}
+		
+		$.ajax({
+			url:'member-find_password.html',
+			type: "POST",
+			dataType: "json",
+			data: {account_type:'{$data.account_type}',account:{$data.account},opt:3,code:{$data.authcode},ps:pwd1},
+			success: function(res){
+				if(!res.done){
+					cottewap.popTip(res.msg,2000);
+					return
+				}else{
+					cottewap.popTip(res.retval,2000);
+					setTimeout(function(){window.location.href="/member-login.html"},2000);
+					return
+				}
+			},
+			error: function(){}
+		})
+	
+}
+</script>

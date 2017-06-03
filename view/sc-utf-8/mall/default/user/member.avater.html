@@ -1,0 +1,23 @@
+{include file=member.header.html}
+<div class="container clearfix">
+{include file=member.menu.html}
+
+
+<!--内容--> 
+<div class="ucenter_right fr">
+   <h1 class="title">个人资料</h1>
+        <div class="information">
+        <div class="photo width13">
+        <img src="{$avatar}" width="100" height="100" />
+        {$uc_avatarflash}
+        </div>
+        </div>
+</div>
+<!--内容--> 
+</div>
+{include file=footer.html}
+<script type="text/javascript">
+function updateavatar() {
+    window.location.href='/member-profile.html';
+}
+</script>

@@ -1,0 +1,67 @@
+{include file="header.html"}
+<div id="rightTop">
+
+    <ul class="subnav">
+		 <li><a class="btn1" href="index.php?app=operation&amp;act=view">后台日志管理</a></li>
+    </ul>
+</div>
+<style>
+
+		table tr td {
+			 height:40px;
+			 line-height:30px;
+			 padding-left:5px;
+		}
+	
+</style>
+<div class="info2">
+		<table>
+		
+			<tr >
+				<td>{$lang.username}：</td>
+				<td>{$info.username}</span>
+				</td>
+			</tr>
+			<tr>
+				<td>{$lang.ip} : </td>
+				<td>{$info.ip}</td>
+			</tr>
+			<tr>
+				<td>{$lang.dateline} : </td>
+				<td>{$info.dateline}</td>
+			</tr>
+			<tr>
+				<td>{$lang.operate} : </td>
+				<td>{$info.operate_type}</td>
+			</tr>
+			<tr>
+				<td>{$lang.module} : </td>
+				<td>{$info.module}</td>
+			</tr>
+			<tr>
+				<td>{$lang.submodule} : </td>
+				<td>{$info.submodule}</td>
+			</tr>
+			<tr>
+				<td>{$lang.forward_data}</td>
+				<td><!-- {foreach from=$info.forward_data item=fdata key=f} -->
+					{$f}:{$fdata},&nbsp;&nbsp;
+				<!-- {/foreach} --></td>
+			</tr>
+			<tr>
+				<td>{$lang.modify_data}</td>
+				<td><!-- {foreach from=$info.modify_data item=mdata key=m} -->
+					{$m}:{$mdata},&nbsp;&nbsp;
+				<!-- {/foreach} --></td>
+			</tr>
+			<tr>
+				<td>{$lang.execute_sql} : </td>
+				<td>{$info.execute_sql}</td>
+			</tr>
+			<tr>
+				<td>{$lang.memo} : </td>
+				<td>{$info.memo}</td>
+			</tr>
+		</table>
+</div>
+{include file="footer.html"}

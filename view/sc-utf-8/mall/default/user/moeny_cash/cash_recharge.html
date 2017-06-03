@@ -1,0 +1,19 @@
+<table width="100%" frame="void" rules="none" cellspacing="0" class="jltab">
+	<tr>
+		<td class="fisty">流水号</td>
+		<td class="fisty">时间</td>
+		<td class="fisty">金额</td>
+		<td class="fisty">描述</td>
+		<td class="fisty">状态</td>
+	</tr>
+	
+	<!--{foreach from=$cash_list key=key item=cash}-->
+	<tr>
+		<td>{$cash.id}</td>
+		<td>{$cash.add_time|date:Y-m-d H:i}</td>
+		<td>{$cash.cash_money|price}</td>
+		<td>{$cash.name|escape}</td>
+		<td>充值成功</td>
+	</tr>
+	<!--{/foreach}-->
+</table>

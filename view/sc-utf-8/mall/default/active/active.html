@@ -1,0 +1,97 @@
+{include file=header-new.html}
+<!--头部/E-->
+<link href="/public/static/pc/css/gywm.css" rel="stylesheet">
+<link href="/public/static/pc/css/ktsp_list.css" type="text/css" rel="stylesheet">
+<!-- <div class="hdlb_banner"><a href="http://www.dev.mfd.cn/goods-264.html" target="_blank"></a></div> -->
+	<!-- {if count($banner)>0} -->
+	<div id="banner" class="swipe">
+	
+		<div class="swipe-wrap">
+	
+	       <!-- {foreach from=$banner item=pictures} -->
+			<div><a href="{$pictures.link_url}" style="display:block; width:100%; height:400px; background:url({$pictures.img}) no-repeat center center;" {if $pictures.is_bank eq 1} target="_blank" {/if}></a></div>
+			<!-- {/foreach} -->
+		</div>
+		<!-- {if count($banner)>1} -->
+			<div class="swipe-btn">
+				<!-- {foreach from=$banner item=pictures name=image} -->
+					<span {if $smarty.foreach.image.iteration eq 1}class="cur"{/if}></span> 
+				<!-- {/foreach} -->
+			</div>
+			
+			<span class="swipe-prev"></span> <span class="swipe-next"></span> 
+		<!-- {/if} -->
+	</div>
+	<!-- {/if} -->
+<h1 class="bt1">Sales Promotions</h1>
+<h2 class="qthd">特惠活动专区</h2>
+
+<div class="tplb">
+     {foreach from=$list.images item=art}
+    	<p><a href="{$art.link_url}" id="{$art.id}"  {if $art.is_blank eq 1} target="_blank"{/if}><img src="{$art.img}"/></a></p>
+    {/foreach}
+</div>
+<!--底部/S-->
+<div id="banner" class="swipe">	
+  <span class="swipe-prev"></span> <span class="swipe-next"></span> 
+</div>
+
+
+{include file=navicate.html}
+{include file=footer-new.html}
+<!--底部/E-->
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/global/jquery.swipe.js"></script> 
+<script src="/public/static/pc/js/public.js"></script> 
+<script>
+//幻灯
+(function(){
+	var len=$('#banner img').length,slider = Swipe(document.getElementById('banner'), {
+		auto: 4000,
+		//continuous: false,
+		callback: function(index, element) {
+			if(len==2){
+				switch(index){
+					case 2:
+					index=0;
+					break;
+					case 3:
+					index=1;
+					break; 	
+				}
+			}
+			$('.swipe-btn span').eq(index).addClass('cur').siblings().removeClass();	
+		}
+	});
+	$('.swipe-prev').click(slider.prev);
+	$('.swipe-next').click(slider.next);
+})();
+$("p").on('click','a',function(){
+	var id=$(this).attr('id');
+	var url=$(this).attr('url');
+	$.get('/activepublic-index.html',{id:id},function(res){
+		if(res.done){
+			console.log(url);
+			window.open(url);
+		}else{
+			
+		}
+	},'json')
+})
+</script>
+<script>
+  //意见反馈弹层
+  $('#feedback').click(function(){
+	  $.getScript('/public/global/luck/pc/luck.js',function(){
+		  luck.open({
+			  title:'意见反馈',
+			  width:'660px',
+			  height:'475px',
+			  content:'<iframe width="660" height="475" style="display:block" src="view/sc-utf-8/mall/default/feedback/ajax_feedback.html" frameborder="0"></iframe>',
+			  addclass:'mfd-luck'
+		  });
+	  })
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+{include file="header.html"}
+<div id="rightTop">
+  <ul class="subnav">
+    <!--{if $smarty.get.wait_verify}-->
+    <li><a class="btn1" href="index.php?app=store&act=store_fabric">{$lang.manage}</a></li>
+    <!--{else}-->
+    <li><span>{$lang.manage}</span></li>
+    <!--{/if}-->
+    <!-- <li><a class="btn1" href="index.php?app=store&amp;act=test">{$lang.add}</a></li> -->
+    <!--{if $smarty.get.wait_verify}-->
+    <li><span>未受理</span></li>
+    <!--{else}-->
+    <li><a class="btn1" href="index.php?app=store&act=store_fabric&amp;wait_verify=1">未受理</a></li>
+    <!--{/if}-->
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="store" />
+          <input type="hidden" name="act" value="store_fabric" />
+          <input type="hidden" name="wait_verify" value="{$smarty.get.wait_verify}" />
+          联系人:
+          <input class="queryInput" type="text" name="owner_name" value="{$smarty.get.owner_name|escape}" />
+          状态:
+          <select name="status" id="status" class="querySelect">
+          <option value="">请选择...</option>
+          <option <!--{if $smarty.get.status == 2}-->selected=""<!--{/if}--> value="2">&nbsp;&nbsp;采购</option>
+          <option <!--{if $smarty.get.status == 1}-->selected=""<!--{/if}--> value="1">&nbsp;&nbsp;已采购</option> 
+          <option <!--{if $smarty.get.status == 3}-->selected=""<!--{/if}--> value="3">&nbsp;&nbsp;拒绝</option>                
+          </select>
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=store&amp;act=store_fabric<!--{if $smarty.get.wait_verify}-->&amp;wait_verify={$smarty.get.wait_verify}<!--{/if}-->">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html} </div>
+</div>
+
+
+
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $store_fabric}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td><span ectype="order_by" fieldname="goods_sn">面料编号</span></td>
+      <td><span ectype="order_by" fieldname="store_name">{$lang.store_name}</span></td>
+      <td><span ectype="order_by" fieldname="date">求购时间</span></td>
+      <td><span ectype="order_by" fieldname="owner_name">联系人</span></td>
+      <td><span ectype="order_by" fieldname="phone">联系电话</span></td>
+      <td><span ectype="order_by" fieldname="status">当前状态</span></td>
+      <td><span ectype="order_by" fieldname="num">数量</span></td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$store_fabric item=fabric}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$store.store_id}" /></td>
+      <td>{$fabric.goods_sn}</td>
+      <td>{$fabric.store.store_name}</td>
+      <td>{$fabric.date}</td>
+      <td>{$fabric.owner_name}</td>
+      <td>{$fabric.phone}</td>
+      <td>{$fabric.status_name}</td>
+      <td>{$fabric.num}</td>
+      <td class="handler">
+      <!--{if $fabric.status != 1}-->
+
+      <!--{if $smarty.get.wait_verify}-->
+      <a href="index.php?app=store&act=edit_store_fabric&fabric_id={$fabric.fabric_id}&status=4">已受理</a> | <a href="index.php?app=store&act=edit_store_fabric&fabric_id={$fabric.fabric_id}&status=3">拒绝</a>
+      <!--{else}-->
+      <a href="index.php?app=store&act=edit_store_fabric&fabric_id={$fabric.fabric_id}&status=2">采购</a> | <a href="index.php?app=store&act=edit_store_fabric&fabric_id={$fabric.fabric_id}&status=1">已采购</a> | <a href="index.php?app=store&act=edit_store_fabric&fabric_id={$fabric.fabric_id}&status=3">拒绝</a>
+      <!--{/if}-->
+      
+      <!--{else}-->
+      无操作
+      <!--{/if}-->
+
+       </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="12">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $store_fabric}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+  </div>
+  <div class="clear"></div>
+  <!--{/if}-->
+
+</div>
+{include file="footer.html"}

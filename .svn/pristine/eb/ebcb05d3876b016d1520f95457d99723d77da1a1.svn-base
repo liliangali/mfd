@@ -1,0 +1,21 @@
+<div class="main_visual">
+ <!--{if !$widget_data}-->
+    <div style="padding:10px; text-align:center;">请配置</div>
+    <!--{/if}-->
+    <div class="flicking_con">
+         <div class="flicking_inner">
+          <!-- {foreach from=$widget_data item=image name=fe_image} -->
+            <a href="#">{$smarty.foreach.fe_image.iteration}</a>
+            <!-- {/foreach} -->
+         </div>
+    </div>
+    <div class="main_image">
+        <ul>		
+            <!-- {foreach from=$widget_data item=image name=fe_image} -->			
+            	<li><a href="{$image.ad_link_url}"><span style="background:url({$image.ad_image_url}) center top no-repeat"></span></a></li>
+            <!-- {/foreach} -->
+        </ul>
+        <a href="javascript:;" id="btn_prev"></a>
+        <a href="javascript:;" id="btn_next"></a>
+    </div>
+ </div>

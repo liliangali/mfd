@@ -1,0 +1,398 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#customs_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {
+            cst_sn : {
+                remote   : {                //唯一
+	                url :'index.php?app=customs&act=check_cst_sn',
+	                type:'get',
+	                data:{
+	                    cst_sn : function(){
+	                        return $('#cst_sn').val();
+                        },
+                        cst_id : '{$data.cst_id|escape}'
+                    }
+                }
+            }
+        },
+        messages : {
+            cst_sn : {
+                remote   : '编号已经存在!'
+            }
+        }
+    });
+});
+</script>
+{$build_editor}
+<div id="rightTop">
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=customs">{$lang.all_goods}</a></li>
+    <li><span>{$lang.add}</span></li>
+  </ul>
+</div>
+<div class="info">
+    <form method="post" action="index.php?app=customs&act=toAdd" enctype="multipart/form-data" id="customs_form">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15"> 名称 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="cst_id" type="hidden" name="cst_id" value="{$data.cst_id|escape}" />
+                    <input class="infoTableInput required" id="cst_name" type="text" name="cst_name" value="{$data.cst_name|escape}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15"> 编号 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput required" id="cst_sn" type="text" name="cst_sn" value="{$data.cst_sn|escape}" />
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15"> 分类 :</th>
+                <td class="paddingT15 wordSpacing5">
+                	<select id="cst_cate" name="cst_cate" class="required">
+                        <option value="">{$lang.select_pls}</option>
+                        {html_options options=$cst_cate selected=$data.cst_cate}
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15">分类(男装|女装) :</th>
+                <td class="paddingT15 wordSpacing5">
+                	<select id="cst_sex_cate" name="cst_sex_cate" class="required">
+                        {html_options options=$sex_cate selected=$data.cst_sex_cate}
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+            <td colspan="2">
+            <div id="parts_types">
+            {if $data.cst_id}
+                {include file="customs/edit_type.html"}
+            {/if}
+            </div>
+            </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15"><label for="mianliao_zhiding">面料包扣用客户指定料:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" type="text" id="mianliao_zhiding" name="mianliao_zhiding" value="{$data.mianliao_zhiding}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><label for="mianliao_zhiding2">面料包平扣用客户指定料:</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput" type="text" id="mianliao_zhiding2" name="mianliao_zhiding2" value="{$data.mianliao_zhiding2}" />
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <th class="paddingT15"><label for="is_active">{$lang.is_active} :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="is_active" value="1" {if $data.is_active eq 1} checked="checked"{/if} />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="is_active" value="0" {if $data.is_active eq 0} checked="checked"{/if} />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15"><label for="is_hot">{$lang.is_hot} :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="is_hot" value="1" {if $data.is_hot eq 1} checked="checked"{/if} />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="is_hot" value="0" {if $data.is_hot eq 0} checked="checked"{/if} />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15"><label for="is_rec">{$lang.is_rec} :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="is_rec" value="1" {if $data.is_rec eq 1} checked="checked"{/if} />
+                    <label for="yes">{$lang.yes}</label>
+                    <input id="no" type="radio" name="is_rec" value="0" {if $data.is_rec eq 0} checked="checked"{/if} />
+                    <label for="no">{$lang.no}</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><label for="cst_exp">是否参加体验活动 :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input id="yes" type="radio" name="cst_exp" value="1" {if $data.cst_exp eq 1} checked="checked"{/if} />
+                    <label for="yes">是</label>
+                    <input id="no" type="radio" name="cst_exp" value="0" {if $data.cst_exp eq 0} checked="checked"{/if} />
+                    <label for="no">否</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"> 标签 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="cst_tag" name="cst_tag">
+                        <option value="">请选择</option>
+                        {html_options options=$tags selected=$data.cst_tag}
+                    </select>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <th class="paddingT15"><label for="service_fee">服务费 :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput digits" type="text" id="service_fee" name="service_fee" value="{$data.service_fee|default:0}" />
+                </td>
+            </tr>
+
+
+            <tr>
+                <th class="paddingT15">限量 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput digits" id="cst_store" type="text" name="cst_store" value="{$data.cst_store|escape|default:0}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">已售 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput digits" id="cst_sales" type="text" name="cst_sales" value="{$data.cst_sales|escape|default:0}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.cst_weight} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput required digits" id="cst_weight" type="text" name="cst_weight" value="{$data.cst_weight|escape|default:0}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">排序 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput digits" id="cst_rank" type="text" name="cst_rank" value="{$data.cst_rank|escape|default:0}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.views} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput digits" id="cst_views" type="text" name="cst_views" value="{$data.cst_views|escape|default:0}" />
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">{$lang.likes} :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableInput digits" id="cst_likes" type="text" name="cst_likes" value="{$data.cst_likes|escape|default:0}" />
+                </td>
+            </tr>
+            <tr>
+                <th>模特大图 :</th>
+                <td>
+                    {input_img name="cst_image" value="$data.cst_image" dir="cst"}
+                </td>
+            </tr>
+            <tr>
+                <th>静物小图 :</th>
+                <td>
+                    {input_img name="cst_dis_image" value="$data.cst_dis_image" dir="cst"}
+                </td>
+            </tr>
+           <tr>
+                <th>相册图片 :</th>
+                <td id="gallery">
+                {$build_upload}
+        <table class="infoTable qdhqx_tab">
+        <tr>
+                <td class="paddingT15 wordSpacing5">
+					 <div id="divSwfuploadContainer">
+                <div id="divButtonContainer" style="float:left;">
+                    <span id="spanButtonPlaceholder"></span>
+                </div>
+                
+                <div id="divFileProgressContainer"></div>
+            </div>
+                </td>
+            </tr>
+            <tr>
+            	<td>
+            	文件列表(双击图片进行删除)
+					<ul id="thumbnails">
+						{foreach from=$gallery_list item=gallery}
+						  <li id="gallery_{$gallery.id}" onclick="selectImg(this)">
+						  <img ondblclick="drop_gallery({$gallery.id})" src="{$gallery.s_img}" width="80" height="80"></li>
+						{/foreach}
+					</ul>
+				</td>
+            </tr>
+            </table>
+                </td>
+            </tr>
+            
+            <tr>
+                <th class="paddingT15"><label for="cst_source"> 样衣来源 :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <select id="cst_source" name="cst_source" class="required">
+                        {html_options options=$cst_source selected=$data.cst_source}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><label for="cst_source_id"> 来源作品ID :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <input type="text"  id="cst_source"  name="cst_source_id" value="{$data.cst_source_id}" />
+                </td>
+            </tr>
+                        <tr>
+                <th class="paddingT15"> 关联基本款: </th>
+                <td class="paddingT15 wordSpacing5" id="link">
+                   {input_obj callback="cst_callback"  name="link_cst" value="$data.link_cst" id="link_cst" model="customs" text="关联基本款"}
+                   <div class="panel"></div>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><label for="article">{$lang.description} :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="cst_description" name="cst_description" style="width:400px;height:110px;">{$data.cst_description|escape}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15"><label for="article">{$lang.content} :</label></th>
+                <td class="paddingT15 wordSpacing5">
+	                <div class="editor">
+	                    <textarea id="cst_content" name="cst_content" style="width:650px;height:400px;">{$data.cst_content|escape}</textarea>
+		            </div>
+                </td>
+            </tr>
+	        <tr>
+	            <th></th>
+	            <td class="ptb20">
+	                <input class="tijia" type="submit" name="Submit" id="Submit" value="{$lang.submit}" />
+	                <input class="congzi" type="reset" name="Submit2" value="{$lang.reset}" />
+	            </td>
+	        </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+_pid = "{$data.cst_id}";
+//编辑状态下,根据基本款分类调取组件类型
+<!-- {if $data.cst_id} -->
+$(function(){
+    
+	$('#cst_cate').attr('disabled', true);
+	$('#sec_cate').attr('disabled', true);
+	$("#author_name").css("display","block");
+    //var _cateId = {$data.cst_cate};
+    //var _cstId  = {$data.cst_id};
+    //ajax_parts_type(_cateId,_cstId);
+	$('#Submit').click(function(){
+	   // $('#parts_types').find('input').attr('disabled', true);
+	   // $('#parts_types').find('select').attr('disabled', true);
+		$('#cst_cate').attr('disabled', false);
+	});
+});
+<!-- {/if} -->
+
+
+	$(function(){
+
+	    <!-- {if $data.link_cst} -->
+	    ajax_cst('{$data.link_cst}');
+	    <!-- {/if} -->
+	    
+	});
+	function cst_callback(_ids){
+	    ajax_cst(_ids.ids);
+	}
+	function ajax_cst(ids){
+	    $.ajax({
+	        url    :"index.php?app=part&act=ajax_customs_info",
+	        data   :"ids="+ids+"&pid="+_pid,
+	        success:function(res){
+	            $(".panel").html(res);
+	        }
+	    });
+	}
+
+	
+//更改基本款分类,调取组件类型
+$('#cst_cate').change(function(){
+	var _cateId=$(this).val();    //$('#cst_cate option:selected').val();
+	ajax_parts_type(_cateId);
+	//ajax_ctype(_cateId);
+});
+function ajax_parts_type(_cateId,_cstId){
+    $.ajax({
+        url    :"index.php?app=customs&act=ajax_parts_type",
+        data   :"cateId="+_cateId+"&cstId="+_cstId,
+        success:function(result){
+            $('#parts_types').html(result);
+        }
+    });
+}
+function get_user(res){
+	$.ajax({
+		url    : "index.php?app=customs&act=ajax_get_author",
+		data   : "userId="+res.ids,
+		success: function(result){
+			$("#author_name").css("display","block");
+		    $("#author_name").val(result);
+		}
+	});
+}
+function add_uploadedfile(file_data)
+{
+    var newImg = '<li id="' + file_data.file_id + '" onclick="selectImg(this)">'+
+    '<input type=hidden name=gallery[] value='+SITE_URL + '/' + file_data.file_path+'>'+
+    '<img width="80px" height="80px" src="' + SITE_URL + '/' + file_data.file_path + '" ondblclick="drop_uploadedfile(' + file_data.file_id + ');"/></li>';
+    $('#thumbnails').prepend(newImg);
+}
+
+function drop_uploadedfile(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+
+    $('#' + file_id).remove();
+    
+    $.getJSON('index.php?app=article&act=drop_uploadedfile&file_id=' + file_id, function(result){
+        if(result.done){
+            
+        }else{
+            alert('drop_error');
+        }
+    });
+}
+
+function drop_gallery(file_id)
+{
+    if(!window.confirm('确定要移除该图片吗？')){
+        return;
+    }
+
+    $('#gallery_' + file_id).remove();
+    
+    $.getJSON('index.php?app=customs&act=drop_gallery&id=' + file_id, function(result){
+        if(result.done == false){
+            alert('drop_error');
+        }
+    });
+}
+
+function selectImg(obj){
+	$(obj).parents("ul").find("li").each(function(){
+		$(this).removeClass("on");
+	})
+	
+	$(obj).addClass("on");
+}
+
+</script>
+{include file="footer.html"}

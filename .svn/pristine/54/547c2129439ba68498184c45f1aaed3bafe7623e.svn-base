@@ -1,0 +1,90 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>[作品|印花|主题]-评论管理</p>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+  		 <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="com_comments" />
+          <input type="hidden" name="act" value="index" />
+          状态：
+           <select name="status">
+
+           <option value="all" {if $status=="all"}selected{/if}>全部</option>
+               <option value="0" {if $status===0}selected{/if}>未审核</option>
+               <option value="1" {if $status==1}selected{/if}>审核通过</option>
+            <option value="2" {if $status==2}selected{/if}>审核未通过</option>
+          </select>
+
+           分类：
+           <select name="cate">
+               <option value="all"{if $cate=="all"||!$cate}selected{/if}>全部</option>
+               <option value="wk" {if $cate=="wk"}selected{/if}>作品</option>
+               <option value="cy" {if $cate=="cy"}selected{/if}>印花（衬衫）</option>
+               <option value="dis"{if $cate=="dis"}selected{/if}>主题</option>
+           </select>
+
+
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=com_comments">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <!--<div class="fontr">{include file=page.top.html}</div>-->
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $list}-->
+    <tr class="tatr1">
+        <td><span ectype="order_by" fieldname="id">ID</span></td>
+        <td><span ectype="order_by" fieldname="comment_id">{if $cate=='wk'}作品{elseif $cate=='dis'}主题{elseif $cate=='cs'}印花(衬衣){else}[印|主|衬]{/if}ID</span></td>
+        <td ><span ectype="order_by" fieldname="cate">类型</span></td>
+
+        <td><span ectype="order_by" fieldname="vote_score">评分</span></td>
+        <td><span ectype="order_by" fieldname="nickname">评论者</span></td>
+        <td><span ectype="order_by" fieldname="e_status">用户属性</span></td>
+        <td><span ectype="order_by" fieldname="content">内容</span></td>
+        <td><span ectype="order_by" fieldname="come_from">来源</span></td>
+        <td><span ectype="order_by" fieldname="addtime">评论时间</span></td>
+        <td><span ectype="order_by" fieldname="status">状态</span></td>
+      <td class="handler">{$lang.handler}</span></td>
+    </tr>
+    <!--{/if}-->
+    
+    <!--{foreach from=$list item=v key=k}-->
+
+    <tr class="tatr2">
+      <td>{$v.id}</td>
+      <td>{$v.comment_id}</td>
+        <td>{if $v.cate=='cs'}印花(衬衣){elseif $v.cate =='dis'}主题{else}作品{/if}</td>
+
+      <td>{if $v.cate =='wk'&& $v.come_from=='web'}{$v.vote_score}{else}×{/if}</td>
+        <td>{$v.nickname}</td>
+      <td>{if $v.e_status ==1}专家{else}会员{/if}</td>
+      <td>{$v.content}</td>
+      <td>{$v.come_from}</td>
+      <td>{$v.addtime|date:complete}</td>
+      <td>{if $v.status==0}未审核{elseif $v.status==1}审核通过{else}审核未通过{/if}</td>
+      <td class="handler">
+      <a href="index.php?app=com_comments&amp;act=del&amp;id={$v.id}">删除</a> |
+      <a href="index.php?app=com_comments&amp;act=update&amp;id={$v.id}&amp;status=2">拒绝</a> |
+      <a href="index.php?app=com_comments&amp;act=update&amp;id={$v.id}&amp;status=1">通过</a>
+      </td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="7">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $list}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+</div>
+{include file="footer.html"}

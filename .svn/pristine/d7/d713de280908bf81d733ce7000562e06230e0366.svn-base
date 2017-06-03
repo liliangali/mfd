@@ -1,0 +1,89 @@
+{include file="header.html"}
+
+<script type="text/javascript" src="{lib file=ajax_tree4.js}" charset="utf-8"></script>
+<script type="text/javascript">
+$(function()
+{
+    var map = {$map};
+    if (map.length > 0)
+    {
+        var option = {openImg: "templates/style/images/treetable/tv-collapsable.gif", shutImg: "templates/style/images/treetable/tv-expandable.gif", leafImg: "templates/style/images/treetable/tv-item.gif", lastOpenImg: "templates/style/images/treetable/tv-collapsable-last.gif", lastShutImg: "templates/style/images/treetable/tv-expandable-last.gif", lastLeafImg: "templates/style/images/treetable/tv-item-last.gif", vertLineImg: "templates/style/images/treetable/vertline.gif", blankImg: "templates/style/images/treetable/blank.gif", collapse: false, column: 1, striped: false, highlight: true, state:false};
+        $("#treet1").jqTreeTable(map, option);
+    }
+});
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=fabric_brand&amp;act=add">{$lang.add}</a></li>
+        <li><a class="btn1" href="index.php?app=setting&amp;act=base_diy">{$lang.bset}</a></li>
+    </ul>
+</div>
+
+<div class="info2">
+    <table  class="distinction">
+        <!--{if $acategories}-->
+        <thead>
+        <tr class="tatr1">
+        	<td>ID</td>
+            <td > 属性名称</td>
+            <td>单价或固定价</td>
+            <td>属性值</td>
+            <td>缩略图</td>
+            <td>默认选项</td>
+            <td>{$lang.sort_order}</td>
+            <td>{$lang.if_show}</td>
+            <td>是否独立显示</td>
+            <td>是否试吃属性</td>
+            <!--<td>犬类型</td>-->
+            <td class="handler">{$lang.handler}</td>
+        </tr>
+        </thead>
+        <!--{/if}-->
+       
+       
+               <tbody id="treet1">
+            <!--{foreach from=$acategories item=acategory}-->
+            <tr>
+                <td>{$acategory.cate_id}</td>
+                <td class="node" width="20%"><span ectype="inline_edit" fieldname="cate_name" fieldid="{$acategory.cate_id}" required="1" class="node_name editable">{$acategory.cate_name|escape}</span></td>
+              
+                <td  width="20%">{$acategory.uprice} | {$acategory.fprice}</td>
+             	<td class="align_center">{$acategory.ve}</td>
+            	<td><img src="{$acategory.small_img}" height="50" width="50"></td>
+            	<td><!--{if $acategory.is_def}--><img src="templates/style/images/positive_enabled.gif" ectype="inline_edit" fieldname="is_def" fieldid="{$acategory.cate_id}" fieldvalue="1" title="{$lang.editable}"/><!--{else}--><img src="templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="is_def" fieldid="{$acategory.cate_id}" fieldvalue="0" title="{$lang.editable}"/><!--{/if}--></td>
+                <td class="align_center"><!--{if !$acategory.code}-->
+                    <span ectype="inline_edit" fieldname="sort_order" fieldid="{$acategory.cate_id}" datatype="pint" maxvalue="255" class="editable">{$acategory.sort_order}</span>
+                    <!--{/if}--></td>
+                <td class="align_center"><!--{if $acategory.if_show}--><img src="templates/style/images/positive_enabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="{$acategory.cate_id}" fieldvalue="1" title="{$lang.editable}"/><!--{else}--><img src="templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="if_show" fieldid="{$acategory.cate_id}" fieldvalue="0" title="{$lang.editable}"/><!--{/if}--></td>
+                <td class="align_center"><!--{if $acategory.is_alone}--><img src="templates/style/images/positive_enabled.gif" ectype="inline_edit"  fieldname="is_alone" fieldid="{$acategory.cate_id}" fieldvalue="1" title="{$lang.editable}"/><!--{else}--><img src="templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="is_alone" fieldid="{$acategory.cate_id}" fieldvalue="0" title="{$lang.editable}"/><!--{/if}--></td>
+                <td class="align_center"><!--{if $acategory.is_try}--><img src="templates/style/images/positive_enabled.gif" ectype="inline_edit"  fieldname="is_try" fieldid="{$acategory.cate_id}" fieldvalue="1" title="{$lang.editable}"/><!--{else}--><img src="templates/style/images/positive_disabled.gif" ectype="inline_edit" fieldname="is_try" fieldid="{$acategory.cate_id}" fieldvalue="0" title="{$lang.editable}"/><!--{/if}--></td>
+                <!--<td class="node" width="20%"><span   required="1" class="node_name">{if $acategory.btype eq 1}大型犬{elseif $acategory.btype eq 2}中型犬{else}小型犬{/if}</span></td>-->
+                <td class="handler"><span>
+                    <!--{if !$acategory.code}-->
+                    <a href="index.php?app=fabric_brand&amp;act=edit&amp;id={$acategory.cate_id}&amp;pid={$acategory.parent_id}">{$lang.edit}</a>
+                    | <a href="javascript:if(confirm('{$lang.drop_confirm}'))window.location = 'index.php?app=fabric_brand&amp;act=drop&amp;id={$acategory.cate_id}';">{$lang.drop}</a> 
+                    <!--{/if}-->
+                    <!-- {if $acategory.layer lt $max_layer and $acategory.parent_children_valid} -->
+                    <!--{if !$acategory.code}-->
+                    |
+                    <!--{/if}-->
+                    <a href="index.php?app=fabric_brand&amp;act=add&amp;pid={$acategory.cate_id}">{$lang.add_child}</a>
+                    <!--{/if}-->
+                    </span> </td>
+            </tr>
+            <!--{foreachelse}-->
+            <tr class="no_data">
+                <td colspan="6">{$lang.no_data}</td>
+            </tr>
+            <!--{/foreach}-->
+            <!-- {if $acategories} -->
+        </tbody>
+        <!-- {/if} -->
+
+        <tfoot>
+        </tfoot>
+    </table>
+</div>
+
+{include file="footer.html"}

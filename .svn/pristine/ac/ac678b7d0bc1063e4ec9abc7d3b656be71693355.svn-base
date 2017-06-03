@@ -1,0 +1,129 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        {if $cate>19}
+        <li><a class="btn1" href="index.php?app=special_code&sign=1">返回</a></li>
+        {else}
+        <li><a class="btn1" href="index.php?app=special_code">返回</a></li>
+        {/if}
+    </ul>
+
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+
+                <input type="hidden" name="app" value="special_code" />
+                <input type="hidden" name="act" value="log" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                发放时间 从：  <input type="text" name="start_time" id="start_time"  value="{$start_time}" onclick="WdatePicker()" class="infoTableInput Wdate"  style="width:150px">
+                到 <input type="text" name="end_time" id="end_time" value="{$end_time}" onclick="WdatePicker()" class="infoTableInput Wdate"  style="width:150px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                激活率：{$all_baifen}%
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="hidden" value="{$cate}" id="cate" name="cate">
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=special_code">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <!--<div class="fontr">{include file=page.top.html}</div>-->
+</div>
+
+
+
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+
+        <tr class="tatr1">
+            <td><span ectype="order_by" fieldname="id">ID</span></td>
+            <td><span ectype="order_by" fieldname="cate">类别</span></td>
+            {if $cate<20}
+            <!--<td><span ectype="order_by" fieldname="num">越级等级</span></td>-->
+            <td><span ectype="order_by" fieldname="source">发放方式</span></td>
+            {/if}
+
+            {if $cate>19}
+            <td><span ectype="order_by" fieldname="num">单张面值（元）</span></td>
+            {/if}
+
+            {if $cate==21}
+            <td><span ectype="order_by" fieldname="num">购买金额（元）</span></td>
+            {/if}
+
+
+
+            <td><span ectype="order_by" fieldname="add_time">生成时间</span></td>
+            <td><span ectype="order_by" fieldname="expire_time">过期时间</span></td>
+            <td><span ectype="order_by" fieldname="admin">发放者</span></td>
+            <td><span ectype="order_by" fieldname="num">发放数量</span></td>
+
+
+            <td><span>激活数</span></td>
+            <td><span ectype="order_by" fieldname="num">激活率</span></td>
+            <td><span ectype="order_by" fieldname="description">备注</span></td>
+            <td><span>操作</span></td>
+        </tr>
+
+        <!--{if !empty($list)}-->
+        <!--{foreach from=$list item=v key=k}-->
+        <tr class="tatr2">
+            <td>{$v.id}</td>
+            <td>{$v.cate_name}</td>
+            {if $cate<20}
+            <td>{$v.source_name}</td>
+            {/if}
+            {if $cate>19}
+            <td>{$v.work_num}</td>
+            {/if}
+            {if $cate==21}
+            <td>{$v.price}</td>
+            {/if}
+            <td>{$v.add_time}</td>
+            <td>{$v.expire_time}</td>
+            <td>{$v.admin}</td>
+            <td>{$v.num}</td>
+            <td>{$v.use_count}</td>
+            <td>{$v.baifen}%</td>
+            <td>{$v.description}</td>
+            <td>
+                <a  href="index.php?app=special_code&amp;act=info&amp;id={$k}&amp;cate={$v.cate}">日志详情</a> |
+                <a href="index.php?app=special_code&amp;act=export&amp;id={$k}&amp;cate={$v.cate}&amp;source={$v.source}">导出excel</a>
+            </td>
+        </tr>
+        <!--{/foreach}-->
+        <!--{else}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/if}-->
+    </table>
+    <!--{if !empty($list)}-->
+
+    <div id="dataFuncs">
+        <div class="pageLinks">{include file=page.bottom.html}</div>
+        <div class="clear"></div>
+    </div>
+    <!--{/if}-->
+
+</div>
+<script>
+    function edit(_id){
+        var  url = "/mfd/index.php?app=generalize_member&act=info&id="+_id;
+        var status = $("#status").val()
+        var name = $("#name").val()
+        var phone = $("#phone").val()
+        var ge = $("#ge").val()
+        var jiaose = $("#jiaose").val()
+
+        url+="&status1="+status+"&name1="+name+"&phone1="+phone+"&ge1="+ge+"&jiaose1="+jiaose;
+        self.location = url;
+    }
+
+</script>
+{include file="footer.html"}

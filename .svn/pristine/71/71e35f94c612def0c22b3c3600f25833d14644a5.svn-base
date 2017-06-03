@@ -1,0 +1,76 @@
+
+    <div class="wxpjl">
+      <div class="wxhpl left">
+      {if $contentList.score==0}
+      <p class="p1">0<font>%</font></p>
+      {else}
+       <p class="p1">{$contentList.score}<font>%</font></p>
+       {/if}
+       <p class="p2">五星评价率</p>
+      </div>
+      <div class="pjrs left">
+      {if $contentList.five_star==''}
+      <p class="p1">0人</p>
+      {else}
+       <p class="p1">{$contentList.five_star}人</p>
+       {/if}
+       {if $contentList.four_star==''}
+      <p class="p2">0人</p>
+      {else}
+       <p class="p2">{$contentList.four_star}人</p>
+       {/if}
+       {if $contentList.three_star==''}
+      <p class="p3">0人</p>
+      {else}
+       <p class="p3">{$contentList.three_star}人</p>
+       {/if}
+       {if $contentList.two_star==''}
+      <p class="p4">0人</p>
+      {else}
+       <p class="p4">{$contentList.two_star}人</p>
+       {/if}
+        {if $contentList.one_star==''}
+      <p class="p5">0人</p>
+      {else}
+        <p class="p5">{$contentList.one_star}人</p>
+       {/if}
+
+      </div>    
+    </div>
+     {foreach from=$contentList item=content key=key}
+     {foreach from=$content.answers item=con}
+    <ul class="pjlist">
+     <li>
+      <p class="yxtx"><a href="#"><img src="{$content.face}"></a><span>{$content.nickname}</span></p>      
+      <div class="div_1">
+       <h1><span>{$content.ftime}</span></h1>
+       <p class="p1">{$content.content}</p>
+     {if !empty($con.content) }
+       <p class="p2"><span>客服：</span>{$con.content}</p>
+      {/if}
+      </div>
+     </li>
+    </ul>
+      {/foreach}
+      {/foreach}
+
+      <!--翻页开始-->
+  <div class="cc_page">
+    <!--{if $page_info.prev_link}-->
+    <a href="javascript:;" onclick="goToPage(this)" data-url="{$page_info.prev_link}" title="上一页" class="zjt">&lt;</a>
+    <!--{/if}-->
+     <!--{foreach from=$page_info.page_links key=page item=link}-->
+     <!--{if $page_info.curr_page eq $page}-->
+     <span class="active">{$page}</span>
+      <!--{else}-->
+      <a href="javascript:;" onclick="goToPage(this)" data-url="{$link}">{$page}</a>
+          <!--{/if}-->
+<!--{/foreach}-->
+    <!--{if $page_info.next_link}-->
+    <a href="javascript:;" onclick="goToPage(this)" data-url="{$page_info.next_link}" title="下一页" class="zjt">&gt;</a>
+    <!--{/if}-->
+ </div>  
+<!--翻页结束-->
+  
+
+    

@@ -1,0 +1,161 @@
+{include file="header.html"}
+<div id="rightTop">
+
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=zzm">返回{$lang.manage}</a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+$(function(){
+        $('#user_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            zz_name : {
+                required : true,
+                remote   : {
+                    url :'index.php?app=zzm&act=check_serve_name',
+                    type:'get',
+                    data:{
+                        zz_name : function()
+                        {
+                            return $('#zz_name').val();
+                        },
+                        id : '{$info.id}'
+                        
+                    }
+                }
+            },
+            login_name : {
+                required : false,
+                //isPhone: false,
+               // remote   : {
+                  //  url :'index.php?app=serve&act=check_login_name',
+                 //   type:'get',
+                 //   data:{
+                 //     login_name : function()
+                 //     {
+                 //           return $('#login_name').val();
+                 //       },
+                 //       id : '{$info.userid}'
+                 //   }
+              //  }
+            },
+            password: {
+                maxlength: 20,
+                minlength: 6
+            },
+            email   : {
+                required : true,
+                email : true
+            }
+            ,
+            serve_address : {
+                 required : true,
+            },
+            linkman : {
+             required : false,
+           },
+           business_time : {
+                 required : true,
+             },
+             mobile : {
+                 required : false,
+             },
+        },
+        messages : {
+            zz_name : {
+                required : '必填',
+                remote   : '组织名称已存在'
+            },
+            login_name : {
+                required : '必填',
+                isPhone  : '请填写正确的手机号码',
+            //    remote   : '登录账号已存在',
+            },
+            password : {
+                maxlength: '6到12位字符',
+                minlength: '6到12位字符'
+            },
+            email  : {
+                required : '{$lang.email_not_empty}',
+                email   : '{$lang.currect_email}'
+            }
+            ,
+            serve_address : {
+                required : '必填'
+            },
+            linkman : {
+                required : '必填'
+            },
+            business_time : {
+                required : '必填'
+            },
+            mobile : {
+                required : '必填'
+            },
+        }
+    });
+});
+</script>
+    <div class="info">
+    <form method="post" enctype="multipart/form-data" id="user_form">
+        <table class="infoTable">
+            <tbody>
+            <tr>
+                <th class="paddingT15">组织名称：</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="text" id="z_name" value="{$info.name}" name="z_name" class="mcinp" />
+                </td>
+            </tr>
+            
+	         <tr>
+	        <th class="paddingT15">所在地区：</th>
+	        <td class="paddingT15 wordSpacing5">
+	        <select  name="p_region_id" onchange="get_region(this)">
+	            {html_options options=$region1 selected=$p_region_id}
+	       </select>
+     
+		     <select  name="region_id" id="region_id">
+		            {html_options options=$region2 selected=$info.city}
+		     </select>
+		         </td>
+   			</tr>
+            
+
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                  
+                    <input type="submit" value="提交" name="Submit" class="tijia">
+                    <input type="reset" value="重置" name="Submit2" class="congzi">
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </form>
+</div>
+
+
+</div>
+<script>
+function get_region(obj)
+{
+	var p_id = $(obj).val();
+	$.post("./index.php?app=zzm&act=get_region",{pid:p_id}, function(res){
+		   var res = eval("("+res+")");
+		   $('#region_id').empty();
+	    	 $('#region_id').append(res.retval)
+	});
+}
+</script>
+
+{include file="footer.html"}

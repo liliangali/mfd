@@ -1,0 +1,89 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#send_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+    });
+});
+</script>
+<div id="rightTop">
+  <ul class="subnav">
+    <li><span>下单送干洗</span></li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="send_form">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15"><label for="types"> 下单送干洗:</label></th>
+        <td class="paddingT15 wordSpacing5">
+          <select id="key" name="key">
+                {html_options options=$keys selected=$data.key}
+          </select>
+        </td>
+      </tr>
+      <tr class="promotion" id="promotion" ></tr>
+      <tr>
+        <th class="paddingT15"><label> 是否开启 :</label></th>
+        <td class="paddingT15 wordSpacing5">
+          <select id="active" name="active">
+             {html_options options=$active selected=$data.active}
+          </select>
+        </td>
+      </tr>
+      
+      <tr>
+	      <th class="paddingT15"><label> 可用数量 :</label></th>
+	      <td class="paddingT15 wordSpacing5"><input id="numbers" type="text" name="numbers" value="{$data.numbers|default:0}" class="infoTableInput required digits"/></td>
+      <tr>
+      
+	  <tr>
+	    <th class="paddingT15"><label> 开始时间 :</label></th>
+	    <td class="paddingT15 wordSpacing5">
+            <input class="infoTableInput2 pick_date" id="start_time" type="text" name="start_time" value="{if $data.start_time}{$data.start_time|date:Y-m-d}{/if}" />
+	    </td>
+	  </tr>
+	  <tr>
+        <th class="paddingT15"><label> 结束时间 :</label></th>
+        <td class="paddingT15 wordSpacing5">
+            <input class="infoTableInput2 pick_date" id="end_time" type="text" name="end_time" value="{if $data.end_time}{$data.end_time|date:Y-m-d}{/if}" />
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="tijia" type="submit"  value="{$lang.submit}" />
+          <input class="congzi" type="reset"  value="{$lang.reset}" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}
+<script type="text/javascript">
+$(function(){
+    $.ajax({
+    	url    : 'index.php?app=promotion&act=send_ajax',
+        data   : 'key={$data.key}&value={$data.value}',
+        success: function(res){
+        	$('#promotion').html(res);
+        }
+    });
+});
+$('#key').change(function(){
+	$.ajax({
+        url    : 'index.php?app=promotion&act=send_ajax',
+        data   : 'key='+$(this).val(),
+        success: function(res){
+            $('#promotion').html(res);
+        }
+    });
+});
+$('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+$('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+</script>

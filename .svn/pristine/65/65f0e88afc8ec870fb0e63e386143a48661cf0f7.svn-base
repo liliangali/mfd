@@ -1,0 +1,43 @@
+/*
+ @ name：luck弹层组件-mobile
+ @ author：前端老徐
+ @ e-mail：442413729@qq.com
+*/
+
+input{-webkit-appearance:none;-webkit-border-radius:0}
+.luck { position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 19891014; font-size: 14px;}
+.luck-shade { background: #000; opacity: 0.2; position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 0; }
+.luck-table { position: fixed; left: 0; top: 0; width: 100%; height: 100%; display: table; pointer-events: none; z-index: 1; }
+.luck-table-cell { height: 100%; display: table-cell; vertical-align: middle; text-align: center; position: relative; z-index: 101; }
+.luck-child { background: #fff; display: inline-block; max-width: 260px; min-width: 85%; border-radius: 5px; overflow: hidden; line-height: 22px; pointer-events: auto; animation: bouncedelay ease .3s; -webkit-animation: bouncedelay ease .3s; box-shadow: 0 0 50px #666; text-align: center; }
+@-webkit-keyframes bouncedelay { 0% {
+-webkit-transform:scale(0)
+}
+ 100% {
+-webkit-transform:scale(1)
+}
+}
+@keyframes bouncedelay {
+0% {
+transform:scale(0);
+-webkit-transform:scale(0)
+}
+ 100% {
+transform:scale(1);
+-webkit-transform:scale(1)
+}
+}
+.luck-title { height: 60px; line-height: 60px; background: #fff; font-weight: normal; padding:10px 15px 0 15px; position: relative; text-align:left;}
+.luck-title button { width: 35px; height: 35px; background: none; border: 0; font-size: 32px; position: absolute; right: 0; top: 0; font-weight:normal; background:url(../../images/gbal.png) left 15px no-repeat; background-size:16px 16px;}
+.luck-con { padding:15px 15px 15px 15px;}
+.luck-btn-box { width: 100%; height: 43px; border-top: solid 1px #dfdfdf; line-height: 43px; text-align: center; display: box; display: -webkit-box; display: -moz-box; orient: horizontal; }
+.luck-btn-box span { display:block;box-flex: 1; -webkit-box-flex: 1; -moz-box-flex: 1; cursor:pointer;}
+.luck-btn-box .no { background:#e76801; color:#fff;}
+.luck .loading { background: url(loading.gif) no-repeat center center #fff; width: 50px; height: 50px; }
+
+/*yang*/
+.xzly { overflow:hidden; margin-bottom:10px; position:relative;}
+.xzly p {text-align:left; padding-left:28px; color:#666;}
+.xzly input {position:absolute; left:0; top:2px; border:1px solid red; width:20px; height:20px; z-index:100; opacity:0;}
+.xzly b { display:block; position:absolute; left:0; top:0px; width:20px; height:20px; background:url(../../images/xz.png) left 0px no-repeat; background-size:20px 20px;}
+.xzly .on {background:url(../../images/xz_on.png) left 0px no-repeat; background-size:20px 20px;}

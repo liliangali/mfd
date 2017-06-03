@@ -1,0 +1,107 @@
+{include file=header.html}
+<link href="/static/css/selection_page.css" rel="stylesheet" type="text/css" />
+    <div class="container">
+      <div class="pxly_box clearfix">
+        <div class="pxly_left fl">
+
+
+            {foreach from=$member_work.imgurl item=list}
+         <p class="p1"><img src="{$list.img_url}" /></p>
+            {/foreach}
+         
+         <p class="p2 clearfix"><span class="fl">查看下一个作品</span><a href="javascript:void(0)" onclick="wnext_enter('{$member_work.nid}')" class="fl">ENTER</a></p>
+        </div>
+        
+        <div class="pxly_right fr">
+         <div class="yml_tx clearfix" style="margin-top:10px;">
+          <p class="p1 fl"><a href="#"><img src="{$member_work.member.avatar}" /></a><span>{$member_work.member.nickname}</span></p>
+          <div class="div_1 fr">
+           <p class="p2">{$member_work.member.memo}</p>
+           <p class="p3"><span>作品：<b>{$user_works_num}</b></span><span>关注：<b>{$member_work.member.follows}</b></span></p>
+          </div>
+         </div>
+         
+         <div class="yml_tx">
+           <p class="grpl">{$member_work.description}</p>
+           <div class="bhstup">
+            <p class="bh">编号<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$member_work.id}</span></p>
+            <p>开始时间<font> {$member_work.start_time|date:complete}</font></p>
+            <p>截止时间<font> {$member_work.end_time|date:complete}</font></p>
+           </div>
+
+           <div class="tpscfx clearfix">
+            <p class="fexia fl"><a href="#">分享</a></p>
+            <p class="fxdsgt fl">
+                <a  class="a_1"></a>
+                <a  class="a_2"></a>
+                <a  class="a_3"></a>
+                <a  class="a_4"></a>
+            </p>
+           </div>
+         </div>
+
+         <div class="yml_tx" style="margin-top:40px;">
+          <p class="zjpj">专家评选：<span>参与人<font>({$member_work.e_count})</font></span><span>平均分<font>({$member_work.e_score})</font></span></p>
+          <p class="zjpj">会员评选：<span>参与人<font>({$member_work.n_count})</font></span><span>平均分<font>({$member_work.n_score})</font></span></p>
+         </div>
+         
+         <h1 class="wypf">我要评分</h1>
+         <div class="pfjd clearfix">
+             <!--<p class="pfzs fl">3.5</p>
+             <div class="divhz"><span>0</span><div><p></p><font></font></div><span>10</span></div>-->
+             <p class="pfzs fl" id="amount"></p>
+             <div class="fr">
+                 <span class="fl min">0</span>
+                 <span class="fr max">10</span>
+                 <div id="slider-range-min"></div>
+             </div>
+         </div>
+
+         <div class="fbpl clearfix"><textarea id="textarea" name="" cols="" rows=""></textarea><p>还可以输入<span id="numtxt">100</span>字</p><input class="submit"  type="submit" value="提 交" /></div>
+         
+     
+        <ul class="zjsjspx clearfix">
+          <li id="ti_1" class="now_hover" onClick="ceck_pic(1);">专家设计师评选</li>
+          <li id="ti_2" class="old_hover" onClick="ceck_pic(2);">大众网友评选</li>
+        </ul>
+        
+        <div id="tj_1">
+         <ul class="mdpjlb">
+             {include file=work/comment_list.html}
+         </ul>
+
+        </div>
+        <div id="tj_2" style="display:none">
+            <ul class="mdpjlb">
+              {include file=work/comment_list2.html}
+            </ul>
+        </div>
+
+        </div>
+        
+      </div>
+    </div>
+
+<script src="/static/js/jquery-1.7.2.min.js"></script>
+<script src="/static/expand/jquery-ui.min.js"></script>
+<script src="/static/expand/layer/layer.min.js"></script>
+<script src="/static/js/public.js"></script>
+<script src="/static/js/jquery.cookie.js"></script>
+
+
+
+<SCRIPT language="javascript" type="text/javascript">
+  var _id ='{$comment_list.id}';
+  var title="{$member_work.work_name}"
+  $(document).ready(function(){
+        $.sc({
+            postUrl:'{link app=work_score act=commit arg=$member_work.id}',
+            type:'wk',
+            id:'{$member_work.id}'
+        })
+    })
+
+</SCRIPT>
+   <script  type="text/javascript" src="/static/js/work_score.js"></script>
+
+{include file=footer.html}

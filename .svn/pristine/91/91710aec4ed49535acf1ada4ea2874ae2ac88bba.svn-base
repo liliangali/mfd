@@ -1,0 +1,68 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=fabricbook&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="fabricbook" />
+                <input type="hidden" name="act" value="index" />
+                名称:
+                <input class="queryInput" type="text" name="name" value="{$query.name|escape}" />
+                请选择分类:
+                <select class="querySelect" id="category" name="category">
+                <option value="">{$lang.select_pls}</option>
+                {html_options options=$category selected=$query.category}
+                </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $fabrics}-->
+        <tr class="tatr1">
+            <td align="left">名称</td>
+            <td>分类</td>
+            <td align="left">上架</td>
+            <td>添加时间</td>
+            <td>价格</td>
+            <td>{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$fabrics item=fab}-->
+        <tr class="tatr2">
+            <td>{$fab.name|escape}</td>
+            <td>{$category.$fab.category}</td>
+            <td>{if $fab.is_sale}是{else}否{/if}</td>
+            <td>{$fab.add_time|date:complete}</td>
+            <td>{$fab.price}</td>
+            <td>
+            <a href="index.php?app=fabricbook&amp;act=edit&amp;id={$fab.id}">{$lang.edit}</a> |
+            <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=fabricbook&amp;act=drop&amp;id={$fab.id}');">{$lang.drop}</a>
+			</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="6">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $fabrics}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

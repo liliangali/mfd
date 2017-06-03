@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>阿里品牌商</title>
+<link rel="stylesheet" type="text/css" href="../../static/css/public.css">
+<link rel="stylesheet" type="text/css" href="../../static/css/usercenter.css">
+<script type="text/javascript" src="../../static/expand/jquery.js"></script>
+<script  type="text/javascript" src="../../static/js/public.js"></script>
+</head>
+
+<body>
+<!--头部开始-->
+<div class="head2">
+  <div class="w">
+   
+    <div class="fl left"> <a href="#">账户概览<i></i><em></em></a> <a href="#" class="cur">账户设置<i></i><em></em></a> <a href="#">我的消息<i></i><em></em></a> <a href="#">我的收藏<i></i></a> </div>
+    <div class="fr right">
+      <div class="topMenu fl"> <i></i><i></i><i></i><em></em>
+        <div class="menuList"> <a href="#">首页</a> <a href="#">找品牌商</a> <a href="#">选款式</a> <a href="#">选面料</a> <a href="#">品晒单</a> <a href="#">需求中心</a> </div>
+      </div>
+      <a href="#" class="alink">我是品牌商 &gt;</a> </div>
+  </div>
+</div>
+<!--头部结束-->
+<div class="w">
+  <div class="AreaBox clearfix">
+    <div class="menu">
+      <div class="headPic"> <img width="150" height="150" src="http://test.alicaifeng.com/upload/avatar/000/00/00/35_avatar_big.jpg"> <a href="member-tailor-user_set.html"><span class="edit">修改个人资料</span></a> </div>
+      <p class="userName"> 徐小喬1 </p>
+      <p class="rank">普通品牌商<img src="http://test.alicaifeng.com/data/files/mall/lv_logo/1/2.png"></p>
+      <p class="tailorHome"><a target="_blank" href="tailor-info-35.html">主页预览</a></p>
+      
+      
+      <ul class="ui-account">
+          <li class="item-income">
+          	<a target="_blank" href="#" class="fr zbj-tooltip" title="详细">详细</a>
+          	<a target="_blank" href="#">收入：<span class="red">¥0.00</span></a>
+          </li>
+          <li>
+          	<a target="_blank" href="#" class="fr zbj-tooltip" title="详细">详细</a>
+            <a target="_blank" href="#">支出：<span class="red">¥0.00</span></a>
+          </li>
+          <li>
+          	<a target="_blank" href="#" class="fr zbj-tooltip" title="详细">详细</a>
+            <a target="_blank" href="#">冻结：<span class="red">¥0.00</span></a>
+          </li>
+          <li>
+            余额：<span class="red">¥0.00</span>
+          </li>
+          <li class="lastLi"><a href="#" class="a1">充值</a><a href="#" class="a2" id="tixian">提现</a><a class="a3" href="#">查看收支明细</a></li>
+      
+      </ul>
+    </div>
+     {include file=../user/member.menu.html}
+   
+     
+    <div class="con">
+      <h2 class="tit">我的诚信度</h2>
+      <div class="cxdgz"><span>诚信度</span>是阿里裁缝为了维护良好的平台氛围，保障顾客权益而建立的一套信用体系<a href="sincerity-rule.html">诚信度规则</a></div> 
+      <div class="dqxyd">
+       <div class="div_1"><p></p></div>
+       <p class="xyts">当前信用度{$current_score}分<span></span></p>
+       <input type="hidden" id="current_score_id" name="current_score" value="{$current_score}"> 
+      </div>
+      <p class="wdxyd">当前诚信度：<font>{$current_score}分</font><span>信用状态：{if $current_score gte 90 and $current_score lte 100}良好{elseif $current_score gte 60 and $current_score lt 90}一般{else}很差{/if}</span></p>
+      <p  class="tjmqxy">！提示，{if $current_score gte 90 and $current_score lte 100}你目前的信用状态良好，请继续保持{elseif $current_score gte 60 and $current_score lt 90}你目前的信用状态一般，请再接再厉{else}你目前的信用状态很差,希望改善{/if}</p>
+      
+      <dl class="cxjl">
+       <dt>诚信度历史记录：</dt>
+       <dd>暂无历史记录</dd>
+      </dl>   
+      
+      <div class="fsjs clearfix">
+       <p class="p1">共被扣分：<span>{$bad_num}分</span>，获得加分：<span>{$good_num}分</span></p>
+       <p class="p2">诚信分值<select class="score_rul" id="sincerity" name="clothID">
+       <option  selected="selected" value="4">全部</option>
+       <option value="3">扣分</option>
+       <option value="1">加分</option>
+       </select>
+       </p>
+      </div>
+       <div id="cx">
+            {include file="../user/my_sin.html"}
+          </div>
+      
+    </div>
+  </div>
+</div>
+
+<!--底部开始-->
+<div class="footer2">
+  <p><span><a href="#">集团简介</a></span><span><a href="#">法律声明</a></span><span><a href="#">潮流资讯</a></span><span><a href="#">招聘信息</a></span><span><a href="#">员工之家</a></span></p>
+  <p><span>© RCTAILOR 版权所有</span><span>地址：山东省青岛即墨红领大街17号</span><span>鲁ICP备10207738</span><span>鲁公网安备234234号</span></p>
+</div>
+<!--底部结束--> 
+<script>
+$('#tixian').click(function(){
+	msg('为了您的资金安全，请先进行认证！<br>友情提示：每张身份证仅可认证1次，请注意帐号安全。',520,180,function(){window.location.href='http://www.baidu.com'},2)  
+})
+	var url = "/sincerity-ajax_sin.html"
+	$.post(url,{"score":4},function(res){
+	    var res = $.parseJSON(res);
+        if(res!= null && res.done == true){
+            $('#cx').html(res.retval.content);  
+        }	        
+	         });
+	function SetProgress(press){
+		if(press){
+			$(".dqxyd").children('.div_1').children('p').css("width", String(press) + "%"); 
+		}
+	}
+	 
+	function doProgress(){
+		var press = $('#current_score_id').val();
+		if(press <=100){
+			setTimeout("doProgress()",100);
+			SetProgress(press);
+		}
+	}
+	$(document).ready(function(){   
+	$('.score_rul').change(function(){
+	var _tp =$(this).val();
+	var url = "/sincerity-ajax_sin.html"
+	$.post(url,{"score":_tp},function(res){
+	    var res = $.parseJSON(res);
+        if(res!= null && res.done == true){
+            $('#cx').html(res.retval.content);
+            
+        }	        
+	         });
+		
+		});
+	doProgress();
+		
+});
+	
+
+
+
+
+
+
+	
+</script>
+<script  type="text/javascript" src="../../static/js/usercenter.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+
+{include file="common/input/object/item.html"}
+
+<script>
+
+var ids=new Array();
+var sdfsdf=$("#sdfsdf").val();
+var _object_type=$("#object_type").val();
+
+
+if(sdfsdf!=''){
+	ids=sdfsdf.split(',');
+}
+
+/*
+$(".dataTable").find("input").each(function(){
+	$(this).click(function(){
+		$selected.push($(this).val());
+	})
+})*/
+function ajax_page(url){
+	//alert(url);
+    $.ajax({ 
+        type: 'POST', 
+        url: url, 
+/*         data: {'ids':ids},  */
+        dataType:'json', 
+        beforeSend:function(){ 
+            $(".tdare").append("<li id='loading'>loading...</li>");//显示加载动画 
+        }, 
+        success:function(json){ 
+        	var linkids = $("#linkid").val();
+        	//alert(linkids);
+            $(".tdare").empty();//清空数据区 
+
+            $(".tdare").html(json.data);
+            save('-1',ids)
+        }, 
+        complete:function(){ //生成分页条 
+            //getPageBar(); 
+        }, 
+        error:function(){ 
+            alert("数据加载失败"); 
+        } 
+    }); 
+} 
+
+function saveCkeck(id){
+   save(id,ids);
+}
+function save(id,list){
+    if(_object_type!='radio'){
+		if(id!=-1){//上一页，下一页时候传-1，根据全局变量的值勾选对应的复选框
+		   var l=list.length;
+		    var v=$.trim($("#"+id).val());
+		    var i=getIndex(list,v);//查找值在数组中出现的位置
+		   if($("#"+id).attr("checked")){
+		        if(i==-1)//-1则表示数组中不存在，可以增加
+		            list[l]=v;
+		    }else{
+		        if(i>-1)
+		            removeItemInArray(list,i);//去掉勾选后，移除数组的元素
+		    }
+		}
+		for(var i=0;i<list.length;i++){
+		    $("#"+list[i]).attr("checked",true);//全局变量中保存的值
+		    $("#sdfsdf").val(ids.join(","));
+		}
+		//修复只有一个时点击取消无法取消的bug
+		if(list.length<=0){
+		    $("#sdfsdf").val('');
+        }
+    }else{
+    	if(id!=-1){
+	    	$('.input_object_check').each(function(){
+	    		if($(this).val()==id){
+	    			$(this).attr("checked",true);
+	    		}else{
+	    			$(this).attr("checked",false);
+	    		}    		
+	    	});
+	    	$("#sdfsdf").val(id);
+    	}else{
+    		var _id=$("#sdfsdf").val();
+    		$("#"+_id).attr("checked",true);
+    	}
+    }
+     
+}
+/**
+* 根据数组的值查询其在数组中的位置
+* @param array  数组
+* @param val 值
+* @return
+*/
+function getIndex(array,val){
+   for (var i = 0; i < array.length; i++) {
+        if (array[i] == val) return i;
+    }
+    return -1;
+}
+/**
+* 删除数组中的某个位置的元素
+* @param array 数组
+* @param index 位置
+* @return
+*/
+function removeItemInArray(array,index){
+    if (index > -1) {
+     array.splice(index, 1);
+    }
+} 
+</script>

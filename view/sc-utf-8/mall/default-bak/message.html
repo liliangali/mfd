@@ -1,0 +1,48 @@
+{include file=header2.html}
+<div class="cus_center_box" style="margin-top:30px;">
+  <div class="cgzhmm" style=" width:1198px; margin:0 auto; border:1px solid #ddd; text-align:center; height:500px;">
+    <div class="warning">
+        <h3 style="background:none; margin-top:200px; font-size:18px; font-weight:normal; height:30px; line-height:30px; overflow:hidden;">{$message}<br />&nbsp;</h3>
+        <p class="wexitisi">
+		<!--{foreach from=$links item=item}-->
+          <a style="color:#aaa;" href="{$item.href}">>> {$item.text}</a><br />
+        <!--{/foreach}-->
+        </p>
+    </div>
+  </div>
+</div>
+
+<div class="content" style="display:none;">
+    <div class="particular" style="width:1000px; margin:0 auto; padding:100px; border:3px solid #cccccc;">
+        <div class="particular_wrap" style=" margin:0 auto;">
+            <p class="{if $icon eq "notice"}success{else}defeated{/if}">
+                <span></span>
+                <b style="width:380px;">{$message}</b>
+                <!--{if $err_file}-->
+                <b style="clear: both; font-size: 15px;">Error File: <strong>{$err_file}</strong> at <strong>{$err_line}</strong> line.</b>
+                <!--{/if}-->
+                <!--{if $icon neq "notice"}-->
+                <font style="clear: both; display:block; margin:0 0 0 50px;">
+                <!--{foreach from=$links item=item}-->
+                        <a style="color:#aaa;" href="{$item.href}">>> {$item.text}</a><br />
+                <!--{/foreach}-->
+                </font>
+                <!--{/if}-->
+            </p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{if !$redirects}
+<script type="text/javascript">
+twoMenu() 
+anav()
+//<!CDATA[
+<!--{if $redirect}-->
+window.setTimeout("{$redirect}", 3000);
+<!--{/if}-->
+//]]>
+</script>
+{/if}
+{include file=footer.html}

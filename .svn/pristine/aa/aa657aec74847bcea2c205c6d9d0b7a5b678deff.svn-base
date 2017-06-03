@@ -1,0 +1,398 @@
+{include file="diy_header.html"} 
+<link href="{res file=css/custom.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/thickbox.css}" rel="stylesheet" type="text/css" />
+<script type="Text/Javascript" src="{res file=js/thickbox-barnd.js}"></script>
+<script type="text/javascript" src="{lib file=json.js}"></script>
+<script type="text/javascript" src="{res file=js/plugins/rc.js}"></script>
+<script type="Text/Javascript" src="{res file=js/custom.js}"></script>
+<script type="Text/Javascript" src="{res file=js/customjscroll.js}"></script>
+<script  type="text/javascript" src="/static/js/public.js"></script>
+<script language="JavaScript">
+function myrefresh(){
+	window.location.reload();
+}
+</script>
+<div class="custom_box">
+  <div class="diy_left">
+    <div class="diy_bigimg"><img src="{$cinfo.cst_image}" /></div>
+    <div class="custom_cz"> <a onclick="myrefresh()" class="cs" style="left: 80px;"><i></i><span>初始</span></a> <a herf="#" class="sm"><i></i><span>说明</span></a>
+      <div class="tanchu_box">
+        <div class="tipbg_top"></div>
+        <div class="tanchu_bg"></div>
+        <div class="tipbg_bot"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!--右边 开始-->
+  <div class="cus_l" id="custom" data-imgurl={$imgurl} data-sequence={$sequence} data-dprice={$cinfo.service_fee} data-consumption={$consumption}>
+    <input type="hidden" id ='process' name="process" value='{$processaa}'>
+    <input type="hidden" id ='imgcode' name='imgcode' value=''>
+    <div class="cus_l_menu">
+      <ul>
+        {foreach from=$menu item=k}
+        {if $data[$k]}
+        
+        {foreach from=$data[$k] item=itme name=foo key=key}
+        
+        {if $key eq 'name'}
+        <li  {if $k eq 1}class="lihover"{/if}><i class="i_con{$k} {if $itme eq '款式设计'}icon_img_{$cinfo.cst_cate}{/if}"></i>{$itme}</li>
+        {/if}
+        {/foreach}
+        {/if}
+        {/foreach}
+      </ul>
+      <p class="clear"></p>
+    </div>
+    <div class="cus_list">
+      <ul>
+        
+        <!-- 面料选择 开始 -->
+        <li style="display:block;">
+          <div class="cus_mianl"> {foreach from=$data.1.part item=fabric name=foo}
+            <div {if $fabric.info.is_dft eq 1} class="on" {/if} data-tcate={$fabric.info.top_cate} data-pid={$fabric.info.part_id} data-fabric={$fabric.info.part_name} data-alias={$fabric.info.alias} data-fprice={$fabric.info.price}> <img src="{$fabric.info.part_small}" width="68" height="68" />
+              <p>{$fabric.info.part_name}<br />
+                {$fabric.info.price|price}</p>
+            </div>
+            {/foreach}
+            <p class="clear"></p>
+          </div>
+        </li>
+        <!-- 面料选择 结束 --> 
+        
+        <!-- 里料选择 开始 --> 
+        {if $data.2.part}
+        <li>
+          <div class="cus_lil list_div"> {foreach from=$data.2.part item=material name=foo}
+            <div {if $material.info.is_dft eq 1} class="on" {/if} data-alias="LL" data-tname="里料" data-pname="{$process.info.part_name}" data-type="material" data-material={$material.info.part_name} data-tcate={$material.info.top_cate}  data-pid={$material.info.part_id} data-img={$material.info.b_img} data-mprice={$material.info.price}> <img src="{$material.info.s_img}"> <b>{$material.info.part_name}</b> </div>
+            {/foreach} </div>
+          <p class="clear"></p>
+        </li>
+        {/if} 
+        <!-- 里料选择 结束 --> 
+        
+        <!-- 款式选择 开始 --> 
+        {if $data.3.part}
+        <li>
+          <div class="cus_sty_box"> {foreach from=$data.3.part item=processdata key=key name=foo}
+            <div class="cus_sty_div"> <span {if $smarty.foreach.foo.first}class="hover_span"{/if}>{$processdata.name}</span>
+              <div class="cus_sty_list_box list_div" {if $smarty.foreach.foo.first}style="display:block;"{/if}> {foreach  from=$processdata.part item=process name= p}
+                {if $process.info.alias}
+                <div {if $process.info.is_dft eq 1}class="on"{/if} data-tname="{$processdata.name}" data-process={$process.info.part_name} data-tcate={$process.info.top_cate} data-alias={$process.info.alias} data-pid={$process.info.part_id}><img src="{if $process.info.part_small}{$process.info.part_small}{else}{$process.info.s_img}{/if}"> <b>{$process.info.part_name}</b> </div>
+                {/if}
+                {/foreach} </div>
+            </div>
+            {/foreach}
+            <p class="clear"></p>
+          </div>
+        </li>
+        {/if} 
+        <!-- 款式选择 结束 --> 
+        
+        <!-- 扣子选择开始 --> 
+        {if $data.4.part}
+        <li>
+          <div class="kouzi_sel list_div"> {foreach from=$data.4.part item=buttons name=foo}
+            <div {if $buttons.info.is_dft eq 1} class="on" {/if} data-buttons={$buttons.info.part_name} data-type="buttons" data-tcate={$buttons.info.top_cate}  data-pid={$buttons.info.part_id} data-alias={$buttons.info.alias}><img src="{$buttons.info.s_img}"> <b>{$buttons.info.part_name}</b> </div>
+            {/foreach} </div>
+          <p class="clear"></p>
+        </li>
+        {/if} 
+        <!-- 扣子选择结束 --> 
+        
+        <!-- 个性化 开始 --> 
+        {if $data.5.part}
+        <li> 
+          <!--滚动条开始-->
+          <div class="cus_diysoll">
+            <div class="cus_diy_list">
+              <div class="cus_diy">
+                <div class="qianm">
+                  <textarea  id="TextArea1" cols="45" rows="5"  placeholder="签名内容"></textarea>
+                </div>
+                <p class="sy_text">剩下<span id="textCount">20</span></p>
+                <div class="zt_style" style="margin-top:0;">
+                  <h1>字体</h1>
+                  <div class="img_div"> {foreach from=$data.5.part item=color name=foo}
+                    {if $color.info.personality eq 'font'}
+                    <p {if $color.info.is_dft eq 1} class="on"{/if} data-tname="字体" data-pname="{$color.info.part_name}" data-font={$color.info.part_name} data-tcate={$color.info.top_cate}  data-pid={$color.info.part_id}><img src="{$color.info.s_img}" /></p>
+                    {/if}
+                    {/foreach} </div>
+                  <p class="clear"></p>
+                </div>
+                <div class="zt_style yanse">
+                  <h1>颜色</h1>
+                  <div class="img_div"> {foreach from=$data.5.part item=color name=foo}
+                    {if $color.info.personality eq 'color'}
+                    <p {if $color.info.is_dft eq 1} class="on"{/if}data-tname="颜色" data-pname="{$color.info.part_name}"  data-color={$color.info.part_name} data-tcate={$color.info.top_cate}  data-pid={$color.info.part_id}><img src="{$color.info.s_img}" /></p>
+                    {/if}
+                    {/foreach} </div>
+                  <p class="clear"></p>
+                </div>
+                <div class="location">
+                  <h1>位置</h1>
+                  {foreach from=$data.5.part item=color name=foo}
+                  {if $color.info.personality eq 'location'}
+                  <p {if $color.info.is_dft eq 1} class="on" {/if}data-tname="位置" data-pname="{$color.info.part_name}"  data-location={$color.info.part_name} data-tcate={$color.info.top_cate}  data-pid={$color.info.part_id}><i></i>{$color.info.part_name}</p>
+                  {/if}
+                  {/foreach} </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        {/if} 
+        <!-- 个性化 结束 -->
+      </ul>
+      <p class="clear"></p>
+      
+      <!--选择尺码开始-->
+      <div class="diy_size" style="display:none;">
+        <div class="js_div xylt" data-diy='1'>
+          <p class="p_tit left_ps0"><i></i>我需要量体</p>
+          <div class="lt_box"> <span>身高</span>
+            <input type="text" name="height" onkeyup="$_CNC_PHOTO.clearNoNum(this)" />
+            <span class="pd">CM</span><span>体重</span>
+            <input type="text" name="weight" onkeyup="$_CNC_PHOTO.clearNoNum(this)" />
+            <span>KG</span> </div>
+          <p class="clear"></p>
+        </div>
+        <div class="js_div xzcm"  data-diy='2'>
+          <p class="p_tit left_ps"><i></i>选择标准码</p>
+          <div class="size_box"> <span>已先尺码是：<font></font></span> </div>
+          <div class="show_chima" style="display:none;">
+            <p class="cm_top"></p>
+            <div class="cm_mid"> {foreach from=$size item=s name=foo}
+              <p {if $smarty.foreach.foo.first}class="on"{/if} data-size={$s}>{$s}</p>
+              {/foreach}
+              <p><a href="/upload/images/{$cinfo.cst_cate}_chima.jpg" width="790" height="790" title="尺码表" class="thickbox">查看尺码表</a></p>
+            </div>
+            <p class="clear"></p>
+            <p class="cm_bot"></p>
+          </div>
+        </div>
+        <div class="mr_text">确认下单之前请先选择量体或标准码</div>
+      </div>
+      <!--选择尺码结束-->
+      <div class="cus_cuont"><a href="javascript:;" onclick="submit()">确认下单</a></div>
+      <div class="diy_share">
+         <p class="sc" id="shouchang" onclick="addFavorite('{$cinfo.cst_id}','{$cinfo.cst_name}')"><a href="javascript:void(0)">收藏</a></p>
+         <div class="fx shareList">
+           <a href="javascript:void(0)"class="qzone" ></a>
+           <a href="javascript:void(0)" class="sina"></a>
+           <a href="javascript:void(0)" class="weixin"></a>
+           <a href="javascript:void(0)" class="qblog"></a>
+         </div>
+      </div>
+      
+    </div>
+  </div>
+  <p class="clear"></p>
+  <!--右边 结束--> 
+</div>
+<form action="{link app=demand act=sue arg0=diy}" method="post" id="diyForm">
+    <input type="hidden" name="id" value="{$cinfo.cst_id}">
+    <input type="hidden" name="code" value="" id="dCode">
+    <input type="hidden" id ='process' name="process" value='{$processaa}'>
+    <input type="hidden" id ='imgcode' name='imgcode' value=''>
+</form>
+<script>
+function submit(){
+	var label = arguments[0] ? arguments[0] : 0;
+	var code = '';
+
+	$('.cus_mianl div').each(function(i,o){
+    		var $o=$(this);
+    		if($o.filter('.on').data('tcate')){
+    			code += '3:'+$o.filter('.on').data('fabric')+'|||';
+    		}
+    		
+	});
+	$('.cus_lil div').each(function(i,o){
+    		var $o=$(this);
+    		if($o.filter('.on').data('tcate')){
+    		  code += '里料:'+$o.filter('.on').data('material')+'|';
+    		}
+    		
+	});
+ 	$('.cus_sty_list_box div').each(function(i,o){
+    		var $o=$(this);
+    		if($o.filter('.on').data('tcate')){
+    			code += $o.filter('.on').data('tname')+':'+$o.filter('.on').data('process')+'|';
+    		}
+    		
+    		
+	});
+	 var objs = eval($('input[name=process]').val());
+	$('.kouzi_sel div').each(function(i,o){
+    		var $o=$(this);
+    		
+    		if($o.filter('.on').data('tcate')){
+    			code += '扣子:'+$o.filter('.on').data('buttons')+'|';
+    		}
+    		
+    		
+	});
+	 
+	
+	$('.zt_style div p').each(function(i,o){
+    		var $o=$(this);
+    		if($o.filter('.on').data('tcate')){
+    			code += '字体:'+$o.filter('.on').data('pname')+'|';
+    		}
+    		
+	});
+	
+	$('.yanse div p').each(function(i,o){
+    		var $o=$(this);
+    		if($o.filter('.on').data('tcate')){
+    			code += '颜色:'+$o.filter('.on').data('color')+'|';
+    		}
+    		
+	});
+	
+	$('.location p').each(function(i,o){
+    		var $o=$(this);
+    		if($o.filter('.on').data('tcate')){
+    			code += '位置:'+$o.filter('.on').data('location')+'|';
+    		}	
+	});
+
+	$("#dCode").val(code);
+	
+	$("#diyForm").submit();
+}
+
+function addFavorite(id,kys){
+	if(hasLogin()== 0){
+      login(function(){
+        $.cookie("hasLogin",1);
+        addFavorite(id,kys)
+      })
+      return
+    }
+    var url = "{link app=my_favorite act=add}?type=custom";
+    $.get(url, {'item_id':id,'keyword':kys,'ajax':1}, function(data){
+        var data = eval("("+data+")")
+        if(data.done){
+			var html="<i id='animate' style='display:none;position:absolute;z-index:11;width:19px;height:17px;background:url(/static/img/comm.png) 0 -22px'></i>";
+				s=$('#shouchang').offset(),
+				sL=s.left+40,
+				sT=s.top+20,
+				e=$('.fixed-nav').offset(),
+				eL=e.left+15,
+				eT=e.top;
+			$('body').append(html);
+			var $animate=$('#animate');
+			$animate.css({left:sL,top:sT,display:'block'}).animate({left:eL,top:eT-50},'slow',function(){
+				$animate.animate({left:eL,top:eT,opacity:0.5},'slow',function(){
+					$animate.remove()
+				})
+			})
+		}else{
+			msg(data.msg); 
+		}
+        setTimeout("location.reload()",1000);
+    });
+}
+</script>
+
+{if $clist}
+<div class="base-style">
+<div class="tit-bar"></div>
+<div class="slideBox">
+      <div id='swipe1' class='swipe'>
+        <div class='swipe-wrap'>
+        {foreach from=$clist item=cst}
+          <div class="item">
+            <ul>
+            {foreach from=$cst item=c}
+              <li><a href="{link app=custom act=minfo arg=$c.cst_id}" target="_blank" class="pic"><img src="{$c.cst_image}"></a></li>
+            {/foreach}
+            </ul>
+          </div>
+      {/foreach}
+        </div>
+      </div>
+      <span class="prev"></span> <span class="next"></span> 
+  </div>
+</div>
+{/if}
+<div class="diy_desc">
+    <div class="tit-bar"></div>
+    {$info.cst_content}
+</div>
+<script type="text/javascript" src="/static/expand/jquery.swipe.js"></script> 
+<script>
+// 滚动图
+(function(){
+	var elem = document.getElementById('swipe1');
+	var mySwipe = Swipe(elem, {
+		callback: function(index, element) {
+			$('.box1 .swipe-btn>span').eq(index).siblings('span').removeClass('cur').end().addClass('cur');     
+		}
+	});
+	$('.prev').click(function(){
+		mySwipe.prev()	
+	});
+	$('.next').click(function(){
+		mySwipe.next()	
+	});
+})();
+
+$(function(){
+	
+ $_CNC_PHOTO.init();
+/*  $_CNC_PHOTO.setTotal(); */
+ 
+ $(".js_div").click(function(){
+	 
+	  if(!$(this).hasClass("on")){
+		  $(this).addClass("on").siblings().removeClass("on");
+	  }
+  });
+  
+  
+  $('.left_ps0').click(function(){
+	  $(this).parent().siblings().find('.show_chima').fadeOut();
+  });
+  
+  $('.left_ps').click(function(){
+	  $(this).siblings('.show_chima').fadeIn();
+  });
+
+
+ $(".cm_mid p").click(function(){
+	
+	  if(!$(this).hasClass("on")){
+		  $(this).addClass("on").siblings().removeClass("on");
+	  }
+	  $(".size_box font").html($('.cm_mid p').filter('.on').data('size')); 
+	  $_CNC_PHOTO.setTotal();
+	  $('input[name=weight]').val('');
+	  $('input[name=height]').val('');
+	  $(this).parents('.show_chima').fadeOut();
+	  
+  });
+	$("#TextArea1").keydown(function(){
+		var curLength=$("#TextArea1").val().length;	
+		if(curLength>=20){
+			var num=$("#TextArea1").val().substr(0,19);
+			$("#TextArea1").val(num);
+			//alert("超过字数限制，多出的字将被截断！" );
+		}
+		else{
+			$("#textCount").text(19-$("#TextArea1").val().length)
+		}
+	});
+
+});
+/**
+ * 查看尺码
+ */
+function openChima(id){
+	window.open('/upload/images/'+id+'_chima.jpg','','width=790,height=590');
+}
+
+
+</script> 
+{include file="footer.html"}

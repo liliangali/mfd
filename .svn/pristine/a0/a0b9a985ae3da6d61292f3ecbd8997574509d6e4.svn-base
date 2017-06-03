@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>订单详情</title>
+<link rel="stylesheet" type="text/css" href="/static/css/mobile_style.css" media="screen">
+<link type="text/css" href="public/static/wap/css/productlist.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="container">
+    <header class="hdtop topBar">
+        <div class="edit fl">
+                <p class="p1"><a href="javascript:;" onClick="history.go(-1)"><img src="public/static/wap/images/tw_03.png"></a></p>
+                <p class="p2">订单详情</p>
+            </div>
+    </header>
+        <div class="topnoe">
+        	<p class="fl">订单金额：¥{$order.order_amount|default:0.00}</p>
+            <p class="fr">{$order.status_name}</p>
+        </div>
+        <div class="xqztdata">
+        <ul class="xqzttstx">
+        	    <li>单号：{$order.order_sn}</li>
+            	<li>时间：{$order.add_time|date:complete}</li>
+                <li>支付：{$order.payment_name}</li>
+            </ul>
+        </div>
+        <p class="jgt"></p>
+        <div class="xqztdata">
+        	<h4>收货信息</h4>
+            <p>姓名：{$order.ship_name}</p>
+            <p>手机：{$order.ship_mobile}</p>
+            <p>地址：{$order.ship_area} {$order.ship_addr}</p>
+        </div>
+        <p class="jgt"></p>
+		<div class="xqztdata">
+          <h4>物流信息</h4>
+          <p>物流公司：{if $order.delivery.logi_no}{$order.delivery.logi_name}{else}暂未发货{/if}</p>
+          <p>运单编号：{$order.delivery.logi_no}</p>
+          <!-- <p onclick="checkCompanyCode(this)"><input type='button' />查看</p> -->
+          {if $order.waybillno}
+          <p ><a href="/my_order-checkExpressInfo-{$order.order_id}.html">查看物流</a></p>
+          {/if}
+		</div>
+        <p class="jgt"></p>
+        <div class="xqztdata">
+        	<h4>订单备注</h4>
+            <p>{$order.memo|default:无}</p>
+        </div>
+        <p class="jgt"></p>
+
+        <div class="xqztdata">
+        	<h4>发票信息</h4>
+					{if $order.invoice_need eq 1}
+								<h3>{$invoice.title}</h3>
+						{if $order.invoice_com eq 3}
+								{foreach from=$order.invoice.content key=key item=voice}
+								<p>{$invoice_lang.$key}：{$voice}</p>
+								{/foreach}
+						{else}
+							 <p>{$invoice.content}</p>
+						{/if}
+				 {else}
+								 <p>不需要开发票</p>
+				 {/if}
+		</div>
+        <p class="jgt"></p>
+
+        <div class="ztspqd">
+        	<h3>商品清单</h3>
+           {foreach from=$order.order_goods  item=orders  key=key}
+
+            <div class="ztimgtex">
+                <div class="ztspxxpic fl"><img src="{$orders.goods_image}"></div>
+                <div class="zttitword fl">
+                    <h4>{$orders.goods_name}</h4>
+                    <div class="ztyuan ztytop">¥{$orders.price}×{$orders.quantity}</div>
+                    <!--{if $orders.type eq 'fdiy'}-->
+                    <div class="ztyuan">{$orders.spe_name}</div>
+                    <!--{else}-->
+                    <div class="ztyuan ztytop">{$orders.params.oProducts.spec_info}</div>
+                    <!--{/if}-->
+                </div>
+                <div class="jgpl">
+                {if $orders.comment && $order.status==40}
+                  <a href="/comment.html">查看评论</a>
+                {/if}
+                {if !$orders.comment && $order.status==40}
+                  <a href="/my_comment-publish-{$orders.rec_id}-{$orders.type}.html">发表评论</a>
+                {/if}
+                </div>
+            </div>
+
+           {/foreach}
+        </div>
+        <p class="jgt"></p>
+        <div class="balance">
+        		<div class="bottnoe">
+                <p class="fl">订单金额</p>
+                <p class="fr colorj">{$order.final_amount|price}</p>
+            </div>
+							{if $order.discount > 0}
+							<div class="bottnoe">
+							<p class="fl">券</p>
+							<p class="fr colorj">- {$order.discount|price}</p>
+							</div>
+							{/if}
+							<!-- {if $order.coin > 0}
+							<div class="bottnoe">
+								<p class="fl">麦富迪币</p>
+							  <p class="fr colorj">- {$order.coin|price}</p>
+							</div>
+							{/if} -->
+							<!-- {if $order.money_amount > 0}
+							<div class="bottnoe">
+								<p class="fl">余额</p>
+								<p class="fr colorj">- {$order.money_amount|price}</p>
+							</div>
+							{/if} -->
+        </div>
+        <div class="actual">应付总额：<span>{$order.final_amount|price}</span></div>
+        <div class="qfkbot fr">
+        {if $order.status == 11}           
+            <a href="order-paycenter.html?id={$order.order_sn}" class="payable fr">去付款</a>
+            <a href="{link app=my_order act=operation arg0=cancel arg1=$order.order_id}" class="payable fr">取消订单</a>
+        {/if}
+        
+         {if $order.status == 30}
+            <a href="{link app=my_order act=operation arg0=finish arg1=$order.order_id}" class="payable fr">确认收货</a>
+        {/if}
+        </div>
+    </div>
+
+    <script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+     <script src="http://r.cotte.cn/global/luck/mobile/luck.js"></script>
+    <script>
+        
+        function checkCompanyCode(){
+            var corp_code="{$order.delivery.corp_code}"
+            var logi_no="{$order.delivery.logi_no}"
+            console.log(logi_no)
+            if(corp_code.length==0){
+                console.log
+                $.getJSON('http://www.kuaidi100.com/autonumber/auto?num='+logi_no+'&key=fYgHSpmg2046&callback=?',function(res){
+                    // var re=eval('('+res+')')
+                        console.log(res[0]['comCode'])
+                })
+                /*var sign=md5()
+                 $.post('http://poll.kuaidi100.com/poll/query.do',{customer:BE3A5D9D03C941D8C2A8B5B7B6D88D8A,},function(res){
+                        console.log(res)
+                },'json')*/
+            }
+        }
+
+    	function loseer(obj){
+    		var id=$('.payable').attr('data-id');
+    		luck.open({
+				title:['提示'],
+				content: '确定取消该订单吗？',
+				btn:['确定','取消'],
+				yes:function(){
+				$.ajax({
+        		url:"/order-loseer.html",
+                type: "POST",
+        		data:{
+        			id:id
+        		},
+        		success: function(res){
+        			window.location.href='/order-orderindex.html?status=all';
+        		}
+
+        	})
+
+				},
+				no: function(){
+					luck.close()
+				}
+
+		});
+
+    	}
+
+
+
+    </script>
+
+
+</body>
+</html>

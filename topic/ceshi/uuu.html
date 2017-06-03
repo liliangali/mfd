@@ -1,0 +1,31 @@
+<style>
+body{ display:none;}/*不许删*/
+
+</style>
+<div id="zhuanti">
+	阿萨德发送到阿斯蒂芬阿斯蒂芬
+</div>
+<script src="http://r.cotte.cn/global/jquery-1.8.3.min.js"></script>
+<script>
+
+document.domain='mfd.cn';
+$.ajax({
+	url:'/header.html',
+	success: function(d){
+		$('#zhuanti').before(d) 
+		$.ajax({
+			url:'/footer.html',
+			success: function(d){
+				$('#zhuanti').after(d);
+				$('body').fadeIn('slow');
+			},
+			error:function(e){
+				alert('获取底部失败')	
+			}	
+		});
+	},
+	error:function(e){
+		alert('获取头部失败')	
+	}	
+});
+</script>

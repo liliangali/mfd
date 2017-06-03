@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>阿里品牌商</title>
+<link rel="stylesheet" type="text/css" href="../../static/css/public.css">
+<link rel="stylesheet" type="text/css" href="../../static/css/usercenter.css">
+<script type="text/javascript" src="../../static/expand/jquery.js"></script>
+<script  type="text/javascript" src="../../static/js/public.js"></script>
+</head>
+
+<body>
+<div class="head2">
+  <div class="w">
+    <div class="fl left"> <a href="member-index-user.html"  class="cur"> 我是消费者<i></i><em></em></a> <a href="member-index-user_set.html" >帐号设置<i></i><em></em></a> <a href="member-index-user_message.html" >我的消息<i></i><em></em></a> <a href="member-index-user_favorite.html" >我的收藏<i></i></a> </div>
+    <div class="fr right">
+      <div class="home_page"><a href="/" title="回 阿里品牌商 主页"></a></div>
+      <div class="topMenu fl"> <i></i><i></i><i></i><em></em>
+        <div class="menuList"> <a href="/">首页</a> <a href="tailor.html">找品牌商</a> <a href="gallery.html">挑款式</a> <a href="fabrics.html">选面料</a> <a href="single.html">品晒单</a> <a href="demand-lists.html">看需求</a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="w">
+  <div class="AreaBox clearfix">
+    <div class="menu">
+      <div class="headPic"> <img src="http://www.kuteid.com/upload/avatar/000/00/00/07_avatar_big.jpg" width="150" height="150" /> <a href="member-index-user_set.html"><span class="edit" >修改个人资料</span></a> </div>
+      <p class="userName"> 徐小曼1</p>
+      <p class="rank">普通用户<img src="http://www.kuteid.com/data/files/mall/lv_logo/1/1.png" /></p>
+      <dl>
+        <dt>交易管理</dt>
+        <dd> <a href="buyer_order.html" class=""><span class="ico5">我的订单</span></a> </dd>
+        <dd> <a href="my_demand.html" class=""><span class="ico5">我的需求</span></a> </dd>
+        <dd> <a href="my_single.html" class=""><span class="">我的晒单</span></a> </dd>
+        <dd> <a href="my_body.html" class=""><span class="">量体数据</span></a> </dd>
+        <dt>关系管理</dt>
+        <dd> <a href="my_follow.html" class=""><span class="ico5">我的关注</span></a> </dd>
+        <dt>投诉管理</dt>
+        <dd> <a href="my_complaint.html" class=""><span class="ico5">我发起的投诉</span></a> </dd>
+      </dl>
+    </div>
+    <div class="con">
+      <h2 class="tit">诚信度规则</h2>
+       <dl class="honestyRule">
+             {$rule}
+            </dl>
+     
+    </div>
+  </div>
+</div>
+<div class="footer2">
+  <p><span><a href="#">集团简介</a></span><span><a href="#">法律声明</a></span><span><a href="#">潮流资讯</a></span><span><a href="#">招聘信息</a></span><span><a href="#">员工之家</a></span></p>
+  <p><span>© alicaifeng.com 版权所有</span><span>客服中心：service@alicaifeng.com</span><span>鲁ICP备10207738</span><span>京公网安备110106010015号</span></p>
+</div>
+<script  type="text/javascript" src="../../static/js/usercenter.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+ALTER TABLE `cf_order_goods` ADD `zhek_id` INT(11) NOT NULL DEFAULT '0' COMMENT '使用折扣id' AFTER `fav_price`, ADD `zhek_name` VARCHAR(255) NOT NULL COMMENT '折扣名称' AFTER `zhek_id`, ADD `quan_id` INT(11) NOT NULL DEFAULT '0' COMMENT '使用优惠券id' AFTER `zhek_name`, ADD `quan_name` VARCHAR(255) NOT NULL COMMENT '优惠券名' AFTER `quan_id`;

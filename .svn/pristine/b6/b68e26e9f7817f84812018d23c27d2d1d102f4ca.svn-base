@@ -1,0 +1,212 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+        $('#user_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+/*             client_name : {
+                required : true,
+                remote   : {
+                    url :'index.php?app=client_finance&act=ajax_search_name',
+                    type:'get',
+                    data:{
+                        client_name : function()
+                        {
+                            return $('#client_name').val();
+                        },                       
+                    }, */
+/*         			success:function(res){
+        				if(res.done){
+        					return true
+        				}else{
+        					return false
+        				}
+        			}
+                } 
+            },*/
+			time_to:{
+/* 				time_from_exit:true, */
+				compare:true,
+			},
+        },
+        messages : {
+/*             client_name : {
+                required : '必填',
+                remote   : '用户名不存在！'
+            }, */
+           	time_to:{
+           		//compare:'截至时间必须大于初始时间',
+           	}
+            
+        }
+    });
+});
+jQuery.validator.addMethod("compare", function(value, element) {   
+
+	var from = $("#time_from").val();
+	return value >= from;
+
+	}, "截至时间必须大于初始时间");
+/* jQuery.validator.addMethod("time_from_exit", function(value, element) {   
+
+	var from = $("#time_from").val();
+	return from;
+
+	}, "请选择初始时间"); */
+</script>
+<div id="rightTop">
+    <ul class="subnav">
+		<li><a class="btn1" href="{$url}">返回</a></li>
+        <li><a class="btn1" href="index.php?app=client_finance&amp;act=export&amp;type=client_finance_detail&amp;user_id={$user_id}&amp;<!-- {if $time_from} -->time_from={$time_from}<!-- {else} -->time_from={$smarty.get.time_from}<!-- {/if} --><!-- {if $time_to} -->&amp;time_to={$time_to}<!-- {else} -->&amp;time_to={$smarty.get.time_to}<!-- {/if} -->">导出</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get" id="user_form">
+             <div class="left">
+                <input type="hidden" name="app" value="client_finance" />
+                <input type="hidden" name="act" value="detail" />
+                用户：{$client_name}
+                <input type="hidden" name="client_name" value="{$client_name}"/>
+                <input type="hidden" name="user_id" value="{$user_id}"/>
+                时间从:<input class="queryInput2 Wdate" type="text" value="<!-- {if $time_from} -->{$time_from}<!-- {else} -->{$smarty.get.time_from}<!-- {/if} -->" style="width:150px" id="time_from" name="time_from" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                至：<input class="queryInput2 Wdate" type="text" value="<!-- {if $time_to} -->{$time_to}<!-- {else} -->{$smarty.get.time_to}<!-- {/if} -->" style="width:150px" id="time_to" name="time_to" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=client_finance&act=detail&user_id={$user_id}&client_name={$client_name}">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {if $finance_info}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+
+        <tr class="tatr1">
+            <td width="4%"><span ectype="order_by" fieldname="fyear">年</span></td>
+            <td width="4%"><span ectype="order_by" fieldname="fmonth">月</span></td>
+
+            <td width="4%"><span ectype="order_by" fieldname="fday">日</span></td>
+            
+            <td width="15%"><span ectype="order_by" fieldname="order_sn">订单号</span></td>
+
+            <td width="15%"><span ectype="order_by" fieldname="abstract">摘要</span></td>
+            <td width="10%">借方（发货）</td>
+            <td width="10%">贷方（收款）</td>
+             <td width="10%">余额</td>
+
+        </tr>
+       <!-- 期初余额 -->
+		<tr class="tatr2">
+        	<td></td>
+        	<td></td>
+        	<td></td>
+        	<td></td>
+        	<td>期初余额</td>
+        	<td ></td>
+        	<td ></td>
+        	<td>{$start_balance}</td>
+        </tr>
+        <!--{foreach from=$finance_info item=finance}-->
+        <tr class="tatr2">
+        	<td>{$finance.add_time|date:Y}</td>
+        	<td>{$finance.add_time|date:m}</td>
+        	<td>{$finance.add_time|date:d}</td>
+        	<td>{if $finance.finance_sn}{$finance.finance_sn}{else}无订单号{/if}</td>
+        	<td>
+        	<!-- {foreach from=$finance.abstract item=v} -->
+        	{$v}<br/>
+        	<!-- {/foreach} -->
+        	</td>
+        	<td ><!-- {if $finance.type==1} -->{$finance.trans_amount}<!-- {/if} --></td>
+        	<td  style="color:green"><!-- {if $finance.type==2} -->{$finance.trans_amount}<!-- {/if} --></td>
+        	<td>{$finance.end_balance}</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}--> 
+    </table>
+    <div id="dataFuncs">
+
+      	
+        <div class="pageLinks">       		 
+            {include file=page.bottom.html}
+            <span class="page mtr10">{if $finance_info}共{$count}笔交易，累计发生：发货{$expend_money}元，收款{$earning_money}元{/if}</span>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<script type="text/javascript">
+//二级层
+$('.dataTable .showInfo').click(function(){
+	var $this=$(this),obj=$this.parents('tr').next('tr');
+	if($this.hasClass('show')){
+		obj.hide();
+		$this.removeClass('show')
+	}else{
+		obj.show();
+		$this.addClass('show')
+	}
+})
+
+$('.export_btn').unbind().bind('click',function(){
+	var _type = $(this).attr('data-type');
+	
+	if(_type == 'all'){
+		var _condi = '&sinexporttype=all';
+		$('.mrightTop').find('.fontl').find('input').each(function(){
+	        if($(this).val() && $(this).attr('name')){
+	            if($(this).attr('name') != 'app' && $(this).attr('name') != 'act'){
+	                _condi += '&'+$(this).attr('name')+'='+$(this).val();
+	            }
+	        }
+	    })
+	    $('.mrightTop').find('.fontl').find('select').each(function(){
+	        if($(this).val() && $(this).attr('name'))
+	        _condi += '&'+$(this).attr('name')+'='+$(this).val();
+	    })
+	}else{
+		var ids='';
+	    $(".checkitem").each(function(){
+	        if($(this).attr("checked") == true){
+	            ids += ids ? ","+$(this).val() : $(this).val();
+	        }
+	    });
+
+	    if(ids.length == 0){
+	        return false;
+	    }
+	    var _condi = '&ids='+ids;
+	}
+	
+	window.open("index.php?app=order&act=export"+_condi);
+	return;
+})
+
+function print(){
+    var ids='';
+    $(".checkitem").each(function(){
+        if($(this).attr("checked") == true){
+            ids += ids ? ","+$(this).val() : $(this).val();
+        }
+    });
+
+    if(ids.length == 0){
+        return false;
+    }
+    window.open("index.php?app=order&act=orderprint&id="+ids);
+}
+</script>
+{include file="footer.html"}

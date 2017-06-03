@@ -1,0 +1,14 @@
+<!--{foreach from=$serves item=serve}-->
+           <div class="m_sgp">
+                <p class="p1"><input type="radio" name="radioidserve" value="{$serve.idserve|escape}"></p>
+				<p class="p2">{$serve.serve_name|escape}</p>
+				<p class="p3">{$serve.serve_address|escape}</p>
+                <p class="p4">{$serve.mobile|escape}</p>
+                <p class="p5"><a href="{link app=service act=info arg=$serve.idserve}" target="_blank">查看</a></p>
+           </div>
+            <!--{foreachelse}-->
+           <div class="m_sgp">
+           {$lang.no_data}
+           </div>
+           <!--{/foreach}-->
+           <p class="clear"></p>

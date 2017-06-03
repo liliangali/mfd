@@ -1,0 +1,57 @@
+{include file=user/member.header.html}
+<div class="w">
+    <div class="AreaBox clearfix">
+        {include file=user/member.menu.html}
+		<div class="con">
+			<h2 class="tit">账户充值</h2>
+			<div class="my_order">
+			
+            <table cellpadding="1" cellspacing="1" width="100%" border="0" >
+            <form action="{link app=recharge act=goToPay}" method="POST" id="payform"  target="_blank"> 
+			 <tr>
+              <th width="20%">充值金额:</th>
+              <td width="80%"><input type="text" name="je" id="money" /><span class="error"></span></td>
+             </tr>
+             <tr>
+              <th width="20%">充值金额:</th>
+              <td width="80%"><input type="text" name="je" id="money" /><span class="error"></span></td>
+             </tr>
+             <tr>
+              <th width="20%">支付平台:</th>
+              <td width="80%"><ul>
+              {foreach from=$payments item=pmt name=foo}
+              <li>
+				<label><input type="radio" value="{$pmt.payment_code}" name="cd" {if $smarty.foreach.foo.first} checked="checked" class="moren" {/if} /><img alt="{$pmt.payment_name}" src="/static/img/payments/{$pmt.payment_code}.gif" /></label>
+		      </li>
+              {/foreach}
+              </ul></td>
+             </tr>
+             </form>
+             <tr><td colspan="2"><input type="button" id="submit" value="提交"></td></tr>
+             </table>
+             
+             </div>
+		</div>
+    </div>
+</div>
+
+
+<script>
+$(document).ready(function(){
+    $("#submit").click(function(){
+   	    var reg=/^\d+$/
+   	    if(!reg.test($('#money').val())){
+   	        $('#price').select();
+   	        $('.error').text('必须输入正整数')
+   	        return false;
+   	    }
+
+   	   $("#payform").submit();
+    });
+
+    
+})
+
+</script>
+
+{include file="user/footer.html"}

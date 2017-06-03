@@ -1,0 +1,100 @@
+{include file=order/member.header.html}
+<link rel="stylesheet" type="text/css" href="/static/css/order.css">
+
+<h1 class="ddtit">为消费者下订单<a href="tailor_order-tailor.html">《返回</a></h1>
+
+<div class="ddtijiao">
+<form action="" method="post" id="orderForm">
+<div class="fabric clearfix">
+  <b>面料查询</b>
+  <input type="text" name="fabric" />
+  <a href="javascript:void(0)" class="checkFabric">查询库存</a><span>请先选择品类再查询面料。</span>
+</div>
+
+
+<div class="source add_cate clearfix" style="border:0; padding-bottom:8px;">
+  <h2>订单来源：</h2>
+  <ul>
+   <li class="cur"><label><input type="radio" value="1" name="source" checked="checked"/>我的需求</label></li>
+   <li><label><input type="radio" value="2" name="source" />我的消费者</label></li>
+  </ul>
+</div>
+
+<div id="source"></div>
+
+<div class="source add_cate clearfix" style="border-top:1px solid #ddd; margin-top:8px;">
+  <h2>品类：</h2>
+  <ul>
+    <li class="cur"><label><input checked="checked" type="radio" value="3" name="clothingID" />上衣</label></li>
+    <li><label><input type="radio" value="2000" name="clothingID" />西裤</label></li>
+    <li><label><input type="radio" value="3000" name="clothingID" />衬衣</label></li>
+    <li><label><input type="radio" value="4000" name="clothingID" />马夹</label></li>
+    <li><label><input type="radio" value="6000" name="clothingID" />大衣</label></li>
+  </ul>
+</div>
+
+
+<div class="craft source clearfix"></div>
+
+<div class="embs source clearfix"></div>
+
+<div class="addrlist source clearfix">
+<h2>配送地址：</h2>
+<dl style="display:block;float:left">
+{foreach from=$addrlist item=addritem}
+<dd><label><input type="radio" name="address[id]" value="{$addritem.addr_id}" {if $addritem.addr_id == $cfinfo.def_addr}checked="checked"{/if} />{$addritem.region_name},{$addritem.address},{$addritem.consignee},{$addritem.phone_mob},{$addritem.phone_tel}</label></dd>
+{/foreach}
+</dl>
+</div>
+<div class="kh_payment source clearfix">
+  <h2>消费者金额</h2>
+  <ul class="ul_list"><li style="width:100%;"><input type="text" name="kh_amount" style="width:357px;" /></li></ul>
+</div>
+
+<div class="source kh_pay_time add_cate clearfix" >
+  <h2>消费者支付：</h2>
+  <ul>
+    <li class="cur"><label><input checked="checked" type="radio" value="1" name="kh_ship_time" />先付后货</label></li>
+    <li><label><input type="radio" value="2" name="kh_ship_time" />先货后付</label></li>
+  </ul>
+</div>
+
+<div id="kh" class="source clearfix">
+{include file=order/items/kh.html}
+</div>
+
+<div id="figures">
+{include file=order/items/figure.html}
+</div>
+
+<div class="bnt_box">
+<input type="button" class="order_sub" value="提交">
+<input type="reset" class="order_reset" value="重置">
+</div>
+</form>
+</div>
+
+<script type="text/javascript" src="/static/js/order.js"></script>
+<script type="text/javascript" src="/static/expand/jquery.form.js"></script>
+<script>
+$(function(){
+	$.order({
+	    ajaxCraftUrl   : '{link app=order act=ajax_craft}',
+	    ajaxEmbUrl     : "{link app=order act=ajax_emb}",
+	    checkFabricUrl : "{link app=order act=ajax_fabric}",
+	    checkSourceUrl : "{link app=order act=ajax_source}",
+	    getFigureUrl   : "{link app=order act=ajax_figure}",
+	    submitUrl      : "{link app=order act=create}",
+	    paycentUrl     : "{link app=paycenter}",
+	    _clothVal      : $('input[name=clothingID]:checked').val(),
+	    _sourceVal     : $('input[name=source]:checked').val(),
+	});
+});
+
+
+$(".add_cate li").click(function(){
+	$(this).addClass("cur").siblings().removeClass("cur");
+})
+
+</script>
+{include file=order/footer.html}

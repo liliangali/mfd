@@ -1,0 +1,28 @@
+@charset "utf-8";
+body{ background:#fff; font-family:'微软雅黑'; font-size:14px;}
+body,div,span, p{ margin: 0; padding: 0; border:0; outline: 0;}
+.fl { float: left; }
+.fr { float: right; }
+a,a:visited{ text-decoration:none; color:#666;}
+a:hover{ color:#9e0000; text-decoration:underline;}
+.myForm { width: 400px; margin:0 auto; overflow: hidden; }
+.myForm .item { position: relative; z-index: 0; width: 400px; height: 52px; margin-top: -1px; }
+.myForm .txt { width: 298px; height: 50px; padding-left: 99px; line-height: 50px\9; position: absolute; left: 0; top: 0; background: #fff; border: solid 1px #ddd; z-index: 1; color: #a9a9a9; outline:0;}
+.myForm .txt.cur { color: #333; }
+.myForm .item .tit { position: absolute; left: 15px; top: 17px; z-index: 2;color: #333; }
+.myForm .p { overflow: hidden; padding: 20px 0;}
+.myForm .p label{ color:#666;}
+.myForm .p a{ color:#333;}
+#error { height:60px; line-height:60px; color: #a50001;}
+#error .ico { float: left; width: 24px; height: 24px; background: url(../img/bg2.png) no-repeat -79px -54px; margin:18px 5px 0 0; }
+.btnBox .login { text-decoration:none; display: block; width: 195px; height: 46px; background: url(../img/btn.jpg) }
+.btnBox .login span { display: block; height: 46px; background: url(../img/btn.jpg) right top; margin-left: 3px; text-align: center; line-height: 46px; color: #fff; font-size: 16px; }
+.btnBox .login:hover { background-position: 0 -46px; }
+.btnBox .login:hover span { background-position: right -46px; }
+.btnBox .login:active { opacity: 0.8; }
+.btnBox .reg {text-decoration:none; display: block; width: 195px; height: 46px; background: url(../img/btn.jpg) 0 -253px }
+.btnBox .reg span { display: block; height: 46px; background: url(../img/btn.jpg) right -253px; margin-left: 3px; text-align: center; line-height: 46px; color: #454545; font-size: 16px; }
+.btnBox .reg:hover { background-position: 0 -299px; }
+.btnBox .reg:hover span { background-position: right -299px; }
+.btnBox .reg:active { opacity: 0.8; }
+.myForm .error-css, .myForm .error-css:focus { background-color: #f2dede; border-color: #ebccd1; color: #a94442; }

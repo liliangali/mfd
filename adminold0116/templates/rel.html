@@ -1,0 +1,24 @@
+<a href="javascript:void(0);" class="link">请选择</a>
+<input type="hidden" name="linkid" value="" id="linkid">
+<div class="panel"></div>
+<script>
+	$(document).ready(function(){
+		$(".link").click(function(){
+			var $ws   = "dialogHeight=500px;dialogWidth=610px;resizable=no;dialogLeft=500px;";
+			var $data = new Object();
+			$data.ids = "1,2,3";
+			$linkid = window.showModalDialog("index.php?app=common",$data,$ws);
+			if($linkid){
+				var url = "index.php?app=dissertation&act=link";
+				var params = "{id:"+$linkid+"}";
+				$.post(
+				   url,
+				   params,
+				   function(res){
+				      $("#linkid").val($linkid);
+				      $(".panel").html(res);
+				})
+			}
+		})
+	})
+</script>

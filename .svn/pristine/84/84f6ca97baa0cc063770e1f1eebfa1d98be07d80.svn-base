@@ -1,0 +1,191 @@
+<?php
+
+namespace App;
+
+use App\Models\Voucher;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
+
+class User extends Authenticatable
+{
+    public $table = 'member';
+    public $primaryKey = "user_id";
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_name', 'nickname', 'password',
+    ];
+    public  $timestamps = false;//去掉update_time等三个字段
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'pay_ps','invite','pay_password','im_qq','im_msn','im_skype','im_yahoo','im_aliww','last_ip','portrait','df_bankcard','user_token','avatar','coupon',
+        'parent_id','erweimaUrl','erweima_url','g_id','jiaose','status','channel','member_type','channel_code','channel_pid',
+    ];
+
+    /*
+     * 通过邮箱获取用户
+     * @pram email
+     */
+
+    protected static function  findUserEmail($email) {
+        return  User::where('user_name', $email)->first();
+    }
+
+     /*
+     * 根据event获取渠道二维码的相关信息
+     * @pram email
+     */
+    protected static function  findUserKey($code) {
+       $user = User::where('channel_code', $code)->first();
+       if(!$user)
+       {
+           return false;
+       }
+    }
+
+    /*
+    * 根据event添加渠道信息
+    * @pram
+    */
+    public static function qrcode($eventKey,$user)
+    {
+        $user_mod = new User();
+        $openid = $user->openid;
+        $m_info =$user_mod->where("openid",$openid)->first();
+        if(!$m_info) //只认初次关注的会员
+        {
+            $channel_info = $user_mod->where("channel_code",$eventKey)->first();
+            if($channel_info && $channel_info->user_id)//二级渠道人员
+            {
+                $user_mod->channel_pid = $channel_info->user_id;
+            }
+            else//临时渠道人员
+            {
+                $user_mod->channel_pid = $eventKey;
+            }
+            $user_mod->openid = $openid;
+            $user_mod->reg_time = time();
+            $nicname = preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $user->nickname);
+            if (!get_magic_quotes_gpc())
+            {
+                $nicname = addslashes($nicname);
+            }
+            if(!$nicname)
+            {
+                $nicname = "**";
+            }
+            $user_mod->nickname = $nicname;
+            $user_mod->user_name = $nicname;
+            $user_mod->avatar = $user->headimgurl;
+            $user_mod->save();
+            Voucher::regDebit($user_mod->user_id,$user_mod->nickname);
+        }
+    }
+
+    /*
+    * 根据event取消渠道信息
+    * @pram email
+    */
+    public static function uqrcode($user)
+    {
+        $user_mod = new User();
+        $openid = $user->openid;
+        $m_info =$user_mod->where("openid",$openid)->first();
+        if($m_info)
+        {
+            $m_info->channel_pid = 0;
+            $m_info->save();
+        }
+    }
+
+    /*
+     * 通过公司和姓名判断用户是否存在
+     * @param compnay, name
+     */
+
+    protected static function findUserName($company, $name) {
+        return User::where('company', $company)->where('name', $name)->first();
+    }
+
+    /*
+     * 获取公司成员信息
+     * @param compnay
+     */
+
+    protected static function companyMember($company, $search) {
+        if ($search === 'null') {
+            return User::leftJoin('department_member', 'department_member.user', '=', 'id')->leftjoin('departments', 'department', '=', 'department_id')->where('users.company', $company)->get();
+
+        } else {
+            $emailMode = "/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/";
+            if (is_numeric($search)) {
+                return User::leftJoin('department_member', 'department_member.user', '=', 'id')->leftjoin('departments', 'department', '=', 'department_id')->where('users.company', $company)->where('phone', 'like', '%'.$search.'%')->get();
+
+            } else if (preg_match($emailMode, $search)) {
+                return User::leftJoin('department_member', 'department_member.user', '=', 'id')->leftjoin('departments', 'department', '=', 'department_id')->where('users.company', $company)->where('email', 'like', '%'.$search.'%')->get();
+
+            } else {
+                return User::leftJoin('department_member', 'department_member.user', '=', 'id')->leftjoin('departments', 'department', '=', 'department_id')->where('users.company', $company)->where('name', 'like', '%'.$search.'%')->orWhere('department_name', 'like', '%'.$search.'%')->orWhere('role', 'like', '%'.$search.'%')->get();
+
+            }
+        }
+    }
+
+    /*
+     * 获取用户及用户组
+     * @param compnay
+     */
+
+    protected static function getMemberGroup($company) {
+        return User::join('user_group', 'user_group', '=', 'group_id')->where('users.company', $company)->get();
+    }
+    /*
+     * 获取单个用户及用户组信息
+     * @param uid
+     */
+
+    protected static function getUserGroup($uid) {
+        return User::join('user_group', 'user_group', '=', 'group_id')->where('id', $uid)->first();
+    }
+
+    /*
+     * 更新用户组
+     * @param uid, group_id
+     */
+    protected static function changeUserGroup($uid, $group_id) {
+        return User::where('id', $uid)->update(array("user_group"=>$group_id));
+    }
+
+    /*
+    *添加用户信息
+    * @author cck
+    * create_time 2016-08-08
+    */
+    protected static function addMember($memberInfo){
+      return User::insertGetId($memberInfo);
+    }
+
+    /*
+    *根据id获取用户信息
+    * @author cck
+    * create_time 2016-08-08
+    */
+    public static function getById($id){
+      return User::where('id',$id)->first();
+    }
+    /*
+    *根据id更改登录密码
+    * @author yjf
+    * create_time 2016-08-08
+    */
+    public static function changePassword($id,$password){
+        return User::where('id',$id)->update(array('password'=>$password));
+    }
+}

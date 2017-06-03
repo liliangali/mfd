@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+  
+    
+       <table cellpadding="0" cellspacing="0" border="0" width="100%" class="fsrcp">
+         <tr>
+          <th width="20%">时间</th>
+          <th width="20%">顾客</th>
+          <th width="13%">类型</th>
+          <th width="34%">内容</th>
+          <th width="13%">分值</th>
+         </tr>
+           {foreach from=$complaint item=v}
+         <tr>
+          <td>{$v.c_time|date:Y-m-d H:i}</td>
+          <td>{$v.nickname}</td>
+          <td class="hs">投诉</td>
+          <td>{$v.content}</td>
+          <td class="hs">-10</td>
+         </tr>
+           {/foreach}
+           {foreach from=$good_comment item=od}
+         <tr>
+          <td>{$od.addtime|date:Y-m-d H:i}</td>
+          <td>{$od.nickname}</td>
+          <td class="hs">{if $od.approve eq 1}好评{elseif $od.approve eq 3}差评{/if}</td>
+          <td>{$od.content}</td>
+          <td class="hs">{if $od.approve eq 1}+5{elseif $od.approve eq 3}-5{/if}</td>
+         </tr>         
+          {/foreach}
+    
+       </table>
+
+</body>
+</html>

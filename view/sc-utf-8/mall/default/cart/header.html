@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>购物车</title>
+<link href="/public/static/pc/css/public.css" rel="stylesheet">
+</head>
+
+<body>
+<!--头部/S-->
+<div class="head">
+    <div class="w"> <a href="/" class="logo fl"><img src="/public/static/pc/images/logo.gif" width="180" height="33"></a>
+		<ul class="nav fl">
+			<li><a href="./" class="cur">首页</a></li>			
+			<li class="ktspsl" data-cmd="menu">
+              <div class="hd"><a href="#" class="color">mfd.尚品</a></div>
+              <div class="bd clearfix">
+               <dl>
+               {foreach from=$mData item=data}
+                <dd>
+                 <p class="p1"><a href="{link app=man arg=$data.id}"><img src="{$data.small_img}" width="150" height="112"></a></p>
+                 <!--<p class="p2"><a href="{link app=man arg=$data.id}">{$data.title}</a></p>-->
+                 <p class="p2"><a href="{link app=man arg=$data.id}">{$data.design}</a></p>
+                </dd>
+               {/foreach}
+               </dl>
+              </div>
+            </li>
+			<li><a href="#">自主设计</a></li>
+			<li><a href="activepublic.html">活动特惠</a></li>
+			<li><a href="help.html">帮助中心</a></li>
+			<li><a href="about.html">关于</a></li>
+		</ul>
+    </div>
+    <div class="user" data-cmd="menu">
+        <div class="hd"><a href="/member-login.html" class="grey">登录</a><a href="/member-register.html" class="grey">注册</a></div>
+        <div class="bd"> <i class="arrow"></i> <a href="/html/cotte/pc/用户中心首页.html">用户中心</a> <a href="#">我的订单</a> <a href="#">安全退出</a> </div>
+    </div>
+    <div class="cart" data-cmd="menu">
+        <div class="hd orange">2</div>
+        <div class="bd"> <i class="arrow"></i>
+            <ul>
+                <li>
+                    <p class="fl pic"><img src="/public/static/pc/images/other/img1.jpg" width="38" height="50"></p>
+                    <p class="fl name">麦富迪深红色单排两粒扣西服</p>
+                    <p class="fl price"><span>136元</span> x <span>1</span></p>
+                    <input class="close" type="button" value="×">
+                </li>
+                <li>
+                    <p class="fl pic"><img src="/public/static/pc/images/other/img1.jpg" width="38" height="50"></p>
+                    <p class="fl name">麦富迪深红色单排两粒扣西服</p>
+                    <p class="fl price"><span>136元</span> x <span>1</span></p>
+                    <input class="close" type="button" value="×">
+                </li>
+                <li>
+                    <p class="fl pic"><img src="/public/static/pc/images/other/img1.jpg" width="38" height="50"></p>
+                    <p class="fl name">麦富迪深红色单排两粒扣西服</p>
+                    <p class="fl price"><span>136元</span> x <span>1</span></p>
+                    <input class="close" type="button" value="×">
+                </li>
+                <li>
+                    <p class="fl pic"><img src="/public/static/pc/images/other/img1.jpg" width="38" height="50"></p>
+                    <p class="fl name">麦富迪深红色单排两粒扣西服</p>
+                    <p class="fl price"><span>136元</span> x <span>1</span></p>
+                    <input class="close" type="button" value="×">
+                </li>
+                <li>
+                    <p class="fl pic"><img src="/public/static/pc/images/other/img1.jpg" width="38" height="50"></p>
+                    <p class="fl name">麦富迪深红色单排两粒扣西服</p>
+                    <p class="fl price"><span>136元</span> x <span>1</span></p>
+                    <input class="close" type="button" value="×">
+                </li>
+            </ul>
+            <div class="cartInfo">
+                <div class="fl left">
+                    <p class="grey">共计5件商品</p>
+                    <p>合计：<span class="orange">3423432.00元</span></p>
+                </div>
+                <div class="fr right"> <a href="/html/cotte/pc/购物车.html" class="gopay">去结算</a> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--头部/E-->
+
+

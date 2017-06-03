@@ -1,0 +1,35 @@
+<div class="area01">
+	<!--{if !$widget_data}-->
+    <div style="padding:10px; text-align:center;">请配置</div>
+    <!-- {else} -->
+        <h1 class="dzty">定制体验</h1>
+	<div class="box">
+		<a href="{$widget_data.0.ad_link_url}" target="_blank" class="floor-maskItem" style="left:0;top:0;">
+			<img src="{$widget_data.0.ad_image_url}" />
+			<div class="mask" style="width:497px;"></div>
+		</a>
+		<a href="{$widget_data.1.ad_link_url}" target="_blank" class="floor-maskItem" style="left:506px; top:0;">
+			<img src="{$widget_data.1.ad_image_url}">
+			<div class="mask" style=" height:497px"></div>
+		</a>
+		<a href="{$widget_data.2.ad_link_url}" target="_blank" class="floor-maskItem" style="left:0;top:253px;">
+			<img src="{$widget_data.2.ad_image_url}">
+			<div class="mask"></div>
+		</a>
+		<a href="{$widget_data.3.ad_link_url}" target="_blank" class="floor-maskItem" style="left:253px;top:253px;">
+			<img src="{$widget_data.3.ad_image_url}">
+			<div class="mask"></div>
+		</a>
+		<a href="{$widget_data.4.ad_link_url}" target="_blank" class="floor-maskItem" style="right:0px;top:0px;">
+			<img src="{$widget_data.4.ad_image_url}">
+			<div class="mask"></div>
+		</a>
+		<a href="{$widget_data.5.ad_link_url}" target="_blank" class="floor-maskItem" style="right:0; top:253px;">
+			<img src="{$widget_data.5.ad_image_url}">
+			<div class="mask" style=""></div>
+		</a>
+	</div>
+    <p class="clear"></p>
+    <!--{/if}-->
+
+</div>

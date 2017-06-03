@@ -1,0 +1,61 @@
+{include file="member.header.html"}
+<div class="content">
+    <div class="particular">
+        <div class="particular_wrap">
+            <form method="POST">
+            <h2>{$lang.credit_evaluate}</h2>
+    <!--{foreach from=$goods_list item=goods}-->
+            <div class="evaluate_obj">
+                <dl class="info">
+                    <dt>{$lang.evaluate_goods}</dt>
+                </dl>
+
+                <div class="ware_line">
+                    <div class="ware">
+                        <div class="ware_list">
+                            <div class="ware_pic"><img src="{$goods.goods_image|escape}" width="50" height="60" /></div>
+                            <div class="ware_text">
+                                <div class="ware_text4">
+                                    <a href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name|escape}</a><br />
+                                    <span>{$goods.specification|escape}</span>
+                                </div>
+                                <div class="ware_text3">
+                                    <span>{$lang.quantity}&nbsp;:&nbsp;<strong>{$goods.quantity}</strong></span>
+                                    <span>{$lang.price}&nbsp;:&nbsp;<strong>{$goods.price|price}</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evaluate_wrap">
+                    <div class="my_evaluate">
+                        <div class="fill_in">
+                            <h4>评价内容：</h4>
+                            <div><textarea name="evaluations[{$goods.rec_id}][comment]" rows="4" cols="70"></textarea>
+							<input id="g{$goods.rec_id}_op1" type="hidden" name="evaluations[{$goods.rec_id}][evaluation]" value="3" checked="checked"  />
+							</div>
+                        </div>
+                        <dl>
+                            <dt>温馨提示：</dt>
+                            <dd>尊敬的消费者您好！请您根据您的本次定制体验，给予真实、客观的评价。</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+    <!--{/foreach}-->
+            <div class="evaluate_footer">
+                <input type="submit" value="{$lang.submit}" class="btn1" />
+                <a href="{link app=buyer_order act=index arg=$page_now}">以后再评</a>
+            </div>
+            <div class="particular_bottom"></div>
+            </form>
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+
+    <div class="clear"></div>
+</div>
+{include file=login_footer.html}

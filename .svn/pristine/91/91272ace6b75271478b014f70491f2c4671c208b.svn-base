@@ -1,0 +1,75 @@
+{include file="header.html"}
+<div id="rightTop">
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=package&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="package" />
+                <input type="hidden" name="act" value="index" />
+                &nbsp;&nbsp;产品名称:<input type="text" value="{$query.name}" name="name" class="pick_date" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+            <!--{if $query.name || $query.bn || $query.p_id || $query.is_giveaway}-->
+            <a class="left formbtn1" href="index.php?app=package">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $packagelist}-->
+        <tr class="tatr1">
+            <td align="left">编号</td>
+            <td>礼包名称</td>
+            <!-- <td align="left">成本价格</td> -->
+            <!-- <td align="left">库存</td> -->
+
+            <td>是否上架</td>
+
+            <td>排序</td>
+            <td>{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$packagelist item=goods}-->
+        <tr class="tatr2">
+            <td>{$goods.id|escape}</td>
+            <td>{$goods.name|escape}&nbsp;<b style="cursor: pointer;color:#ff5400" title='{$goods.info.title}'>[详]</b></td>
+           <!--  <td>{$goods.mktprice|price}</td> -->
+           <!-- <td>{$goods.store}</td>-->
+
+            <!-- {if $goods.marketable} -->
+            <td>是</td>
+            <!-- {else} -->
+            <td>否</td>
+            <!-- {/if} -->
+
+
+            <td>{$goods.p_order}</td>
+            <td>
+                <a href="index.php?app=package&amp;act=edit&amp;id={$goods.id}">{$lang.edit}</a>|
+                <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=package&amp;act=drop&amp;id={$goods.id}');">{$lang.drop}</a>
+			</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $packagelist}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

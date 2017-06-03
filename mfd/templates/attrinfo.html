@@ -1,0 +1,15 @@
+<table>
+{foreach from=$attrlist item=attr}
+    <tr>
+        <td>{$attr.attr_name}:</td>
+        <td>  
+     <select name="attr[{$attr.attr_id}]">
+        <option value="0">请选择</option>
+        {foreach from=$attr.values item=v}
+            <option value="{$v}">{$v}</option>
+        {/foreach}
+     </select>
+        </td>
+    </tr>
+{/foreach}
+</table>

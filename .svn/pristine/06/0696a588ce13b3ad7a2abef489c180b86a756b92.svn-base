@@ -1,0 +1,49 @@
+{include file=header-new.html}
+<!--头部/E-->
+<link href="/public/static/pc/css/gywm.css" rel="stylesheet">
+<link href="/public/static/pc/css/jtstyle.css" rel="stylesheet">
+<!-- content -->
+
+
+<div class="jtmain">
+    	<div class="jtcolumn">
+        	<h1>狗狗知识专家讲堂</h1>
+            <p class="jtword">麦富迪宠物营养师结合实践经验和大数据分析，定期发布专业知识，协助您解决养宠过 程中遇到的烦恼，让爱宠带给您更快乐的生活体验。</p>
+        </div>
+        <div>
+        <ul class="jtul clearfix">
+        	{foreach from=$articles item=article}
+        	<li>
+            	<a href="/article-view-{$article.article_id}.html">
+                    <p class="zjtjlbtu"><a href="/article-view-{$article.article_id}.html"><img src="{$article.img}" alt=""/></a></p>
+                    <p class="jttitle"><a href="/article-view-{$article.article_id}.html">{$article.title}</a></p>
+                    <p class="jttada">{$article.add_time|date:Y-m-d}</p>
+                    <p class="jtlistnr">{$article.brief}</p>
+            </li>
+            {/foreach}
+            
+        </ul>
+        </div>
+    </div>
+<!-- content/E -->
+{include file=footer-new.html}
+<!--底部/E-->
+<script src="/public/global/jquery-1.8.3.min.js"></script> 
+<script src="/public/static/pc/js/public.js"></script> 
+<script>
+  //意见反馈弹层
+  $('#feedback').click(function(){
+	  $.getScript('/public/global/luck/pc/luck.js',function(){
+		  luck.open({
+			  title:'意见反馈',
+			  width:'660px',
+			  height:'475px',
+			  content:'<iframe width="660" height="475" style="display:block" src="view/sc-utf-8/mall/default/feedback/ajax_feedback.html" frameborder="0"></iframe>',
+			  addclass:'mfd-luck'
+		  });
+	  })
+  });
+</script>
+
+</body>
+</html>

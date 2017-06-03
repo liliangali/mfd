@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui">
+		<title>我的顾客</title>
+		<link type="text/css" href="http://r.cotte.cn/cotte/m/css/public.css" rel="stylesheet" />
+		<link type="text/css" href="http://r.cotte.cn/cotte/m/css/my_customers.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="main">
+			<!--头部开始-->
+			<div class="two_head">
+				<div class="wrap">
+					<span class="back" onClick="history.go(-1)"></span>
+					<h1>我的顾客</h1>
+				</div>
+				<div class="sta"></div>
+			</div>
+			<!--头部结束-->
+            <form method="get"> 
+			<div class="white">
+				<div class="ssk">
+					<input type="text" name="sourcename" value="" placeholder="顾客姓名或手机号" class="input_1"/>
+					<!-- <a href="#"></a> -->
+					<input type="submit" value="" class="input_2" />
+				</div>
+			</div>
+			</form>
+			<!-- {if $custos} -->
+{foreach from=$custos item=cust key=key}
+     <div class="letter">{$key}</div>
+       <div class="white_2">
+				<ul class="gklb">
+				{foreach from=$cust item=cus key=k1}
+				<a href="{link app=member act=concustomer}?&user_id={$cus.userid}&figure_sn={$cus.figure_sn}">
+					<li>
+						<p class="p1"><img src="{$cus.avatar}"></p>
+						<!-- {if $cus.remark} -->
+						<p class="p2">{$cus.remark}</p>
+						<!-- {else} -->
+						<p class="p2">{$cus.customer_name}</p>
+						<!-- {/if} -->
+					</li>
+					</a>
+					{/foreach}
+				</ul>
+			</div>
+{/foreach}
+		<!-- {else} -->
+		
+		<div class="letter" style="text-align:center;">
+		 <div>
+		<span ><h2>暂无数据</h2></span>
+		</div>
+		</div>
+		<!-- {/if} -->	
+			<div class="tjxgk_box">
+				<div class="tjxgk"><a href="{link app=member act=addcustomers}"><input type="submit" value="添加新顾客" /></a></div>
+				
+				<p class="gao"></p>
+			</div>
+
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no, minimal-ui" >
+<title>我的财富_消费者</title>
+<link href="http://r.cotte.cn/cotte/wap/css/public.css" rel="stylesheet" />
+<link href="http://r.cotte.cn/cotte/wap/css/slx_style.css" rel="stylesheet" />
+</head>
+
+<body style="background:#f5f5f5;">
+<div class="main"> 
+	<!--头部开始-->
+	<div class="topBar">
+		<div class="wrap"> <span class="back" onClick="history.go(-1)"></span>
+			<h1>我的财富</h1>
+		</div>
+		<div class="sta"></div>
+	</div>
+	<!--头部结束-->
+    <div class="cflist">
+    	<ul>
+    	{if $user.member_lv_id > 1}
+        	<li>
+                <a href="{link app=wealth act=profit}">
+                    <p class="cfprofit fl">收益</p>
+                    <p class="cfmoney fr">{$user.profit} &nbsp;&nbsp;></p>
+                </a>
+            </li>
+         {/if}
+            <li>
+                <a href="{link app=wealth act=money}">
+                    <p class="cfbalance fl">余额</p>
+                    <p class="cfmoney fr">{$user.money}&nbsp;&nbsp;></p>
+                </a>
+            </li>
+            <li>
+                <a href="{link app=wealth act=point}">
+                    <p class="cfintegral fl">积分</p>
+                    <p class="cfmoney fr">{$user.point}&nbsp;&nbsp;></p>
+                </a>
+            </li>
+            <li>
+                <a href="{link app=wealth act=coin}">
+                    <p class="cfcur fl">麦富迪币</p>
+                    <p class="cfmoney fr">{$user.coin}&nbsp;&nbsp;></p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="static/js/jquery-1.8.3.min.js"></script>
+<script src="http://r.cotte.cn/cotte/wap/js/public.js"></script> 
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html;charset={$charset}" />
+<title>Mfd管理中心</title>
+<link href="templates/style/admin.css" rel="stylesheet" type="text/css" />
+<link href="templates/style/dialog.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{lib file=jquery.min.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=rctailor.js}" charset="utf-8"></script>
+<script type="text/javascript">
+   var menu = {$menu_json};
+</script>
+
+<script type="text/javascript" src="{res file=js/index.js}" charset="utf-8"></script>
+</head>
+<body>
+<div class="back_nav">
+    <div class="back_nav_list">
+    <!--{foreach from=$back_nav key=key item=menu}-->
+        <dl>
+            <dt>{$menu.text}</dt>
+            <!--{foreach from=$menu.children key=sub_key item=sub_menu}-->
+            <dd><a href="javascript:;" onclick="openItem('{$sub_key}','{$key}');none_fn();">{$sub_menu.text}</a></dd>
+            <!--{/foreach}-->
+        </dl>
+    <!--{/foreach}-->
+    </div>
+    <div class="shadow"></div>
+    <div class="close_float"><img src="templates/style/images/close2.gif" /></div>
+</div>
+<div id="head">
+    <div id="logo"><a href="index.php"><img src="templates/style/images/logo.png"></a></div>
+    <div id="menu">
+    	<span><a href="#" class="yfm">{$lang.hello}<strong>{$visitor.user_name}</strong></a><b>|</b><a href="index.php?act=logout"> [{$lang.logout}]</a><b>|</b> <a href="index.php?app=sysmessage" target="workspace" class="notice">站内信<font>[0]</font></a><b>|</b><a href="{$site_url}/index.php" target="_blank" class="sy">{$lang.index}</a><b>|</b>
+    <a href="javascript:;" class="menu_btn1" id="iframe_refresh">{$lang.refresh}</a><b>|</b>
+    <a href="javascript:;" class="menu_btn2" id="clear_cache">{$lang.clear_cache}</a><b>|</b>
+    <a href="#" id="back_btn" class="menu_btn3">后台导航</a></span>
+    </div>
+    <ul id="nav">
+    </ul>
+    <p class="clear"></p>
+</div>
+
+
+<div id="content">
+
+    <div id="left">
+        <div id="leftMenus">
+            <dl id="submenu">
+                <dt><b><a class="ico1" id="submenuTitle" href="javascript:;"></a></b></dt>
+            </dl>
+            <dl id="history" class="history">
+                <dt>
+                    <a class="ico2" id="historyText" href="javascript:;"><b>{$lang.action_history}</b></a>
+                </dt>
+            </dl>
+            <p class="clear"></p>
+         </div>
+    </div>
+    
+    <div id="right">
+        <iframe frameborder="0" style="display:none;" width="100%" id="workspace" name="workspace"></iframe>
+    </div>
+    
+</div>
+<script src="../static/expand/jquery.form.js"></script>
+<script>
+
+$(document).ready(function(){
+	setInterval(function(){
+	    $.get("index.php?app=sysmessage",{act:"notice"},function(res){
+	        var res = eval("("+res+")");
+	        $(".notice").html(res.retval);
+		})
+	},90000);
+})
+
+</script>
+</body>
+</html>

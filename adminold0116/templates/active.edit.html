@@ -1,0 +1,88 @@
+{include file="header.html"}
+<script type="text/javascript" src="{lib file=ajax_tree.js}" charset="utf-8"></script>
+<script type="text/javascript">
+	function getSelectVal(){ 
+		$.get("index.php?app=folly&act=add",{bigname:$("#bigname").val()},function(json){ 
+		    var arr = eval("("+json+")");
+			var smallname = $("#smallname"); 
+			$("#smallname").html("");
+			for(var i=0;i<arr.length;i++){
+			var option = "<option value='"+arr[i]['id']+"'>"+arr[i]['title']+"</option>"; 
+				smallname.append(option); 
+			}
+		}); 
+	} 
+</script>
+<div id="rightTop">
+
+    <ul class="subnav">
+    	<li><a class="btn1" href="index.php?app=active">活动管理</a></li>
+		 <li><a class="btn1" href="index.php?app=active&amp;act=add">添加活动</a></li>
+
+<!-- 		 <li><a class="btn1" href="index.php?app=active&amp;act=add_location">添加活动位置</a></li> -->
+    </ul>
+</div>
+<style>
+
+		table tr td {
+			 height:40px;
+			 line-height:30px;
+			 padding-left:5px;
+		}
+	
+</style>
+<div class="info2">
+    <form style="margin-left:50px;" enctype="multipart/form-data" method="post">
+		<table>
+		
+<!-- 			<tr >
+				<td>活动位置：</td>
+				<td><select name="smallname" id="smallname" STYLE="width:150px;">
+					<option value="">请选择</option>
+					{foreach from=$lists2 item=t2}    
+						<option value='{$t2.id}' {if $lists.title_id eq $t2.id}selected{/if}>{$t2.title}</option>
+					{/foreach}	 	
+				</select>
+				<span>当前：{$lists.tpl_title}</span>
+				</td>
+			</tr> -->
+		
+			
+			<tr><td>活动标题：</td><td><input type="text" name="title" value="{$lists.title}" id="title" required="required"/></td></tr>
+			<tr><td>活动链接：</td><td><input type="text" name="link"  value="{$lists.link}" id="link" required="required" style="width:300px" placeholder="请填写完整的url地址，如:http://www.baidu.com"/></td></tr>
+			<!-- <tr><td>链接打开方式：</td><td><input type="text" name="linktype"  value="{$lists.linktype}" id="linktype" /></td></tr> -->
+			<tr><td>活动封面图：</td><td><input type="file" name="file" id="file"/><img src="{$lists.uploadfiles}" height="80"></td></tr>
+			<tr><td>活动期限：</td>
+                <td>
+                    <input class="infoTableInput2 pick_date" id="start_time" type="text" name="start_time" value="{if $lists.starttime}{$lists.starttime|date:Y-m-d}{/if}" />-
+                    <input class="infoTableInput2 pick_date" id="end_time" type="text" name="end_time" value="{if $lists.endtime}{$lists.endtime|date:Y-m-d}{/if}" />
+                </td>
+            </tr>
+            <tr>
+					<td>是否显示：</th>
+					<td>
+					
+					<input type="radio" {if $lists.is_show eq 0} checked="checked" {/if} value="0" name="is_show">
+					否
+					<input type="radio" {if $lists.is_show eq 1} checked="checked" {/if} value="1" name="is_show">
+					是
+					</td>
+			</tr>
+			<tr>
+				<td>点击量：</td>
+				<td>{$lists.clicknum}</td>
+			</tr>
+			<tr><td>排序：</td><td><input type="text" name="lorder" value="{$lists.l_order}" id="lorder" /></td></tr>
+			<tr><td>简介：</td><td><textarea name='introduce' id="introduce" style="width:300px">{$lists.introduce}</textarea></td></tr>
+		</table>
+		<input type="hidden" name="id" value="{$lists.id}" id="id" />
+		<input type="submit" value=" 提 交 "/>
+	</form>
+</div>
+<script type="text/javascript">
+
+
+$('#start_time').datepicker({dateFormat: 'yy-mm-dd'});
+$('#end_time').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
+{include file="footer.html"}

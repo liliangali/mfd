@@ -1,0 +1,10 @@
+<ul>
+{foreach from=$priceList item=list key=key}
+    <li>{$list.name}:
+    <select name="assignPrice[{$key}]">
+        {foreach from=$list.list item=price}
+            <option value="{$price.price}">{$price.name}[{$price.price|price}]</option>
+        {/foreach}
+    </select></li>
+{/foreach}
+</ul>

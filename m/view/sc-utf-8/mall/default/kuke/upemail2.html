@@ -1,0 +1,84 @@
+{include file=member.header.html}
+<div class="kkzx_box">  
+  
+{include file=member.menu.html}
+
+
+<!--sortlist end-->
+{$_head_tags}
+
+<script>
+
+$(function(){
+$('#mf').validate({
+	errorClass:"error-on",
+	success : function(label){
+		 label.addClass('error-ok');
+	},
+    rules : {
+        email : {
+            required : true,
+            email:true,
+        }
+    },
+    messages:{
+    	email : {
+            required : '必填写',
+            email: "邮箱错误",
+        }
+    }
+});
+});
+
+</script>
+
+ <form id='mf' action="kuke-upemail.html?opt=3" method="post">
+  
+  <input type='hidden' name='authcode' value='{$authcode}' />
+  
+  <div class="aqsc_box">
+    <h1 class="syhtmdbt">修改绑定邮箱</h1>
+    <p class="bdsj_tu_1"><img src="{$img_url}/images/xgyx_2.gif" /></p>
+  
+  <div class="xgmm_2">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <th>新邮箱：</th>
+        <td class="xsjh"><input type="text" value="" name='email' style="float:left;" /></td>
+      </tr>
+      
+      <tr>
+        <th style="padding-top:0px;"></th>
+        <td class="aqjb_2" style="padding-top:0px; color:#888;" colspan="2">邮箱可作为登录账号，并用于找回密码，接收订单通知等</td>
+      </tr>
+      
+<!--       <tr>
+        <th></th>
+        <td class="hqdxyzm" colspan="2"><a href="#">发送验证邮件</a></td>
+      </tr> -->
+      
+<!--       <tr>
+        <th style="padding-top:10px;">验证码：</th>
+        <td class="xsjh" style="padding-top:10px;"><input type="text" value="" /></td>
+        <td><img src="{$img_url}/images/cf.png" style="position:relative; top:-2px;" /></td>
+      </tr> -->
+      
+<!--       <tr>
+        <th style="padding-top:0px;"></th>
+        <td style="padding-top:0px; color:#888;" colspan="2">你输入的验证码有误，请重新输入</td>
+      </tr> -->
+      
+      <tr>
+        <th></th>
+        <td class="baocu"><input type="submit" value="下一步"/></td>
+      </tr>
+      
+    </table>
+   </div>
+
+  </div>
+  </form>
+  <p class="clear"></p>
+</div>
+
+ {include file=footer.html}

@@ -1,0 +1,129 @@
+{include file="header.html"}
+<div id="rightTop">
+
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=detail_comments">返回{$lang.manage}</a></li>
+
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="reply">
+        <table class="infoTable">
+            <tbody>
+            <tr>
+                <th class="paddingT15">ID :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$comment.id}</span>
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <th class="paddingT15">订单ID :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$comment.order_id}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">评论商品ID :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$comment.comment_id}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">类型 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{if $comment.cate=='custom'}商品{elseif $comment.cate=='suit'}套装{/if}</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">评分 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$comment.star}</span>
+                </td>
+            </tr>
+
+
+            <tr>
+                <th class="paddingT15">评论者 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{if $comment.hide_name }匿名{else}{$v.nickname}{/if}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">内容  :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$comment.content}</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">来源 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$comment.come_from}</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15">评论时间 :</th>
+                <td class="paddingT15 wordSpacing5">
+                    <span>{$comment.addtime|date:complete}</span>
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <th class="paddingT15">
+                    处理状态 :
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                    <select class="querySelect" id="status" name="status">
+                        {html_options options=$status_options selected=$comment['status']}
+                    </select>
+                </td>
+            </tr>
+
+
+            <tr>
+                <th class="paddingT15">历史回复 :</th>
+                <td class="paddingT15 wordSpacing5">
+
+                    <!--{if $reply}-->
+                    <!--{foreach from=$reply item=vvv key=kk}-->
+                    <span>[ID:{$vvv.id}]  管理员回复 : {$vvv.content}</span><br/>
+                    <!--{/foreach}-->
+                    <!--{else}-->
+                    <span>暂无数据</span>
+                    <!--{/if}-->
+                </td>
+            </tr>
+
+            <tr>
+                <th class="paddingT15"><label for="article">评论回复 :</label></th>
+                <td class="paddingT15 wordSpacing5">
+                    <textarea id="reply" name="reply" style="width:400px;height:110px;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="ptb20">
+                    <input type="hidden" name="id" value="142">
+                    <input class="tijia" type="submit" name="Submit" value="提交">
+                    <font color="red">（ ！！注意： 不回复，不要随便在回复框输入 ！！）</font>
+                </td>
+            </tr>
+            <input type="hidden" value="{$comment.id}" name="id" >
+            <input type="hidden" value="{$comment.member_id}" name="member_id" >
+            <input type="hidden" value="{$comment.content}"  name="content">
+            </tbody>
+        </table>
+    </form>
+</div>
+
+
+</div>
+
+{include file="footer.html"}
