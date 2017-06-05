@@ -463,25 +463,7 @@ class AuthController extends BaseController {
 
 
 
-    public function saveDicount(Request $request)
-    {
-        $user = JWTAuth::parseToken()->authenticate();
-        $validator = Validator::make($request->all(), [
-            'discount' => 'required',
-        ]);
-        if ($validator->fails())
-        {
-            return $this->errorResponse($validator->errors()->first());
-        }
-        ChDiscount::saveDis($request);
-        return $this->successResponse();
-    }
 
-    public function getDicount(Request $request)
-    {
-        $ch = ChDiscount::where('type','default')->first()->toArray();
-        return $this->successResponse($ch);
-    }
 
 
 }

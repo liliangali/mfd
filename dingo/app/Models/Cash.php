@@ -35,6 +35,7 @@ class Cash extends Model
             $cash['bank_id'] = $bank_info['id'];
             $cash['bank_name'] = $bank_info['bank'];
             $cash['bank_card'] = $bank_info['bank_card'];
+            $cash['card_name'] = $bank_info['card_name'];
             $cash['cash_money'] = $req->money;
             if(!(Cash::insert($cash)))
             {
@@ -68,6 +69,8 @@ class Cash extends Model
         {
            $condition[] = ['user_id',$request->user_id];
         }
+       
+        
         if($request->user_name)
         {
             $user_info = User::getByName($request->user_name);
@@ -75,7 +78,7 @@ class Cash extends Model
             {
                 return [];
             }
-            $condition[] = ['user_id',$request->user_id];
+            $condition[] = ['user_id',$user_info->user_id];
         }
         if(isset($request->status))
         {
@@ -89,16 +92,55 @@ class Cash extends Model
            {
                $item['uinfo'] = $user_list[$item['user_id']];
            }
-           if($item['status'] == 0)
-           {
-               $item['status'] = 1;
-           }
-           else
-           {
-               $item['status'] = 2;
-           }
            return $item;
         })->values();
         return $cash_list;
+    }
+
+    public static function cashById($id)
+    {
+        $cash = Cash::find($id);
+        $cash->users;
+        return $cash;
+    }
+
+    public static function checkCash($req,$admin)
+    {
+        DB::beginTransaction();
+        $cash = Cash::cashById($req->id);
+        $user = $cash->users;
+        if($cash->status != 0)
+        {
+           return true;
+        }
+        try
+        {
+            //减冻结资金
+            if(!($user->decrement('frozen',$cash->cash_money)))
+            {
+                DB::rollBack();
+            }
+            $cash_data['msg'] = $req->msg;
+            $cash_data['status'] = $req->status;
+            $cash_data['admin_id'] = $admin->user_id;
+            if(!(Cash::where('id',$req->id)->update($cash_data)))
+            {
+                DB::rollBack();
+            }
+            if($req->status == 2) //审核失败 回滚金额
+            {
+                if(!($user->increment('money',$cash->cash_money)))
+                {
+                    DB::rollBack();
+                }
+            }
+            DB::commit();
+            return true;
+        }
+        catch (Exception $e)
+        {
+            DB::rollBack();
+            return false;
+        }
     }
 }

@@ -330,7 +330,7 @@ class UserController extends BaseController {
         ]);
         if($validator->fails())
         {
-            return $this->response->error($validator->errors()->first(), 400);
+            return $this->errorResponse($validator->errors()->first());
         }
         $request->user_id = $user->user_id;
         $cash = Cash::getCash($request);

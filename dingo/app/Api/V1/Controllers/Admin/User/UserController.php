@@ -3,6 +3,8 @@
 namespace App\Api\V1\Controllers\Admin\User;
 
 use App\Api\V1\Controllers\Admin\BaseController;
+use App\Models\Cash;
+use App\Models\ChDiscount;
 use App\Models\Order;
 use App\Serializer\CustomSerializer;
 use Illuminate\Http\Request;
@@ -219,9 +221,80 @@ class UserController extends BaseController {
         }
     }
     
-    public function saveBank()
+    public function saveDicount(Request $request)
     {
-        
+        $validator = Validator::make($request->all(), [
+            'discount' => 'required',
+            'min_money' => 'required',
+            'max_money' => 'required',
+        ]);
+        if ($validator->fails())
+        {
+            return $this->errorResponse($validator->errors()->first());
+        }
+        ChDiscount::saveDis($request);
+        return $this->successResponse();
+    }
+
+    public function getDicount()
+    {
+        return $this->successResponse(ChDiscount::getDis());
+    }
+
+    public function getCash(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'page'=>"required|integer",
+            'page_size'=>"required|integer",
+        ]);
+        if($validator->fails())
+        {
+            return $this->errorResponse($validator->errors()->first());
+        }
+        $request->is_admin = 1;
+        $cash = Cash::getCash($request);
+        return $this->successResponse($cash);
+    }
+
+    public function cashInfo(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id'=>"required|integer",
+        ]);
+        if($validator->fails())
+        {
+            return $this->errorResponse($validator->errors()->first());
+        }
+        $cash = Cash::cashById($request->id)->toArray();
+
+        return $this->successResponse($cash);
+    }
+
+    public function saveCash(Request $request)
+    {
+        $user = JWTAuth::parseToken()->authenticate();
+        $validator = Validator::make($request->all(), [
+            'status' => 'required|integer',
+            'id' => 'required|integer',
+        ]);
+        if ($validator->fails())
+        {
+            return $this->errorResponse($validator->errors()->first());
+        }
+        if($request->status == 0)
+        {
+            return $this->successResponse();
+        }
+        elseif ($request->status == 2 && !$request->msg)//审核失败必须填写失败原因
+        {
+            return $this->errorResponse('请填写审核失败原因');
+        }
+        if(Cash::checkCash($request,$user))
+        {
+            return $this->successResponse();
+        }
+        return $this->errorResponse('申请失败');
+
     }
 
 }

@@ -394,8 +394,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="18" column="22" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="22" />
+            <state relative-caret-position="308">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="18" selection-end-column="56" />
               <folding>
                 <element signature="e#7#42#0#PHP" expanded="true" />
               </folding>
@@ -403,11 +403,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cart.app.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/h5/app/cart.app.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="321" column="5" selection-start-line="321" selection-start-column="5" selection-end-line="321" selection-end-column="5" />
+            <state relative-caret-position="242">
+              <caret line="14" column="26" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="254" column="25" selection-start-line="254" selection-start-column="25" selection-end-line="254" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChDiscount.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingo/app/Models/ChDiscount.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="376">
+              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -416,8 +436,8 @@
       <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="334" column="33" selection-start-line="334" selection-start-column="28" selection-end-line="334" selection-end-column="33" />
+            <state relative-caret-position="134">
+              <caret line="302" column="41" selection-start-line="302" selection-start-column="41" selection-end-line="302" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -426,41 +446,11 @@
       <file leaf-file-name="Cash.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dingo/app/Models/Cash.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="97" column="32" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="32" />
+            <state relative-caret-position="440">
+              <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
               <folding>
                 <element signature="e#30#43#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingo/app/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="40" column="58" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CrmCommand.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingo/app/Console/Commands/CrmCommand.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="203" column="65" selection-start-line="203" selection-start-column="65" selection-end-line="203" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CrmUser.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingo/app/Console/Commands/CrmUser.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -500,11 +490,6 @@
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/routes.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/OrderController.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/Order.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/routes.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Models/ChDiscount.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/AuthController.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php" />
         <option value="$PROJECT_DIR$/dingo/.env" />
         <option value="$PROJECT_DIR$/dingo/app/Models/AccessToken.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Wx/WxController.php" />
@@ -518,8 +503,13 @@
         <option value="$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/fdiy/index4.html" />
         <option value="$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/fdiy/index5.html" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/routes.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/UserController.php" />
         <option value="$PROJECT_DIR$/dingo/app/User.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/AuthController.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/routes.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Models/ChDiscount.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/UserController.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/Cash.php" />
       </list>
     </option>
@@ -532,8 +522,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="23" />
+    <option name="x" value="-32" />
+    <option name="y" value="29" />
     <option name="width" value="1440" />
     <option name="height" value="809" />
   </component>
@@ -1505,7 +1495,7 @@
       <workItem from="1495439725263" duration="52770000" />
       <workItem from="1495721239383" duration="44493000" />
       <workItem from="1496199883042" duration="40941000" />
-      <workItem from="1496459035482" duration="9281000" />
+      <workItem from="1496459035482" duration="18036000" />
     </task>
     <task id="LOCAL-00287" summary="推广海报">
       <created>1494991852033</created>
@@ -1854,7 +1844,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="495193000" />
+    <option name="totallyTimeSpent" value="503948000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1866,15 +1856,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="23" width="1440" height="809" extended-state="6" />
-    <editor active="true" />
+    <frame x="-32" y="29" width="1440" height="809" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22889842" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16165951" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6443515" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.108726755" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.101573676" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25941423" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1948,36 +1938,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dingo/app/Models/OrderGood.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Models/PetType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/models/accesstoken.model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/config/wechat.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="19" column="11" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dingo/vendor/guzzlehttp/guzzle/src/functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
@@ -2036,6 +1996,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
           <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+          <folding>
+            <marker date="1495789537000" expanded="true" signature="35541:35547" ph=" " />
+            <marker date="1495789537000" expanded="true" signature="35547:35553" ph=" " />
+            <marker date="1495789537000" expanded="true" signature="35553:35559" ph=" " />
+            <marker date="1495789537000" expanded="true" signature="61254:61317" ph="select * fro... cf_user_follow" />
+            <marker date="1495789537000" expanded="true" signature="61717:61743" ph="select * fro... cf_userphoto" />
+            <marker date="1495789537000" expanded="true" signature="66781:66840" ph="update cf_me... " />
+            <marker date="1495789537000" expanded="true" signature="67165:67218" ph="update cf_al... " />
+            <marker date="1495789537000" expanded="true" signature="69941:70020" ph="select * fro... cf_like" />
+            <marker date="1495789537000" expanded="true" signature="70636:70721" ph="select * fro... cf_like" />
+            <marker date="1495789537000" expanded="true" signature="71202:71242" ph="select * fro... cf_member" />
+            <marker date="1495789537000" expanded="true" signature="72599:72647" ph="select * fro... cf_member_lv" />
+            <marker date="1495789537000" expanded="true" signature="72745:72787" ph="select * fro... cf_region" />
+            <marker date="1495789537000" expanded="true" signature="76873:76939" ph="update cf_me... " />
+            <marker date="1495789537000" expanded="true" signature="77573:77637" ph="update cf_me... " />
+            <marker date="1495789537000" expanded="true" signature="78150:78220" ph="update cf_me... " />
+            <marker date="1495789537000" expanded="true" signature="78971:79031" ph="select * fro... cf_comments" />
+            <marker date="1495789537000" expanded="true" signature="79331:79379" ph="select count... cf_comments" />
+            <marker date="1495789537000" expanded="true" signature="79588:79682" ph="select * fro... cf_comments" />
+            <marker date="1495789537000" expanded="true" signature="80036:80096" ph="select * fro... cf_comments" />
+            <marker date="1495789537000" expanded="true" signature="80407:80446" ph="select * fro... cf_comments" />
+            <marker date="1495789537000" expanded="true" signature="80870:80903" ph="select * fro... cf_point_log" />
+            <marker date="1495789537000" expanded="true" signature="81483:81550" ph="update cf_me... " />
+            <marker date="1495789537000" expanded="true" signature="81660:81726" ph="update cf_us... " />
+            <marker date="1495789537000" expanded="true" signature="82552:82619" ph="update cf_me... " />
+            <marker date="1495789537000" expanded="true" signature="82870:82936" ph="update cf_us... " />
+            <marker date="1495789537000" expanded="true" signature="83092:83134" ph="select * fro... cf_coupon" />
+            <marker date="1495789537000" expanded="true" signature="83258:83312" ph="select count... cf_like" />
+            <marker date="1495789537000" expanded="true" signature="84350:84421" ph="select * fro... cf_userphoto" />
+            <marker date="1495789537000" expanded="true" signature="84681:84738" ph="select user_... cf_member" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2121,26 +2112,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="706">
-          <caret line="221" column="20" selection-start-line="221" selection-start-column="20" selection-end-line="221" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/arrayfiles/bank.arrayfile.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
           <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="15" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2307,14 +2282,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="40" column="58" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dingo/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -2323,36 +2290,92 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Article/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/app/cart.app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="321" column="5" selection-start-line="321" selection-start-column="5" selection-end-line="321" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="22" />
+        <state relative-caret-position="308">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="18" selection-end-column="56" />
           <folding>
             <element signature="e#7#42#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/h5/app/cart.app.php">
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/AuthController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="321" column="5" selection-start-line="321" selection-start-column="5" selection-end-line="321" selection-end-column="5" />
+        <state relative-caret-position="220">
+          <caret line="401" column="20" selection-start-line="401" selection-start-column="20" selection-end-line="401" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Models/ChDiscount.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="329" column="46" selection-start-line="329" selection-start-column="40" selection-end-line="329" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="334" column="33" selection-start-line="334" selection-start-column="28" selection-end-line="334" selection-end-column="33" />
+        <state relative-caret-position="134">
+          <caret line="302" column="41" selection-start-line="302" selection-start-column="41" selection-end-line="302" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="254" column="25" selection-start-line="254" selection-start-column="25" selection-end-line="254" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dingo/app/Models/Cash.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="97" column="32" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="32" />
+        <state relative-caret-position="440">
+          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
           <folding>
             <element signature="e#30#43#0#PHP" expanded="true" />
           </folding>
