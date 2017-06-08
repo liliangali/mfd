@@ -211,7 +211,21 @@ if ($this->_foreach['lpmt']['total'] > 0):
     <p class="jesl">+<?php echo price_format($this->_var['cart']['defship']['post_fee']); ?></p>
    </div>
    <?php endif; ?>
-   
+     <?php if ($this->_var['favorables_yh']): ?>
+	 <li><span class="fl">优惠券选择</span>
+	   <span class="fr">
+	     <select style=" height:28px; border: 1px solid #dfdfdf; width:100px; font-size:12x;" name='favorable_zk' class="favorable_zk"  >
+				<option value='0'>选择优惠券</option>
+				<?php $_from = $this->_var['favorables_yh']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'fyh');if (count($_from)):
+    foreach ($_from AS $this->_var['fyh']):
+?>
+				<option value='<?php echo $this->_var['fyh']['id']; ?>'<?php if ($this->_var['fyh']['id'] == $this->_var['list']['goods']['youh_id']): ?>selected<?php endif; ?> data-money="<?php echo $this->_var['fyh']['yhcase_value2']; ?>" data-amount="<?php echo $this->_var['fyh']['yhcase_value']; ?>" ><?php echo $this->_var['fyh']['name']; ?></option>
+				   
+				<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+		</select>
+	   </span></li>
+
+   <?php endif; ?>
    <?php if ($this->_var['cart']['debit_fee']): ?>
    <div class="lhwdz clearfix debit_fee">
     <p class="spje">抵用券</p>
@@ -241,6 +255,40 @@ if ($this->_foreach['lpmt']['total'] > 0):
 <script type="text/javascript" src="static/js/jquery.form.js"></script>
 <script type=text/javascript src="static/js/layer.m.js"></script>
 <script type="text/javascript">
+$('.favorable_zk').change(function(){
+	var quan_id=$(this).find("option:selected").val();
+	var amount=$(this).find("option:selected").attr('data-amount');
+    var money=$(this).find("option:selected").attr('data-money');
+	var finalmoney=$('#final_amount').attr('data-amount');
+	 $.ajax({
+         url:'/quan-update.html',
+         type:'POST',
+         data:{
+        	    finalmoney:finalmoney,
+        	    quan_id:quan_id,
+        	    amount:amount,
+        	    money:money
+			  },
+        	 
+         dataType: "json",
+      
+     success:function(res){
+    
+     if(res.done)
+     {
+    	//更改券后金额
+    	var quanprice=res.retval.quanprice;
+    	$('#final_amount').html(quanprice)
+
+    	
+      }	
+     		},
+     })
+})
+
+
+
+
 $('#remark').click(function(){
 	var _this = $(this);
 	if(_this.next('div').hasClass('show')){
@@ -291,12 +339,12 @@ function _alert(msg){
 }
 
 function _submitOrder(){
+
 	var _thisBtn = $(this);
 	_thisBtn.unbind();
     $('.load_div').show();
-
-
 	var _one = $('#has_one').val();
+
     if(_one == '0'){
         var msga=layer.open({
             content: '本员工号不能享受本次活动，将以零售价进行结算。',
@@ -326,15 +374,16 @@ function _submitOrder(){
     }else{
         var _data =  [];
         var _dt = "";
-        $('.coupon dl').each(function(){
+      
+       $('.coupon dl').each(function(){
             var _this = $(this);
             var _tp = _this.data('type');
             if(sessionStorage.getItem(_tp) && sessionStorage.getItem(_tp+'val') >0 ){
                 _dt += "" + _tp + ":" + sessionStorage.getItem(_tp+'val') + ","
             }           
         });
-        
-        if(sessionStorage.getItem('is_gift') && sessionStorage.getItem('is_gift') == 'yes'){
+      
+       if(sessionStorage.getItem('is_gift') && sessionStorage.getItem('is_gift') == 'yes'){
             var _gift = 'yes';
         }
         

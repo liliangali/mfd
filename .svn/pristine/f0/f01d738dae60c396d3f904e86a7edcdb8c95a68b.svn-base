@@ -1,0 +1,2 @@
+ALTER TABLE `cf_order` ADD `quanprice` INT(11) NOT NULL DEFAULT '0' COMMENT 'È¯½ð¶î' AFTER `channel_pid`;
+ALTER TABLE `cf_order` ADD `quanid` INT(11) NOT NULL DEFAULT '0' COMMENT 'ÐÂÓÅ»ÝÈ¯id' AFTER `quanprice`;

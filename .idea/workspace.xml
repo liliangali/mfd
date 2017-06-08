@@ -1,54 +1,340 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/dingo/app/User.php" line="149" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="c853fd74-29a7-4dbb-877c-01d699a7c52b" name="Default" comment="推广海报">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Article" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/AuthController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/routes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/BaseController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/OrderController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/routes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/routes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Article/routes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Transformers/RegionTransformer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/app/Helper.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dingo/config/sentry.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/default.app.php" afterPath="$PROJECT_DIR$/app/default.app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/AuthController.php" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/AuthController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/routes.php" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/BaseController.php" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/BaseController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/RoleController.php" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/RoleController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/routes.php" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/UserController.php" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/routes.php" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Api/V1/Transformers/OrderTransformer.php" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Transformers/OrderTransformer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Api/V1/Transformers/UserTransformer.php" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/Transformers/UserTransformer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Api/V1/routes.php" afterPath="$PROJECT_DIR$/dingo/app/Api/V1/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Console/Commands/CrmCommand.php" afterPath="$PROJECT_DIR$/dingo/app/Console/Commands/CrmCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Console/Commands/CrmUser.php" afterPath="$PROJECT_DIR$/dingo/app/Console/Commands/CrmUser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Console/Kernel.php" afterPath="$PROJECT_DIR$/dingo/app/Console/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Exceptions/Handler.php" afterPath="$PROJECT_DIR$/dingo/app/Exceptions/Handler.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Http/Controllers/WxController.php" afterPath="$PROJECT_DIR$/dingo/app/Http/Controllers/WxController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Http/Kernel.php" afterPath="$PROJECT_DIR$/dingo/app/Http/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Models/Good.php" afterPath="$PROJECT_DIR$/dingo/app/Models/Good.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Models/Order.php" afterPath="$PROJECT_DIR$/dingo/app/Models/Order.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Models/Voucher.php" afterPath="$PROJECT_DIR$/dingo/app/Models/Voucher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/Serializer/CustomSerializer.php" afterPath="$PROJECT_DIR$/dingo/app/Serializer/CustomSerializer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/app/User.php" afterPath="$PROJECT_DIR$/dingo/app/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/composer.json" afterPath="$PROJECT_DIR$/dingo/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/config/app.php" afterPath="$PROJECT_DIR$/dingo/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/config/auth.php" afterPath="$PROJECT_DIR$/dingo/config/auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dingo/config/cors.php" afterPath="$PROJECT_DIR$/dingo/config/cors.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.html" afterPath="$PROJECT_DIR$/dist/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/h5/app/cart.app.php" afterPath="$PROJECT_DIR$/h5/app/cart.app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/h5/app/professor.app.php" afterPath="$PROJECT_DIR$/h5/app/professor.app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/libraries/shopCommon.php" afterPath="$PROJECT_DIR$/includes/libraries/shopCommon.php" />
+    <list default="true" readonly="true" id="c853fd74-29a7-4dbb-877c-01d699a7c52b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts/FontAwesome.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts/fontawesome-webfont.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts/fontawesome-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts/fontawesome-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/fonts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/images" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/images/logo-sm.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/img" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/img/logo-sm.bc61557.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/brown-papersq.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/brown_papersq.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/pojoaque.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/school-book.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/school_book.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/jquery" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/fonts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/fonts/icomoon.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/fonts/icomoon.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/js/lib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts/FontAwesome.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts/fontawesome-webfont.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts/fontawesome-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts/fontawesome-webfont.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/fonts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/images" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/images/logo-sm.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/img" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/img/logo-sm.bc61557.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/brown-papersq.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/brown_papersq.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/pojoaque.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/school-book.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/school_book.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/jquery" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/fonts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/fonts/icomoon.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/fonts/icomoon.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/js/lib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/css/app.f5b6862f714d97c97f8453f1b74e7985.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/css/app.f5b6862f714d97c97f8453f1b74e7985.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/css/font-awesome.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/css/font-awesome.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts/fontawesome-webfont.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts/fontawesome-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/fonts/element-icons.b02bdc1.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js/app.6b5860b4f8cdc0afa258.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js/app.6b5860b4f8cdc0afa258.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js/manifest.46d7bdf85bf6afb11da3.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js/manifest.46d7bdf85bf6afb11da3.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js/vendor.2b001a6eed6bd4f46392.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js/vendor.2b001a6eed6bd4f46392.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/highlight.pack.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/highlight.pack.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/highlightjs-line-numbers.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/highlightjs-line-numbers.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/agate.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/androidstudio.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/arduino-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/arta.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/ascetic.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-cave-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-cave-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-cave.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-cave.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-dune-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-dune-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-dune.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-dune.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-estuary-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-estuary-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-estuary.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-estuary.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-forest-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-forest-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-forest.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-forest.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-heath-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-heath-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-heath.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-heath.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-lakeside-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-lakeside-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-lakeside.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-lakeside.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-plateau-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-plateau-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-plateau.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-plateau.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-savanna-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-savanna-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-savanna.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-savanna.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-seaside-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-seaside-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-seaside.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-seaside.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-sulphurpool-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-sulphurpool-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-sulphurpool.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-sulphurpool.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atom-one-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atom-one-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/brown-paper.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/brown_paper.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/codepen-embed.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/color-brewer.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/darcula.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/darkula.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/default.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/docco.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/dracula.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/far.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/foundation.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/github-gist.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/github.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/googlecode.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/grayscale.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/gruvbox-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/gruvbox-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/hopscotch.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/hybrid.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/idea.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/ir-black.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/ir_black.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/kimbie.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/kimbie.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/magula.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/mono-blue.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/monokai-sublime.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/monokai.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/monokai_sublime.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/obsidian.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/ocean.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/paraiso-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/paraiso-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/paraiso.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/paraiso.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/pojoaque.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/purebasic.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/qtcreator_dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/qtcreator_light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/railscasts.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/rainbow.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/school-book.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/school_book.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/solarized-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/solarized-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/solarized_dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/solarized_light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/sunburst.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/tomorrow-night-blue.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/tomorrow-night-bright.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/tomorrow-night-eighties.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/tomorrow-night.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/tomorrow.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/vs.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/xcode.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/xt256.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/zenburn.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/jquery/jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/css/wangEditor.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/css/wangEditor.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/css/wangEditor.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/fonts/icomoon.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/fonts/icomoon.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/js/lib/jquery-1.10.2.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/js/lib/jquery-2.2.1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/js/wangEditor.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/js/wangEditor.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/css/app.f57c2cd72eff39c65cdc6feb990fd875.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/css/app.f57c2cd72eff39c65cdc6feb990fd875.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/css/font-awesome.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/css/font-awesome.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts/fontawesome-webfont.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts/fontawesome-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/fonts/element-icons.b02bdc1.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js/app.d1fae30c19cffe37262c.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js/app.d1fae30c19cffe37262c.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js/manifest.c8bc54b01b66325ae84d.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js/manifest.c8bc54b01b66325ae84d.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js/vendor.5e1a3a4c8dc3225119d0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js/vendor.5e1a3a4c8dc3225119d0.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/highlight.pack.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/highlight.pack.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/highlightjs-line-numbers.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/highlightjs-line-numbers.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/agate.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/androidstudio.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/arduino-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/arta.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/ascetic.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-cave-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-cave-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-cave.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-cave.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-dune-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-dune-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-dune.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-dune.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-estuary-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-estuary-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-estuary.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-estuary.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-forest-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-forest-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-forest.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-forest.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-heath-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-heath-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-heath.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-heath.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-lakeside-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-lakeside-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-lakeside.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-lakeside.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-plateau-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-plateau-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-plateau.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-plateau.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-savanna-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-savanna-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-savanna.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-savanna.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-seaside-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-seaside-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-seaside.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-seaside.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-sulphurpool-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-sulphurpool-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-sulphurpool.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-sulphurpool.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atom-one-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atom-one-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/brown-paper.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/brown_paper.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/codepen-embed.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/color-brewer.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/darcula.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/darkula.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/default.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/docco.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/dracula.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/far.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/foundation.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/github-gist.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/github.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/googlecode.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/grayscale.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/gruvbox-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/gruvbox-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/hopscotch.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/hybrid.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/idea.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/ir-black.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/ir_black.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/kimbie.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/kimbie.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/magula.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/mono-blue.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/monokai-sublime.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/monokai.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/monokai_sublime.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/obsidian.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/ocean.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/paraiso-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/paraiso-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/paraiso.dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/paraiso.light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/pojoaque.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/purebasic.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/qtcreator_dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/qtcreator_light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/railscasts.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/rainbow.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/school-book.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/school_book.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/solarized-dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/solarized-light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/solarized_dark.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/solarized_light.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/sunburst.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/tomorrow-night-blue.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/tomorrow-night-bright.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/tomorrow-night-eighties.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/tomorrow-night.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/tomorrow.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/vs.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/xcode.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/xt256.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/zenburn.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/jquery/jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/css/wangEditor.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/css/wangEditor.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/css/wangEditor.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/fonts/icomoon.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/fonts/icomoon.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/js/lib/jquery-1.10.2.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/js/lib/jquery-2.2.1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/js/wangEditor.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/js/wangEditor.min.js" />
     </list>
     <list id="254b242d-79c8-4993-929d-930e44323e6e" name="New changelist" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
@@ -391,97 +677,118 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="18" selection-end-column="56" />
-              <folding>
-                <element signature="e#7#42#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="14" column="26" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php">
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingo/.env">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="418">
-              <caret line="254" column="25" selection-start-line="254" selection-start-column="25" selection-end-line="254" selection-end-column="25" />
+              <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChDiscount.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingo/app/Models/ChDiscount.php">
+      <file leaf-file-name="order.app.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/h5/app/order.app.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+            <state relative-caret-position="462">
+              <caret line="1821" column="38" selection-start-line="1821" selection-start-column="38" selection-end-line="1821" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/UserController.php">
+      <file leaf-file-name="WxPay.Api.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/h5/weipay/lib/WxPay.Api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="302" column="41" selection-start-line="302" selection-start-column="41" selection-end-line="302" selection-end-column="41" />
+            <state relative-caret-position="211">
+              <caret line="192" column="45" selection-start-line="192" selection-start-column="45" selection-end-line="192" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cash.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dingo/app/Models/Cash.php">
+      <file leaf-file-name="WxPay.JsApiPay.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/h5/weipay/WxPay.JsApiPay.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-              <folding>
-                <element signature="e#30#43#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="211">
+              <caret line="234" column="41" selection-start-line="234" selection-start-column="41" selection-end-line="234" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WxPay.Config.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/h5/weipay/lib/WxPay.Config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WxPay.Data.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/h5/weipay/lib/WxPay.Data.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="1013" column="28" selection-start-line="1013" selection-start-column="23" selection-end-line="1013" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/orders/payment/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="120" column="17" selection-start-line="120" selection-start-column="9" selection-end-line="120" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="news.otype.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/h5/includes/ordertypes/news.otype.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="550">
+              <caret line="515" column="39" selection-start-line="515" selection-start-column="39" selection-end-line="515" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chdiscounts.model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/models/chdiscounts.model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chdiscounts.model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/h5/includes/models/chdiscounts.model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dingo/config/sentry.php" />
-        <option value="$PROJECT_DIR$/h5/app/member.app.php" />
-        <option value="$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/user/member.index.html" />
-        <option value="$PROJECT_DIR$/dingo/app/Http/Controllers/WxController.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Exceptions/Handler.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Http/Kernel.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Transformers/OrderTransformer.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/BaseController.php" />
-        <option value="$PROJECT_DIR$/includes/functions.lib.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Console/Commands/CrmCommand.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Models/Good.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Console/Commands/CrmUser.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Console/Kernel.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Helper.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Models/ChannelInfo.php" />
-        <option value="$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/fweixin.html" />
-        <option value="$PROJECT_DIR$/h5/app/frontend.base.php" />
-        <option value="$PROJECT_DIR$/h5/app/fdiy.app.php" />
-        <option value="$PROJECT_DIR$/vendors/Cyteam/Shop/Type/FdiyBase.php" />
-        <option value="$PROJECT_DIR$/h5/diy/js/diy2.js" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/BaseController.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/AuthController.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Article/routes.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/routes.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/routes.php" />
@@ -489,7 +796,6 @@
         <option value="$PROJECT_DIR$/dingo/app/Models/Carticle.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/routes.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/OrderController.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Models/Order.php" />
         <option value="$PROJECT_DIR$/dingo/.env" />
         <option value="$PROJECT_DIR$/dingo/app/Models/AccessToken.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Wx/WxController.php" />
@@ -497,20 +803,43 @@
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Article/ArticleController.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/Region.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/MemberBank.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Transformers/UserTransformer.php" />
         <option value="$PROJECT_DIR$/h5/app/cart.app.php" />
         <option value="$PROJECT_DIR$/h5/diy/js/photoClipbak.js" />
         <option value="$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/fdiy/index4.html" />
         <option value="$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/fdiy/index5.html" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/routes.php" />
-        <option value="$PROJECT_DIR$/dingo/app/User.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/AuthController.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/routes.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/ChDiscount.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/UserController.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Helper.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Console/Commands/MakeImg.php" />
+        <option value="$PROJECT_DIR$/app/goods.app.php" />
+        <option value="$PROJECT_DIR$/view/sc-utf-8/mall/default/hudong.html" />
+        <option value="$PROJECT_DIR$/app/huodong.app.php" />
+        <option value="$PROJECT_DIR$/mfd/app/goods.app.php" />
+        <option value="$PROJECT_DIR$/includes/models/goods.model.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Order/OrderController.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Http/Controllers/WxController.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Transformers/UserTransformer.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/routes.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/RoleController.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Models/LaravelSms.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/Cash.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/UserController.php" />
+        <option value="$PROJECT_DIR$/h5/includes/models/chdiscounts.model.php" />
+        <option value="$PROJECT_DIR$/vendors/Cyteam/Shop/Type/FdiyBase.php" />
+        <option value="$PROJECT_DIR$/h5/app/paynotifyw.app.php" />
+        <option value="$PROJECT_DIR$/includes/libraries/shopCommon.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php" />
+        <option value="$PROJECT_DIR$/dingo/app/User.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Models/ChannelInfo.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/AuthController.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Models/OrderCashLog.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Models/Order.php" />
+        <option value="$PROJECT_DIR$/h5/eccore/model/model.base.php" />
+        <option value="$PROJECT_DIR$/h5/includes/ordertypes/news.otype.php" />
+        <option value="$PROJECT_DIR$/h5/weipay/lib/WxPay.Config.php" />
+        <option value="$PROJECT_DIR$/h5/app/order.app.php" />
       </list>
     </option>
   </component>
@@ -522,9 +851,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-32" />
-    <option name="y" value="29" />
-    <option name="width" value="1440" />
+    <option name="x" value="28" />
+    <option name="y" value="23" />
+    <option name="width" value="1390" />
     <option name="height" value="809" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -552,6 +881,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -580,122 +910,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vendors" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Cyteam" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Shop" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendors" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Cyteam" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Shop" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Cart" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendors" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Cyteam" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arrayfiles" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="h5" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="h5" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="view" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -707,10 +921,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="h5" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -732,7 +942,25 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="h5" />
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sc-utf-8" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mall" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -752,507 +980,8 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Models" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Console" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Console" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Commands" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Wx" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="User" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Role" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Auth" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Article" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="User" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Order" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mfd2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dingo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="V1" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Auth" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -1263,17 +992,18 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/dingo/app/Http/Controllers/app" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin" />
       <recent name="$PROJECT_DIR$/includes/models" />
       <recent name="$PROJECT_DIR$/h5/includes/models" />
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin" />
       <recent name="$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/user" />
-      <recent name="$PROJECT_DIR$/h5/view/sc-utf-8/mall/default" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dingo/app/Http/Controllers/app" />
     </key>
   </component>
   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
@@ -1290,7 +1020,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="4217">$PROJECT_DIR$/h5/diy/js/photoClip.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -1327,8 +1056,8 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="4217">$PROJECT_DIR$/h5/access_token.php</PATH>
-        <PATH vcs="svn" revision="4217">$PROJECT_DIR$/h5/jsapi_ticket.php</PATH>
+        <PATH vcs="svn" revision="4226">$PROJECT_DIR$/h5/access_token.php</PATH>
+        <PATH vcs="svn" revision="4226">$PROJECT_DIR$/h5/jsapi_ticket.php</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1495,98 +1224,9 @@
       <workItem from="1495439725263" duration="52770000" />
       <workItem from="1495721239383" duration="44493000" />
       <workItem from="1496199883042" duration="40941000" />
-      <workItem from="1496459035482" duration="18036000" />
-    </task>
-    <task id="LOCAL-00287" summary="推广海报">
-      <created>1494991852033</created>
-      <option name="number" value="00287" />
-      <option name="presentableId" value="LOCAL-00287" />
-      <option name="project" value="LOCAL" />
-      <updated>1494991852034</updated>
-    </task>
-    <task id="LOCAL-00288" summary="收货人手机查询">
-      <created>1495164770063</created>
-      <option name="number" value="00288" />
-      <option name="presentableId" value="LOCAL-00288" />
-      <option name="project" value="LOCAL" />
-      <updated>1495164770067</updated>
-    </task>
-    <task id="LOCAL-00289" summary="debug">
-      <created>1495249437072</created>
-      <option name="number" value="00289" />
-      <option name="presentableId" value="LOCAL-00289" />
-      <option name="project" value="LOCAL" />
-      <updated>1495249437076</updated>
-    </task>
-    <task id="LOCAL-00290" summary="debug">
-      <created>1495256905050</created>
-      <option name="number" value="00290" />
-      <option name="presentableId" value="LOCAL-00290" />
-      <option name="project" value="LOCAL" />
-      <updated>1495256905052</updated>
-    </task>
-    <task id="LOCAL-00291" summary="debug">
-      <created>1495257043029</created>
-      <option name="number" value="00291" />
-      <option name="presentableId" value="LOCAL-00291" />
-      <option name="project" value="LOCAL" />
-      <updated>1495257043030</updated>
-    </task>
-    <task id="LOCAL-00292" summary="推广海报">
-      <created>1495257166030</created>
-      <option name="number" value="00292" />
-      <option name="presentableId" value="LOCAL-00292" />
-      <option name="project" value="LOCAL" />
-      <updated>1495257166031</updated>
-    </task>
-    <task id="LOCAL-00293" summary="推广海报">
-      <created>1495257431030</created>
-      <option name="number" value="00293" />
-      <option name="presentableId" value="LOCAL-00293" />
-      <option name="project" value="LOCAL" />
-      <updated>1495257431030</updated>
-    </task>
-    <task id="LOCAL-00294" summary="推广海报">
-      <created>1495257521031</created>
-      <option name="number" value="00294" />
-      <option name="presentableId" value="LOCAL-00294" />
-      <option name="project" value="LOCAL" />
-      <updated>1495257521031</updated>
-    </task>
-    <task id="LOCAL-00295" summary="推广海报">
-      <created>1495257565028</created>
-      <option name="number" value="00295" />
-      <option name="presentableId" value="LOCAL-00295" />
-      <option name="project" value="LOCAL" />
-      <updated>1495257565028</updated>
-    </task>
-    <task id="LOCAL-00296" summary="推广海报">
-      <created>1495257634030</created>
-      <option name="number" value="00296" />
-      <option name="presentableId" value="LOCAL-00296" />
-      <option name="project" value="LOCAL" />
-      <updated>1495257634030</updated>
-    </task>
-    <task id="LOCAL-00297" summary="推广海报">
-      <created>1495257685028</created>
-      <option name="number" value="00297" />
-      <option name="presentableId" value="LOCAL-00297" />
-      <option name="project" value="LOCAL" />
-      <updated>1495257685030</updated>
-    </task>
-    <task id="LOCAL-00298" summary="推广海报">
-      <created>1495257788029</created>
-      <option name="number" value="00298" />
-      <option name="presentableId" value="LOCAL-00298" />
-      <option name="project" value="LOCAL" />
-      <updated>1495257788029</updated>
-    </task>
-    <task id="LOCAL-00299" summary="推广海报">
-      <created>1495257836031</created>
-      <option name="number" value="00299" />
-      <option name="presentableId" value="LOCAL-00299" />
-      <option name="project" value="LOCAL" />
-      <updated>1495257836031</updated>
+      <workItem from="1496459035482" duration="47369000" />
+      <workItem from="1496813698075" duration="13543000" />
+      <workItem from="1496886640389" duration="5897000" />
     </task>
     <task id="LOCAL-00300" summary="debug">
       <created>1495259983031</created>
@@ -1840,11 +1480,102 @@
       <option name="project" value="LOCAL" />
       <updated>1496460898045</updated>
     </task>
-    <option name="localTasksCounter" value="336" />
+    <task id="LOCAL-00336" summary="key">
+      <created>1496886849030</created>
+      <option name="number" value="00336" />
+      <option name="presentableId" value="LOCAL-00336" />
+      <option name="project" value="LOCAL" />
+      <updated>1496886849031</updated>
+    </task>
+    <task id="LOCAL-00337" summary="渠道人员">
+      <created>1496888097035</created>
+      <option name="number" value="00337" />
+      <option name="presentableId" value="LOCAL-00337" />
+      <option name="project" value="LOCAL" />
+      <updated>1496888097035</updated>
+    </task>
+    <task id="LOCAL-00338" summary="渠道人员">
+      <created>1496891537040</created>
+      <option name="number" value="00338" />
+      <option name="presentableId" value="LOCAL-00338" />
+      <option name="project" value="LOCAL" />
+      <updated>1496891537041</updated>
+    </task>
+    <task id="LOCAL-00339" summary="debug">
+      <created>1496892959032</created>
+      <option name="number" value="00339" />
+      <option name="presentableId" value="LOCAL-00339" />
+      <option name="project" value="LOCAL" />
+      <updated>1496892959032</updated>
+    </task>
+    <task id="LOCAL-00340" summary="debug">
+      <created>1496893167029</created>
+      <option name="number" value="00340" />
+      <option name="presentableId" value="LOCAL-00340" />
+      <option name="project" value="LOCAL" />
+      <updated>1496893167029</updated>
+    </task>
+    <task id="LOCAL-00341" summary="debug">
+      <created>1496893211030</created>
+      <option name="number" value="00341" />
+      <option name="presentableId" value="LOCAL-00341" />
+      <option name="project" value="LOCAL" />
+      <updated>1496893211031</updated>
+    </task>
+    <task id="LOCAL-00342" summary="debug">
+      <created>1496893246028</created>
+      <option name="number" value="00342" />
+      <option name="presentableId" value="LOCAL-00342" />
+      <option name="project" value="LOCAL" />
+      <updated>1496893246028</updated>
+    </task>
+    <task id="LOCAL-00343" summary="debug">
+      <created>1496893276030</created>
+      <option name="number" value="00343" />
+      <option name="presentableId" value="LOCAL-00343" />
+      <option name="project" value="LOCAL" />
+      <updated>1496893276030</updated>
+    </task>
+    <task id="LOCAL-00344" summary="debug">
+      <created>1496893300029</created>
+      <option name="number" value="00344" />
+      <option name="presentableId" value="LOCAL-00344" />
+      <option name="project" value="LOCAL" />
+      <updated>1496893300029</updated>
+    </task>
+    <task id="LOCAL-00345" summary="debug">
+      <created>1496893328028</created>
+      <option name="number" value="00345" />
+      <option name="presentableId" value="LOCAL-00345" />
+      <option name="project" value="LOCAL" />
+      <updated>1496893328028</updated>
+    </task>
+    <task id="LOCAL-00346" summary="debug">
+      <created>1496893350028</created>
+      <option name="number" value="00346" />
+      <option name="presentableId" value="LOCAL-00346" />
+      <option name="project" value="LOCAL" />
+      <updated>1496893350028</updated>
+    </task>
+    <task id="LOCAL-00347" summary="debug">
+      <created>1496893481027</created>
+      <option name="number" value="00347" />
+      <option name="presentableId" value="LOCAL-00347" />
+      <option name="project" value="LOCAL" />
+      <updated>1496893481028</updated>
+    </task>
+    <task id="LOCAL-00348" summary="debug">
+      <created>1496893653030</created>
+      <option name="number" value="00348" />
+      <option name="presentableId" value="LOCAL-00348" />
+      <option name="project" value="LOCAL" />
+      <updated>1496893653030</updated>
+    </task>
+    <option name="localTasksCounter" value="349" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="503948000" />
+    <option name="totallyTimeSpent" value="552721000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1856,19 +1587,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-32" y="29" width="1440" height="809" extended-state="0" />
-    <editor active="false" />
+    <frame x="28" y="23" width="1390" height="809" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16165951" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13649851" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32830188" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6443515" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.101573676" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25941423" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10682493" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25801954" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1908,11 +1639,13 @@
     <MESSAGE value="立即购买" />
     <MESSAGE value="js兼容报错" />
     <MESSAGE value="徽章" />
-    <MESSAGE value="debug" />
     <MESSAGE value="token中转" />
     <MESSAGE value="推广海报" />
     <MESSAGE value="js" />
-    <option name="LAST_COMMIT_MESSAGE" value="js" />
+    <MESSAGE value="key" />
+    <MESSAGE value="渠道人员" />
+    <MESSAGE value="debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="debug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1927,199 +1660,39 @@
           <line>69</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/h5/app/order.app.php</url>
+          <line>1443</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/user/my_comment.publish.html</url>
           <line>169</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dingo/vendor/guzzlehttp/guzzle/src/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="297" column="9" selection-start-line="297" selection-start-column="9" selection-end-line="297" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/AuthController.php">
+    <entry file="file://$PROJECT_DIR$/dingo/app/Models/Pet.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
-          <caret line="126" column="25" selection-start-line="126" selection-start-column="20" selection-end-line="126" selection-end-column="25" />
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Article/ArticleController.php">
+    <entry file="file://$PROJECT_DIR$/dingo/app/Models/OrderCashLog.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="106" column="43" selection-start-line="106" selection-start-column="37" selection-end-line="106" selection-end-column="43" />
+        <state relative-caret-position="198">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Providers/AppServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Providers/AuthServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-130">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Models/AccessToken.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding>
-            <element signature="e#30#48#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendors/Cyteam/Shop/Type/FdiyBase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="1370" column="24" selection-start-line="1370" selection-start-column="24" selection-end-line="1370" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/functions.lib.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
-          <folding>
-            <marker date="1495789537000" expanded="true" signature="35541:35547" ph=" " />
-            <marker date="1495789537000" expanded="true" signature="35547:35553" ph=" " />
-            <marker date="1495789537000" expanded="true" signature="35553:35559" ph=" " />
-            <marker date="1495789537000" expanded="true" signature="61254:61317" ph="select * fro... cf_user_follow" />
-            <marker date="1495789537000" expanded="true" signature="61717:61743" ph="select * fro... cf_userphoto" />
-            <marker date="1495789537000" expanded="true" signature="66781:66840" ph="update cf_me... " />
-            <marker date="1495789537000" expanded="true" signature="67165:67218" ph="update cf_al... " />
-            <marker date="1495789537000" expanded="true" signature="69941:70020" ph="select * fro... cf_like" />
-            <marker date="1495789537000" expanded="true" signature="70636:70721" ph="select * fro... cf_like" />
-            <marker date="1495789537000" expanded="true" signature="71202:71242" ph="select * fro... cf_member" />
-            <marker date="1495789537000" expanded="true" signature="72599:72647" ph="select * fro... cf_member_lv" />
-            <marker date="1495789537000" expanded="true" signature="72745:72787" ph="select * fro... cf_region" />
-            <marker date="1495789537000" expanded="true" signature="76873:76939" ph="update cf_me... " />
-            <marker date="1495789537000" expanded="true" signature="77573:77637" ph="update cf_me... " />
-            <marker date="1495789537000" expanded="true" signature="78150:78220" ph="update cf_me... " />
-            <marker date="1495789537000" expanded="true" signature="78971:79031" ph="select * fro... cf_comments" />
-            <marker date="1495789537000" expanded="true" signature="79331:79379" ph="select count... cf_comments" />
-            <marker date="1495789537000" expanded="true" signature="79588:79682" ph="select * fro... cf_comments" />
-            <marker date="1495789537000" expanded="true" signature="80036:80096" ph="select * fro... cf_comments" />
-            <marker date="1495789537000" expanded="true" signature="80407:80446" ph="select * fro... cf_comments" />
-            <marker date="1495789537000" expanded="true" signature="80870:80903" ph="select * fro... cf_point_log" />
-            <marker date="1495789537000" expanded="true" signature="81483:81550" ph="update cf_me... " />
-            <marker date="1495789537000" expanded="true" signature="81660:81726" ph="update cf_us... " />
-            <marker date="1495789537000" expanded="true" signature="82552:82619" ph="update cf_me... " />
-            <marker date="1495789537000" expanded="true" signature="82870:82936" ph="update cf_us... " />
-            <marker date="1495789537000" expanded="true" signature="83092:83134" ph="select * fro... cf_coupon" />
-            <marker date="1495789537000" expanded="true" signature="83258:83312" ph="select count... cf_like" />
-            <marker date="1495789537000" expanded="true" signature="84350:84421" ph="select * fro... cf_userphoto" />
-            <marker date="1495789537000" expanded="true" signature="84681:84738" ph="select user_... cf_member" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/h5/weipay/WxPay.JsApiPay.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/h5/weipay/lib/WxPay.Config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="28" column="91" selection-start-line="28" selection-start-column="59" selection-end-line="28" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Http/Middleware/ApiSign.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Wx/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="32" column="58" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Wx/WxController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="68" column="38" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Http/Middleware/AdminMiddleware.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="13" column="26" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Transformers/RegionTransformer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="770">
-          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/arrayfiles/bank.arrayfile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="15" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Models/Good.php">
+    <entry file="file://$PROJECT_DIR$/dingo/app/MD5/MD5Hasher.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -2127,25 +1700,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Models/Order.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="29" />
-          <folding>
-            <element signature="e#30#43#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/routes.php">
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/OrderController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -2153,147 +1708,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Models/Region.php">
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="20" column="26" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/RoleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="129" column="9" selection-start-line="129" selection-start-column="9" selection-end-line="129" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Transformers/UserTransformer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/vendor/tymon/jwt-auth/src/Middleware/RefreshToken.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="32" column="56" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/h5/app/my_order.app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5896">
-          <caret line="272" column="14" selection-start-line="272" selection-start-column="14" selection-end-line="272" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/h5/diy/js/photoClipbak.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="2547" column="43" selection-start-line="2547" selection-start-column="43" selection-end-line="2547" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/vendor/tymon/jwt-auth/src/Middleware/BaseMiddleware.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/vendor/tymon/jwt-auth/src/Middleware/GetUserFromToken.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/h5/diy/js/photoClip.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="0" column="340" selection-start-line="0" selection-start-column="340" selection-end-line="0" selection-end-column="340" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/fdiy/index5.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="45" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/fdiy/index4.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="52" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/h5/diy/js/diy2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="39" column="37" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="37" />
-          <folding>
-            <marker date="1496205579000" expanded="true" signature="2158:2171" ph="..." />
-            <marker date="1496205579000" expanded="true" signature="2210:2244" ph="..." />
-            <marker date="1496205579000" expanded="true" signature="2274:2390" ph="..." />
-            <marker date="1496205579000" expanded="true" signature="8640:8653" ph="..." />
-            <marker date="1496205579000" expanded="true" signature="8692:8726" ph="..." />
-            <marker date="1496205579000" expanded="true" signature="16826:16839" ph="..." />
-            <marker date="1496205579000" expanded="true" signature="16878:16912" ph="..." />
-            <marker date="1496205579000" expanded="true" signature="31485:31498" ph="..." />
-            <marker date="1496205579000" expanded="true" signature="31537:31571" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Models/MemberBank.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Console/Commands/CrmUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Console/Commands/CrmCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="203" column="65" selection-start-line="203" selection-start-column="65" selection-end-line="203" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="2148" column="30" selection-start-line="2148" selection-start-column="20" selection-end-line="2148" selection-end-column="30" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="9" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="9" />
+          <folding>
+            <element signature="e#7#42#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Models/Cash.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="43" column="13" selection-start-line="33" selection-start-column="12" selection-end-line="43" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="169" column="51" selection-start-line="169" selection-start-column="51" selection-end-line="169" selection-end-column="51" />
+          <folding>
+            <element signature="e#53#101#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -2306,79 +1776,336 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/h5/app/cart.app.php">
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="321" column="5" selection-start-line="321" selection-start-column="5" selection-end-line="321" selection-end-column="5" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Article/ArticleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="7" column="59" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+          <folding>
+            <element signature="e#46#73#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Order/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Order/OrderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/RoleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="109" column="9" selection-start-line="109" selection-start-column="9" selection-end-line="109" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="18" selection-end-column="56" />
-          <folding>
-            <element signature="e#7#42#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="401" column="20" selection-start-line="401" selection-start-column="20" selection-end-line="401" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Models/ChDiscount.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="329" column="46" selection-start-line="329" selection-start-column="40" selection-end-line="329" selection-end-column="46" />
+        <state relative-caret-position="176">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="302" column="41" selection-start-line="302" selection-start-column="41" selection-end-line="302" selection-end-column="41" />
+        <state relative-caret-position="198">
+          <caret line="207" column="5" selection-start-line="207" selection-start-column="5" selection-end-line="207" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php">
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Transformers/OrderTransformer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="254" column="25" selection-start-line="254" selection-start-column="25" selection-end-line="254" selection-end-column="25" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php">
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Transformers/RegionTransformer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Transformers/UserTransformer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Console/Commands/CrmUser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Console/Commands/CrmCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Console/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Exceptions/Handler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Console/Commands/MakeImg.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Http/Controllers/WxController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="129" column="25" selection-start-line="129" selection-start-column="25" selection-end-line="129" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Http/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Http/Middleware/AdminMiddleware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/libraries/shopCommon.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="775" column="0" selection-start-line="775" selection-start-column="0" selection-end-line="775" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Models/Order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="81" column="46" selection-start-line="81" selection-start-column="46" selection-end-line="81" selection-end-column="46" />
+          <folding>
+            <element signature="e#30#43#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="77" column="28" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="28" />
+          <folding>
+            <element signature="e#23#43#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Console/Commands/PayOrder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1716">
+          <caret line="82" column="34" selection-start-line="82" selection-start-column="34" selection-end-line="82" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/eccore/model/model.base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="305" column="43" selection-start-line="305" selection-start-column="43" selection-end-line="305" selection-end-column="43" />
+          <folding>
+            <marker date="1496891241000" expanded="true" signature="3566:3592" ph="SELECT COUNT... $" />
+            <marker date="1496891241000" expanded="true" signature="3666:3688" ph="SELECT ${{$f... " />
+            <marker date="1496891241000" expanded="true" signature="14273:14429" ph="UPDATE ${{$t... " />
+            <marker date="1496891241000" expanded="true" signature="15500:15567" ph="DELETE FROM " />
+            <marker date="1496891241000" expanded="true" signature="16188:16214" ph="UPDATE ${{$t... " />
+            <marker date="1496891241000" expanded="true" signature="16991:17028" ph="SELECT * FRO... $" />
+            <marker date="1496891241000" expanded="true" signature="18620:18697" ph="INSERT INTO $... " />
+            <marker date="1496891241000" expanded="true" signature="19329:19366" ph="SELECT ${{$t... " />
+            <marker date="1496891241000" expanded="true" signature="19548:19560" ph="DELETE FROM " />
+            <marker date="1496891241000" expanded="true" signature="20059:20092" ph="DELETE FROM " />
+            <marker date="1496891241000" expanded="true" signature="22121:22209" ph="SELECT DISTI... " />
+            <marker date="1496891241000" expanded="true" signature="41692:41722" ph="SELECT COUNT... " />
+            <marker date="1496891241000" expanded="true" signature="42160:42186" ph="UPDATE ${{$t... " />
+            <marker date="1496891241000" expanded="true" signature="42645:42671" ph="UPDATE ${{$t... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/includes/models/chdiscounts.model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/models/chdiscounts.model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="26" />
+          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Models/Cash.php">
+    <entry file="file://$PROJECT_DIR$/dingo/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding>
-            <element signature="e#30#43#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="418">
+          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/includes/ordertypes/news.otype.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="515" column="39" selection-start-line="515" selection-start-column="39" selection-end-line="515" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/app/paynotifyw.app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5720">
+          <caret line="261" column="25" selection-start-line="261" selection-start-column="25" selection-end-line="261" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/weipay/lib/WxPay.Data.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="1013" column="28" selection-start-line="1013" selection-start-column="23" selection-end-line="1013" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/weipay/WxPay.JsApiPay.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="234" column="41" selection-start-line="234" selection-start-column="41" selection-end-line="234" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/weipay/lib/WxPay.Api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="192" column="45" selection-start-line="192" selection-start-column="45" selection-end-line="192" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/weipay/lib/WxPay.Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/orders/payment/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="120" column="17" selection-start-line="120" selection-start-column="9" selection-end-line="120" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/app/order.app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="1821" column="38" selection-start-line="1821" selection-start-column="38" selection-end-line="1821" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>

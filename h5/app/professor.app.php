@@ -53,7 +53,6 @@ class ProfessorApp extends MallbaseApp
         $scripts='';
         if($data['status']){
             $adminList=$data['data']['adminList'];
-
             if($adminList){
                 //如果用户登录拼接用户信息
                 if($this->visitor->has_login){
@@ -67,8 +66,7 @@ class ProfessorApp extends MallbaseApp
                         unset($adminList[$key]);
                         continue;
                     }
-//                    $groupId=$value['groupId'][0];
-                    $groupId="8e421d82d4384f169a5af4c98d3c6299";
+                    $groupId=$value['groupId'][0];
                     $adminList[$key]['url']="http://www.sobot.com/chat/h5/index.html?sysNum=2b17cdee375a475e963aeed478c37fbf{$str}&modulType=2&groupId={$groupId}";
                 }
             }else{
