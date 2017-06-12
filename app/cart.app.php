@@ -4,6 +4,7 @@ use Cyteam\Shop\Cart\Carts;
 use Cyteam\Shop\Shop;
 use Cyteam\Shop\Type;
 use Cyteam\Shop\Type\Types;
+use Cyteam\Goods\Goods;
 class CartApp extends ShoppingbaseApp
 {
 	public $types = array("suit",'custom','diy','fdiy');
@@ -73,12 +74,16 @@ class CartApp extends ShoppingbaseApp
 		if($main['object']){
 			foreach($main['object'] as $key=>$val){
 				if($val['goods']['goods_id']){
-					$favorables_mj=$this->get_goods_favorable_mj($val['goods']['goods_id'],$_SESSION['user_info']['member_lv_id']);
-					$favorables_zk=$this->get_goods_favorable_zk($val['goods']['goods_id'],$_SESSION['user_info']['member_lv_id']);
-					
+					/*$favorables_mj=$this->get_goods_favorable_mj($val['goods']['goods_id'],$_SESSION['user_info']['member_lv_id']);
+					$favorables_zk=$this->get_goods_favorable_zk($val['goods']['goods_id'],$_SESSION['user_info']['member_lv_id']);*/
+				    //获取商品当前优先级最高活动
+				    $goodsLib =  new Goods();
+				    //获取商品的优惠活动
+				     $main['object'][$key]['favorables'] = $goodsLib->getfavourable($id);
+				// var_dump($main['object'][$key]['favorables']);exit;
 				}
 				
-				if($favorables_mj){
+				/*if($favorables_mj){
 				   $main['object'][$key]['favorable_mj']=$favorables_mj;
 				  
 			    }else{
@@ -89,7 +94,7 @@ class CartApp extends ShoppingbaseApp
 				    $main['object'][$key]['favorable_zk']=$favorables_zk;
 				}else{
 				    $main['object'][$key]['favorable_zk']='';
-				}
+				}*/
 				
 			}
 			
@@ -110,8 +115,14 @@ class CartApp extends ShoppingbaseApp
             'conditions'=>"uid='{$member['user_id']}' AND status = 0",
             //'index_key'=>'quan_id',
         ));
-        $quanids=array_column($youhuiquans,'quan_id');
-        $quanid=db_create_in($quanids,'id');
+       
+        if($youhuiquans){
+            $quanids=array_column($youhuiquans,'quan_id');
+            if($quanids){
+                $quanid=db_create_in($quanids,'id');
+            }
+        }
+       
      
         if($quanid){
             $newpromotions= $this->_newpromotion_mod->find(array(

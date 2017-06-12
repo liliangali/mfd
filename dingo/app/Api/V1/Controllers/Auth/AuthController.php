@@ -57,11 +57,11 @@ class AuthController extends BaseController {
             return $this->errorResponse('创建token时出错');
         }
         $user = User::where('user_name', $credentials['user_name'])->first()->toArray();
-        if($user->member_type  == 0)
+        if($user['member_type']  == 0)
         {
             return $this->errorResponse('您不是渠道人员');
         }
-        elseif ($user->is_service == 0)
+        elseif ($user['is_service'] == 0)
         {
             return $this->errorResponse('你的渠道申请尚未通过');
         }

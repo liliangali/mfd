@@ -4,338 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/dingo/app/User.php" line="149" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="c853fd74-29a7-4dbb-877c-01d699a7c52b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts/fontawesome-webfont.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/fonts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/images" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/images/logo-sm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/img" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/img/logo-sm.bc61557.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/brown-papersq.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/brown_papersq.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/pojoaque.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/school-book.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/school_book.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/jquery" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/fonts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/fonts/icomoon.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/fonts/icomoon.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/js/lib" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts/fontawesome-webfont.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/fonts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/images" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/images/logo-sm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/img" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/img/logo-sm.bc61557.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/brown-papersq.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/brown_papersq.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/pojoaque.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/school-book.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/school_book.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/jquery" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/fonts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/fonts/icomoon.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/fonts/icomoon.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/js/lib" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/css/app.f5b6862f714d97c97f8453f1b74e7985.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/css/app.f5b6862f714d97c97f8453f1b74e7985.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/css/font-awesome.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/css/font-awesome.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/font-awesome/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/fonts/element-icons.b02bdc1.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js/app.6b5860b4f8cdc0afa258.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js/app.6b5860b4f8cdc0afa258.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js/manifest.46d7bdf85bf6afb11da3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js/manifest.46d7bdf85bf6afb11da3.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js/vendor.2b001a6eed6bd4f46392.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/js/vendor.2b001a6eed6bd4f46392.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/highlight.pack.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/highlight.pack.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/highlightjs-line-numbers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/highlightjs-line-numbers.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/agate.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/androidstudio.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/arduino-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/arta.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/ascetic.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-cave-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-cave-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-cave.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-cave.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-dune-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-dune-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-dune.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-dune.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-estuary-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-estuary-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-estuary.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-estuary.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-forest-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-forest-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-forest.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-forest.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-heath-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-heath-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-heath.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-heath.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-lakeside-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-lakeside-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-lakeside.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-lakeside.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-plateau-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-plateau-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-plateau.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-plateau.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-savanna-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-savanna-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-savanna.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-savanna.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-seaside-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-seaside-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-seaside.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-seaside.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-sulphurpool-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-sulphurpool-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-sulphurpool.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atelier-sulphurpool.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atom-one-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/atom-one-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/brown-paper.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/brown_paper.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/codepen-embed.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/color-brewer.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/darcula.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/darkula.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/default.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/docco.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/dracula.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/far.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/github-gist.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/github.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/googlecode.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/grayscale.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/gruvbox-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/gruvbox-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/hopscotch.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/hybrid.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/idea.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/ir-black.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/ir_black.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/kimbie.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/kimbie.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/magula.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/mono-blue.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/monokai-sublime.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/monokai.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/monokai_sublime.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/obsidian.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/ocean.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/paraiso-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/paraiso-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/paraiso.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/paraiso.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/pojoaque.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/purebasic.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/qtcreator_dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/qtcreator_light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/railscasts.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/rainbow.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/school-book.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/school_book.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/solarized-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/solarized-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/solarized_dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/solarized_light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/sunburst.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/tomorrow-night-blue.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/tomorrow-night-bright.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/tomorrow-night-eighties.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/tomorrow-night.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/tomorrow.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/vs.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/xcode.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/xt256.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/highlight/styles/zenburn.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/jquery/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/css/wangEditor.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/css/wangEditor.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/css/wangEditor.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/fonts/icomoon.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/fonts/icomoon.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/js/lib/jquery-1.10.2.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/js/lib/jquery-2.2.1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/js/wangEditor.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qadmin/static/libs/wangeditor/js/wangEditor.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/css/app.f57c2cd72eff39c65cdc6feb990fd875.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/css/app.f57c2cd72eff39c65cdc6feb990fd875.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/css/font-awesome.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/css/font-awesome.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/font-awesome/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/fonts/element-icons.b02bdc1.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js/app.d1fae30c19cffe37262c.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js/app.d1fae30c19cffe37262c.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js/manifest.c8bc54b01b66325ae84d.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js/manifest.c8bc54b01b66325ae84d.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js/vendor.5e1a3a4c8dc3225119d0.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/js/vendor.5e1a3a4c8dc3225119d0.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/highlight.pack.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/highlight.pack.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/highlightjs-line-numbers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/highlightjs-line-numbers.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/agate.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/androidstudio.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/arduino-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/arta.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/ascetic.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-cave-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-cave-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-cave.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-cave.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-dune-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-dune-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-dune.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-dune.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-estuary-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-estuary-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-estuary.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-estuary.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-forest-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-forest-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-forest.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-forest.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-heath-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-heath-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-heath.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-heath.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-lakeside-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-lakeside-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-lakeside.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-lakeside.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-plateau-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-plateau-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-plateau.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-plateau.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-savanna-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-savanna-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-savanna.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-savanna.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-seaside-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-seaside-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-seaside.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-seaside.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-sulphurpool-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-sulphurpool-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-sulphurpool.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atelier-sulphurpool.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atom-one-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/atom-one-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/brown-paper.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/brown_paper.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/codepen-embed.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/color-brewer.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/darcula.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/darkula.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/default.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/docco.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/dracula.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/far.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/github-gist.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/github.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/googlecode.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/grayscale.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/gruvbox-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/gruvbox-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/hopscotch.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/hybrid.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/idea.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/ir-black.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/ir_black.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/kimbie.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/kimbie.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/magula.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/mono-blue.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/monokai-sublime.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/monokai.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/monokai_sublime.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/obsidian.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/ocean.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/paraiso-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/paraiso-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/paraiso.dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/paraiso.light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/pojoaque.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/purebasic.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/qtcreator_dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/qtcreator_light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/railscasts.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/rainbow.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/school-book.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/school_book.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/solarized-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/solarized-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/solarized_dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/solarized_light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/sunburst.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/tomorrow-night-blue.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/tomorrow-night-bright.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/tomorrow-night-eighties.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/tomorrow-night.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/tomorrow.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/vs.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/xcode.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/xt256.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/highlight/styles/zenburn.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/jquery/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/css/wangEditor.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/css/wangEditor.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/css/wangEditor.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/fonts/icomoon.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/fonts/icomoon.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/js/lib/jquery-1.10.2.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/js/lib/jquery-2.2.1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/js/wangEditor.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qudao/static/libs/wangeditor/js/wangEditor.min.js" />
-    </list>
+    <list default="true" readonly="true" id="c853fd74-29a7-4dbb-877c-01d699a7c52b" name="Default" comment="" />
     <list id="254b242d-79c8-4993-929d-930e44323e6e" name="New changelist" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/upload/phpqrcode/goods/goods_2b44928ae11fb9384c4cf38708677c48_1.png" afterPath="$PROJECT_DIR$/upload/phpqrcode/goods/goods_2b44928ae11fb9384c4cf38708677c48_1.png" />
@@ -677,101 +346,141 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dingo/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="order.app.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/h5/app/order.app.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="1821" column="38" selection-start-line="1821" selection-start-column="38" selection-end-line="1821" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WxPay.Api.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/h5/weipay/lib/WxPay.Api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="192" column="45" selection-start-line="192" selection-start-column="45" selection-end-line="192" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WxPay.JsApiPay.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/h5/weipay/WxPay.JsApiPay.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="234" column="41" selection-start-line="234" selection-start-column="41" selection-end-line="234" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WxPay.Config.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/h5/weipay/lib/WxPay.Config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WxPay.Data.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/h5/weipay/lib/WxPay.Data.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="1013" column="28" selection-start-line="1013" selection-start-column="23" selection-end-line="1013" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/orders/payment/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="120" column="17" selection-start-line="120" selection-start-column="9" selection-end-line="120" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="news.otype.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/h5/includes/ordertypes/news.otype.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="515" column="39" selection-start-line="515" selection-start-column="39" selection-end-line="515" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chdiscounts.model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/models/chdiscounts.model.php">
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingo/app/User.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="242">
-              <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+              <caret line="79" column="9" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
+              <folding>
+                <element signature="e#23#43#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wx.app.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/wx.app.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="29" column="46" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chdiscounts.model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/h5/includes/models/chdiscounts.model.php">
+      <file leaf-file-name="order.app.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mfd/app/order.app.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+            <state relative-caret-position="286">
+              <caret line="3459" column="5" selection-start-line="3459" selection-start-column="5" selection-end-line="3459" selection-end-column="5" />
+              <folding>
+                <marker date="1496813713000" expanded="true" signature="2260:2448" ph="SELECT order... *" />
+                <marker date="1496813713000" expanded="true" signature="2281:2412" ph="select * fro... cf_order_mtm_logs" />
+                <marker date="1496813713000" expanded="true" signature="2932:3109" ph="SELECT order... *" />
+                <marker date="1496813713000" expanded="true" signature="2953:3072" ph="select * fro... cf_order_mtm_logs" />
+                <marker date="1496813713000" expanded="true" signature="3605:3781" ph="SELECT order... *" />
+                <marker date="1496813713000" expanded="true" signature="3626:3744" ph="select * fro... cf_order_mtm_logs" />
+                <marker date="1496813713000" expanded="true" signature="39768:39777" ph="..." />
+                <marker date="1496813713000" expanded="true" signature="39851:39860" ph="..." />
+                <marker date="1496813713000" expanded="true" signature="43795:43801" ph=" " />
+                <marker date="1496813713000" expanded="true" signature="43801:43807" ph=" " />
+                <marker date="1496813713000" expanded="true" signature="43807:43813" ph=" " />
+                <marker date="1496813713000" expanded="true" signature="43813:43819" ph=" " />
+                <marker date="1496813713000" expanded="true" signature="43842:43846" ph="&gt;" />
+                <marker date="1496813713000" expanded="true" signature="43846:43850" ph="&gt;" />
+                <marker date="1496813713000" expanded="true" signature="48139:48212" ph="update `cf_o... " />
+                <marker date="1496813713000" expanded="true" signature="63472:63538" ph="update figur... " />
+                <marker date="1496813713000" expanded="true" signature="94844:95028" ph="SELECT order... *" />
+                <marker date="1496813713000" expanded="true" signature="94865:94996" ph="select * fro... cf_order_mtm_logs" />
+                <marker date="1496813713000" expanded="true" signature="95456:95627" ph="SELECT order... *" />
+                <marker date="1496813713000" expanded="true" signature="95477:95596" ph="select * fro... cf_order_mtm_logs" />
+                <marker date="1496813713000" expanded="true" signature="96044:96214" ph="SELECT order... *" />
+                <marker date="1496813713000" expanded="true" signature="96065:96183" ph="select * fro... cf_order_mtm_logs" />
+                <marker date="1496813713000" expanded="true" signature="101947:102134" ph="SELECT order... *" />
+                <marker date="1496813713000" expanded="true" signature="101968:102099" ph="select * fro... cf_order_mtm_logs" />
+                <marker date="1496813713000" expanded="true" signature="102626:102801" ph="SELECT order... *" />
+                <marker date="1496813713000" expanded="true" signature="102647:102766" ph="select * fro... cf_order_mtm_logs" />
+                <marker date="1496813713000" expanded="true" signature="103261:103437" ph="SELECT order... *" />
+                <marker date="1496813713000" expanded="true" signature="103282:103400" ph="select * fro... cf_order_mtm_logs" />
+                <marker date="1496813713000" expanded="true" signature="112042:112229" ph="SELECT order... *" />
+                <marker date="1496813713000" expanded="true" signature="112063:112194" ph="select * fro... cf_order_mtm_logs" />
+                <marker date="1496813713000" expanded="true" signature="112756:112931" ph="SELECT order... *" />
+                <marker date="1496813713000" expanded="true" signature="112777:112896" ph="select * fro... cf_order_mtm_logs" />
+                <marker date="1496813713000" expanded="true" signature="113475:113651" ph="SELECT order... *" />
+                <marker date="1496813713000" expanded="true" signature="113496:113614" ph="select * fro... cf_order_mtm_logs" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index_new.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/fdiy/index_new.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+              <folding>
+                <marker date="1494301296000" expanded="true" signature="814:838" ph="{...}" />
+                <marker date="1494301296000" expanded="true" signature="10088:10248" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fdiy.app.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/h5/app/fdiy.app.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="123" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4004">
+              <caret line="198" column="46" selection-start-line="198" selection-start-column="38" selection-end-line="198" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/AuthController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="572">
+              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/routes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="7" column="17" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrderController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/OrderController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="990">
+              <caret line="52" column="20" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cors.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dingo/config/cors.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -789,8 +498,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Article/routes.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/routes.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/routes.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Article/routes.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/Carticle.php" />
@@ -801,14 +508,11 @@
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Wx/WxController.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Wx/routes.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Article/ArticleController.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Models/Region.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/MemberBank.php" />
         <option value="$PROJECT_DIR$/h5/app/cart.app.php" />
         <option value="$PROJECT_DIR$/h5/diy/js/photoClipbak.js" />
         <option value="$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/fdiy/index4.html" />
         <option value="$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/fdiy/index5.html" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/AuthController.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/routes.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/ChDiscount.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php" />
         <option value="$PROJECT_DIR$/dingo/app/Helper.php" />
@@ -822,7 +526,6 @@
         <option value="$PROJECT_DIR$/dingo/app/Http/Controllers/WxController.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Transformers/UserTransformer.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/routes.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/RoleController.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/LaravelSms.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/Cash.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/UserController.php" />
@@ -831,15 +534,21 @@
         <option value="$PROJECT_DIR$/h5/app/paynotifyw.app.php" />
         <option value="$PROJECT_DIR$/includes/libraries/shopCommon.php" />
         <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php" />
-        <option value="$PROJECT_DIR$/dingo/app/User.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/ChannelInfo.php" />
-        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/AuthController.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/OrderCashLog.php" />
         <option value="$PROJECT_DIR$/dingo/app/Models/Order.php" />
         <option value="$PROJECT_DIR$/h5/eccore/model/model.base.php" />
         <option value="$PROJECT_DIR$/h5/includes/ordertypes/news.otype.php" />
         <option value="$PROJECT_DIR$/h5/weipay/lib/WxPay.Config.php" />
         <option value="$PROJECT_DIR$/h5/app/order.app.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/RoleController.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Models/Region.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/routes.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/AuthController.php" />
+        <option value="$PROJECT_DIR$/dingo/config/cors.php" />
+        <option value="$PROJECT_DIR$/dingo/public/index.php" />
+        <option value="$PROJECT_DIR$/dingo/app/User.php" />
+        <option value="$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/AuthController.php" />
       </list>
     </option>
   </component>
@@ -851,7 +560,7 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="28" />
+    <option name="x" value="12" />
     <option name="y" value="23" />
     <option name="width" value="1390" />
     <option name="height" value="809" />
@@ -881,7 +590,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -980,9 +689,145 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h5" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h5" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h5" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sc-utf-8" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h5" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sc-utf-8" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mall" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="default" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h5" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sc-utf-8" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mall" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="default" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fdiy" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mfd2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h5" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1005,117 +850,6 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/dingo/app/Http/Controllers/app" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="4226">$PROJECT_DIR$/h5/access_token.php</PATH>
-        <PATH vcs="svn" revision="4226">$PROJECT_DIR$/h5/jsapi_ticket.php</PATH>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunManager">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -1226,77 +960,8 @@
       <workItem from="1496199883042" duration="40941000" />
       <workItem from="1496459035482" duration="47369000" />
       <workItem from="1496813698075" duration="13543000" />
-      <workItem from="1496886640389" duration="5897000" />
-    </task>
-    <task id="LOCAL-00300" summary="debug">
-      <created>1495259983031</created>
-      <option name="number" value="00300" />
-      <option name="presentableId" value="LOCAL-00300" />
-      <option name="project" value="LOCAL" />
-      <updated>1495259983032</updated>
-    </task>
-    <task id="LOCAL-00301" summary="推广海报">
-      <created>1495260109029</created>
-      <option name="number" value="00301" />
-      <option name="presentableId" value="LOCAL-00301" />
-      <option name="project" value="LOCAL" />
-      <updated>1495260109030</updated>
-    </task>
-    <task id="LOCAL-00302" summary="推广海报">
-      <created>1495260310030</created>
-      <option name="number" value="00302" />
-      <option name="presentableId" value="LOCAL-00302" />
-      <option name="project" value="LOCAL" />
-      <updated>1495260310031</updated>
-    </task>
-    <task id="LOCAL-00303" summary="推广海报">
-      <created>1495260404028</created>
-      <option name="number" value="00303" />
-      <option name="presentableId" value="LOCAL-00303" />
-      <option name="project" value="LOCAL" />
-      <updated>1495260404029</updated>
-    </task>
-    <task id="LOCAL-00304" summary="推广海报">
-      <created>1495260680028</created>
-      <option name="number" value="00304" />
-      <option name="presentableId" value="LOCAL-00304" />
-      <option name="project" value="LOCAL" />
-      <updated>1495260680028</updated>
-    </task>
-    <task id="LOCAL-00305" summary="推广海报">
-      <created>1495260745031</created>
-      <option name="number" value="00305" />
-      <option name="presentableId" value="LOCAL-00305" />
-      <option name="project" value="LOCAL" />
-      <updated>1495260745031</updated>
-    </task>
-    <task id="LOCAL-00306" summary="推广海报">
-      <created>1495260905029</created>
-      <option name="number" value="00306" />
-      <option name="presentableId" value="LOCAL-00306" />
-      <option name="project" value="LOCAL" />
-      <updated>1495260905029</updated>
-    </task>
-    <task id="LOCAL-00307" summary="推广海报">
-      <created>1495261298029</created>
-      <option name="number" value="00307" />
-      <option name="presentableId" value="LOCAL-00307" />
-      <option name="project" value="LOCAL" />
-      <updated>1495261298030</updated>
-    </task>
-    <task id="LOCAL-00308" summary="推广海报">
-      <created>1495261772029</created>
-      <option name="number" value="00308" />
-      <option name="presentableId" value="LOCAL-00308" />
-      <option name="project" value="LOCAL" />
-      <updated>1495261772030</updated>
-    </task>
-    <task id="LOCAL-00309" summary="推广海报">
-      <created>1495262128026</created>
-      <option name="number" value="00309" />
-      <option name="presentableId" value="LOCAL-00309" />
-      <option name="project" value="LOCAL" />
-      <updated>1495262128027</updated>
+      <workItem from="1496886640389" duration="19896000" />
+      <workItem from="1496975883462" duration="3818000" />
     </task>
     <task id="LOCAL-00310" summary="推广海报">
       <created>1495263719033</created>
@@ -1571,11 +1236,81 @@
       <option name="project" value="LOCAL" />
       <updated>1496893653030</updated>
     </task>
-    <option name="localTasksCounter" value="349" />
+    <task id="LOCAL-00349" summary="debug">
+      <created>1496899587053</created>
+      <option name="number" value="00349" />
+      <option name="presentableId" value="LOCAL-00349" />
+      <option name="project" value="LOCAL" />
+      <updated>1496899587055</updated>
+    </task>
+    <task id="LOCAL-00350" summary="debug">
+      <created>1496903216055</created>
+      <option name="number" value="00350" />
+      <option name="presentableId" value="LOCAL-00350" />
+      <option name="project" value="LOCAL" />
+      <updated>1496903216055</updated>
+    </task>
+    <task id="LOCAL-00351" summary="debug">
+      <created>1496903898027</created>
+      <option name="number" value="00351" />
+      <option name="presentableId" value="LOCAL-00351" />
+      <option name="project" value="LOCAL" />
+      <updated>1496903898028</updated>
+    </task>
+    <task id="LOCAL-00352" summary="debug">
+      <created>1496905576034</created>
+      <option name="number" value="00352" />
+      <option name="presentableId" value="LOCAL-00352" />
+      <option name="project" value="LOCAL" />
+      <updated>1496905576034</updated>
+    </task>
+    <task id="LOCAL-00353" summary="debug">
+      <created>1496905783026</created>
+      <option name="number" value="00353" />
+      <option name="presentableId" value="LOCAL-00353" />
+      <option name="project" value="LOCAL" />
+      <updated>1496905783026</updated>
+    </task>
+    <task id="LOCAL-00354" summary="debug">
+      <created>1496907149087</created>
+      <option name="number" value="00354" />
+      <option name="presentableId" value="LOCAL-00354" />
+      <option name="project" value="LOCAL" />
+      <updated>1496907149088</updated>
+    </task>
+    <task id="LOCAL-00355" summary="debug">
+      <created>1496908918030</created>
+      <option name="number" value="00355" />
+      <option name="presentableId" value="LOCAL-00355" />
+      <option name="project" value="LOCAL" />
+      <updated>1496908918033</updated>
+    </task>
+    <task id="LOCAL-00356" summary="debug">
+      <created>1496908989033</created>
+      <option name="number" value="00356" />
+      <option name="presentableId" value="LOCAL-00356" />
+      <option name="project" value="LOCAL" />
+      <updated>1496908989033</updated>
+    </task>
+    <task id="LOCAL-00357" summary="debug">
+      <created>1496909115032</created>
+      <option name="number" value="00357" />
+      <option name="presentableId" value="LOCAL-00357" />
+      <option name="project" value="LOCAL" />
+      <updated>1496909115032</updated>
+    </task>
+    <task id="LOCAL-00358" summary="debug">
+      <created>1496969125048</created>
+      <option name="number" value="00358" />
+      <option name="presentableId" value="LOCAL-00358" />
+      <option name="project" value="LOCAL" />
+      <updated>1496969125055</updated>
+    </task>
+    <option name="localTasksCounter" value="359" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="552721000" />
+    <option name="totallyTimeSpent" value="570538000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1587,19 +1322,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="28" y="23" width="1390" height="809" extended-state="0" />
-    <editor active="true" />
+    <frame x="12" y="23" width="1390" height="809" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13649851" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18397626" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32830188" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6443515" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10682493" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17062314" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25801954" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1676,297 +1411,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dingo/app/Models/Pet.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Models/OrderCashLog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="23" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/MD5/MD5Hasher.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/OrderController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="9" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="9" />
-          <folding>
-            <element signature="e#7#42#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Models/Cash.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="43" column="13" selection-start-line="33" selection-start-column="12" selection-end-line="43" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="169" column="51" selection-start-line="169" selection-start-column="51" selection-end-line="169" selection-end-column="51" />
-          <folding>
-            <element signature="e#53#101#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Article/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Article/ArticleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="7" column="59" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
-          <folding>
-            <element signature="e#46#73#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Order/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Order/OrderController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/RoleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="109" column="9" selection-start-line="109" selection-start-column="9" selection-end-line="109" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/User/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="207" column="5" selection-start-line="207" selection-start-column="5" selection-end-line="207" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Transformers/OrderTransformer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Transformers/RegionTransformer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Transformers/UserTransformer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Console/Commands/CrmUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Console/Commands/CrmCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Console/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Exceptions/Handler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Console/Commands/MakeImg.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Http/Controllers/WxController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="129" column="25" selection-start-line="129" selection-start-column="25" selection-end-line="129" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Http/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/Http/Middleware/AdminMiddleware.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/libraries/shopCommon.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="625">
           <caret line="775" column="0" selection-start-line="775" selection-start-column="0" selection-end-line="775" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1974,19 +1422,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="81" column="46" selection-start-line="81" selection-start-column="46" selection-end-line="81" selection-end-column="46" />
-          <folding>
-            <element signature="e#30#43#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="77" column="28" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="28" />
-          <folding>
-            <element signature="e#23#43#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2033,15 +1468,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dingo/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2057,7 +1483,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5720">
           <caret line="261" column="25" selection-start-line="261" selection-start-column="25" selection-end-line="261" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2065,7 +1490,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="1013" column="28" selection-start-line="1013" selection-start-column="23" selection-end-line="1013" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2073,7 +1497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="234" column="41" selection-start-line="234" selection-start-column="41" selection-end-line="234" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2081,7 +1504,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="192" column="45" selection-start-line="192" selection-start-column="45" selection-end-line="192" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2089,7 +1511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2101,10 +1522,343 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Models/ApiSign.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="311" column="39" selection-start-line="311" selection-start-column="38" selection-end-line="311" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Transformers/RegionTransformer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Role/RoleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="92" column="52" selection-start-line="92" selection-start-column="52" selection-end-line="92" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Models/Region.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="20" column="33" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/h5/app/order.app.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="1828" column="38" selection-start-line="1828" selection-start-column="38" selection-end-line="1828" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="569" column="27" selection-start-line="569" selection-start-column="27" selection-end-line="569" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Models/LaravelSms.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Models/Cash.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="40" column="29" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/_ide_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10475" column="31" selection-start-line="10475" selection-start-column="31" selection-end-line="10475" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="10" column="33" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="42" column="46" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/vendor/laravel/framework/src/Illuminate/Support/ServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/vendor/intervention/image/src/Intervention/Image/ImageServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="70" column="39" selection-start-line="70" selection-start-column="36" selection-end-line="70" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/vendor/intervention/image/src/Intervention/Image/ImageManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/vendor/intervention/image/src/Intervention/Image/Size.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-704">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="32" column="25" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/vendor/intervention/image/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/public/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Auth/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/Order/OrderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="52" column="20" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/config/cors.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
-          <caret line="1821" column="38" selection-start-line="1821" selection-start-column="38" selection-end-line="1821" selection-end-column="38" />
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Admin/User/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4004">
+          <caret line="198" column="46" selection-start-line="198" selection-start-column="38" selection-end-line="198" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/Api/V1/Controllers/Auth/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dingo/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="79" column="9" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
+          <folding>
+            <element signature="e#23#43#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendors/Cyteam/Goods/Mp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="207" column="16" selection-start-line="207" selection-start-column="16" selection-end-line="207" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendors/Cyteam/Goods/Wechat.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="380" column="5" selection-start-line="380" selection-start-column="5" selection-end-line="380" selection-end-column="5" />
+          <folding>
+            <marker date="1493171606000" expanded="true" signature="33222:33363" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/wx.app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="29" column="46" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mfd/app/order.app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="3459" column="5" selection-start-line="3459" selection-start-column="5" selection-end-line="3459" selection-end-column="5" />
+          <folding>
+            <marker date="1496813713000" expanded="true" signature="2260:2448" ph="SELECT order... *" />
+            <marker date="1496813713000" expanded="true" signature="2281:2412" ph="select * fro... cf_order_mtm_logs" />
+            <marker date="1496813713000" expanded="true" signature="2932:3109" ph="SELECT order... *" />
+            <marker date="1496813713000" expanded="true" signature="2953:3072" ph="select * fro... cf_order_mtm_logs" />
+            <marker date="1496813713000" expanded="true" signature="3605:3781" ph="SELECT order... *" />
+            <marker date="1496813713000" expanded="true" signature="3626:3744" ph="select * fro... cf_order_mtm_logs" />
+            <marker date="1496813713000" expanded="true" signature="39768:39777" ph="..." />
+            <marker date="1496813713000" expanded="true" signature="39851:39860" ph="..." />
+            <marker date="1496813713000" expanded="true" signature="43795:43801" ph=" " />
+            <marker date="1496813713000" expanded="true" signature="43801:43807" ph=" " />
+            <marker date="1496813713000" expanded="true" signature="43807:43813" ph=" " />
+            <marker date="1496813713000" expanded="true" signature="43813:43819" ph=" " />
+            <marker date="1496813713000" expanded="true" signature="43842:43846" ph="&gt;" />
+            <marker date="1496813713000" expanded="true" signature="43846:43850" ph="&gt;" />
+            <marker date="1496813713000" expanded="true" signature="48139:48212" ph="update `cf_o... " />
+            <marker date="1496813713000" expanded="true" signature="63472:63538" ph="update figur... " />
+            <marker date="1496813713000" expanded="true" signature="94844:95028" ph="SELECT order... *" />
+            <marker date="1496813713000" expanded="true" signature="94865:94996" ph="select * fro... cf_order_mtm_logs" />
+            <marker date="1496813713000" expanded="true" signature="95456:95627" ph="SELECT order... *" />
+            <marker date="1496813713000" expanded="true" signature="95477:95596" ph="select * fro... cf_order_mtm_logs" />
+            <marker date="1496813713000" expanded="true" signature="96044:96214" ph="SELECT order... *" />
+            <marker date="1496813713000" expanded="true" signature="96065:96183" ph="select * fro... cf_order_mtm_logs" />
+            <marker date="1496813713000" expanded="true" signature="101947:102134" ph="SELECT order... *" />
+            <marker date="1496813713000" expanded="true" signature="101968:102099" ph="select * fro... cf_order_mtm_logs" />
+            <marker date="1496813713000" expanded="true" signature="102626:102801" ph="SELECT order... *" />
+            <marker date="1496813713000" expanded="true" signature="102647:102766" ph="select * fro... cf_order_mtm_logs" />
+            <marker date="1496813713000" expanded="true" signature="103261:103437" ph="SELECT order... *" />
+            <marker date="1496813713000" expanded="true" signature="103282:103400" ph="select * fro... cf_order_mtm_logs" />
+            <marker date="1496813713000" expanded="true" signature="112042:112229" ph="SELECT order... *" />
+            <marker date="1496813713000" expanded="true" signature="112063:112194" ph="select * fro... cf_order_mtm_logs" />
+            <marker date="1496813713000" expanded="true" signature="112756:112931" ph="SELECT order... *" />
+            <marker date="1496813713000" expanded="true" signature="112777:112896" ph="select * fro... cf_order_mtm_logs" />
+            <marker date="1496813713000" expanded="true" signature="113475:113651" ph="SELECT order... *" />
+            <marker date="1496813713000" expanded="true" signature="113496:113614" ph="select * fro... cf_order_mtm_logs" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/fdiy/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-682">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/view/sc-utf-8/mall/default/fdiy/index_new.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding>
+            <marker date="1494301296000" expanded="true" signature="814:838" ph="{...}" />
+            <marker date="1494301296000" expanded="true" signature="10088:10248" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/h5/app/fdiy.app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="123" selection-end-column="41" />
           <folding />
         </state>
       </provider>

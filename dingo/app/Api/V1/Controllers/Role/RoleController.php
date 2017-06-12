@@ -89,18 +89,8 @@ class RoleController extends BaseController {
      * )
      * )
      */
-    public function region(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'rid'=>"required|integer",
-        ]);
-        if($validator->fails())
-        {
-            return $this->response->error($validator->errors()->first(), 1);
-        }
-        $list = Region::getList($request->rid);
-        return $this->response->item($list, new RegionTransformer(),[],function ($resource, $fractal) {
-            $fractal->setSerializer(new CustomSerializer);
-        });
+    public function region() {
+        return $this->successResponse(Region::getList());
     }
 
     public function pcode(Request $request)

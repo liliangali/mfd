@@ -80,7 +80,7 @@ class User extends Authenticatable
         {
             return false;
         }
-        User::makeQrcode($user);//生成二维码
+//        User::makeQrcode($user);//生成二维码
         $user->channel_code = $user->user_id;
         $user->save();
         $channel = new ChannelInfo();

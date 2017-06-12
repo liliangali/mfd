@@ -895,7 +895,10 @@ class CartApp extends ShoppingbaseApp
             //'index_key'=>'quan_id',
         ));
         $quanids=array_column($youhuiquans,'quan_id');
-        $quanid=db_create_in($quanids,'id');
+        if($quanids){
+            $quanid=db_create_in($quanids,'id');
+        }
+       
          
         if($quanid){
             $newpromotions= $this->_newpromotion_mod->find(array(

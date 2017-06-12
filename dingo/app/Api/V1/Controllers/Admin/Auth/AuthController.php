@@ -31,9 +31,11 @@ class AuthController extends BaseController {
         $credentials = $request->only('username', 'password');
         $credentials['user_name'] = $credentials['username'];
         unset($credentials['username']);
+
         try {
             // attempt to verify the credentials and create a token for the user
             if (! $token = JWTAuth::attempt($credentials)) {
+
                 $response = array(
                     'msg' => '用户名或密码错误',
                     'status' => 1
